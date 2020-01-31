@@ -1,0 +1,51 @@
+{
+  "name": "@checkup/cli",
+  "description": "A CLI that provides health check information about your project.",
+  "version": "0.0.0",
+  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "bin": {
+    "checkup": "./bin/run"
+  },
+  "bugs": "https://github.com/scalvert/https://github.com/checkupjs/checkup/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/test": "^1",
+    "@types/chai": "^4",
+    "@types/mocha": "^5",
+    "@types/node": "^10",
+    "chai": "^4",
+    "mocha": "^5",
+    "nyc": "^14",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib"
+  ],
+  "homepage": "https://github.com/scalvert/https://github.com/checkupjs/checkup",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "bin": "checkup"
+  },
+  "repository": "scalvert/https://github.com/checkupjs/checkup",
+  "scripts": {
+    "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
