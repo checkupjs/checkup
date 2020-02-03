@@ -6,7 +6,7 @@
   "bin": {
     "checkup": "./bin/run"
   },
-  "bugs": "https://github.com/scalvert/https://github.com/checkupjs/checkup/issues",
+  "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -26,13 +26,13 @@
     "typescript": "^3.3"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": "10.* || >= 12.*"
   },
   "files": [
     "/bin",
     "/lib"
   ],
-  "homepage": "https://github.com/scalvert/https://github.com/checkupjs/checkup",
+  "homepage": "https://github.com/checkupjs/checkup",
   "keywords": [
     "oclif"
   ],
@@ -41,7 +41,7 @@
   "oclif": {
     "bin": "checkup"
   },
-  "repository": "scalvert/https://github.com/checkupjs/checkup",
+  "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
     "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",

@@ -6,7 +6,7 @@ A CLI that provides health check information about your project.
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/@checkup/cli.svg)](https://npmjs.org/package/@checkup/cli)
 [![Downloads/week](https://img.shields.io/npm/dw/@checkup/cli.svg)](https://npmjs.org/package/@checkup/cli)
-[![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/scalvert/https://github.com/checkupjs/checkup/blob/master/package.json)
+[![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
 
 <!-- toc -->
 
