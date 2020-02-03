@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "test": "yarn workspaces run test",
-    "lint": "eslint packages/* --ext .ts"
+    "lint": "eslint . --cache --ext .ts"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.18.0",
@@ -31,7 +31,7 @@
   },
   "lint-staged": {
     "packages/**/*.ts": [
-      "eslint packages/* --ext .ts"
+      "yarn lint"
     ]
   }
 }
