@@ -20,9 +20,9 @@
   },
   "overrides": [
     {
-      "files": ["packages/**/test/**/*.ts"],
+      "files": ["packages/**/__tests__/**/*.ts"],
       "env": {
-        "mocha": true
+        "jest": true
       }
     }
   ]
