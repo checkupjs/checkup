@@ -120,6 +120,10 @@ There may be certain situations where tasks may _not_ be accepted as part of the
 
   Plugins that are specific to external libraries, such as `ember-concurrency` for example, may be best left as externally authored plugins that are ultimately configurable.
 
+## Configuration
+
+Projects are likely to require different configurations for their tasks. While it's likely that Checkup would provide a set of recommended tasks, consumers should be able to configure the tasks they want to write with minimal effort.
+
 ## Health Checkups
 
 Checkup aims to provide a combination of Core tasks and External tasks (via plugins) to configure Health Checkups for your project. These health checkups, when run on-demand, provide a snapshot view of the project and its associated characteristics.
