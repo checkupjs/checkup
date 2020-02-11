@@ -104,7 +104,7 @@ It's likely that we'll want to use specific lint rules both in Checkup and confi
 
 ### Output
 
-`Results` are aggregated from `Tasks`, formatted, and output depending on their target. Output can be any of `console`, `PDF`, or `HTML`.
+`Results` are aggregated from `Tasks`, formatted, and output depending on their target. Output can be any of `console`, `JSON`, `PDF`, or `HTML`.
 
 ## Checkup External Plugins
 
