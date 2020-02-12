@@ -84,7 +84,7 @@ Tasks fall into one of two categories:
 
 #### `JSON`
 
-A JSON task is used to read JSON files, whether project information files (such as `project.json`), or configuration files (such as `.eslinrc.json` and the like). These tasks simply gather information from disparate sources to aggregate into a report.
+A JSON task is used to read JSON files, whether project information files (such as `package.json`), or configuration files (such as `.eslinrc.json` and the like). These tasks simply gather information from disparate sources to aggregate into a report.
 
 #### `Lint`
 
