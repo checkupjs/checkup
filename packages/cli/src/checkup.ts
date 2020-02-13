@@ -1,9 +1,8 @@
-import cli from 'cli-ux';
+import { ui } from './utils/ui';
 import { ITaskConstructor, ITaskResult } from './types';
 import { getTaskByName } from './utils/default-tasks';
 import TaskList from './task-list';
 import * as DefaultTasks from './tasks';
-import ResultWriter from './utils/result-writer';
 import Clock from './utils/clock';
 
 const DEFAULT_TASKS = <ITaskConstructor[]>(
@@ -22,7 +21,6 @@ export default class Checkup {
 
   /**
    *
-   * @param project {IProject} the project model that is instantiated as part of ember-cli.
    * @param ui {IUserInterface} the UI model that is instantiated as part of ember-cli.
    */
   constructor(args: any, flags: any, tasks: ITaskConstructor[] = DEFAULT_TASKS) {
@@ -50,23 +48,23 @@ export default class Checkup {
 
     clock.start();
 
-    cli.action.start('Hang tight while we check up on your Ember project');
-
     let taskResults = await tasks.runTasks();
 
     clock.stop();
 
-    cli.action.stop();
-
     if (!this.flags.silent) {
-      let writer = new ResultWriter(taskResults);
-
       if (this.flags.json) {
-        console.log(JSON.stringify(writer.toJson(), null, 2));
+        let resultData = {};
+        taskResults.forEach(taskResult => {
+          resultData = Object.assign(resultData, taskResult.toJson());
+        });
+
+        ui.styledJSON(resultData);
       } else {
-        writer.toConsole();
+        taskResults.forEach(result => {
+          result.toConsole();
+        });
       }
-      writer.writeDuration(clock.duration);
     }
 
     return taskResults;

@@ -1,4 +1,6 @@
-import { ITaskResult, IConsoleWriter, IDependencyList, IDictionary } from '../types';
+import { IDependencyList, IDictionary, ITaskResult } from '../types';
+
+import { ui } from '../utils/ui';
 
 export default class DependenciesTaskResult implements ITaskResult {
   emberLibraries!: IDictionary<string>;
@@ -15,20 +17,21 @@ export default class DependenciesTaskResult implements ITaskResult {
     });
   }
 
-  toConsole(writer: IConsoleWriter) {
+  toConsole() {
     if (!this.hasDependencies) {
       return;
     }
 
-    writer.heading('Dependencies');
-    writer.table('Ember Core Libraries', this.emberLibraries);
-    writer.line();
+    ui.styledHeader('Dependencies');
+    ui.blankLine();
+    // writer.table('Ember Core Libraries', this.emberLibraries);
+    // writer.line();
 
-    writer.table('Ember Addons - dependencies', this.emberAddons.dependencies);
-    writer.table('Ember Addons - devDependencies', this.emberAddons.dependencies);
-    writer.table('Ember CLI Addons - dependencies', this.emberCliAddons.dependencies);
-    writer.table('Ember CLI Addons - devDependencies', this.emberCliAddons.dependencies);
-    writer.line();
+    // writer.table('Ember Addons - dependencies', this.emberAddons.dependencies);
+    // writer.table('Ember Addons - devDependencies', this.emberAddons.dependencies);
+    // writer.table('Ember CLI Addons - dependencies', this.emberCliAddons.dependencies);
+    // writer.table('Ember CLI Addons - devDependencies', this.emberCliAddons.dependencies);
+    // writer.line();
   }
 
   toJson() {

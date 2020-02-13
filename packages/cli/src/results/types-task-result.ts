@@ -1,13 +1,15 @@
-import { ITaskResult, IConsoleWriter, ITaskItemData } from '../types';
-import getTaskItemTotals from '../utils/get-task-item-totals';
+import { ITaskItemData, ITaskResult } from '../types';
+
+import { ui } from '../utils/ui';
 
 export default class TypesTaskResult implements ITaskResult {
-  types!: ITaskItemData;
+  types!: ITaskItemData[];
 
-  toConsole(writer: IConsoleWriter) {
-    writer.heading('Types');
-    writer.table(['Type', 'Total Count'], getTaskItemTotals(this.types));
-    writer.line();
+  toConsole() {
+    ui.styledHeader('Types');
+    ui.blankLine();
+    ui.table(this.types, { type: {}, total: {} });
+    ui.blankLine();
   }
 
   toJson() {

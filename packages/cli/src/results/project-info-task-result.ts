@@ -1,18 +1,20 @@
-import { ITaskResult, IConsoleWriter } from '../types';
+import { ITaskResult } from '../types';
+import { ui } from '../utils/ui';
 
 export default class ProjectInfoTaskResult implements ITaskResult {
   type!: string;
   name!: string;
   version!: string;
 
-  toConsole(writer: IConsoleWriter) {
-    writer.heading('Project Information');
-    writer.column({
-      Name: this.name,
-      Type: this.type,
-      Version: this.version,
+  toConsole() {
+    ui.styledHeader('Project Information');
+    ui.blankLine();
+    ui.styledObject({
+      name: this.name,
+      type: this.type,
+      version: this.version,
     });
-    writer.line();
+    ui.blankLine();
   }
 
   toJson() {

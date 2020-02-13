@@ -16,7 +16,6 @@ class CheckupCli extends Command {
 
   async run() {
     let { args, flags } = this.parse(CheckupCli);
-    this.log('Checkup run');
 
     let checkup = new Checkup(args, flags);
 

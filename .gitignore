@@ -3,6 +3,7 @@
 packages/*/lib
 packages/*/.nyc_output
 packages/*/node_modules
+packages/*/tsconfig.tsbuildinfo
 /tmp
 node_modules
 .eslintcache
