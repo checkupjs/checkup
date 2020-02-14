@@ -16,45 +16,9 @@ export const enum TestType {
   Unit = 'unit',
 }
 
-export interface ICommand extends IEmberCLICommand {
-  name: string;
-  aliases: string[];
-  description: string;
-  works: string;
-  availableOptions: object[];
-  run: (options: object) => {};
-}
-
-export interface IConsoleWriter {
-  heading: (heading: string) => void;
-  divider: () => void;
-  text: (text: string) => void;
-  indent: (spaces: number) => void;
-  line: () => void;
-  column: <T>(data: IDictionary<T>) => void;
-  table: <T>(heading: string[] | string, dict: IDictionary<T>) => void;
-  singleColumnTable: (heading: string, rowData: string[]) => void;
-}
-
 export interface IDependencyList {
-  dependencies: IDictionary<string>;
-  devDependencies: IDictionary<string>;
-}
-
-export interface IDictionary<T> {
-  [key: string]: T;
-}
-
-export interface IEmberCLICommand {
-  project?: any;
-  ui?: any;
-}
-
-export interface IOptions {
-  verbose?: boolean;
-  silent?: boolean;
-  json?: boolean;
-  task?: string;
+  dependencies: Record<string, string>;
+  devDependencies: Record<string, string>;
 }
 
 export interface ISearchTraverser<T> {
@@ -63,12 +27,6 @@ export interface ISearchTraverser<T> {
   visitors: TraverseOptions | any;
   traverseAst: (filePath: string) => void;
   reset: () => void;
-}
-
-export interface ISpinner {
-  title: string;
-  start: () => void;
-  stop: () => void;
 }
 
 export interface ITask {
@@ -109,10 +67,4 @@ export interface ITestTaskResultData {
   unit: ITestMetrics;
 }
 
-export interface IUserInterface {
-  writeLine: (line: string) => void;
-  startProgress: (message: string) => void;
-  stopProgress: () => void;
-}
-
-export type SearchPatterns = IDictionary<string[]>;
+export type SearchPatterns = Record<string, string[]>;

@@ -4,7 +4,6 @@ import { Node, NodePath } from '@babel/traverse';
 import AstSearcher from '../searchers/ast-searcher';
 import { BASE_DIR } from '../utils/project';
 import JavaScriptTraverser from '../traversers/javascript-traverser';
-import Task from '../task';
 import { TestsTaskResult } from '../results';
 
 export type TestTraverserFileResult = {
@@ -78,7 +77,7 @@ class TestTraverser extends JavaScriptTraverser
   }
 }
 
-export default class TestsTask extends Task implements ITask {
+export default class TestsTask implements ITask {
   /**
    * Returns the Node count of the individual test metrics from the ast search result.
    * Possible Metrics - moduleCount, skipCount, testCount

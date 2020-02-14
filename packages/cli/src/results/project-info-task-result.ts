@@ -18,6 +18,8 @@ export default class ProjectInfoTaskResult implements ITaskResult {
   }
 
   toJson() {
-    return { name: this.name, type: this.type, version: this.version };
+    return {
+      'project-info': { name: this.name, type: this.type, version: this.version },
+    };
   }
 }

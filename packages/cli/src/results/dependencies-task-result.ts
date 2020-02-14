@@ -1,11 +1,11 @@
-import { IDependencyList, IDictionary, ITaskResult } from '../types';
-
+import { ITaskResult } from '../types';
+import { PackageJson } from 'type-fest';
 import { ui } from '../utils/ui';
 
 export default class DependenciesTaskResult implements ITaskResult {
-  emberLibraries!: IDictionary<string>;
-  emberAddons!: IDependencyList;
-  emberCliAddons!: IDependencyList;
+  emberLibraries!: PackageJson.Dependency;
+  emberAddons!: Record<string, PackageJson.Dependency>;
+  emberCliAddons!: Record<string, PackageJson.Dependency>;
 
   constructor() {
     this.emberLibraries = {};

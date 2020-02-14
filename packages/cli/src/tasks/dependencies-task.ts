@@ -1,8 +1,7 @@
-import { IDictionary, ITask, ITaskResult } from '../types';
+import { ITask, ITaskResult } from '../types';
 
 import { DependenciesTaskResult } from '../results';
 import { PackageJson } from 'type-fest';
-import Task from '../task';
 import { getPackageJson } from '../utils/get-package-json';
 
 function getDependency(dependencies: PackageJson.Dependency | undefined, key: string): string {
@@ -21,7 +20,7 @@ function getDependencies(
     return {};
   }
 
-  return Object.entries(dependencies).reduce((orig: IDictionary<string>, pair) => {
+  return Object.entries(dependencies).reduce((orig: Record<string, string>, pair) => {
     let [key, value] = pair;
 
     if (filter(key)) {
@@ -40,7 +39,7 @@ function emberCliAddonFilter(dependency: string) {
   return dependency.startsWith('ember-cli');
 }
 
-export default class DependenciesTask extends Task implements ITask {
+export default class DependenciesTask implements ITask {
   async run(): Promise<ITaskResult> {
     let result: DependenciesTaskResult = new DependenciesTaskResult();
     let pkg: PackageJson = getPackageJson();
