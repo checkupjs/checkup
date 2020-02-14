@@ -2,7 +2,6 @@ import { ITask, ITaskResult, SearchPatterns } from './types';
 
 import { BASE_DIR } from './utils/project';
 import FileSearcher from './searchers/file-searcher';
-import Task from './task';
 
 /**
  * @class FileSearcherTask
@@ -12,7 +11,7 @@ import Task from './task';
  * A checkup task specific to file searcher used to encapsulate an operation that
  * checks certain characteristics of your Ember project.
  */
-export default abstract class FileSearcherTask extends Task implements ITask {
+export default abstract class FileSearcherTask implements ITask {
   searcher: FileSearcher;
 
   /**
@@ -21,7 +20,6 @@ export default abstract class FileSearcherTask extends Task implements ITask {
    * @param searchPatterns {SearchPatterns} the search pattern that your filesearcher uses to return the results.
    */
   constructor(searchPatterns: SearchPatterns) {
-    super();
     this.searcher = new FileSearcher(BASE_DIR, searchPatterns);
   }
 
