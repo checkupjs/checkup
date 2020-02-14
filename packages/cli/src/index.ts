@@ -19,7 +19,7 @@ class CheckupCli extends Command {
 
     let checkup = new Checkup(args, flags);
 
-    await checkup.run();
+    return checkup.run();
   }
 }
 

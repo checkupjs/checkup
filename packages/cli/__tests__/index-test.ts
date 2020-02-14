@@ -1,9 +1,11 @@
+import { stdout } from './__utils__/stdout';
+
 import cmd = require('../src');
 
 describe('@checkup/cli', () => {
   it('should output checkup result', async () => {
-    let result = await cmd.run([]);
+    await cmd.run([]);
 
-    expect(result).toMatchSnapshot();
+    expect(stdout()).toMatchSnapshot();
   });
 });

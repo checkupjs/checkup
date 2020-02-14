@@ -1,3 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@checkup/cli should output checkup result 1`] = `undefined`;
+exports[`@checkup/cli should output checkup result 1`] = `
+"=== Project Information
+
+name:    @checkup/cli
+type:    unknown
+version: 0.0.0
+
+=== Types
+
+Type                  Total 
+components            0     
+controllers           0     
+helpers               0     
+initializers          0     
+instance-initializers 0     
+mixins                0     
+models                0     
+routes                0     
+services              0     
+templates             0     
+
+=== Test Types
+
+"
+`;
