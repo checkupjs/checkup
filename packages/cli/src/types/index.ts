@@ -80,7 +80,9 @@ export interface ITaskConstructor {
 }
 
 export interface ITaskItemData {
-  [propName: string]: string[];
+  type: string;
+  data: string[];
+  total: number;
 }
 
 export interface ITaskList {
@@ -90,7 +92,7 @@ export interface ITaskList {
 }
 
 export interface ITaskResult {
-  toConsole: (writer: IConsoleWriter) => void;
+  toConsole: () => void;
   toJson: () => {};
 }
 

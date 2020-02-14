@@ -1,6 +1,8 @@
+import { ITaskResult, TestType } from '../types';
+
 import { Node } from '@babel/traverse';
-import { IConsoleWriter, ITaskResult, TestType } from '../types';
 import { TestTraverserFileResult } from '../tasks/tests-task';
+import { ui } from '../utils/ui';
 
 type TestFile = {
   filePath: string;
@@ -61,9 +63,9 @@ export default class TestsTaskResult implements ITaskResult {
     }
   }
 
-  toConsole(writer: IConsoleWriter) {
-    writer.heading('Implement Me!');
-    writer.line();
+  toConsole() {
+    ui.styledHeader('Test Types');
+    ui.blankLine();
   }
 
   toJson() {

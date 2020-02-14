@@ -1,5 +1,6 @@
 import * as globby from 'globby';
-import { SearchPatterns, ITaskItemData } from '../types';
+
+import { ITaskItemData, SearchPatterns } from '../types';
 
 const IGNORE_PATTERNS: string[] = [
   '!**/node_modules/**',
@@ -35,19 +36,20 @@ export default class FileSearcher {
   /**
    * Invokes the search, for each search pattern.
    */
-  async search(): Promise<ITaskItemData> {
-    const resultData: ITaskItemData = {};
+  async search(): Promise<ITaskItemData[]> {
+    const resultData = [];
 
-    for (const pattern in this.searchPatterns) {
-      if (Object.prototype.hasOwnProperty.call(this.searchPatterns, pattern)) {
-        resultData[pattern] = await this._getSearchItem(pattern);
+    for (const searchPatternName in this.searchPatterns) {
+      if (Object.prototype.hasOwnProperty.call(this.searchPatterns, searchPatternName)) {
+        let data = await this._getSearchItem(searchPatternName);
+        resultData.push({ type: searchPatternName, data, total: data.length });
       }
     }
     return resultData;
   }
 
-  _getSearchItem(pattern: string): Promise<string[]> {
-    let patterns = this.searchPatterns[pattern].concat(IGNORE_PATTERNS);
+  _getSearchItem(searchPatternName: string): Promise<string[]> {
+    let patterns = this.searchPatterns[searchPatternName].concat(IGNORE_PATTERNS);
     return globby(patterns, { cwd: this.baseDir });
   }
 }
