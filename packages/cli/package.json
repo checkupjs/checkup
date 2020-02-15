@@ -65,6 +65,7 @@
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
     "build": "rm -rf lib && tsc -b",
+    "build:watch": "yarn build -w",
     "prepack": "yarn build && oclif-dev readme",
     "test": "jest",
     "version": "oclif-dev readme && git add README.md"

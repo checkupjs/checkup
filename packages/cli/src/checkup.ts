@@ -3,7 +3,6 @@ import { ITaskConstructor, ITaskResult } from './types';
 import { getTaskByName } from './utils/default-tasks';
 import TaskList from './task-list';
 import * as DefaultTasks from './tasks';
-import Clock from './utils/clock';
 
 const DEFAULT_TASKS = <ITaskConstructor[]>(
   Object.values(DefaultTasks).filter(x => typeof x == 'function')
@@ -35,7 +34,8 @@ export default class Checkup {
    * Gathers and runs all tasks associated with checking up on an Ember repo.
    */
   async run(): Promise<ITaskResult[]> {
-    let clock = new Clock();
+    ui.clearScreen();
+
     let tasks = new TaskList();
 
     if (this.flags.task !== undefined) {
@@ -46,11 +46,10 @@ export default class Checkup {
       tasks.addTasks(this.defaultTasks);
     }
 
-    clock.start();
-
+    ui.action.start('Checking up on your project');
     let taskResults = await tasks.runTasks();
-
-    clock.stop();
+    ui.action.stop();
+    ui.clearLine();
 
     if (!this.flags.silent) {
       if (this.flags.json) {

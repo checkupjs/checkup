@@ -7,7 +7,7 @@ export default class ProjectInfoTaskResult implements ITaskResult {
   version!: string;
 
   toConsole() {
-    ui.styledHeader('Project Information');
+    ui.styledHeader('Project Info');
     ui.blankLine();
     ui.styledObject({
       name: this.name,
