@@ -1,8 +1,9 @@
-import { ITaskResult } from '../types';
 import { PackageJson } from 'type-fest';
+import { TaskResult } from '../types';
 import { ui } from '../utils/ui';
+import { wrapEntries } from '../utils/data-formatter';
 
-export default class DependenciesTaskResult implements ITaskResult {
+export default class DependenciesTaskResult implements TaskResult {
   emberLibraries!: PackageJson.Dependency;
   emberAddons!: Record<string, PackageJson.Dependency>;
   emberCliAddons!: Record<string, PackageJson.Dependency>;
@@ -12,9 +13,12 @@ export default class DependenciesTaskResult implements ITaskResult {
   }
 
   get hasDependencies() {
-    return [this.emberAddons, this.emberCliAddons].every(addons => {
-      return Object.keys(addons.dependencies).length && Object.keys(addons.devDependencies);
-    });
+    return (
+      Object.keys(this.emberLibraries).length ||
+      [this.emberAddons, this.emberCliAddons].every(addons => {
+        return Object.keys(addons.dependencies).length && Object.keys(addons.devDependencies);
+      })
+    );
   }
 
   toConsole() {
@@ -22,16 +26,14 @@ export default class DependenciesTaskResult implements ITaskResult {
       return;
     }
 
-    ui.styledHeader('Dependencies');
-    ui.blankLine();
-    // writer.table('Ember Core Libraries', this.emberLibraries);
-    // writer.line();
-
-    // writer.table('Ember Addons - dependencies', this.emberAddons.dependencies);
-    // writer.table('Ember Addons - devDependencies', this.emberAddons.dependencies);
-    // writer.table('Ember CLI Addons - dependencies', this.emberCliAddons.dependencies);
-    // writer.table('Ember CLI Addons - devDependencies', this.emberCliAddons.dependencies);
-    // writer.line();
+    this._writeDependencySection('Dependencies - Core Libraries', this.emberLibraries);
+    this._writeDependencySection('Dependencies - Ember Addons', this.emberAddons.dependencies);
+    this._writeDependencySection('Dependencies - Ember Addons', this.emberAddons.devDependencies);
+    this._writeDependencySection('Dependencies - Ember Addons', this.emberCliAddons.dependencies);
+    this._writeDependencySection(
+      'Dependencies - Ember Addons',
+      this.emberCliAddons.devDependencies
+    );
   }
 
   toJson() {
@@ -42,5 +44,19 @@ export default class DependenciesTaskResult implements ITaskResult {
         emberCliAddons: this.emberCliAddons,
       },
     };
+  }
+
+  _writeDependencySection(header: string, dependencies: PackageJson.Dependency) {
+    if (!Object.keys(dependencies).length) {
+      return;
+    }
+
+    ui.styledHeader(header);
+    ui.blankLine();
+    ui.table(wrapEntries(dependencies, { keyName: 'dependency', valueName: 'version' }), {
+      dependency: {},
+      version: {},
+    });
+    ui.blankLine();
   }
 }

@@ -1,18 +1,18 @@
 import * as pMap from 'p-map';
 
-import { ITask, ITaskConstructor, ITaskList, ITaskResult } from './types';
+import { Task, TaskConstructor, TaskResult } from './types';
 
 /**
  * @class TaskList
  *
  * Represents a collection of tasks to run.
  */
-export default class TaskList implements ITaskList {
-  private defaultTasks: ITask[];
+export default class TaskList {
+  private defaultTasks: Task[];
 
   /**
    *
-   * @param results {ITaskResult[]} the results object that aggregates data together for output.
+   * @param results {TaskResult[]} the results object that aggregates data together for output.
    */
   constructor() {
     this.defaultTasks = [];
@@ -23,9 +23,9 @@ export default class TaskList implements ITaskList {
    *
    * Adds a default task to the task list, which is executed as part of checkup.
    *
-   * @param taskConstructor {ITaskConstructor} a constructor representing a Task class
+   * @param taskConstructor {TaskConstructor} a constructor representing a Task class
    */
-  addTask(taskConstructor: ITaskConstructor) {
+  addTask(taskConstructor: TaskConstructor) {
     this.defaultTasks.push(new taskConstructor());
   }
 
@@ -34,10 +34,10 @@ export default class TaskList implements ITaskList {
    *
    * Adds an array default task to the task list, which is executed as part of checkup.
    *
-   * @param taskConstructor {ITaskConstructor[]} an array of constructors representing a Task classes
+   * @param taskConstructor {TaskConstructor[]} an array of constructors representing a Task classes
    */
-  addTasks(taskConstructors: ITaskConstructor[]) {
-    taskConstructors.forEach((taskConstructor: ITaskConstructor) => {
+  addTasks(taskConstructors: TaskConstructor[]) {
+    taskConstructors.forEach((taskConstructor: TaskConstructor) => {
       this.addTask(taskConstructor);
     });
   }
@@ -48,7 +48,7 @@ export default class TaskList implements ITaskList {
    * Runs all tasks that have been added to the task list.
    */
   runTasks() {
-    return this.eachTask((task: ITask) => {
+    return this.eachTask((task: Task) => {
       return task.run();
     });
   }
@@ -60,7 +60,7 @@ export default class TaskList implements ITaskList {
    * Runs each task in parallel
    * @param fn {Function} the function expressing the wrapped task to run
    */
-  private eachTask(fn: (task: ITask) => Promise<ITaskResult>) {
+  private eachTask(fn: (task: Task) => Promise<TaskResult>) {
     return pMap(this.defaultTasks, fn);
   }
 }

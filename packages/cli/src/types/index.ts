@@ -1,5 +1,3 @@
-import { TraverseOptions } from '@babel/traverse';
-
 export default {};
 
 export const enum ProjectType {
@@ -16,55 +14,23 @@ export const enum TestType {
   Unit = 'unit',
 }
 
-export interface IDependencyList {
-  dependencies: Record<string, string>;
-  devDependencies: Record<string, string>;
+export interface Task {
+  run: () => Promise<TaskResult>;
 }
 
-export interface ISearchTraverser<T> {
-  hasResults: boolean;
-  results: T;
-  visitors: TraverseOptions | any;
-  traverseAst: (filePath: string) => void;
-  reset: () => void;
+export interface TaskConstructor {
+  new (): Task;
 }
 
-export interface ITask {
-  run: () => Promise<ITaskResult>;
-}
-
-export interface ITaskConstructor {
-  new (): ITask;
-}
-
-export interface ITaskItemData {
+export interface TaskItemData {
   type: string;
   data: string[];
   total: number;
 }
 
-export interface ITaskList {
-  addTask: (task: ITaskConstructor) => void;
-  addTasks: (tasks: ITaskConstructor[]) => void;
-  runTasks: () => void;
-}
-
-export interface ITaskResult {
+export interface TaskResult {
   toConsole: () => void;
   toJson: () => {};
-}
-
-export interface ITestMetrics {
-  moduleCount: number;
-  skipCount: number;
-  testCount: number;
-}
-
-export interface ITestTaskResultData {
-  application: ITestMetrics;
-  container: ITestMetrics;
-  rendering: ITestMetrics;
-  unit: ITestMetrics;
 }
 
 export type SearchPatterns = Record<string, string[]>;

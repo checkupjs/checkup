@@ -1,4 +1,4 @@
-import { ITask, ITaskResult } from '../types';
+import { Task, TaskResult } from '../types';
 
 import { DependenciesTaskResult } from '../results';
 import { PackageJson } from 'type-fest';
@@ -39,8 +39,8 @@ function emberCliAddonFilter(dependency: string) {
   return dependency.startsWith('ember-cli');
 }
 
-export default class DependenciesTask implements ITask {
-  async run(): Promise<ITaskResult> {
+export default class DependenciesTask implements Task {
+  async run(): Promise<TaskResult> {
     let result: DependenciesTaskResult = new DependenciesTaskResult();
     let pkg: PackageJson = getPackageJson();
 

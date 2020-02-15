@@ -1,9 +1,9 @@
-import { ITask, ITaskResult } from '../types';
+import { Task, TaskResult } from '../types';
 
 import FileSearcherTask from '../file-searcher-task';
 import { TypesTaskResult } from '../results';
 
-export default class TypesTask extends FileSearcherTask implements ITask {
+export default class TypesTask extends FileSearcherTask implements Task {
   constructor() {
     const SEARCH_PATTERNS = {
       components: ['**/components/**/*.js'],
@@ -21,7 +21,7 @@ export default class TypesTask extends FileSearcherTask implements ITask {
     super(SEARCH_PATTERNS);
   }
 
-  async run(): Promise<ITaskResult> {
+  async run(): Promise<TaskResult> {
     let result = new TypesTaskResult();
     result.types = await this.searcher.search();
 

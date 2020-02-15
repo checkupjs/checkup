@@ -1,6 +1,6 @@
 import * as globby from 'globby';
 
-import { ITaskItemData, SearchPatterns } from '../types';
+import { SearchPatterns, TaskItemData } from '../types';
 
 const IGNORE_PATTERNS: string[] = [
   '!**/node_modules/**',
@@ -36,7 +36,7 @@ export default class FileSearcher {
   /**
    * Invokes the search, for each search pattern.
    */
-  async search(): Promise<ITaskItemData[]> {
+  async search(): Promise<TaskItemData[]> {
     const resultData = [];
 
     for (const searchPatternName in this.searchPatterns) {
