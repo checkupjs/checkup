@@ -1,9 +1,9 @@
-import { ITaskItemData, ITaskResult } from '../types';
+import { TaskItemData, TaskResult } from '../types';
 
 import { ui } from '../utils/ui';
 
-export default class TypesTaskResult implements ITaskResult {
-  types!: ITaskItemData[];
+export default class TypesTaskResult implements TaskResult {
+  types!: TaskItemData[];
 
   toConsole() {
     ui.styledHeader('Types');

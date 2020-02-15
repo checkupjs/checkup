@@ -1,10 +1,10 @@
 import { ui } from './utils/ui';
-import { ITaskConstructor, ITaskResult } from './types';
+import { TaskConstructor, TaskResult } from './types';
 import { getTaskByName } from './utils/default-tasks';
 import TaskList from './task-list';
 import * as DefaultTasks from './tasks';
 
-const DEFAULT_TASKS = <ITaskConstructor[]>(
+const DEFAULT_TASKS = <TaskConstructor[]>(
   Object.values(DefaultTasks).filter(x => typeof x == 'function')
 );
 
@@ -16,13 +16,13 @@ const DEFAULT_TASKS = <ITaskConstructor[]>(
 export default class Checkup {
   args: any;
   flags: any;
-  defaultTasks: ITaskConstructor[];
+  defaultTasks: TaskConstructor[];
 
   /**
    *
    * @param ui {IUserInterface} the UI model that is instantiated as part of ember-cli.
    */
-  constructor(args: any, flags: any, tasks: ITaskConstructor[] = DEFAULT_TASKS) {
+  constructor(args: any, flags: any, tasks: TaskConstructor[] = DEFAULT_TASKS) {
     this.args = args;
     this.flags = flags;
     this.defaultTasks = tasks;
@@ -33,7 +33,7 @@ export default class Checkup {
    *
    * Gathers and runs all tasks associated with checking up on an Ember repo.
    */
-  async run(): Promise<ITaskResult[]> {
+  async run(): Promise<TaskResult[]> {
     ui.clearScreen();
 
     let tasks = new TaskList();

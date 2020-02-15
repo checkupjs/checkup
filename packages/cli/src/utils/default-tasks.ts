@@ -1,8 +1,8 @@
 import * as DefaultTasks from '../tasks';
-import { ITaskConstructor } from '../types';
+import { TaskConstructor } from '../types';
 
-export function getTaskByName(name: string): ITaskConstructor {
-  return <ITaskConstructor>(
+export function getTaskByName(name: string): TaskConstructor {
+  return <TaskConstructor>(
     Object.values(DefaultTasks).find(task => name === task.name.replace('Task', ''))
   );
 }

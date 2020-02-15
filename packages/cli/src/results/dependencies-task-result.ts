@@ -1,9 +1,9 @@
-import { ITaskResult } from '../types';
 import { PackageJson } from 'type-fest';
+import { TaskResult } from '../types';
 import { ui } from '../utils/ui';
 import { wrapEntries } from '../utils/data-formatter';
 
-export default class DependenciesTaskResult implements ITaskResult {
+export default class DependenciesTaskResult implements TaskResult {
   emberLibraries!: PackageJson.Dependency;
   emberAddons!: Record<string, PackageJson.Dependency>;
   emberCliAddons!: Record<string, PackageJson.Dependency>;

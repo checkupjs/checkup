@@ -1,7 +1,7 @@
-import { ITaskResult } from '../types';
+import { TaskResult } from '../types';
 import { ui } from '../utils/ui';
 
-export default class ProjectInfoTaskResult implements ITaskResult {
+export default class ProjectInfoTaskResult implements TaskResult {
   type!: string;
   name!: string;
   version!: string;
