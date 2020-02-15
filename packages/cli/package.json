@@ -8,6 +8,8 @@
   },
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
+    "@checkup/core": "0.0.0",
+    "@checkup/plugin-ember": "0.0.0",
     "@glimmer/reference": "^0.47.0",
     "@glimmer/runtime": "^0.47.0",
     "@glimmer/syntax": "^0.47.0",
@@ -16,11 +18,7 @@
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
     "@simple-dom/interface": "^1.4.0",
-    "capitalize": "^2.0.1",
-    "chalk": "^3.0.0",
-    "cli-table3": "^0.5.1",
     "cli-ux": "^5.4.4",
-    "columnify": "^1.5.4",
     "ember-template-recast": "^4.0.0",
     "fs-extra": "^8.1.0",
     "globby": "^11.0.0",
@@ -60,11 +58,14 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "bin": "checkup"
+    "bin": "checkup",
+    "plugins": [
+      "@checkup/plugin-ember"
+    ]
   },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
-    "build": "rm -rf lib && tsc -b",
+    "build": "tsc",
     "build:watch": "yarn build -w",
     "prepack": "yarn build && oclif-dev readme",
     "test": "jest",

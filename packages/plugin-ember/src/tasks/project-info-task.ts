@@ -1,8 +1,7 @@
-import { Task, TaskResult } from '../types';
+import { Task, TaskResult, getPackageJson } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { ProjectInfoTaskResult } from '../results';
-import { getPackageJson } from '../utils/get-package-json';
 import { getProjectType } from '../utils/project';
 
 export default class ProjectInfoTask implements Task {

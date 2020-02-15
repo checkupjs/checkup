@@ -1,0 +1,36 @@
+{
+  "name": "@checkup/core",
+  "description": "Checkup's core library",
+  "version": "0.0.0",
+  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "bugs": "https://github.com/checkupjs/checkup/issues",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^4",
+    "@types/jest": "^25.1.1",
+    "@types/node": "^10",
+    "chai": "^4.2.0",
+    "jest": "^25.1.0",
+    "stdout-stderr": "^0.1.13",
+    "ts-jest": "^25.2.0",
+    "ts-node": "^8",
+    "type-fest": "^0.10.0",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": "10.* || >= 12.*"
+  },
+  "files": [
+    "/lib"
+  ],
+  "homepage": "https://github.com/checkupjs/checkup",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": "https://github.com/checkupjs/checkup",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "yarn build -w",
+    "test": "jest"
+  },
+  "types": "lib/index.d.ts"
+}

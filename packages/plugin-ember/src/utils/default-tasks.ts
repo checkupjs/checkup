@@ -1,5 +1,5 @@
 import * as DefaultTasks from '../tasks';
-import { TaskConstructor } from '../types';
+import { TaskConstructor } from '@checkup/core';
 
 export function getTaskByName(name: string): TaskConstructor {
   return <TaskConstructor>(

@@ -1,6 +1,6 @@
 import { SearchPatterns, Task, TaskResult } from './types';
 
-import { BASE_DIR } from './utils/project';
+import { BASE_DIR } from './utils/base-dir';
 import FileSearcher from './searchers/file-searcher';
 
 /**

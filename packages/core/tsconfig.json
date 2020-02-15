@@ -8,11 +8,7 @@
     "rootDir": "src",
     "strict": true,
     "target": "es2017",
-    "types": ["babel__traverse", "capitalize", "chai", "columnify", "fs-extra", "jest", "node"],
-    "baseUrl": ".",
-    "paths": {
-      "@checkup/core": ["../core/lib/index.d.ts"]
-    }
+    "types": ["chai", "jest", "node"]
   },
   "include": ["src/**/*"]
 }

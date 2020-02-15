@@ -1,5 +1,4 @@
-import { TaskResult } from '../types';
-import { ui } from '../utils/ui';
+import { TaskResult, ui } from '@checkup/core';
 
 export default class ProjectInfoTaskResult implements TaskResult {
   type!: string;
