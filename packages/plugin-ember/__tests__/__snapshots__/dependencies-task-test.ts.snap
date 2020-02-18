@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dependencies-task detects dependencies 1`] = `
+"=== Dependencies - Core Libraries
+
+Dependency   Version   
+ember-source undefined 
+ember-cli    undefined 
+ember-data   undefined 
+
+"
+`;
+
+exports[`dependencies-task detects dependencies 2`] = `
+Object {
+  "dependencies": Object {
+    "emberAddons": Object {
+      "dependencies": Object {},
+      "devDependencies": Object {},
+    },
+    "emberCliAddons": Object {
+      "dependencies": Object {},
+      "devDependencies": Object {},
+    },
+    "emberLibraries": Object {
+      "ember-cli": undefined,
+      "ember-data": undefined,
+      "ember-source": undefined,
+    },
+  },
+}
+`;

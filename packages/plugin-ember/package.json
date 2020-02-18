@@ -11,7 +11,9 @@
     "tslib": "^1"
   },
   "devDependencies": {
+    "fixturify-project": "^1.10.0",
     "jest": "^25.1.0",
+    "rimraf": "^3.0.2",
     "ts-jest": "^25.2.0",
     "ts-node": "^8",
     "typescript": "^3.3"
@@ -43,7 +45,7 @@
     "build:watch": "yarn build -w",
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "test": "echo NO TESTS",
+    "test": "jest",
     "version": "oclif-dev readme && git add README.md"
   },
   "types": "lib/index.d.ts"

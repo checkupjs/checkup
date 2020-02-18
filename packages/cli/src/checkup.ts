@@ -1,4 +1,4 @@
-import { TaskConstructor, TaskList, TaskResult, getTasks, ui } from '@checkup/core';
+import { TaskConstructor, TaskList, TaskResult, getRegisteredTasks, ui } from '@checkup/core';
 
 /**
  * @class Checkup
@@ -8,22 +8,24 @@ import { TaskConstructor, TaskList, TaskResult, getTasks, ui } from '@checkup/co
 export default class Checkup {
   args: any;
   flags: any;
-  tasks: TaskConstructor[];
+  registeredTasks: TaskConstructor[];
 
   /**
    *
-   * @param ui {IUserInterface} the UI model that is instantiated as part of ember-cli.
+   * @param args Additional arguments passed to the CLI
+   * @param flags Flags passed to the CLI
+   * @param registeredTasks The set of registered tasks that are configured to run for the CLI
    */
-  constructor(args: any, flags: any, tasks: TaskConstructor[] = getTasks()) {
+  constructor(args: any, flags: any, registeredTasks: TaskConstructor[] = getRegisteredTasks()) {
     this.args = args;
     this.flags = flags;
-    this.tasks = tasks;
+    this.registeredTasks = registeredTasks;
   }
 
   /**
    * @method run
    *
-   * Gathers and runs all tasks associated with checking up on an Ember repo.
+   * Runs all tasks associated with checking up on an Ember repo.
    */
   async run(): Promise<TaskResult[]> {
     ui.clearScreen();
@@ -31,7 +33,7 @@ export default class Checkup {
     let tasksToBeRun = new TaskList();
 
     if (this.flags.task !== undefined) {
-      let task = Object.values(this.tasks).find(
+      let task = Object.values(this.registeredTasks).find(
         task => this.flags.task === task.name.replace('Task', '')
       );
 
@@ -39,7 +41,7 @@ export default class Checkup {
         tasksToBeRun.addTask(task);
       }
     } else {
-      tasksToBeRun.addTasks(this.tasks);
+      tasksToBeRun.addTasks(this.registeredTasks);
     }
 
     ui.action.start('Checking up on your project');

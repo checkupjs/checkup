@@ -27,10 +27,16 @@ export default class DependenciesTaskResult implements TaskResult {
 
     this._writeDependencySection('Dependencies - Core Libraries', this.emberLibraries);
     this._writeDependencySection('Dependencies - Ember Addons', this.emberAddons.dependencies);
-    this._writeDependencySection('Dependencies - Ember Addons', this.emberAddons.devDependencies);
-    this._writeDependencySection('Dependencies - Ember Addons', this.emberCliAddons.dependencies);
     this._writeDependencySection(
-      'Dependencies - Ember Addons',
+      'Dev Dependencies - Ember Addons',
+      this.emberAddons.devDependencies
+    );
+    this._writeDependencySection(
+      'Dependencies - Ember CLI Addons',
+      this.emberCliAddons.dependencies
+    );
+    this._writeDependencySection(
+      'Dev Dependencies - Ember CLI Addons',
       this.emberCliAddons.devDependencies
     );
   }

@@ -1,9 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { BASE_DIR, getPackageJson } from '@checkup/core';
-
 import { ProjectType } from '../types';
+import { getPackageJson } from '@checkup/core';
 
 /**
  * Gets the current type of project, either
@@ -14,7 +13,7 @@ export function getProjectType(): ProjectType {
   let pkg = getPackageJson();
 
   if (pkg.keywords && Array.isArray(pkg.keywords) && pkg.keywords.indexOf('ember-addon') >= 0) {
-    if (fs.existsSync(path.join(BASE_DIR, 'addon', 'engine.js'))) {
+    if (fs.existsSync(path.join(process.cwd(), 'addon', 'engine.js'))) {
       return ProjectType.Engine;
     } else {
       return ProjectType.Addon;

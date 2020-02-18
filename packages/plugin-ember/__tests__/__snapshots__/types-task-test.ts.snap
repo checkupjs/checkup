@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`types-task returns all the types (including nested) found in the app and outputs to JSON 1`] = `
+Object {
+  "types": Array [
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/components/my-component.js",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/components/my-component.js",
+      ],
+      "total": 2,
+      "type": "components",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/controllers/my-controller.js",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/controllers/my-controller.js",
+      ],
+      "total": 2,
+      "type": "controllers",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/helpers/my-helper.js",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/helpers/my-helper.js",
+      ],
+      "total": 2,
+      "type": "helpers",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/initializers/my-initializer.js",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/initializers/my-initializer.js",
+      ],
+      "total": 2,
+      "type": "initializers",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/instance-initializers/my-helper.js",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/instance-initializers/my-helper.js",
+      ],
+      "total": 2,
+      "type": "instance-initializers",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/mixins/my-mixin.js",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/mixins/my-mixin.js",
+      ],
+      "total": 2,
+      "type": "mixins",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/models/my-model.js",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/models/my-model.js",
+      ],
+      "total": 2,
+      "type": "models",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/routes/my-route.js",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/routes/my-route.js",
+      ],
+      "total": 2,
+      "type": "routes",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/services/my-service.js",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/services/my-service.js",
+      ],
+      "total": 2,
+      "type": "services",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/templates/my-component.hbs",
+        "tests/test-app/cli-checkup-app/lib/ember-super-button/addon/templates/my-component.hbs",
+      ],
+      "total": 2,
+      "type": "templates",
+    },
+  ],
+}
+`;
+
+exports[`types-task returns all the types (including nested) found in the app and outputs to the console 1`] = `
+"=== Types
+
+Type                  Total 
+components            2     
+controllers           2     
+helpers               2     
+initializers          2     
+instance-initializers 2     
+mixins                2     
+models                2     
+routes                2     
+services              2     
+templates             2     
+
+"
+`;
+
+exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
+Object {
+  "types": Array [
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/components/my-component.js",
+      ],
+      "total": 1,
+      "type": "components",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/controllers/my-controller.js",
+      ],
+      "total": 1,
+      "type": "controllers",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/helpers/my-helper.js",
+      ],
+      "total": 1,
+      "type": "helpers",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/initializers/my-initializer.js",
+      ],
+      "total": 1,
+      "type": "initializers",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/instance-initializers/my-helper.js",
+      ],
+      "total": 1,
+      "type": "instance-initializers",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/mixins/my-mixin.js",
+      ],
+      "total": 1,
+      "type": "mixins",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/models/my-model.js",
+      ],
+      "total": 1,
+      "type": "models",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/routes/my-route.js",
+      ],
+      "total": 1,
+      "type": "routes",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/services/my-service.js",
+      ],
+      "total": 1,
+      "type": "services",
+    },
+    Object {
+      "data": Array [
+        "tests/test-app/cli-checkup-app/addon/templates/my-component.hbs",
+      ],
+      "total": 1,
+      "type": "templates",
+    },
+  ],
+}
+`;
+
+exports[`types-task returns all the types found in the app and outputs to the console 1`] = `
+"=== Types
+
+Type                  Total 
+components            1     
+controllers           1     
+helpers               1     
+initializers          1     
+instance-initializers 1     
+mixins                1     
+models                1     
+routes                1     
+services              1     
+templates             1     
+
+"
+`;
