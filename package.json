@@ -12,7 +12,7 @@
   "scripts": {
     "build": "yarn workspace @checkup/core build && yarn workspace @checkup/plugin-ember build && yarn workspace @checkup/cli build",
     "build:watch": "yarn workspace @checkup/core build -w && yarn workspace @checkup/plugin-ember build -w && yarn workspace @checkup/cli build -w",
-    "test": "yarn workspaces run build && yarn workspaces run test",
+    "test": "yarn workspaces run test",
     "lint": "eslint . --cache --ext .ts"
   },
   "devDependencies": {
