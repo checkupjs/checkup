@@ -1,7 +1,6 @@
+import { TaskResult, ui, wrapEntries } from '@checkup/core';
+
 import { PackageJson } from 'type-fest';
-import { TaskResult } from '../types';
-import { ui } from '../utils/ui';
-import { wrapEntries } from '../utils/data-formatter';
 
 export default class DependenciesTaskResult implements TaskResult {
   emberLibraries!: PackageJson.Dependency;

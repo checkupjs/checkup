@@ -1,12 +1,4 @@
-import { ui } from './utils/ui';
-import { TaskConstructor, TaskResult } from './types';
-import { getTaskByName } from './utils/default-tasks';
-import TaskList from './task-list';
-import * as DefaultTasks from './tasks';
-
-const DEFAULT_TASKS = <TaskConstructor[]>(
-  Object.values(DefaultTasks).filter(x => typeof x == 'function')
-);
+import { TaskConstructor, TaskList, TaskResult, getTasks, ui } from '@checkup/core';
 
 /**
  * @class Checkup
@@ -16,16 +8,16 @@ const DEFAULT_TASKS = <TaskConstructor[]>(
 export default class Checkup {
   args: any;
   flags: any;
-  defaultTasks: TaskConstructor[];
+  tasks: TaskConstructor[];
 
   /**
    *
    * @param ui {IUserInterface} the UI model that is instantiated as part of ember-cli.
    */
-  constructor(args: any, flags: any, tasks: TaskConstructor[] = DEFAULT_TASKS) {
+  constructor(args: any, flags: any, tasks: TaskConstructor[] = getTasks()) {
     this.args = args;
     this.flags = flags;
-    this.defaultTasks = tasks;
+    this.tasks = tasks;
   }
 
   /**
@@ -36,18 +28,22 @@ export default class Checkup {
   async run(): Promise<TaskResult[]> {
     ui.clearScreen();
 
-    let tasks = new TaskList();
+    let tasksToBeRun = new TaskList();
 
     if (this.flags.task !== undefined) {
-      let task = getTaskByName(this.flags.task);
+      let task = Object.values(this.tasks).find(
+        task => this.flags.task === task.name.replace('Task', '')
+      );
 
-      tasks.addTask(task);
+      if (task !== undefined) {
+        tasksToBeRun.addTask(task);
+      }
     } else {
-      tasks.addTasks(this.defaultTasks);
+      tasksToBeRun.addTasks(this.tasks);
     }
 
     ui.action.start('Checking up on your project');
-    let taskResults = await tasks.runTasks();
+    let taskResults = await tasksToBeRun.runTasks();
     ui.action.stop();
     ui.clearLine();
 

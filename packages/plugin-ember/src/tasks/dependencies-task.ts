@@ -1,8 +1,7 @@
-import { Task, TaskResult } from '../types';
+import { Task, TaskResult, getPackageJson } from '@checkup/core';
 
 import { DependenciesTaskResult } from '../results';
 import { PackageJson } from 'type-fest';
-import { getPackageJson } from '../utils/get-package-json';
 
 function getDependency(dependencies: PackageJson.Dependency | undefined, key: string): string {
   if (typeof dependencies === 'undefined') {

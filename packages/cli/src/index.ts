@@ -17,6 +17,8 @@ class CheckupCli extends Command {
   async run() {
     let { args, flags } = this.parse(CheckupCli);
 
+    await this.config.runHook('register-tasks', {});
+
     let checkup = new Checkup(args, flags);
 
     return checkup.run();

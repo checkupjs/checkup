@@ -1,6 +1,5 @@
-import { Task, TaskResult } from '../types';
+import { FileSearcherTask, Task, TaskResult } from '@checkup/core';
 
-import FileSearcherTask from '../file-searcher-task';
 import { TypesTaskResult } from '../results';
 
 export default class TypesTask extends FileSearcherTask implements Task {

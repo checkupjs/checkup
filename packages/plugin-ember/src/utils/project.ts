@@ -1,10 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { ProjectType } from '../types';
-import { getPackageJson } from './get-package-json';
+import { BASE_DIR, getPackageJson } from '@checkup/core';
 
-export const BASE_DIR = process.cwd();
+import { ProjectType } from '../types';
 
 /**
  * Gets the current type of project, either

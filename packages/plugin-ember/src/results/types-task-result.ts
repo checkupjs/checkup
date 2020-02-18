@@ -1,6 +1,4 @@
-import { TaskItemData, TaskResult } from '../types';
-
-import { ui } from '../utils/ui';
+import { TaskItemData, TaskResult, ui } from '@checkup/core';
 
 export default class TypesTaskResult implements TaskResult {
   types!: TaskItemData[];
