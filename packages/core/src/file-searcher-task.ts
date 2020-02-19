@@ -1,6 +1,5 @@
 import { SearchPatterns, Task, TaskResult } from './types';
 
-import { BASE_DIR } from './utils/base-dir';
 import FileSearcher from './searchers/file-searcher';
 
 /**
@@ -20,7 +19,7 @@ export default abstract class FileSearcherTask implements Task {
    * @param searchPatterns {SearchPatterns} the search pattern that your filesearcher uses to return the results.
    */
   constructor(searchPatterns: SearchPatterns) {
-    this.searcher = new FileSearcher(BASE_DIR, searchPatterns);
+    this.searcher = new FileSearcher(process.cwd(), searchPatterns);
   }
 
   abstract run(): Promise<TaskResult>;

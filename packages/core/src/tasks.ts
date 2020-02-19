@@ -1,11 +1,30 @@
 import { TaskConstructor } from './types';
 
-let tasks: TaskConstructor[] = [];
+let registeredTasks: Set<TaskConstructor> = new Set<TaskConstructor>();
 
-export function getTasks(): TaskConstructor[] {
-  return tasks;
+/**
+ * Gets an array of registered tasks that have been added via `registerTask` or `registerTasks`.
+ *
+ * @returns {Set<TaskConstructor>}
+ */
+export function getRegisteredTasks(): TaskConstructor[] {
+  return Array.from(registeredTasks);
 }
 
+/**
+ * Registers a single task.
+ *
+ * @param task {TaskConstructor}
+ */
 export function registerTask(task: TaskConstructor): void {
-  tasks.push(task);
+  registeredTasks.add(task);
+}
+
+/**
+ * Registers one or more tasks.
+ *
+ * @param tasks {TaskConstructor[]}
+ */
+export function registerTasks(...tasks: TaskConstructor[]): void {
+  tasks.forEach(task => registeredTasks.add(task));
 }
