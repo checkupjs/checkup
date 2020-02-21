@@ -3,7 +3,7 @@ export interface Task {
 }
 
 export interface TaskConstructor {
-  new (): Task;
+  new (args: any): Task;
 }
 
 export interface TaskResult {

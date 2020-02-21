@@ -10,9 +10,9 @@ version: 0.0.0
 === Dependencies - Core Libraries
 
 Dependency   Version   
-ember-source undefined 
-ember-cli    undefined 
-ember-data   undefined 
+ember-source Not found 
+ember-cli    Not found 
+ember-data   Not found 
 
 === Dependencies - Ember Addons
 
@@ -40,9 +40,9 @@ exports[`@checkup/cli should output checkup result for dependencies task 1`] = `
 "=== Dependencies - Core Libraries
 
 Dependency   Version   
-ember-source undefined 
-ember-cli    undefined 
-ember-data   undefined 
+ember-source Not found 
+ember-cli    Not found 
+ember-data   Not found 
 
 === Dependencies - Ember Addons
 
@@ -88,7 +88,11 @@ exports[`@checkup/cli should output checkup result in JSON 1`] = `
     \\"version\\": \\"0.0.0\\"
   },
   \\"dependencies\\": {
-    \\"emberLibraries\\": {},
+    \\"emberLibraries\\": {
+      \\"ember-source\\": \\"Not found\\",
+      \\"ember-cli\\": \\"Not found\\",
+      \\"ember-data\\": \\"Not found\\"
+    },
     \\"emberAddons\\": {
       \\"dependencies\\": {
         \\"ember-template-recast\\": \\"^4.0.0\\"

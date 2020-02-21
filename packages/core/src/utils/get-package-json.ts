@@ -5,9 +5,9 @@ import { PackageJson } from 'type-fest';
 
 let pkg: PackageJson;
 
-export function getPackageJson(): PackageJson {
+export function getPackageJson(basePath: string): PackageJson {
   if (pkg === undefined) {
-    pkg = fs.readJsonSync(path.join(process.cwd(), 'package.json'));
+    pkg = fs.readJsonSync(path.join(path.resolve(basePath), 'package.json'));
   }
 
   return pkg;

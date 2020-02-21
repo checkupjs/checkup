@@ -9,8 +9,8 @@ import { getPackageJson } from '@checkup/core';
  * @param project {IProject} The ember-cli model object, either App, Engine, or Addon.
  * @returns {ProjectType}
  */
-export function getProjectType(): ProjectType {
-  let pkg = getPackageJson();
+export function getProjectType(basePath: string): ProjectType {
+  let pkg = getPackageJson(basePath);
 
   if (pkg.keywords && Array.isArray(pkg.keywords) && pkg.keywords.indexOf('ember-addon') >= 0) {
     if (fs.existsSync(path.join(process.cwd(), 'addon', 'engine.js'))) {

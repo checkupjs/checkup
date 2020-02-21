@@ -1,6 +1,6 @@
-import { SearchPatterns, Task, TaskResult } from './types';
-
+import BaseTask from './base-task';
 import FileSearcher from './searchers/file-searcher';
+import { SearchPatterns } from './types';
 
 /**
  * @class FileSearcherTask
@@ -10,7 +10,7 @@ import FileSearcher from './searchers/file-searcher';
  * A checkup task specific to file searcher used to encapsulate an operation that
  * checks certain characteristics of your Ember project.
  */
-export default abstract class FileSearcherTask implements Task {
+export default abstract class FileSearcherTask extends BaseTask {
   searcher: FileSearcher;
 
   /**
@@ -18,9 +18,9 @@ export default abstract class FileSearcherTask implements Task {
    * @param result {TaskResult[]} the result object that aggregates data together for output.
    * @param searchPatterns {SearchPatterns} the search pattern that your filesearcher uses to return the results.
    */
-  constructor(searchPatterns: SearchPatterns) {
-    this.searcher = new FileSearcher(process.cwd(), searchPatterns);
-  }
+  constructor(args: any, searchPatterns: SearchPatterns) {
+    super(args);
 
-  abstract run(): Promise<TaskResult>;
+    this.searcher = new FileSearcher(args.path, searchPatterns);
+  }
 }

@@ -1,9 +1,9 @@
-import { FileSearcherTask, Task, TaskResult } from '@checkup/core';
+import { BaseTask, FileSearcherTask, TaskResult } from '@checkup/core';
 
 import { TypesTaskResult } from '../results';
 
-export default class TypesTask extends FileSearcherTask implements Task {
-  constructor() {
+export default class TypesTask extends FileSearcherTask implements BaseTask {
+  constructor(args: any) {
     const SEARCH_PATTERNS = {
       components: ['**/components/**/*.js'],
       controllers: ['**/controllers/**/*.js'],
@@ -17,7 +17,7 @@ export default class TypesTask extends FileSearcherTask implements Task {
       templates: ['**/templates/**/*.hbs'],
     };
 
-    super(SEARCH_PATTERNS);
+    super(args, SEARCH_PATTERNS);
   }
 
   async run(): Promise<TaskResult> {

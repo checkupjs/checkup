@@ -4,9 +4,25 @@ exports[`dependencies-task detects dependencies 1`] = `
 "=== Dependencies - Core Libraries
 
 Dependency   Version   
-ember-source undefined 
-ember-cli    undefined 
-ember-data   undefined 
+ember-source ^3.15.0   
+ember-cli    ^3.15.0   
+ember-data   Not found 
+
+=== Dependencies - Ember Addons
+
+Dependency   Version 
+ember-source ^3.15.0 
+
+=== Dependencies - Ember CLI Addons
+
+Dependency                       Version 
+ember-cli                        ^3.15.0 
+ember-cli-blueprint-test-helpers latest  
+
+=== Dev Dependencies - Ember CLI Addons
+
+Dependency             Version 
+ember-cli-string-utils latest  
 
 "
 `;
@@ -15,17 +31,24 @@ exports[`dependencies-task detects dependencies 2`] = `
 Object {
   "dependencies": Object {
     "emberAddons": Object {
-      "dependencies": Object {},
+      "dependencies": Object {
+        "ember-source": "^3.15.0",
+      },
       "devDependencies": Object {},
     },
     "emberCliAddons": Object {
-      "dependencies": Object {},
-      "devDependencies": Object {},
+      "dependencies": Object {
+        "ember-cli": "^3.15.0",
+        "ember-cli-blueprint-test-helpers": "latest",
+      },
+      "devDependencies": Object {
+        "ember-cli-string-utils": "latest",
+      },
     },
     "emberLibraries": Object {
-      "ember-cli": undefined,
-      "ember-data": undefined,
-      "ember-source": undefined,
+      "ember-cli": "^3.15.0",
+      "ember-data": "Not found",
+      "ember-source": "^3.15.0",
     },
   },
 }

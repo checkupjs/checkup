@@ -4,6 +4,15 @@ import { TaskConstructor, TaskList, getRegisteredTasks, ui } from '@checkup/core
 class Checkup extends Command {
   static description = 'A CLI that provides health check information about your project';
 
+  static args = [
+    {
+      name: 'path',
+      required: true,
+      description: 'The path referring to the root directory that Checkup will run in',
+      default: '.',
+    },
+  ];
+
   static flags = {
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
@@ -14,7 +23,7 @@ class Checkup extends Command {
   };
 
   async run() {
-    let { flags } = this.parse(Checkup);
+    let { args, flags } = this.parse(Checkup);
     let registeredTasks: TaskConstructor[];
 
     await this.config.runHook('register-tasks', {});
@@ -29,10 +38,10 @@ class Checkup extends Command {
       );
 
       if (task !== undefined) {
-        tasksToBeRun.addTask(task);
+        tasksToBeRun.addTask(task, args);
       }
     } else {
-      tasksToBeRun.addTasks(registeredTasks);
+      tasksToBeRun.addTasks(registeredTasks, args);
     }
 
     ui.action.start('Checking up on your project');
