@@ -18,3 +18,10 @@ export interface TaskItemData {
 }
 
 export type SearchPatterns = Record<string, string[]>;
+
+export interface TaskConfig {}
+
+export interface CheckupConfig {
+  // an object from task name to task configuration
+  tasks: Record<string, TaskConfig>;
+}
