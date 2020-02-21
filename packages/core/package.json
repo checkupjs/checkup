@@ -13,7 +13,7 @@
     "cosmiconfig": "^6.0.0",
     "jest": "^25.1.0",
     "stdout-stderr": "^0.1.13",
-    "ts-jest": "^25.2.0",
+    "ts-jest": "^25.2.1",
     "ts-node": "^8",
     "type-fest": "^0.10.0",
     "typescript": "^3.3"
