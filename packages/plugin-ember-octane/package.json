@@ -1,0 +1,53 @@
+{
+  "name": "@checkup/plugin-ember-octane",
+  "description": "An oclif plugin for Ember Octane migration tasks",
+  "version": "0.0.0",
+  "author": "Lewis Miller @lbdm44",
+  "bugs": "https://github.com/checkupjs/checkup/issues",
+  "dependencies": {
+    "@checkup/core": "0.0.0",
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "fixturify-project": "^1.10.0",
+    "jest": "^25.1.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^25.2.0",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": "10.* || >= 12.*"
+  },
+  "files": [
+    "/lib",
+    "/oclif.manifest.json",
+    "/yarn.lock"
+  ],
+  "homepage": "https://github.com/checkupjs/checkup",
+  "keywords": [
+    "oclif-plugin"
+  ],
+  "license": "MIT",
+  "oclif": {
+    "devPlugins": [
+      "@oclif/plugin-help"
+    ],
+    "hooks": {
+      "register-tasks": "./src/hooks/register-tasks"
+    }
+  },
+  "repository": "https://github.com/checkupjs/checkup",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "yarn build -w",
+    "clean": "rm -rf lib/*",
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "jest",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
