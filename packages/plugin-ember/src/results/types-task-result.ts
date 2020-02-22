@@ -1,5 +1,7 @@
 import { TaskItemData, TaskResult, ui } from '@checkup/core';
 
+import { TypesTask } from '../tasks';
+
 export default class TypesTaskResult implements TaskResult {
   types!: TaskItemData[];
 
@@ -8,13 +10,13 @@ export default class TypesTaskResult implements TaskResult {
   }
 
   toConsole() {
-    ui.styledHeader('Types');
+    ui.styledHeader(TypesTask.friendlyTaskName);
     ui.blankLine();
     ui.table(this.types, { type: {}, total: {} });
     ui.blankLine();
   }
 
   toJson() {
-    return { types: this.types };
+    return { [TypesTask.taskName]: this.types };
   }
 }

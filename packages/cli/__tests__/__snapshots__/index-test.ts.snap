@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`@checkup/cli should output checkup result 1`] = `
-"=== Project Info
+"=== Project Information
 
 name:    @checkup/cli
 type:    Ember.js unknown
 version: 0.0.0
 
+=== Project Dependencies
 === Dependencies - Core Libraries
 
 Dependency   Version   
@@ -19,7 +20,7 @@ ember-data   Not found
 Dependency            Version 
 ember-template-recast ^4.0.0  
 
-=== Types
+=== Project Types
 
 Type                  Total 
 components            0     

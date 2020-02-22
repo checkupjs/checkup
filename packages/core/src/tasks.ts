@@ -1,23 +1,24 @@
 import { TaskConstructor } from './types';
 
-let registeredTasks: Set<TaskConstructor> = new Set<TaskConstructor>();
+let registeredTasks: Map<string, TaskConstructor> = new Map<string, TaskConstructor>();
 
 /**
  * Gets an array of registered tasks that have been added via `registerTask` or `registerTasks`.
  *
  * @returns {Set<TaskConstructor>}
  */
-export function getRegisteredTasks(): TaskConstructor[] {
-  return Array.from(registeredTasks);
+export function getRegisteredTasks(): Map<string, TaskConstructor> {
+  return registeredTasks;
 }
 
 /**
  * Registers a single task.
  *
+ * @param taskName {string}
  * @param task {TaskConstructor}
  */
-export function registerTask(task: TaskConstructor): void {
-  registeredTasks.add(task);
+export function registerTask(taskName: string, task: TaskConstructor): void {
+  registeredTasks.set(taskName, task);
 }
 
 /**
@@ -25,6 +26,6 @@ export function registerTask(task: TaskConstructor): void {
  *
  * @param tasks {TaskConstructor[]}
  */
-export function registerTasks(...tasks: TaskConstructor[]): void {
-  tasks.forEach(task => registeredTasks.add(task));
-}
+// export function registerTasks(...tasks): void {
+//   tasks.forEach(task => registeredTasks.set(taskName, task));
+// }

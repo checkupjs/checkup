@@ -88,7 +88,7 @@ Object {
 `;
 
 exports[`types-task returns all the types (including nested) found in the app and outputs to the console 1`] = `
-"=== Types
+"=== Project Types
 
 Type                  Total 
 components            2     
@@ -183,7 +183,7 @@ Object {
 `;
 
 exports[`types-task returns all the types found in the app and outputs to the console 1`] = `
-"=== Types
+"=== Project Types
 
 Type                  Total 
 components            1     

@@ -4,9 +4,9 @@ import { Hook } from '@oclif/config';
 import { registerTask } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function() {
-  registerTask(ProjectInfoTask);
-  registerTask(DependenciesTask);
-  registerTask(TypesTask);
+  registerTask(ProjectInfoTask.taskName, ProjectInfoTask);
+  registerTask(DependenciesTask.taskName, DependenciesTask);
+  registerTask(TypesTask.taskName, TypesTask);
 };
 
 export default hook;

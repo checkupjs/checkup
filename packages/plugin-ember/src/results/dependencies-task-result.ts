@@ -1,5 +1,6 @@
 import { TaskResult, ui, wrapEntries } from '@checkup/core';
 
+import { DependenciesTask } from '../tasks';
 import { PackageJson } from 'type-fest';
 
 export default class DependenciesTaskResult implements TaskResult {
@@ -24,7 +25,7 @@ export default class DependenciesTaskResult implements TaskResult {
     if (!this.hasDependencies) {
       return;
     }
-
+    ui.styledHeader(DependenciesTask.friendlyTaskName);
     this._writeDependencySection('Dependencies - Core Libraries', this.emberLibraries);
     this._writeDependencySection('Dependencies - Ember Addons', this.emberAddons.dependencies);
     this._writeDependencySection(
@@ -43,7 +44,7 @@ export default class DependenciesTaskResult implements TaskResult {
 
   toJson() {
     return {
-      dependencies: {
+      [DependenciesTask.taskName]: {
         emberLibraries: this.emberLibraries,
         emberAddons: this.emberAddons,
         emberCliAddons: this.emberCliAddons,

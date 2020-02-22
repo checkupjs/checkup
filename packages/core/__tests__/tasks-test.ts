@@ -1,6 +1,8 @@
-import { Task, TaskResult, getRegisteredTasks, registerTask, registerTasks } from '@checkup/core';
+import { Task, TaskResult, getRegisteredTasks, registerTask } from '@checkup/core';
 
 class TestTask implements Task {
+  static taskName: string = 'Test';
+
   async run(): Promise<TaskResult> {
     return Promise.resolve({
       toConsole() {},
@@ -11,22 +13,14 @@ class TestTask implements Task {
   }
 }
 
-class ChildTestTask extends TestTask {}
-
 describe('@checkup/core tasks', () => {
   it('Returns no tasks if none have been registered', () => {
-    expect(getRegisteredTasks()).toHaveLength(0);
+    expect(Array.from(getRegisteredTasks().keys())).toHaveLength(0);
   });
 
   it('Can add a single task via registerTask', () => {
-    registerTask(TestTask);
+    registerTask(TestTask.taskName, TestTask);
 
-    expect(getRegisteredTasks()).toHaveLength(1);
-  });
-
-  it('Can add multiple tasks via registerTasks', () => {
-    registerTasks(TestTask, ChildTestTask);
-
-    expect(getRegisteredTasks()).toHaveLength(2);
+    expect(Array.from(getRegisteredTasks().keys())).toHaveLength(1);
   });
 });

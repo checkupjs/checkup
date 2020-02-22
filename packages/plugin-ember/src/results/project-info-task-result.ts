@@ -1,12 +1,14 @@
 import { TaskResult, ui } from '@checkup/core';
 
+import { ProjectInfoTask } from '../tasks';
+
 export default class ProjectInfoTaskResult implements TaskResult {
   type!: string;
   name!: string;
   version!: string;
 
   toConsole() {
-    ui.styledHeader('Project Info');
+    ui.styledHeader(ProjectInfoTask.friendlyTaskName);
     ui.blankLine();
     ui.styledObject({
       name: this.name,
@@ -18,7 +20,7 @@ export default class ProjectInfoTaskResult implements TaskResult {
 
   toJson() {
     return {
-      'project-info': { name: this.name, type: this.type, version: this.version },
+      [ProjectInfoTask.taskName]: { name: this.name, type: this.type, version: this.version },
     };
   }
 }
