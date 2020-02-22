@@ -1,5 +1,7 @@
+import * as path from 'path';
+
 import { Command, flags } from '@oclif/command';
-import { TaskConstructor, TaskList, getRegisteredTasks, ui } from '@checkup/core';
+import { TaskConstructor, TaskList, getPackageJson, getRegisteredTasks, ui } from '@checkup/core';
 
 class Checkup extends Command {
   static description = 'A CLI that provides health check information about your project';
@@ -25,6 +27,17 @@ class Checkup extends Command {
   async run() {
     let { args, flags } = this.parse(Checkup);
     let registeredTasks: TaskConstructor[];
+
+    try {
+      getPackageJson(args.path);
+    } catch (e) {
+      this.error(
+        `The ${path.resolve(
+          args.path
+        )} directory found through the 'path' option does not contain a package.json file. You must run checkup in a directory with a package.json file.`,
+        e
+      );
+    }
 
     await this.config.runHook('register-tasks', {});
 
