@@ -8,12 +8,14 @@ describe('dependencies-task', () => {
   let fixturifyProject: EmberCLIFixturifyProject;
 
   beforeEach(function() {
-    fixturifyProject = new EmberCLIFixturifyProject('test-app', '0.0.0', project => {
+    fixturifyProject = new EmberCLIFixturifyProject('checkup-app', '0.0.0', project => {
       project.addDependency('ember-source', '^3.15.0');
       project.addDependency('ember-cli', '^3.15.0');
       project.addDevDependency('ember-cli-string-utils', 'latest');
       project.addAddon('ember-cli-blueprint-test-helpers', 'latest');
     });
+
+    fixturifyProject.writeSync();
   });
 
   afterEach(function() {
@@ -21,7 +23,7 @@ describe('dependencies-task', () => {
   });
 
   it('detects dependencies', async () => {
-    const result = await new DependenciesTask().run();
+    const result = await new DependenciesTask({ path: fixturifyProject.baseDir }).run();
     const dependencyTaskResult = <DependenciesTaskResult>result;
 
     dependencyTaskResult.toConsole();
@@ -30,7 +32,7 @@ describe('dependencies-task', () => {
   });
 
   it('detects dependencies', async () => {
-    const result = await new DependenciesTask().run();
+    const result = await new DependenciesTask({ path: fixturifyProject.baseDir }).run();
     const dependencyTaskResult = <DependenciesTaskResult>result;
 
     expect(dependencyTaskResult.toJson()).toMatchSnapshot();

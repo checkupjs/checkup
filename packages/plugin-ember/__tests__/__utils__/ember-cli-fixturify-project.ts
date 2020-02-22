@@ -1,5 +1,7 @@
 'use strict';
 
+import { PackageJson } from 'type-fest';
+
 const FixturifyProject = require('fixturify-project');
 const rimraf = require('rimraf');
 
@@ -52,6 +54,12 @@ export default class EmberCLIFixturifyProject extends FixturifyProject {
 
     // insert inRepoAddon into files
     Object.assign(this.files.lib, inRepoAddon.toJSON());
+  }
+
+  updatePackageJson(pkgContent: PackageJson) {
+    pkgContent.name = this.name;
+
+    this.pkg = pkgContent;
   }
 
   dispose(tempFilesToCleanupPath?: string) {

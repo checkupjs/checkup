@@ -14,22 +14,4 @@ describe('@checkup/cli', () => {
 
     expect(stdout()).toMatchSnapshot();
   });
-
-  it('should output checkup result for project info task', async () => {
-    await cmd.run(['--task', 'ProjectInfo']);
-
-    expect(stdout()).toMatchSnapshot();
-  });
-
-  it('should output checkup result for dependencies task', async () => {
-    await cmd.run(['--task', 'Dependencies']);
-
-    expect(stdout()).toMatchSnapshot();
-  });
-
-  it('should output checkup result for types task', async () => {
-    await cmd.run(['--task', 'Types']);
-
-    expect(stdout()).toMatchSnapshot();
-  });
 });

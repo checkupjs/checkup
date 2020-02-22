@@ -4,15 +4,15 @@ exports[`@checkup/cli should output checkup result 1`] = `
 "=== Project Info
 
 name:    @checkup/cli
-type:    unknown
+type:    Ember.js unknown
 version: 0.0.0
 
 === Dependencies - Core Libraries
 
 Dependency   Version   
-ember-source undefined 
-ember-cli    undefined 
-ember-data   undefined 
+ember-source Not found 
+ember-cli    Not found 
+ember-data   Not found 
 
 === Dependencies - Ember Addons
 
@@ -36,59 +36,19 @@ templates             0
 "
 `;
 
-exports[`@checkup/cli should output checkup result for dependencies task 1`] = `
-"=== Dependencies - Core Libraries
-
-Dependency   Version   
-ember-source undefined 
-ember-cli    undefined 
-ember-data   undefined 
-
-=== Dependencies - Ember Addons
-
-Dependency            Version 
-ember-template-recast ^4.0.0  
-
-"
-`;
-
-exports[`@checkup/cli should output checkup result for project info task 1`] = `
-"=== Project Info
-
-name:    @checkup/cli
-type:    unknown
-version: 0.0.0
-
-"
-`;
-
-exports[`@checkup/cli should output checkup result for types task 1`] = `
-"=== Types
-
-Type                  Total 
-components            0     
-controllers           0     
-helpers               0     
-initializers          0     
-instance-initializers 0     
-mixins                0     
-models                0     
-routes                0     
-services              0     
-templates             0     
-
-"
-`;
-
 exports[`@checkup/cli should output checkup result in JSON 1`] = `
 "{
   \\"project-info\\": {
     \\"name\\": \\"@checkup/cli\\",
-    \\"type\\": \\"unknown\\",
+    \\"type\\": \\"Ember.js unknown\\",
     \\"version\\": \\"0.0.0\\"
   },
   \\"dependencies\\": {
-    \\"emberLibraries\\": {},
+    \\"emberLibraries\\": {
+      \\"ember-source\\": \\"Not found\\",
+      \\"ember-cli\\": \\"Not found\\",
+      \\"ember-data\\": \\"Not found\\"
+    },
     \\"emberAddons\\": {
       \\"dependencies\\": {
         \\"ember-template-recast\\": \\"^4.0.0\\"

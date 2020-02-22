@@ -4,8 +4,6 @@ import { stdout } from './__utils__/stdout';
 import { TypesTask } from '../src/tasks';
 import { TypesTaskResult } from '../src/results';
 
-const FILE_PATH = 'tests/test-app';
-
 const TYPES = {
   components: {
     'my-component.js': '',
@@ -43,11 +41,11 @@ describe('types-task', () => {
   let fixturifyProject: EmberCLIFixturifyProject;
 
   beforeEach(function() {
-    fixturifyProject = new EmberCLIFixturifyProject('cli-checkup-app', '0.0.0');
+    fixturifyProject = new EmberCLIFixturifyProject('checkup-app', '0.0.0');
   });
 
   afterEach(function() {
-    fixturifyProject.dispose(FILE_PATH);
+    fixturifyProject.dispose();
   });
 
   it('returns all the types found in the app and outputs to the console', async () => {
@@ -56,9 +54,9 @@ describe('types-task', () => {
       addon: TYPES,
     });
 
-    fixturifyProject.writeSync(FILE_PATH);
+    fixturifyProject.writeSync();
 
-    const result = await new TypesTask().run();
+    const result = await new TypesTask({ path: fixturifyProject.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
     typesTaskResult.toConsole();
@@ -78,9 +76,9 @@ describe('types-task', () => {
     fixturifyProject.files.lib['ember-super-button'].addon = TYPES;
     // @ts-ignore
 
-    fixturifyProject.writeSync(FILE_PATH);
+    fixturifyProject.writeSync();
 
-    const result = await new TypesTask().run();
+    const result = await new TypesTask({ path: fixturifyProject.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
     typesTaskResult.toConsole();
@@ -94,9 +92,9 @@ describe('types-task', () => {
       addon: TYPES,
     });
 
-    fixturifyProject.writeSync(FILE_PATH);
+    fixturifyProject.writeSync();
 
-    const result = await new TypesTask().run();
+    const result = await new TypesTask({ path: fixturifyProject.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
     expect(typesTaskResult.toJson()).toMatchSnapshot();
@@ -114,9 +112,9 @@ describe('types-task', () => {
     fixturifyProject.files.lib['ember-super-button'].addon = TYPES;
     // @ts-ignore
 
-    fixturifyProject.writeSync(FILE_PATH);
+    fixturifyProject.writeSync();
 
-    const result = await new TypesTask().run();
+    const result = await new TypesTask({ path: fixturifyProject.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
     expect(typesTaskResult.toJson()).toMatchSnapshot();

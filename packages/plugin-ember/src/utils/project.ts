@@ -5,12 +5,12 @@ import { ProjectType } from '../types';
 import { getPackageJson } from '@checkup/core';
 
 /**
- * Gets the current type of project, either
- * @param project {IProject} The ember-cli model object, either App, Engine, or Addon.
+ * Gets the current type of project, either App, Engine, or Addon
+ *
  * @returns {ProjectType}
  */
-export function getProjectType(): ProjectType {
-  let pkg = getPackageJson();
+export function getProjectType(basePath: string): ProjectType {
+  let pkg = getPackageJson(basePath);
 
   if (pkg.keywords && Array.isArray(pkg.keywords) && pkg.keywords.indexOf('ember-addon') >= 0) {
     if (fs.existsSync(path.join(process.cwd(), 'addon', 'engine.js'))) {
