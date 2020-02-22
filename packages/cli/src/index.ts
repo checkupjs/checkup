@@ -1,7 +1,24 @@
 import * as path from 'path';
 
 import { Command, flags } from '@oclif/command';
-import { TaskConstructor, TaskList, getPackageJson, getRegisteredTasks, ui } from '@checkup/core';
+import {
+  TaskConstructor,
+  TaskList,
+  TaskResult,
+  getPackageJson,
+  getRegisteredTasks,
+  ui,
+} from '@checkup/core';
+
+function mergeTaskResults(taskResults: TaskResult[]) {
+  let mergedResults = {};
+
+  taskResults.forEach(taskResult => {
+    mergedResults = Object.assign(mergedResults, taskResult.toJson());
+  });
+
+  return mergedResults;
+}
 
 class Checkup extends Command {
   static description = 'A CLI that provides health check information about your project';
@@ -43,6 +60,7 @@ class Checkup extends Command {
 
     registeredTasks = getRegisteredTasks();
 
+    let taskResults;
     let tasksToBeRun = new TaskList();
 
     if (flags.task !== undefined) {
@@ -58,20 +76,14 @@ class Checkup extends Command {
     }
 
     ui.action.start('Checking up on your project');
-    let taskResults = await tasksToBeRun.runTasks();
+
+    taskResults = await tasksToBeRun.runTasks();
 
     if (!flags.silent) {
       if (flags.json) {
-        let resultData = {};
-        taskResults.forEach(taskResult => {
-          resultData = Object.assign(resultData, taskResult.toJson());
-        });
-
-        ui.styledJSON(resultData);
+        ui.styledJSON(mergeTaskResults(taskResults));
       } else {
-        taskResults.forEach(result => {
-          result.toConsole();
-        });
+        taskResults.forEach(taskResult => taskResult.toConsole());
       }
     }
 

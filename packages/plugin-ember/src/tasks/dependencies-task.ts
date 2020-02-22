@@ -40,7 +40,6 @@ function emberCliAddonFilter(dependency: string) {
 
 export default class DependenciesTask extends BaseTask {
   async run(): Promise<TaskResult> {
-    debugger;
     let result: DependenciesTaskResult = new DependenciesTaskResult();
     let pkg: PackageJson = getPackageJson(this.args.path);
 
