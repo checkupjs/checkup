@@ -1,4 +1,4 @@
-export { getRegisteredTasks, registerTask, registerTasks } from './tasks';
+export { getRegisteredTasks, registerTask } from './tasks';
 export { default as BaseTask } from './base-task';
 export { default as TaskList } from './task-list';
 export { default as FileSearcherTask } from './file-searcher-task';

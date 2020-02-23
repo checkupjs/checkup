@@ -39,6 +39,9 @@ function emberCliAddonFilter(dependency: string) {
 }
 
 export default class DependenciesTask extends BaseTask {
+  static taskName: string = 'dependencies';
+  static friendlyTaskName: string = 'Project Dependencies';
+
   async run(): Promise<TaskResult> {
     let result: DependenciesTaskResult = new DependenciesTaskResult();
     let pkg: PackageJson = getPackageJson(this.args.path);

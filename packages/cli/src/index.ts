@@ -43,7 +43,7 @@ class Checkup extends Command {
 
   async run() {
     let { args, flags } = this.parse(Checkup);
-    let registeredTasks: TaskConstructor[];
+    let registeredTasks: Map<string, TaskConstructor>;
 
     try {
       getPackageJson(args.path);
@@ -64,15 +64,13 @@ class Checkup extends Command {
     let tasksToBeRun = new TaskList();
 
     if (flags.task !== undefined) {
-      let task = Object.values(registeredTasks).find(
-        task => flags.task === task.name.replace('Task', '')
-      );
+      let task = registeredTasks.get(flags.task);
 
       if (task !== undefined) {
         tasksToBeRun.addTask(task, args);
       }
     } else {
-      tasksToBeRun.addTasks(registeredTasks, args);
+      tasksToBeRun.addTasks(Array.from(registeredTasks.values()), args);
     }
 
     ui.action.start('Checking up on your project');

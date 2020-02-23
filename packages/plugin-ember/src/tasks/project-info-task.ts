@@ -5,6 +5,9 @@ import { ProjectInfoTaskResult } from '../results';
 import { getProjectType } from '../utils/project';
 
 export default class ProjectInfoTask extends BaseTask {
+  static taskName: string = 'project-info';
+  static friendlyTaskName: string = 'Project Information';
+
   async run(): Promise<TaskResult> {
     let result: ProjectInfoTaskResult = new ProjectInfoTaskResult();
     let pkg: PackageJson = getPackageJson(this.args.path);
