@@ -1,12 +1,12 @@
-import { BaseTask, TaskResult, getPackageJson } from '@checkup/core';
+import { BaseTask, TaskName, TaskResult, getPackageJson } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { ProjectInfoTaskResult } from '../results';
 import { getProjectType } from '../utils/project';
 
 export default class ProjectInfoTask extends BaseTask {
-  static taskName: string = 'project-info';
-  static friendlyTaskName: string = 'Project Information';
+  static taskName: TaskName = 'project-info';
+  static friendlyTaskName: TaskName = 'Project Information';
 
   async run(): Promise<TaskResult> {
     let result: ProjectInfoTaskResult = new ProjectInfoTaskResult();

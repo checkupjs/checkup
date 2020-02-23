@@ -1,4 +1,5 @@
-import { Task, TaskResult, getRegisteredTasks, registerTask } from '@checkup/core';
+import { Task, TaskResult } from '@checkup/core';
+import { getRegisteredTasks, registerTask } from '../src/tasks';
 
 class TestTask implements Task {
   static taskName: string = 'Test';

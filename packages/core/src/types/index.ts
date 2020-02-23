@@ -1,3 +1,15 @@
+export interface HooksConfig {
+  registerTask(taskName: string, task: TaskConstructor): void;
+}
+
+export interface TaskConfig {}
+
+export interface CheckupConfig {
+  tasks: Record<string, TaskConfig>;
+}
+
+export type TaskName = string;
+
 export interface Task {
   run: () => Promise<TaskResult>;
 }
@@ -18,10 +30,3 @@ export interface TaskItemData {
 }
 
 export type SearchPatterns = Record<string, string[]>;
-
-export interface TaskConfig {}
-
-export interface CheckupConfig {
-  // an object from task name to task configuration
-  tasks: Record<string, TaskConfig>;
-}
