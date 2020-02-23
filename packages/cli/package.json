@@ -60,9 +60,7 @@
   "main": "lib/index.js",
   "oclif": {
     "bin": "checkup",
-    "plugins": [
-      "@checkup/plugin-ember"
-    ]
+    "plugins": []
   },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {

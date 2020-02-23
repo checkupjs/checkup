@@ -116,3 +116,21 @@ exports[`@checkup/cli should output checkup result in JSON 1`] = `
 }
 "
 `;
+
+exports[`@checkup/cli should output nothing if no plugins are present 1`] = `
+"=== Types
+
+Type                  Total 
+components            0     
+controllers           0     
+helpers               0     
+initializers          0     
+instance-initializers 0     
+mixins                0     
+models                0     
+routes                0     
+services              0     
+templates             0     
+
+"
+`;

@@ -2,7 +2,7 @@ import { cosmiconfig } from 'cosmiconfig';
 import { CheckupConfig } from '../types';
 
 let config: CheckupConfig;
-const DEFAULT_CONFIG: CheckupConfig = { tasks: {} };
+const DEFAULT_CONFIG: CheckupConfig = { plugins: [], tasks: {} };
 
 /**
  * Get the checkup config via {@link cosmiconfig#search}

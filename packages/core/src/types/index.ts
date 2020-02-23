@@ -5,6 +5,7 @@ export interface HooksConfig {
 export interface TaskConfig {}
 
 export interface CheckupConfig {
+  plugins: string[];
   tasks: Record<string, TaskConfig>;
 }
 
