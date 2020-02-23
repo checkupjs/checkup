@@ -11,6 +11,7 @@
     "tslib": "^1"
   },
   "devDependencies": {
+    "@checkup/test-helpers": "0.0.0",
     "fixturify-project": "^1.10.0",
     "jest": "^25.1.0",
     "rimraf": "^3.0.2",

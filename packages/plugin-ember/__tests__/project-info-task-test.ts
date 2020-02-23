@@ -1,7 +1,6 @@
-import EmberCLIFixturifyProject from './__utils__/ember-cli-fixturify-project';
+import { EmberCLIFixturifyProject, stdout } from '@checkup/test-helpers';
 import { ProjectInfoTask } from '../src/tasks';
 import { ProjectInfoTaskResult } from '../src/results';
-import { stdout } from './__utils__/stdout';
 
 describe('project-info-task', () => {
   let fixturifyProject: EmberCLIFixturifyProject;

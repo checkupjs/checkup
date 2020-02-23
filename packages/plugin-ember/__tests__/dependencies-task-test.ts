@@ -1,5 +1,4 @@
-import EmberCLIFixturifyProject from './__utils__/ember-cli-fixturify-project';
-import { stdout } from './__utils__/stdout';
+import { EmberCLIFixturifyProject, stdout } from '@checkup/test-helpers';
 
 import { DependenciesTask } from '../src/tasks';
 import { DependenciesTaskResult } from '../src/results';
