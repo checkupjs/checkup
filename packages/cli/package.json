@@ -12,7 +12,7 @@
     "@checkup/plugin-ember": "0.0.0",
     "@glimmer/reference": "^0.47.0",
     "@glimmer/runtime": "^0.47.9",
-    "@glimmer/syntax": "^0.47.0",
+    "@glimmer/syntax": "^0.47.9",
     "@glimmer/validator": "^0.47.0",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
