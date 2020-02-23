@@ -1,5 +1,6 @@
-import { stdout, CheckupProject, Plugin } from '@checkup/test-helpers';
+import { CheckupProject, Plugin, stdout } from '@checkup/test-helpers';
 import cmd = require('../src');
+import { CheckupConfig } from '@checkup/core';
 
 describe('@checkup/cli', () => {
   describe('normal cli output with plugins', () => {
@@ -90,6 +91,22 @@ describe('@checkup/cli', () => {
       await expect(cmd.run([project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
         `"Cannot find module '@checkup/unknown-plugin' from '${project.baseDir}'"`
       );
+
+      project.dispose();
+    });
+
+    it('should error if the config is malformed', async () => {
+      const project = new CheckupProject('checkup-project', '0.0.0').addCheckupConfig(({
+        plugins: undefined,
+        tasks: {
+          someTask: {
+            isEnabled: 'foo',
+          },
+        },
+      } as unknown) as CheckupConfig);
+      project.writeSync();
+
+      await expect(cmd.run([project.baseDir])).rejects.toThrowErrorMatchingSnapshot();
 
       project.dispose();
     });

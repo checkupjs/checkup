@@ -1,5 +1,33 @@
 import { cosmiconfig } from 'cosmiconfig';
 import { CheckupConfig } from '../types';
+import { RuntimeCheckupConfig } from '../types/runtime-types';
+import * as t from 'io-ts';
+import { pipe } from 'fp-ts/lib/pipeable';
+import { fold } from 'fp-ts/lib/Either';
+
+const validateConfig = <A>(v: t.Validation<A>): Array<string> => {
+  return pipe(
+    v,
+    fold(
+      errors => {
+        const errorString = errors
+          .map(error => error.context)
+          .map(
+            contexts =>
+              `${contexts
+                .map(context => context.key)
+                .filter(Boolean)
+                .join('.')} expected type ${
+                contexts.slice(-1)[0].type.name
+              }, but got ${JSON.stringify(contexts.slice(-1)[0].actual)}`
+          )
+          .join('\n');
+        throw new Error(`Checkup configuration is malformed:\n${errorString}`);
+      },
+      () => ['no errors']
+    )
+  );
+};
 
 /**
  * Get the checkup config via {@link cosmiconfig#search}
@@ -15,5 +43,5 @@ export async function getConfig(basePath: string): Promise<CheckupConfig> {
     );
   }
 
-  return configResult.config;
+  return validateConfig(RuntimeCheckupConfig.decode(configResult.config)) && configResult.config;
 }

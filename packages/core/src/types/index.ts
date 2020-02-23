@@ -1,13 +1,12 @@
+import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
+import * as t from 'io-ts';
+
 export interface HooksConfig {
   registerTask(taskName: string, task: TaskConstructor): void;
 }
 
-export interface TaskConfig {}
-
-export interface CheckupConfig {
-  plugins: string[];
-  tasks: Record<string, TaskConfig>;
-}
+export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
+export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
 
 export type TaskName = string;
 
