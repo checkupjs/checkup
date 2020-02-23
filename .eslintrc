@@ -20,7 +20,7 @@
   },
   "overrides": [
     {
-      "files": ["packages/**/__tests__/**/*.ts"],
+      "files": ["packages/**/__tests__/**/*.ts", "packages/test-helpers/**/*.ts"],
       "env": {
         "jest": true
       }

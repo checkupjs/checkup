@@ -1,4 +1,4 @@
-import { stdout } from './__utils__/stdout';
+import { stdout } from '@checkup/test-helpers';
 
 import cmd = require('../src');
 
