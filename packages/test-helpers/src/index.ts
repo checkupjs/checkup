@@ -1,2 +1,2 @@
-export { default as EmberCLIFixturifyProject } from './ember-cli-fixturify-project';
+export { default as Project } from './ember-cli-fixturify-project';
 export { stdout } from './stdout';
