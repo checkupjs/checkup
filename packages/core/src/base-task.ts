@@ -1,8 +1,8 @@
-import { Task, TaskResult } from './types';
+import { Task, TaskName, TaskResult } from './types';
 
 export default abstract class BaseTask implements Task {
-  static taskName: string;
-  static friendlyTaskName: string;
+  static taskName: TaskName;
+  static friendlyTaskName: TaskName;
 
   args: any;
 

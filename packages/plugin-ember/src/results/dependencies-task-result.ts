@@ -1,4 +1,4 @@
-import { TaskResult, ui, wrapEntries } from '@checkup/core';
+import { TaskResult, toPairs, ui } from '@checkup/core';
 
 import { DependenciesTask } from '../tasks';
 import { PackageJson } from 'type-fest';
@@ -59,7 +59,7 @@ export default class DependenciesTaskResult implements TaskResult {
 
     ui.styledHeader(header);
     ui.blankLine();
-    ui.table(wrapEntries(dependencies, { keyName: 'dependency', valueName: 'version' }), {
+    ui.table(toPairs(dependencies, { keyName: 'dependency', valueName: 'version' }), {
       dependency: {},
       version: {},
     });

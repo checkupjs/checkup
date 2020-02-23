@@ -1,4 +1,4 @@
-import { BaseTask, FileSearcherTask, TaskResult } from '@checkup/core';
+import { BaseTask, FileSearcherTask, TaskName, TaskResult } from '@checkup/core';
 
 import { TypesTaskResult } from '../results';
 
@@ -16,8 +16,8 @@ const SEARCH_PATTERNS = {
 };
 
 export default class TypesTask extends FileSearcherTask implements BaseTask {
-  static taskName: string = 'types';
-  static friendlyTaskName: string = 'Project Types';
+  static taskName: TaskName = 'types';
+  static friendlyTaskName: TaskName = 'Project Types';
 
   constructor(args: any) {
     super(args, SEARCH_PATTERNS);

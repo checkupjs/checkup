@@ -1,6 +1,6 @@
 import * as pMap from 'p-map';
 
-import { Task, TaskConstructor, TaskResult } from './types';
+import { Task, TaskConstructor, TaskResult } from '@checkup/core';
 
 /**
  * @class TaskList

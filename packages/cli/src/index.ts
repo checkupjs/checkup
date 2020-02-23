@@ -1,14 +1,11 @@
 import * as path from 'path';
 
 import { Command, flags } from '@oclif/command';
-import {
-  TaskConstructor,
-  TaskList,
-  TaskResult,
-  getPackageJson,
-  getRegisteredTasks,
-  ui,
-} from '@checkup/core';
+import { TaskConstructor, TaskName, TaskResult, getPackageJson, ui } from '@checkup/core';
+import { getRegisteredParsers, registerParser } from './parsers';
+import { getRegisteredTasks, registerTask } from './tasks';
+
+import TaskList from './task-list';
 
 function mergeTaskResults(taskResults: TaskResult[]) {
   let mergedResults = {};
@@ -43,7 +40,7 @@ class Checkup extends Command {
 
   async run() {
     let { args, flags } = this.parse(Checkup);
-    let registeredTasks: Map<string, TaskConstructor>;
+    let registeredTasks: Map<TaskName, TaskConstructor>;
 
     try {
       getPackageJson(args.path);
@@ -56,7 +53,13 @@ class Checkup extends Command {
       );
     }
 
-    await this.config.runHook('register-tasks', {});
+    await this.config.runHook('register-parsers', {
+      registerParser,
+    });
+    await this.config.runHook('register-tasks', {
+      parsers: getRegisteredParsers(),
+      registerTask,
+    });
 
     registeredTasks = getRegisteredTasks();
 
