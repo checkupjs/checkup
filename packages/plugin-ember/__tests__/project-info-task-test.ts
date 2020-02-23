@@ -1,16 +1,15 @@
-import EmberCLIFixturifyProject from './__utils__/ember-cli-fixturify-project';
+import { Project, stdout } from '@checkup/test-helpers';
 import { ProjectInfoTask } from '../src/tasks';
 import { ProjectInfoTaskResult } from '../src/results';
-import { stdout } from './__utils__/stdout';
 
 describe('project-info-task', () => {
-  let fixturifyProject: EmberCLIFixturifyProject;
+  let fixturifyProject: Project;
 
   describe('for Ember Applications', () => {
     beforeEach(() => {
       let packageJson = require('./__fixtures__/app-package.json');
 
-      fixturifyProject = new EmberCLIFixturifyProject('checkup-app', '0.0.0', project => {
+      fixturifyProject = new Project('checkup-app', '0.0.0', project => {
         project.addDependency('ember-cli', '^3.15.0');
       });
 
@@ -44,7 +43,7 @@ describe('project-info-task', () => {
     beforeEach(() => {
       let packageJson = require('./__fixtures__/addon-package.json');
 
-      fixturifyProject = new EmberCLIFixturifyProject('checkup-app', '0.0.0', project => {
+      fixturifyProject = new Project('checkup-app', '0.0.0', project => {
         project.addDependency('ember-cli', '^3.15.0');
       });
 

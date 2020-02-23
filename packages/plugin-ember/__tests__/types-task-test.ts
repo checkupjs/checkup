@@ -1,5 +1,4 @@
-import EmberCLIFixturifyProject from './__utils__/ember-cli-fixturify-project';
-import { stdout } from './__utils__/stdout';
+import { Project, stdout } from '@checkup/test-helpers';
 
 import { TypesTask } from '../src/tasks';
 import { TypesTaskResult } from '../src/results';
@@ -38,10 +37,10 @@ const TYPES = {
 };
 
 describe('types-task', () => {
-  let fixturifyProject: EmberCLIFixturifyProject;
+  let fixturifyProject: Project;
 
   beforeEach(function() {
-    fixturifyProject = new EmberCLIFixturifyProject('checkup-app', '0.0.0');
+    fixturifyProject = new Project('checkup-app', '0.0.0');
   });
 
   afterEach(function() {

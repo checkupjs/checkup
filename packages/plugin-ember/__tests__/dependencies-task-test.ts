@@ -1,14 +1,13 @@
-import EmberCLIFixturifyProject from './__utils__/ember-cli-fixturify-project';
-import { stdout } from './__utils__/stdout';
+import { Project, stdout } from '@checkup/test-helpers';
 
 import { DependenciesTask } from '../src/tasks';
 import { DependenciesTaskResult } from '../src/results';
 
 describe('dependencies-task', () => {
-  let fixturifyProject: EmberCLIFixturifyProject;
+  let fixturifyProject: Project;
 
   beforeEach(function() {
-    fixturifyProject = new EmberCLIFixturifyProject('checkup-app', '0.0.0', project => {
+    fixturifyProject = new Project('checkup-app', '0.0.0', project => {
       project.addDependency('ember-source', '^3.15.0');
       project.addDependency('ember-cli', '^3.15.0');
       project.addDevDependency('ember-cli-string-utils', 'latest');
