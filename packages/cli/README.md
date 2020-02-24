@@ -69,11 +69,9 @@ $ yarn add -D @checkup/plugin-ember
 To configure plugins, use the plugins key in your configuration file, which contains a list of plugin names.
 ```json
 {
-  // ...
   "plugins": [
     "@checkup/plugin-ember"
   ]
-  // ... 
 }
 ```
 <!-- TODO: Describe properties in CheckupConfig -->
