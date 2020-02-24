@@ -47,8 +47,8 @@ class Checkup extends Command {
   async run() {
     let { args, flags } = this.parse(Checkup);
     let registeredTasks: Map<TaskName, TaskConstructor>;
-    const checkupConfig = await getConfig();
-    const plugins = await loadPlugins(checkupConfig.plugins);
+    const checkupConfig = await getConfig(args.path);
+    const plugins = await loadPlugins(checkupConfig.plugins, args.path);
     this.config.plugins.push(...plugins);
 
     try {
