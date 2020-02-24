@@ -7,11 +7,14 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/test-helpers",
+    "packages/plugin-ember",
+    "packages/cli"
   ],
   "scripts": {
-    "build": "yarn workspace @checkup/core build && yarn workspace @checkup/test-helpers build && yarn workspace @checkup/plugin-ember build && yarn workspace @checkup/cli build",
-    "build:watch": "yarn workspace @checkup/core build -w && yarn workspace @checkup/plugin-ember build -w && yarn workspace @checkup/cli build -w",
+    "build": "yarn workspaces run build",
+    "build:watch": "yarn workspaces run build:watch",
     "test": "yarn workspaces run test",
     "lint": "eslint . --cache --ext .ts"
   },
