@@ -68,6 +68,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "yarn build -w",
+    "clean": "rm -rf lib/*",
     "prepack": "yarn build && oclif-dev readme",
     "test": "jest",
     "version": "oclif-dev readme && git add README.md"
