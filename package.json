@@ -10,10 +10,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn workspace @checkup/core build && yarn workspace @checkup/test-helpers build && yarn workspace @checkup/plugin-ember build && yarn workspace @checkup/cli build",
-    "build:watch": "yarn workspace @checkup/core build -w && yarn workspace @checkup/plugin-ember build -w && yarn workspace @checkup/cli build -w",
+    "build": "yarn wsrun --stages build",
+    "build:watch": "yarn wsrun watch",
     "clean": "yarn workspaces run clean",
-    "test": "yarn workspaces run test",
+    "test": "yarn wsrun test",
     "lint": "eslint . --cache --ext .ts"
   },
   "devDependencies": {
@@ -25,7 +25,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.1",
     "lint-staged": "^10.0.7",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "wsrun": "^5.2.0"
   },
   "husky": {
     "hooks": {
