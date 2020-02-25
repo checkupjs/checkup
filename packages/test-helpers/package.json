@@ -33,6 +33,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "yarn build -w",
+    "clean": "rm -rf lib/*",
     "test": "jest --passWithNoTests"
   },
   "types": "lib/index.d.ts"
