@@ -12,7 +12,7 @@
   "scripts": {
     "build": "yarn wsrun --stages build",
     "build:watch": "yarn wsrun watch",
-    "test": "yarn workspaces run test",
+    "test": "yarn wsrun test",
     "lint": "eslint . --cache --ext .ts"
   },
   "devDependencies": {
