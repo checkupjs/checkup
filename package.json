@@ -10,8 +10,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "echo 'Please use `yarn wsrun --stages build` to build all workspace packages in dependency order.'",
-    "build:watch": "echo 'Please use `yarn wsrun watch` to run the build in watch mode for each individual package.'",
+    "build": "yarn wsrun --stages build",
+    "build:watch": "yarn wsrun watch",
     "test": "yarn workspaces run test",
     "lint": "eslint . --cache --ext .ts"
   },
