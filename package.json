@@ -8,9 +8,7 @@
   "private": true,
   "workspaces": [
     "packages/core",
-    "packages/test-helpers",
-    "packages/plugin-ember",
-    "packages/cli"
+    "packages/*"
   ],
   "scripts": {
     "build": "yarn workspaces run build",
