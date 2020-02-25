@@ -15,6 +15,7 @@
   "scripts": {
     "build": "yarn workspaces run build",
     "build:watch": "yarn workspaces run build:watch",
+    "clean": "yarn workspaces run clean",
     "test": "yarn workspaces run test",
     "lint": "eslint . --cache --ext .ts"
   },
