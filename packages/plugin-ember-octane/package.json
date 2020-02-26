@@ -11,12 +11,12 @@
     "tslib": "^1"
   },
   "devDependencies": {
-    "fixturify-project": "^1.10.0",
+    "fixturify-project": "^2.1.0",
     "jest": "^25.1.0",
     "rimraf": "^3.0.2",
-    "ts-jest": "^25.2.0",
+    "ts-jest": "^25.2.1",
     "ts-node": "^8",
-    "typescript": "^3.3"
+    "typescript": "^3.8"
   },
   "engines": {
     "node": "10.* || >= 12.*"
