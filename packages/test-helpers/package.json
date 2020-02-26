@@ -5,7 +5,7 @@
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
-    "fixturify-project": "^1.10.0",
+    "fixturify-project": "^2.1.0",
     "rimraf": "^3.0.2",
     "stdout-stderr": "^0.1.13"
   },
