@@ -30,7 +30,7 @@
     "@babel/types": "7.8.3",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
-    "@types/babel__traverse": "^7.0.7",
+    "@types/babel__traverse": "^7.0.9",
     "@types/capitalize": "^1.0.1",
     "@types/chai": "^4",
     "@types/columnify": "^1.5.0",
