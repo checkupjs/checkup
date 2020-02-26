@@ -11,6 +11,7 @@
     "@checkup/core": "0.0.0",
     "@checkup/parser-eslint": "0.0.0",
     "@checkup/plugin-ember": "0.0.0",
+    "@checkup/plugin-ember-octane": "0.0.0",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",

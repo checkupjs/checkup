@@ -1,12 +1,9 @@
-// import { DependenciesTask, ProjectInfoTask, TypesTask } from '../tasks';
-
+import { JSMigrationStatusTask } from '../tasks';
 import { Hook } from '@oclif/config';
-// import { registerTask } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function() {
-  // registerTask(ProjectInfoTask);
-  // registerTask(DependenciesTask);
-  // registerTask(TypesTask);
+// TODO: Determine correct type for options
+const hook: Hook<'register-tasks'> = async function({ registerTask }: any) {
+  registerTask(JSMigrationStatusTask.taskName, JSMigrationStatusTask);
 };
 
 export default hook;
