@@ -18,7 +18,7 @@
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
     "@simple-dom/interface": "^1.4.0",
-    "cli-ux": "^5.4.4",
+    "cli-ux": "^5.4.5",
     "ember-template-recast": "^4.0.0",
     "fs-extra": "^8.1.0",
     "globby": "^11.0.0",
