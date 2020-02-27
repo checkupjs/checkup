@@ -10,7 +10,7 @@ export default class ESLintParser implements Parser {
     this.engine = new CLIEngine({
       baseConfig: {
         // I assume this will be some sort of eslint-config-checkup
-        extends: ['eslint-config-shared'],
+        extends: ['eslint:recommended'],
       },
       useEslintrc: false,
     });

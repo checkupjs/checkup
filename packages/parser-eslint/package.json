@@ -6,7 +6,10 @@
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@checkup/core": "0.0.0",
-    "eslint": "^6.8.0"
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "eslint": "^6.8.0",
+    "tslib": "^1"
   },
   "devDependencies": {
     "ts-node": "^8",
@@ -17,11 +20,23 @@
     "node": "10.* || >= 12.*"
   },
   "files": [
-    "/lib"
+    "/lib",
+    "/oclif.manifest.json",
+    "/yarn.lock"
   ],
   "homepage": "https://github.com/checkupjs/checkup",
+  "keywords": [
+    "oclif-plugin"
+  ],
   "license": "MIT",
-  "main": "lib/index.js",
+  "oclif": {
+    "devPlugins": [
+      "@oclif/plugin-help"
+    ],
+    "hooks": {
+      "register-parsers": "./lib/hooks/register-parsers"
+    }
+  },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
     "build": "tsc",
@@ -29,10 +44,5 @@
     "clean": "rm -rf lib/*",
     "test": "jest --passWithNoTests"
   },
-  "types": "lib/index.d.ts",
-  "oclif": {
-    "hooks": {
-      "init": "./lib/hooks/init/register-parser"
-    }
-  }
+  "types": "lib/index.d.ts"
 }
