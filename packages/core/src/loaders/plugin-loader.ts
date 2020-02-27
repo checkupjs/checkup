@@ -1,4 +1,5 @@
 import * as Config from '@oclif/config';
+import * as resolve from 'resolve';
 
 /**
  * Given a list of oclif plugin names, attempt to resolve the plugins and load
@@ -10,7 +11,7 @@ import * as Config from '@oclif/config';
  */
 export async function loadPlugins(pluginNames: string[], resolutionBaseDir: string) {
   const plugins = pluginNames
-    .map(pluginName => require.resolve(pluginName, { paths: [resolutionBaseDir] }))
+    .map(pluginName => resolve.sync(pluginName, { basedir: resolutionBaseDir }))
     .map(pluginPath => new Config.Plugin({ root: pluginPath, type: 'core' }));
 
   await Promise.all(plugins.map(plugin => plugin.load()));

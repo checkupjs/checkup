@@ -26,8 +26,8 @@
     "tslib": "^1"
   },
   "devDependencies": {
-    "@checkup/test-helpers": "0.0.0",
     "@babel/types": "7.8.3",
+    "@checkup/test-helpers": "0.0.0",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "@types/babel__traverse": "^7.0.9",

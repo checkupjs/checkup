@@ -1,18 +1,46 @@
-import { stdout } from '@checkup/test-helpers';
-import Project = require('fixturify-project');
+import { stdout, CheckupProject, Plugin } from '@checkup/test-helpers';
 import cmd = require('../src');
-const FixturifyProject = require('fixturify-project');
 
 describe('@checkup/cli', () => {
-  let project: Project;
+  let project: CheckupProject;
 
   beforeEach(function() {
-    project = new FixturifyProject('checkup-project', '0.0.0');
-    project.addDevDependency('@checkup/plugin-ember', '0.0.0');
-    project.files['.checkuprc'] = JSON.stringify({
-      plugins: ['@checkup/plugin-ember'],
-      tasks: [],
-    });
+    const plugin = new Plugin.PluginBuilder('@checkup/plugin-mock')
+      .addTask('mockTask', {
+        async run() {
+          return Promise.resolve({
+            toJson() {
+              return {
+                mockTask: 5,
+              };
+            },
+            toConsole() {
+              process.stdout.write('mock task is being run\n');
+            },
+          });
+        },
+      })
+      .addTask('mockTask2', {
+        async run() {
+          return Promise.resolve({
+            toJson() {
+              return {
+                mockTask2: 10,
+              };
+            },
+            toConsole() {
+              process.stdout.write('mock task2 is being run\n');
+            },
+          });
+        },
+      })
+      .build();
+    project = new CheckupProject('checkup-project', '0.0.0')
+      .addCheckupConfig({
+        plugins: ['@checkup/plugin-mock'],
+        tasks: {},
+      })
+      .addPlugin(plugin);
     project.writeSync();
   });
 
