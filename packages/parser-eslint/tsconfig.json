@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "rootDir": "src",
+    "types": ["jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@checkup/core": ["../core/lib/index.d.ts"]
+    }
+  },
+  "include": ["src/**/*"]
+}

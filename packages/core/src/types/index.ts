@@ -1,3 +1,4 @@
+import { JsonObject } from 'type-fest';
 import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
 import * as t from 'io-ts';
 
@@ -7,6 +8,11 @@ export interface HooksConfig {
 
 export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
+export type ParserName = string;
+
+export interface Parser {
+  execute(paths: string[]): JsonObject;
+}
 
 export type TaskName = string;
 
