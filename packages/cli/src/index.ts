@@ -65,7 +65,6 @@ class Checkup extends Command {
     await this.config.runHook('register-parsers', {
       registerParser,
     });
-
     await this.config.runHook('register-tasks', {
       parsers: getRegisteredParsers(),
       registerTask,

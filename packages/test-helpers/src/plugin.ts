@@ -27,6 +27,7 @@ class PluginBuilder {
  * project. Use {@link PluginBuilder} to build an immutable plugin instance.
  */
 export default class Plugin {
+  static PluginBuilder = PluginBuilder;
   readonly pluginName: string;
   readonly version: string;
   readonly tasks: Map<string, Task>;
@@ -68,6 +69,4 @@ export default class Plugin {
       };
     });
   }
-
-  static PluginBuilder = PluginBuilder;
 }
