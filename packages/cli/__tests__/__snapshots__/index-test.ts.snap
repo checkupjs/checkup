@@ -13,7 +13,3 @@ exports[`@checkup/cli base cases should output checkup result in JSON 1`] = `
 }
 "
 `;
-
-exports[`@checkup/cli error cases should error if a plugin cannot be loaded 1`] = `"Cannot find module '@checkup/unknown-plugin' from '/private/var/folders/w_/c0mg636s7bd1rwd7yvn9kxqc000j4s/T/tmp-14092nKdpOgxnJxy4/checkup-project'"`;
-
-exports[`@checkup/cli error cases should error if no checkup config is present 1`] = `"Could not find a checkup configuration starting from the given path: /private/var/folders/w_/c0mg636s7bd1rwd7yvn9kxqc000j4s/T/tmp-1409217IvbRR3Nq0a/checkup-project. See https://github.com/checkupjs/checkup/tree/master/packages/cli#configuration for more info on how to setup a configuration."`;
