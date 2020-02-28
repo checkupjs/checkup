@@ -6,6 +6,7 @@ import { getRegisteredParsers, registerParser } from './parsers';
 import { getRegisteredTasks, registerTask } from './tasks';
 
 import TaskList from './task-list';
+import sortTasks from './utils/sort-tasks';
 
 function mergeTaskResults(taskResults: TaskResult[]) {
   let mergedResults = {};
@@ -73,23 +74,7 @@ class Checkup extends Command {
         tasksToBeRun.addTask(task, args);
       }
     } else {
-      let sortedRegisteredTasks = Array.from(registeredTasks.entries()).sort(
-        ([taskNameA], [taskNameB]) => {
-          if (taskNameA < taskNameB) {
-            return -1;
-          }
-
-          if (taskNameA > taskNameB) {
-            return -1;
-          }
-
-          return 0;
-        }
-      );
-
-      let sortedTaskConstructors = sortedRegisteredTasks.map(
-        ([, TaskConstructor]) => TaskConstructor
-      );
+      let sortedTaskConstructors = sortTasks(registeredTasks);
 
       tasksToBeRun.addTasks(sortedTaskConstructors, args);
     }
