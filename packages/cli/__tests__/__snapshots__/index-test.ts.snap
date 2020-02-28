@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@checkup/cli base cases should output checkup result 1`] = `
+exports[`@checkup/cli normal cli output with plugins should output checkup result 1`] = `
 "mock task is being run
 mock task2 is being run
 "
 `;
 
-exports[`@checkup/cli base cases should output checkup result in JSON 1`] = `
+exports[`@checkup/cli normal cli output with plugins should output checkup result in JSON 1`] = `
 "{
   \\"mockTask\\": 5,
   \\"mockTask2\\": 10
