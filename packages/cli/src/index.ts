@@ -73,7 +73,25 @@ class Checkup extends Command {
         tasksToBeRun.addTask(task, args);
       }
     } else {
-      tasksToBeRun.addTasks(Array.from(registeredTasks.values()), args);
+      let sortedRegisteredTasks = Array.from(registeredTasks.entries()).sort(
+        ([taskNameA], [taskNameB]) => {
+          if (taskNameA < taskNameB) {
+            return -1;
+          }
+
+          if (taskNameA > taskNameB) {
+            return -1;
+          }
+
+          return 0;
+        }
+      );
+
+      let sortedTaskConstructors = sortedRegisteredTasks.map(
+        ([, TaskConstructor]) => TaskConstructor
+      );
+
+      tasksToBeRun.addTasks(sortedTaskConstructors, args);
     }
 
     ui.action.start('Checking up on your project');
