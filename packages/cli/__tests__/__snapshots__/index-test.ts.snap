@@ -13,3 +13,8 @@ exports[`@checkup/cli base cases should output checkup result in JSON 1`] = `
 }
 "
 `;
+
+exports[`@checkup/cli normal cli output with plugins should run a single task if the task option is specified 1`] = `
+"mock task is being run
+"
+`;

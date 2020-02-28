@@ -2,7 +2,7 @@ import { stdout, CheckupProject, Plugin } from '@checkup/test-helpers';
 import cmd = require('../src');
 
 describe('@checkup/cli', () => {
-  describe('base cases', () => {
+  describe('normal cli output with plugins', () => {
     let project: CheckupProject;
 
     beforeEach(function() {
@@ -60,9 +60,15 @@ describe('@checkup/cli', () => {
 
       expect(stdout()).toMatchSnapshot();
     });
+
+    it('should run a single task if the task option is specified', async () => {
+      await cmd.run(['--task', 'mockTask', project.baseDir]);
+
+      expect(stdout()).toMatchSnapshot();
+    });
   });
 
-  describe('error cases', () => {
+  describe('cli error cases', () => {
     it('should error if no checkup config is present', async () => {
       const project = new CheckupProject('checkup-project', '0.0.0');
       project.writeSync();

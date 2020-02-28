@@ -3,7 +3,8 @@ import { CheckupConfig } from '../types';
 
 /**
  * Get the checkup config via {@link cosmiconfig#search}
- * @return the parsed config file, if found, else the default config
+ * @param {string} basePath - the base path to start the config search
+ * @return {Promise<CheckupConfig>} the parsed config file, if found, else throw
  */
 export async function getConfig(basePath: string): Promise<CheckupConfig> {
   const configResult = await cosmiconfig('checkup').search(basePath);
