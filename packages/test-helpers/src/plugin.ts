@@ -40,6 +40,7 @@ export default class Plugin {
 
   toProject() {
     return new Project(this.pluginName, this.version, pluginProject => {
+      pluginProject.pkg.keywords = [];
       pluginProject.pkg.keywords.push('oclif-plugin');
       pluginProject.pkg.oclif = {
         hooks: {

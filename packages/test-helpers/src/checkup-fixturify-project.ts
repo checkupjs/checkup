@@ -1,13 +1,14 @@
-import Project = require('fixturify-project');
+'use strict';
 import { CheckupConfig } from '@checkup/core';
 import Plugin from './plugin';
+import FixturifyProject from 'fixturify-project';
 
 /**
  * An extension of {@link Project} that adds methods specific to creating
  * mock checkup projects.
  */
-export default class CheckupFixturifyProject extends Project {
-  constructor(name: string, version?: string, cb?: (project: Project) => void, root?: string) {
+export default class CheckupFixturifyProject extends FixturifyProject {
+  constructor(name: string, version?: string, cb?: (project: any) => void, root?: string) {
     super(name, version, cb, root);
   }
 
