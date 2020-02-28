@@ -3,7 +3,12 @@
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
-    "types": ["chai", "jest", "node"]
+    "types": ["chai", "jest", "node"],
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@checkup/core": ["../core/lib/index.d.ts"]
+    }
   },
   "include": ["src/**/*"]
 }

@@ -1,18 +1,19 @@
 import { cosmiconfig } from 'cosmiconfig';
 import { CheckupConfig } from '../types';
 
-let config: CheckupConfig;
-const DEFAULT_CONFIG: CheckupConfig = { tasks: {} };
-
 /**
  * Get the checkup config via {@link cosmiconfig#search}
- * @return the parsed config file, if found, else the default config
+ * @param {string} basePath - the base path to start the config search
+ * @return {Promise<CheckupConfig>} the parsed config file, if found, else throw
  */
-export async function getConfig(): Promise<CheckupConfig> {
-  if (config !== undefined) {
-    return config;
+export async function getConfig(basePath: string): Promise<CheckupConfig> {
+  const configResult = await cosmiconfig('checkup').search(basePath);
+
+  if (configResult === null) {
+    throw new Error(
+      `Could not find a checkup configuration starting from the given path: ${basePath}. See https://github.com/checkupjs/checkup/tree/master/packages/cli#configuration for more info on how to setup a configuration.`
+    );
   }
 
-  const configResult = await cosmiconfig('checkup').search();
-  return (config = configResult?.config || DEFAULT_CONFIG);
+  return configResult.config;
 }

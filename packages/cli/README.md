@@ -57,7 +57,23 @@ The .checkuprc file (without extension) can be in JSON or YAML format. You can a
 - checkup.js
 
 The configuration object has the following properties:
-__
+
+## plugins
+
+checkup supports the use of plugins. Before using the plugin, you have to install it using npm/yarn.
+
+```sh-session
+$ yarn add -D @checkup/plugin-ember
+```
+
+To configure plugins, use the plugins key in your configuration file, which contains a list of plugin names.
+```json
+{
+  "plugins": [
+    "@checkup/plugin-ember"
+  ]
+}
+```
 <!-- TODO: Describe properties in CheckupConfig -->
 
 <!-- configurationstop -->

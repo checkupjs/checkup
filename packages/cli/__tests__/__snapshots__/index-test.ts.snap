@@ -1,118 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@checkup/cli should output checkup result 1`] = `
-"=== Project Information
-
-name:    @checkup/cli
-type:    Ember.js unknown
-version: 0.0.0
-
-=== Project Dependencies
-=== Dependencies - Core Libraries
-
-Dependency   Version   
-ember-source Not found 
-ember-cli    Not found 
-ember-data   Not found 
-
-=== Dependencies - Ember Addons
-
-Dependency            Version 
-ember-template-recast ^4.0.0  
-
-=== Project Types
-
-Type                  Total 
-components            0     
-controllers           0     
-helpers               0     
-initializers          0     
-instance-initializers 0     
-mixins                0     
-models                0     
-routes                0     
-services              0     
-templates             0     
-
+exports[`@checkup/cli normal cli output with plugins should output checkup result 1`] = `
+"mock task is being run
+mock task2 is being run
 "
 `;
 
-exports[`@checkup/cli should output checkup result in JSON 1`] = `
+exports[`@checkup/cli normal cli output with plugins should output checkup result in JSON 1`] = `
 "{
-  \\"project-info\\": {
-    \\"name\\": \\"@checkup/cli\\",
-    \\"type\\": \\"Ember.js unknown\\",
-    \\"version\\": \\"0.0.0\\"
-  },
-  \\"dependencies\\": {
-    \\"emberLibraries\\": {
-      \\"ember-source\\": \\"Not found\\",
-      \\"ember-cli\\": \\"Not found\\",
-      \\"ember-data\\": \\"Not found\\"
-    },
-    \\"emberAddons\\": {
-      \\"dependencies\\": {
-        \\"ember-template-recast\\": \\"^4.0.0\\"
-      },
-      \\"devDependencies\\": {}
-    },
-    \\"emberCliAddons\\": {
-      \\"dependencies\\": {},
-      \\"devDependencies\\": {}
-    }
-  },
-  \\"types\\": [
-    {
-      \\"type\\": \\"components\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    },
-    {
-      \\"type\\": \\"controllers\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    },
-    {
-      \\"type\\": \\"helpers\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    },
-    {
-      \\"type\\": \\"initializers\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    },
-    {
-      \\"type\\": \\"instance-initializers\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    },
-    {
-      \\"type\\": \\"mixins\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    },
-    {
-      \\"type\\": \\"models\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    },
-    {
-      \\"type\\": \\"routes\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    },
-    {
-      \\"type\\": \\"services\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    },
-    {
-      \\"type\\": \\"templates\\",
-      \\"data\\": [],
-      \\"total\\": 0
-    }
-  ]
+  \\"mockTask\\": 5,
+  \\"mockTask2\\": 10
 }
+"
+`;
+
+exports[`@checkup/cli normal cli output with plugins should run a single task if the task option is specified 1`] = `
+"mock task is being run
 "
 `;
