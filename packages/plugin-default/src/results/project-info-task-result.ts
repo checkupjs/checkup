@@ -15,8 +15,11 @@ export default class ProjectInfoTaskResult implements TaskResult {
       name: this.name,
       type: this.type,
       version: this.version,
-      repository: this.repository,
     });
+    ui.blankLine();
+
+    ui.styledHeader('Repository Information');
+    ui.styledObject(this.repository);
     ui.blankLine();
   }
 

@@ -14,7 +14,7 @@ export default class ProjectInfoTask extends BaseTask {
 
     result.name = pkg.name || '';
     result.version = pkg.version || '';
-    result.repository = await getRepositoryInfo();
+    result.repository = await getRepositoryInfo(this.args.path);
 
     return result;
   }

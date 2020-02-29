@@ -6,6 +6,12 @@ exports[`project-info-task for Projects can read project info and output to cons
 name:    checkup-app
 version: 0.0.0
 
+=== Repository Information
+activeDays:  None
+age:         0 days
+commitCount: 0
+filesCount:  0
+
 "
 `;
 
@@ -13,6 +19,12 @@ exports[`project-info-task for Projects can read project info as JSON 1`] = `
 Object {
   "project-info": Object {
     "name": "checkup-app",
+    "repository": Object {
+      "activeDays": "None",
+      "age": "0 days",
+      "commitCount": 0,
+      "filesCount": 0,
+    },
     "type": undefined,
     "version": "0.0.0",
   },
