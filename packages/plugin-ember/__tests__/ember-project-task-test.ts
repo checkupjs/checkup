@@ -1,6 +1,6 @@
 import { Project, stdout } from '@checkup/test-helpers';
-import { ProjectInfoTask } from '../src/tasks';
-import { ProjectInfoTaskResult } from '../src/results';
+import { EmberProjectTask } from '../src/tasks';
+import { EmberProjectTaskResult } from '../src/results';
 
 describe('project-info-task', () => {
   let fixturifyProject: Project;
@@ -23,8 +23,8 @@ describe('project-info-task', () => {
     });
 
     it('can read project info and output to console', async () => {
-      const result = await new ProjectInfoTask({ path: fixturifyProject.baseDir }).run();
-      const taskResult = <ProjectInfoTaskResult>result;
+      const result = await new EmberProjectTask({ path: fixturifyProject.baseDir }).run();
+      const taskResult = <EmberProjectTaskResult>result;
 
       taskResult.toConsole();
 
@@ -32,8 +32,8 @@ describe('project-info-task', () => {
     });
 
     it('can read project info as JSON', async () => {
-      const result = await new ProjectInfoTask({ path: fixturifyProject.baseDir }).run();
-      const taskResult = <ProjectInfoTaskResult>result;
+      const result = await new EmberProjectTask({ path: fixturifyProject.baseDir }).run();
+      const taskResult = <EmberProjectTaskResult>result;
 
       expect(taskResult.toJson()).toMatchSnapshot();
     });
@@ -57,8 +57,8 @@ describe('project-info-task', () => {
     });
 
     it('can read project info and output to console', async () => {
-      const result = await new ProjectInfoTask({ path: fixturifyProject.baseDir }).run();
-      const taskResult = <ProjectInfoTaskResult>result;
+      const result = await new EmberProjectTask({ path: fixturifyProject.baseDir }).run();
+      const taskResult = <EmberProjectTaskResult>result;
 
       taskResult.toConsole();
 
@@ -66,8 +66,8 @@ describe('project-info-task', () => {
     });
 
     it('can read project info as JSON', async () => {
-      const result = await new ProjectInfoTask({ path: fixturifyProject.baseDir }).run();
-      const taskResult = <ProjectInfoTaskResult>result;
+      const result = await new EmberProjectTask({ path: fixturifyProject.baseDir }).run();
+      const taskResult = <EmberProjectTaskResult>result;
 
       expect(taskResult.toJson()).toMatchSnapshot();
     });

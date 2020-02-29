@@ -1,41 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`project-info-task for Ember Addons can read project info and output to console 1`] = `
-"=== Project Information
+"=== Ember Project
 
-name:    checkup-app
-type:    Ember.js addon
-version: 0.0.0
+type: Ember.js addon
 
 "
 `;
 
 exports[`project-info-task for Ember Addons can read project info as JSON 1`] = `
 Object {
-  "project-info": Object {
-    "name": "checkup-app",
+  "ember-project": Object {
     "type": "Ember.js addon",
-    "version": "0.0.0",
   },
 }
 `;
 
 exports[`project-info-task for Ember Applications can read project info and output to console 1`] = `
-"=== Project Information
+"=== Ember Project
 
-name:    checkup-app
-type:    Ember.js application
-version: 0.0.0
+type: Ember.js application
 
 "
 `;
 
 exports[`project-info-task for Ember Applications can read project info as JSON 1`] = `
 Object {
-  "project-info": Object {
-    "name": "checkup-app",
+  "ember-project": Object {
     "type": "Ember.js application",
-    "version": "0.0.0",
   },
 }
 `;
