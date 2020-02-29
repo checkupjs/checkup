@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`project-info-task for Projects can read project info and output to console 1`] = `
+"=== Project Information
+
+name:    checkup-app
+version: 0.0.0
+
+"
+`;
+
+exports[`project-info-task for Projects can read project info as JSON 1`] = `
+Object {
+  "project-info": Object {
+    "name": "checkup-app",
+    "type": undefined,
+    "version": "0.0.0",
+  },
+}
+`;

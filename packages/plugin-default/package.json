@@ -8,6 +8,7 @@
     "@checkup/core": "0.0.0",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
+    "promise.hash.helper": "^1.0.4",
     "tslib": "^1"
   },
   "devDependencies": {

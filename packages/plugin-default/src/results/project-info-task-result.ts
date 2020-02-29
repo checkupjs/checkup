@@ -6,6 +6,7 @@ export default class ProjectInfoTaskResult implements TaskResult {
   type!: string;
   name!: string;
   version!: string;
+  repository!: RepositoryInfo;
 
   toConsole() {
     ui.styledHeader(ProjectInfoTask.friendlyTaskName);
