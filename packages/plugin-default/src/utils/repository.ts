@@ -24,9 +24,9 @@ async function exec(
 
 export function getRepositoryInfo(path: string): Promise<RepositoryInfo> {
   return hash({
-    commitCount: exec(COMMIT_COUNT, { cwd: path }, 0, Number),
-    filesCount: exec(FILE_COUNT, { cwd: path }, 0, Number),
+    totalCommits: exec(COMMIT_COUNT, { cwd: path }, 0, Number),
+    totalFiles: exec(FILE_COUNT, { cwd: path }, 0, Number),
     age: exec(REPO_AGE, { cwd: path }, '0 days'),
-    activeDays: exec(ACTIVE_DAYS, { cwd: path }, 'None'),
+    activeDays: exec(ACTIVE_DAYS, { cwd: path }, '0 days'),
   });
 }

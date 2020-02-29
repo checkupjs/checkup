@@ -1,6 +1,6 @@
 type RepositoryInfo = {
-  commitCount: number;
-  filesCount: number;
+  totalCommits: number;
+  totalFiles: number;
   age: string;
   activeDays: string;
 };

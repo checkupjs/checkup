@@ -19,7 +19,12 @@ export default class ProjectInfoTaskResult implements TaskResult {
     ui.blankLine();
 
     ui.styledHeader('Repository Information');
-    ui.styledObject(this.repository);
+    ui.styledObject({
+      Age: this.repository.age,
+      'Active days': this.repository.activeDays,
+      'Total commits': this.repository.totalCommits,
+      'Total files': this.repository.totalFiles,
+    });
     ui.blankLine();
   }
 

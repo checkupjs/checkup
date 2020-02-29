@@ -7,10 +7,10 @@ name:    checkup-app
 version: 0.0.0
 
 === Repository Information
-activeDays:  None
-age:         0 days
-commitCount: 0
-filesCount:  0
+Active days:   0 days
+Age:           0 days
+Total commits: 0
+Total files:   0
 
 "
 `;
@@ -20,10 +20,10 @@ Object {
   "project-info": Object {
     "name": "checkup-app",
     "repository": Object {
-      "activeDays": "None",
+      "activeDays": "0 days",
       "age": "0 days",
-      "commitCount": 0,
-      "filesCount": 0,
+      "totalCommits": 0,
+      "totalFiles": 0,
     },
     "type": undefined,
     "version": "0.0.0",
