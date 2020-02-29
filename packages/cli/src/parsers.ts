@@ -1,7 +1,4 @@
-type ParserName = string;
-interface Parser {
-  parse(): () => void;
-}
+import { Parser, ParserName } from '@checkup/core';
 
 let registeredParsers: Map<ParserName, Parser> = new Map<ParserName, Parser>();
 
