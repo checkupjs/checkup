@@ -15,13 +15,19 @@ export default class ProjectInfoTaskResult implements TaskResult {
       name: this.name,
       type: this.type,
       version: this.version,
+      repository: this.repository,
     });
     ui.blankLine();
   }
 
   toJson() {
     return {
-      [ProjectInfoTask.taskName]: { name: this.name, type: this.type, version: this.version },
+      [ProjectInfoTask.taskName]: {
+        name: this.name,
+        type: this.type,
+        version: this.version,
+        repository: this.repository,
+      },
     };
   }
 }
