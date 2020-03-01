@@ -1,7 +1,10 @@
 'use strict';
+
 import { CheckupConfig } from '@checkup/core';
-import Plugin from './plugin';
 import FixturifyProject from 'fixturify-project';
+import { PackageJson } from 'type-fest';
+import Plugin from './plugin';
+import { execSync } from 'child_process';
 
 /**
  * An extension of {@link Project} that adds methods specific to creating
@@ -29,5 +32,19 @@ export default class CheckupFixturifyProject extends FixturifyProject {
   addPlugin(plugin: Plugin) {
     this.addDevDependency(plugin.toProject());
     return this;
+  }
+
+  gitInit() {
+    try {
+      execSync(`git init -q ${this.baseDir}`);
+    } catch (e) {
+      throw new Error("Couldn't initialize git repository.");
+    }
+  }
+
+  updatePackageJson(pkgContent: PackageJson) {
+    pkgContent.name = this.name;
+
+    this.pkg = pkgContent;
   }
 }
