@@ -9,7 +9,10 @@ import * as resolve from 'resolve';
  * @param {string} resolutionBaseDirectory - the base directory to resolve plugins from
  * @return {Promise<Config.Plugin[]>} Promise containing the loaded plugins
  */
-export async function loadPlugins(pluginNames: string[], resolutionBaseDirectory: string) {
+export async function loadPlugins(
+  pluginNames: string[],
+  resolutionBaseDirectory: string
+): Promise<Config.Plugin[]> {
   const plugins = pluginNames
     .map(pluginName => resolve.sync(pluginName, { basedir: resolutionBaseDirectory }))
     .map(pluginPath => new Config.Plugin({ root: pluginPath, type: 'core' }));
