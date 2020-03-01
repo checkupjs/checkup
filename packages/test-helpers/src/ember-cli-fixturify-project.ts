@@ -1,8 +1,8 @@
 'use strict';
 
-import { JsonObject } from 'type-fest';
+import CheckupFixturifyProject from './checkup-fixturify-project';
 
-const FixturifyProject = require('fixturify-project');
+const Project = require('fixturify-project');
 const rimraf = require('rimraf');
 
 function prepareAddon(addon: any) {
@@ -11,13 +11,21 @@ function prepareAddon(addon: any) {
   addon.files['index.js'] = 'module.exports = { name: require("./package").name };';
 }
 
-export default class EmberCLIFixturifyProject extends FixturifyProject {
+/**
+ * An extension of {@link CheckupFixturifyProject} that adds methods specific to creating
+ * mock Ember projects.
+ *
+ * @export
+ * @class EmberCLIFixturifyProject
+ * @extends {CheckupFixturifyProject}
+ */
+export default class EmberCLIFixturifyProject extends CheckupFixturifyProject {
   constructor(name: string, version = '0.0.0', callback?: (project: any) => void, root?: string) {
     super(name, version, callback, root);
   }
+
   writeSync(...arguments_: any[]) {
     super.writeSync(...arguments_);
-    this._hasWritten = true;
   }
 
   addAddon(name: string, version = '0.0.0') {
@@ -33,14 +41,14 @@ export default class EmberCLIFixturifyProject extends FixturifyProject {
   }
 
   addInRepoAddon(name: string, version = '0.0.0') {
-    const inRepoAddon = new FixturifyProject(name, version, (project: any) => {
+    const inRepoAddon = new Project(name, version, (project: any) => {
       project.pkg.keywords.push('ember-addon');
       project.pkg['ember-addon'] = {};
       project.files['index.js'] = 'module.exports = { name: require("./package").name };';
     });
 
     // configure the current project to have an ember-addon configured at the appropriate path
-    let addon = (this.pkg['ember-addon'] = this.pkg['ember-addon'] || {});
+    let addon: any = (this.pkg['ember-addon'] = this.pkg['ember-addon'] || {});
     addon.paths = addon.paths || [];
     const addonPath = `lib/${name}`;
 
@@ -54,12 +62,6 @@ export default class EmberCLIFixturifyProject extends FixturifyProject {
 
     // insert inRepoAddon into files
     Object.assign(this.files.lib, inRepoAddon.toJSON());
-  }
-
-  updatePackageJson(packageContent: JsonObject) {
-    packageContent.name = this.name;
-
-    this.pkg = packageContent;
   }
 
   dispose(temporaryFilesToCleanupPath: string = '') {

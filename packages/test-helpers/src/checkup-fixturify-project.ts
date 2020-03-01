@@ -1,22 +1,24 @@
 'use strict';
 
 import { CheckupConfig } from '@checkup/core';
-import FixturifyProject from 'fixturify-project';
 import { PackageJson } from 'type-fest';
 import Plugin from './plugin';
+import Project from 'fixturify-project';
 import { execSync } from 'child_process';
 
 /**
  * An extension of {@link Project} that adds methods specific to creating
  * mock checkup projects.
  */
-export default class CheckupFixturifyProject extends FixturifyProject {
+export default class CheckupFixturifyProject extends Project {
   constructor(name: string, version?: string, callback?: (project: any) => void, root?: string) {
     super(name, version, callback, root);
   }
 
   /**
    * Add a checkup config file to the project
+   *
+   * @memberof CheckupFixturifyProject
    * @param config - a partial {@link CheckupConfig} to write to .checkuprc file
    */
   addCheckupConfig(config: Partial<CheckupConfig>) {
@@ -27,6 +29,8 @@ export default class CheckupFixturifyProject extends FixturifyProject {
 
   /**
    * Add a plugin to the checkup project
+   *
+   * @memberof CheckupFixturifyProject
    * @param plugin - a {@link Plugin} to add as a dependency to the project
    */
   addPlugin(plugin: Plugin) {
@@ -34,6 +38,11 @@ export default class CheckupFixturifyProject extends FixturifyProject {
     return this;
   }
 
+  /**
+   * Initializes a git repository on the base directory of the project
+   *
+   * @memberof CheckupFixturifyProject
+   */
   gitInit() {
     try {
       execSync(`git init -q ${this.baseDir}`);
@@ -42,6 +51,12 @@ export default class CheckupFixturifyProject extends FixturifyProject {
     }
   }
 
+  /**
+   * Updates the contents of the package.json file.
+   *
+   * @param {PackageJson} packageJsonContent
+   * @memberof CheckupFixturifyProject
+   */
   updatePackageJson(packageJsonContent: PackageJson) {
     packageJsonContent.name = this.name;
 

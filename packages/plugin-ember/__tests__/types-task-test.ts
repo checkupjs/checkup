@@ -1,4 +1,4 @@
-import { Project, stdout } from '@checkup/test-helpers';
+import { EmberProject, stdout } from '@checkup/test-helpers';
 
 import { TypesTask } from '../src/tasks';
 import { TypesTaskResult } from '../src/results';
@@ -37,25 +37,25 @@ const TYPES = {
 };
 
 describe('types-task', () => {
-  let fixturifyProject: Project;
+  let project: EmberProject;
 
   beforeEach(function() {
-    fixturifyProject = new Project('checkup-app', '0.0.0');
+    project = new EmberProject('checkup-app', '0.0.0');
   });
 
   afterEach(function() {
-    fixturifyProject.dispose();
+    project.dispose();
   });
 
   it('returns all the types found in the app and outputs to the console', async () => {
-    fixturifyProject.files = Object.assign(fixturifyProject.files, {
+    project.files = Object.assign(project.files, {
       'index.js': 'index js file',
       addon: TYPES,
     });
 
-    fixturifyProject.writeSync();
+    project.writeSync();
 
-    const result = await new TypesTask({ path: fixturifyProject.baseDir }).run();
+    const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
     typesTaskResult.toConsole();
@@ -64,20 +64,20 @@ describe('types-task', () => {
   });
 
   it('returns all the types (including nested) found in the app and outputs to the console', async () => {
-    fixturifyProject.files = Object.assign(fixturifyProject.files, {
+    project.files = Object.assign(project.files, {
       'index.js': 'index js file',
       addon: TYPES,
     });
 
-    fixturifyProject.addInRepoAddon('ember-super-button', 'latest');
+    project.addInRepoAddon('ember-super-button', 'latest');
 
     // @ts-ignore
-    fixturifyProject.files.lib['ember-super-button'].addon = TYPES;
+    project.files.lib['ember-super-button'].addon = TYPES;
     // @ts-ignore
 
-    fixturifyProject.writeSync();
+    project.writeSync();
 
-    const result = await new TypesTask({ path: fixturifyProject.baseDir }).run();
+    const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
     typesTaskResult.toConsole();
@@ -86,34 +86,34 @@ describe('types-task', () => {
   });
 
   it('returns all the types found in the app and outputs to JSON', async () => {
-    fixturifyProject.files = Object.assign(fixturifyProject.files, {
+    project.files = Object.assign(project.files, {
       'index.js': 'index js file',
       addon: TYPES,
     });
 
-    fixturifyProject.writeSync();
+    project.writeSync();
 
-    const result = await new TypesTask({ path: fixturifyProject.baseDir }).run();
+    const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
     expect(typesTaskResult.toJson()).toMatchSnapshot();
   });
 
   it('returns all the types (including nested) found in the app and outputs to JSON', async () => {
-    fixturifyProject.files = Object.assign(fixturifyProject.files, {
+    project.files = Object.assign(project.files, {
       'index.js': 'index js file',
       addon: TYPES,
     });
 
-    fixturifyProject.addInRepoAddon('ember-super-button', 'latest');
+    project.addInRepoAddon('ember-super-button', 'latest');
 
     // @ts-ignore
-    fixturifyProject.files.lib['ember-super-button'].addon = TYPES;
+    project.files.lib['ember-super-button'].addon = TYPES;
     // @ts-ignore
 
-    fixturifyProject.writeSync();
+    project.writeSync();
 
-    const result = await new TypesTask({ path: fixturifyProject.baseDir }).run();
+    const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
     expect(typesTaskResult.toJson()).toMatchSnapshot();
