@@ -37,14 +37,14 @@ export default class CheckupFixturifyProject extends FixturifyProject {
   gitInit() {
     try {
       execSync(`git init -q ${this.baseDir}`);
-    } catch (e) {
+    } catch (error) {
       throw new Error("Couldn't initialize git repository.");
     }
   }
 
-  updatePackageJson(pkgContent: PackageJson) {
-    pkgContent.name = this.name;
+  updatePackageJson(packageJsonContent: PackageJson) {
+    packageJsonContent.name = this.name;
 
-    this.pkg = pkgContent;
+    this.pkg = packageJsonContent;
   }
 }
