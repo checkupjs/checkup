@@ -11,8 +11,8 @@ import { execSync } from 'child_process';
  * mock checkup projects.
  */
 export default class CheckupFixturifyProject extends FixturifyProject {
-  constructor(name: string, version?: string, cb?: (project: any) => void, root?: string) {
-    super(name, version, cb, root);
+  constructor(name: string, version?: string, callback?: (project: any) => void, root?: string) {
+    super(name, version, callback, root);
   }
 
   /**
@@ -37,14 +37,14 @@ export default class CheckupFixturifyProject extends FixturifyProject {
   gitInit() {
     try {
       execSync(`git init -q ${this.baseDir}`);
-    } catch (e) {
+    } catch (error) {
       throw new Error("Couldn't initialize git repository.");
     }
   }
 
-  updatePackageJson(pkgContent: PackageJson) {
-    pkgContent.name = this.name;
+  updatePackageJson(packageJsonContent: PackageJson) {
+    packageJsonContent.name = this.name;
 
-    this.pkg = pkgContent;
+    this.pkg = packageJsonContent;
   }
 }

@@ -25,8 +25,8 @@ export default class TaskList {
    *
    * @param taskConstructor {TaskConstructor} a constructor representing a Task class
    */
-  addTask(taskConstructor: TaskConstructor, args: any) {
-    this.defaultTasks.push(new taskConstructor(args));
+  addTask(taskConstructor: TaskConstructor, cliArguments: any) {
+    this.defaultTasks.push(new taskConstructor(cliArguments));
   }
 
   /**
@@ -36,9 +36,9 @@ export default class TaskList {
    *
    * @param taskConstructor {TaskConstructor[]} an array of constructors representing a Task classes
    */
-  addTasks(taskConstructors: TaskConstructor[], args: any) {
+  addTasks(taskConstructors: TaskConstructor[], cliArguments: any) {
     taskConstructors.forEach((taskConstructor: TaskConstructor) => {
-      this.addTask(taskConstructor, args);
+      this.addTask(taskConstructor, cliArguments);
     });
   }
 

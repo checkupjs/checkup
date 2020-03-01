@@ -6,10 +6,10 @@ export const ui = Object.assign(ux, {
   },
 
   clearScreen() {
-    process.stdout.write('\x1b[2J');
+    process.stdout.write('\u001B[2J');
   },
 
   clearLine() {
-    process.stdout.write('\x1b[0f');
+    process.stdout.write('\u001B[0f');
   },
 });

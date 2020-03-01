@@ -6,8 +6,8 @@ export default abstract class BaseTask implements Task {
 
   args: any;
 
-  constructor(args: any) {
-    this.args = args;
+  constructor(cliArguments: any) {
+    this.args = cliArguments;
   }
 
   abstract run(): Promise<TaskResult>;

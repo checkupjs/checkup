@@ -5,8 +5,15 @@
     "ecmaVersion": 2017,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "@typescript-eslint"],
-  "extends": ["eslint:recommended", "prettier", "prettier/@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "filenames", "jest", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:unicorn/recommended"
+  ],
   "env": {
     "browser": false,
     "node": true,

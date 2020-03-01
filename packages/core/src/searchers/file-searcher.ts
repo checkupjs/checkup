@@ -17,18 +17,18 @@ const IGNORE_PATTERNS: string[] = [
  * Provides static file searching capabilities.
  */
 export default class FileSearcher {
-  baseDir: string;
+  baseDirectory: string;
   searchPatterns: SearchPatterns;
   searchPromises: Promise<string[]>[];
 
   /**
    *
-   * @param baseDir {String} the top level directory to start searching
+   * @param baseDirectory {String} the top level directory to start searching
    * @param searchPatterns {SearchPatterns} the collection of patterns to search for. A pattern is
    *                                        in the form of `{ [key: string]: string[] }`
    */
-  constructor(baseDir: string, searchPatterns: SearchPatterns) {
-    this.baseDir = baseDir;
+  constructor(baseDirectory: string, searchPatterns: SearchPatterns) {
+    this.baseDirectory = baseDirectory;
     this.searchPatterns = searchPatterns;
     this.searchPromises = [];
   }
@@ -50,6 +50,6 @@ export default class FileSearcher {
 
   _getSearchItem(searchPatternName: string): Promise<string[]> {
     let patterns = this.searchPatterns[searchPatternName].concat(IGNORE_PATTERNS);
-    return globby(patterns, { cwd: this.baseDir });
+    return globby(patterns, { cwd: this.baseDirectory });
   }
 }

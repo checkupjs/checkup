@@ -19,8 +19,8 @@ export default class TypesTask extends FileSearcherTask implements BaseTask {
   static taskName: TaskName = 'types';
   static friendlyTaskName: TaskName = 'Project Types';
 
-  constructor(args: any) {
-    super(args, SEARCH_PATTERNS);
+  constructor(cliArguments: any) {
+    super(cliArguments, SEARCH_PATTERNS);
   }
 
   async run(): Promise<TaskResult> {

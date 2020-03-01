@@ -3,10 +3,10 @@ import { BaseTask, TaskResult, getPackageJson } from '@checkup/core';
 import { DependenciesTaskResult } from '../results';
 import { PackageJson } from 'type-fest';
 
-function findDependency(pkg: PackageJson, key: string): string {
+function findDependency(packageJson: PackageJson, key: string): string {
   return (
-    (pkg.dependencies && pkg.dependencies[key]) ||
-    (pkg.devDependencies && pkg.devDependencies[key]) ||
+    (packageJson.dependencies && packageJson.dependencies[key]) ||
+    (packageJson.devDependencies && packageJson.devDependencies[key]) ||
     'Not found'
   );
 }
@@ -44,19 +44,19 @@ export default class DependenciesTask extends BaseTask {
 
   async run(): Promise<TaskResult> {
     let result: DependenciesTaskResult = new DependenciesTaskResult();
-    let pkg: PackageJson = getPackageJson(this.args.path);
+    let packageJson = getPackageJson(this.args.path);
 
-    result.emberLibraries['ember-source'] = findDependency(pkg, 'ember-source');
-    result.emberLibraries['ember-cli'] = findDependency(pkg, 'ember-cli');
-    result.emberLibraries['ember-data'] = findDependency(pkg, 'ember-data');
+    result.emberLibraries['ember-source'] = findDependency(packageJson, 'ember-source');
+    result.emberLibraries['ember-cli'] = findDependency(packageJson, 'ember-cli');
+    result.emberLibraries['ember-data'] = findDependency(packageJson, 'ember-data');
     result.emberAddons = {
-      dependencies: findDependencies(pkg.dependencies, emberAddonFilter),
-      devDependencies: findDependencies(pkg.devDependencies, emberAddonFilter),
+      dependencies: findDependencies(packageJson.dependencies, emberAddonFilter),
+      devDependencies: findDependencies(packageJson.devDependencies, emberAddonFilter),
     };
 
     result.emberCliAddons = {
-      dependencies: findDependencies(pkg.dependencies, emberCliAddonFilter),
-      devDependencies: findDependencies(pkg.devDependencies, emberCliAddonFilter),
+      dependencies: findDependencies(packageJson.dependencies, emberCliAddonFilter),
+      devDependencies: findDependencies(packageJson.devDependencies, emberCliAddonFilter),
     };
 
     return result;

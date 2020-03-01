@@ -53,7 +53,7 @@ export default class DependenciesTaskResult implements TaskResult {
   }
 
   _writeDependencySection(header: string, dependencies: PackageJson.Dependency) {
-    if (!Object.keys(dependencies).length) {
+    if (Object.keys(dependencies).length === 0) {
       return;
     }
 

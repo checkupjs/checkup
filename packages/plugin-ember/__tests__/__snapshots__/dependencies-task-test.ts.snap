@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`dependencies-task detects dependencies 1`] = `
+exports[`dependencies-task detects Ember dependencies 1`] = `
 "=== Project Dependencies
 === Dependencies - Core Libraries
 
@@ -28,7 +28,7 @@ ember-cli-string-utils latest
 "
 `;
 
-exports[`dependencies-task detects dependencies 2`] = `
+exports[`dependencies-task detects Ember dependencies as JSON 1`] = `
 Object {
   "dependencies": Object {
     "emberAddons": Object {

@@ -4,16 +4,16 @@ import * as path from 'path';
 import { PackageJson } from 'type-fest';
 
 export function getPackageJson(basePath: string): PackageJson {
-  let pkg: PackageJson = {};
+  let package_ = {};
   let packageJsonPath = path.join(path.resolve(basePath), 'package.json');
 
   try {
-    pkg = fs.readJsonSync(packageJsonPath);
-  } catch (e) {
-    if (e.code === 'ENOENT') {
+    package_ = fs.readJsonSync(packageJsonPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
       throw new Error(`No package.json file detected at ${packageJsonPath}`);
     }
   }
 
-  return pkg;
+  return package_;
 }

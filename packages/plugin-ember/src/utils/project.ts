@@ -10,17 +10,21 @@ import { getPackageJson } from '@checkup/core';
  * @returns {ProjectType}
  */
 export function getProjectType(basePath: string): ProjectType {
-  let pkg = getPackageJson(basePath);
+  let package_ = getPackageJson(basePath);
 
-  if (pkg.keywords && Array.isArray(pkg.keywords) && pkg.keywords.indexOf('ember-addon') >= 0) {
+  if (
+    package_.keywords &&
+    Array.isArray(package_.keywords) &&
+    package_.keywords.includes('ember-addon')
+  ) {
     if (fs.existsSync(path.join(process.cwd(), 'addon', 'engine.js'))) {
       return ProjectType.Engine;
     } else {
       return ProjectType.Addon;
     }
   } else if (
-    (pkg.dependencies && Object.keys(pkg.dependencies).includes('ember-cli')) ||
-    (pkg.devDependencies && Object.keys(pkg.devDependencies).includes('ember-cli'))
+    (package_.dependencies && Object.keys(package_.dependencies).includes('ember-cli')) ||
+    (package_.devDependencies && Object.keys(package_.devDependencies).includes('ember-cli'))
   ) {
     return ProjectType.App;
   }

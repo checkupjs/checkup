@@ -16,12 +16,12 @@ class TestTask implements Task {
 
 describe('@checkup/core tasks', () => {
   it('Returns no tasks if none have been registered', () => {
-    expect(Array.from(getRegisteredTasks().keys())).toHaveLength(0);
+    expect([...getRegisteredTasks().keys()]).toHaveLength(0);
   });
 
   it('Can add a single task via registerTask', () => {
     registerTask(TestTask.taskName, TestTask);
 
-    expect(Array.from(getRegisteredTasks().keys())).toHaveLength(1);
+    expect([...getRegisteredTasks().keys()]).toHaveLength(1);
   });
 });

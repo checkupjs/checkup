@@ -6,12 +6,12 @@ import * as resolve from 'resolve';
  * them. Note: in order to use the plugins during an oclif command, the loaded
  * plugins must be pushed onto the oclif config plugins array.
  * @param {string[]} pluginNames - plugin names to load
- * @param {string} resolutionBaseDir - the base directory to resolve plugins from
+ * @param {string} resolutionBaseDirectory - the base directory to resolve plugins from
  * @return {Promise<Config.Plugin[]>} Promise containing the loaded plugins
  */
-export async function loadPlugins(pluginNames: string[], resolutionBaseDir: string) {
+export async function loadPlugins(pluginNames: string[], resolutionBaseDirectory: string) {
   const plugins = pluginNames
-    .map(pluginName => resolve.sync(pluginName, { basedir: resolutionBaseDir }))
+    .map(pluginName => resolve.sync(pluginName, { basedir: resolutionBaseDirectory }))
     .map(pluginPath => new Config.Plugin({ root: pluginPath, type: 'core' }));
 
   await Promise.all(plugins.map(plugin => plugin.load()));
