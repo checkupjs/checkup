@@ -1,9 +1,10 @@
-import { cosmiconfig } from 'cosmiconfig';
+import * as t from 'io-ts';
+
 import { CheckupConfig } from '../types';
 import { RuntimeCheckupConfig } from '../types/runtime-types';
-import * as t from 'io-ts';
-import { pipe } from 'fp-ts/lib/pipeable';
+import { cosmiconfig } from 'cosmiconfig';
 import { fold } from 'fp-ts/lib/Either';
+import { pipe } from 'fp-ts/lib/pipeable';
 
 const validateConfig = <A>(v: t.Validation<A>): Array<string> => {
   return pipe(

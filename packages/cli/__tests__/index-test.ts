@@ -1,6 +1,8 @@
 import { CheckupProject, Plugin, stdout } from '@checkup/test-helpers';
-import cmd = require('../src');
+
 import { CheckupConfig } from '@checkup/core';
+
+import cmd = require('../src');
 
 describe('@checkup/cli', () => {
   describe('normal cli output with plugins', () => {
@@ -43,6 +45,7 @@ describe('@checkup/cli', () => {
           tasks: {},
         })
         .addPlugin(plugin);
+
       project.writeSync();
     });
 
