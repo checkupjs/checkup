@@ -1,10 +1,8 @@
-import { JsonObject } from 'type-fest';
-import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
 import * as t from 'io-ts';
 
-export interface HooksConfig {
-  registerTask(taskName: string, task: TaskConstructor): void;
-}
+import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
+
+import { JsonObject } from 'type-fest';
 
 export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
@@ -18,10 +16,6 @@ export type TaskName = string;
 
 export interface Task {
   run: () => Promise<TaskResult>;
-}
-
-export interface TaskConstructor {
-  new (args: any): Task;
 }
 
 export interface TaskResult {

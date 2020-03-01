@@ -18,25 +18,12 @@ export default class TaskList {
    * @method registerTask
    *
    * Adds a default task to the task list, which is executed as part of checkup.
-   *
-   * @param taskConstructor {TaskConstructor} a constructor representing a Task class
+   * @param taskName {TaskName}
+   * @param task {Task}
    */
   registerTask(taskName: TaskName, task: Task) {
     this.registeredTasks.set(taskName, task);
   }
-
-  /**
-   * @method registerTasks
-   *
-   * Adds an array default task to the task list, which is executed as part of checkup.
-   *
-   * @param taskConstructor {TaskConstructor[]} an array of constructors representing a Task classes
-   */
-  // registerTasks(taskConstructors: TaskConstructor[], cliArguments: any) {
-  //   taskConstructors.forEach((taskConstructor: TaskConstructor) => {
-  //     this.registerTask(taskName, taskConstructor, cliArguments);
-  //   });
-  // }
 
   /**
    * Runs the task specified by the taskName parameter.
@@ -45,7 +32,7 @@ export default class TaskList {
    * @returns {Promise<TaskResult>}
    * @memberof TaskList
    */
-  runTask(taskName: TaskName) {
+  runTask(taskName: TaskName): Promise<TaskResult> {
     let task = this.registeredTasks.get(taskName);
 
     if (task === undefined) {
@@ -59,9 +46,10 @@ export default class TaskList {
    * Runs all tasks that have been added to the task list.
    *
    * @method runTasks
+   * @returns {Promise<TaskResult[]>}
    * @memberof TaskList
    */
-  runTasks() {
+  runTasks(): Promise<TaskResult[]> {
     return this.eachTask((task: Task) => {
       return task.run();
     });
@@ -73,8 +61,9 @@ export default class TaskList {
    * @private
    * @method eachTask
    * @param fn {Function} the function expressing the wrapped task to run
+   * @returns {Promise<TaskResult[]>}
    */
-  private eachTask(fn: (task: Task) => Promise<TaskResult>) {
+  private eachTask(fn: (task: Task) => Promise<TaskResult>): Promise<TaskResult[]> {
     return pMap([...this.registeredTasks.values()], fn);
   }
 }

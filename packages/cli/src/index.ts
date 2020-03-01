@@ -39,9 +39,8 @@ class Checkup extends Command {
 
   async run() {
     let { args, flags } = this.parse(Checkup);
-    // let registeredTasks: Map<TaskName, TaskConstructor>;
     let taskResults: TaskResult[];
-    let tasksToBeRun: TaskList = new TaskList();
+    let registeredTasks: TaskList = new TaskList();
 
     try {
       let checkupConfig = await getConfig(args.path);
@@ -70,20 +69,13 @@ class Checkup extends Command {
       cliArguments: args,
       cliFlags: flags,
       parsers: getRegisteredParsers(),
-      tasks: tasksToBeRun,
+      tasks: registeredTasks,
     });
 
-    // registeredTasks = getRegisteredTasks();
-
     if (flags.task !== undefined) {
-      // let task = registeredTasks.get(flags.task);
-      // if (task !== undefined) {
-      //   tasksToBeRun.registerTask(task, args);
-      // }
-      taskResults = [await tasksToBeRun.runTask(flags.task)];
+      taskResults = [await registeredTasks.runTask(flags.task)];
     } else {
-      // tasksToBeRun.registerTasks([...registeredTasks.values()], args);
-      taskResults = await tasksToBeRun.runTasks();
+      taskResults = await registeredTasks.runTasks();
     }
 
     ui.action.start('Checking up on your project');
