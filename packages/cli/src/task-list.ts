@@ -1,6 +1,6 @@
 import * as pMap from 'p-map';
 
-import { Task, TaskConstructor, TaskResult } from '@checkup/core';
+import { Task, TaskName, TaskResult } from '@checkup/core';
 
 /**
  * @class TaskList
@@ -8,44 +8,58 @@ import { Task, TaskConstructor, TaskResult } from '@checkup/core';
  * Represents a collection of tasks to run.
  */
 export default class TaskList {
-  private defaultTasks: Task[];
+  private registeredTasks: Map<TaskName, Task>;
 
-  /**
-   *
-   * @param results {TaskResult[]} the results object that aggregates data together for output.
-   */
   constructor() {
-    this.defaultTasks = [];
+    this.registeredTasks = new Map<TaskName, Task>();
   }
 
   /**
-   * @method addDefault
+   * @method registerTask
    *
    * Adds a default task to the task list, which is executed as part of checkup.
    *
    * @param taskConstructor {TaskConstructor} a constructor representing a Task class
    */
-  addTask(taskConstructor: TaskConstructor, cliArguments: any) {
-    this.defaultTasks.push(new taskConstructor(cliArguments));
+  registerTask(taskName: TaskName, task: Task) {
+    this.registeredTasks.set(taskName, task);
   }
 
   /**
-   * @method addDefaults
+   * @method registerTasks
    *
    * Adds an array default task to the task list, which is executed as part of checkup.
    *
    * @param taskConstructor {TaskConstructor[]} an array of constructors representing a Task classes
    */
-  addTasks(taskConstructors: TaskConstructor[], cliArguments: any) {
-    taskConstructors.forEach((taskConstructor: TaskConstructor) => {
-      this.addTask(taskConstructor, cliArguments);
-    });
+  // registerTasks(taskConstructors: TaskConstructor[], cliArguments: any) {
+  //   taskConstructors.forEach((taskConstructor: TaskConstructor) => {
+  //     this.registerTask(taskName, taskConstructor, cliArguments);
+  //   });
+  // }
+
+  /**
+   * Runs the task specified by the taskName parameter.
+   *
+   * @param {TaskName} taskName
+   * @returns {Promise<TaskResult>}
+   * @memberof TaskList
+   */
+  runTask(taskName: TaskName) {
+    let task = this.registeredTasks.get(taskName);
+
+    if (task === undefined) {
+      throw new Error(`The ${taskName} task was not found`);
+    }
+
+    return task.run();
   }
 
   /**
-   * @method runTasks
-   *
    * Runs all tasks that have been added to the task list.
+   *
+   * @method runTasks
+   * @memberof TaskList
    */
   runTasks() {
     return this.eachTask((task: Task) => {
@@ -54,13 +68,13 @@ export default class TaskList {
   }
 
   /**
+   * Runs each task in parallel
+   *
    * @private
    * @method eachTask
-   *
-   * Runs each task in parallel
    * @param fn {Function} the function expressing the wrapped task to run
    */
   private eachTask(fn: (task: Task) => Promise<TaskResult>) {
-    return pMap(this.defaultTasks, fn);
+    return pMap([...this.registeredTasks.values()], fn);
   }
 }

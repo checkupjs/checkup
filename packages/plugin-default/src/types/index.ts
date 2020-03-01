@@ -1,4 +1,4 @@
-type RepositoryInfo = {
+export type RepositoryInfo = {
   totalCommits: number;
   totalFiles: number;
   age: string;

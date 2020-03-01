@@ -1,6 +1,7 @@
 import { TaskResult, ui } from '@checkup/core';
 
 import ProjectInfoTask from '../tasks/project-info-task';
+import { RepositoryInfo } from '../types';
 
 export default class ProjectInfoTaskResult implements TaskResult {
   name!: string;

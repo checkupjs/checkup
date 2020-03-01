@@ -1,3 +1,5 @@
+import { RepositoryInfo } from '../types';
+
 const hash = require('promise.hash.helper');
 const util = require('util');
 const execAsPromise = util.promisify(require('child_process').exec);
