@@ -1,6 +1,6 @@
 'use strict';
 
-import { PackageJson } from 'type-fest';
+import { JsonObject } from 'type-fest';
 
 const FixturifyProject = require('fixturify-project');
 const rimraf = require('rimraf');
@@ -12,11 +12,11 @@ function prepareAddon(addon: any) {
 }
 
 export default class EmberCLIFixturifyProject extends FixturifyProject {
-  constructor(name: string, version = '0.0.0', cb?: (project: any) => void, root?: string) {
-    super(name, version, cb, root);
+  constructor(name: string, version = '0.0.0', callback?: (project: any) => void, root?: string) {
+    super(name, version, callback, root);
   }
-  writeSync(...args: any[]) {
-    super.writeSync(...args);
+  writeSync(...arguments_: any[]) {
+    super.writeSync(...arguments_);
     this._hasWritten = true;
   }
 
@@ -56,17 +56,17 @@ export default class EmberCLIFixturifyProject extends FixturifyProject {
     Object.assign(this.files.lib, inRepoAddon.toJSON());
   }
 
-  updatePackageJson(pkgContent: PackageJson) {
-    pkgContent.name = this.name;
+  updatePackageJson(packageContent: JsonObject) {
+    packageContent.name = this.name;
 
-    this.pkg = pkgContent;
+    this.pkg = packageContent;
   }
 
-  dispose(tempFilesToCleanupPath?: string) {
+  dispose(temporaryFilesToCleanupPath: string = '') {
     super.dispose();
 
-    if (tempFilesToCleanupPath) {
-      rimraf.sync(tempFilesToCleanupPath);
+    if (temporaryFilesToCleanupPath) {
+      rimraf.sync(temporaryFilesToCleanupPath);
     }
   }
 }

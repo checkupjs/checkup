@@ -21,7 +21,7 @@ describe('dependencies-task', () => {
     fixturifyProject.dispose();
   });
 
-  it('detects dependencies', async () => {
+  it('detects Ember dependencies', async () => {
     const result = await new DependenciesTask({ path: fixturifyProject.baseDir }).run();
     const dependencyTaskResult = <DependenciesTaskResult>result;
 
@@ -30,7 +30,7 @@ describe('dependencies-task', () => {
     expect(stdout()).toMatchSnapshot();
   });
 
-  it('detects dependencies', async () => {
+  it('detects Ember dependencies as JSON', async () => {
     const result = await new DependenciesTask({ path: fixturifyProject.baseDir }).run();
     const dependencyTaskResult = <DependenciesTaskResult>result;
 

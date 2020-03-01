@@ -1,16 +1,18 @@
 import * as path from 'path';
+
 import { Command, flags } from '@oclif/command';
 import {
   TaskConstructor,
   TaskName,
   TaskResult,
-  getPackageJson,
-  ui,
   getConfig,
+  getPackageJson,
   loadPlugins,
+  ui,
 } from '@checkup/core';
 import { getRegisteredParsers, registerParser } from './parsers';
 import { getRegisteredTasks, registerTask } from './tasks';
+
 import TaskList from './task-list';
 
 function mergeTaskResults(taskResults: TaskResult[]) {
@@ -53,12 +55,12 @@ class Checkup extends Command {
 
     try {
       getPackageJson(args.path);
-    } catch (e) {
+    } catch (error) {
       this.error(
         `The ${path.resolve(
           args.path
         )} directory found through the 'path' option does not contain a package.json file. You must run checkup in a directory with a package.json file.`,
-        e
+        error
       );
     }
 
@@ -83,7 +85,7 @@ class Checkup extends Command {
         tasksToBeRun.addTask(task, args);
       }
     } else {
-      tasksToBeRun.addTasks(Array.from(registeredTasks.values()), args);
+      tasksToBeRun.addTasks([...registeredTasks.values()], args);
     }
 
     ui.action.start('Checking up on your project');
