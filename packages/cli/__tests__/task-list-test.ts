@@ -37,6 +37,7 @@ describe('TaskList', () => {
     let taskList = new TaskList();
 
     expect(taskList).toBeInstanceOf(TaskList);
+    expect(taskList.categories.size).toEqual(3);
   });
 
   it('registoryTask adds a task to the TaskList', () => {
@@ -47,7 +48,6 @@ describe('TaskList', () => {
       priority: Priority.High,
     });
 
-    expect(taskList.categories.size).toEqual(2);
     expect(taskList.categories.get(Category.Core)!.size).toEqual(1);
   });
 
