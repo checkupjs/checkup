@@ -2,6 +2,10 @@
 
 > A health check for your project
 
+# Mission & Vision 
+
+Visibility to the ongoing health of a project to help enable developers and teams to make informed decisions about where to invest their precious time and resources.
+
 # Motivation
 
 Often, when building large (and ambitious) applications, the state of the code is almost in constant flux. This is a good thing, and is indicative of a healthy, maintained application. The dark side to this can be the app feeling like it's constantly in a half state - migrations from old APIs to new are taking place, patterns are being reinvented and rolled out, and tests are being created and maintained (and sometimes 😱 skipped). Keeping track of all these ongoing changes in your codebase can be challenging.
@@ -25,6 +29,25 @@ Checkup wants to provide a mechanism to customize the data you want to gather wi
 ## Help Quantify the Cost of Migrations
 
 A healthy codebase is in constant flux as new libraries and APIs are moved out and brought in. While this is a signal of active investment in your codebase, it can also feel like they code never 'settles'. Checkup won't change this, but it _will_ help monitor migrations as they progress, making them feel more finite. Additionally, charting the progress of those migrations can help with estimating overall duration and costs.
+
+## Features 
+1. cli supports configurability and the dynamic nature of all the use cases 
+  - in-repo config 
+  - external config
+  - example configs (or generator to help create a config) (initial config)
+  - single location for configuration to serve the entire application
+2. mechanism to create custom tasks && plugins and to plug them into the cli 
+  - generators to assist in the creation of new tasks && plugins
+  - testing framework for tasks (required)
+  - documentation for tasks (required)
+  - prioritization of tasks 
+  - possibility of nesting plugins (try not to build in a way that makes this impossible)
+3. public API (to run programmatically)
+4. reporting mechanism to display data in a consumable way 
+  - multiple levels of abstraction (full detail, roll-up, summary)
+  - display in JSON, PDF, HTML, console output (separate reporting modules for each  - potentially)
+  - plug and playable reporting module 
+  - generator that creates a reporting scaffold to allow for simple customization of reporting
 
 # Detailed Design
 
@@ -147,6 +170,41 @@ Using the above as a building block, there's a number of applications for runnin
 Managing migrations as they progress is a key ingredient of maintainability in a project. Checkup's Tasks can be written to monitor the rate of completion of migrations as they progress through a system. By authoring custom plugins that contain Tasks targeted at these migrations, teams can chart progress, estimate completion, and help drive resourcing decisions.
 
 Converting an application to Ember Octane, for example, can be monitored to track progress, and report on completion. This is particularly powerful for large applications where it's expected that the codebase will be in a 'half state' for a significant amount of time during the migration. Giving insight into progress can be a powerful tool in driving changes through a system.
+
+# Use Cases
+
+1. Run checkup against a single application at the top level with an in-repo config
+2. Run checkup against a subset of a single application with an in-repo config
+3. Run checkup against an application(s) as an external observer (with a custom external config)
+4. Infrastructure to configure a mechanism to store historical insights over time into the changing state of an application 
+5. Assimilating information about the state of an application into a format understandable by all 
+
+# Personas (what they need from checkup) 
+
+1. Developers - engineers working in the application
+  - Detailed & _actionable_ insights into the state of the part of the codebase they care about
+  - Historical context on the growth/changes within their area of the app 
+  - Current status of active migrations they are responsible for
+  - Broad view of the linting summary of their codebase
+  - Awareness on newest best practices
+  - A tool to help them communicate with personas 2-4 and prioritize work accordingly  
+
+2. Eng Managers - managers who manages developers working in the app 
+  - Insights into areas of deficiency in the app 
+  - Most of the requirements for persona 1 apply here, but at a more high level view 
+  - An understanding of how deficiencies affect developer velocity, and how to prioritize various issues
+
+3. Internal Stakeholders - individual who cares about the high level quality of the 
+                          application, with little to no context on the technology used in the app 
+  - To be able to trust the heuristics we provide to ascertain the quality and stability of the app
+  - "Cheerleader" for the importance of checkup 
+  - "Checkup award"
+
+4. External Observers - groups that want insight into the quality of an application 
+                        (Foundation teams, Ember Observer, etc.)
+  - Organized insights into an application(s) they have no context on
+  - Onboarding to application for the sake of debugging/consulting 
+
 
 # How We Teach This
 
