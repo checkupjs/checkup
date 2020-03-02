@@ -29,7 +29,10 @@ describe('cosmiconfig-service-factory', () => {
     const result = new CosmiconfigService().load(path.join(project.baseDir, '.checkuprc'));
 
     await expect(result).rejects.toMatchInlineSnapshot(
-      `[Error: ENOENT: no such file or directory, open '/private/var/folders/w_/c0mg636s7bd1rwd7yvn9kxqc000j4s/T/tmp-38554k6jvhEzFvHlv/test/.checkuprc']`
+      `[Error: ENOENT: no such file or directory, open '${path.join(
+        project.baseDir,
+        '.checkuprc'
+      )}']`
     );
   });
 
