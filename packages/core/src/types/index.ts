@@ -46,3 +46,17 @@ export interface TaskItemData {
 }
 
 export type SearchPatterns = Record<string, string[]>;
+
+export enum CheckupConfigFormat {
+  JSON = 'JSON',
+  YAML = 'YAML',
+  JavaScript = 'JavaScript',
+}
+
+export type CheckupConfigLoader = () => Promise<{
+  format: CheckupConfigFormat;
+  filepath: string;
+  config: CheckupConfig;
+}>;
+
+export type ConfigMapper = (config: CheckupConfig) => CheckupConfig;
