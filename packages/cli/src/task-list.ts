@@ -10,12 +10,17 @@ import PriorityMap from './priority-map';
  * Represents a collection of tasks to run.
  */
 export default class TaskList {
-  private registeredTasks: Map<TaskName, Task>;
-  private categories: Map<Category, PriorityMap<string, Task>>;
+  private _categories: Map<Category, PriorityMap>;
+
+  get categories() {
+    return this._categories;
+  }
 
   constructor() {
-    this.registeredTasks = new Map<TaskName, Task>();
-    this.categories = new Map<Category, PriorityMap<TaskName, Task>>();
+    this._categories = new Map<Category, PriorityMap>([
+      [Category.Core, new PriorityMap()],
+      [Category.Migration, new PriorityMap()],
+    ]);
   }
 
   /**
@@ -26,9 +31,8 @@ export default class TaskList {
    * @param task {Task}
    */
   registerTask(taskName: TaskName, task: Task, taskClassification: TaskClassification) {
-    this.registeredTasks.set(taskName, task);
-    let priorityMap = this.categories.get(taskClassification.category);
-    priorityMap?.set(taskClassification.priority, taskName, task);
+    let priorityMap = this._categories.get(taskClassification.category);
+    priorityMap!.set(taskClassification.priority, taskName, task);
   }
 
   /**
@@ -39,7 +43,16 @@ export default class TaskList {
    * @memberof TaskList
    */
   runTask(taskName: TaskName): Promise<TaskResult> {
-    let task = this.registeredTasks.get(taskName);
+    let task: Task | undefined;
+
+    // TODO: Find a less gross way to do this
+    for (let [, map] of this.categories) {
+      task = map.getByName(taskName);
+
+      if (task !== undefined) {
+        break;
+      }
+    }
 
     if (task === undefined) {
       throw new Error(`The ${taskName} task was not found`);
@@ -70,9 +83,11 @@ export default class TaskList {
    * @returns {Promise<TaskResult[]>}
    */
   private eachTask(fn: (task: Task) => Promise<TaskResult>): Promise<TaskResult[]> {
-    // return pMap([...this.registeredTasks.values()], fn);
     return pMap(
-      [...this.categories.get(Category.Core)!, ...this.categories.get(Category.Migration)!],
+      [
+        ...this._categories.get(Category.Core)!.values(),
+        ...this._categories.get(Category.Migration)!.values(),
+      ],
       fn
     );
   }

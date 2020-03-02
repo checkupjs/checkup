@@ -1,4 +1,11 @@
-import { BaseTask, TaskResult, getPackageJson } from '@checkup/core';
+import {
+  BaseTask,
+  Category,
+  Priority,
+  TaskClassification,
+  TaskResult,
+  getPackageJson,
+} from '@checkup/core';
 
 import { DependenciesTaskResult } from '../results';
 import { PackageJson } from 'type-fest';
@@ -41,6 +48,10 @@ function emberCliAddonFilter(dependency: string) {
 export default class DependenciesTask extends BaseTask {
   static taskName: string = 'dependencies';
   static friendlyTaskName: string = 'Project Dependencies';
+  static taskClassification: TaskClassification = {
+    category: Category.Core,
+    priority: Priority.Medium,
+  };
 
   async run(): Promise<TaskResult> {
     let result: DependenciesTaskResult = new DependenciesTaskResult();
