@@ -1,6 +1,8 @@
 import * as pMap from 'p-map';
 
-import { Task, TaskName, TaskResult } from '@checkup/core';
+import { Category, Task, TaskClassification, TaskName, TaskResult } from '@checkup/core';
+
+import PriorityMap from './priority-map';
 
 /**
  * @class TaskList
@@ -9,9 +11,11 @@ import { Task, TaskName, TaskResult } from '@checkup/core';
  */
 export default class TaskList {
   private registeredTasks: Map<TaskName, Task>;
+  private categories: Map<Category, PriorityMap<string, Task>>;
 
   constructor() {
     this.registeredTasks = new Map<TaskName, Task>();
+    this.categories = new Map<Category, PriorityMap<TaskName, Task>>();
   }
 
   /**
@@ -21,8 +25,10 @@ export default class TaskList {
    * @param taskName {TaskName}
    * @param task {Task}
    */
-  registerTask(taskName: TaskName, task: Task) {
+  registerTask(taskName: TaskName, task: Task, taskClassification: TaskClassification) {
     this.registeredTasks.set(taskName, task);
+    let priorityMap = this.categories.get(taskClassification.category);
+    priorityMap?.set(taskClassification.priority, taskName, task);
   }
 
   /**
@@ -64,6 +70,10 @@ export default class TaskList {
    * @returns {Promise<TaskResult[]>}
    */
   private eachTask(fn: (task: Task) => Promise<TaskResult>): Promise<TaskResult[]> {
-    return pMap([...this.registeredTasks.values()], fn);
+    // return pMap([...this.registeredTasks.values()], fn);
+    return pMap(
+      [...this.categories.get(Category.Core)!, ...this.categories.get(Category.Migration)!],
+      fn
+    );
   }
 }

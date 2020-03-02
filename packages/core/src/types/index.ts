@@ -12,7 +12,22 @@ export interface Parser {
   execute(paths: string[]): JsonObject;
 }
 
+export const enum Category {
+  Core,
+  Migration,
+}
+
+export const enum Priority {
+  High,
+  Medium,
+  Low,
+}
+
 export type TaskName = string;
+export type TaskClassification = {
+  category: Category;
+  priority: Priority;
+};
 
 export interface Task {
   run: () => Promise<TaskResult>;
