@@ -15,6 +15,7 @@ export interface Parser {
 export const enum Category {
   Core,
   Migration,
+  Insights,
 }
 
 export const enum Priority {

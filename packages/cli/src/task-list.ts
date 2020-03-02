@@ -20,6 +20,7 @@ export default class TaskList {
     this._categories = new Map<Category, PriorityMap>([
       [Category.Core, new PriorityMap()],
       [Category.Migration, new PriorityMap()],
+      [Category.Insights, new PriorityMap()],
     ]);
   }
 
