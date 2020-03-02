@@ -49,5 +49,6 @@
     "test": "jest",
     "version": "oclif-dev readme && git add README.md"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js"
 }
