@@ -32,7 +32,7 @@ export default class TaskList {
    */
   registerTask(taskName: TaskName, task: Task, taskClassification: TaskClassification) {
     let priorityMap = this._categories.get(taskClassification.category);
-    priorityMap!.set(taskClassification.priority, taskName, task);
+    priorityMap!.setTaskByPriority(taskClassification.priority, taskName, task);
   }
 
   /**
@@ -47,7 +47,7 @@ export default class TaskList {
 
     // TODO: Find a less gross way to do this
     for (let [, map] of this.categories) {
-      task = map.getByName(taskName);
+      task = map.getTask(taskName);
 
       if (task !== undefined) {
         break;

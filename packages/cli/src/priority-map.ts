@@ -11,7 +11,7 @@ export default class PriorityMap {
     ]);
   }
 
-  getByName(taskName: TaskName): Task | undefined {
+  getTask(taskName: TaskName): Task | undefined {
     let task: Task | undefined;
 
     this.maps.forEach((tasks: Map<TaskName, Task>) => {
@@ -23,16 +23,20 @@ export default class PriorityMap {
     return task;
   }
 
-  get(priority: Priority, taskName: TaskName) {
+  getTaskByPriority(priority: Priority, taskName: TaskName): Task | undefined {
     let map = this.maps.get(priority);
 
     return map!.get(taskName);
   }
 
-  set(priority: Priority, taskName: TaskName, task: Task) {
+  setTaskByPriority(priority: Priority, taskName: TaskName, task: Task): void {
     let map = this.maps.get(priority);
 
     map!.set(taskName, task);
+  }
+
+  getTasks(priority: Priority): Map<TaskName, Task> {
+    return this.maps.get(priority)!;
   }
 
   *[Symbol.iterator]() {
