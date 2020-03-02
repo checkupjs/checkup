@@ -1,22 +1,16 @@
-import { CheckupConfig, CheckupConfigFormat, CosmiconfigLoaderFactory } from '../../src';
-import CheckupFixturifyProject from '@checkup/test-helpers/lib/checkup-fixturify-project';
+import { CheckupConfigFormat, CosmiconfigLoaderFactory } from '../../src';
+import { CheckupProject } from '@checkup/test-helpers';
 import * as path from 'path';
-import * as yaml from 'js-yaml';
 
 describe('cosmiconfig-loader-factory', () => {
-  const formatToWriteMapper: Record<CheckupConfigFormat, (config: CheckupConfig) => string> = {
-    JSON: config => JSON.stringify(config, null, 2),
-    YAML: config => yaml.safeDump(config),
-    JavaScript: config => `module.exports = ${JSON.stringify(config, null, 2)}`,
-  };
   const defaultConfig = {
     plugins: [],
     tasks: {},
   };
-  let project: CheckupFixturifyProject;
+  let project: CheckupProject;
 
   beforeEach(() => {
-    project = new CheckupFixturifyProject('test');
+    project = new CheckupProject('test');
   });
 
   afterEach(() => {
@@ -24,6 +18,7 @@ describe('cosmiconfig-loader-factory', () => {
   });
 
   it('should throw if a config file is not found in the given base path', async () => {
+    project.writeSync();
     await expect(
       CosmiconfigLoaderFactory(project.baseDir)()
     ).rejects.toThrowErrorMatchingInlineSnapshot(
@@ -31,35 +26,14 @@ describe('cosmiconfig-loader-factory', () => {
     );
   });
 
-  it.each([[CheckupConfigFormat.JSON], [CheckupConfigFormat.YAML]])(
-    'should correctly load extensionless %s config files',
-    async (configFormat: CheckupConfigFormat) => {
-      project.files['.checkuprc'] = formatToWriteMapper[configFormat](defaultConfig);
-      project.writeSync();
+  it('should return the config if found', async () => {
+    project.addCheckupConfig(defaultConfig).writeSync();
+    const config = await CosmiconfigLoaderFactory(project.baseDir)();
 
-      const { config, filepath, format } = await CosmiconfigLoaderFactory(project.baseDir)();
-      expect(config).toStrictEqual(defaultConfig);
-      expect(filepath).toEqual(path.join(project.baseDir, '.checkuprc'));
-      expect(format).toEqual(configFormat);
-    }
-  );
-
-  it.each([
-    ['.checkuprc.js', CheckupConfigFormat.JavaScript],
-    ['.checkuprc.json', CheckupConfigFormat.JSON],
-    ['.checkuprc.yml', CheckupConfigFormat.YAML],
-    ['.checkuprc.yaml', CheckupConfigFormat.YAML],
-    ['checkup.config.js', CheckupConfigFormat.JavaScript],
-  ])(
-    'should correctly load config files of type %s',
-    async (filename: string, configFormat: CheckupConfigFormat) => {
-      project.files[filename] = formatToWriteMapper[configFormat](defaultConfig);
-      project.writeSync();
-
-      const { config, filepath, format } = await CosmiconfigLoaderFactory(project.baseDir)();
-      expect(config).toStrictEqual(defaultConfig);
-      expect(filepath).toEqual(path.join(project.baseDir, filename));
-      expect(format).toEqual(configFormat);
-    }
-  );
+    expect(config).toStrictEqual({
+      format: CheckupConfigFormat.JSON,
+      filepath: path.join(project.baseDir, '.checkuprc'),
+      config: defaultConfig,
+    });
+  });
 });
