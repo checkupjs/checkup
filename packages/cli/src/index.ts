@@ -6,6 +6,9 @@ import { getRegisteredParsers, registerParser } from './parsers';
 
 import TaskList from './task-list';
 
+/**
+ * @param taskResults
+ */
 function mergeTaskResults(taskResults: TaskResult[]) {
   let mergedResults = {};
 

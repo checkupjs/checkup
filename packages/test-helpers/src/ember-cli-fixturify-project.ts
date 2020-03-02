@@ -4,6 +4,9 @@ import CheckupFixturifyProject from './checkup-fixturify-project';
 
 const Project = require('fixturify-project');
 
+/**
+ * @param addon
+ */
 function prepareAddon(addon: any) {
   addon.pkg.keywords.push('ember-addon');
   addon.pkg['ember-addon'] = {};
@@ -16,7 +19,7 @@ function prepareAddon(addon: any) {
  *
  * @export
  * @class EmberCLIFixturifyProject
- * @extends {CheckupFixturifyProject}
+ * @augments {CheckupFixturifyProject}
  */
 export default class EmberCLIFixturifyProject extends CheckupFixturifyProject {
   addAddon(name: string, version = '0.0.0') {

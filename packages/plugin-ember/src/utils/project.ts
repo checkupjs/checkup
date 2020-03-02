@@ -8,6 +8,7 @@ import { getPackageJson } from '@checkup/core';
  * Gets the current type of project, either App, Engine, or Addon
  *
  * @returns {ProjectType}
+ * @param basePath
  */
 export function getProjectType(basePath: string): ProjectType {
   let package_ = getPackageJson(basePath);

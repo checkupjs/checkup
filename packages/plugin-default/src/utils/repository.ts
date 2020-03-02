@@ -13,6 +13,12 @@ const ACTIVE_DAYS = `git log --pretty='format: %ai' $1 | cut -d ' ' -f 2 | sort 
     END { print sum }
   '`;
 
+/**
+ * @param cmd
+ * @param options
+ * @param defaultValue
+ * @param toType
+ */
 async function exec(
   cmd: string,
   options: any,
@@ -24,6 +30,9 @@ async function exec(
   return toType(stdout.trim()) || defaultValue;
 }
 
+/**
+ * @param path
+ */
 export function getRepositoryInfo(path: string): Promise<RepositoryInfo> {
   return hash({
     totalCommits: exec(COMMIT_COUNT, { cwd: path }, 0, Number),

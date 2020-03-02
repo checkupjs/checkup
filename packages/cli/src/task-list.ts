@@ -25,11 +25,12 @@ export default class TaskList {
   }
 
   /**
-   * @method registerTask
+   * @function registerTask
    *
    * Adds a default task to the task list, which is executed as part of checkup.
    * @param taskName {TaskName}
    * @param task {Task}
+   * @param taskClassification
    */
   registerTask(taskName: TaskName, task: Task, taskClassification: TaskClassification) {
     let priorityMap = this._categories.get(taskClassification.category);
@@ -65,7 +66,7 @@ export default class TaskList {
   /**
    * Runs all tasks that have been added to the task list.
    *
-   * @method runTasks
+   * @function runTasks
    * @returns {Promise<TaskResult[]>}
    * @memberof TaskList
    */
@@ -79,7 +80,7 @@ export default class TaskList {
    * Runs each task in parallel
    *
    * @private
-   * @method eachTask
+   * @function eachTask
    * @param fn {Function} the function expressing the wrapped task to run
    * @returns {Promise<TaskResult[]>}
    */

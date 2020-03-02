@@ -32,8 +32,9 @@ const validateConfig = <A>(v: t.Validation<A>): Array<string> => {
 
 /**
  * Get the checkup config via {@link cosmiconfig#search}
+ *
  * @param {string} basePath - the base path to start the config search
- * @return {Promise<CheckupConfig>} the parsed config file, if found, else throw
+ * @returns {Promise<CheckupConfig>} the parsed config file, if found, else throw
  */
 export async function getConfig(basePath: string): Promise<CheckupConfig> {
   const configResult = await cosmiconfig('checkup').search(basePath);

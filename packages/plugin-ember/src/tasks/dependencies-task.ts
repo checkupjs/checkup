@@ -10,6 +10,10 @@ import {
 import { DependenciesTaskResult } from '../results';
 import { PackageJson } from 'type-fest';
 
+/**
+ * @param packageJson
+ * @param key
+ */
 function findDependency(packageJson: PackageJson, key: string): string {
   return (
     (packageJson.dependencies && packageJson.dependencies[key]) ||
@@ -18,6 +22,10 @@ function findDependency(packageJson: PackageJson, key: string): string {
   );
 }
 
+/**
+ * @param dependencies
+ * @param filter
+ */
 function findDependencies(
   dependencies: PackageJson.Dependency | undefined,
   filter: (dependency: string) => boolean
@@ -37,10 +45,16 @@ function findDependencies(
   }, {});
 }
 
+/**
+ * @param dependency
+ */
 function emberAddonFilter(dependency: string) {
   return dependency.startsWith('ember-') && !dependency.startsWith('ember-cli');
 }
 
+/**
+ * @param dependency
+ */
 function emberCliAddonFilter(dependency: string) {
   return dependency.startsWith('ember-cli');
 }
