@@ -1,1 +1,1 @@
-export { default as JSMigrationStatusTask } from './js-migration-status-task';
+export { default as MigrationStatusTask } from './migration-status-task';

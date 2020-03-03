@@ -1,12 +1,12 @@
-import { JSMigrationStatusTask } from '../tasks';
+import { MigrationStatusTask } from '../tasks';
 import { Hook } from '@oclif/config';
 
 // TODO: Determine correct type for options
-const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks, parsers }: any) {
   tasks.registerTask(
-    JSMigrationStatusTask.taskName,
-    new JSMigrationStatusTask(cliArguments),
-    JSMigrationStatusTask.taskClassification
+    MigrationStatusTask.taskName,
+    new MigrationStatusTask(cliArguments, parsers),
+    MigrationStatusTask.taskClassification
   );
 };
 
