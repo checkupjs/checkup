@@ -40,7 +40,7 @@ describe('TaskList', () => {
     expect(taskList.categories.size).toEqual(3);
   });
 
-  it('registoryTask adds a task to the TaskList', () => {
+  it('registerTask adds a task to the TaskList', () => {
     let taskList = new TaskList();
 
     taskList.registerTask('mock-task', new MockTask({}), {
