@@ -41,5 +41,8 @@
     "packages/**/*.ts": [
       "yarn lint"
     ]
+  },
+  "volta": {
+    "node": "10.19.0"
   }
 }

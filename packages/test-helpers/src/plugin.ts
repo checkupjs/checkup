@@ -55,9 +55,11 @@ export default class Plugin {
             .map(
               ([taskName, task]) =>
                 `class ${taskName} {
-                  taskName = '${task.taskName}';
-                  friendlyTaskName = '${task.friendlyTaskName}';
-                  taskClassification = ${JSON.stringify(task.taskClassification, null, 2)};
+                  constructor() {
+                    this.taskName = '${task.taskName}';
+                    this.friendlyTaskName = '${task.friendlyTaskName}';
+                    this.taskClassification = ${JSON.stringify(task.taskClassification, null, 2)};
+                  }
 
                   ${task.run.toString()}
                 }`
