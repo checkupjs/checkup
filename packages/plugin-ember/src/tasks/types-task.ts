@@ -1,8 +1,8 @@
 import {
-  BaseTask,
   Category,
   FileSearcherTask,
   Priority,
+  Task,
   TaskClassification,
   TaskName,
   TaskResult,
@@ -23,7 +23,7 @@ const SEARCH_PATTERNS = {
   templates: ['**/templates/**/*.hbs'],
 };
 
-export default class TypesTask extends FileSearcherTask implements BaseTask {
+export default class TypesTask extends FileSearcherTask implements Task {
   taskName: TaskName = 'types';
   friendlyTaskName: TaskName = 'Project Types';
   taskClassification: TaskClassification = {

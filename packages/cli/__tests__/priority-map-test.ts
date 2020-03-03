@@ -1,8 +1,8 @@
-import { BaseTask, Category, Priority, TaskClassification, TaskName } from '@checkup/core';
+import { BaseTask, Category, Priority, Task, TaskClassification, TaskName } from '@checkup/core';
 
 import PriorityMap from '../src/priority-map';
 
-class MockTask extends BaseTask {
+class MockTask extends BaseTask implements Task {
   taskName: TaskName = 'mock-task';
   friendlyTaskName: TaskName = 'Mock Task';
   taskClassification: TaskClassification = {

@@ -2,6 +2,7 @@ import {
   BaseTask,
   Category,
   Priority,
+  Task,
   TaskClassification,
   TaskName,
   TaskResult,
@@ -11,7 +12,7 @@ import {
 import ProjectInfoTaskResult from '../results/project-info-task-result';
 import { getRepositoryInfo } from '../utils/repository';
 
-export default class ProjectInfoTask extends BaseTask {
+export default class ProjectInfoTask extends BaseTask implements Task {
   taskName: TaskName = 'project-info';
   friendlyTaskName: TaskName = 'Project Information';
   taskClassification: TaskClassification = {

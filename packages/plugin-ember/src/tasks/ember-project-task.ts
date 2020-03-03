@@ -2,6 +2,7 @@ import {
   BaseTask,
   Category,
   Priority,
+  Task,
   TaskClassification,
   TaskName,
   TaskResult,
@@ -10,7 +11,7 @@ import {
 import { EmberProjectTaskResult } from '../results';
 import { getProjectType } from '../utils/project';
 
-export default class EmberProjectTask extends BaseTask {
+export default class EmberProjectTask extends BaseTask implements Task {
   taskName: TaskName = 'ember-project';
   friendlyTaskName: TaskName = 'Ember Project';
   taskClassification: TaskClassification = {

@@ -2,6 +2,7 @@ import {
   BaseTask,
   Category,
   Priority,
+  Task,
   TaskClassification,
   TaskResult,
   getPackageJson,
@@ -63,7 +64,7 @@ function emberCliAddonFilter(dependency: string) {
   return dependency.startsWith('ember-cli');
 }
 
-export default class DependenciesTask extends BaseTask {
+export default class DependenciesTask extends BaseTask implements Task {
   taskName: string = 'dependencies';
   friendlyTaskName: string = 'Project Dependencies';
   taskClassification: TaskClassification = {
