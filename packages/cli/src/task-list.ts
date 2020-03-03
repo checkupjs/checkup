@@ -1,6 +1,8 @@
 import * as pMap from 'p-map';
 
-import { Task, TaskConstructor, TaskResult } from '@checkup/core';
+import { Category, Task, TaskClassification, TaskName, TaskResult } from '@checkup/core';
+
+import PriorityMap from './priority-map';
 
 /**
  * @class TaskList
@@ -8,59 +10,87 @@ import { Task, TaskConstructor, TaskResult } from '@checkup/core';
  * Represents a collection of tasks to run.
  */
 export default class TaskList {
-  private defaultTasks: Task[];
+  private _categories: Map<Category, PriorityMap>;
 
-  /**
-   *
-   * @param results {TaskResult[]} the results object that aggregates data together for output.
-   */
+  get categories() {
+    return this._categories;
+  }
+
   constructor() {
-    this.defaultTasks = [];
+    this._categories = new Map<Category, PriorityMap>([
+      [Category.Core, new PriorityMap()],
+      [Category.Migration, new PriorityMap()],
+      [Category.Insights, new PriorityMap()],
+    ]);
   }
 
   /**
-   * @method addDefault
+   * @function registerTask
    *
    * Adds a default task to the task list, which is executed as part of checkup.
-   *
-   * @param taskConstructor {TaskConstructor} a constructor representing a Task class
+   * @param taskName {TaskName}
+   * @param task {Task}
+   * @param taskClassification
    */
-  addTask(taskConstructor: TaskConstructor, cliArguments: any) {
-    this.defaultTasks.push(new taskConstructor(cliArguments));
+  registerTask(taskName: TaskName, task: Task, taskClassification: TaskClassification) {
+    let priorityMap = this._categories.get(taskClassification.category);
+    priorityMap!.setTaskByPriority(taskClassification.priority, taskName, task);
   }
 
   /**
-   * @method addDefaults
+   * Runs the task specified by the taskName parameter.
    *
-   * Adds an array default task to the task list, which is executed as part of checkup.
-   *
-   * @param taskConstructor {TaskConstructor[]} an array of constructors representing a Task classes
+   * @param {TaskName} taskName
+   * @returns {Promise<TaskResult>}
+   * @memberof TaskList
    */
-  addTasks(taskConstructors: TaskConstructor[], cliArguments: any) {
-    taskConstructors.forEach((taskConstructor: TaskConstructor) => {
-      this.addTask(taskConstructor, cliArguments);
-    });
+  runTask(taskName: TaskName): Promise<TaskResult> {
+    let task: Task | undefined;
+
+    // TODO: Find a less gross way to do this
+    for (let [, map] of this.categories) {
+      task = map.getTask(taskName);
+
+      if (task !== undefined) {
+        break;
+      }
+    }
+
+    if (task === undefined) {
+      throw new Error(`The ${taskName} task was not found`);
+    }
+
+    return task.run();
   }
 
   /**
-   * @method runTasks
-   *
    * Runs all tasks that have been added to the task list.
+   *
+   * @function runTasks
+   * @returns {Promise<TaskResult[]>}
+   * @memberof TaskList
    */
-  runTasks() {
+  runTasks(): Promise<TaskResult[]> {
     return this.eachTask((task: Task) => {
       return task.run();
     });
   }
 
   /**
-   * @private
-   * @method eachTask
-   *
    * Runs each task in parallel
+   *
+   * @private
+   * @function eachTask
    * @param fn {Function} the function expressing the wrapped task to run
+   * @returns {Promise<TaskResult[]>}
    */
-  private eachTask(fn: (task: Task) => Promise<TaskResult>) {
-    return pMap(this.defaultTasks, fn);
+  private eachTask(fn: (task: Task) => Promise<TaskResult>): Promise<TaskResult[]> {
+    return pMap(
+      [
+        ...this._categories.get(Category.Core)!.values(),
+        ...this._categories.get(Category.Migration)!.values(),
+      ],
+      fn
+    );
   }
 }

@@ -4,7 +4,7 @@ import { SearchPatterns } from './types';
 
 /**
  * @class FileSearcherTask
- * @extends Task
+ * @augments Task
  * @implements ITask
  *
  * A checkup task specific to file searcher used to encapsulate an operation that

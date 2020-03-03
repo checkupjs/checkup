@@ -11,10 +11,6 @@ import { execSync } from 'child_process';
  * mock checkup projects.
  */
 export default class CheckupFixturifyProject extends Project {
-  constructor(name: string, version?: string, callback?: (project: any) => void, root?: string) {
-    super(name, version, callback, root);
-  }
-
   /**
    * Add a checkup config file to the project
    *

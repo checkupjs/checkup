@@ -1,9 +1,10 @@
-import { cosmiconfig } from 'cosmiconfig';
+import * as t from 'io-ts';
+
 import { CheckupConfig } from '../types';
 import { RuntimeCheckupConfig } from '../types/runtime-types';
-import * as t from 'io-ts';
-import { pipe } from 'fp-ts/lib/pipeable';
+import { cosmiconfig } from 'cosmiconfig';
 import { fold } from 'fp-ts/lib/Either';
+import { pipe } from 'fp-ts/lib/pipeable';
 
 const validateConfig = <A>(v: t.Validation<A>): Array<string> => {
   return pipe(
@@ -31,8 +32,9 @@ const validateConfig = <A>(v: t.Validation<A>): Array<string> => {
 
 /**
  * Get the checkup config via {@link cosmiconfig#search}
+ *
  * @param {string} basePath - the base path to start the config search
- * @return {Promise<CheckupConfig>} the parsed config file, if found, else throw
+ * @returns {Promise<CheckupConfig>} the parsed config file, if found, else throw
  */
 export async function getConfig(basePath: string): Promise<CheckupConfig> {
   const configResult = await cosmiconfig('checkup').search(basePath);

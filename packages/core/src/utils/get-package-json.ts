@@ -3,6 +3,9 @@ import * as path from 'path';
 
 import { PackageJson } from 'type-fest';
 
+/**
+ * @param basePath
+ */
 export function getPackageJson(basePath: string): PackageJson {
   let package_ = {};
   let packageJsonPath = path.join(path.resolve(basePath), 'package.json');

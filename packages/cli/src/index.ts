@@ -1,20 +1,14 @@
 import * as path from 'path';
 
 import { Command, flags } from '@oclif/command';
-import {
-  TaskConstructor,
-  TaskName,
-  TaskResult,
-  getConfig,
-  getPackageJson,
-  loadPlugins,
-  ui,
-} from '@checkup/core';
+import { TaskResult, getConfig, getPackageJson, loadPlugins, ui } from '@checkup/core';
 import { getRegisteredParsers, registerParser } from './parsers';
-import { getRegisteredTasks, registerTask } from './tasks';
 
 import TaskList from './task-list';
 
+/**
+ * @param taskResults
+ */
 function mergeTaskResults(taskResults: TaskResult[]) {
   let mergedResults = {};
 
@@ -48,10 +42,16 @@ class Checkup extends Command {
 
   async run() {
     let { args, flags } = this.parse(Checkup);
-    let registeredTasks: Map<TaskName, TaskConstructor>;
-    const checkupConfig = await getConfig(args.path);
-    const plugins = await loadPlugins(checkupConfig.plugins, args.path);
-    this.config.plugins.push(...plugins);
+    let taskResults: TaskResult[];
+    let registeredTasks: TaskList = new TaskList();
+
+    try {
+      let checkupConfig = await getConfig(args.path);
+      let plugins = await loadPlugins(checkupConfig.plugins, args.path);
+      this.config.plugins.push(...plugins);
+    } catch (error) {
+      this.error(error);
+    }
 
     try {
       getPackageJson(args.path);
@@ -69,28 +69,19 @@ class Checkup extends Command {
     });
 
     await this.config.runHook('register-tasks', {
+      cliArguments: args,
+      cliFlags: flags,
       parsers: getRegisteredParsers(),
-      registerTask,
+      tasks: registeredTasks,
     });
 
-    registeredTasks = getRegisteredTasks();
-
-    let taskResults;
-    let tasksToBeRun = new TaskList();
-
     if (flags.task !== undefined) {
-      let task = registeredTasks.get(flags.task);
-
-      if (task !== undefined) {
-        tasksToBeRun.addTask(task, args);
-      }
+      taskResults = [await registeredTasks.runTask(flags.task)];
     } else {
-      tasksToBeRun.addTasks([...registeredTasks.values()], args);
+      taskResults = await registeredTasks.runTasks();
     }
 
     ui.action.start('Checking up on your project');
-
-    taskResults = await tasksToBeRun.runTasks();
 
     if (!flags.silent) {
       if (flags.json) {

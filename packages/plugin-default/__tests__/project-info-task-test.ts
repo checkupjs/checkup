@@ -3,24 +3,24 @@ import ProjectInfoTask from '../src/tasks/project-info-task';
 import ProjectInfoTaskResult from '../src/results/project-info-task-result';
 
 describe('project-info-task', () => {
-  let fixturifyProject: CheckupProject;
+  let checkupProject: CheckupProject;
 
   describe('for Projects', () => {
     beforeEach(() => {
-      fixturifyProject = new CheckupProject('checkup-app', '0.0.0', project => {
+      checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
         project.addDependency('ember-cli', '^3.15.0');
       });
 
-      fixturifyProject.writeSync();
-      fixturifyProject.gitInit();
+      checkupProject.writeSync();
+      checkupProject.gitInit();
     });
 
     afterEach(() => {
-      fixturifyProject.dispose();
+      checkupProject.dispose();
     });
 
     it('can read project info and output to console', async () => {
-      const result = await new ProjectInfoTask({ path: fixturifyProject.baseDir }).run();
+      const result = await new ProjectInfoTask({ path: checkupProject.baseDir }).run();
       const taskResult = <ProjectInfoTaskResult>result;
 
       taskResult.toConsole();
@@ -29,7 +29,7 @@ describe('project-info-task', () => {
     });
 
     it('can read project info as JSON', async () => {
-      const result = await new ProjectInfoTask({ path: fixturifyProject.baseDir }).run();
+      const result = await new ProjectInfoTask({ path: checkupProject.baseDir }).run();
       const taskResult = <ProjectInfoTaskResult>result;
 
       expect(taskResult.toJson()).toMatchSnapshot();

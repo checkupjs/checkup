@@ -4,25 +4,25 @@ import { DependenciesTask } from '../src/tasks';
 import { DependenciesTaskResult } from '../src/results';
 
 describe('dependencies-task', () => {
-  let project: EmberProject;
+  let emberProject: EmberProject;
 
   beforeEach(function() {
-    project = new EmberProject('checkup-app', '0.0.0', project => {
+    emberProject = new EmberProject('checkup-app', '0.0.0', project => {
       project.addDependency('ember-source', '^3.15.0');
       project.addDependency('ember-cli', '^3.15.0');
       project.addDevDependency('ember-cli-string-utils', 'latest');
-      project.addAddon('ember-cli-blueprint-test-helpers', 'latest');
     });
 
-    project.writeSync();
+    emberProject.addAddon('ember-cli-blueprint-test-helpers', 'latest');
+    emberProject.writeSync();
   });
 
   afterEach(function() {
-    project.dispose();
+    emberProject.dispose();
   });
 
   it('detects Ember dependencies', async () => {
-    const result = await new DependenciesTask({ path: project.baseDir }).run();
+    const result = await new DependenciesTask({ path: emberProject.baseDir }).run();
     const dependencyTaskResult = <DependenciesTaskResult>result;
 
     dependencyTaskResult.toConsole();
@@ -31,7 +31,7 @@ describe('dependencies-task', () => {
   });
 
   it('detects Ember dependencies as JSON', async () => {
-    const result = await new DependenciesTask({ path: project.baseDir }).run();
+    const result = await new DependenciesTask({ path: emberProject.baseDir }).run();
     const dependencyTaskResult = <DependenciesTaskResult>result;
 
     expect(dependencyTaskResult.toJson()).toMatchSnapshot();

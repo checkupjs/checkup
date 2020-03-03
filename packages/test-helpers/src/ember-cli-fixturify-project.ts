@@ -3,8 +3,10 @@
 import CheckupFixturifyProject from './checkup-fixturify-project';
 
 const Project = require('fixturify-project');
-const rimraf = require('rimraf');
 
+/**
+ * @param addon
+ */
 function prepareAddon(addon: any) {
   addon.pkg.keywords.push('ember-addon');
   addon.pkg['ember-addon'] = {};
@@ -17,17 +19,9 @@ function prepareAddon(addon: any) {
  *
  * @export
  * @class EmberCLIFixturifyProject
- * @extends {CheckupFixturifyProject}
+ * @augments {CheckupFixturifyProject}
  */
 export default class EmberCLIFixturifyProject extends CheckupFixturifyProject {
-  constructor(name: string, version = '0.0.0', callback?: (project: any) => void, root?: string) {
-    super(name, version, callback, root);
-  }
-
-  writeSync(...arguments_: any[]) {
-    super.writeSync(...arguments_);
-  }
-
   addAddon(name: string, version = '0.0.0') {
     return this.addDependency(name, version, (addon: any) => {
       prepareAddon(addon);
@@ -62,13 +56,5 @@ export default class EmberCLIFixturifyProject extends CheckupFixturifyProject {
 
     // insert inRepoAddon into files
     Object.assign(this.files.lib, inRepoAddon.toJSON());
-  }
-
-  dispose(temporaryFilesToCleanupPath: string = '') {
-    super.dispose();
-
-    if (temporaryFilesToCleanupPath) {
-      rimraf.sync(temporaryFilesToCleanupPath);
-    }
   }
 }

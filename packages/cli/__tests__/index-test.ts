@@ -1,6 +1,8 @@
 import { CheckupProject, Plugin, stdout } from '@checkup/test-helpers';
-import cmd = require('../src');
+
 import { CheckupConfig } from '@checkup/core';
+
+import cmd = require('../src');
 
 describe('@checkup/cli', () => {
   describe('normal cli output with plugins', () => {
@@ -8,7 +10,7 @@ describe('@checkup/cli', () => {
 
     beforeEach(function() {
       const plugin = new Plugin.PluginBuilder('@checkup/plugin-mock')
-        .addTask('mockTask', {
+        .addTask('MockTask', {
           async run() {
             return Promise.resolve({
               toJson() {
@@ -22,7 +24,7 @@ describe('@checkup/cli', () => {
             });
           },
         })
-        .addTask('mockTask2', {
+        .addTask('MockTask2', {
           async run() {
             return Promise.resolve({
               toJson() {
@@ -43,6 +45,7 @@ describe('@checkup/cli', () => {
           tasks: {},
         })
         .addPlugin(plugin);
+
       project.writeSync();
     });
 
@@ -63,7 +66,7 @@ describe('@checkup/cli', () => {
     });
 
     it('should run a single task if the task option is specified', async () => {
-      await cmd.run(['--task', 'mockTask', project.baseDir]);
+      await cmd.run(['--task', 'MockTask', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });

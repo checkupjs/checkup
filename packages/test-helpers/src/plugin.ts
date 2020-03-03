@@ -59,9 +59,12 @@ export default class Plugin {
                 }`
             )
             .join('\n\n')}
-            const hook = async function ({ registerTask }) {
+            const hook = async function ({ cliArguments, tasks }) {
               ${[...this.tasks.keys()]
-                .map(taskName => `registerTask('${taskName}', ${taskName});`)
+                .map(
+                  taskName =>
+                    `tasks.registerTask('${taskName}', new ${taskName}(cliArguments), { category: 0, priority: 0 });`
+                )
                 .join('\n')}
             }
             exports.default = hook;

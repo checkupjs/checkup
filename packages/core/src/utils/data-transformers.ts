@@ -1,3 +1,7 @@
+/**
+ * @param data
+ * @param schema
+ */
 export function toPairs(
   data: Record<string, string>,
   schema: { keyName: string; valueName: string }
