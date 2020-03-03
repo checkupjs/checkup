@@ -31,12 +31,21 @@ export type TaskClassification = {
 };
 
 export interface Task {
+  taskName: TaskName;
+  friendlyTaskName: TaskName;
+  taskClassification: TaskClassification;
+
   run: () => Promise<TaskResult>;
 }
 
 export interface TaskResult {
   toConsole: () => void;
   toJson: () => {};
+}
+
+export interface TaskMetaData {
+  taskName: TaskName;
+  friendlyTaskName: TaskName;
 }
 
 export interface TaskItemData {

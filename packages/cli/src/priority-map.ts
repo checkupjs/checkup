@@ -39,7 +39,11 @@ export default class PriorityMap {
     return this.maps.get(priority)!;
   }
 
-  *[Symbol.iterator]() {
+  [Symbol.iterator](): Generator<[TaskName, Task]> {
+    return this.entries();
+  }
+
+  *entries(): Generator<[TaskName, Task]> {
     for (let [, map] of this.maps) {
       for (let [taskName, task] of map) {
         yield [taskName, task];
@@ -47,31 +51,19 @@ export default class PriorityMap {
     }
   }
 
-  entries() {
-    return this.entriesIterator();
-  }
-
-  values() {
-    return this.valuesIterator();
-  }
-
-  get size() {
-    return [...this.maps.values()].reduce((total, currentMap) => (total += currentMap.size), 0);
-  }
-
-  *entriesIterator() {
-    for (let [, map] of this.maps) {
-      for (let [priority, tasks] of map) {
-        yield [priority, tasks];
-      }
-    }
-  }
-
-  *valuesIterator() {
+  *values(): Generator<Task> {
     for (let [, map] of this.maps) {
       for (let [, task] of map) {
         yield task;
       }
     }
+  }
+
+  get size() {
+    return (
+      this.maps.get(Priority.High)!.size +
+      this.maps.get(Priority.Medium)!.size +
+      this.maps.get(Priority.Low)!.size
+    );
   }
 }

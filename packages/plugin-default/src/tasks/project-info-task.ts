@@ -2,6 +2,7 @@ import {
   BaseTask,
   Category,
   Priority,
+  Task,
   TaskClassification,
   TaskName,
   TaskResult,
@@ -11,16 +12,16 @@ import {
 import ProjectInfoTaskResult from '../results/project-info-task-result';
 import { getRepositoryInfo } from '../utils/repository';
 
-export default class ProjectInfoTask extends BaseTask {
-  static taskName: TaskName = 'project-info';
-  static friendlyTaskName: TaskName = 'Project Information';
-  static taskClassification: TaskClassification = {
+export default class ProjectInfoTask extends BaseTask implements Task {
+  taskName: TaskName = 'project-info';
+  friendlyTaskName: TaskName = 'Project Information';
+  taskClassification: TaskClassification = {
     category: Category.Core,
     priority: Priority.High,
   };
 
   async run(): Promise<TaskResult> {
-    let result: ProjectInfoTaskResult = new ProjectInfoTaskResult();
+    let result: ProjectInfoTaskResult = new ProjectInfoTaskResult(this);
     let package_ = getPackageJson(this.args.path);
 
     result.name = package_.name || '';

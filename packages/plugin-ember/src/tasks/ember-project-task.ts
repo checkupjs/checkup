@@ -2,6 +2,7 @@ import {
   BaseTask,
   Category,
   Priority,
+  Task,
   TaskClassification,
   TaskName,
   TaskResult,
@@ -10,16 +11,16 @@ import {
 import { EmberProjectTaskResult } from '../results';
 import { getProjectType } from '../utils/project';
 
-export default class EmberProjectTask extends BaseTask {
-  static taskName: TaskName = 'ember-project';
-  static friendlyTaskName: TaskName = 'Ember Project';
-  static taskClassification: TaskClassification = {
+export default class EmberProjectTask extends BaseTask implements Task {
+  taskName: TaskName = 'ember-project';
+  friendlyTaskName: TaskName = 'Ember Project';
+  taskClassification: TaskClassification = {
     category: Category.Core,
     priority: Priority.Medium,
   };
 
   async run(): Promise<TaskResult> {
-    let result: EmberProjectTaskResult = new EmberProjectTaskResult();
+    let result: EmberProjectTaskResult = new EmberProjectTaskResult(this);
 
     result.type = `Ember.js ${getProjectType(this.args.path)}`;
 

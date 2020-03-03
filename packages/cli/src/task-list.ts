@@ -1,6 +1,6 @@
 import * as pMap from 'p-map';
 
-import { Category, Task, TaskClassification, TaskName, TaskResult } from '@checkup/core';
+import { Category, Task, TaskName, TaskResult } from '@checkup/core';
 
 import PriorityMap from './priority-map';
 
@@ -32,9 +32,9 @@ export default class TaskList {
    * @param task {Task}
    * @param taskClassification
    */
-  registerTask(taskName: TaskName, task: Task, taskClassification: TaskClassification) {
-    let priorityMap = this._categories.get(taskClassification.category);
-    priorityMap!.setTaskByPriority(taskClassification.priority, taskName, task);
+  registerTask(task: Task) {
+    let priorityMap = this._categories.get(task.taskClassification.category);
+    priorityMap!.setTaskByPriority(task.taskClassification.priority, task.taskName, task);
   }
 
   /**
