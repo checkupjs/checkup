@@ -4,7 +4,6 @@ import { Command, flags } from '@oclif/command';
 
 import {
   TaskResult,
-  getConfig,
   getPackageJson,
   loadPlugins,
   ui,
