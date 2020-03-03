@@ -24,9 +24,9 @@ const SEARCH_PATTERNS = {
 };
 
 export default class TypesTask extends FileSearcherTask implements BaseTask {
-  static taskName: TaskName = 'types';
-  static friendlyTaskName: TaskName = 'Project Types';
-  static taskClassification: TaskClassification = {
+  taskName: TaskName = 'types';
+  friendlyTaskName: TaskName = 'Project Types';
+  taskClassification: TaskClassification = {
     category: Category.Core,
     priority: Priority.Medium,
   };
@@ -36,7 +36,7 @@ export default class TypesTask extends FileSearcherTask implements BaseTask {
   }
 
   async run(): Promise<TaskResult> {
-    let result = new TypesTaskResult();
+    let result = new TypesTaskResult(this);
     result.types = await this.searcher.search();
 
     return result;

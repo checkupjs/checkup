@@ -1,8 +1,15 @@
-import { BaseTask, Category, Priority } from '@checkup/core';
+import { BaseTask, Category, Priority, TaskClassification, TaskName } from '@checkup/core';
 
 import TaskList from '../src/task-list';
 
 class MockTask extends BaseTask {
+  taskName: TaskName = 'mock-task';
+  friendlyTaskName: TaskName = 'Mock Task';
+  taskClassification: TaskClassification = {
+    category: Category.Core,
+    priority: Priority.High,
+  };
+
   run() {
     return Promise.resolve({
       toJson() {
@@ -18,6 +25,13 @@ class MockTask extends BaseTask {
 }
 
 class AnotherMockTask extends BaseTask {
+  taskName: TaskName = 'another-mock-task';
+  friendlyTaskName: TaskName = 'Another Mock Task';
+  taskClassification: TaskClassification = {
+    category: Category.Core,
+    priority: Priority.Low,
+  };
+
   run() {
     return Promise.resolve({
       toJson() {
@@ -43,10 +57,7 @@ describe('TaskList', () => {
   it('registerTask adds a task to the TaskList', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask('mock-task', new MockTask({}), {
-      category: Category.Core,
-      priority: Priority.High,
-    });
+    taskList.registerTask(new MockTask({}));
 
     expect(taskList.categories.get(Category.Core)!.size).toEqual(1);
   });
@@ -54,10 +65,7 @@ describe('TaskList', () => {
   it('runTask will run a task by taskName', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask('mock-task', new MockTask({}), {
-      category: Category.Core,
-      priority: Priority.High,
-    });
+    taskList.registerTask(new MockTask({}));
 
     let result = await taskList.runTask('mock-task');
 
@@ -69,14 +77,8 @@ describe('TaskList', () => {
   it('runTasks will run all registered tasks', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask('mock-task', new MockTask({}), {
-      category: Category.Core,
-      priority: Priority.High,
-    });
-    taskList.registerTask('another-mock-task', new AnotherMockTask({}), {
-      category: Category.Core,
-      priority: Priority.High,
-    });
+    taskList.registerTask(new MockTask({}));
+    taskList.registerTask(new AnotherMockTask({}));
 
     let result = await taskList.runTasks();
 

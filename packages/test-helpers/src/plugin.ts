@@ -55,16 +55,17 @@ export default class Plugin {
             .map(
               ([taskName, task]) =>
                 `class ${taskName} {
+                  taskName = '${task.taskName}';
+                  friendlyTaskName = '${task.friendlyTaskName}';
+                  taskClassification = ${JSON.stringify(task.taskClassification, null, 2)};
+
                   ${task.run.toString()}
                 }`
             )
             .join('\n\n')}
             const hook = async function ({ cliArguments, tasks }) {
               ${[...this.tasks.keys()]
-                .map(
-                  taskName =>
-                    `tasks.registerTask('${taskName}', new ${taskName}(cliArguments), { category: 0, priority: 0 });`
-                )
+                .map(taskName => `tasks.registerTask(new ${taskName}(cliArguments));`)
                 .join('\n')}
             }
             exports.default = hook;

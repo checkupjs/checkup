@@ -1,14 +1,12 @@
-import { TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
-import { EmberProjectTask } from '../tasks';
-
-export default class EmberProjectTaskResult implements TaskResult {
+export default class EmberProjectTaskResult extends BaseTaskResult implements TaskResult {
   type!: string;
   name!: string;
   version!: string;
 
   toConsole() {
-    ui.styledHeader(EmberProjectTask.friendlyTaskName);
+    ui.styledHeader(this.meta.friendlyTaskName);
     ui.blankLine();
     ui.styledObject({
       type: this.type,
@@ -18,7 +16,7 @@ export default class EmberProjectTaskResult implements TaskResult {
 
   toJson() {
     return {
-      [EmberProjectTask.taskName]: { type: this.type },
+      [this.meta.taskName]: { type: this.type },
     };
   }
 }

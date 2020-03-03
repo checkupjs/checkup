@@ -11,6 +11,13 @@ describe('@checkup/cli', () => {
     beforeEach(function() {
       const plugin = new Plugin.PluginBuilder('@checkup/plugin-mock')
         .addTask('MockTask', {
+          taskName: 'mock-task',
+          friendlyTaskName: 'Mock Task',
+          taskClassification: {
+            category: 0,
+            priority: 0,
+          },
+
           async run() {
             return Promise.resolve({
               toJson() {
@@ -25,6 +32,13 @@ describe('@checkup/cli', () => {
           },
         })
         .addTask('MockTask2', {
+          taskName: 'mock-task2',
+          friendlyTaskName: 'Mock Task 2',
+          taskClassification: {
+            category: 0,
+            priority: 0,
+          },
+
           async run() {
             return Promise.resolve({
               toJson() {
@@ -39,6 +53,7 @@ describe('@checkup/cli', () => {
           },
         })
         .build();
+
       project = new CheckupProject('checkup-project', '0.0.0')
         .addCheckupConfig({
           plugins: ['@checkup/plugin-mock'],
@@ -66,7 +81,7 @@ describe('@checkup/cli', () => {
     });
 
     it('should run a single task if the task option is specified', async () => {
-      await cmd.run(['--task', 'MockTask', project.baseDir]);
+      await cmd.run(['--task', 'mock-task', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });

@@ -1,8 +1,15 @@
-import { BaseTask, Priority } from '@checkup/core';
+import { BaseTask, Category, Priority, TaskClassification, TaskName } from '@checkup/core';
 
 import PriorityMap from '../src/priority-map';
 
 class MockTask extends BaseTask {
+  taskName: TaskName = 'mock-task';
+  friendlyTaskName: TaskName = 'Mock Task';
+  taskClassification: TaskClassification = {
+    category: Category.Core,
+    priority: Priority.High,
+  };
+
   run() {
     return Promise.resolve({
       toJson() {

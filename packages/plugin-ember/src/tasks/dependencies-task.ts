@@ -13,6 +13,7 @@ import { PackageJson } from 'type-fest';
 /**
  * @param packageJson
  * @param key
+ * @returns {string}
  */
 function findDependency(packageJson: PackageJson, key: string): string {
   return (
@@ -25,6 +26,7 @@ function findDependency(packageJson: PackageJson, key: string): string {
 /**
  * @param dependencies
  * @param filter
+ * @returns Record<string, string>
  */
 function findDependencies(
   dependencies: PackageJson.Dependency | undefined,
@@ -47,6 +49,7 @@ function findDependencies(
 
 /**
  * @param dependency
+ * @returns {boolean}
  */
 function emberAddonFilter(dependency: string) {
   return dependency.startsWith('ember-') && !dependency.startsWith('ember-cli');
@@ -54,21 +57,22 @@ function emberAddonFilter(dependency: string) {
 
 /**
  * @param dependency
+ * @returns {boolean}
  */
 function emberCliAddonFilter(dependency: string) {
   return dependency.startsWith('ember-cli');
 }
 
 export default class DependenciesTask extends BaseTask {
-  static taskName: string = 'dependencies';
-  static friendlyTaskName: string = 'Project Dependencies';
-  static taskClassification: TaskClassification = {
+  taskName: string = 'dependencies';
+  friendlyTaskName: string = 'Project Dependencies';
+  taskClassification: TaskClassification = {
     category: Category.Core,
     priority: Priority.Medium,
   };
 
   async run(): Promise<TaskResult> {
-    let result: DependenciesTaskResult = new DependenciesTaskResult();
+    let result: DependenciesTaskResult = new DependenciesTaskResult(this);
     let packageJson = getPackageJson(this.args.path);
 
     result.emberLibraries['ember-source'] = findDependency(packageJson, 'ember-source');
