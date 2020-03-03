@@ -1,4 +1,12 @@
-import { BaseTask, TaskName, TaskResult, ui } from '@checkup/core';
+import {
+  BaseTask,
+  Category,
+  Priority,
+  TaskClassification,
+  TaskName,
+  TaskResult,
+  ui,
+} from '@checkup/core';
 
 class JSMigrationStatusTaskResult implements TaskResult {
   toConsole() {
@@ -18,10 +26,14 @@ class JSMigrationStatusTaskResult implements TaskResult {
 export default class JSMigrationStatusTask extends BaseTask {
   static taskName: TaskName = 'js-migration-status';
   static friendlyTaskName: TaskName = 'Ember Octane JS Migration Status';
+  static taskClassification: TaskClassification = {
+    category: Category.Core,
+    priority: Priority.Medium,
+  };
 
   async run(): Promise<TaskResult> {
-    const res = new JSMigrationStatusTaskResult();
+    const result = new JSMigrationStatusTaskResult();
 
-    return res;
+    return result;
   }
 }
