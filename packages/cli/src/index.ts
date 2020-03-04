@@ -1,7 +1,15 @@
 import * as path from 'path';
 
 import { Command, flags } from '@oclif/command';
-import { TaskResult, getConfig, getPackageJson, loadPlugins, ui } from '@checkup/core';
+
+import {
+  TaskResult,
+  getPackageJson,
+  loadPlugins,
+  ui,
+  getSearchLoader,
+  CheckupConfigService,
+} from '@checkup/core';
 import { getRegisteredParsers, registerParser } from './parsers';
 
 import TaskList from './task-list';
@@ -46,7 +54,8 @@ class Checkup extends Command {
     let registeredTasks: TaskList = new TaskList();
 
     try {
-      let checkupConfig = await getConfig(args.path);
+      const configService = await CheckupConfigService.load(getSearchLoader(args.path));
+      const checkupConfig = configService.get();
       let plugins = await loadPlugins(checkupConfig.plugins, args.path);
       this.config.plugins.push(...plugins);
     } catch (error) {

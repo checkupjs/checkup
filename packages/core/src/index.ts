@@ -4,7 +4,8 @@ export { default as FileSearcherTask } from './file-searcher-task';
 export { default as FileSearcher } from './searchers/file-searcher';
 export { loadPlugins } from './loaders/plugin-loader';
 export { getPackageJson } from './utils/get-package-json';
-export { getConfig } from './utils/get-config';
+export { default as CheckupConfigService } from './configuration/checkup-config-service';
+export { default as getSearchLoader } from './configuration/loaders/get-search-loader';
 export { ui } from './utils/ui';
 export { toPairs } from './utils/data-transformers';
 

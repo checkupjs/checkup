@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checkup-config-service should throw an error if an invalid config is present and get is called 1`] = `
+"Checkup configuration is malformed:
+plugins expected type Array<string>, but got {}
+tasks.someTask expected type { isEnabled: boolean }, but got \\"foo\\""
+`;
+
+exports[`checkup-config-service should throw an error if an invalid config is present and write is called 1`] = `
+"Checkup configuration is malformed:
+plugins expected type Array<string>, but got {}
+tasks.someTask expected type { isEnabled: boolean }, but got \\"foo\\""
+`;
+
+exports[`checkup-config-service should write the config applying the given mappers on calling write for JSON files 1`] = `
+"{
+  \\"plugins\\": [
+    \\"plugin-foo\\"
+  ],
+  \\"tasks\\": {
+    \\"bar\\": {
+      \\"isEnabled\\": false
+    }
+  }
+}"
+`;
+
+exports[`checkup-config-service should write the config applying the given mappers on calling write for JavaScript files 1`] = `
+"module.exports = {
+  \\"plugins\\": [
+    \\"plugin-foo\\"
+  ],
+  \\"tasks\\": {
+    \\"bar\\": {
+      \\"isEnabled\\": false
+    }
+  }
+}"
+`;
+
+exports[`checkup-config-service should write the config applying the given mappers on calling write for YAML files 1`] = `
+"plugins:
+  - plugin-foo
+tasks:
+  bar:
+    isEnabled: false
+"
+`;
