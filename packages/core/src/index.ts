@@ -4,7 +4,7 @@ export { default as FileSearcher } from './searchers/file-searcher';
 export { loadPlugins } from './loaders/plugin-loader';
 export { getPackageJson } from './utils/get-package-json';
 export { default as CheckupConfigService } from './configuration/checkup-config-service';
-export { default as CosmiconfigLoaderFactory } from './configuration/loaders/cosmiconfig-loader-factory';
+export { default as getSearchLoader } from './configuration/loaders/get-search-loader';
 export { ui } from './utils/ui';
 export { toPairs } from './utils/data-transformers';
 

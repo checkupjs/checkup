@@ -1,8 +1,8 @@
-import { CheckupConfigFormat, CosmiconfigLoaderFactory } from '../../src';
+import { CheckupConfigFormat, getSearchLoader } from '../../src';
 import { CheckupProject } from '@checkup/test-helpers';
 import * as path from 'path';
 
-describe('cosmiconfig-loader-factory', () => {
+describe('get-search-loader', () => {
   const defaultConfig = {
     plugins: [],
     tasks: {},
@@ -19,16 +19,14 @@ describe('cosmiconfig-loader-factory', () => {
 
   it('should throw if a config file is not found in the given base path', async () => {
     project.writeSync();
-    await expect(
-      CosmiconfigLoaderFactory(project.baseDir)()
-    ).rejects.toThrowErrorMatchingInlineSnapshot(
+    await expect(getSearchLoader(project.baseDir)()).rejects.toThrowErrorMatchingInlineSnapshot(
       `"Could not find a checkup configuration starting from the given path: ${project.baseDir}. See https://github.com/checkupjs/checkup/tree/master/packages/cli#configuration for more info on how to setup a configuration."`
     );
   });
 
   it('should return the config if found', async () => {
     project.addCheckupConfig(defaultConfig).writeSync();
-    const config = await CosmiconfigLoaderFactory(project.baseDir)();
+    const config = await getSearchLoader(project.baseDir)();
 
     expect(config).toStrictEqual({
       format: CheckupConfigFormat.JSON,

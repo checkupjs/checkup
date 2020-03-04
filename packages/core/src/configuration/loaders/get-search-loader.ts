@@ -2,11 +2,13 @@ import { CheckupConfigLoader } from '../../types';
 import CosmiconfigService from '../cosmiconfig-service';
 
 /**
- * A factory function to get an instance of a {@link CheckupConfigLoader} that
+ * A function to get an instance of a {@link CheckupConfigLoader} that
  * uses {@link cosmiconfig#search} to get a {@link CheckupConfig} object
  * @param {string} basePath - the base path to start the config search in
+ * @returns {CheckupConfigLoader} - a loader that searches the given basePath for
+ * a config
  */
-const cosmiConfigLoaderFactory: (basePath: string) => CheckupConfigLoader = (
+const getSearchLoader: (basePath: string) => CheckupConfigLoader = (
   basePath: string
 ) => async () => {
   const maybeConfig = await new CosmiconfigService().search(basePath);
@@ -20,4 +22,4 @@ const cosmiConfigLoaderFactory: (basePath: string) => CheckupConfigLoader = (
   return maybeConfig;
 };
 
-export default cosmiConfigLoaderFactory;
+export default getSearchLoader;

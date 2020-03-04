@@ -7,7 +7,7 @@ import {
   getPackageJson,
   loadPlugins,
   ui,
-  CosmiconfigLoaderFactory,
+  getSearchLoader,
   CheckupConfigService,
 } from '@checkup/core';
 import { getRegisteredParsers, registerParser } from './parsers';
@@ -54,7 +54,7 @@ class Checkup extends Command {
     let registeredTasks: TaskList = new TaskList();
 
     try {
-      const configService = await CheckupConfigService.load(CosmiconfigLoaderFactory(args.path));
+      const configService = await CheckupConfigService.load(getSearchLoader(args.path));
       const checkupConfig = configService.get();
       let plugins = await loadPlugins(checkupConfig.plugins, args.path);
       this.config.plugins.push(...plugins);
