@@ -1,8 +1,8 @@
-import { BaseTask, Category, Priority, Task, TaskClassification, TaskName } from '@checkup/core';
+import { Category, Priority, Task, TaskClassification, TaskName } from '@checkup/core';
 
 import PriorityMap from '../src/priority-map';
 
-class MockTask extends BaseTask implements Task {
+class MockTask implements Task {
   taskName: TaskName = 'mock-task';
   friendlyTaskName: TaskName = 'Mock Task';
   taskClassification: TaskClassification = {
@@ -10,8 +10,8 @@ class MockTask extends BaseTask implements Task {
     priority: Priority.High,
   };
 
-  run() {
-    return Promise.resolve({
+  async run() {
+    return {
       toJson() {
         return {
           mockTask: 'You mock me',
@@ -20,7 +20,7 @@ class MockTask extends BaseTask implements Task {
       toConsole() {
         process.stdout.write('mock task is being run\n');
       },
-    });
+    };
   }
 }
 
@@ -34,7 +34,7 @@ describe('PriorityMap', () => {
   it('will return entries', () => {
     let map = new PriorityMap();
 
-    map.setTaskByPriority(Priority.High, 'mock-task', new MockTask({}));
+    map.setTaskByPriority(Priority.High, 'mock-task', new MockTask());
 
     expect([...map.entries()]).toHaveLength(1);
   });
@@ -42,7 +42,7 @@ describe('PriorityMap', () => {
   it('will return values', () => {
     let map = new PriorityMap();
 
-    map.setTaskByPriority(Priority.High, 'mock-task', new MockTask({}));
+    map.setTaskByPriority(Priority.High, 'mock-task', new MockTask());
 
     expect([...map.values()]).toHaveLength(1);
   });
@@ -50,7 +50,7 @@ describe('PriorityMap', () => {
   it('will return a task via getTask', () => {
     let map = new PriorityMap();
 
-    map.setTaskByPriority(Priority.Low, 'mock-task', new MockTask({}));
+    map.setTaskByPriority(Priority.Low, 'mock-task', new MockTask());
 
     expect(map.getTask('mock-task')).toBeInstanceOf(MockTask);
   });
@@ -58,16 +58,16 @@ describe('PriorityMap', () => {
   it('will return a task via getTaskByPriority', () => {
     let map = new PriorityMap();
 
-    map.setTaskByPriority(Priority.High, 'mock-task', new MockTask({}));
+    map.setTaskByPriority(Priority.High, 'mock-task', new MockTask());
 
     expect(map.getTaskByPriority(Priority.High, 'mock-task')).toBeInstanceOf(MockTask);
   });
 
   it('size will return the correct total size across maps', () => {
     let map = new PriorityMap();
-    map.setTaskByPriority(Priority.High, 'mock-task', new MockTask({}));
-    map.setTaskByPriority(Priority.Medium, 'mock-task', new MockTask({}));
-    map.setTaskByPriority(Priority.Low, 'mock-task', new MockTask({}));
+    map.setTaskByPriority(Priority.High, 'mock-task', new MockTask());
+    map.setTaskByPriority(Priority.Medium, 'mock-task', new MockTask());
+    map.setTaskByPriority(Priority.Low, 'mock-task', new MockTask());
 
     expect(map.size).toEqual(3);
   });

@@ -1,41 +1,36 @@
+import * as Handlebars from 'handlebars';
+import * as fs from 'fs';
+import * as path from 'path';
+
+import { Class } from 'type-fest';
 import { Task } from '@checkup/core';
+
 import Project = require('fixturify-project');
 
-class PluginBuilder {
-  pluginName: string;
-  version: string;
-  tasks: Map<string, Task>;
+const REGISTER_TASKS_TEMPLATE = fs.readFileSync(
+  path.resolve(__dirname, 'static/templates/register-tasks.hbs'),
+  'utf-8'
+);
+const template = Handlebars.compile(REGISTER_TASKS_TEMPLATE);
+
+/**
+ * Allows for the creation of a mock checkup plugin to be consumed by a fixturify
+ * project.
+ */
+export default class Plugin {
+  readonly pluginName: string;
+  readonly version: string;
+  readonly tasks: Set<Class<Task>>;
 
   constructor(pluginName: string, version: string = '0.0.0') {
     this.pluginName = pluginName;
     this.version = version;
-    this.tasks = new Map();
+    this.tasks = new Set<Class<Task>>();
   }
 
-  addTask(taskName: string, task: Task) {
-    this.tasks.set(taskName, task);
+  addTask(task: Class<Task>) {
+    this.tasks.add(task);
     return this;
-  }
-
-  build() {
-    return new Plugin(this);
-  }
-}
-
-/**
- * Allows for the creation of a mock checkup plugin to be consumed by a fixturify
- * project. Use {@link PluginBuilder} to build an immutable plugin instance.
- */
-export default class Plugin {
-  static PluginBuilder = PluginBuilder;
-  readonly pluginName: string;
-  readonly version: string;
-  readonly tasks: Map<string, Task>;
-
-  constructor(builder: PluginBuilder) {
-    this.pluginName = builder.pluginName;
-    this.version = builder.version;
-    this.tasks = builder.tasks;
   }
 
   toProject() {
@@ -50,28 +45,10 @@ export default class Plugin {
       pluginProject.pkg.files = [];
       pluginProject.files.src = {
         hooks: {
-          'register-tasks.js': `
-          ${[...this.tasks.entries()]
-            .map(
-              ([taskName, task]) =>
-                `class ${taskName} {
-                  constructor() {
-                    this.taskName = '${task.taskName}';
-                    this.friendlyTaskName = '${task.friendlyTaskName}';
-                    this.taskClassification = ${JSON.stringify(task.taskClassification, null, 2)};
-                  }
-
-                  ${task.run.toString()}
-                }`
-            )
-            .join('\n\n')}
-            const hook = async function ({ cliArguments, tasks }) {
-              ${[...this.tasks.keys()]
-                .map(taskName => `tasks.registerTask(new ${taskName}(cliArguments));`)
-                .join('\n')}
-            }
-            exports.default = hook;
-          `,
+          'register-tasks.js': template({
+            classes: [...this.tasks].map(task => task.toString()),
+            taskNames: [...this.tasks].map(task => task.name),
+          }),
         },
       };
     });

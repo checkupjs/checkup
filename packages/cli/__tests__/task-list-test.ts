@@ -1,8 +1,8 @@
-import { BaseTask, Category, Priority, Task, TaskClassification, TaskName } from '@checkup/core';
+import { Category, Priority, Task, TaskClassification, TaskName } from '@checkup/core';
 
 import TaskList from '../src/task-list';
 
-class MockTask extends BaseTask implements Task {
+class MockTask implements Task {
   taskName: TaskName = 'mock-task';
   friendlyTaskName: TaskName = 'Mock Task';
   taskClassification: TaskClassification = {
@@ -24,7 +24,7 @@ class MockTask extends BaseTask implements Task {
   }
 }
 
-class AnotherMockTask extends BaseTask implements Task {
+class AnotherMockTask implements Task {
   taskName: TaskName = 'another-mock-task';
   friendlyTaskName: TaskName = 'Another Mock Task';
   taskClassification: TaskClassification = {
@@ -57,7 +57,7 @@ describe('TaskList', () => {
   it('registerTask adds a task to the TaskList', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask({}));
+    taskList.registerTask(new MockTask());
 
     expect(taskList.categories.get(Category.Core)!.size).toEqual(1);
   });
@@ -65,7 +65,7 @@ describe('TaskList', () => {
   it('runTask will run a task by taskName', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask({}));
+    taskList.registerTask(new MockTask());
 
     let result = await taskList.runTask('mock-task');
 
@@ -77,8 +77,8 @@ describe('TaskList', () => {
   it('runTasks will run all registered tasks', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask({}));
-    taskList.registerTask(new AnotherMockTask({}));
+    taskList.registerTask(new MockTask());
+    taskList.registerTask(new AnotherMockTask());
 
     let result = await taskList.runTasks();
 

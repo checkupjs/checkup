@@ -1,0 +1,12 @@
+
+{{#each classes as |class|}}
+{{{class}}}
+{{/each}}
+
+const hook = async function({ cliArguments, tasks }) {
+  {{#each taskNames as |taskName|}}
+  tasks.registerTask(new {{taskName}}(cliArguments));
+  {{/each}}
+};
+
+exports.default = hook;

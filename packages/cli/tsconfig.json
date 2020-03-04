@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
-    "types": ["babel__traverse", "capitalize", "chai", "columnify", "fs-extra", "jest", "node"],
+    "types": ["chai", "fs-extra", "jest", "node"],
     "baseUrl": ".",
     "paths": {
       "@checkup/core": ["../core/lib/index.d.ts"]
