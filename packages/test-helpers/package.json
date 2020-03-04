@@ -7,6 +7,7 @@
   "dependencies": {
     "@checkup/core": "0.0.0",
     "fixturify-project": "^2.1.0",
+    "handlebars": "^4.7.3",
     "stdout-stderr": "^0.1.13"
   },
   "devDependencies": {
@@ -31,10 +32,11 @@
   "main": "lib/index.js",
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && yarn copystatic",
     "build:watch": "yarn build -w",
     "clean": "rm -rf lib/*",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "copystatic": "cp -a ./src/static ./lib/static"
   },
   "types": "lib/index.d.ts"
 }

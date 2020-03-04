@@ -1,6 +1,5 @@
+import { CheckupConfig, Task } from '@checkup/core';
 import { CheckupProject, Plugin, stdout } from '@checkup/test-helpers';
-
-import { CheckupConfig } from '@checkup/core';
 
 import cmd = require('../src');
 
@@ -9,50 +8,53 @@ describe('@checkup/cli', () => {
     let project: CheckupProject;
 
     beforeEach(function() {
-      const plugin = new Plugin.PluginBuilder('@checkup/plugin-mock')
-        .addTask('MockTask', {
-          taskName: 'mock-task',
-          friendlyTaskName: 'Mock Task',
-          taskClassification: {
-            category: 0,
-            priority: 0,
-          },
+      const plugin = new Plugin('@checkup/plugin-mock')
+        .addTask(
+          class MockTask implements Task {
+            taskName = 'mock-task';
+            friendlyTaskName = 'Mock Task';
+            taskClassification = {
+              category: 0,
+              priority: 0,
+            };
 
-          async run() {
-            return Promise.resolve({
-              toJson() {
-                return {
-                  mockTask: 5,
-                };
-              },
-              toConsole() {
-                process.stdout.write('mock task is being run\n');
-              },
-            });
-          },
-        })
-        .addTask('MockTask2', {
-          taskName: 'mock-task2',
-          friendlyTaskName: 'Mock Task 2',
-          taskClassification: {
-            category: 0,
-            priority: 0,
-          },
+            async run() {
+              return {
+                toJson() {
+                  return {
+                    mockTask: 5,
+                  };
+                },
+                toConsole() {
+                  process.stdout.write('mock task is being run\n');
+                },
+              };
+            }
+          }
+        )
+        .addTask(
+          class MockTask2 implements Task {
+            taskName = 'mock-task2';
+            friendlyTaskName = 'Mock Task 2';
+            taskClassification = {
+              category: 0,
+              priority: 0,
+            };
 
-          async run() {
-            return Promise.resolve({
-              toJson() {
-                return {
-                  mockTask2: 10,
-                };
-              },
-              toConsole() {
-                process.stdout.write('mock task2 is being run\n');
-              },
-            });
-          },
-        })
-        .build();
+            async run() {
+              return {
+                toJson() {
+                  return {
+                    mockTask2: 10,
+                  };
+                },
+                toConsole() {
+                  process.stdout.write('mock task2 is being run\n');
+                },
+              };
+            }
+          }
+        );
 
       project = new CheckupProject('checkup-project', '0.0.0')
         .addCheckupConfig({
