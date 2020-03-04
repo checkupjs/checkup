@@ -1,1 +1,1 @@
-export { default as MigrationStatusTask } from './migration-status-task';
+export { default as OctaneMigrationStatusTask } from './octane-migration-status-task';

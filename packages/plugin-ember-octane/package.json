@@ -11,6 +11,9 @@
     "tslib": "^1"
   },
   "devDependencies": {
+    "@types/eslint": "^6.1.8",
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-ember": "^7.9.0",
     "fixturify-project": "^2.1.0",
     "jest": "^25.1.0",
     "rimraf": "^3.0.2",
@@ -47,6 +50,7 @@
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "jest",
+    "test:debug": "yarn clean && yarn build && node --inspect-brk=1337 node_modules/.bin/jest",
     "version": "oclif-dev readme && git add README.md"
   },
   "types": "lib/index.d.ts",
