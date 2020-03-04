@@ -8,6 +8,7 @@ import {
   loadPlugins,
   ui,
   getSearchLoader,
+  getFilepathLoader,
   CheckupConfigService,
 } from '@checkup/core';
 import { getRegisteredParsers, registerParser } from './parsers';
@@ -46,6 +47,10 @@ class Checkup extends Command {
     silent: flags.boolean({ char: 's' }),
     json: flags.boolean(),
     task: flags.string({ char: 't' }),
+    config: flags.string({
+      char: 'c',
+      description: 'Use this configuration, overriding .checkuprc.* if present',
+    }),
   };
 
   async run() {
@@ -54,7 +59,10 @@ class Checkup extends Command {
     let registeredTasks: TaskList = new TaskList();
 
     try {
-      const configService = await CheckupConfigService.load(getSearchLoader(args.path));
+      const configLoader = flags.config
+        ? getFilepathLoader(flags.config)
+        : getSearchLoader(args.path);
+      const configService = await CheckupConfigService.load(configLoader);
       const checkupConfig = configService.get();
       let plugins = await loadPlugins(checkupConfig.plugins, args.path);
       this.config.plugins.push(...plugins);

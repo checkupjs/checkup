@@ -4,6 +4,7 @@ import CosmiconfigService from '../cosmiconfig-service';
 /**
  * A function to get an instance of a {@link CheckupConfigLoader} that
  * uses {@link cosmiconfig#search} to get a {@link CheckupConfig} object
+ *
  * @param {string} basePath - the base path to start the config search in
  * @returns {CheckupConfigLoader} - a loader that searches the given basePath for
  * a config
