@@ -1,11 +1,11 @@
-import { BaseTask, Category, Priority, TaskClassification, TaskName } from '@checkup/core';
+import { BaseTask, Category, Priority, Task, TaskClassification, TaskName } from '@checkup/core';
 import { CLIEngine } from 'eslint';
 import { OctaneMigrationStatusTaskResult } from '../results';
 
-export default class OctaneMigrationStatusTask extends BaseTask {
-  static taskName: TaskName = 'octane-migration-status';
-  static friendlyTaskName: TaskName = 'Ember Octane Migration Status';
-  static taskClassification: TaskClassification = {
+export default class OctaneMigrationStatusTask extends BaseTask implements Task {
+  taskName: TaskName = 'octane-migration-status';
+  friendlyTaskName: TaskName = 'Ember Octane Migration Status';
+  taskClassification: TaskClassification = {
     category: Category.Core,
     priority: Priority.Medium,
   };
@@ -51,10 +51,7 @@ export default class OctaneMigrationStatusTask extends BaseTask {
 
   async run(): Promise<OctaneMigrationStatusTaskResult> {
     this.report = this.esLintEngine.executeOnFiles([`${this.rootPath}/+(app|addon)/**/*.js`]);
-    let result = new OctaneMigrationStatusTaskResult(
-      OctaneMigrationStatusTask.taskName,
-      this.report
-    );
+    let result = new OctaneMigrationStatusTaskResult(this.taskName, this.report);
 
     return result;
   }
