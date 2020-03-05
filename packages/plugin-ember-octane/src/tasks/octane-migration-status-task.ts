@@ -34,7 +34,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
         'ember/no-actions-hash': 'error',
         'ember/no-classic-classes': 'error',
         'ember/no-classic-components': 'error',
-        'ember/no-component-lifecycle-hooks': 'error',
+        // 'ember/no-component-lifecycle-hooks': 'error',
         'ember/no-computed-properties-in-native-classes': 'error',
         'ember/no-get-with-default': 'error',
         'ember/no-get': 'error',
@@ -51,7 +51,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
 
   async run(): Promise<OctaneMigrationStatusTaskResult> {
     this.report = this.esLintEngine.executeOnFiles([`${this.rootPath}/+(app|addon)/**/*.js`]);
-    let result = new OctaneMigrationStatusTaskResult(this.taskName, this.report);
+    let result = new OctaneMigrationStatusTaskResult(this.report);
 
     return result;
   }

@@ -1,43 +1,39 @@
-import { EmberProject, stdout } from '@checkup/test-helpers';
-import { OctaneMigrationStatusTask } from '../../src/tasks';
+import { stdout } from '@checkup/test-helpers';
+// import { OctaneMigrationStatusTask } from '../../src/tasks';
 import { OctaneMigrationStatusTaskResult } from '../../src/results';
 
+// classic-decorator-hooks                  -
+// classic-decorator-no-classic-methods     -
+// no-actions-hash                          - 3
+// no-classic-classes                       - 5
+// no-classic-components                    - 5
+// no-component-lifecycle-hooks             -
+// no-computed-properties-in-native-classes -
+// no-get-with-default                      -
+// no-get                                   - 3
+// no-jquery                                -
+// require-tagless-components               - 4
+
 describe('octane-migration-status-task-result', () => {
-  let project: EmberProject;
-
-  beforeEach(function() {
-    project = new EmberProject('checkup-app', '0.0.0');
-  });
-
-  afterEach(function() {
-    project.dispose();
-  });
-
   describe('console output', () => {
-    test('output to console', async () => {
-      project.files = Object.assign(project.files, {
-        app: {
-          components: {
-            'foo-bar.js': `
-              import Component from '@glimmer/component';
-
-              export default class FooBarComponent extends Component {}
-            `,
-          },
-        },
-      });
-
-      project.writeSync();
-      let task = new OctaneMigrationStatusTask({ path: project.baseDir });
-
-      await task.run();
-
-      let { report } = task;
-      let taskResult = new OctaneMigrationStatusTaskResult('sdsds', report);
+    test('simple console output', async () => {
+      let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
+      let taskResult = new OctaneMigrationStatusTaskResult(sampleOctaneReport);
 
       taskResult.toConsole();
 
       expect(stdout()).toMatchSnapshot();
+    });
+  });
+
+  describe('JSON output', () => {
+    test('it should have basic JSON results', () => {
+      let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
+      let taskResult = new OctaneMigrationStatusTaskResult(sampleOctaneReport);
+
+      let jsonResults = taskResult.toJson();
+
+      expect(jsonResults).toBeDefined();
     });
   });
 });
