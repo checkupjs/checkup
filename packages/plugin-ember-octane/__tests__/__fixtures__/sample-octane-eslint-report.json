@@ -1,0 +1,262 @@
+{
+  "results": [
+    {
+      "filePath": "my-fake-app/app/components/account-token.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-components",
+          "severity": 2,
+          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+          "line": 1,
+          "column": 8,
+          "nodeType": "ImportDefaultSpecifier",
+          "endLine": 1,
+          "endColumn": 17
+        },
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 3,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 23,
+          "endColumn": 3
+        },
+        {
+          "ruleId": "ember/require-tagless-components",
+          "severity": 2,
+          "message": "Please switch to a tagless component by setting `tagName: ''` or converting to a Glimmer component",
+          "line": 3,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 23,
+          "endColumn": 3
+        },
+        {
+          "ruleId": "ember/no-actions-hash",
+          "severity": 2,
+          "message": "Use the @action decorator instead of declaring an actions hash",
+          "line": 9,
+          "column": 3,
+          "nodeType": "Property",
+          "endLine": 22,
+          "endColumn": 4
+        }
+      ],
+      "errorCount": 4,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "source": ""
+    },
+    {
+      "filePath": "my-fake-app/app/components/active-repo-count.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-components",
+          "severity": 2,
+          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+          "line": 1,
+          "column": 8,
+          "nodeType": "ImportDefaultSpecifier",
+          "endLine": 1,
+          "endColumn": 17
+        },
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 8,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 59,
+          "endColumn": 3
+        },
+        {
+          "ruleId": "ember/require-tagless-components",
+          "severity": 2,
+          "message": "Please switch to a tagless component by setting `tagName: ''` or converting to a Glimmer component",
+          "line": 8,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 59,
+          "endColumn": 3
+        }
+      ],
+      "errorCount": 3,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "source": ""
+    },
+    {
+      "filePath": "my-fake-app/app/components/add-cron-job.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-components",
+          "severity": 2,
+          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+          "line": 1,
+          "column": 8,
+          "nodeType": "ImportDefaultSpecifier",
+          "endLine": 1,
+          "endColumn": 17
+        },
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 6,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 54,
+          "endColumn": 3
+        },
+        {
+          "ruleId": "ember/require-tagless-components",
+          "severity": 2,
+          "message": "Please switch to a tagless component by setting `tagName: ''` or converting to a Glimmer component",
+          "line": 6,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 54,
+          "endColumn": 3
+        }
+      ],
+      "errorCount": 3,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "source": ""
+    },
+    {
+      "filePath": "my-fake-app/app/components/add-env-var.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-components",
+          "severity": 2,
+          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+          "line": 1,
+          "column": 8,
+          "nodeType": "ImportDefaultSpecifier",
+          "endLine": 1,
+          "endColumn": 17
+        },
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 7,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 66,
+          "endColumn": 3
+        },
+        {
+          "ruleId": "ember/require-tagless-components",
+          "severity": 2,
+          "message": "Please switch to a tagless component by setting `tagName: ''` or converting to a Glimmer component",
+          "line": 7,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 66,
+          "endColumn": 3
+        },
+        {
+          "ruleId": "ember/no-actions-hash",
+          "severity": 2,
+          "message": "Use the @action decorator instead of declaring an actions hash",
+          "line": 52,
+          "column": 3,
+          "nodeType": "Property",
+          "endLine": 65,
+          "endColumn": 4
+        }
+      ],
+      "errorCount": 4,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "source": ""
+    },
+    {
+      "filePath": "my-fake-app/app/components/build-messages-list.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-components",
+          "severity": 2,
+          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+          "line": 1,
+          "column": 8,
+          "nodeType": "ImportDefaultSpecifier",
+          "endLine": 1,
+          "endColumn": 17
+        },
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 14,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 51,
+          "endColumn": 3
+        },
+        {
+          "ruleId": "ember/no-get",
+          "severity": 2,
+          "message": "Use `this.isExpanded` instead of `this.get('isExpanded')`",
+          "line": 24,
+          "column": 12,
+          "nodeType": "CallExpression",
+          "endLine": 24,
+          "endColumn": 34,
+          "fix": { "range": [617, 639], "text": "this.isExpanded" }
+        },
+        {
+          "ruleId": "ember/no-get",
+          "severity": 2,
+          "message": "Use `this.maxLevel` instead of `this.get('maxLevel')`",
+          "line": 36,
+          "column": 25,
+          "nodeType": "CallExpression",
+          "endLine": 36,
+          "endColumn": 45,
+          "fix": { "range": [985, 1005], "text": "this.maxLevel" }
+        },
+        {
+          "ruleId": "ember/no-get",
+          "severity": 2,
+          "message": "Use `this.sortedMessages` instead of `this.get('sortedMessages')`",
+          "line": 40,
+          "column": 26,
+          "nodeType": "CallExpression",
+          "endLine": 40,
+          "endColumn": 52,
+          "fix": { "range": [1093, 1119], "text": "this.sortedMessages" }
+        },
+        {
+          "ruleId": "ember/no-actions-hash",
+          "severity": 2,
+          "message": "Use the @action decorator instead of declaring an actions hash",
+          "line": 46,
+          "column": 3,
+          "nodeType": "Property",
+          "endLine": 50,
+          "endColumn": 4
+        }
+      ],
+      "errorCount": 6,
+      "warningCount": 0,
+      "fixableErrorCount": 3,
+      "fixableWarningCount": 0,
+      "source": ""
+    }
+  ],
+  "errorCount": 20,
+  "warningCount": 0,
+  "fixableErrorCount": 3,
+  "fixableWarningCount": 0,
+  "usedDeprecatedRules": []
+}
