@@ -120,9 +120,17 @@ export default class OctaneMigrationStatusTaskResult implements TaskResult {
       this.report
     );
 
+    let taglessComponentMigrationInfo = getMigrationInfo(
+      MIGRATION_RULE_CONFIGS[MigrationType.TaglessComponents],
+      this.report
+    );
+
     return {
       totalViolations: this.report.errorCount,
-      migrationTasks: { [MigrationType.NativeClasses]: nativeClassMigrationInfo },
+      migrationTasks: {
+        [MigrationType.NativeClasses]: nativeClassMigrationInfo,
+        [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
+      },
     };
   }
 }

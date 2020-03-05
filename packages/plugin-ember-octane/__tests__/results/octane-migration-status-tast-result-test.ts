@@ -53,6 +53,13 @@ describe('octane-migration-status-task-result', () => {
       expect(nativeClassesMigrationInfo.completionInfo.total).toBe(6);
       expect(nativeClassesMigrationInfo.completionInfo.completed).toBe(1);
       expect(nativeClassesMigrationInfo.completionInfo.percentage).toBe('16.67');
+
+      let taglessClassesMigrationInfo = migrationTasks[MigrationType.TaglessComponents];
+
+      expect(taglessClassesMigrationInfo).toBeDefined();
+      expect(taglessClassesMigrationInfo.completionInfo.total).toBe(6);
+      expect(taglessClassesMigrationInfo.completionInfo.completed).toBe(5);
+      expect(taglessClassesMigrationInfo.completionInfo.percentage).toBe('83.33');
     });
   });
 });
