@@ -3,7 +3,7 @@
 exports[`octane-migration-status-task-result console output simple console output 1`] = `
 "=== Octane Migration Status
 
-JS Error Count: 20
+JS Error Count: 17
 
 "
 `;
