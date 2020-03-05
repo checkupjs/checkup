@@ -50,9 +50,9 @@ describe('octane-migration-status-task-result', () => {
       let nativeClassesMigrationInfo = migrationTasks[MigrationType.NativeClasses];
 
       expect(nativeClassesMigrationInfo).toBeDefined();
-      expect(nativeClassesMigrationInfo.completionInfo.total).toBe(6);
+      expect(nativeClassesMigrationInfo.completionInfo.total).toBe(11);
       expect(nativeClassesMigrationInfo.completionInfo.completed).toBe(1);
-      expect(nativeClassesMigrationInfo.completionInfo.percentage).toBe('16.67');
+      expect(nativeClassesMigrationInfo.completionInfo.percentage).toBe('9.09');
 
       let taglessClassesMigrationInfo = migrationTasks[MigrationType.TaglessComponents];
 

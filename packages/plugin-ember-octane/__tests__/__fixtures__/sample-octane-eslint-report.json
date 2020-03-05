@@ -160,6 +160,106 @@
       "fixableErrorCount": 3,
       "fixableWarningCount": 0,
       "source": ""
+    },
+    {
+      "filePath": "my-fake-app/app/controllers/account/foo.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 3,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 6,
+          "endColumn": 3
+        }
+      ],
+      "errorCount": 1,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "source": "import Controller from '@ember/controller';\n\nexport default Controller.extend({\n  queryParams: ['page'],\n  page: 1\n});\n"
+    },
+    {
+      "filePath": "my-fake-app/app/helpers/my-link.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 9,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 29,
+          "endColumn": 3
+        }
+      ],
+      "errorCount": 1,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "source": "import Ember from 'ember';\nimport { htmlSafe } from '@ember/string';\nimport Helper from '@ember/component/helper';\nimport { inject as service } from '@ember/service';\nimport formatCommit from 'travis/utils/format-commit';\n\nconst { escapeExpression: escape } = Ember.Handlebars.Utils;\n\nexport default Helper.extend({\n  externalLinks: service(),\n\n  compute([vcsType, slug, commitSha]) {\n    if (!commitSha) {\n      return '';\n    }\n\n    const commit = escape(formatCommit(commitSha));\n\n    if (!slug) {\n      return commit;\n    }\n\n    const [owner, repo] = slug.split('/');\n    const commitUrl = this.externalLinks.commitUrl(vcsType, { owner, repo, commit });\n    const url = escape(commitUrl);\n    const string = `<a class=\"github-link only-on-hover\" href=\"${url}\">${commit}</a>`;\n    return new htmlSafe(string);\n  }\n});\n"
+    },
+    {
+      "filePath": "my-fake-app/app/models/foo-bar.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 5,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 19,
+          "endColumn": 3
+        }
+      ],
+      "errorCount": 1,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "source": "import Model, { hasMany, attr } from '@ember-data/model';\nimport { computed } from '@ember/object';\nimport { inject as service } from '@ember/service';\n\nexport default Model.extend({\n  store: service(),\n\n  ownerId: attr('number'),\n  ownerName: attr('string'),\n  ownerType: attr('string'),\n  acceptedAt: attr('date'),\n  organizations: hasMany('organization'),\n\n  owner: computed('ownerName', 'ownerType', function () {\n    const { ownerName, ownerType = '', store } = this;\n    return ownerName && ownerType ? store.peekRecord(ownerType.toLowerCase(), ownerName) : null;\n  })\n\n});\n"
+    },
+    {
+      "filePath": "my-fake-app/app/routes/my-route.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 3,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 13,
+          "endColumn": 3
+        }
+      ],
+      "errorCount": 1,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "source": "import Route from '@ember/routing/route';\n\nexport default Route.extend({\n  setupController(controller, error) {\n    const { message } = error;\n    let matches = message.match(/\\/owner\\/(.*)\\/repos/);\n    if (matches) {\n      const [, account] = matches;\n      controller.set('account', account);\n    }\n    return this._super(...arguments);\n  },\n});\n"
+    },
+    {
+      "filePath": "my-fake-app/app/services/my-service.js",
+      "messages": [
+        {
+          "ruleId": "ember/no-classic-classes",
+          "severity": 2,
+          "message": "Native JS classes should be used instead of classic classes",
+          "line": 10,
+          "column": 16,
+          "nodeType": "CallExpression",
+          "endLine": 70,
+          "endColumn": 3
+        }
+      ],
+      "errorCount": 1,
+      "warningCount": 0,
+      "fixableErrorCount": 0,
+      "fixableWarningCount": 0,
+      "source": "import Service, { inject as service } from '@ember/service';\nimport { computed } from '@ember/object';\nimport { reads } from '@ember/object/computed';\nimport { task } from 'ember-concurrency';\nimport config from 'travis/config/environment';\nimport fetchAll from 'travis/utils/fetch-all';\n\nconst { billingEndpoint } = config;\n\nexport default Service.extend({\n  store: service(),\n  auth: service(),\n  raven: service(),\n\n  user: reads('auth.currentUser'),\n  organizations: reads('fetchOrganizations.lastSuccessful.value'),\n\n  subscriptions: reads('fetchSubscriptions.lastSuccessful.value'),\n  subscriptionError: false,\n  trials: reads('fetchTrials.lastSuccessful.value'),\n\n  all: computed('user', 'organizations.@each', function () {\n    let user = this.user;\n    let organizations = this.organizations || [];\n    return organizations.toArray().concat([user]);\n  }),\n\n  fetchOrganizations: task(function* () {\n    yield fetchAll(this.store, 'organization', {});\n    return this.store.peekAll('organization') || [];\n  }).keepLatest(),\n\n  fetchSubscriptions: task(function* () {\n    this.set('subscriptionError', false);\n    try {\n      const subscriptions = yield this.store.findAll('subscription') || [];\n\n      if (subscriptions.any(s => s.isSubscribed && !s.belongsTo('plan').id())) {\n        this.logMissingPlanException();\n      }\n\n      return subscriptions.sortBy('validTo');\n    } catch (e) {\n      this.set('subscriptionError', true);\n    }\n  }),\n\n  fetchTrials: task(function* () {\n    const trials = yield this.store.findAll('trial') || [];\n    return trials.sortBy('created_at');\n  }),\n\n  init() {\n    this._super(...arguments);\n    this.fetchOrganizations.perform();\n    if (billingEndpoint) {\n      this.fetchSubscriptions.perform();\n      this.fetchTrials.perform();\n    }\n  },\n\n  fetch() {\n    return this.fetchOrganizations.perform().then(() => this.all);\n  },\n\n  logMissingPlanException() {\n    const exception = new Error(`User ${this.user.login} has a subscription with no plan!`);\n    this.raven.logException(exception, true);\n  },\n});\n"
     }
   ],
   "errorCount": 20,
