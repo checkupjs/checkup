@@ -120,9 +120,19 @@
           "nodeType": "Property",
           "endLine": 65,
           "endColumn": 4
+        },
+        {
+          "ruleId": "ember/no-computed-properties-in-native-classes",
+          "severity": 2,
+          "message": "Don't use computed properties with native classes. Use getters or @tracked properties instead",
+          "line": 52,
+          "column": 3,
+          "nodeType": "Property",
+          "endLine": 65,
+          "endColumn": 4
         }
       ],
-      "errorCount": 4,
+      "errorCount": 2,
       "warningCount": 0,
       "fixableErrorCount": 0,
       "fixableWarningCount": 0,

@@ -67,6 +67,13 @@ describe('octane-migration-status-task-result', () => {
       expect(glimmerComponentMigrationInfo.completionInfo.total).toBe(6);
       expect(glimmerComponentMigrationInfo.completionInfo.completed).toBe(4);
       expect(glimmerComponentMigrationInfo.completionInfo.percentage).toBe('66.67');
+
+      let trackedPropertiesMigrationInfo = migrationTasks[MigrationType.TrackedProperties];
+
+      expect(trackedPropertiesMigrationInfo).toBeDefined();
+      expect(trackedPropertiesMigrationInfo.completionInfo.total).toBe(6);
+      expect(trackedPropertiesMigrationInfo.completionInfo.completed).toBe(5);
+      expect(trackedPropertiesMigrationInfo.completionInfo.percentage).toBe('83.33');
     });
   });
 });
