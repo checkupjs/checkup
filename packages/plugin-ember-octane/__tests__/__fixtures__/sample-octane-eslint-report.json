@@ -70,9 +70,19 @@
           "nodeType": "CallExpression",
           "endLine": 59,
           "endColumn": 3
+        },
+        {
+          "ruleId": "ember/no-classic-components",
+          "severity": 2,
+          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+          "line": 1,
+          "column": 8,
+          "nodeType": "ImportDefaultSpecifier",
+          "endLine": 1,
+          "endColumn": 17
         }
       ],
-      "errorCount": 3,
+      "errorCount": 2,
       "warningCount": 0,
       "fixableErrorCount": 0,
       "fixableWarningCount": 0,

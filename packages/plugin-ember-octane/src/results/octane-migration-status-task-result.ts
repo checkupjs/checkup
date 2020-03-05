@@ -125,11 +125,17 @@ export default class OctaneMigrationStatusTaskResult implements TaskResult {
       this.report
     );
 
+    let glimmerComponentsMigrationinfo = getMigrationInfo(
+      MIGRATION_RULE_CONFIGS[MigrationType.GlimmerComponents],
+      this.report
+    );
+
     return {
       totalViolations: this.report.errorCount,
       migrationTasks: {
         [MigrationType.NativeClasses]: nativeClassMigrationInfo,
         [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
+        [MigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
       },
     };
   }
