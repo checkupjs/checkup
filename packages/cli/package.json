@@ -58,6 +58,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
+    "commands": "./lib/commands",
     "bin": "checkup"
   },
   "repository": "https://github.com/checkupjs/checkup",
