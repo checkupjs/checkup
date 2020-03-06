@@ -58,7 +58,7 @@ The .checkuprc file (without extension) can be in JSON or YAML format. You can a
 You can also specify an explicit path to a configuration via the command line, which will override any configurations found in any `.checkuprc.*` files
 
 ```sh-session
-$ checkup --config /some/path/to/my/config/.eslintrc
+$ checkup --config /some/path/to/my/config/.checkuprc
 ``` 
 
 The configuration object has the following properties:

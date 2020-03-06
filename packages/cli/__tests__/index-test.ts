@@ -56,31 +56,29 @@ describe('@checkup/cli', () => {
             }
           }
         );
-      const anotherPlugin = new Plugin('another-plugin-mock')
-        .addTask(
-          class MockTask implements Task {
-            taskName = 'mock-task3';
-            friendlyTaskName = 'Mock Task3';
-            taskClassification = {
-              category: 0,
-              priority: 0,
-            };
+      const anotherPlugin = new Plugin('another-plugin-mock').addTask(
+        class MockTask implements Task {
+          taskName = 'mock-task3';
+          friendlyTaskName = 'Mock Task3';
+          taskClassification = {
+            category: 0,
+            priority: 0,
+          };
 
-            async run() {
-              return {
-                toJson() {
-                  return {
-                    mockTask: 15,
-                  };
-                },
-                toConsole() {
-                  process.stdout.write('mock task3 is being run\n');
-                },
-              };
-            }
+          async run() {
+            return {
+              toJson() {
+                return {
+                  mockTask: 15,
+                };
+              },
+              toConsole() {
+                process.stdout.write('mock task3 is being run\n');
+              },
+            };
           }
-        )
-        .build();
+        }
+      );
 
       project = new CheckupProject('checkup-project', '0.0.0')
         .addCheckupConfig({

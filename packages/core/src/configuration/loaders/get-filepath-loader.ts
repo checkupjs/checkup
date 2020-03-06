@@ -13,11 +13,19 @@ import CosmiconfigService from '../cosmiconfig-service';
 const getFilepathLoader: (filepath: string) => CheckupConfigLoader = (
   filepath: string
 ) => async () => {
-  const maybeConfig = await new CosmiconfigService().load(filepath);
+  let maybeConfig;
+  try {
+    maybeConfig = await new CosmiconfigService().load(filepath);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      throw new Error(`Could not find checkup configuration file at ${filepath}`);
+    }
+    throw error;
+  }
 
   if (maybeConfig === null) {
     throw new Error(
-      `Could not find a checkup configuration starting at: ${filepath}. See https://github.com/checkupjs/checkup/tree/master/packages/cli#configuration for more info on how to setup a configuration.`
+      `Could not find a checkup configuration at: ${filepath}. See https://github.com/checkupjs/checkup/tree/master/packages/cli#configuration for more info on how to setup a configuration.`
     );
   }
 

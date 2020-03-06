@@ -15,9 +15,8 @@ mock task3 is being run
 
 exports[`@checkup/cli normal cli output with plugins should output checkup result in JSON 1`] = `
 "{
-  \\"mockTask\\": 5,
-  \\"mockTask2\\": 10,
-  \\"mockTask3\\": 15
+  \\"mockTask\\": 15,
+  \\"mockTask2\\": 10
 }
 "
 `;

@@ -22,7 +22,7 @@ describe('get-filepath-loader', () => {
     await expect(
       getFilepathLoader(path.join(project.baseDir, '.checkuprc'))()
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"ENOENT: no such file or directory, open '${path.join(project.baseDir, '.checkuprc')}'"`
+      `"Could not find checkup configuration file at ${path.join(project.baseDir, '.checkuprc')}"`
     );
   });
 
