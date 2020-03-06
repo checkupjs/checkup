@@ -34,12 +34,10 @@ export default class GenerateCommand extends Command {
     },
     {
       name: 'name',
-      required: true,
       description: 'name of the entity (kebab-case)',
     },
     {
       name: 'path',
-      required: true,
       description: 'The path referring to the directory that the generator will run in',
       default: '.',
     },
