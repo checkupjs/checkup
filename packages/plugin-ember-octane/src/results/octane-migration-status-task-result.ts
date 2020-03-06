@@ -13,9 +13,15 @@ import { TaskResult, ui } from '@checkup/core';
 // no-jquery                                -
 // require-tagless-components               -
 
+interface CompetionInfo {
+  total: number;
+  completed: number;
+  percentage: string;
+}
 interface MigrationInfo {
+  completionInfo: CompetionInfo;
   name: string;
-  violations: number;
+  relatedResults: CLIEngine.LintResult[];
 }
 
 interface MigrationRuleConfig {
@@ -24,12 +30,15 @@ interface MigrationRuleConfig {
   rules: string[];
 }
 
-enum MigrationType {
-  NativeClass,
+export enum MigrationType {
+  NativeClasses = 'native-classes',
+  TaglessComponents = 'tagless-components',
+  GlimmerComponents = 'glimmer-components',
+  TrackedProperties = 'tracked-properties',
 }
 
 const MIGRATION_RULE_CONFIGS: { [Key in MigrationType]: MigrationRuleConfig } = {
-  [MigrationType.NativeClass]: {
+  [MigrationType.NativeClasses]: {
     fileMatchers: [
       /app\/app\.js$/,
       /(app|addon)\/(adapters|components|controllers|helpers|models|routes|services)\/.*\.js$/,
@@ -37,30 +46,59 @@ const MIGRATION_RULE_CONFIGS: { [Key in MigrationType]: MigrationRuleConfig } = 
     name: 'Native Class Migration',
     rules: [
       'ember/no-classic-classes',
-      // 'ember/classic-decorator-no-classic-methods',
-      // 'ember/no-actions-hash',
+      'ember/classic-decorator-no-classic-methods',
+      'ember/no-actions-hash',
+      'ember/no-get',
     ],
+  },
+  [MigrationType.TaglessComponents]: {
+    fileMatchers: [/(app|addon)\/components\/.*\.js$/],
+    name: 'Tagless Component Migration',
+    rules: ['ember/require-tagless-components'],
+  },
+  [MigrationType.GlimmerComponents]: {
+    fileMatchers: [/(app|addon)\/components\/.*\.js$/],
+    name: 'Glimmer Component Migration',
+    rules: ['ember/no-classic-components'],
+  },
+  [MigrationType.TrackedProperties]: {
+    fileMatchers: [/(app|addon)\/components\/.*\.js$/],
+    name: 'Tracked Properties Migration',
+    rules: ['ember/no-computed-properties-in-native-classes'],
   },
 };
 
-const getMigrationInfo = (
+function getMigrationInfo(
   migrationConfig: MigrationRuleConfig,
   report: CLIEngine.LintReport
-): MigrationInfo => {
-  let relatedResults = report.results.filter(result => {
-    let { filePath } = result;
-    return migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath));
+): MigrationInfo {
+  // Get all files the rule applies to.
+  let relatedResults = report.results.filter(({ filePath }) =>
+    migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
+  );
+
+  let { length: totalApplicableFiles } = relatedResults;
+
+  // Get all results that contain associated violations
+  let relatedResultsWithViolations = relatedResults.filter(result => {
+    return result.messages.some(({ ruleId }) =>
+      ruleId ? migrationConfig.rules.includes(ruleId) : false
+    );
   });
 
-  let totalMigrationViolations = relatedResults
-    .map(result => result.errorCount)
-    .reduce((totalErrors, resultErrorCount) => totalErrors + resultErrorCount);
+  let resultsWithoutViolations = totalApplicableFiles - relatedResultsWithViolations.length;
+  let percentageWithoutViolations = (resultsWithoutViolations / totalApplicableFiles) * 100;
 
   return {
+    completionInfo: {
+      total: totalApplicableFiles,
+      completed: resultsWithoutViolations,
+      percentage: percentageWithoutViolations.toFixed(2),
+    },
     name: migrationConfig.name,
-    violations: totalMigrationViolations,
+    relatedResults,
   };
-};
+}
 
 export default class OctaneMigrationStatusTaskResult implements TaskResult {
   taskName: string = 'Octane Migration Status';
@@ -78,13 +116,33 @@ export default class OctaneMigrationStatusTaskResult implements TaskResult {
 
   toJson() {
     let nativeClassMigrationInfo = getMigrationInfo(
-      MIGRATION_RULE_CONFIGS[MigrationType.NativeClass],
+      MIGRATION_RULE_CONFIGS[MigrationType.NativeClasses],
+      this.report
+    );
+
+    let taglessComponentMigrationInfo = getMigrationInfo(
+      MIGRATION_RULE_CONFIGS[MigrationType.TaglessComponents],
+      this.report
+    );
+
+    let glimmerComponentsMigrationinfo = getMigrationInfo(
+      MIGRATION_RULE_CONFIGS[MigrationType.GlimmerComponents],
+      this.report
+    );
+
+    let trackedPropertiesMigrationInfo = getMigrationInfo(
+      MIGRATION_RULE_CONFIGS[MigrationType.TrackedProperties],
       this.report
     );
 
     return {
       totalViolations: this.report.errorCount,
-      migrationTasks: [nativeClassMigrationInfo],
+      migrationTasks: {
+        [MigrationType.NativeClasses]: nativeClassMigrationInfo,
+        [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
+        [MigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
+        [MigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
+      },
     };
   }
 }
