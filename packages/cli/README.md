@@ -44,7 +44,6 @@ checkup is designed to be completely configurable via a configuration object.
 
 checkup uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load your configuration object. Starting from the current working directory, it looks for the following possible sources:
                                         
-- a checkup property in package.json
 - a .checkuprc file
 - a checkup.config.js file exporting a JS object
 
@@ -52,9 +51,15 @@ The search stops when one of these is found, and checkup uses that object.
 
 The .checkuprc file (without extension) can be in JSON or YAML format. You can add a filename extension to help your text editor provide syntax checking and highlighting:
 
-- checkup.json
-- checkup.yaml / .checkup.yml
-- checkup.js
+- .checkup.json
+- .checkup.yaml / .checkup.yml
+- .checkup.js
+
+You can also specify an explicit path to a configuration via the command line, which will override any configurations found in any `.checkuprc.*` files
+
+```sh-session
+$ checkup --config /some/path/to/my/config/.checkuprc
+``` 
 
 The configuration object has the following properties:
 

@@ -1,5 +1,6 @@
 import { CheckupConfig, Task } from '@checkup/core';
 import { CheckupProject, Plugin, stdout } from '@checkup/test-helpers';
+import * as path from 'path';
 
 import cmd = require('../src');
 
@@ -55,13 +56,37 @@ describe('@checkup/cli', () => {
             }
           }
         );
+      const anotherPlugin = new Plugin('another-plugin-mock').addTask(
+        class MockTask implements Task {
+          taskName = 'mock-task3';
+          friendlyTaskName = 'Mock Task3';
+          taskClassification = {
+            category: 0,
+            priority: 0,
+          };
+
+          async run() {
+            return {
+              toJson() {
+                return {
+                  mockTask: 15,
+                };
+              },
+              toConsole() {
+                process.stdout.write('mock task3 is being run\n');
+              },
+            };
+          }
+        }
+      );
 
       project = new CheckupProject('checkup-project', '0.0.0')
         .addCheckupConfig({
-          plugins: ['@checkup/plugin-mock'],
+          plugins: ['@checkup/plugin-mock', 'another-plugin-mock'],
           tasks: {},
         })
-        .addPlugin(plugin);
+        .addPlugin(plugin)
+        .addPlugin(anotherPlugin);
 
       project.writeSync();
     });
@@ -86,6 +111,18 @@ describe('@checkup/cli', () => {
       await cmd.run(['--task', 'mock-task', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
+    });
+
+    it('should use the config at the config path if provided', async () => {
+      const anotherProject = new CheckupProject('another-project').addCheckupConfig({
+        plugins: ['@checkup/plugin-mock'],
+        tasks: {},
+      });
+      anotherProject.writeSync();
+      await cmd.run(['--config', path.join(anotherProject.baseDir, '.checkuprc'), project.baseDir]);
+
+      expect(stdout()).toMatchSnapshot();
+      anotherProject.dispose();
     });
   });
 

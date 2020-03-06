@@ -9,12 +9,13 @@ tasks.someTask.isEnabled expected type boolean, but got \\"foo\\""
 exports[`@checkup/cli normal cli output with plugins should output checkup result 1`] = `
 "mock task is being run
 mock task2 is being run
+mock task3 is being run
 "
 `;
 
 exports[`@checkup/cli normal cli output with plugins should output checkup result in JSON 1`] = `
 "{
-  \\"mockTask\\": 5,
+  \\"mockTask\\": 15,
   \\"mockTask2\\": 10
 }
 "
@@ -22,5 +23,11 @@ exports[`@checkup/cli normal cli output with plugins should output checkup resul
 
 exports[`@checkup/cli normal cli output with plugins should run a single task if the task option is specified 1`] = `
 "mock task is being run
+"
+`;
+
+exports[`@checkup/cli normal cli output with plugins should use the config at the config path if provided 1`] = `
+"mock task is being run
+mock task2 is being run
 "
 `;
