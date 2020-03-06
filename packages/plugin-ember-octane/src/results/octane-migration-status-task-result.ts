@@ -68,10 +68,10 @@ const MIGRATION_RULE_CONFIGS: { [Key in MigrationType]: MigrationRuleConfig } = 
   },
 };
 
-const getMigrationInfo = (
+function getMigrationInfo(
   migrationConfig: MigrationRuleConfig,
   report: CLIEngine.LintReport
-): MigrationInfo => {
+): MigrationInfo {
   // Get all files the rule applies to.
   let relatedResults = report.results.filter(({ filePath }) =>
     migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
@@ -98,7 +98,7 @@ const getMigrationInfo = (
     name: migrationConfig.name,
     relatedResults,
   };
-};
+}
 
 export default class OctaneMigrationStatusTaskResult implements TaskResult {
   taskName: string = 'Octane Migration Status';
