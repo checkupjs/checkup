@@ -18,7 +18,7 @@
     "cli-ux": "^5.4.4",
     "fs-extra": "^8.1.0",
     "globby": "^11.0.0",
-    "p-map": "^3.0.0",
+    "p-map": "^4.0.0",
     "tslib": "^1"
   },
   "devDependencies": {
