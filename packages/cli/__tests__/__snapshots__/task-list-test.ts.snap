@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskList runTask will run a task by taskName 1`] = `
+Object {
+  "meta": Object {
+    "friendlyTaskName": "Mock Task",
+    "taskClassification": Object {
+      "category": "core",
+      "priority": "high",
+    },
+    "taskName": "mock-task",
+  },
+  "result": "mock task is being run",
+}
+`;
+
+exports[`TaskList runTasks will run all registered tasks 1`] = `
+Object {
+  "meta": Object {
+    "friendlyTaskName": "Mock Task",
+    "taskClassification": Object {
+      "category": "core",
+      "priority": "high",
+    },
+    "taskName": "mock-task",
+  },
+  "result": "mock task is being run",
+}
+`;
+
+exports[`TaskList runTasks will run all registered tasks 2`] = `
+Object {
+  "meta": Object {
+    "friendlyTaskName": "Another Mock Task",
+    "taskClassification": Object {
+      "category": "core",
+      "priority": "low",
+    },
+    "taskName": "another-mock-task",
+  },
+  "result": "another mock task is being run",
+}
+`;

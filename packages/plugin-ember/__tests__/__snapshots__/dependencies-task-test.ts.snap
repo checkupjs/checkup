@@ -30,7 +30,15 @@ ember-cli-string-utils latest
 
 exports[`dependencies-task detects Ember dependencies as JSON 1`] = `
 Object {
-  "dependencies": Object {
+  "meta": Object {
+    "friendlyTaskName": "Project Dependencies",
+    "taskClassification": Object {
+      "category": "core",
+      "priority": "medium",
+    },
+    "taskName": "dependencies",
+  },
+  "result": Object {
     "emberAddons": Object {
       "dependencies": Object {
         "ember-source": "^3.15.0",

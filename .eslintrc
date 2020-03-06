@@ -5,14 +5,13 @@
     "ecmaVersion": 2017,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "filenames", "jest", "jsdoc", "prettier"],
+  "plugins": ["@typescript-eslint", "filenames", "jest", "prettier"],
   "extends": [
     "eslint:recommended",
     "prettier",
     "prettier/@typescript-eslint",
     "plugin:jest/recommended",
     "plugin:jest/style",
-    "plugin:jsdoc/recommended",
     "plugin:unicorn/recommended"
   ],
   "env": {
@@ -24,7 +23,8 @@
     "prettier/prettier": "error",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error",
-    "no-global-assign": ["error", { "exceptions": ["console"] }]
+    "no-global-assign": ["error", { "exceptions": ["console"] }],
+    "unicorn/prevent-abbreviations": "off"
   },
   "overrides": [
     {

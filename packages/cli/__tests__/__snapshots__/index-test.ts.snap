@@ -15,8 +15,51 @@ mock task3 is being run
 
 exports[`@checkup/cli normal cli output with plugins should output checkup result in JSON 1`] = `
 "{
-  \\"mockTask\\": 15,
-  \\"mockTask2\\": 10
+  \\"core\\": {
+    \\"high\\": [
+      {
+        \\"meta\\": {
+          \\"taskName\\": \\"mock-task\\",
+          \\"friendlyTaskName\\": \\"Mock Task\\",
+          \\"taskClassification\\": {
+            \\"category\\": \\"core\\",
+            \\"priority\\": \\"high\\"
+          }
+        },
+        \\"result\\": {
+          \\"mockTask1\\": 5
+        }
+      },
+      {
+        \\"meta\\": {
+          \\"taskName\\": \\"mock-task2\\",
+          \\"friendlyTaskName\\": \\"Mock Task 2\\",
+          \\"taskClassification\\": {
+            \\"category\\": \\"core\\",
+            \\"priority\\": \\"high\\"
+          }
+        },
+        \\"result\\": {
+          \\"mockTask2\\": 10
+        }
+      },
+      {
+        \\"meta\\": {
+          \\"taskName\\": \\"mock-task3\\",
+          \\"friendlyTaskName\\": \\"Mock Task 3\\",
+          \\"taskClassification\\": {
+            \\"category\\": \\"core\\",
+            \\"priority\\": \\"high\\"
+          }
+        },
+        \\"result\\": {
+          \\"mockTask2\\": 10
+        }
+      }
+    ],
+    \\"medium\\": [],
+    \\"low\\": []
+  }
 }
 "
 `;

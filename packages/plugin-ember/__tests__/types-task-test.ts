@@ -58,7 +58,7 @@ describe('types-task', () => {
     const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
-    typesTaskResult.toConsole();
+    typesTaskResult.stdout();
 
     expect(stdout()).toMatchSnapshot();
   });
@@ -80,7 +80,7 @@ describe('types-task', () => {
     const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
-    typesTaskResult.toConsole();
+    typesTaskResult.stdout();
 
     expect(stdout()).toMatchSnapshot();
   });
@@ -96,7 +96,7 @@ describe('types-task', () => {
     const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
-    expect(typesTaskResult.toJson()).toMatchSnapshot();
+    expect(typesTaskResult.json()).toMatchSnapshot();
   });
 
   it('returns all the types (including nested) found in the app and outputs to JSON', async () => {
@@ -116,6 +116,6 @@ describe('types-task', () => {
     const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
-    expect(typesTaskResult.toJson()).toMatchSnapshot();
+    expect(typesTaskResult.json()).toMatchSnapshot();
   });
 });
