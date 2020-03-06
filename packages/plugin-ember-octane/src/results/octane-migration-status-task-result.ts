@@ -109,10 +109,12 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
   }
 
   stdout() {
+    let jsonOutput = this.json();
+
     ui.styledHeader(this.taskName);
     ui.blankLine();
     ui.styledObject({
-      'JS Error Count': this.report.errorCount,
+      'JS Octane Violations': jsonOutput.esLint.totalViolations,
     });
     ui.blankLine();
   }
@@ -140,7 +142,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
 
     return {
       meta: this.meta,
-      result: {
+      esLint: {
         totalViolations: this.report.errorCount,
         migrationTasks: {
           [MigrationType.NativeClasses]: nativeClassMigrationInfo,
