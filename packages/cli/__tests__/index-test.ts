@@ -150,7 +150,7 @@ describe('@checkup/cli', () => {
       expect(fs.existsSync(outputPath)).toEqual(true);
 
       fs.unlinkSync(outputPath);
-    }, 10000);
+    }, 15000);
 
     it('should output a PDF in a custom directory if the pdf reporter and reporterOutputPath options are provided', async () => {
       let tmp = createTmpDir();
@@ -165,7 +165,7 @@ describe('@checkup/cli', () => {
       expect(fs.existsSync(outputPath)).toEqual(true);
 
       fs.unlinkSync(outputPath);
-    }, 10000);
+    }, 15000);
 
     it('should run a single task if the task option is specified', async () => {
       await cmd.run(['--task', 'mock-task', project.baseDir]);
