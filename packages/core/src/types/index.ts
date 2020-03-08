@@ -1,6 +1,7 @@
+import * as t from 'io-ts';
+
 import { JsonObject, PromiseValue } from 'type-fest';
 import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
-import * as t from 'io-ts';
 
 export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
@@ -11,15 +12,15 @@ export interface Parser {
 }
 
 export const enum Category {
-  Core,
-  Migration,
-  Insights,
+  Core = 'core',
+  Migration = 'migration',
+  Insights = 'insights',
 }
 
 export const enum Priority {
-  High,
-  Medium,
-  Low,
+  High = 'high',
+  Medium = 'medium',
+  Low = 'low',
 }
 
 export type TaskName = string;
@@ -36,14 +37,20 @@ export interface Task {
   run: () => Promise<TaskResult>;
 }
 
+export type JsonTaskResult = {
+  meta: TaskMetaData;
+  result: {};
+};
+
 export interface TaskResult {
-  toConsole: () => void;
-  toJson: () => {};
+  stdout: () => void;
+  json: () => JsonTaskResult;
 }
 
 export interface TaskMetaData {
   taskName: TaskName;
   friendlyTaskName: TaskName;
+  taskClassification: TaskClassification;
 }
 
 export interface TaskItemData {

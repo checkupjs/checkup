@@ -21,7 +21,7 @@ export default class DependenciesTaskResult extends BaseTaskResult implements Ta
     );
   }
 
-  toConsole() {
+  stdout() {
     if (!this.hasDependencies) {
       return;
     }
@@ -42,9 +42,10 @@ export default class DependenciesTaskResult extends BaseTaskResult implements Ta
     );
   }
 
-  toJson() {
+  json() {
     return {
-      [this.meta.taskName]: {
+      meta: this.meta,
+      result: {
         emberLibraries: this.emberLibraries,
         emberAddons: this.emberAddons,
         emberCliAddons: this.emberCliAddons,

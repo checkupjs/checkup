@@ -23,7 +23,7 @@ describe('project-info-task', () => {
       const result = await new ProjectInfoTask({ path: checkupProject.baseDir }).run();
       const taskResult = <ProjectInfoTaskResult>result;
 
-      taskResult.toConsole();
+      taskResult.stdout();
 
       expect(stdout()).toMatchSnapshot();
     });
@@ -32,7 +32,7 @@ describe('project-info-task', () => {
       const result = await new ProjectInfoTask({ path: checkupProject.baseDir }).run();
       const taskResult = <ProjectInfoTaskResult>result;
 
-      expect(taskResult.toJson()).toMatchSnapshot();
+      expect(taskResult.json()).toMatchSnapshot();
     });
   });
 });

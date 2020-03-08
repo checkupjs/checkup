@@ -2,88 +2,98 @@
 
 exports[`types-task returns all the types (including nested) found in the app and outputs to JSON 1`] = `
 Object {
-  "types": Array [
-    Object {
-      "data": Array [
-        "addon/components/my-component.js",
-        "lib/ember-super-button/addon/components/my-component.js",
-      ],
-      "total": 2,
-      "type": "components",
+  "meta": Object {
+    "friendlyTaskName": "Project Types",
+    "taskClassification": Object {
+      "category": "core",
+      "priority": "medium",
     },
-    Object {
-      "data": Array [
-        "addon/controllers/my-controller.js",
-        "lib/ember-super-button/addon/controllers/my-controller.js",
-      ],
-      "total": 2,
-      "type": "controllers",
-    },
-    Object {
-      "data": Array [
-        "addon/helpers/my-helper.js",
-        "lib/ember-super-button/addon/helpers/my-helper.js",
-      ],
-      "total": 2,
-      "type": "helpers",
-    },
-    Object {
-      "data": Array [
-        "addon/initializers/my-initializer.js",
-        "lib/ember-super-button/addon/initializers/my-initializer.js",
-      ],
-      "total": 2,
-      "type": "initializers",
-    },
-    Object {
-      "data": Array [
-        "addon/instance-initializers/my-helper.js",
-        "lib/ember-super-button/addon/instance-initializers/my-helper.js",
-      ],
-      "total": 2,
-      "type": "instance-initializers",
-    },
-    Object {
-      "data": Array [
-        "addon/mixins/my-mixin.js",
-        "lib/ember-super-button/addon/mixins/my-mixin.js",
-      ],
-      "total": 2,
-      "type": "mixins",
-    },
-    Object {
-      "data": Array [
-        "addon/models/my-model.js",
-        "lib/ember-super-button/addon/models/my-model.js",
-      ],
-      "total": 2,
-      "type": "models",
-    },
-    Object {
-      "data": Array [
-        "addon/routes/my-route.js",
-        "lib/ember-super-button/addon/routes/my-route.js",
-      ],
-      "total": 2,
-      "type": "routes",
-    },
-    Object {
-      "data": Array [
-        "addon/services/my-service.js",
-        "lib/ember-super-button/addon/services/my-service.js",
-      ],
-      "total": 2,
-      "type": "services",
-    },
-    Object {
-      "data": Array [
-        "addon/templates/my-component.hbs",
-        "lib/ember-super-button/addon/templates/my-component.hbs",
-      ],
-      "total": 2,
-      "type": "templates",
-    },
-  ],
+    "taskName": "types",
+  },
+  "result": Object {
+    "types": Array [
+      Object {
+        "data": Array [
+          "addon/components/my-component.js",
+          "lib/ember-super-button/addon/components/my-component.js",
+        ],
+        "total": 2,
+        "type": "components",
+      },
+      Object {
+        "data": Array [
+          "addon/controllers/my-controller.js",
+          "lib/ember-super-button/addon/controllers/my-controller.js",
+        ],
+        "total": 2,
+        "type": "controllers",
+      },
+      Object {
+        "data": Array [
+          "addon/helpers/my-helper.js",
+          "lib/ember-super-button/addon/helpers/my-helper.js",
+        ],
+        "total": 2,
+        "type": "helpers",
+      },
+      Object {
+        "data": Array [
+          "addon/initializers/my-initializer.js",
+          "lib/ember-super-button/addon/initializers/my-initializer.js",
+        ],
+        "total": 2,
+        "type": "initializers",
+      },
+      Object {
+        "data": Array [
+          "addon/instance-initializers/my-helper.js",
+          "lib/ember-super-button/addon/instance-initializers/my-helper.js",
+        ],
+        "total": 2,
+        "type": "instance-initializers",
+      },
+      Object {
+        "data": Array [
+          "addon/mixins/my-mixin.js",
+          "lib/ember-super-button/addon/mixins/my-mixin.js",
+        ],
+        "total": 2,
+        "type": "mixins",
+      },
+      Object {
+        "data": Array [
+          "addon/models/my-model.js",
+          "lib/ember-super-button/addon/models/my-model.js",
+        ],
+        "total": 2,
+        "type": "models",
+      },
+      Object {
+        "data": Array [
+          "addon/routes/my-route.js",
+          "lib/ember-super-button/addon/routes/my-route.js",
+        ],
+        "total": 2,
+        "type": "routes",
+      },
+      Object {
+        "data": Array [
+          "addon/services/my-service.js",
+          "lib/ember-super-button/addon/services/my-service.js",
+        ],
+        "total": 2,
+        "type": "services",
+      },
+      Object {
+        "data": Array [
+          "addon/templates/my-component.hbs",
+          "lib/ember-super-button/addon/templates/my-component.hbs",
+        ],
+        "total": 2,
+        "type": "templates",
+      },
+    ],
+  },
 }
 `;
 
@@ -107,78 +117,88 @@ templates             2
 
 exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
 Object {
-  "types": Array [
-    Object {
-      "data": Array [
-        "addon/components/my-component.js",
-      ],
-      "total": 1,
-      "type": "components",
+  "meta": Object {
+    "friendlyTaskName": "Project Types",
+    "taskClassification": Object {
+      "category": "core",
+      "priority": "medium",
     },
-    Object {
-      "data": Array [
-        "addon/controllers/my-controller.js",
-      ],
-      "total": 1,
-      "type": "controllers",
-    },
-    Object {
-      "data": Array [
-        "addon/helpers/my-helper.js",
-      ],
-      "total": 1,
-      "type": "helpers",
-    },
-    Object {
-      "data": Array [
-        "addon/initializers/my-initializer.js",
-      ],
-      "total": 1,
-      "type": "initializers",
-    },
-    Object {
-      "data": Array [
-        "addon/instance-initializers/my-helper.js",
-      ],
-      "total": 1,
-      "type": "instance-initializers",
-    },
-    Object {
-      "data": Array [
-        "addon/mixins/my-mixin.js",
-      ],
-      "total": 1,
-      "type": "mixins",
-    },
-    Object {
-      "data": Array [
-        "addon/models/my-model.js",
-      ],
-      "total": 1,
-      "type": "models",
-    },
-    Object {
-      "data": Array [
-        "addon/routes/my-route.js",
-      ],
-      "total": 1,
-      "type": "routes",
-    },
-    Object {
-      "data": Array [
-        "addon/services/my-service.js",
-      ],
-      "total": 1,
-      "type": "services",
-    },
-    Object {
-      "data": Array [
-        "addon/templates/my-component.hbs",
-      ],
-      "total": 1,
-      "type": "templates",
-    },
-  ],
+    "taskName": "types",
+  },
+  "result": Object {
+    "types": Array [
+      Object {
+        "data": Array [
+          "addon/components/my-component.js",
+        ],
+        "total": 1,
+        "type": "components",
+      },
+      Object {
+        "data": Array [
+          "addon/controllers/my-controller.js",
+        ],
+        "total": 1,
+        "type": "controllers",
+      },
+      Object {
+        "data": Array [
+          "addon/helpers/my-helper.js",
+        ],
+        "total": 1,
+        "type": "helpers",
+      },
+      Object {
+        "data": Array [
+          "addon/initializers/my-initializer.js",
+        ],
+        "total": 1,
+        "type": "initializers",
+      },
+      Object {
+        "data": Array [
+          "addon/instance-initializers/my-helper.js",
+        ],
+        "total": 1,
+        "type": "instance-initializers",
+      },
+      Object {
+        "data": Array [
+          "addon/mixins/my-mixin.js",
+        ],
+        "total": 1,
+        "type": "mixins",
+      },
+      Object {
+        "data": Array [
+          "addon/models/my-model.js",
+        ],
+        "total": 1,
+        "type": "models",
+      },
+      Object {
+        "data": Array [
+          "addon/routes/my-route.js",
+        ],
+        "total": 1,
+        "type": "routes",
+      },
+      Object {
+        "data": Array [
+          "addon/services/my-service.js",
+        ],
+        "total": 1,
+        "type": "services",
+      },
+      Object {
+        "data": Array [
+          "addon/templates/my-component.hbs",
+        ],
+        "total": 1,
+        "type": "templates",
+      },
+    ],
+  },
 }
 `;
 

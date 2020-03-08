@@ -10,7 +10,15 @@ type: Ember.js addon
 
 exports[`project-info-task for Ember Addons can read project info as JSON 1`] = `
 Object {
-  "ember-project": Object {
+  "meta": Object {
+    "friendlyTaskName": "Ember Project",
+    "taskClassification": Object {
+      "category": "core",
+      "priority": "medium",
+    },
+    "taskName": "ember-project",
+  },
+  "result": Object {
     "type": "Ember.js addon",
   },
 }
@@ -26,7 +34,15 @@ type: Ember.js application
 
 exports[`project-info-task for Ember Applications can read project info as JSON 1`] = `
 Object {
-  "ember-project": Object {
+  "meta": Object {
+    "friendlyTaskName": "Ember Project",
+    "taskClassification": Object {
+      "category": "core",
+      "priority": "medium",
+    },
+    "taskName": "ember-project",
+  },
+  "result": Object {
     "type": "Ember.js application",
   },
 }

@@ -1,6 +1,8 @@
-import { CheckupConfig, Task } from '@checkup/core';
-import { CheckupProject, Plugin, stdout } from '@checkup/test-helpers';
+import * as fs from 'fs';
 import * as path from 'path';
+
+import { Category, CheckupConfig, Priority, Task } from '@checkup/core';
+import { CheckupProject, Plugin, createTmpDir, stdout } from '@checkup/test-helpers';
 
 import cmd = require('../src');
 
@@ -15,18 +17,28 @@ describe('@checkup/cli', () => {
             taskName = 'mock-task';
             friendlyTaskName = 'Mock Task';
             taskClassification = {
-              category: 0,
-              priority: 0,
+              category: Category.Core,
+              priority: Priority.High,
             };
 
             async run() {
               return {
-                toJson() {
+                json() {
                   return {
-                    mockTask: 5,
+                    meta: {
+                      taskName: 'mock-task',
+                      friendlyTaskName: 'Mock Task',
+                      taskClassification: {
+                        category: Category.Core,
+                        priority: Priority.High,
+                      },
+                    },
+                    result: {
+                      mockTask1: 5,
+                    },
                   };
                 },
-                toConsole() {
+                stdout() {
                   process.stdout.write('mock task is being run\n');
                 },
               };
@@ -38,18 +50,28 @@ describe('@checkup/cli', () => {
             taskName = 'mock-task2';
             friendlyTaskName = 'Mock Task 2';
             taskClassification = {
-              category: 0,
-              priority: 0,
+              category: Category.Core,
+              priority: Priority.High,
             };
 
             async run() {
               return {
-                toJson() {
+                json() {
                   return {
-                    mockTask2: 10,
+                    meta: {
+                      taskName: 'mock-task2',
+                      friendlyTaskName: 'Mock Task 2',
+                      taskClassification: {
+                        category: Category.Core,
+                        priority: Priority.High,
+                      },
+                    },
+                    result: {
+                      mockTask2: 10,
+                    },
                   };
                 },
-                toConsole() {
+                stdout() {
                   process.stdout.write('mock task2 is being run\n');
                 },
               };
@@ -61,18 +83,28 @@ describe('@checkup/cli', () => {
           taskName = 'mock-task3';
           friendlyTaskName = 'Mock Task3';
           taskClassification = {
-            category: 0,
-            priority: 0,
+            category: Category.Core,
+            priority: Priority.High,
           };
 
           async run() {
             return {
-              toJson() {
+              json() {
                 return {
-                  mockTask: 15,
+                  meta: {
+                    taskName: 'mock-task3',
+                    friendlyTaskName: 'Mock Task 3',
+                    taskClassification: {
+                      category: Category.Core,
+                      priority: Priority.High,
+                    },
+                  },
+                  result: {
+                    mockTask2: 10,
+                  },
                 };
               },
-              toConsole() {
+              stdout() {
                 process.stdout.write('mock task3 is being run\n');
               },
             };
@@ -102,10 +134,38 @@ describe('@checkup/cli', () => {
     });
 
     it('should output checkup result in JSON', async () => {
-      await cmd.run(['--json', project.baseDir]);
+      await cmd.run(['--reporter', 'json', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });
+
+    it('should output a PDF in the current directory if the pdf reporter option is provided', async () => {
+      await cmd.run(['--reporter', 'pdf', project.baseDir]);
+
+      let outputPath = stdout().trim();
+
+      expect(outputPath).toMatch(
+        /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.pdf/
+      );
+      expect(fs.existsSync(outputPath)).toEqual(true);
+
+      fs.unlinkSync(outputPath);
+    }, 15000);
+
+    it('should output a PDF in a custom directory if the pdf reporter and reporterOutputPath options are provided', async () => {
+      let tmp = createTmpDir();
+
+      await cmd.run(['--reporter', 'pdf', `--reportOutputPath`, tmp, project.baseDir]);
+
+      let outputPath = stdout().trim();
+
+      expect(outputPath).toMatch(
+        /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.pdf/
+      );
+      expect(fs.existsSync(outputPath)).toEqual(true);
+
+      fs.unlinkSync(outputPath);
+    }, 15000);
 
     it('should run a single task if the task option is specified', async () => {
       await cmd.run(['--task', 'mock-task', project.baseDir]);

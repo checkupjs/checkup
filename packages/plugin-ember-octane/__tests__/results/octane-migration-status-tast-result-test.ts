@@ -1,14 +1,16 @@
-import { stdout } from '@checkup/test-helpers';
-import { OctaneMigrationStatusTaskResult } from '../../src/results';
 import { MigrationType } from '../../src/results/octane-migration-status-task-result';
+import { OctaneMigrationStatusTask } from '../../src/tasks';
+import { OctaneMigrationStatusTaskResult } from '../../src/results';
+import { stdout } from '@checkup/test-helpers';
 
 describe('octane-migration-status-task-result', () => {
   describe('console output', () => {
     test('simple console output', async () => {
       let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
-      let taskResult = new OctaneMigrationStatusTaskResult(sampleOctaneReport);
+      let task = new OctaneMigrationStatusTask({});
+      let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
 
-      taskResult.toConsole();
+      taskResult.stdout();
 
       expect(stdout()).toMatchSnapshot();
     });
@@ -17,10 +19,11 @@ describe('octane-migration-status-task-result', () => {
   describe('JSON output', () => {
     test('it should have basic JSON results', () => {
       let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
-      let taskResult = new OctaneMigrationStatusTaskResult(sampleOctaneReport);
+      let task = new OctaneMigrationStatusTask({});
+      let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
 
-      let jsonResults = taskResult.toJson();
-      let { totalViolations, migrationTasks } = jsonResults;
+      let jsonResults = taskResult.json();
+      let { totalViolations, migrationTasks } = jsonResults.result;
       let nativeClassesMigrationInfo = migrationTasks[MigrationType.NativeClasses];
 
       expect(totalViolations).toBe(17);
@@ -30,10 +33,11 @@ describe('octane-migration-status-task-result', () => {
 
     test('it should output detailed completion data', () => {
       let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
-      let taskResult = new OctaneMigrationStatusTaskResult(sampleOctaneReport);
+      let task = new OctaneMigrationStatusTask({});
+      let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
 
-      let jsonResults = taskResult.toJson();
-      let { migrationTasks } = jsonResults;
+      let jsonResults = taskResult.json();
+      let { migrationTasks } = jsonResults.result;
       let nativeClassesMigrationInfo = migrationTasks[MigrationType.NativeClasses];
 
       expect(nativeClassesMigrationInfo).toBeDefined();

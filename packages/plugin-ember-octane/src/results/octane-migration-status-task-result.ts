@@ -1,5 +1,6 @@
+import { BaseTaskResult, Task, TaskResult, ui } from '@checkup/core';
+
 import { CLIEngine } from 'eslint';
-import { TaskResult, ui } from '@checkup/core';
 
 // classic-decorator-hooks                  -
 // classic-decorator-no-classic-methods     -
@@ -100,12 +101,14 @@ function getMigrationInfo(
   };
 }
 
-export default class OctaneMigrationStatusTaskResult implements TaskResult {
+export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
   taskName: string = 'Octane Migration Status';
 
-  constructor(public report: CLIEngine.LintReport) {}
+  constructor(task: Task, public report: CLIEngine.LintReport) {
+    super(task);
+  }
 
-  toConsole() {
+  stdout() {
     ui.styledHeader(this.taskName);
     ui.blankLine();
     ui.styledObject({
@@ -114,7 +117,7 @@ export default class OctaneMigrationStatusTaskResult implements TaskResult {
     ui.blankLine();
   }
 
-  toJson() {
+  json() {
     let nativeClassMigrationInfo = getMigrationInfo(
       MIGRATION_RULE_CONFIGS[MigrationType.NativeClasses],
       this.report
@@ -136,12 +139,15 @@ export default class OctaneMigrationStatusTaskResult implements TaskResult {
     );
 
     return {
-      totalViolations: this.report.errorCount,
-      migrationTasks: {
-        [MigrationType.NativeClasses]: nativeClassMigrationInfo,
-        [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
-        [MigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
-        [MigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
+      meta: this.meta,
+      result: {
+        totalViolations: this.report.errorCount,
+        migrationTasks: {
+          [MigrationType.NativeClasses]: nativeClassMigrationInfo,
+          [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
+          [MigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
+          [MigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
+        },
       },
     };
   }

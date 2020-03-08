@@ -1,4 +1,5 @@
 import { BaseTask, Category, Priority, Task, TaskClassification, TaskName } from '@checkup/core';
+
 import { CLIEngine } from 'eslint';
 import { OctaneMigrationStatusTaskResult } from '../results';
 
@@ -51,7 +52,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
 
   async run(): Promise<OctaneMigrationStatusTaskResult> {
     this.report = this.esLintEngine.executeOnFiles([`${this.rootPath}/+(app|addon)/**/*.js`]);
-    let result = new OctaneMigrationStatusTaskResult(this.report);
+    let result = new OctaneMigrationStatusTaskResult(this, this.report);
 
     return result;
   }

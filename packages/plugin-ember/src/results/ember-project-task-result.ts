@@ -5,7 +5,7 @@ export default class EmberProjectTaskResult extends BaseTaskResult implements Ta
   name!: string;
   version!: string;
 
-  toConsole() {
+  stdout() {
     ui.styledHeader(this.meta.friendlyTaskName);
     ui.blankLine();
     ui.styledObject({
@@ -14,9 +14,7 @@ export default class EmberProjectTaskResult extends BaseTaskResult implements Ta
     ui.blankLine();
   }
 
-  toJson() {
-    return {
-      [this.meta.taskName]: { type: this.type },
-    };
+  json() {
+    return { meta: this.meta, result: { type: this.type } };
   }
 }

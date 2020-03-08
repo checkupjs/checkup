@@ -26,7 +26,7 @@ describe('project-info-task', () => {
       const result = await new EmberProjectTask({ path: emberProject.baseDir }).run();
       const taskResult = <EmberProjectTaskResult>result;
 
-      taskResult.toConsole();
+      taskResult.stdout();
 
       expect(stdout()).toMatchSnapshot();
     });
@@ -35,7 +35,7 @@ describe('project-info-task', () => {
       const result = await new EmberProjectTask({ path: emberProject.baseDir }).run();
       const taskResult = <EmberProjectTaskResult>result;
 
-      expect(taskResult.toJson()).toMatchSnapshot();
+      expect(taskResult.json()).toMatchSnapshot();
     });
   });
 
@@ -60,7 +60,7 @@ describe('project-info-task', () => {
       const result = await new EmberProjectTask({ path: emberProject.baseDir }).run();
       const taskResult = <EmberProjectTaskResult>result;
 
-      taskResult.toConsole();
+      taskResult.stdout();
 
       expect(stdout()).toMatchSnapshot();
     });
@@ -69,7 +69,7 @@ describe('project-info-task', () => {
       const result = await new EmberProjectTask({ path: emberProject.baseDir }).run();
       const taskResult = <EmberProjectTaskResult>result;
 
-      expect(taskResult.toJson()).toMatchSnapshot();
+      expect(taskResult.json()).toMatchSnapshot();
     });
   });
 });

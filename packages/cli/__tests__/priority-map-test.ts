@@ -1,5 +1,6 @@
-import { Category, Priority, Task, TaskClassification, TaskName } from '@checkup/core';
+import { Category, Priority, Task, TaskClassification, TaskName, TaskResult } from '@checkup/core';
 
+import MockTaskResult from './__utils__/mock-task-result';
 import PriorityMap from '../src/priority-map';
 
 class MockTask implements Task {
@@ -10,17 +11,8 @@ class MockTask implements Task {
     priority: Priority.High,
   };
 
-  async run() {
-    return {
-      toJson() {
-        return {
-          mockTask: 'You mock me',
-        };
-      },
-      toConsole() {
-        process.stdout.write('mock task is being run\n');
-      },
-    };
+  async run(): Promise<TaskResult> {
+    return new MockTaskResult(this, 'mock task is being run');
   }
 }
 

@@ -7,7 +7,7 @@ export default class ProjectInfoTaskResult extends BaseTaskResult implements Tas
   version!: string;
   repository!: RepositoryInfo;
 
-  toConsole() {
+  stdout() {
     ui.styledHeader(this.meta.friendlyTaskName);
     ui.blankLine();
     ui.styledObject({
@@ -26,9 +26,10 @@ export default class ProjectInfoTaskResult extends BaseTaskResult implements Tas
     ui.blankLine();
   }
 
-  toJson() {
+  json() {
     return {
-      [this.meta.taskName]: {
+      meta: this.meta,
+      result: {
         name: this.name,
         version: this.version,
         repository: this.repository,

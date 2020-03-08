@@ -7,6 +7,7 @@ export default abstract class BaseTaskResult {
     this.meta = {
       taskName: task.taskName,
       friendlyTaskName: task.friendlyTaskName,
+      taskClassification: task.taskClassification,
     };
   }
 }
