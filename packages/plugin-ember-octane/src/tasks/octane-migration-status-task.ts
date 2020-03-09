@@ -1,7 +1,8 @@
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
-
 import { CLIEngine } from 'eslint';
 import { OctaneMigrationStatusTaskResult } from '../results';
+
+// const TemplateLinter = require('ember-template-lint');
 
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {
