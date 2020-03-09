@@ -110,18 +110,19 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
 
   stdout() {
     let jsonOutput = this.json();
+    let { esLint: esLintResults } = jsonOutput.result;
 
     let esLintmigrationTasks = [
-      jsonOutput.result.esLint.migrationTasks[MigrationType.NativeClasses],
-      jsonOutput.result.esLint.migrationTasks[MigrationType.TaglessComponents],
-      jsonOutput.result.esLint.migrationTasks[MigrationType.GlimmerComponents],
-      jsonOutput.result.esLint.migrationTasks[MigrationType.TrackedProperties],
+      esLintResults.migrationTasks[MigrationType.NativeClasses],
+      esLintResults.migrationTasks[MigrationType.TaglessComponents],
+      esLintResults.migrationTasks[MigrationType.GlimmerComponents],
+      esLintResults.migrationTasks[MigrationType.TrackedProperties],
     ];
 
     ui.styledHeader(this.taskName);
     ui.blankLine();
     ui.styledObject({
-      'JS Octane Violations': jsonOutput.result.esLint.totalViolations,
+      'JS Octane Violations': esLintResults.totalViolations,
       'Template Octane Violations': 0,
     });
     ui.blankLine();
