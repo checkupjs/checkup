@@ -44,7 +44,7 @@ const MIGRATION_RULE_CONFIGS: { [Key in MigrationType]: MigrationRuleConfig } = 
       /app\/app\.js$/,
       /(app|addon)\/(adapters|components|controllers|helpers|models|routes|services)\/.*\.js$/,
     ],
-    name: 'Native Class Migration',
+    name: 'Native Class',
     rules: [
       'ember/no-classic-classes',
       'ember/classic-decorator-no-classic-methods',
@@ -54,17 +54,17 @@ const MIGRATION_RULE_CONFIGS: { [Key in MigrationType]: MigrationRuleConfig } = 
   },
   [MigrationType.TaglessComponents]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Tagless Component Migration',
+    name: 'Tagless Component',
     rules: ['ember/require-tagless-components'],
   },
   [MigrationType.GlimmerComponents]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Glimmer Component Migration',
+    name: 'Glimmer Component',
     rules: ['ember/no-classic-components'],
   },
   [MigrationType.TrackedProperties]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Tracked Properties Migration',
+    name: 'Tracked Properties',
     rules: ['ember/no-computed-properties-in-native-classes'],
   },
 };
@@ -109,10 +109,29 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
   }
 
   stdout() {
+    let jsonOutput = this.json();
+    let { esLint: esLintResults } = jsonOutput.result;
+
+    let esLintmigrationTasks = [
+      esLintResults.migrationTasks[MigrationType.NativeClasses],
+      esLintResults.migrationTasks[MigrationType.TaglessComponents],
+      esLintResults.migrationTasks[MigrationType.GlimmerComponents],
+      esLintResults.migrationTasks[MigrationType.TrackedProperties],
+    ];
+
     ui.styledHeader(this.taskName);
     ui.blankLine();
     ui.styledObject({
-      'JS Error Count': this.report.errorCount,
+      'JavaScript Octane Violations': esLintResults.totalViolations,
+      'Handlebars Octane Violations': 0,
+    });
+    ui.blankLine();
+    ui.table(esLintmigrationTasks, {
+      name: { header: 'Migration Task' },
+      completion: {
+        header: 'Completion Percentage',
+        get: (row: MigrationInfo) => `${row.completionInfo.percentage}%`,
+      },
     });
     ui.blankLine();
   }
@@ -141,12 +160,14 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     return {
       meta: this.meta,
       result: {
-        totalViolations: this.report.errorCount,
-        migrationTasks: {
-          [MigrationType.NativeClasses]: nativeClassMigrationInfo,
-          [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
-          [MigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
-          [MigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
+        esLint: {
+          totalViolations: this.report.errorCount,
+          migrationTasks: {
+            [MigrationType.NativeClasses]: nativeClassMigrationInfo,
+            [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
+            [MigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
+            [MigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
+          },
         },
       },
     };

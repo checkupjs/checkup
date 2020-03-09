@@ -23,12 +23,12 @@ describe('octane-migration-status-task-result', () => {
       let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
 
       let jsonResults = taskResult.json();
-      let { totalViolations, migrationTasks } = jsonResults.result;
+      let { totalViolations, migrationTasks } = jsonResults.result.esLint;
       let nativeClassesMigrationInfo = migrationTasks[MigrationType.NativeClasses];
 
       expect(totalViolations).toBe(17);
       expect(nativeClassesMigrationInfo).toBeDefined();
-      expect(nativeClassesMigrationInfo.name).toBe('Native Class Migration');
+      expect(nativeClassesMigrationInfo.name).toBe('Native Class');
     });
 
     test('it should output detailed completion data', () => {
@@ -37,7 +37,7 @@ describe('octane-migration-status-task-result', () => {
       let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
 
       let jsonResults = taskResult.json();
-      let { migrationTasks } = jsonResults.result;
+      let { migrationTasks } = jsonResults.result.esLint;
       let nativeClassesMigrationInfo = migrationTasks[MigrationType.NativeClasses];
 
       expect(nativeClassesMigrationInfo).toBeDefined();
