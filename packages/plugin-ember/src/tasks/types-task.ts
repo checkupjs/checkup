@@ -1,12 +1,4 @@
-import {
-  Category,
-  FileSearcherTask,
-  Priority,
-  Task,
-  TaskClassification,
-  TaskName,
-  TaskResult,
-} from '@checkup/core';
+import { Category, FileSearcherTask, Priority, Task, TaskResult } from '@checkup/core';
 
 import { TypesTaskResult } from '../results';
 
@@ -24,11 +16,13 @@ const SEARCH_PATTERNS = {
 };
 
 export default class TypesTask extends FileSearcherTask implements Task {
-  taskName: TaskName = 'types';
-  friendlyTaskName: TaskName = 'Project Types';
-  taskClassification: TaskClassification = {
-    category: Category.Core,
-    priority: Priority.Medium,
+  meta = {
+    taskName: 'types',
+    friendlyTaskName: 'Project Types',
+    taskClassification: {
+      category: Category.Core,
+      priority: Priority.Medium,
+    },
   };
 
   constructor(cliArguments: any) {
@@ -36,7 +30,7 @@ export default class TypesTask extends FileSearcherTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    let result = new TypesTaskResult(this);
+    let result = new TypesTaskResult(this.meta);
     result.types = await this.searcher.search();
 
     return result;

@@ -8,7 +8,7 @@ describe('octane-migration-status-task-result', () => {
     test('simple console output', async () => {
       let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
       let task = new OctaneMigrationStatusTask({});
-      let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
+      let taskResult = new OctaneMigrationStatusTaskResult(task.meta, sampleOctaneReport);
 
       taskResult.stdout();
 
@@ -20,7 +20,7 @@ describe('octane-migration-status-task-result', () => {
     test('it should have basic JSON results', () => {
       let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
       let task = new OctaneMigrationStatusTask({});
-      let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
+      let taskResult = new OctaneMigrationStatusTaskResult(task.meta, sampleOctaneReport);
 
       let jsonResults = taskResult.json();
       let { totalViolations, migrationTasks } = jsonResults.result.esLint;
@@ -34,7 +34,7 @@ describe('octane-migration-status-task-result', () => {
     test('it should output detailed completion data', () => {
       let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
       let task = new OctaneMigrationStatusTask({});
-      let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
+      let taskResult = new OctaneMigrationStatusTaskResult(task.meta, sampleOctaneReport);
 
       let jsonResults = taskResult.json();
       let { migrationTasks } = jsonResults.result.esLint;

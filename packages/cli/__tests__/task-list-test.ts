@@ -1,31 +1,35 @@
-import { Category, Priority, Task, TaskClassification, TaskName, TaskResult } from '@checkup/core';
+import { Category, Priority, Task, TaskResult } from '@checkup/core';
 
 import MockTaskResult from './__utils__/mock-task-result';
 import TaskList from '../src/task-list';
 
 class MockTask implements Task {
-  taskName: TaskName = 'mock-task';
-  friendlyTaskName: TaskName = 'Mock Task';
-  taskClassification: TaskClassification = {
-    category: Category.Core,
-    priority: Priority.High,
+  meta = {
+    taskName: 'mock-task',
+    friendlyTaskName: 'Mock Task',
+    taskClassification: {
+      category: Category.Core,
+      priority: Priority.High,
+    },
   };
 
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this, 'mock task is being run');
+    return new MockTaskResult(this.meta, 'mock task is being run');
   }
 }
 
 class AnotherMockTask implements Task {
-  taskName: TaskName = 'another-mock-task';
-  friendlyTaskName: TaskName = 'Another Mock Task';
-  taskClassification: TaskClassification = {
-    category: Category.Core,
-    priority: Priority.Low,
+  meta = {
+    taskName: 'another-mock-task',
+    friendlyTaskName: 'Another Mock Task',
+    taskClassification: {
+      category: Category.Core,
+      priority: Priority.Low,
+    },
   };
 
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this, 'another mock task is being run');
+    return new MockTaskResult(this.meta, 'another mock task is being run');
   }
 }
 

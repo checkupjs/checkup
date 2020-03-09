@@ -1,4 +1,4 @@
-import { BaseTaskResult, Task, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
 
 import { CLIEngine } from 'eslint';
 
@@ -104,8 +104,8 @@ function getMigrationInfo(
 export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
   taskName: string = 'Octane Migration Status';
 
-  constructor(task: Task, public report: CLIEngine.LintReport) {
-    super(task);
+  constructor(meta: TaskMetaData, public report: CLIEngine.LintReport) {
+    super(meta);
   }
 
   stdout() {
