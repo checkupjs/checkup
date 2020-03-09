@@ -1,13 +1,9 @@
-import { Task, TaskMetaData } from './types';
+import { TaskMetaData } from './types';
 
 export default abstract class BaseTaskResult {
   meta: TaskMetaData;
 
-  constructor(task: Task) {
-    this.meta = {
-      taskName: task.taskName,
-      friendlyTaskName: task.friendlyTaskName,
-      taskClassification: task.taskClassification,
-    };
+  constructor(meta: TaskMetaData) {
+    this.meta = meta;
   }
 }

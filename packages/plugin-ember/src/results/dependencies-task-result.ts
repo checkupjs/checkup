@@ -1,4 +1,4 @@
-import { BaseTaskResult, Task, TaskResult, toPairs, ui } from '@checkup/core';
+import { BaseTaskResult, TaskMetaData, TaskResult, toPairs, ui } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 
@@ -7,8 +7,8 @@ export default class DependenciesTaskResult extends BaseTaskResult implements Ta
   emberAddons!: Record<string, PackageJson.Dependency>;
   emberCliAddons!: Record<string, PackageJson.Dependency>;
 
-  constructor(task: Task) {
-    super(task);
+  constructor(meta: TaskMetaData) {
+    super(meta);
     this.emberLibraries = {};
   }
 

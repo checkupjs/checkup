@@ -33,8 +33,8 @@ export default class TaskList {
    * @param taskClassification
    */
   registerTask(task: Task) {
-    let priorityMap = this._categories.get(task.taskClassification.category);
-    priorityMap!.setTaskByPriority(task.taskClassification.priority, task.taskName, task);
+    let priorityMap = this._categories.get(task.meta.taskClassification.category);
+    priorityMap!.setTaskByPriority(task.meta.taskClassification.priority, task.meta.taskName, task);
   }
 
   /**

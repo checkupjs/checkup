@@ -14,11 +14,13 @@ describe('@checkup/cli', () => {
       const plugin = new Plugin('@checkup/plugin-mock')
         .addTask(
           class MockTask implements Task {
-            taskName = 'mock-task';
-            friendlyTaskName = 'Mock Task';
-            taskClassification = {
-              category: Category.Core,
-              priority: Priority.High,
+            meta = {
+              taskName: 'mock-task',
+              friendlyTaskName: 'Mock Task',
+              taskClassification: {
+                category: Category.Core,
+                priority: Priority.High,
+              },
             };
 
             async run() {
@@ -47,11 +49,13 @@ describe('@checkup/cli', () => {
         )
         .addTask(
           class MockTask2 implements Task {
-            taskName = 'mock-task2';
-            friendlyTaskName = 'Mock Task 2';
-            taskClassification = {
-              category: Category.Core,
-              priority: Priority.High,
+            meta = {
+              taskName: 'mock-task2',
+              friendlyTaskName: 'Mock Task 2',
+              taskClassification: {
+                category: Category.Core,
+                priority: Priority.High,
+              },
             };
 
             async run() {
@@ -80,11 +84,13 @@ describe('@checkup/cli', () => {
         );
       const anotherPlugin = new Plugin('another-plugin-mock').addTask(
         class MockTask implements Task {
-          taskName = 'mock-task3';
-          friendlyTaskName = 'Mock Task3';
-          taskClassification = {
-            category: Category.Core,
-            priority: Priority.High,
+          meta = {
+            taskName: 'mock-task3',
+            friendlyTaskName: 'Mock Task3',
+            taskClassification: {
+              category: Category.Core,
+              priority: Priority.High,
+            },
           };
 
           async run() {

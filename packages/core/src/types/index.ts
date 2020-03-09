@@ -30,9 +30,7 @@ export type TaskClassification = {
 };
 
 export interface Task {
-  taskName: TaskName;
-  friendlyTaskName: TaskName;
-  taskClassification: TaskClassification;
+  meta: TaskMetaData;
 
   run: () => Promise<TaskResult>;
 }
