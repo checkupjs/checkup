@@ -29,6 +29,10 @@ export async function generateReport(
 
   fs.writeFileSync(htmlTmpPath, reportHTML);
 
+  if (!fs.existsSync(resultOutputPath)) {
+    fs.mkdirSync(resultOutputPath, { recursive: true });
+  }
+
   let outputFilePath = path.resolve(
     path.join(
       resultOutputPath,
