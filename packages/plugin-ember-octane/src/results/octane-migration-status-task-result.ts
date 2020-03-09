@@ -112,16 +112,16 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     let jsonOutput = this.json();
 
     let esLintmigrationTasks = [
-      jsonOutput.esLint.migrationTasks[MigrationType.NativeClasses],
-      jsonOutput.esLint.migrationTasks[MigrationType.TaglessComponents],
-      jsonOutput.esLint.migrationTasks[MigrationType.GlimmerComponents],
-      jsonOutput.esLint.migrationTasks[MigrationType.TrackedProperties],
+      jsonOutput.result.esLint.migrationTasks[MigrationType.NativeClasses],
+      jsonOutput.result.esLint.migrationTasks[MigrationType.TaglessComponents],
+      jsonOutput.result.esLint.migrationTasks[MigrationType.GlimmerComponents],
+      jsonOutput.result.esLint.migrationTasks[MigrationType.TrackedProperties],
     ];
 
     ui.styledHeader(this.taskName);
     ui.blankLine();
     ui.styledObject({
-      'JS Octane Violations': jsonOutput.esLint.totalViolations,
+      'JS Octane Violations': jsonOutput.result.esLint.totalViolations,
       'Template Octane Violations': 0,
     });
     ui.blankLine();
@@ -158,13 +158,15 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
 
     return {
       meta: this.meta,
-      esLint: {
-        totalViolations: this.report.errorCount,
-        migrationTasks: {
-          [MigrationType.NativeClasses]: nativeClassMigrationInfo,
-          [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
-          [MigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
-          [MigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
+      result: {
+        esLint: {
+          totalViolations: this.report.errorCount,
+          migrationTasks: {
+            [MigrationType.NativeClasses]: nativeClassMigrationInfo,
+            [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
+            [MigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
+            [MigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
+          },
         },
       },
     };

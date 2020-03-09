@@ -23,7 +23,7 @@ describe('octane-migration-status-task-result', () => {
       let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
 
       let jsonResults = taskResult.json();
-      let { totalViolations, migrationTasks } = jsonResults.esLint;
+      let { totalViolations, migrationTasks } = jsonResults.result.esLint;
       let nativeClassesMigrationInfo = migrationTasks[MigrationType.NativeClasses];
 
       expect(totalViolations).toBe(17);
@@ -37,7 +37,7 @@ describe('octane-migration-status-task-result', () => {
       let taskResult = new OctaneMigrationStatusTaskResult(task, sampleOctaneReport);
 
       let jsonResults = taskResult.json();
-      let { migrationTasks } = jsonResults.esLint;
+      let { migrationTasks } = jsonResults.result.esLint;
       let nativeClassesMigrationInfo = migrationTasks[MigrationType.NativeClasses];
 
       expect(nativeClassesMigrationInfo).toBeDefined();
