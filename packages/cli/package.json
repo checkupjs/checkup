@@ -18,7 +18,7 @@
     "chrome-debugging-client": "^1.2.0",
     "cli-ux": "^5.4.4",
     "date-and-time": "^0.12.0",
-    "devtools-protocol": "^0.0.746878",
+    "devtools-protocol": "^0.0.747773",
     "fs-extra": "^8.1.0",
     "globby": "^11.0.0",
     "p-map": "^4.0.0",
