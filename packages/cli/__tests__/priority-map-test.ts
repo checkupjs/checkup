@@ -14,7 +14,7 @@ class MockTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this, 'mock task is being run');
+    return new MockTaskResult(this.meta, 'mock task is being run');
   }
 }
 
