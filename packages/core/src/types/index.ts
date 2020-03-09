@@ -45,6 +45,7 @@ export type JsonTaskResult = {
 export interface TaskResult {
   stdout: () => void;
   json: () => JsonTaskResult;
+  pdf: () => void;
 }
 
 export interface TaskMetaData {
