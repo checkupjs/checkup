@@ -36,4 +36,6 @@ export default class ProjectInfoTaskResult extends BaseTaskResult implements Tas
       },
     };
   }
+
+  pdf() {}
 }

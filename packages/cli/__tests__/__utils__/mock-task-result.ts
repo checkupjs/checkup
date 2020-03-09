@@ -15,4 +15,6 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
       result: this.result,
     };
   }
+
+  pdf() {}
 }

@@ -17,4 +17,6 @@ export default class TypesTaskResult extends BaseTaskResult implements TaskResul
   json() {
     return { meta: this.meta, result: { types: this.types } };
   }
+
+  pdf() {}
 }

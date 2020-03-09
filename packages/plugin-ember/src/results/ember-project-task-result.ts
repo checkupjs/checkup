@@ -17,4 +17,6 @@ export default class EmberProjectTaskResult extends BaseTaskResult implements Ta
   json() {
     return { meta: this.meta, result: { type: this.type } };
   }
+
+  pdf() {}
 }
