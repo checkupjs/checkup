@@ -28,7 +28,7 @@ describe('octane-migration-status-task-result', () => {
 
       expect(totalViolations).toBe(17);
       expect(nativeClassesMigrationInfo).toBeDefined();
-      expect(nativeClassesMigrationInfo.name).toBe('Native Class Migration');
+      expect(nativeClassesMigrationInfo.name).toBe('Native Class');
     });
 
     test('it should output detailed completion data', () => {

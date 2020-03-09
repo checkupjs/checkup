@@ -3,14 +3,14 @@
 exports[`octane-migration-status-task-result console output simple console output 1`] = `
 "=== Octane Migration Status
 
-JS Octane Violations:       17
-Template Octane Violations: 0
+Handlebars Octane Violations: 0
+JavaScript Octane Violations: 17
 
-Migration Task               Completion Percentage 
-Native Class Migration       9.09%                 
-Tagless Component Migration  83.33%                
-Glimmer Component Migration  66.67%                
-Tracked Properties Migration 83.33%                
+Migration Task     Completion Percentage 
+Native Class       9.09%                 
+Tagless Component  83.33%                
+Glimmer Component  66.67%                
+Tracked Properties 83.33%                
 
 "
 `;

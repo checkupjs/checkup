@@ -44,7 +44,7 @@ const MIGRATION_RULE_CONFIGS: { [Key in MigrationType]: MigrationRuleConfig } = 
       /app\/app\.js$/,
       /(app|addon)\/(adapters|components|controllers|helpers|models|routes|services)\/.*\.js$/,
     ],
-    name: 'Native Class Migration',
+    name: 'Native Class',
     rules: [
       'ember/no-classic-classes',
       'ember/classic-decorator-no-classic-methods',
@@ -54,17 +54,17 @@ const MIGRATION_RULE_CONFIGS: { [Key in MigrationType]: MigrationRuleConfig } = 
   },
   [MigrationType.TaglessComponents]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Tagless Component Migration',
+    name: 'Tagless Component',
     rules: ['ember/require-tagless-components'],
   },
   [MigrationType.GlimmerComponents]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Glimmer Component Migration',
+    name: 'Glimmer Component',
     rules: ['ember/no-classic-components'],
   },
   [MigrationType.TrackedProperties]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Tracked Properties Migration',
+    name: 'Tracked Properties',
     rules: ['ember/no-computed-properties-in-native-classes'],
   },
 };
@@ -122,8 +122,8 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     ui.styledHeader(this.taskName);
     ui.blankLine();
     ui.styledObject({
-      'JS Octane Violations': esLintResults.totalViolations,
-      'Template Octane Violations': 0,
+      'JavaScript Octane Violations': esLintResults.totalViolations,
+      'Handlebars Octane Violations': 0,
     });
     ui.blankLine();
     ui.table(esLintmigrationTasks, {
