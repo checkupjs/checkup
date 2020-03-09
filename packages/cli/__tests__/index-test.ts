@@ -41,6 +41,7 @@ describe('@checkup/cli', () => {
                 stdout() {
                   process.stdout.write('mock task is being run\n');
                 },
+                pdf() {},
               };
             }
           }
@@ -74,6 +75,7 @@ describe('@checkup/cli', () => {
                 stdout() {
                   process.stdout.write('mock task2 is being run\n');
                 },
+                pdf() {},
               };
             }
           }
@@ -107,6 +109,7 @@ describe('@checkup/cli', () => {
               stdout() {
                 process.stdout.write('mock task3 is being run\n');
               },
+              pdf() {},
             };
           }
         }
