@@ -1,7 +1,6 @@
-import { BaseTask, Category, Priority, Task } from '@checkup/core';
 import { CLIEngine } from 'eslint';
 import * as globby from 'globby';
-// import fs from 'fs';
+import { BaseTask, Category, Priority, Task } from '@checkup/core';
 import { OctaneMigrationStatusTaskResult } from '../results';
 
 const fs = require('fs');
