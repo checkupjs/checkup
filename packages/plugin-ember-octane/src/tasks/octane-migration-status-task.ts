@@ -1,8 +1,14 @@
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
 import { CLIEngine } from 'eslint';
+import * as globby from 'globby';
+// import fs from 'fs';
 import { OctaneMigrationStatusTaskResult } from '../results';
 
-// const TemplateLinter = require('ember-template-lint');
+const fs = require('fs');
+const TemplateLinter = require('ember-template-lint');
+const debug = require('debug')('checkup:plugin-ember-octane');
+
+interface EmberTemplateLintReport {}
 
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {
@@ -14,8 +20,8 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     },
   };
 
-  public report!: CLIEngine.LintReport;
   private esLintEngine: CLIEngine;
+  private templateLinter: typeof TemplateLinter;
 
   constructor(cliArguments: any) {
     super(cliArguments);
@@ -47,6 +53,20 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
       },
       useEslintrc: false,
     });
+
+    this.templateLinter = new TemplateLinter({
+      rules: {
+        'no-action': 'error',
+        'no-curly-component-invocation': [
+          'error',
+          {
+            noImplicitThis: 'error',
+            requireDash: 'off',
+          },
+        ],
+        'no-implicit-this': 'error',
+      },
+    });
   }
 
   get rootPath(): string {
@@ -54,9 +74,31 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   }
 
   async run(): Promise<OctaneMigrationStatusTaskResult> {
-    this.report = this.esLintEngine.executeOnFiles([`${this.rootPath}/+(app|addon)/**/*.js`]);
-    let result = new OctaneMigrationStatusTaskResult(this.meta, this.report);
+    let esLintReport = this.runEsLint();
+    // let templateLintReport = await this.runTemplateLint();
+    let result = new OctaneMigrationStatusTaskResult(this.meta, esLintReport);
 
     return result;
+  }
+
+  private runEsLint(): CLIEngine.LintReport {
+    return this.esLintEngine.executeOnFiles([`${this.rootPath}/+(app|addon)/**/*.js`]);
+  }
+
+  private async runTemplateLint() {
+    let filePaths = await globby(`${this.rootPath}/+(app|addon)/**/*.hbs`);
+
+    let sources = filePaths.map(path => ({
+      path,
+      template: fs.readFileSync(path, { encoding: 'utf8' }),
+    }));
+
+    let results = sources.map(({ path, template }) => {
+      return this.templateLinter.verify({ source: template, moduleId: path });
+    });
+
+    debug('Ember Template Lint Report', results);
+
+    return results;
   }
 }
