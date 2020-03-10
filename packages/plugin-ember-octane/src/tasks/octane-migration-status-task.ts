@@ -1,4 +1,5 @@
 import { CLIEngine } from 'eslint';
+import { JsonObject } from 'type-fest';
 import * as globby from 'globby';
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
 import { OctaneMigrationStatusTaskResult } from '../results';
@@ -7,7 +8,16 @@ const fs = require('fs');
 const TemplateLinter = require('ember-template-lint');
 const debug = require('debug')('checkup:plugin-ember-octane');
 
-interface EmberTemplateLintReport {}
+interface EmberTemplateLintResult {
+  filePath: string;
+  messages: JsonObject[];
+  errorCount: number;
+}
+
+export interface EmberTemplateLintReport {
+  errorCount: number;
+  results: EmberTemplateLintResult[];
+}
 
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {
@@ -54,16 +64,18 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     });
 
     this.templateLinter = new TemplateLinter({
-      rules: {
-        'no-action': 'error',
-        'no-curly-component-invocation': [
-          'error',
-          {
-            noImplicitThis: 'error',
-            requireDash: 'off',
-          },
-        ],
-        'no-implicit-this': 'error',
+      config: {
+        rules: {
+          'no-action': 'error',
+          'no-curly-component-invocation': [
+            'error',
+            {
+              noImplicitThis: 'error',
+              requireDash: 'off',
+            },
+          ],
+          'no-implicit-this': 'error',
+        },
       },
     });
   }
@@ -74,8 +86,8 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
 
   async run(): Promise<OctaneMigrationStatusTaskResult> {
     let esLintReport = this.runEsLint();
-    // let templateLintReport = await this.runTemplateLint();
-    let result = new OctaneMigrationStatusTaskResult(this.meta, esLintReport);
+    let templateLintReport = await this.runTemplateLint();
+    let result = new OctaneMigrationStatusTaskResult(this.meta, esLintReport, templateLintReport);
 
     return result;
   }
@@ -84,7 +96,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     return this.esLintEngine.executeOnFiles([`${this.rootPath}/+(app|addon)/**/*.js`]);
   }
 
-  private async runTemplateLint() {
+  private async runTemplateLint(): Promise<EmberTemplateLintReport> {
     let filePaths = await globby(`${this.rootPath}/+(app|addon)/**/*.hbs`);
 
     let sources = filePaths.map(path => ({
@@ -93,11 +105,24 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     }));
 
     let results = sources.map(({ path, template }) => {
-      return this.templateLinter.verify({ source: template, moduleId: path });
+      let messages = this.templateLinter.verify({ source: template, moduleId: path });
+
+      return {
+        messages,
+        errorCount: messages.length,
+        filePath: path,
+      };
     });
+
+    let errorCount = results
+      .map(({ errorCount }) => errorCount)
+      .reduce((totalErrorCount, currentErrorCount) => totalErrorCount + currentErrorCount);
 
     debug('Ember Template Lint Report', results);
 
-    return results;
+    return {
+      errorCount,
+      results,
+    };
   }
 }

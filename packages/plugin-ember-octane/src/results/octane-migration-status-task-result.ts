@@ -1,6 +1,6 @@
-import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
-
 import { CLIEngine } from 'eslint';
+import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
+import { EmberTemplateLintReport } from '../tasks/octane-migration-status-task';
 
 // classic-decorator-hooks                  -
 // classic-decorator-no-classic-methods     -
@@ -104,7 +104,11 @@ function getMigrationInfo(
 export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
   taskName: string = 'Octane Migration Status';
 
-  constructor(meta: TaskMetaData, public report: CLIEngine.LintReport) {
+  constructor(
+    meta: TaskMetaData,
+    public esLintReport: CLIEngine.LintReport,
+    public templateLintReport: EmberTemplateLintReport
+  ) {
     super(meta);
   }
 
@@ -139,29 +143,29 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
   json() {
     let nativeClassMigrationInfo = getMigrationInfo(
       MIGRATION_RULE_CONFIGS[MigrationType.NativeClasses],
-      this.report
+      this.esLintReport
     );
 
     let taglessComponentMigrationInfo = getMigrationInfo(
       MIGRATION_RULE_CONFIGS[MigrationType.TaglessComponents],
-      this.report
+      this.esLintReport
     );
 
     let glimmerComponentsMigrationinfo = getMigrationInfo(
       MIGRATION_RULE_CONFIGS[MigrationType.GlimmerComponents],
-      this.report
+      this.esLintReport
     );
 
     let trackedPropertiesMigrationInfo = getMigrationInfo(
       MIGRATION_RULE_CONFIGS[MigrationType.TrackedProperties],
-      this.report
+      this.esLintReport
     );
 
     return {
       meta: this.meta,
       result: {
         esLint: {
-          totalViolations: this.report.errorCount,
+          totalViolations: this.esLintReport.errorCount,
           migrationTasks: {
             [MigrationType.NativeClasses]: nativeClassMigrationInfo,
             [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
