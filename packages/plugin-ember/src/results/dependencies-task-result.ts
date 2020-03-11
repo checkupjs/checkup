@@ -53,7 +53,9 @@ export default class DependenciesTaskResult extends BaseTaskResult implements Ta
     };
   }
 
-  pdf() {}
+  pdf() {
+    return undefined;
+  }
 
   _writeDependencySection(header: string, dependencies: PackageJson.Dependency) {
     if (Object.keys(dependencies).length === 0) {

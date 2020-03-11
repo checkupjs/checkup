@@ -6,6 +6,8 @@ import { CheckupProject, Plugin, createTmpDir, stdout } from '@checkup/test-help
 
 import cmd = require('../src');
 
+const increasedTestTimeout = 30000;
+
 describe('@checkup/cli', () => {
   describe('normal cli output with plugins', () => {
     let project: CheckupProject;
@@ -43,7 +45,9 @@ describe('@checkup/cli', () => {
                 stdout() {
                   process.stdout.write('mock task is being run\n');
                 },
-                pdf() {},
+                pdf() {
+                  return undefined;
+                },
               };
             }
           }
@@ -79,7 +83,9 @@ describe('@checkup/cli', () => {
                 stdout() {
                   process.stdout.write('mock task2 is being run\n');
                 },
-                pdf() {},
+                pdf() {
+                  return undefined;
+                },
               };
             }
           }
@@ -115,7 +121,9 @@ describe('@checkup/cli', () => {
               stdout() {
                 process.stdout.write('mock task3 is being run\n');
               },
-              pdf() {},
+              pdf() {
+                return undefined;
+              },
             };
           }
         }
@@ -136,11 +144,15 @@ describe('@checkup/cli', () => {
       project.dispose();
     });
 
-    it('should output checkup result', async () => {
-      await cmd.run(['run', project.baseDir]);
+    it(
+      'should output checkup result',
+      async () => {
+        await cmd.run(['run', project.baseDir]);
 
-      expect(stdout()).toMatchSnapshot();
-    }, 15000);
+        expect(stdout()).toMatchSnapshot();
+      },
+      increasedTestTimeout
+    );
 
     it('should output checkup result in JSON', async () => {
       await cmd.run(['run', '--reporter', 'json', project.baseDir]);
@@ -148,33 +160,41 @@ describe('@checkup/cli', () => {
       expect(stdout()).toMatchSnapshot();
     });
 
-    it('should output a PDF in the current directory if the pdf reporter option is provided', async () => {
-      await cmd.run(['run', '--reporter', 'pdf', project.baseDir]);
+    it(
+      'should output a PDF in the current directory if the pdf reporter option is provided',
+      async () => {
+        await cmd.run(['run', '--reporter', 'pdf', project.baseDir]);
 
-      let outputPath = stdout().trim();
+        let outputPath = stdout().trim();
 
-      expect(outputPath).toMatch(
-        /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.pdf/
-      );
-      expect(fs.existsSync(outputPath)).toEqual(true);
+        expect(outputPath).toMatch(
+          /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.pdf/
+        );
+        expect(fs.existsSync(outputPath)).toEqual(true);
 
-      fs.unlinkSync(outputPath);
-    }, 15000);
+        fs.unlinkSync(outputPath);
+      },
+      increasedTestTimeout
+    );
 
-    it('should output a PDF in a custom directory if the pdf reporter and reporterOutputPath options are provided', async () => {
-      let tmp = createTmpDir();
+    it(
+      'should output a PDF in a custom directory if the pdf reporter and reporterOutputPath options are provided',
+      async () => {
+        let tmp = createTmpDir();
 
-      await cmd.run(['run', '--reporter', 'pdf', `--reportOutputPath`, tmp, project.baseDir]);
+        await cmd.run(['run', '--reporter', 'pdf', `--reportOutputPath`, tmp, project.baseDir]);
 
-      let outputPath = stdout().trim();
+        let outputPath = stdout().trim();
 
-      expect(outputPath).toMatch(
-        /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.pdf/
-      );
-      expect(fs.existsSync(outputPath)).toEqual(true);
+        expect(outputPath).toMatch(
+          /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.pdf/
+        );
+        expect(fs.existsSync(outputPath)).toEqual(true);
 
-      fs.unlinkSync(outputPath);
-    }, 15000);
+        fs.unlinkSync(outputPath);
+      },
+      increasedTestTimeout
+    );
 
     it('should run a single task if the task option is specified', async () => {
       await cmd.run(['run', '--task', 'mock-task', project.baseDir]);

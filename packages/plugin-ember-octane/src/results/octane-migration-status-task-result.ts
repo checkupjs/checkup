@@ -173,5 +173,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     };
   }
 
-  pdf() {}
+  pdf() {
+    return undefined;
+  }
 }
