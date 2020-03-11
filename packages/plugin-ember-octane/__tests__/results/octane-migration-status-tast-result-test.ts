@@ -6,9 +6,14 @@ import { stdout } from '@checkup/test-helpers';
 describe('octane-migration-status-task-result', () => {
   describe('console output', () => {
     test('simple console output', async () => {
-      let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
+      let sampleESLintReport = require('../__fixtures__/sample-octane-eslint-report.json');
+      let sampleTemplateLintReport = require('../__fixtures__/sample-octane-template-lint-report.json');
       let task = new OctaneMigrationStatusTask({});
-      let taskResult = new OctaneMigrationStatusTaskResult(task.meta, sampleOctaneReport);
+      let taskResult = new OctaneMigrationStatusTaskResult(
+        task.meta,
+        sampleESLintReport,
+        sampleTemplateLintReport
+      );
 
       taskResult.stdout();
 
@@ -18,9 +23,14 @@ describe('octane-migration-status-task-result', () => {
 
   describe('JSON output', () => {
     test('it should have basic JSON results', () => {
-      let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
+      let sampleESLintReport = require('../__fixtures__/sample-octane-eslint-report.json');
+      let sampleTemplateLintReport = require('../__fixtures__/sample-octane-template-lint-report.json');
       let task = new OctaneMigrationStatusTask({});
-      let taskResult = new OctaneMigrationStatusTaskResult(task.meta, sampleOctaneReport);
+      let taskResult = new OctaneMigrationStatusTaskResult(
+        task.meta,
+        sampleESLintReport,
+        sampleTemplateLintReport
+      );
 
       let jsonResults = taskResult.json();
       let { totalViolations, migrationTasks } = jsonResults.result.esLint;
@@ -32,9 +42,14 @@ describe('octane-migration-status-task-result', () => {
     });
 
     test('it should output detailed completion data', () => {
-      let sampleOctaneReport = require('../__fixtures__/sample-octane-eslint-report.json');
+      let sampleESLintReport = require('../__fixtures__/sample-octane-eslint-report.json');
+      let sampleTemplateLintReport = require('../__fixtures__/sample-octane-template-lint-report.json');
       let task = new OctaneMigrationStatusTask({});
-      let taskResult = new OctaneMigrationStatusTaskResult(task.meta, sampleOctaneReport);
+      let taskResult = new OctaneMigrationStatusTaskResult(
+        task.meta,
+        sampleESLintReport,
+        sampleTemplateLintReport
+      );
 
       let jsonResults = taskResult.json();
       let { migrationTasks } = jsonResults.result.esLint;

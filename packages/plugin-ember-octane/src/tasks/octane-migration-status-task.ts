@@ -87,6 +87,10 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   async run(): Promise<OctaneMigrationStatusTaskResult> {
     let esLintReport = this.runEsLint();
     let templateLintReport = await this.runTemplateLint();
+
+    debug('ESLint Report', esLintReport);
+    debug('Ember Template Lint Report', templateLintReport);
+
     let result = new OctaneMigrationStatusTaskResult(this.meta, esLintReport, templateLintReport);
 
     return result;
@@ -116,9 +120,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
 
     let errorCount = results
       .map(({ errorCount }) => errorCount)
-      .reduce((totalErrorCount, currentErrorCount) => totalErrorCount + currentErrorCount);
-
-    debug('Ember Template Lint Report', results);
+      .reduce((totalErrorCount, currentErrorCount) => totalErrorCount + currentErrorCount, 0);
 
     return {
       errorCount,

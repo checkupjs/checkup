@@ -36,7 +36,7 @@ describe('octane-migration-status-task', () => {
 
     let task = new OctaneMigrationStatusTask({ path: project.baseDir });
     let taskResult = await task.run();
-    let { results, errorCount } = taskResult.report;
+    let { results, errorCount } = taskResult.esLintReport;
 
     expect(results).toHaveLength(2);
     expect(errorCount).toBe(0);
