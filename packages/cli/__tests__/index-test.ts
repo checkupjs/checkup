@@ -137,19 +137,19 @@ describe('@checkup/cli', () => {
     });
 
     it('should output checkup result', async () => {
-      await cmd.run([project.baseDir]);
+      await cmd.run(['run', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });
 
     it('should output checkup result in JSON', async () => {
-      await cmd.run(['--reporter', 'json', project.baseDir]);
+      await cmd.run(['run', '--reporter', 'json', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });
 
     it('should output a PDF in the current directory if the pdf reporter option is provided', async () => {
-      await cmd.run(['--reporter', 'pdf', project.baseDir]);
+      await cmd.run(['run', '--reporter', 'pdf', project.baseDir]);
 
       let outputPath = stdout().trim();
 
@@ -164,7 +164,7 @@ describe('@checkup/cli', () => {
     it('should output a PDF in a custom directory if the pdf reporter and reporterOutputPath options are provided', async () => {
       let tmp = createTmpDir();
 
-      await cmd.run(['--reporter', 'pdf', `--reportOutputPath`, tmp, project.baseDir]);
+      await cmd.run(['run', '--reporter', 'pdf', `--reportOutputPath`, tmp, project.baseDir]);
 
       let outputPath = stdout().trim();
 
@@ -177,7 +177,7 @@ describe('@checkup/cli', () => {
     }, 15000);
 
     it('should run a single task if the task option is specified', async () => {
-      await cmd.run(['--task', 'mock-task', project.baseDir]);
+      await cmd.run(['run', '--task', 'mock-task', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });
@@ -188,7 +188,12 @@ describe('@checkup/cli', () => {
         tasks: {},
       });
       anotherProject.writeSync();
-      await cmd.run(['--config', path.join(anotherProject.baseDir, '.checkuprc'), project.baseDir]);
+      await cmd.run([
+        'run',
+        '--config',
+        path.join(anotherProject.baseDir, '.checkuprc'),
+        project.baseDir,
+      ]);
 
       expect(stdout()).toMatchSnapshot();
       anotherProject.dispose();
@@ -200,7 +205,7 @@ describe('@checkup/cli', () => {
       const project = new CheckupProject('checkup-project', '0.0.0');
       project.writeSync();
 
-      await expect(cmd.run([project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
+      await expect(cmd.run(['run', project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
         `"Could not find a checkup configuration starting from the given path: ${project.baseDir}. See https://github.com/checkupjs/checkup/tree/master/packages/cli#configuration for more info on how to setup a configuration."`
       );
 
@@ -214,7 +219,7 @@ describe('@checkup/cli', () => {
       });
       project.writeSync();
 
-      await expect(cmd.run([project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
+      await expect(cmd.run(['run', project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
         `"Cannot find module '@checkup/unknown-plugin' from '${project.baseDir}'"`
       );
 
@@ -232,7 +237,7 @@ describe('@checkup/cli', () => {
       } as unknown) as CheckupConfig);
       project.writeSync();
 
-      await expect(cmd.run([project.baseDir])).rejects.toThrowErrorMatchingSnapshot();
+      await expect(cmd.run(['run', project.baseDir])).rejects.toThrowErrorMatchingSnapshot();
 
       project.dispose();
     });
