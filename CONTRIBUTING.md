@@ -19,6 +19,10 @@ Link the CLI package:
 ```
 cd packages/cli && yarn link
 ```
+Link the default plugin
+```
+cd packages/plugin-default && yarn link
+```
 **Note:** do this for any additional packages you want to use, such as plugin-default
 
 ### In the project you want to run Checkup in:
