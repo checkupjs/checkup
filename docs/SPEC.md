@@ -180,7 +180,7 @@ Converting an application to Ember Octane, for example, can be monitored to trac
 4. Infrastructure to configure a mechanism to store historical insights over time into the changing state of an application
 5. Assimilating information about the state of an application into a format understandable by all
 
-# Personas (what they need from checkup)
+# Personas
 
 1. Developers - engineers working in the application *want to* **gain more understanding of the quality of the code they're responsible for**
   - Detailed & _actionable_ insights into the state of the part of the codebase they care about
