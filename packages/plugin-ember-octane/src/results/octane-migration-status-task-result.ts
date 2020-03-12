@@ -173,6 +173,9 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
             [MigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
           },
         },
+        templateLint: {
+          totalViolations: this.templateLintReport.errorCount,
+        },
       },
     };
   }
