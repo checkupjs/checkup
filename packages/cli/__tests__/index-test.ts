@@ -140,7 +140,7 @@ describe('@checkup/cli', () => {
       await cmd.run(['run', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
-    });
+    }, 15000);
 
     it('should output checkup result in JSON', async () => {
       await cmd.run(['run', '--reporter', 'json', project.baseDir]);
