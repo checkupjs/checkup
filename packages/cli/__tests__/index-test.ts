@@ -151,7 +151,7 @@ describe('@checkup/cli', () => {
 
         expect(stdout()).toMatchSnapshot();
       },
-      increasedTestTimeout
+      TEST_TIMEOUT
     );
 
     it('should output checkup result in JSON', async () => {
@@ -174,7 +174,7 @@ describe('@checkup/cli', () => {
 
         fs.unlinkSync(outputPath);
       },
-      increasedTestTimeout
+      TEST_TIMEOUT
     );
 
     it(
@@ -193,7 +193,7 @@ describe('@checkup/cli', () => {
 
         fs.unlinkSync(outputPath);
       },
-      increasedTestTimeout
+      TEST_TIMEOUT
     );
 
     it('should run a single task if the task option is specified', async () => {
