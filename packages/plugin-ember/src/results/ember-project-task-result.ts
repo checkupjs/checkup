@@ -18,5 +18,7 @@ export default class EmberProjectTaskResult extends BaseTaskResult implements Ta
     return { meta: this.meta, result: { type: this.type } };
   }
 
-  pdf() {}
+  pdf() {
+    return undefined;
+  }
 }

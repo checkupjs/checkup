@@ -2,6 +2,7 @@ import * as t from 'io-ts';
 
 import { JsonObject, PromiseValue } from 'type-fest';
 import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
+import CardData from '../pdf-components/card-data';
 
 export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
@@ -22,7 +23,6 @@ export const enum Priority {
   Medium = 'medium',
   Low = 'low',
 }
-
 export type TaskName = string;
 export type TaskClassification = {
   category: Category;
@@ -40,10 +40,16 @@ export type JsonTaskResult = {
   result: {};
 };
 
+export enum ReporterType {
+  stdout = 'stdout',
+  json = 'json',
+  pdf = 'pdf',
+}
+
 export interface TaskResult {
   stdout: () => void;
   json: () => JsonTaskResult;
-  pdf: () => void;
+  pdf: () => CardData | undefined;
 }
 
 export interface TaskMetaData {
