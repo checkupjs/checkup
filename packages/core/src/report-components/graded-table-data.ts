@@ -2,13 +2,11 @@ import { TaskMetaData, Grade, DependencyResult, ReportComponentType } from '../t
 import { default as TableData } from './table-data';
 
 export default class GradedTableData extends TableData {
-  taskResult: DependencyResult[];
   grade: Grade;
 
-  constructor(meta: TaskMetaData, taskResult: DependencyResult[]) {
-    super(meta, taskResult, ReportComponentType.GradedTable);
+  constructor(meta: TaskMetaData, public taskResult: DependencyResult[]) {
+    super(meta, ReportComponentType.GradedTable, taskResult);
 
-    this.taskResult = taskResult;
     this.grade = this._deriveGrade();
   }
 
