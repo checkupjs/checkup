@@ -1,0 +1,56 @@
+{
+  "name": "@checkup/dev-cli",
+  "description": "cli to generate mock report for development",
+  "version": "0.0.0",
+  "author": "Cara Kessler",
+  "bin": {
+    "checkup": "./bin/run"
+  },
+  "dependencies": {
+    "@checkup/core": "^0.0.1",
+    "@checkup/cli": "^0.0.1",
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "faker": "^4.1.0",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@checkup/test-helpers": "^0.0.1",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.1",
+    "ts-node": "^8",
+    "typescript": "^3.8"
+  },
+  "engines": {
+    "node": "10.* || >= 12.*"
+  },
+  "files": [
+    "/lib",
+    "/oclif.manifest.json",
+    "/yarn.lock"
+  ],
+  "keywords": [
+    "oclif-plugin"
+  ],
+  "license": "MIT",
+  "oclif": {
+    "devPlugins": [
+      "@oclif/plugin-help"
+    ],
+    "hooks": {
+      "register-tasks": "./src/hooks/register-tasks"
+    }
+  },
+  "repository": "",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "yarn build -w",
+    "clean": "rm -rf lib/*",
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "jest",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js"
+}
