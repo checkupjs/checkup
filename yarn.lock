@@ -4410,10 +4410,10 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-promise.hash.helper@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/promise.hash.helper/-/promise.hash.helper-1.0.5.tgz#0446e3655ef3b02404c9db97e13fdf3902021184"
-  integrity sha512-+4diiR1F5tdawzLNK5IPC8zqkW/STzs42EFlle6/vYuIzTgaj2kWNsDwNdUb1bUXTU7O9r/DBYn2qpocWH5L3A==
+promise.hash.helper@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/promise.hash.helper/-/promise.hash.helper-1.0.7.tgz#2f39d8495df40dcdfbc1d5be9e9e56efeae7f180"
+  integrity sha512-0qhWYyCV9TYDMSooYw1fShIb7R6hsWYja7JLqbeb1MvHqDTvP/uy/R1RsyVqDi6GCiHOI4G5p2Hpr3IA+/l/+Q==
 
 prompts@^2.0.1:
   version "2.3.1"
