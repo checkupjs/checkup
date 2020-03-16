@@ -4,11 +4,11 @@ import * as path from 'path';
 import { Category, CheckupConfig, Priority, Task } from '@checkup/core';
 import { CheckupProject, Plugin, createTmpDir, stdout } from '@checkup/test-helpers';
 
-import cmd = require('../src');
+import cmd = require('../../src');
 
 const TEST_TIMEOUT = 30000;
 
-describe('@checkup/cli', () => {
+describe('@checkup/cli run command', () => {
   describe('normal cli output with plugins', () => {
     let project: CheckupProject;
 

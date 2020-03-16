@@ -5,6 +5,7 @@
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
+    "chalk": "^3.0.0",
     "fp-ts": "^2.5.3",
     "io-ts": "^2.1.2",
     "js-yaml": "^3.13.1",

@@ -1,0 +1,36 @@
+<%_ const taskClass = `${_.upperFirst(_.camelCase(name))}Task` _%>
+<%_ const resultClass = `${taskClass}Result` _%>
+import { CheckupProject, stdout } from '@checkup/test-helpers';
+import <%- taskClass %> from '../src/tasks/<%- name %>-task';
+import <%- resultClass %> from '../src/results/<%- name %>-task-result';
+
+describe('<%- name %>-task', () => {
+  let checkupProject;
+
+  beforeEach(() => {
+    checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
+      project.addDependency('ember-cli', '^3.15.0');
+    });
+
+    checkupProject.writeSync();
+    checkupProject.gitInit();
+  });
+
+  afterEach(() => {
+    checkupProject.dispose();
+  });
+
+  it('can read task and output to console', async () => {
+    const taskResult = await new <%- taskClass %>({ path: checkupProject.baseDir }).run();
+
+    taskResult.stdout();
+
+    expect(stdout()).toMatchSnapshot();
+  });
+
+  it('can read task as JSON', async () => {
+    const taskResult = await new <%- taskClass %>({ path: checkupProject.baseDir }).run();
+
+    expect(taskResult.json()).toMatchSnapshot();
+  });
+});

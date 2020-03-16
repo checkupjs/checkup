@@ -12,13 +12,13 @@ export interface Parser {
   execute(paths: string[]): JsonObject;
 }
 
-export const enum Category {
+export enum Category {
   Core = 'core',
   Migration = 'migration',
   Insights = 'insights',
 }
 
-export const enum Priority {
+export enum Priority {
   High = 'high',
   Medium = 'medium',
   Low = 'low',
