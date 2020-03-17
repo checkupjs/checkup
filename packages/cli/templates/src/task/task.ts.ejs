@@ -1,0 +1,22 @@
+import { BaseTask, Category, Priority, Task, TaskMetaData, TaskResult } from '@checkup/core';
+
+<%_ const taskClass = `${_.upperFirst(_.camelCase(name))}Task` _%>
+<%_ const resultClass = `${taskClass}Result` _%>
+import <%- resultClass %> from '../results/<%- name %>-task-result';
+
+export default class <%- taskClass %> extends BaseTask implements Task {
+  meta: TaskMetaData = {
+    taskName: '<%- name %>',
+    friendlyTaskName: '<%- _.startCase(name.split('-').join(' ')) %>',
+    taskClassification: {
+      category: Category.<%- _.upperFirst(category) %>,
+      priority: Priority.<%- _.upperFirst(priority) %>,
+    },
+  };
+
+  async run(): Promise<TaskResult> {
+    let result: <%- resultClass %> = new <%- resultClass %>(this.meta);
+
+    return result;
+  }
+}

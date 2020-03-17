@@ -11,6 +11,17 @@ import { execSync } from 'child_process';
  * mock checkup projects.
  */
 export default class CheckupFixturifyProject extends Project {
+  constructor(
+    name: string,
+    version?: string | undefined,
+    cb?: ((project: Project) => void) | undefined,
+    root?: string | undefined
+  ) {
+    super(name, version, cb, root);
+
+    this.pkg.keywords = ['oclif-plugin'];
+  }
+
   /**
    * Add a checkup config file to the project
    *

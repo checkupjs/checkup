@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`task generator with defaults generates correct files 1`] = `
+"import { BaseTask, Category, Priority, Task, TaskMetaData, TaskResult } from '@checkup/core';
+
+import MyFooTaskResult from '../results/my-foo-task-result';
+
+export default class MyFooTask extends BaseTask implements Task {
+  meta: TaskMetaData = {
+    taskName: 'my-foo',
+    friendlyTaskName: 'My Foo',
+    taskClassification: {
+      category: Category.Core,
+      priority: Priority.Medium,
+    },
+  };
+
+  async run(): Promise<TaskResult> {
+    let result: MyFooTaskResult = new MyFooTaskResult(this.meta);
+
+    return result;
+  }
+}"
+`;
+
+exports[`task generator with defaults generates correct files 2`] = `
+"import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
+
+export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
+  stdout() {
+    ui.styledHeader(this.meta.taskName);
+  }
+
+  json() {
+    return {
+      meta: this.meta,
+      result: {},
+    };
+  }
+
+  pdf() {
+    return undefined;
+  }
+}"
+`;
+
+exports[`task generator with defaults generates correct files 3`] = `
+"import { CheckupProject, stdout } from '@checkup/test-helpers';
+import MyFooTask from '../src/tasks/my-foo-task';
+import MyFooTaskResult from '../src/results/my-foo-task-result';
+
+describe('my-foo-task', () => {
+  let checkupProject: CheckupProject;
+
+  beforeEach(() => {
+    checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
+      project.addDependency('ember-cli', '^3.15.0');
+    });
+
+    checkupProject.writeSync();
+    checkupProject.gitInit();
+  });
+
+  afterEach(() => {
+    checkupProject.dispose();
+  });
+
+  it('can read task and output to console', async () => {
+    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const taskResult = <MyFooTaskResult>result;
+
+    taskResult.stdout();
+
+    expect(stdout()).toMatchSnapshot();
+  });
+
+  it('can read task as JSON', async () => {
+    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const taskResult = <MyFooTaskResult>result;
+
+    expect(taskResult.json()).toMatchSnapshot();
+  });
+});"
+`;

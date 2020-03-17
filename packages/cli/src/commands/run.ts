@@ -4,8 +4,8 @@ import {
   Category,
   CheckupConfigService,
   Priority,
-  TaskResult,
   ReporterType,
+  TaskResult,
   getFilepathLoader,
   getPackageJson,
   getSearchLoader,
@@ -40,7 +40,7 @@ function mergeTaskResults(
   return mergedResults;
 }
 
-class Checkup extends Command {
+class RunCommand extends Command {
   static description = 'A CLI that provides health check information about your project';
 
   static args = [
@@ -77,7 +77,7 @@ class Checkup extends Command {
   taskResults: TaskResult[] = [];
 
   async run() {
-    let { args, flags } = this.parse(Checkup);
+    let { args, flags } = this.parse(RunCommand);
 
     ui.action.start('Checking up on your project');
 
@@ -155,4 +155,4 @@ class Checkup extends Command {
   }
 }
 
-export = Checkup;
+export = RunCommand;
