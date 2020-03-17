@@ -6,7 +6,7 @@ import { CheckupProject, Plugin } from '@checkup/test-helpers';
 
 import cmd = require('../../src');
 
-describe('@checkup/cli task command', () => {
+describe('@checkup/cli generate task command', () => {
   describe('task generator', () => {
     let project: CheckupProject;
 
