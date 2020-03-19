@@ -45,6 +45,7 @@ enum TemplateLintMigrationType {
   AngleBrackets = 'angle-brackets',
   NamedArgs = 'named-args',
   OwnProperties = 'own-properties',
+  UseModifiers = 'use-modifiers',
 }
 
 const ESLINT_MIGRATION_RULE_CONFIGS: { [Key in ESLintMigrationType]: MigrationRuleConfig } = {
@@ -95,6 +96,11 @@ const TEMPLATE_LINT_MIGRATION_RULE_CONFIGS: {
     fileMatchers: [/(addon|app)\/.*\.hbs$/],
     name: 'Own Properties',
     rules: ['no-implicit-this'],
+  },
+  [TemplateLintMigrationType.UseModifiers]: {
+    fileMatchers: [/(addon|app)\/.*\.hbs$/],
+    name: 'Use Modifiers',
+    rules: ['no-action'],
   },
 };
 
@@ -227,8 +233,18 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
       this.templateLintReport
     );
 
+    let namedArgsMigrationInfo = getTemplateLintMigrationInfo(
+      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.NamedArgs],
+      this.templateLintReport
+    );
+
     let ownPropsMigrationInfo = getTemplateLintMigrationInfo(
       TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.OwnProperties],
+      this.templateLintReport
+    );
+
+    let useModifiersMigrationInfo = getTemplateLintMigrationInfo(
+      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.UseModifiers],
       this.templateLintReport
     );
 
@@ -248,7 +264,9 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
           totalViolations: this.templateLintReport.errorCount,
           migrationTasks: {
             [TemplateLintMigrationType.AngleBrackets]: angleBracketsMigrationInfo,
+            [TemplateLintMigrationType.NamedArgs]: namedArgsMigrationInfo,
             [TemplateLintMigrationType.OwnProperties]: ownPropsMigrationInfo,
+            [TemplateLintMigrationType.UseModifiers]: useModifiersMigrationInfo,
           },
         },
       },
