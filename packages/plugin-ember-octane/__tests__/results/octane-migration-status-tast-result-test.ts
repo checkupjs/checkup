@@ -3,10 +3,16 @@ import { OctaneMigrationStatusTaskResult } from '../../src/results';
 import { stdout } from '@checkup/test-helpers';
 
 describe('octane-migration-status-task-result', () => {
+  let sampleESLintReport;
+  let sampleTemplateLintReport;
+
+  beforeEach(() => {
+    sampleESLintReport = require('../__fixtures__/sample-octane-eslint-report.json');
+    sampleTemplateLintReport = require('../__fixtures__/sample-octane-template-lint-report.json');
+  });
+
   describe('console output', () => {
     test('simple console output', async () => {
-      let sampleESLintReport = require('../__fixtures__/sample-octane-eslint-report.json');
-      let sampleTemplateLintReport = require('../__fixtures__/sample-octane-template-lint-report.json');
       let task = new OctaneMigrationStatusTask({});
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
@@ -22,8 +28,6 @@ describe('octane-migration-status-task-result', () => {
 
   describe('JSON output', () => {
     test('it should have basic JSON results', () => {
-      let sampleESLintReport = require('../__fixtures__/sample-octane-eslint-report.json');
-      let sampleTemplateLintReport = require('../__fixtures__/sample-octane-template-lint-report.json');
       let task = new OctaneMigrationStatusTask({});
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
