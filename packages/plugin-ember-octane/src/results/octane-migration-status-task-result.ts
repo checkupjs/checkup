@@ -183,11 +183,15 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     let jsonOutput = this.json();
     let { esLint: esLintResults, templateLint: templateLintResults } = jsonOutput.result;
 
-    let esLintmigrationTasks = [
+    let migrationTasks = [
       esLintResults.migrationTasks[ESLintMigrationType.NativeClasses],
       esLintResults.migrationTasks[ESLintMigrationType.TaglessComponents],
       esLintResults.migrationTasks[ESLintMigrationType.GlimmerComponents],
       esLintResults.migrationTasks[ESLintMigrationType.TrackedProperties],
+      templateLintResults.migrationTasks[TemplateLintMigrationType.AngleBrackets],
+      templateLintResults.migrationTasks[TemplateLintMigrationType.NamedArgs],
+      templateLintResults.migrationTasks[TemplateLintMigrationType.OwnProperties],
+      templateLintResults.migrationTasks[TemplateLintMigrationType.UseModifiers],
     ];
 
     ui.styledHeader(this.taskName);
@@ -197,7 +201,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
       'Handlebars Octane Violations': templateLintResults.totalViolations,
     });
     ui.blankLine();
-    ui.table(esLintmigrationTasks, {
+    ui.table(migrationTasks, {
       name: { header: 'Migration Task' },
       completion: {
         header: 'Completion Percentage',
