@@ -108,14 +108,12 @@ function getESLintMigrationInfo(
   migrationConfig: MigrationRuleConfig,
   report: CLIEngine.LintReport
 ): MigrationInfo {
-  // Get all files the rule applies to.
   let relatedResults = report.results.filter(({ filePath }) =>
     migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
   );
 
   let { length: totalApplicableFiles } = relatedResults;
 
-  // Get all results that contain associated violations
   let relatedResultsWithViolations = relatedResults.filter(result => {
     return result.messages.some(({ ruleId }) =>
       ruleId ? migrationConfig.rules.includes(ruleId) : false
@@ -140,12 +138,10 @@ function getTemplateLintMigrationInfo(
   migrationConfig: MigrationRuleConfig,
   report: EmberTemplateLintReport
 ): MigrationInfo {
-  // Get all files the rule applies to.
   let relatedResults = report.results.filter(({ filePath }) =>
     migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
   );
 
-  // Get all results that contain associated violations
   let relatedResultsWithViolations = relatedResults.filter(result => {
     return result.messages.some(({ rule }) =>
       rule ? migrationConfig.rules.includes(rule) : false
