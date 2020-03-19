@@ -1,5 +1,4 @@
 import { CLIEngine } from 'eslint';
-import { JsonObject } from 'type-fest';
 import * as globby from 'globby';
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
 import { OctaneMigrationStatusTaskResult } from '../results';
@@ -8,9 +7,19 @@ const fs = require('fs');
 const TemplateLinter = require('ember-template-lint');
 const debug = require('debug')('checkup:plugin-ember-octane');
 
-interface EmberTemplateLintResult {
+interface EmberTemplateLintResultMessage {
+  rule: string;
+  severity: number;
+  moduleId: string;
+  message: string;
+  line: number;
+  column: number;
+  source: string;
+}
+
+export interface EmberTemplateLintResult {
   filePath: string;
-  messages: JsonObject[];
+  messages: EmberTemplateLintResultMessage[];
   errorCount: number;
 }
 
@@ -67,6 +76,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
       config: {
         rules: {
           'no-action': 'error',
+          'no-args-paths': 'error',
           'no-curly-component-invocation': [
             'error',
             {
