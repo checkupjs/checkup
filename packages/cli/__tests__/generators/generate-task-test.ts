@@ -90,4 +90,88 @@ describe('task generator', () => {
     expect(taskResultsContents).toMatchSnapshot();
     expect(taskTestContents).toMatchSnapshot();
   });
+
+  it('with generates correct files with JavaScript', async () => {
+    let dir = await helpers
+      .run(TaskGenerator, { namespace: 'checkup:task' })
+      .cd(project.baseDir)
+      .withOptions({
+        name: 'my-foo',
+      })
+      .withPrompts({
+        typescript: false,
+      });
+
+    let taskFile = path.join(dir, 'src/tasks/my-foo-task.js');
+    let taskResultsFile = path.join(dir, 'src/results/my-foo-task-result.js');
+    let taskTestFile = path.join(dir, '__tests__/my-foo-task-test.js');
+
+    assert.file(taskFile);
+    assert.file(taskResultsFile);
+    assert.file(taskTestFile);
+
+    let taskContents = fs.readFileSync(taskFile, 'utf-8');
+    let taskResultsContents = fs.readFileSync(taskResultsFile, 'utf-8');
+    let taskTestContents = fs.readFileSync(taskTestFile, 'utf-8');
+
+    expect(taskContents).toMatchSnapshot();
+    expect(taskResultsContents).toMatchSnapshot();
+    expect(taskTestContents).toMatchSnapshot();
+  });
+
+  it('with generates correct files with category', async () => {
+    let dir = await helpers
+      .run(TaskGenerator, { namespace: 'checkup:task' })
+      .cd(project.baseDir)
+      .withOptions({
+        name: 'my-foo',
+      })
+      .withPrompts({
+        category: 'Core',
+      });
+
+    let taskFile = path.join(dir, 'src/tasks/my-foo-task.ts');
+    let taskResultsFile = path.join(dir, 'src/results/my-foo-task-result.ts');
+    let taskTestFile = path.join(dir, '__tests__/my-foo-task-test.ts');
+
+    assert.file(taskFile);
+    assert.file(taskResultsFile);
+    assert.file(taskTestFile);
+
+    let taskContents = fs.readFileSync(taskFile, 'utf-8');
+    let taskResultsContents = fs.readFileSync(taskResultsFile, 'utf-8');
+    let taskTestContents = fs.readFileSync(taskTestFile, 'utf-8');
+
+    expect(taskContents).toMatchSnapshot();
+    expect(taskResultsContents).toMatchSnapshot();
+    expect(taskTestContents).toMatchSnapshot();
+  });
+
+  it('with generates correct files with priority', async () => {
+    let dir = await helpers
+      .run(TaskGenerator, { namespace: 'checkup:task' })
+      .cd(project.baseDir)
+      .withOptions({
+        name: 'my-foo',
+      })
+      .withPrompts({
+        priority: 'High',
+      });
+
+    let taskFile = path.join(dir, 'src/tasks/my-foo-task.ts');
+    let taskResultsFile = path.join(dir, 'src/results/my-foo-task-result.ts');
+    let taskTestFile = path.join(dir, '__tests__/my-foo-task-test.ts');
+
+    assert.file(taskFile);
+    assert.file(taskResultsFile);
+    assert.file(taskTestFile);
+
+    let taskContents = fs.readFileSync(taskFile, 'utf-8');
+    let taskResultsContents = fs.readFileSync(taskResultsFile, 'utf-8');
+    let taskTestContents = fs.readFileSync(taskTestFile, 'utf-8');
+
+    expect(taskContents).toMatchSnapshot();
+    expect(taskResultsContents).toMatchSnapshot();
+    expect(taskTestContents).toMatchSnapshot();
+  });
 });

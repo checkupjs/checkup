@@ -57,7 +57,7 @@ export default class TaskGenerator extends Generator {
     const defaults = {
       typescript: true,
       category: Category.Core,
-      priority: Priority.Medium,
+      priority: Priority.Low,
     };
 
     if (this.options.defaults) {
