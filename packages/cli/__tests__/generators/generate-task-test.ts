@@ -65,7 +65,7 @@ describe('task generator', () => {
     project.dispose();
   });
 
-  it('with defaults generates correct files', async () => {
+  it('defaults generates correct files', async () => {
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(project.baseDir)
@@ -91,7 +91,7 @@ describe('task generator', () => {
     expect(taskTestContents).toMatchSnapshot();
   });
 
-  it('with generates correct files with JavaScript', async () => {
+  it('generates correct files with JavaScript', async () => {
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(project.baseDir)
@@ -119,7 +119,7 @@ describe('task generator', () => {
     expect(taskTestContents).toMatchSnapshot();
   });
 
-  it('with generates correct files with category', async () => {
+  it('generates correct files with category', async () => {
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(project.baseDir)
@@ -147,7 +147,7 @@ describe('task generator', () => {
     expect(taskTestContents).toMatchSnapshot();
   });
 
-  it('with generates correct files with priority', async () => {
+  it('generates correct files with priority', async () => {
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(project.baseDir)
