@@ -5,6 +5,8 @@ import {
   EmberTemplateLintResult,
 } from '../tasks/octane-migration-status-task';
 
+type LintResultCollection = CLIEngine.LintResult[] | EmberTemplateLintResult[];
+
 interface CompetionInfo {
   total: number;
   completed: number;
@@ -13,7 +15,7 @@ interface CompetionInfo {
 interface MigrationInfo {
   completionInfo: CompetionInfo;
   name: string;
-  relatedResults: CLIEngine.LintResult[] | EmberTemplateLintResult[];
+  relatedResults: LintResultCollection;
 }
 
 interface MigrationRuleConfig {
