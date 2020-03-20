@@ -5,18 +5,6 @@ import {
   EmberTemplateLintResult,
 } from '../tasks/octane-migration-status-task';
 
-// classic-decorator-hooks                  -
-// classic-decorator-no-classic-methods     -
-// no-actions-hash                          -
-// no-classic-classes                       -
-// no-classic-components                    -
-// no-component-lifecycle-hooks             -
-// no-computed-properties-in-native-classes -
-// no-get-with-default                      -
-// no-get                                   -
-// no-jquery                                -
-// require-tagless-components               -
-
 interface CompetionInfo {
   total: number;
   completed: number;
