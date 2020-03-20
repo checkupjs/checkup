@@ -6,6 +6,7 @@
     "strict": true,
     "sourceMap": true,
     "target": "es2017",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true
   }
 }

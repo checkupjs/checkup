@@ -1,18 +1,11 @@
-import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
-
 import { CLIEngine } from 'eslint';
+import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
+import {
+  EmberTemplateLintReport,
+  EmberTemplateLintResult,
+} from '../tasks/octane-migration-status-task';
 
-// classic-decorator-hooks                  -
-// classic-decorator-no-classic-methods     -
-// no-actions-hash                          -
-// no-classic-classes                       -
-// no-classic-components                    -
-// no-component-lifecycle-hooks             -
-// no-computed-properties-in-native-classes -
-// no-get-with-default                      -
-// no-get                                   -
-// no-jquery                                -
-// require-tagless-components               -
+type LintResultCollection = CLIEngine.LintResult[] | EmberTemplateLintResult[];
 
 interface CompetionInfo {
   total: number;
@@ -22,7 +15,7 @@ interface CompetionInfo {
 interface MigrationInfo {
   completionInfo: CompetionInfo;
   name: string;
-  relatedResults: CLIEngine.LintResult[];
+  relatedResults: LintResultCollection;
 }
 
 interface MigrationRuleConfig {
@@ -31,15 +24,22 @@ interface MigrationRuleConfig {
   rules: string[];
 }
 
-export enum MigrationType {
+enum ESLintMigrationType {
   NativeClasses = 'native-classes',
   TaglessComponents = 'tagless-components',
   GlimmerComponents = 'glimmer-components',
   TrackedProperties = 'tracked-properties',
 }
 
-const MIGRATION_RULE_CONFIGS: { [Key in MigrationType]: MigrationRuleConfig } = {
-  [MigrationType.NativeClasses]: {
+enum TemplateLintMigrationType {
+  AngleBrackets = 'angle-brackets',
+  NamedArgs = 'named-args',
+  OwnProperties = 'own-properties',
+  UseModifiers = 'use-modifiers',
+}
+
+const ESLINT_MIGRATION_RULE_CONFIGS: { [Key in ESLintMigrationType]: MigrationRuleConfig } = {
+  [ESLintMigrationType.NativeClasses]: {
     fileMatchers: [
       /app\/app\.js$/,
       /(app|addon)\/(adapters|components|controllers|helpers|models|routes|services)\/.*\.js$/,
@@ -52,35 +52,58 @@ const MIGRATION_RULE_CONFIGS: { [Key in MigrationType]: MigrationRuleConfig } = 
       'ember/no-get',
     ],
   },
-  [MigrationType.TaglessComponents]: {
+  [ESLintMigrationType.TaglessComponents]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
     name: 'Tagless Component',
     rules: ['ember/require-tagless-components'],
   },
-  [MigrationType.GlimmerComponents]: {
+  [ESLintMigrationType.GlimmerComponents]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
     name: 'Glimmer Component',
     rules: ['ember/no-classic-components'],
   },
-  [MigrationType.TrackedProperties]: {
+  [ESLintMigrationType.TrackedProperties]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
     name: 'Tracked Properties',
     rules: ['ember/no-computed-properties-in-native-classes'],
   },
 };
 
-function getMigrationInfo(
+const TEMPLATE_LINT_MIGRATION_RULE_CONFIGS: {
+  [Key in TemplateLintMigrationType]: MigrationRuleConfig;
+} = {
+  [TemplateLintMigrationType.AngleBrackets]: {
+    fileMatchers: [/(addon|app)\/.*\.hbs$/],
+    name: 'Angle Brackets',
+    rules: ['no-curly-component-invocation'],
+  },
+  [TemplateLintMigrationType.NamedArgs]: {
+    fileMatchers: [/(addon|app)\/.*\.hbs$/],
+    name: 'Use Named Arguments',
+    rules: ['no-args-paths'],
+  },
+  [TemplateLintMigrationType.OwnProperties]: {
+    fileMatchers: [/(addon|app)\/.*\.hbs$/],
+    name: 'Own Properties',
+    rules: ['no-implicit-this'],
+  },
+  [TemplateLintMigrationType.UseModifiers]: {
+    fileMatchers: [/(addon|app)\/.*\.hbs$/],
+    name: 'Use Modifiers',
+    rules: ['no-action'],
+  },
+};
+
+function getESLintMigrationInfo(
   migrationConfig: MigrationRuleConfig,
   report: CLIEngine.LintReport
 ): MigrationInfo {
-  // Get all files the rule applies to.
   let relatedResults = report.results.filter(({ filePath }) =>
     migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
   );
 
   let { length: totalApplicableFiles } = relatedResults;
 
-  // Get all results that contain associated violations
   let relatedResultsWithViolations = relatedResults.filter(result => {
     return result.messages.some(({ ruleId }) =>
       ruleId ? migrationConfig.rules.includes(ruleId) : false
@@ -101,32 +124,70 @@ function getMigrationInfo(
   };
 }
 
+function getTemplateLintMigrationInfo(
+  migrationConfig: MigrationRuleConfig,
+  report: EmberTemplateLintReport
+): MigrationInfo {
+  let relatedResults = report.results.filter(({ filePath }) =>
+    migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
+  );
+
+  let relatedResultsWithViolations = relatedResults.filter(result => {
+    return result.messages.some(({ rule }) =>
+      rule ? migrationConfig.rules.includes(rule) : false
+    );
+  });
+
+  let { length: totalApplicableFiles } = relatedResults;
+
+  let resultsWithoutViolations = totalApplicableFiles - relatedResultsWithViolations.length;
+  let percentageWithoutViolations = (resultsWithoutViolations / totalApplicableFiles) * 100;
+
+  return {
+    completionInfo: {
+      total: totalApplicableFiles,
+      completed: resultsWithoutViolations,
+      percentage: percentageWithoutViolations.toFixed(2),
+    },
+    name: migrationConfig.name,
+    relatedResults,
+  };
+}
+
 export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
   taskName: string = 'Octane Migration Status';
 
-  constructor(meta: TaskMetaData, public report: CLIEngine.LintReport) {
+  constructor(
+    meta: TaskMetaData,
+    public esLintReport: CLIEngine.LintReport,
+    public templateLintReport: EmberTemplateLintReport
+  ) {
     super(meta);
   }
 
   stdout() {
     let jsonOutput = this.json();
-    let { esLint: esLintResults } = jsonOutput.result;
+    let { esLint: esLintResults, templateLint: templateLintResults } = jsonOutput.result;
 
-    let esLintmigrationTasks = [
-      esLintResults.migrationTasks[MigrationType.NativeClasses],
-      esLintResults.migrationTasks[MigrationType.TaglessComponents],
-      esLintResults.migrationTasks[MigrationType.GlimmerComponents],
-      esLintResults.migrationTasks[MigrationType.TrackedProperties],
+    let migrationTasks = [
+      esLintResults.migrationTasks[ESLintMigrationType.NativeClasses],
+      esLintResults.migrationTasks[ESLintMigrationType.TaglessComponents],
+      esLintResults.migrationTasks[ESLintMigrationType.GlimmerComponents],
+      esLintResults.migrationTasks[ESLintMigrationType.TrackedProperties],
+      templateLintResults.migrationTasks[TemplateLintMigrationType.AngleBrackets],
+      templateLintResults.migrationTasks[TemplateLintMigrationType.NamedArgs],
+      templateLintResults.migrationTasks[TemplateLintMigrationType.OwnProperties],
+      templateLintResults.migrationTasks[TemplateLintMigrationType.UseModifiers],
     ];
 
     ui.styledHeader(this.taskName);
     ui.blankLine();
     ui.styledObject({
       'JavaScript Octane Violations': esLintResults.totalViolations,
-      'Handlebars Octane Violations': 0,
+      'Handlebars Octane Violations': templateLintResults.totalViolations,
     });
     ui.blankLine();
-    ui.table(esLintmigrationTasks, {
+    ui.table(migrationTasks, {
       name: { header: 'Migration Task' },
       completion: {
         header: 'Completion Percentage',
@@ -137,36 +198,65 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
   }
 
   json() {
-    let nativeClassMigrationInfo = getMigrationInfo(
-      MIGRATION_RULE_CONFIGS[MigrationType.NativeClasses],
-      this.report
+    let nativeClassMigrationInfo = getESLintMigrationInfo(
+      ESLINT_MIGRATION_RULE_CONFIGS[ESLintMigrationType.NativeClasses],
+      this.esLintReport
     );
 
-    let taglessComponentMigrationInfo = getMigrationInfo(
-      MIGRATION_RULE_CONFIGS[MigrationType.TaglessComponents],
-      this.report
+    let taglessComponentMigrationInfo = getESLintMigrationInfo(
+      ESLINT_MIGRATION_RULE_CONFIGS[ESLintMigrationType.TaglessComponents],
+      this.esLintReport
     );
 
-    let glimmerComponentsMigrationinfo = getMigrationInfo(
-      MIGRATION_RULE_CONFIGS[MigrationType.GlimmerComponents],
-      this.report
+    let glimmerComponentsMigrationinfo = getESLintMigrationInfo(
+      ESLINT_MIGRATION_RULE_CONFIGS[ESLintMigrationType.GlimmerComponents],
+      this.esLintReport
     );
 
-    let trackedPropertiesMigrationInfo = getMigrationInfo(
-      MIGRATION_RULE_CONFIGS[MigrationType.TrackedProperties],
-      this.report
+    let trackedPropertiesMigrationInfo = getESLintMigrationInfo(
+      ESLINT_MIGRATION_RULE_CONFIGS[ESLintMigrationType.TrackedProperties],
+      this.esLintReport
+    );
+
+    let angleBracketsMigrationInfo = getTemplateLintMigrationInfo(
+      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.AngleBrackets],
+      this.templateLintReport
+    );
+
+    let namedArgsMigrationInfo = getTemplateLintMigrationInfo(
+      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.NamedArgs],
+      this.templateLintReport
+    );
+
+    let ownPropsMigrationInfo = getTemplateLintMigrationInfo(
+      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.OwnProperties],
+      this.templateLintReport
+    );
+
+    let useModifiersMigrationInfo = getTemplateLintMigrationInfo(
+      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.UseModifiers],
+      this.templateLintReport
     );
 
     return {
       meta: this.meta,
       result: {
         esLint: {
-          totalViolations: this.report.errorCount,
+          totalViolations: this.esLintReport.errorCount,
           migrationTasks: {
-            [MigrationType.NativeClasses]: nativeClassMigrationInfo,
-            [MigrationType.TaglessComponents]: taglessComponentMigrationInfo,
-            [MigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
-            [MigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
+            [ESLintMigrationType.NativeClasses]: nativeClassMigrationInfo,
+            [ESLintMigrationType.TaglessComponents]: taglessComponentMigrationInfo,
+            [ESLintMigrationType.GlimmerComponents]: glimmerComponentsMigrationinfo,
+            [ESLintMigrationType.TrackedProperties]: trackedPropertiesMigrationInfo,
+          },
+        },
+        templateLint: {
+          totalViolations: this.templateLintReport.errorCount,
+          migrationTasks: {
+            [TemplateLintMigrationType.AngleBrackets]: angleBracketsMigrationInfo,
+            [TemplateLintMigrationType.NamedArgs]: namedArgsMigrationInfo,
+            [TemplateLintMigrationType.OwnProperties]: ownPropsMigrationInfo,
+            [TemplateLintMigrationType.UseModifiers]: useModifiersMigrationInfo,
           },
         },
       },
