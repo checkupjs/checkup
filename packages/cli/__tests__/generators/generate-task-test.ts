@@ -1,3 +1,5 @@
+/* eslint-disable jest/expect-expect */
+
 import * as assert from 'yeoman-assert';
 import * as fs from 'fs';
 import * as helpers from 'yeoman-test';
@@ -5,6 +7,35 @@ import * as path from 'path';
 
 import { CheckupPluginProject } from '@checkup/test-helpers';
 import TaskGenerator from '../../src/generators/task';
+
+function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
+  let taskFile = path.join(dir, `src/tasks/${name}-task.${extension}`);
+  let taskResultsFile = path.join(dir, `src/results/${name}-task-result.${extension}`);
+  let taskTestFile = path.join(dir, `__tests__/${name}-task-test.${extension}`);
+
+  assert.file(taskFile);
+  assert.file(taskResultsFile);
+  assert.file(taskTestFile);
+
+  let taskContents = fs.readFileSync(taskFile, 'utf-8');
+  let taskResultsContents = fs.readFileSync(taskResultsFile, 'utf-8');
+  let taskTestContents = fs.readFileSync(taskTestFile, 'utf-8');
+
+  expect(taskContents).toMatchSnapshot();
+  expect(taskResultsContents).toMatchSnapshot();
+  expect(taskTestContents).toMatchSnapshot();
+}
+
+function assertPluginFiles(dir: string, extension: string = 'ts') {
+  let taskIndexFile = path.join(dir, `src/tasks/index.${extension}`);
+  let hooksFile = path.join(dir, `src/hooks/register-tasks.${extension}`);
+
+  let taskIndexContents = fs.readFileSync(taskIndexFile, 'utf-8');
+  let hooksFileContents = fs.readFileSync(hooksFile, 'utf-8');
+
+  expect(taskIndexContents).toMatchSnapshot();
+  expect(hooksFileContents).toMatchSnapshot();
+}
 
 describe('task generator', () => {
   let project: CheckupPluginProject;
@@ -27,27 +58,8 @@ describe('task generator', () => {
         defaults: true,
       });
 
-    let taskFile = path.join(dir, 'src/tasks/my-foo-task.ts');
-    let taskResultsFile = path.join(dir, 'src/results/my-foo-task-result.ts');
-    let taskTestFile = path.join(dir, '__tests__/my-foo-task-test.ts');
-    let taskIndexFile = path.join(dir, 'src/tasks/index.ts');
-    let hooksFile = path.join(dir, 'src/hooks/register-tasks.ts');
-
-    assert.file(taskFile);
-    assert.file(taskResultsFile);
-    assert.file(taskTestFile);
-
-    let taskContents = fs.readFileSync(taskFile, 'utf-8');
-    let taskResultsContents = fs.readFileSync(taskResultsFile, 'utf-8');
-    let taskTestContents = fs.readFileSync(taskTestFile, 'utf-8');
-    let taskIndexContents = fs.readFileSync(taskIndexFile, 'utf-8');
-    let hooksFileContents = fs.readFileSync(hooksFile, 'utf-8');
-
-    expect(taskContents).toMatchSnapshot();
-    expect(taskResultsContents).toMatchSnapshot();
-    expect(taskTestContents).toMatchSnapshot();
-    expect(taskIndexContents).toMatchSnapshot();
-    expect(hooksFileContents).toMatchSnapshot();
+    assertTaskFiles('my-foo', dir);
+    assertPluginFiles(dir);
   });
 
   it('defaults generates multiple correct files with TypeScript', async () => {
@@ -67,39 +79,9 @@ describe('task generator', () => {
         defaults: true,
       });
 
-    let fooTaskFile = path.join(dir, 'src/tasks/my-foo-task.ts');
-    let fooTaskResultsFile = path.join(dir, 'src/results/my-foo-task-result.ts');
-    let fooTaskTestFile = path.join(dir, '__tests__/my-foo-task-test.ts');
-    let barTaskFile = path.join(dir, 'src/tasks/my-bar-task.ts');
-    let barTaskResultsFile = path.join(dir, 'src/results/my-bar-task-result.ts');
-    let barTaskTestFile = path.join(dir, '__tests__/my-bar-task-test.ts');
-    let taskIndexFile = path.join(dir, 'src/tasks/index.ts');
-    let hooksFile = path.join(dir, 'src/hooks/register-tasks.ts');
-
-    assert.file(fooTaskFile);
-    assert.file(fooTaskResultsFile);
-    assert.file(fooTaskTestFile);
-    assert.file(fooTaskFile);
-    assert.file(fooTaskResultsFile);
-    assert.file(fooTaskTestFile);
-
-    let fooTaskContents = fs.readFileSync(fooTaskFile, 'utf-8');
-    let fooTaskResultsContents = fs.readFileSync(fooTaskResultsFile, 'utf-8');
-    let fooTaskTestContents = fs.readFileSync(fooTaskTestFile, 'utf-8');
-    let barTaskContents = fs.readFileSync(barTaskFile, 'utf-8');
-    let barTaskResultsContents = fs.readFileSync(barTaskResultsFile, 'utf-8');
-    let barTaskTestContents = fs.readFileSync(barTaskTestFile, 'utf-8');
-    let taskIndexContents = fs.readFileSync(taskIndexFile, 'utf-8');
-    let hooksFileContents = fs.readFileSync(hooksFile, 'utf-8');
-
-    expect(fooTaskContents).toMatchSnapshot();
-    expect(fooTaskResultsContents).toMatchSnapshot();
-    expect(fooTaskTestContents).toMatchSnapshot();
-    expect(barTaskContents).toMatchSnapshot();
-    expect(barTaskResultsContents).toMatchSnapshot();
-    expect(barTaskTestContents).toMatchSnapshot();
-    expect(taskIndexContents).toMatchSnapshot();
-    expect(hooksFileContents).toMatchSnapshot();
+    assertTaskFiles('my-foo', dir);
+    assertTaskFiles('my-bar', dir);
+    assertPluginFiles(dir);
   });
 
   it('generates correct files with JavaScript', async () => {
@@ -113,27 +95,8 @@ describe('task generator', () => {
         typescript: false,
       });
 
-    let taskFile = path.join(dir, 'src/tasks/my-foo-task.js');
-    let taskResultsFile = path.join(dir, 'src/results/my-foo-task-result.js');
-    let taskTestFile = path.join(dir, '__tests__/my-foo-task-test.js');
-    let taskIndexFile = path.join(dir, 'src/tasks/index.js');
-    let hooksFile = path.join(dir, 'src/hooks/register-tasks.js');
-
-    assert.file(taskFile);
-    assert.file(taskResultsFile);
-    assert.file(taskTestFile);
-
-    let taskContents = fs.readFileSync(taskFile, 'utf-8');
-    let taskResultsContents = fs.readFileSync(taskResultsFile, 'utf-8');
-    let taskTestContents = fs.readFileSync(taskTestFile, 'utf-8');
-    let taskIndexContents = fs.readFileSync(taskIndexFile, 'utf-8');
-    let hooksFileContents = fs.readFileSync(hooksFile, 'utf-8');
-
-    expect(taskContents).toMatchSnapshot();
-    expect(taskResultsContents).toMatchSnapshot();
-    expect(taskTestContents).toMatchSnapshot();
-    expect(taskIndexContents).toMatchSnapshot();
-    expect(hooksFileContents).toMatchSnapshot();
+    assertTaskFiles('my-foo', dir, 'js');
+    assertPluginFiles(dir, 'js');
   });
 
   it('generates correct files with category', async () => {
@@ -147,27 +110,8 @@ describe('task generator', () => {
         category: 'Core',
       });
 
-    let taskFile = path.join(dir, 'src/tasks/my-foo-task.ts');
-    let taskResultsFile = path.join(dir, 'src/results/my-foo-task-result.ts');
-    let taskTestFile = path.join(dir, '__tests__/my-foo-task-test.ts');
-    let taskIndexFile = path.join(dir, 'src/tasks/index.ts');
-    let hooksFile = path.join(dir, 'src/hooks/register-tasks.ts');
-
-    assert.file(taskFile);
-    assert.file(taskResultsFile);
-    assert.file(taskTestFile);
-
-    let taskContents = fs.readFileSync(taskFile, 'utf-8');
-    let taskResultsContents = fs.readFileSync(taskResultsFile, 'utf-8');
-    let taskTestContents = fs.readFileSync(taskTestFile, 'utf-8');
-    let taskIndexContents = fs.readFileSync(taskIndexFile, 'utf-8');
-    let hooksFileContents = fs.readFileSync(hooksFile, 'utf-8');
-
-    expect(taskContents).toMatchSnapshot();
-    expect(taskResultsContents).toMatchSnapshot();
-    expect(taskTestContents).toMatchSnapshot();
-    expect(taskIndexContents).toMatchSnapshot();
-    expect(hooksFileContents).toMatchSnapshot();
+    assertTaskFiles('my-foo', dir);
+    assertPluginFiles(dir);
   });
 
   it('generates correct files with priority', async () => {
@@ -181,26 +125,7 @@ describe('task generator', () => {
         priority: 'High',
       });
 
-    let taskFile = path.join(dir, 'src/tasks/my-foo-task.ts');
-    let taskResultsFile = path.join(dir, 'src/results/my-foo-task-result.ts');
-    let taskTestFile = path.join(dir, '__tests__/my-foo-task-test.ts');
-    let taskIndexFile = path.join(dir, 'src/tasks/index.ts');
-    let hooksFile = path.join(dir, 'src/hooks/register-tasks.ts');
-
-    assert.file(taskFile);
-    assert.file(taskResultsFile);
-    assert.file(taskTestFile);
-
-    let taskContents = fs.readFileSync(taskFile, 'utf-8');
-    let taskResultsContents = fs.readFileSync(taskResultsFile, 'utf-8');
-    let taskTestContents = fs.readFileSync(taskTestFile, 'utf-8');
-    let taskIndexContents = fs.readFileSync(taskIndexFile, 'utf-8');
-    let hooksFileContents = fs.readFileSync(hooksFile, 'utf-8');
-
-    expect(taskContents).toMatchSnapshot();
-    expect(taskResultsContents).toMatchSnapshot();
-    expect(taskTestContents).toMatchSnapshot();
-    expect(taskIndexContents).toMatchSnapshot();
-    expect(hooksFileContents).toMatchSnapshot();
+    assertTaskFiles('my-foo', dir);
+    assertPluginFiles(dir);
   });
 });
