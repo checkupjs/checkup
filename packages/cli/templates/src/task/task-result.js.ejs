@@ -1,0 +1,16 @@
+import { BaseTaskResult, ui } from '@checkup/core';
+
+export default class <%- taskResultClass %> extends BaseTaskResult {
+  stdout() {
+    ui.styledHeader(this.meta.taskName);
+  }
+
+  json() {
+    return {
+      meta: this.meta,
+      result: {},
+    };
+  }
+
+  pdf() {}
+}
