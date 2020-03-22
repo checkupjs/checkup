@@ -1,7 +1,6 @@
 import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
-<%_ const resultClass = `${_.upperFirst(_.camelCase(name))}TaskResult` _%>
-export default class <%- resultClass %> extends BaseTaskResult implements TaskResult {
+export default class <%- taskResultClass %> extends BaseTaskResult implements TaskResult {
   stdout() {
     ui.styledHeader(this.meta.taskName);
   }

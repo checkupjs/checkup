@@ -1,8 +1,5 @@
 import { BaseTask, Category, Priority, Task, TaskMetaData, TaskResult } from '@checkup/core';
-
-<%_ const taskClass = `${_.upperFirst(_.camelCase(name))}Task` _%>
-<%_ const resultClass = `${taskClass}Result` _%>
-import <%- resultClass %> from '../results/<%- name %>-task-result';
+import <%- taskResultClass %> from '../results/<%- name %>-task-result';
 
 export default class <%- taskClass %> extends BaseTask implements Task {
   meta: TaskMetaData = {
@@ -15,7 +12,7 @@ export default class <%- taskClass %> extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: <%- resultClass %> = new <%- resultClass %>(this.meta);
+    let result: <%- taskResultClass %> = new <%- taskResultClass %>(this.meta);
 
     return result;
   }
