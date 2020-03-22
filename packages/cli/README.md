@@ -9,31 +9,26 @@ A CLI that provides health check information about your project.
 [![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
 
 <!-- toc -->
-
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Commands](#commands)
-  <!-- tocstop -->
+* [@checkup/cli](#checkupcli)
+* [Usage](#usage)
+* [Configuration](#configuration)
+* [Commands](#commands)
+<!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
-$ yarn global add @checkup/cli
-
+$ npm install -g @checkup/cli
 $ checkup COMMAND
 running command...
-
 $ checkup (-v|--version|version)
-@checkup/cli/0.0.0 darwin-x64 node-v10.18.0
-
+@checkup/cli/0.0.0 darwin-x64 node-v12.16.1
 $ checkup --help [COMMAND]
 USAGE
   $ checkup COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Configuration
@@ -86,5 +81,51 @@ To configure plugins, use the plugins key in your configuration file, which cont
 # Commands
 
 <!-- commands -->
+* [`checkup generate TYPE NAME PATH`](#checkup-generate-type-name-path)
+* [`checkup run PATH`](#checkup-run-path)
 
+## `checkup generate TYPE NAME PATH`
+
+add a task to an existing plugin
+
+```
+USAGE
+  $ checkup generate TYPE NAME PATH
+
+ARGUMENTS
+  TYPE  type of generator to run (task, plugin)
+  NAME  name of the entity (kebab-case)
+  PATH  [default: .] The path referring to the directory that the generator will run in
+
+OPTIONS
+  --defaults         use defaults for every setting
+  --force            overwrite existing files
+  --options=options  (typescript)
+```
+
+_See code: [src/commands/generate.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/generate.ts)_
+
+## `checkup run PATH`
+
+A CLI that provides health check information about your project
+
+```
+USAGE
+  $ checkup run PATH
+
+ARGUMENTS
+  PATH  [default: .] The path referring to the root directory that Checkup will run in
+
+OPTIONS
+  -c, --config=config                      Use this configuration, overriding .checkuprc.* if present
+  -f, --force
+  -h, --help                               show CLI help
+  -o, --reportOutputPath=reportOutputPath  [default: .]
+  -r, --reporter=stdout|json|pdf           [default: stdout]
+  -s, --silent
+  -t, --task=task
+  -v, --version                            show CLI version
+```
+
+_See code: [src/commands/run.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/run.ts)_
 <!-- commandsstop -->
