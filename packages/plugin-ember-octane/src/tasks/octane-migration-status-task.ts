@@ -62,7 +62,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
         'ember/no-actions-hash': 'error',
         'ember/no-classic-classes': 'error',
         'ember/no-classic-components': 'error',
-        // 'ember/no-component-lifecycle-hooks': 'error',
+        'ember/no-component-lifecycle-hooks': 'error',
         'ember/no-computed-properties-in-native-classes': 'error',
         'ember/no-get-with-default': 'error',
         'ember/no-get': 'error',
