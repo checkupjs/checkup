@@ -16,6 +16,8 @@ export interface Options {
 }
 
 export default class GenerateCommand extends Command {
+  private _generators: string[];
+
   static description = 'Runs a generator to scaffold Checkup code';
 
   static flags = {
@@ -44,7 +46,13 @@ export default class GenerateCommand extends Command {
   ];
 
   get validGenerators() {
-    return readdirSync(join(__dirname, '../generators')).map(file => basename(file, '.ts'));
+    if (!this._generators) {
+      this._generators = readdirSync(join(__dirname, '../generators')).map(file =>
+        basename(file, '.ts')
+      );
+    }
+
+    return this._generators;
   }
 
   async run() {
