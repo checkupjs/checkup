@@ -1,6 +1,11 @@
+import * as chalk from 'chalk';
+
+import { basename, join } from 'path';
+
 import Command from '@oclif/command';
 import { createEnv } from 'yeoman-environment';
 import { flags } from '@oclif/command';
+import { readdirSync } from 'fs';
 
 export interface Options {
   type: string;
@@ -38,8 +43,20 @@ export default class GenerateCommand extends Command {
     },
   ];
 
+  get validGenerators() {
+    return readdirSync(join(__dirname, '../generators')).map(file => basename(file, '.ts'));
+  }
+
   async run() {
     const { flags, args } = this.parse(GenerateCommand);
+
+    if (!this.validGenerators.includes(args.type)) {
+      this.error(
+        `No valid generator found for ${chalk.bold.white(
+          args.type
+        )}. Valid generators are ${chalk.bold.white(this.validGenerators.join(', '))}`
+      );
+    }
 
     await this.generate(args.type, {
       name: args.name,
