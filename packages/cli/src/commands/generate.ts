@@ -16,7 +16,7 @@ export interface Options {
 }
 
 export default class GenerateCommand extends Command {
-  private _generators: string[];
+  private _generators!: string[];
 
   static description = 'Runs a generator to scaffold Checkup code';
 
