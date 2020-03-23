@@ -1,40 +1,24 @@
 /* eslint-disable jest/expect-expect */
 
-import * as assert from 'yeoman-assert';
-import * as fs from 'fs';
 import * as helpers from 'yeoman-test';
-import * as path from 'path';
 
-import { CheckupPluginProject } from '@checkup/test-helpers';
+import { CheckupPluginProject, testRoot } from '@checkup/test-helpers';
+
 import TaskGenerator from '../../src/generators/task';
 
 function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
-  let taskFile = path.join(dir, `src/tasks/${name}-task.${extension}`);
-  let taskResultsFile = path.join(dir, `src/results/${name}-task-result.${extension}`);
-  let taskTestFile = path.join(dir, `__tests__/${name}-task-test.${extension}`);
+  let root = testRoot(dir);
 
-  assert.file(taskFile);
-  assert.file(taskResultsFile);
-  assert.file(taskTestFile);
-
-  let taskContents = fs.readFileSync(taskFile, 'utf-8');
-  let taskResultsContents = fs.readFileSync(taskResultsFile, 'utf-8');
-  let taskTestContents = fs.readFileSync(taskTestFile, 'utf-8');
-
-  expect(taskContents).toMatchSnapshot();
-  expect(taskResultsContents).toMatchSnapshot();
-  expect(taskTestContents).toMatchSnapshot();
+  expect(root.file(`src/tasks/${name}-task.${extension}`).contents).toMatchSnapshot();
+  expect(root.file(`src/results/${name}-task-result.${extension}`).contents).toMatchSnapshot();
+  expect(root.file(`__tests__/${name}-task-test.${extension}`).contents).toMatchSnapshot();
 }
 
 function assertPluginFiles(dir: string, extension: string = 'ts') {
-  let taskIndexFile = path.join(dir, `src/tasks/index.${extension}`);
-  let hooksFile = path.join(dir, `src/hooks/register-tasks.${extension}`);
+  let root = testRoot(dir);
 
-  let taskIndexContents = fs.readFileSync(taskIndexFile, 'utf-8');
-  let hooksFileContents = fs.readFileSync(hooksFile, 'utf-8');
-
-  expect(taskIndexContents).toMatchSnapshot();
-  expect(hooksFileContents).toMatchSnapshot();
+  expect(root.file(`src/tasks/index.${extension}`).contents).toMatchSnapshot();
+  expect(root.file(`src/hooks/register-tasks.${extension}`).contents).toMatchSnapshot();
 }
 
 describe('task generator', () => {
@@ -46,10 +30,10 @@ describe('task generator', () => {
   });
 
   afterEach(function() {
-    //project.dispose();
+    project.dispose();
   });
 
-  it('defaults generates correct files with TypeScript', async () => {
+  it('generates correct files with TypeScript for defaults', async () => {
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(project.baseDir)
@@ -62,7 +46,7 @@ describe('task generator', () => {
     assertPluginFiles(dir);
   });
 
-  it('defaults generates multiple correct files with TypeScript', async () => {
+  it('generates multiple correct files with TypeScript for defaults', async () => {
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(project.baseDir)

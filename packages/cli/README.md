@@ -8,102 +8,32 @@ A CLI that provides health check information about your project.
 [![Downloads/week](https://img.shields.io/npm/dw/@checkup/cli.svg)](https://npmjs.org/package/@checkup/cli)
 [![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
 
-<!-- toc -->
-* [@checkup/cli](#checkupcli)
-* [Usage](#usage)
-* [Configuration](#configuration)
-* [Commands](#commands)
-<!-- tocstop -->
+- [@checkup/cli](#checkupcli)
+  - [Usage](#usage)
+  - [Configuration](#configuration)
+  - [Commands](#commands)
 
 # Usage
 
-<!-- usage -->
+Install checkup CLI globally:
+
 ```sh-session
+$ yarn global add @checkup/cli
+
+# or
+
 $ npm install -g @checkup/cli
-$ checkup COMMAND
-running command...
-$ checkup (-v|--version|version)
-@checkup/cli/0.0.0 darwin-x64 node-v12.16.1
-$ checkup --help [COMMAND]
-USAGE
-  $ checkup COMMAND
-...
 ```
-<!-- usagestop -->
 
-# Configuration
-
-<!-- configuration -->
-
-checkup is designed to be completely configurable via a configuration object.
-
-checkup uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load your configuration object. Starting from the current working directory, it looks for the following possible sources:
-                                        
-- a .checkuprc file
-- a checkup.config.js file exporting a JS object
-
-The search stops when one of these is found, and checkup uses that object. 
-
-The .checkuprc file (without extension) can be in JSON or YAML format. You can add a filename extension to help your text editor provide syntax checking and highlighting:
-
-- .checkup.json
-- .checkup.yaml / .checkup.yml
-- .checkup.js
-
-You can also specify an explicit path to a configuration via the command line, which will override any configurations found in any `.checkuprc.*` files
+The `checkup` CLI is now available to run. Use the `run` command to run
+Checkup against your project directory:
 
 ```sh-session
-$ checkup --config /some/path/to/my/config/.checkuprc
-``` 
-
-The configuration object has the following properties:
-
-## plugins
-
-checkup supports the use of plugins. Before using the plugin, you have to install it using npm/yarn.
-
-```sh-session
-$ yarn add -D @checkup/plugin-ember
+$ checkup run .
+Checking up on your project...
 ```
 
-To configure plugins, use the plugins key in your configuration file, which contains a list of plugin names.
-```json
-{
-  "plugins": [
-    "@checkup/plugin-ember"
-  ]
-}
-```
-<!-- TODO: Describe properties in CheckupConfig -->
-
-<!-- configurationstop -->
-
-# Commands
-
-<!-- commands -->
-* [`checkup generate TYPE NAME PATH`](#checkup-generate-type-name-path)
-* [`checkup run PATH`](#checkup-run-path)
-
-## `checkup generate TYPE NAME PATH`
-
-add a task to an existing plugin
-
-```
-USAGE
-  $ checkup generate TYPE NAME PATH
-
-ARGUMENTS
-  TYPE  type of generator to run (task, plugin)
-  NAME  name of the entity (kebab-case)
-  PATH  [default: .] The path referring to the directory that the generator will run in
-
-OPTIONS
-  --defaults         use defaults for every setting
-  --force            overwrite existing files
-  --options=options  (typescript)
-```
-
-_See code: [src/commands/generate.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/generate.ts)_
+# Run Command
 
 ## `checkup run PATH`
 
@@ -128,4 +58,92 @@ OPTIONS
 ```
 
 _See code: [src/commands/run.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/run.ts)_
-<!-- commandsstop -->
+
+# Generate Command
+
+Checkup comes with a few generators to help generate Checkup plugins and tasks.
+
+## `checkup generate plugin PLUGIN_NAME PATH`
+
+Generate a checkup plugin.
+
+```
+USAGE
+  $ checkup generate plugin PLUGIN_NAME PATH
+
+ARGUMENTS
+  NAME  name of the plugin (kebab-case)
+  PATH  [default: .] The path referring to the directory that the generator will run in
+
+OPTIONS
+  --defaults         use defaults for every setting
+  --force            overwrite existing files
+  --options=options  (typescript)
+```
+
+## `checkup generate task TASK_NAME PATH`
+
+Generate a task within a Checkup plugin.
+
+```
+USAGE
+  $ checkup generate task TASK_NAME PATH
+
+ARGUMENTS
+  NAME  name of the task (kebab-case)
+  PATH  [default: .] The path referring to the directory that the generator will run in
+
+OPTIONS
+  --defaults         use defaults for every setting
+  --force            overwrite existing files
+  --options=options  (typescript)
+```
+
+_See code: [src/commands/generate.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/generate.ts)_
+
+# Configuration
+
+<!-- configuration -->
+
+Checkup is designed to be completely configurable via a configuration object.
+
+Checkup uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load your configuration object. Starting from the current working directory, it looks for the following possible sources:
+
+- a .checkuprc file
+- a checkup.config.js file exporting a JS object
+
+The search stops when one of these is found, and Checkup uses that object.
+
+The .checkuprc file (without extension) can be in JSON or YAML format. You can add a filename extension to help your text editor provide syntax checking and highlighting:
+
+- .checkup.json
+- .checkup.yaml / .checkup.yml
+- .checkup.js
+
+You can also specify an explicit path to a configuration via the command line, which will override any configurations found in any `.checkuprc.*` files
+
+```sh-session
+$ checkup --config /some/path/to/my/config/.checkuprc
+```
+
+The configuration object has the following properties:
+
+## Plugins
+
+Checkup supports the use of plugins. Before using the plugin, you have to install it using npm/yarn.
+
+```sh-session
+$ yarn add -D @checkup/plugin-ember
+```
+
+To configure plugins, use the plugins key in your configuration file, which contains a list of plugin names.
+
+```json
+{
+  "plugins": ["@checkup/plugin-ember"]
+}
+```
+
+<!-- TODO: Describe properties in CheckupConfig -->
+
+<!-- configurationstop -->

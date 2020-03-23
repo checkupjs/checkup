@@ -56,7 +56,7 @@ export default class TaskGenerator extends Generator {
     this.log(
       `Adding a ${chalk.bold.white(this.options.name)} task to ${chalk.bold.white(
         this.packageJson.name
-      )} Version: ${chalk.bold.white(version)}`
+      )}. Version: ${chalk.bold.white(version)}`
     );
 
     const defaults = {
@@ -109,24 +109,24 @@ export default class TaskGenerator extends Generator {
   }
 
   writing() {
-    this.sourceRoot(path.join(__dirname, '../../templates'));
+    this.sourceRoot(path.join(__dirname, '../../templates/src/task'));
 
     const options = { ...this.options, _ };
 
     this.fs.copyTpl(
-      this.templatePath(`src/task/task.${this._ext}.ejs`),
+      this.templatePath(`src/tasks/task.${this._ext}.ejs`),
       this.destinationPath(`src/tasks/${this.options.name}-task.${this._ext}`),
       options
     );
 
     this.fs.copyTpl(
-      this.templatePath(`src/task/task-result.${this._ext}.ejs`),
+      this.templatePath(`src/results/task-result.${this._ext}.ejs`),
       this.destinationPath(`src/results/${this.options.name}-task-result.${this._ext}`),
       options
     );
 
     this.fs.copyTpl(
-      this.templatePath(`src/__tests__/task.${this._ext}.ejs`),
+      this.templatePath(`__tests__/task.${this._ext}.ejs`),
       this.destinationPath(`__tests__/${this.options.name}-task-test.${this._ext}`),
       options
     );

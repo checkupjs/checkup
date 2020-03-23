@@ -41,7 +41,7 @@ function mergeTaskResults(
 }
 
 class RunCommand extends Command {
-  static description = 'A CLI that provides health check information about your project';
+  static description = 'Provides health check information about your project';
 
   static args = [
     {

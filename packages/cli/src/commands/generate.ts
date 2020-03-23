@@ -1,6 +1,11 @@
+import * as chalk from 'chalk';
+
+import { basename, join } from 'path';
+
 import Command from '@oclif/command';
 import { createEnv } from 'yeoman-environment';
 import { flags } from '@oclif/command';
+import { readdirSync } from 'fs';
 
 export interface Options {
   type: string;
@@ -11,7 +16,9 @@ export interface Options {
 }
 
 export default class GenerateCommand extends Command {
-  static description = 'add a task to an existing plugin';
+  private _generators!: string[];
+
+  static description = 'Runs a generator to scaffold Checkup code';
 
   static flags = {
     defaults: flags.boolean({ description: 'use defaults for every setting' }),
@@ -38,8 +45,26 @@ export default class GenerateCommand extends Command {
     },
   ];
 
+  get validGenerators() {
+    if (!this._generators) {
+      this._generators = readdirSync(join(__dirname, '../generators')).map(file =>
+        basename(file, '.ts')
+      );
+    }
+
+    return this._generators;
+  }
+
   async run() {
     const { flags, args } = this.parse(GenerateCommand);
+
+    if (!this.validGenerators.includes(args.type)) {
+      this.error(
+        `No valid generator found for ${chalk.bold.white(
+          args.type
+        )}. Valid generators are ${chalk.bold.white(this.validGenerators.join(', '))}`
+      );
+    }
 
     await this.generate(args.type, {
       name: args.name,

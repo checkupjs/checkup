@@ -1,0 +1,275 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plugin generator generates plugin with custom options 1`] = `
+"{
+  \\"name\\": \\"@checkup/my-plugin\\",
+  \\"description\\": \\"My custom plugin\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"author\\": \\"scalvert <steve.calvert@gmail.com>\\",
+  \\"dependencies\\": {
+    \\"@checkup/core\\": \\"0.0.0\\",
+    \\"@oclif/command\\": \\"^1\\",
+    \\"@oclif/config\\": \\"^1\\",
+    \\"tslib\\": \\"^1\\"
+  },
+  \\"devDependencies\\": {
+    \\"@checkup/test-helpers\\": \\"0.0.0\\",
+    \\"jest\\": \\"^25.1.0\\",
+    \\"ts-jest\\": \\"^25.2.1\\",
+    \\"ts-node\\": \\"^8\\",
+    \\"typescript\\": \\"^3.8\\"
+  },
+  \\"engines\\": {
+    \\"node\\": \\"10.* || >= 12.*\\"
+  },
+  \\"files\\": [
+    \\"/lib\\",
+    \\"/oclif.manifest.json\\",
+    \\"/yarn.lock\\"
+  ],
+  \\"keywords\\": [
+    \\"oclif-plugin\\"
+  ],
+  \\"license\\": \\"MIT\\",
+  \\"oclif\\": {
+    \\"devPlugins\\": [
+      \\"@oclif/plugin-help\\"
+    ],
+    \\"hooks\\": {
+      \\"register-tasks\\": \\"./src/hooks/register-tasks\\"
+    }
+  },
+  \\"repository\\": \\"http://github.com/scalvert/plugin-custom\\",
+  \\"scripts\\": {
+    \\"build\\": \\"tsc\\",
+    \\"build:watch\\": \\"yarn build -w\\",
+    \\"clean\\": \\"rm -rf lib/*\\",
+    \\"postpack\\": \\"rm -f oclif.manifest.json\\",
+    \\"prepack\\": \\"rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme\\",
+    \\"test\\": \\"jest\\",
+    \\"version\\": \\"oclif-dev readme && git add README.md\\"
+  },
+  \\"types\\": \\"lib/index.d.ts\\",
+  \\"main\\": \\"lib/index.js\\"
+}
+"
+`;
+
+exports[`plugin generator generates plugin with custom options 2`] = `
+"# my-plugin
+
+My custom plugin
+
+[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+[![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
+[![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
+[![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
+
+<!-- toc -->
+
+# Usage
+
+<!-- usage -->
+
+# Commands
+
+<!-- commands -->
+"
+`;
+
+exports[`plugin generator generates plugin with custom options 3`] = `
+"module.exports = {
+  testEnvironment: 'node',
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  transform: { '\\\\\\\\.ts$': 'ts-jest' },
+  coverageReporters: ['lcov', 'text-summary'],
+  collectCoverageFrom: ['src/**/*.ts'],
+  coveragePathIgnorePatterns: ['/templates/'],
+  coverageThreshold: {
+    global: {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
+    },
+  },
+  testPathIgnorePatterns: ['__fixtures__'],
+};
+"
+`;
+
+exports[`plugin generator generates plugin with custom options 4`] = `
+"{
+  \\"extends\\": \\"../../tsconfig.json\\",
+  \\"compilerOptions\\": {
+    \\"outDir\\": \\"lib\\",
+    \\"rootDir\\": \\"src\\",
+    \\"types\\": [\\"jest\\", \\"node\\"]
+  },
+  \\"include\\": [\\"src/**/*\\"]
+}
+"
+`;
+
+exports[`plugin generator generates plugin with custom options 5`] = `
+"export default {};
+
+export * from './types';
+"
+`;
+
+exports[`plugin generator generates plugin with custom options 6`] = `
+"import { Hook } from '@oclif/config';
+
+const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+  
+};
+
+export default hook;
+"
+`;
+
+exports[`plugin generator generates plugin with custom options 7`] = `""`;
+
+exports[`plugin generator generates plugin with custom options 8`] = `""`;
+
+exports[`plugin generator generates plugin with custom options 9`] = `Array []`;
+
+exports[`plugin generator generates plugin with custom options 10`] = `Array []`;
+
+exports[`plugin generator generates plugin with defaults 1`] = `
+"{
+  \\"name\\": \\"@checkup/my-plugin\\",
+  \\"description\\": \\"Checkup plugin\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"author\\": \\"\\",
+  \\"dependencies\\": {
+    \\"@checkup/core\\": \\"0.0.0\\",
+    \\"@oclif/command\\": \\"^1\\",
+    \\"@oclif/config\\": \\"^1\\",
+    \\"tslib\\": \\"^1\\"
+  },
+  \\"devDependencies\\": {
+    \\"@checkup/test-helpers\\": \\"0.0.0\\",
+    \\"jest\\": \\"^25.1.0\\",
+    \\"ts-jest\\": \\"^25.2.1\\",
+    \\"ts-node\\": \\"^8\\",
+    \\"typescript\\": \\"^3.8\\"
+  },
+  \\"engines\\": {
+    \\"node\\": \\"10.* || >= 12.*\\"
+  },
+  \\"files\\": [
+    \\"/lib\\",
+    \\"/oclif.manifest.json\\",
+    \\"/yarn.lock\\"
+  ],
+  \\"keywords\\": [
+    \\"oclif-plugin\\"
+  ],
+  \\"license\\": \\"MIT\\",
+  \\"oclif\\": {
+    \\"devPlugins\\": [
+      \\"@oclif/plugin-help\\"
+    ],
+    \\"hooks\\": {
+      \\"register-tasks\\": \\"./src/hooks/register-tasks\\"
+    }
+  },
+  \\"repository\\": \\"\\",
+  \\"scripts\\": {
+    \\"build\\": \\"tsc\\",
+    \\"build:watch\\": \\"yarn build -w\\",
+    \\"clean\\": \\"rm -rf lib/*\\",
+    \\"postpack\\": \\"rm -f oclif.manifest.json\\",
+    \\"prepack\\": \\"rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme\\",
+    \\"test\\": \\"jest\\",
+    \\"version\\": \\"oclif-dev readme && git add README.md\\"
+  },
+  \\"types\\": \\"lib/index.d.ts\\",
+  \\"main\\": \\"lib/index.js\\"
+}
+"
+`;
+
+exports[`plugin generator generates plugin with defaults 2`] = `
+"# my-plugin
+
+Checkup plugin
+
+[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+[![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
+[![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
+[![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
+
+<!-- toc -->
+
+# Usage
+
+<!-- usage -->
+
+# Commands
+
+<!-- commands -->
+"
+`;
+
+exports[`plugin generator generates plugin with defaults 3`] = `
+"module.exports = {
+  testEnvironment: 'node',
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  transform: { '\\\\\\\\.ts$': 'ts-jest' },
+  coverageReporters: ['lcov', 'text-summary'],
+  collectCoverageFrom: ['src/**/*.ts'],
+  coveragePathIgnorePatterns: ['/templates/'],
+  coverageThreshold: {
+    global: {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
+    },
+  },
+  testPathIgnorePatterns: ['__fixtures__'],
+};
+"
+`;
+
+exports[`plugin generator generates plugin with defaults 4`] = `
+"{
+  \\"extends\\": \\"../../tsconfig.json\\",
+  \\"compilerOptions\\": {
+    \\"outDir\\": \\"lib\\",
+    \\"rootDir\\": \\"src\\",
+    \\"types\\": [\\"jest\\", \\"node\\"]
+  },
+  \\"include\\": [\\"src/**/*\\"]
+}
+"
+`;
+
+exports[`plugin generator generates plugin with defaults 5`] = `
+"export default {};
+
+export * from './types';
+"
+`;
+
+exports[`plugin generator generates plugin with defaults 6`] = `
+"import { Hook } from '@oclif/config';
+
+const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+  
+};
+
+export default hook;
+"
+`;
+
+exports[`plugin generator generates plugin with defaults 7`] = `""`;
+
+exports[`plugin generator generates plugin with defaults 8`] = `""`;
+
+exports[`plugin generator generates plugin with defaults 9`] = `Array []`;
+
+exports[`plugin generator generates plugin with defaults 10`] = `Array []`;
