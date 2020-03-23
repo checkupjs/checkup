@@ -11,7 +11,7 @@ export interface Options {
 }
 
 export default class GenerateCommand extends Command {
-  static description = 'add a task to an existing plugin';
+  static description = 'Runs a generator to scaffold Checkup code';
 
   static flags = {
     defaults: flags.boolean({ description: 'use defaults for every setting' }),
