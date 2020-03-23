@@ -36,6 +36,6 @@ class TestDirectory {
   }
 }
 
-export function testDir(root: string, ...paths: string[]) {
+export function testRoot(root: string, ...paths: string[]) {
   return new TestRoot(root, ...paths);
 }

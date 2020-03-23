@@ -1,6 +1,6 @@
 import * as helpers from 'yeoman-test';
 
-import { createTmpDir, testDir } from '@checkup/test-helpers';
+import { createTmpDir, testRoot } from '@checkup/test-helpers';
 
 import PluginGenerator from '../../src/generators/plugin';
 
@@ -20,18 +20,18 @@ describe('plugin generator', () => {
         defaults: true,
       });
 
-    let testRoot = testDir(dir, 'my-plugin');
+    let root = testRoot(dir, 'my-plugin');
 
-    expect(testRoot.file('package.json').contents).toMatchSnapshot();
-    expect(testRoot.file('README.md').contents).toMatchSnapshot();
-    expect(testRoot.file('jest.config.js').contents).toMatchSnapshot();
-    expect(testRoot.file('tsconfig.json').contents).toMatchSnapshot();
-    expect(testRoot.file('src/index.ts').contents).toMatchSnapshot();
-    expect(testRoot.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
-    expect(testRoot.file('src/tasks/index.ts').contents).toMatchSnapshot();
-    expect(testRoot.file('src/types/index.ts').contents).toMatchSnapshot();
-    expect(testRoot.directory('__tests__').contents).toMatchSnapshot();
-    expect(testRoot.directory('src/results').contents).toMatchSnapshot();
+    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('README.md').contents).toMatchSnapshot();
+    expect(root.file('jest.config.js').contents).toMatchSnapshot();
+    expect(root.file('tsconfig.json').contents).toMatchSnapshot();
+    expect(root.file('src/index.ts').contents).toMatchSnapshot();
+    expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
+    expect(root.file('src/tasks/index.ts').contents).toMatchSnapshot();
+    expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
+    expect(root.directory('__tests__').contents).toMatchSnapshot();
+    expect(root.directory('src/results').contents).toMatchSnapshot();
   });
 
   it('generates plugin with custom options', async () => {
@@ -47,17 +47,17 @@ describe('plugin generator', () => {
         repository: 'http://github.com/scalvert/plugin-custom',
       });
 
-    let testRoot = testDir(dir, 'my-plugin');
+    let root = testRoot(dir, 'my-plugin');
 
-    expect(testRoot.file('package.json').contents).toMatchSnapshot();
-    expect(testRoot.file('README.md').contents).toMatchSnapshot();
-    expect(testRoot.file('jest.config.js').contents).toMatchSnapshot();
-    expect(testRoot.file('tsconfig.json').contents).toMatchSnapshot();
-    expect(testRoot.file('src/index.ts').contents).toMatchSnapshot();
-    expect(testRoot.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
-    expect(testRoot.file('src/tasks/index.ts').contents).toMatchSnapshot();
-    expect(testRoot.file('src/types/index.ts').contents).toMatchSnapshot();
-    expect(testRoot.directory('__tests__').contents).toMatchSnapshot();
-    expect(testRoot.directory('src/results').contents).toMatchSnapshot();
+    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('README.md').contents).toMatchSnapshot();
+    expect(root.file('jest.config.js').contents).toMatchSnapshot();
+    expect(root.file('tsconfig.json').contents).toMatchSnapshot();
+    expect(root.file('src/index.ts').contents).toMatchSnapshot();
+    expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
+    expect(root.file('src/tasks/index.ts').contents).toMatchSnapshot();
+    expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
+    expect(root.directory('__tests__').contents).toMatchSnapshot();
+    expect(root.directory('src/results').contents).toMatchSnapshot();
   });
 });
