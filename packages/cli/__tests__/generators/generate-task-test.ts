@@ -46,10 +46,10 @@ describe('task generator', () => {
   });
 
   afterEach(function() {
-    //project.dispose();
+    project.dispose();
   });
 
-  it('defaults generates correct files with TypeScript', async () => {
+  it('generates correct files with TypeScript for defaults', async () => {
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(project.baseDir)
@@ -62,7 +62,7 @@ describe('task generator', () => {
     assertPluginFiles(dir);
   });
 
-  it('defaults generates multiple correct files with TypeScript', async () => {
+  it('generates multiple correct files with TypeScript for defaults', async () => {
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(project.baseDir)
