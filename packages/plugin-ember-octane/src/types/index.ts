@@ -14,14 +14,14 @@ export enum TemplateLintMigrationType {
   UseModifiers = 'use-modifiers',
 }
 
-interface CompetionInfo {
+interface CompletionInfo {
   total: number;
   completed: number;
   percentage: string;
 }
 
 export interface MigrationInfo {
-  completionInfo: CompetionInfo;
+  completionInfo: CompletionInfo;
   name: string;
   relatedResults: CLIEngine.LintResult[];
 }
