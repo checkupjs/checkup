@@ -2,7 +2,7 @@ import { CLIEngine } from 'eslint';
 import { stdout } from '@checkup/test-helpers';
 import { OctaneMigrationStatusTask } from '../../src/tasks';
 import { OctaneMigrationStatusTaskResult } from '../../src/results';
-import { EmberTemplateLintReport } from '../../src/tasks/octane-migration-status-task';
+import { EmberTemplateLintReport } from '../../src/types';
 
 describe('octane-migration-status-task-result', () => {
   let sampleESLintReport: CLIEngine.LintReport;

@@ -2,31 +2,11 @@ import { CLIEngine } from 'eslint';
 import * as globby from 'globby';
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
 import { OctaneMigrationStatusTaskResult } from '../results';
+import { EmberTemplateLintReport } from '../types';
 
 const fs = require('fs');
 const TemplateLinter = require('ember-template-lint');
 const debug = require('debug')('checkup:plugin-ember-octane');
-
-interface EmberTemplateLintResultMessage {
-  rule: string;
-  severity: number;
-  moduleId: string;
-  message: string;
-  line: number;
-  column: number;
-  source: string;
-}
-
-export interface EmberTemplateLintResult {
-  filePath: string;
-  messages: EmberTemplateLintResultMessage[];
-  errorCount: number;
-}
-
-export interface EmberTemplateLintReport {
-  errorCount: number;
-  results: EmberTemplateLintResult[];
-}
 
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {

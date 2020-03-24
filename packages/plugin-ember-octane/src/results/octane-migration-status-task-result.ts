@@ -2,41 +2,11 @@ import { CLIEngine } from 'eslint';
 import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
 import {
   EmberTemplateLintReport,
-  EmberTemplateLintResult,
-} from '../tasks/octane-migration-status-task';
-
-type LintResultCollection = CLIEngine.LintResult[] | EmberTemplateLintResult[];
-
-interface CompetionInfo {
-  total: number;
-  completed: number;
-  percentage: string;
-}
-interface MigrationInfo {
-  completionInfo: CompetionInfo;
-  name: string;
-  relatedResults: LintResultCollection;
-}
-
-interface MigrationRuleConfig {
-  fileMatchers: RegExp[];
-  name: string;
-  rules: string[];
-}
-
-enum ESLintMigrationType {
-  NativeClasses = 'native-classes',
-  TaglessComponents = 'tagless-components',
-  GlimmerComponents = 'glimmer-components',
-  TrackedProperties = 'tracked-properties',
-}
-
-enum TemplateLintMigrationType {
-  AngleBrackets = 'angle-brackets',
-  NamedArgs = 'named-args',
-  OwnProperties = 'own-properties',
-  UseModifiers = 'use-modifiers',
-}
+  ESLintMigrationType,
+  MigrationInfo,
+  MigrationRuleConfig,
+  TemplateLintMigrationType,
+} from '../types';
 
 const ESLINT_MIGRATION_RULE_CONFIGS: { [Key in ESLintMigrationType]: MigrationRuleConfig } = {
   [ESLintMigrationType.NativeClasses]: {
