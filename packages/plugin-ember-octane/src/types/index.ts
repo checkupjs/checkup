@@ -14,6 +14,8 @@ export enum TemplateLintMigrationType {
   UseModifiers = 'use-modifiers',
 }
 
+type Severity = 0 | 1 | 2;
+
 interface CompletionInfo {
   total: number;
   completed: number;
@@ -34,7 +36,7 @@ export interface MigrationRuleConfig {
 
 export interface EmberTemplateLintMessage {
   rule: string;
-  severity: 0 | 1 | 2;
+  severity: Severity;
   moduleId: string;
   message: string;
   line: number;
