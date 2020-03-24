@@ -1,8 +1,8 @@
-import { CLIEngine } from 'eslint';
+import { CLIEngine, Linter } from 'eslint';
 import * as globby from 'globby';
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
 import { OctaneMigrationStatusTaskResult } from '../results';
-import { EmberTemplateLintReport } from '../types';
+import { EmberTemplateLintMessage } from '../types';
 
 const fs = require('fs');
 const TemplateLinter = require('ember-template-lint');
@@ -90,7 +90,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     return this.esLintEngine.executeOnFiles([`${this.rootPath}/+(app|addon)/**/*.js`]);
   }
 
-  private async runTemplateLint(): Promise<EmberTemplateLintReport> {
+  private async runTemplateLint(): Promise<CLIEngine.LintReport> {
     let filePaths = await globby(`${this.rootPath}/+(app|addon)/**/*.hbs`);
 
     let sources = filePaths.map(path => ({
@@ -98,13 +98,31 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
       template: fs.readFileSync(path, { encoding: 'utf8' }),
     }));
 
-    let results = sources.map(({ path, template }) => {
-      let messages = this.templateLinter.verify({ source: template, moduleId: path });
+    let results: CLIEngine.LintResult[] = sources.map(({ path, template }) => {
+      // We need to get the ember-template-lint results and then map them over to match ESLint result
+      // types. This allows us to streamline our data manipulation later.
+      let messages: Linter.LintMessage[] = this.templateLinter
+        .verify({ source: template, moduleId: path })
+        .map((msg: EmberTemplateLintMessage) => {
+          let { column, line, message, rule, severity, source } = msg;
+          return {
+            column,
+            line,
+            message,
+            severity,
+            source,
+            ruleId: rule,
+          };
+        });
 
       return {
         messages,
         errorCount: messages.length,
         filePath: path,
+        warningCount: 0,
+        fixableErrorCount: 0,
+        fixableWarningCount: 0,
+        source: template,
       };
     });
 
@@ -115,6 +133,10 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     return {
       errorCount,
       results,
+      warningCount: 0,
+      fixableErrorCount: 0,
+      fixableWarningCount: 0,
+      usedDeprecatedRules: [],
     };
   }
 }

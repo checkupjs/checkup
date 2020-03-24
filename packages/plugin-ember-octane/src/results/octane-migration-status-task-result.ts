@@ -1,7 +1,6 @@
 import { CLIEngine } from 'eslint';
 import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
 import {
-  EmberTemplateLintReport,
   ESLintMigrationType,
   MigrationInfo,
   MigrationRuleConfig,
@@ -96,15 +95,15 @@ function getESLintMigrationInfo(
 
 function getTemplateLintMigrationInfo(
   migrationConfig: MigrationRuleConfig,
-  report: EmberTemplateLintReport
+  report: CLIEngine.LintReport
 ): MigrationInfo {
   let relatedResults = report.results.filter(({ filePath }) =>
     migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
   );
 
   let relatedResultsWithViolations = relatedResults.filter(result => {
-    return result.messages.some(({ rule }) =>
-      rule ? migrationConfig.rules.includes(rule) : false
+    return result.messages.some(({ ruleId }) =>
+      ruleId ? migrationConfig.rules.includes(ruleId) : false
     );
   });
 
@@ -130,7 +129,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
   constructor(
     meta: TaskMetaData,
     public esLintReport: CLIEngine.LintReport,
-    public templateLintReport: EmberTemplateLintReport
+    public templateLintReport: CLIEngine.LintReport
   ) {
     super(meta);
   }
