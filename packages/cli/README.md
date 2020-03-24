@@ -25,8 +25,13 @@ $ yarn global add @checkup/cli
 $ npm install -g @checkup/cli
 ```
 
-The `checkup` CLI is now available to run. Use the `run` command to run
-Checkup against your project directory:
+First use the config generator to create a config file in your project's directory:
+
+```sh-session
+$ checkup generate config
+```
+
+The `checkup` CLI is now available to run. Use the `run` command to run Checkup against your project directory:
 
 ```sh-session
 $ checkup run .

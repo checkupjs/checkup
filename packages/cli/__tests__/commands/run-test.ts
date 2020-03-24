@@ -6,7 +6,7 @@ import { CheckupProject, Plugin, createTmpDir, stdout } from '@checkup/test-help
 
 import cmd = require('../../src');
 
-const TEST_TIMEOUT = 30000;
+const TEST_TIMEOUT = 50000;
 
 describe('@checkup/cli', () => {
   describe('normal cli output with plugins', () => {
