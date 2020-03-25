@@ -2,31 +2,15 @@ import { CLIEngine } from 'eslint';
 import * as globby from 'globby';
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
 import { OctaneMigrationStatusTaskResult } from '../results';
+import {
+  TemplateLintMessage,
+  TemplateLintReport,
+  TemplateLintResult,
+} from '../types/ember-template-lint';
 
 const fs = require('fs');
 const TemplateLinter = require('ember-template-lint');
 const debug = require('debug')('checkup:plugin-ember-octane');
-
-interface EmberTemplateLintResultMessage {
-  rule: string;
-  severity: number;
-  moduleId: string;
-  message: string;
-  line: number;
-  column: number;
-  source: string;
-}
-
-export interface EmberTemplateLintResult {
-  filePath: string;
-  messages: EmberTemplateLintResultMessage[];
-  errorCount: number;
-}
-
-export interface EmberTemplateLintReport {
-  errorCount: number;
-  results: EmberTemplateLintResult[];
-}
 
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {
@@ -62,7 +46,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
         'ember/no-actions-hash': 'error',
         'ember/no-classic-classes': 'error',
         'ember/no-classic-components': 'error',
-        // 'ember/no-component-lifecycle-hooks': 'error',
+        'ember/no-component-lifecycle-hooks': 'error',
         'ember/no-computed-properties-in-native-classes': 'error',
         'ember/no-get-with-default': 'error',
         'ember/no-get': 'error',
@@ -110,7 +94,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     return this.esLintEngine.executeOnFiles([`${this.rootPath}/+(app|addon)/**/*.js`]);
   }
 
-  private async runTemplateLint(): Promise<EmberTemplateLintReport> {
+  private async runTemplateLint(): Promise<TemplateLintReport> {
     let filePaths = await globby(`${this.rootPath}/+(app|addon)/**/*.hbs`);
 
     let sources = filePaths.map(path => ({
@@ -118,13 +102,17 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
       template: fs.readFileSync(path, { encoding: 'utf8' }),
     }));
 
-    let results = sources.map(({ path, template }) => {
-      let messages = this.templateLinter.verify({ source: template, moduleId: path });
+    let results: TemplateLintResult[] = sources.map(({ path, template }) => {
+      let messages: TemplateLintMessage[] = this.templateLinter.verify({
+        source: template,
+        moduleId: path,
+      });
 
       return {
         messages,
         errorCount: messages.length,
         filePath: path,
+        source: template,
       };
     });
 

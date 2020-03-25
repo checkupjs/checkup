@@ -1,42 +1,12 @@
 import { CLIEngine } from 'eslint';
 import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
 import {
-  EmberTemplateLintReport,
-  EmberTemplateLintResult,
-} from '../tasks/octane-migration-status-task';
-
-type LintResultCollection = CLIEngine.LintResult[] | EmberTemplateLintResult[];
-
-interface CompetionInfo {
-  total: number;
-  completed: number;
-  percentage: string;
-}
-interface MigrationInfo {
-  completionInfo: CompetionInfo;
-  name: string;
-  relatedResults: LintResultCollection;
-}
-
-interface MigrationRuleConfig {
-  fileMatchers: RegExp[];
-  name: string;
-  rules: string[];
-}
-
-enum ESLintMigrationType {
-  NativeClasses = 'native-classes',
-  TaglessComponents = 'tagless-components',
-  GlimmerComponents = 'glimmer-components',
-  TrackedProperties = 'tracked-properties',
-}
-
-enum TemplateLintMigrationType {
-  AngleBrackets = 'angle-brackets',
-  NamedArgs = 'named-args',
-  OwnProperties = 'own-properties',
-  UseModifiers = 'use-modifiers',
-}
+  ESLintMigrationType,
+  MigrationInfo,
+  MigrationRuleConfig,
+  TemplateLintMigrationType,
+} from '../types';
+import { TemplateLintReport } from '../types/ember-template-lint';
 
 const ESLINT_MIGRATION_RULE_CONFIGS: { [Key in ESLintMigrationType]: MigrationRuleConfig } = {
   [ESLintMigrationType.NativeClasses]: {
@@ -126,7 +96,7 @@ function getESLintMigrationInfo(
 
 function getTemplateLintMigrationInfo(
   migrationConfig: MigrationRuleConfig,
-  report: EmberTemplateLintReport
+  report: TemplateLintReport
 ): MigrationInfo {
   let relatedResults = report.results.filter(({ filePath }) =>
     migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
@@ -160,7 +130,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
   constructor(
     meta: TaskMetaData,
     public esLintReport: CLIEngine.LintReport,
-    public templateLintReport: EmberTemplateLintReport
+    public templateLintReport: TemplateLintReport
   ) {
     super(meta);
   }
