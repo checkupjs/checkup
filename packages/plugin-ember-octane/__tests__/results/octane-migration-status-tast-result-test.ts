@@ -2,10 +2,11 @@ import { CLIEngine } from 'eslint';
 import { stdout } from '@checkup/test-helpers';
 import { OctaneMigrationStatusTask } from '../../src/tasks';
 import { OctaneMigrationStatusTaskResult } from '../../src/results';
+import { TemplateLintReport } from '../../src/types/ember-template-lint';
 
 describe('octane-migration-status-task-result', () => {
   let sampleESLintReport: CLIEngine.LintReport;
-  let sampleTemplateLintReport: CLIEngine.LintReport;
+  let sampleTemplateLintReport: TemplateLintReport;
 
   beforeEach(() => {
     sampleESLintReport = require('../__fixtures__/sample-octane-eslint-report.json');
