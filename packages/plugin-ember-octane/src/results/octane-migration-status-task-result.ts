@@ -6,6 +6,7 @@ import {
   MigrationRuleConfig,
   TemplateLintMigrationType,
 } from '../types';
+import { TemplateLintReport } from '../types/ember-template-lint';
 
 const ESLINT_MIGRATION_RULE_CONFIGS: { [Key in ESLintMigrationType]: MigrationRuleConfig } = {
   [ESLintMigrationType.NativeClasses]: {
@@ -95,15 +96,15 @@ function getESLintMigrationInfo(
 
 function getTemplateLintMigrationInfo(
   migrationConfig: MigrationRuleConfig,
-  report: CLIEngine.LintReport
+  report: TemplateLintReport
 ): MigrationInfo {
   let relatedResults = report.results.filter(({ filePath }) =>
     migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
   );
 
   let relatedResultsWithViolations = relatedResults.filter(result => {
-    return result.messages.some(({ ruleId }) =>
-      ruleId ? migrationConfig.rules.includes(ruleId) : false
+    return result.messages.some(({ rule }) =>
+      rule ? migrationConfig.rules.includes(rule) : false
     );
   });
 
@@ -129,7 +130,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
   constructor(
     meta: TaskMetaData,
     public esLintReport: CLIEngine.LintReport,
-    public templateLintReport: CLIEngine.LintReport
+    public templateLintReport: TemplateLintReport
   ) {
     super(meta);
   }

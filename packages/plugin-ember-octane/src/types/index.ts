@@ -1,4 +1,5 @@
 import { CLIEngine } from 'eslint';
+import { TemplateLintResult } from './ember-template-lint';
 
 export enum ESLintMigrationType {
   NativeClasses = 'native-classes',
@@ -14,7 +15,7 @@ export enum TemplateLintMigrationType {
   UseModifiers = 'use-modifiers',
 }
 
-type Severity = 0 | 1 | 2;
+type LintResultCollection = CLIEngine.LintResult[] | TemplateLintResult[];
 
 interface CompletionInfo {
   total: number;
@@ -25,21 +26,11 @@ interface CompletionInfo {
 export interface MigrationInfo {
   completionInfo: CompletionInfo;
   name: string;
-  relatedResults: CLIEngine.LintResult[];
+  relatedResults: LintResultCollection;
 }
 
 export interface MigrationRuleConfig {
   fileMatchers: RegExp[];
   name: string;
   rules: string[];
-}
-
-export interface EmberTemplateLintMessage {
-  rule: string;
-  severity: Severity;
-  moduleId: string;
-  message: string;
-  line: number;
-  column: number;
-  source: string;
 }

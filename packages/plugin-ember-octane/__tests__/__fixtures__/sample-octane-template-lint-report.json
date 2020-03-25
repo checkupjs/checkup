@@ -4,7 +4,7 @@
     {
       "messages": [
         {
-          "ruleId": "no-action",
+          "rule": "no-action",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "Do not use `action` as <button {{action ...}} />. Instead, use the `on` modifier and `fn` helper.",
@@ -13,7 +13,7 @@
           "source": "{{action \"legacyAction\"}}"
         },
         {
-          "ruleId": "no-curly-component-invocation",
+          "rule": "no-curly-component-invocation",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "You are using the component {{foo}} with curly component syntax. You should use <Foo> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. `'no-curly-component-invocation': { allow: ['foo'] }`.",
@@ -22,7 +22,7 @@
           "source": "{{foo}}"
         },
         {
-          "ruleId": "no-curly-component-invocation",
+          "rule": "no-curly-component-invocation",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "You are using the component {{foo.bar}} with curly component syntax. You should use <Foo.Bar> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. `'no-curly-component-invocation': { allow: ['foo.bar'] }`.",
@@ -31,7 +31,7 @@
           "source": "{{foo.bar}}"
         },
         {
-          "ruleId": "no-curly-component-invocation",
+          "rule": "no-curly-component-invocation",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "You are using the component {{foo-bar}} with curly component syntax. You should use <FooBar> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. `'no-curly-component-invocation': { allow: ['foo-bar'] }`.",
@@ -40,7 +40,7 @@
           "source": "{{foo-bar}}"
         },
         {
-          "ruleId": "no-curly-component-invocation",
+          "rule": "no-curly-component-invocation",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "You are using the component {{nested/component}} with curly component syntax. You should use <Nested::Component> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. `'no-curly-component-invocation': { allow: ['nested/component'] }`.",
@@ -49,7 +49,7 @@
           "source": "{{nested/component}}"
         },
         {
-          "ruleId": "no-curly-component-invocation",
+          "rule": "no-curly-component-invocation",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "You are using the component {{foo}} with curly component syntax. You should use <Foo> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. `'no-curly-component-invocation': { allow: ['foo'] }`.",
@@ -58,7 +58,7 @@
           "source": "{{#foo}}{{/foo}}"
         },
         {
-          "ruleId": "no-curly-component-invocation",
+          "rule": "no-curly-component-invocation",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "You are using the component {{link-to}} with curly component syntax. You should use <LinkTo> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. `'no-curly-component-invocation': { allow: ['link-to'] }`.",
@@ -67,7 +67,7 @@
           "source": "{{link-to \"bar\" \"foo\"}}"
         },
         {
-          "ruleId": "no-curly-component-invocation",
+          "rule": "no-curly-component-invocation",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "You are using the component {{link-to}} with curly component syntax. You should use <LinkTo> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. `'no-curly-component-invocation': { allow: ['link-to'] }`.",
@@ -76,7 +76,7 @@
           "source": "{{#link-to \"foo\"}}bar{{/link-to}}"
         },
         {
-          "ruleId": "no-implicit-this",
+          "rule": "no-implicit-this",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments you must manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
@@ -85,7 +85,7 @@
           "source": "foo"
         },
         {
-          "ruleId": "no-implicit-this",
+          "rule": "no-implicit-this",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "Ambiguous path 'foo.bar' is not allowed. Use '@foo.bar' if it is a named argument or 'this.foo.bar' if it is a property on 'this'. If it is a helper or component that has no arguments you must manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo.bar'] }.",
@@ -94,7 +94,7 @@
           "source": "foo.bar"
         },
         {
-          "ruleId": "no-implicit-this",
+          "rule": "no-implicit-this",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "Ambiguous path 'foo-bar' is not allowed. Use '@foo-bar' if it is a named argument or 'this.foo-bar' if it is a property on 'this'. If it is a helper or component that has no arguments you must manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo-bar'] }.",
@@ -103,7 +103,7 @@
           "source": "foo-bar"
         },
         {
-          "ruleId": "no-implicit-this",
+          "rule": "no-implicit-this",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "Ambiguous path 'nested/component' is not allowed. Use '@nested/component' if it is a named argument or 'this.nested/component' if it is a property on 'this'. If it is a helper or component that has no arguments you must manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['nested/component'] }.",
@@ -112,7 +112,7 @@
           "source": "nested/component"
         },
         {
-          "ruleId": "no-implicit-this",
+          "rule": "no-implicit-this",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "Ambiguous path 'bar' is not allowed. Use '@bar' if it is a named argument or 'this.bar' if it is a property on 'this'. If it is a helper or component that has no arguments you must manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['bar'] }.",
@@ -121,7 +121,7 @@
           "source": "bar"
         },
         {
-          "ruleId": "no-implicit-this",
+          "rule": "no-implicit-this",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "Ambiguous path 'baz' is not allowed. Use '@baz' if it is a named argument or 'this.baz' if it is a property on 'this'. If it is a helper or component that has no arguments you must manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['baz'] }.",
@@ -130,7 +130,7 @@
           "source": "baz"
         },
         {
-          "ruleId": "no-implicit-this",
+          "rule": "no-implicit-this",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "Ambiguous path 'baz' is not allowed. Use '@baz' if it is a named argument or 'this.baz' if it is a property on 'this'. If it is a helper or component that has no arguments you must manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['baz'] }.",
@@ -139,7 +139,7 @@
           "source": "baz"
         },
         {
-          "ruleId": "no-implicit-this",
+          "rule": "no-implicit-this",
           "severity": 2,
           "moduleId": "app/components/has-failures.hbs",
           "message": "Ambiguous path 'bar' is not allowed. Use '@bar' if it is a named argument or 'this.bar' if it is a property on 'this'. If it is a helper or component that has no arguments you must manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['bar'] }.",
