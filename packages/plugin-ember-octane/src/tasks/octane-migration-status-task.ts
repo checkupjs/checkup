@@ -103,21 +103,10 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     }));
 
     let results: TemplateLintResult[] = sources.map(({ path, template }) => {
-      // We need to get the ember-template-lint results and then map them over to match ESLint result
-      // types. This allows us to streamline our data manipulation later.
-      let messages: TemplateLintMessage[] = this.templateLinter
-        .verify({ source: template, moduleId: path })
-        .map((msg: TemplateLintMessage) => {
-          let { column, line, message, rule, severity, source } = msg;
-          return {
-            column,
-            line,
-            message,
-            severity,
-            source,
-            ruleId: rule,
-          };
-        });
+      let messages: TemplateLintMessage[] = this.templateLinter.verify({
+        source: template,
+        moduleId: path,
+      });
 
       return {
         messages,
