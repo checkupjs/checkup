@@ -112,9 +112,6 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
         messages,
         errorCount: messages.length,
         filePath: path,
-        warningCount: 0,
-        fixableErrorCount: 0,
-        fixableWarningCount: 0,
         source: template,
       };
     });
