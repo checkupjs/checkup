@@ -3,7 +3,7 @@
 ## Scoring and Heuristics (RFC - still WIP)
 
 ### Summary
-Checkups main value is in providing insights into the health of an application by helping users interpret the data we collect about an app in a way that can be understood by all of our targeted [personas](SPEC.md#Personas). 
+Checkup's main value is in providing insights into the health of an application by helping users interpret the data we collect about an app in a way that can be understood by all of our targeted [personas](SPEC.md#Personas). 
 
 For example, if a task that charts a migration is added to checkup today, and your app is 0% done with this new migration, that is totally okay. We don't expect you to be done, it only began today! The configurability of checkup is very valuable here - as the owner of a task you can provide a `failingScore` and a `passingScore` (which can be overridden via the checkup config in your application), which we use to provide a letter grade (`A`-`F`) for each task. We then do some fun math to take the grades given for each task, and the `Priority` of each task, and provide a grade for each `Category` of task, and then for the app's overall health. 
 
@@ -61,7 +61,6 @@ Alternatively, we can also just make priority a number between 1-5 or 1-10.
 ### Overall health score
 
 We also need to determine the weight of the three categories of tasks, in order to combine them into one solid health score. I propose that `Core` be weighted 2x, `Insights` 1.5x, and `Migrations` 1x. We will then take the grades of each of those sections, and multiply them out to get one final grade, or health score for the application.
-
 
 
 
