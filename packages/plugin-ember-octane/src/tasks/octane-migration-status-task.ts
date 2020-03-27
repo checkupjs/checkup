@@ -1,8 +1,9 @@
 import { CLIEngine } from 'eslint';
 import * as globby from 'globby';
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
-import { getOctaneESLintEngine } from '../linters/es-lint';
-import { getOctaneTemplateLinter } from '../linters/ember-template-lint';
+import { getESLintEngine } from '../linters/es-lint';
+import { getTemplateLinter } from '../linters/ember-template-lint';
+import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lint-configs';
 import { OctaneMigrationStatusTaskResult } from '../results';
 import {
   TemplateLintMessage,
@@ -30,8 +31,8 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   constructor(cliArguments: any) {
     super(cliArguments);
 
-    this.esLintEngine = getOctaneESLintEngine();
-    this.templateLinter = getOctaneTemplateLinter();
+    this.esLintEngine = getESLintEngine(OCTANE_ES_LINT_CONFIG);
+    this.templateLinter = getTemplateLinter(OCTANE_TEMPLATE_LINT_CONFIG);
   }
 
   get rootPath(): string {

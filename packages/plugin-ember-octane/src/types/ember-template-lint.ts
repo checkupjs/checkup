@@ -1,5 +1,9 @@
 type Severity = 0 | 1 | 2;
 
+type RuleLevel = Severity | 'off' | 'warn' | 'error';
+
+type RuleLevelAndOptions<Options extends any[] = any[]> = Prepend<Partial<Options>, RuleLevel>;
+
 export interface TemplateLintMessage {
   rule: string;
   severity: Severity;
@@ -20,4 +24,10 @@ export interface TemplateLintResult {
 export interface TemplateLintReport {
   results: TemplateLintResult[];
   errorCount: number;
+}
+
+export interface TemplateLintConfig {
+  rules?: {
+    [name: string]: RuleLevel | RuleLevelAndOptions;
+  };
 }
