@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@checkup/test-helpers": "0.0.1",
+    "@oclif/dev-cli": "^1",
     "jest": "^25.2.3",
     "rimraf": "^3.0.2",
     "ts-jest": "^25.2.1",

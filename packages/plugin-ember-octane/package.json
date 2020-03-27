@@ -15,6 +15,7 @@
     "tslib": "^1"
   },
   "devDependencies": {
+    "@oclif/dev-cli": "^1",
     "@types/eslint": "^6.1.8",
     "babel-eslint": "^10.1.0",
     "fixturify-project": "^2.1.0",
