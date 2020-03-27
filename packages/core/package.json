@@ -19,7 +19,7 @@
     "chai": "^4.2.0",
     "cosmiconfig": "^6.0.0",
     "eslint-plugin-jest": "^23.8.2",
-    "jest": "^25.2.0",
+    "jest": "^25.2.3",
     "stdout-stderr": "^0.1.13",
     "ts-jest": "^25.2.1",
     "ts-node": "^8",
