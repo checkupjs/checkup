@@ -52,7 +52,8 @@
       "release-it-lerna-changelog": {
         "infile": "CHANGELOG.md",
         "launchEditor": true
-      }
+      },
+      "release-it-yarn-workspaces": true
     },
     "git": {
       "tagName": "v${version}"
