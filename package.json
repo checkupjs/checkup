@@ -1,11 +1,11 @@
 {
   "name": "checkup",
   "version": "0.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/checkupjs/checkup.git",
-  "author": "Steve Calvert <steve.calvert@gmail.com>",
-  "license": "MIT",
   "private": true,
+  "repository": "https://github.com/checkupjs/checkup.git",
+  "license": "MIT",
+  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "main": "index.js",
   "workspaces": [
     "packages/*"
   ],
@@ -13,8 +13,18 @@
     "build": "yarn wsrun --stages build",
     "build:watch": "yarn wsrun watch",
     "clean": "yarn wsrun clean",
-    "test": "yarn wsrun test",
-    "lint": "eslint . --cache --ext .ts"
+    "lint": "eslint . --cache --ext .ts",
+    "test": "yarn wsrun test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "packages/**/*.ts": [
+      "eslint --ext ts"
+    ]
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.25.0",
@@ -29,16 +39,29 @@
     "husky": "^4.2.3",
     "lint-staged": "^10.0.9",
     "prettier": "^1.19.1",
+    "release-it": "^13.1.1",
+    "release-it-lerna-changelog": "^2.1.1",
+    "release-it-yarn-workspaces": "^1.0.0",
     "wsrun": "^5.2.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   },
-  "lint-staged": {
-    "packages/**/*.ts": [
-      "yarn lint"
-    ]
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": true
+      },
+      "release-it-yarn-workspaces": true
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
+    },
+    "npm": false
   }
 }
