@@ -1,9 +1,9 @@
 import { CLIEngine } from 'eslint';
-import { MigrationInfo, MigrationRuleConfig } from '../types';
+import { MigrationInfo, MigrationTaskConfig } from '../types';
 import { TemplateLintReport } from '../types/ember-template-lint';
 
 export function transformESLintReport(
-  migrationConfig: MigrationRuleConfig,
+  migrationConfig: MigrationTaskConfig,
   report: CLIEngine.LintReport
 ): MigrationInfo {
   let relatedResults = report.results.filter(({ filePath }) =>
@@ -33,7 +33,7 @@ export function transformESLintReport(
 }
 
 export function transformTemplateLintReport(
-  migrationConfig: MigrationRuleConfig,
+  migrationConfig: MigrationTaskConfig,
   report: TemplateLintReport
 ): MigrationInfo {
   let relatedResults = report.results.filter(({ filePath }) =>

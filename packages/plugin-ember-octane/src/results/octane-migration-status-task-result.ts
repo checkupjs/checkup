@@ -1,69 +1,12 @@
 import { CLIEngine } from 'eslint';
 import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
-import {
-  ESLintMigrationType,
-  MigrationInfo,
-  MigrationRuleConfig,
-  TemplateLintMigrationType,
-} from '../types';
+import { ESLintMigrationType, MigrationInfo, TemplateLintMigrationType } from '../types';
 import { TemplateLintReport } from '../types/ember-template-lint';
 import { transformESLintReport, transformTemplateLintReport } from '../utils/transformers';
-
-const ESLINT_MIGRATION_RULE_CONFIGS: { [Key in ESLintMigrationType]: MigrationRuleConfig } = {
-  [ESLintMigrationType.NativeClasses]: {
-    fileMatchers: [
-      /app\/app\.js$/,
-      /(app|addon)\/(adapters|components|controllers|helpers|models|routes|services)\/.*\.js$/,
-    ],
-    name: 'Native Class',
-    rules: [
-      'ember/no-classic-classes',
-      'ember/classic-decorator-no-classic-methods',
-      'ember/no-actions-hash',
-      'ember/no-get',
-    ],
-  },
-  [ESLintMigrationType.TaglessComponents]: {
-    fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Tagless Component',
-    rules: ['ember/require-tagless-components'],
-  },
-  [ESLintMigrationType.GlimmerComponents]: {
-    fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Glimmer Component',
-    rules: ['ember/no-classic-components'],
-  },
-  [ESLintMigrationType.TrackedProperties]: {
-    fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Tracked Properties',
-    rules: ['ember/no-computed-properties-in-native-classes'],
-  },
-};
-
-const TEMPLATE_LINT_MIGRATION_RULE_CONFIGS: {
-  [Key in TemplateLintMigrationType]: MigrationRuleConfig;
-} = {
-  [TemplateLintMigrationType.AngleBrackets]: {
-    fileMatchers: [/(addon|app)\/.*\.hbs$/],
-    name: 'Angle Brackets',
-    rules: ['no-curly-component-invocation'],
-  },
-  [TemplateLintMigrationType.NamedArgs]: {
-    fileMatchers: [/(addon|app)\/.*\.hbs$/],
-    name: 'Use Named Arguments',
-    rules: ['no-args-paths'],
-  },
-  [TemplateLintMigrationType.OwnProperties]: {
-    fileMatchers: [/(addon|app)\/.*\.hbs$/],
-    name: 'Own Properties',
-    rules: ['no-implicit-this'],
-  },
-  [TemplateLintMigrationType.UseModifiers]: {
-    fileMatchers: [/(addon|app)\/.*\.hbs$/],
-    name: 'Use Modifiers',
-    rules: ['no-action'],
-  },
-};
+import {
+  ESLINT_MIGRATION_TASK_CONFIGS,
+  TEMPLATE_LINT_MIGRATION_TASK_CONFIGS,
+} from '../utils/task-configs';
 
 export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
   taskName: string = 'Octane Migration Status';
@@ -110,42 +53,42 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
 
   json() {
     let nativeClassMigrationInfo = transformESLintReport(
-      ESLINT_MIGRATION_RULE_CONFIGS[ESLintMigrationType.NativeClasses],
+      ESLINT_MIGRATION_TASK_CONFIGS[ESLintMigrationType.NativeClasses],
       this.esLintReport
     );
 
     let taglessComponentMigrationInfo = transformESLintReport(
-      ESLINT_MIGRATION_RULE_CONFIGS[ESLintMigrationType.TaglessComponents],
+      ESLINT_MIGRATION_TASK_CONFIGS[ESLintMigrationType.TaglessComponents],
       this.esLintReport
     );
 
     let glimmerComponentsMigrationinfo = transformESLintReport(
-      ESLINT_MIGRATION_RULE_CONFIGS[ESLintMigrationType.GlimmerComponents],
+      ESLINT_MIGRATION_TASK_CONFIGS[ESLintMigrationType.GlimmerComponents],
       this.esLintReport
     );
 
     let trackedPropertiesMigrationInfo = transformESLintReport(
-      ESLINT_MIGRATION_RULE_CONFIGS[ESLintMigrationType.TrackedProperties],
+      ESLINT_MIGRATION_TASK_CONFIGS[ESLintMigrationType.TrackedProperties],
       this.esLintReport
     );
 
     let angleBracketsMigrationInfo = transformTemplateLintReport(
-      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.AngleBrackets],
+      TEMPLATE_LINT_MIGRATION_TASK_CONFIGS[TemplateLintMigrationType.AngleBrackets],
       this.templateLintReport
     );
 
     let namedArgsMigrationInfo = transformTemplateLintReport(
-      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.NamedArgs],
+      TEMPLATE_LINT_MIGRATION_TASK_CONFIGS[TemplateLintMigrationType.NamedArgs],
       this.templateLintReport
     );
 
     let ownPropsMigrationInfo = transformTemplateLintReport(
-      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.OwnProperties],
+      TEMPLATE_LINT_MIGRATION_TASK_CONFIGS[TemplateLintMigrationType.OwnProperties],
       this.templateLintReport
     );
 
     let useModifiersMigrationInfo = transformTemplateLintReport(
-      TEMPLATE_LINT_MIGRATION_RULE_CONFIGS[TemplateLintMigrationType.UseModifiers],
+      TEMPLATE_LINT_MIGRATION_TASK_CONFIGS[TemplateLintMigrationType.UseModifiers],
       this.templateLintReport
     );
 
