@@ -29,7 +29,7 @@ export interface MigrationInfo {
   relatedResults: LintResultCollection;
 }
 
-export interface MigrationRuleConfig {
+export interface MigrationTaskConfig {
   fileMatchers: RegExp[];
   name: string;
   rules: string[];

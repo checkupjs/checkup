@@ -1,6 +1,9 @@
 import { CLIEngine } from 'eslint';
 import * as globby from 'globby';
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
+import { getESLintEngine } from '../linters/es-lint';
+import { getTemplateLinter } from '../linters/ember-template-lint';
+import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lint-configs';
 import { OctaneMigrationStatusTaskResult } from '../results';
 import {
   TemplateLintMessage,
@@ -28,50 +31,8 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   constructor(cliArguments: any) {
     super(cliArguments);
 
-    // These options are taken from a default ember application build on top of ember-source 3.16.*
-    this.esLintEngine = new CLIEngine({
-      parser: 'babel-eslint',
-      parserOptions: {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-        ecmaFeatures: {
-          legacyDecorators: true,
-        },
-      },
-      plugins: ['ember'],
-      envs: ['browser'],
-      rules: {
-        'ember/classic-decorator-hooks': 'error',
-        'ember/classic-decorator-no-classic-methods': 'error',
-        'ember/no-actions-hash': 'error',
-        'ember/no-classic-classes': 'error',
-        'ember/no-classic-components': 'error',
-        'ember/no-component-lifecycle-hooks': 'error',
-        'ember/no-computed-properties-in-native-classes': 'error',
-        'ember/no-get-with-default': 'error',
-        'ember/no-get': 'error',
-        'ember/no-jquery': 'error',
-        'ember/require-tagless-components': 'error',
-      },
-      useEslintrc: false,
-    });
-
-    this.templateLinter = new TemplateLinter({
-      config: {
-        rules: {
-          'no-action': 'error',
-          'no-args-paths': 'error',
-          'no-curly-component-invocation': [
-            'error',
-            {
-              noImplicitThis: 'error',
-              requireDash: 'off',
-            },
-          ],
-          'no-implicit-this': 'error',
-        },
-      },
-    });
+    this.esLintEngine = getESLintEngine(OCTANE_ES_LINT_CONFIG);
+    this.templateLinter = getTemplateLinter(OCTANE_TEMPLATE_LINT_CONFIG);
   }
 
   get rootPath(): string {
