@@ -45,6 +45,9 @@
       "register-tasks": "./src/hooks/register-tasks"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
     "build": "tsc",

@@ -37,6 +37,9 @@
       "register-parsers": "./lib/hooks/register-parsers"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
     "build": "tsc",

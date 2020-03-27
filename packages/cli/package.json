@@ -74,6 +74,9 @@
     "commands": "./lib/commands",
     "bin": "checkup"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
     "build": "tsc && yarn copystatic",
