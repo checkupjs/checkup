@@ -2,7 +2,7 @@ import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 import { RepositoryInfo } from '../types';
 
-export default class ProjectInfoTaskResult extends BaseTaskResult implements TaskResult {
+export default class ProjectMetaTaskResult extends BaseTaskResult implements TaskResult {
   name!: string;
   version!: string;
   repository!: RepositoryInfo;
@@ -30,9 +30,11 @@ export default class ProjectInfoTaskResult extends BaseTaskResult implements Tas
     return {
       meta: this.meta,
       result: {
-        name: this.name,
-        version: this.version,
-        repository: this.repository,
+        project: {
+          name: this.name,
+          version: this.version,
+          repository: this.repository,
+        },
       },
     };
   }

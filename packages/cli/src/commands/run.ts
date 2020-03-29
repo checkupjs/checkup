@@ -15,6 +15,7 @@ import {
 import { Command, flags } from '@oclif/command';
 import { getRegisteredParsers, registerParser } from '../parsers';
 
+import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import { generateReport } from '../helpers/pdf';
 
@@ -85,6 +86,8 @@ class RunCommand extends Command {
 
     this.validatePackageJson(args.path);
 
+    this.loadDefaultTasks(args);
+
     await this.runHooks(args);
 
     if (flags.task !== undefined) {
@@ -123,6 +126,10 @@ class RunCommand extends Command {
         error
       );
     }
+  }
+
+  private loadDefaultTasks(cliArguments: any) {
+    this.tasks.registerTask(new ProjectMetaTask(cliArguments));
   }
 
   private async runHooks(cliArguments: any) {

@@ -1,6 +1,6 @@
 import { CheckupProject, stdout } from '@checkup/test-helpers';
-import ProjectInfoTask from '../src/tasks/project-info-task';
-import ProjectInfoTaskResult from '../src/results/project-info-task-result';
+import ProjectMetaTask from '../../src/tasks/project-meta-task';
+import ProjectMetaTaskResult from '../../src/results/project-meta-task-result';
 
 describe('project-info-task', () => {
   let checkupProject: CheckupProject;
@@ -20,8 +20,8 @@ describe('project-info-task', () => {
     });
 
     it('can read project info and output to console', async () => {
-      const result = await new ProjectInfoTask({ path: checkupProject.baseDir }).run();
-      const taskResult = <ProjectInfoTaskResult>result;
+      const result = await new ProjectMetaTask({ path: checkupProject.baseDir }).run();
+      const taskResult = <ProjectMetaTaskResult>result;
 
       taskResult.stdout();
 
@@ -29,8 +29,8 @@ describe('project-info-task', () => {
     });
 
     it('can read project info as JSON', async () => {
-      const result = await new ProjectInfoTask({ path: checkupProject.baseDir }).run();
-      const taskResult = <ProjectInfoTaskResult>result;
+      const result = await new ProjectMetaTask({ path: checkupProject.baseDir }).run();
+      const taskResult = <ProjectMetaTaskResult>result;
 
       expect(taskResult.json()).toMatchSnapshot();
     });
