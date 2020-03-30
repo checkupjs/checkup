@@ -1,0 +1,40 @@
+[
+  {
+    "meta": {
+      "friendlyTaskName": "Project",
+      "taskClassification": {
+        "category": "meta",
+        "priority": "high"
+      },
+      "taskName": "project"
+    },
+    "result": {
+      "project": {
+        "name": "checkup-app",
+        "repository": {
+          "activeDays": "0 days",
+          "age": "0 days",
+          "totalCommits": 0,
+          "totalFiles": 0
+        },
+        "version": "0.0.0"
+      }
+    }
+  },
+  {
+    "meta": {
+      "friendlyTaskName": "Checkup Configuration",
+      "taskClassification": {
+        "category": "meta",
+        "priority": "high"
+      },
+      "taskName": "checkup"
+    },
+    "result": {
+      "checkup": {
+        "configHash": "ae3266e319bdfb51db83810a2f4dd161",
+        "version": "0.0.1"
+      }
+    }
+  }
+]

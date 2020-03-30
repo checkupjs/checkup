@@ -1,0 +1,54 @@
+[
+  {
+    "meta": {
+      "taskName": "mock-task",
+      "friendlyTaskName": "Mock Task",
+      "taskClassification": {
+        "category": "insights",
+        "priority": "medium"
+      }
+    },
+    "result": {
+      "mockTask1": 5
+    }
+  },
+  {
+    "meta": {
+      "taskName": "mock-task2",
+      "friendlyTaskName": "Mock Task 2",
+      "taskClassification": {
+        "category": "insights",
+        "priority": "high"
+      }
+    },
+    "result": {
+      "mockTask2": 10
+    }
+  },
+  {
+    "meta": {
+      "taskName": "mock-task3",
+      "friendlyTaskName": "Mock Task 3",
+      "taskClassification": {
+        "category": "insights",
+        "priority": "low"
+      }
+    },
+    "result": {
+      "mockTask2": 10
+    }
+  },
+  {
+    "meta": {
+      "taskName": "mock-task4",
+      "friendlyTaskName": "Mock Task 4",
+      "taskClassification": {
+        "category": "migrations",
+        "priority": "low"
+      }
+    },
+    "result": {
+      "mockTask2": 10
+    }
+  }
+]

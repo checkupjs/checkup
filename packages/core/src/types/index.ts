@@ -40,6 +40,8 @@ export interface Task {
   run: () => Promise<TaskResult>;
 }
 
+export type JsonMetaTaskResult = JsonObject;
+
 export type JsonTaskResult = {
   meta: TaskMetaData;
   result: {};
@@ -61,7 +63,7 @@ export enum ReporterType {
 
 export interface TaskResult {
   stdout: () => void;
-  json: () => JsonTaskResult;
+  json: () => JsonMetaTaskResult | JsonTaskResult;
   pdf: () => NumericalCardData | TableData | GradedTableData | PieChartData | undefined; //TODO: removed `undefined` once all tasks are retrofitted to return results
 }
 

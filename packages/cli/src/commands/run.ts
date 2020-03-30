@@ -1,10 +1,8 @@
 import * as path from 'path';
 
 import {
-  Category,
   CheckupConfig,
   CheckupConfigService,
-  Priority,
   ReporterType,
   TaskResult,
   getFilepathLoader,
@@ -19,31 +17,9 @@ import { getRegisteredParsers, registerParser } from '../parsers';
 import CheckupMetaTask from '../tasks/checkup-meta-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
-import { generateReport } from '../helpers/pdf';
+import { getReporter } from '../reporters';
 
-function mergeTaskResults(
-  taskResults: TaskResult[],
-  resultFormat: ReporterType = ReporterType.json
-) {
-  let mergedResults: any = {
-    [Category.Core]: {
-      [Priority.High]: [],
-      [Priority.Medium]: [],
-      [Priority.Low]: [],
-    },
-  };
-  taskResults.forEach(taskResult => {
-    let result = taskResult[resultFormat]();
-    if (result) {
-      let { category, priority } = result.meta.taskClassification;
-      mergedResults[category][priority].push(result);
-    }
-  });
-
-  return mergedResults;
-}
-
-class RunCommand extends Command {
+export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
 
   static args = [
@@ -76,8 +52,10 @@ class RunCommand extends Command {
     }),
   };
 
-  tasks: TaskList = new TaskList();
-  taskResults: TaskResult[] = [];
+  defaultTasks: TaskList = new TaskList();
+  metaTaskResults: TaskResult[] = [];
+  pluginTasks: TaskList = new TaskList();
+  pluginTaskResults: TaskResult[] = [];
   checkupConfig!: CheckupConfig;
 
   async run() {
@@ -89,19 +67,27 @@ class RunCommand extends Command {
 
     this.validatePackageJson(args.path);
 
-    this.loadDefaultTasks(args);
-
-    await this.runHooks(args);
-
-    if (flags.task !== undefined) {
-      this.taskResults = [await this.tasks.runTask(flags.task)];
-    } else {
-      this.taskResults = await this.tasks.runTasks();
-    }
-
-    await this.outputResults(flags);
+    await this.runDefaultTasks(args);
+    await this.runPluginHooks(args);
+    await this.runPluginTasks(flags);
+    await this.report(flags);
 
     ui.action.stop();
+  }
+
+  private async runDefaultTasks(cliArguments: any) {
+    this.defaultTasks.registerTask(new ProjectMetaTask(cliArguments));
+    this.defaultTasks.registerTask(new CheckupMetaTask(cliArguments, this.checkupConfig));
+
+    this.metaTaskResults = await this.defaultTasks.runTasks();
+  }
+
+  private async runPluginTasks(flags: any) {
+    if (flags.task !== undefined) {
+      this.pluginTaskResults = [await this.pluginTasks.runTask(flags.task)];
+    } else {
+      this.pluginTaskResults = await this.pluginTasks.runTasks();
+    }
   }
 
   private async loadConfig(configFlag: any, pathArgument: string) {
@@ -134,12 +120,7 @@ class RunCommand extends Command {
     }
   }
 
-  private loadDefaultTasks(cliArguments: any) {
-    this.tasks.registerTask(new ProjectMetaTask(cliArguments));
-    this.tasks.registerTask(new CheckupMetaTask(cliArguments, this.checkupConfig));
-  }
-
-  private async runHooks(cliArguments: any) {
+  private async runPluginHooks(cliArguments: any) {
     await this.config.runHook('register-parsers', {
       registerParser,
     });
@@ -148,25 +129,15 @@ class RunCommand extends Command {
       cliArguments: cliArguments,
       cliFlags: flags,
       parsers: getRegisteredParsers(),
-      tasks: this.tasks,
+      tasks: this.pluginTasks,
     });
   }
 
-  private async outputResults(flags: any) {
+  private async report(flags: any) {
     if (!flags.silent) {
-      if (flags.reporter === ReporterType.pdf) {
-        let resultsForPdf = mergeTaskResults(this.taskResults, ReporterType.pdf);
-        let reportPath = await generateReport(flags.reportOutputPath, resultsForPdf);
+      let generateReport = getReporter(flags, this.metaTaskResults, this.pluginTaskResults);
 
-        ui.log(reportPath);
-      } else if (flags.reporter === ReporterType.json) {
-        let resultJson = mergeTaskResults(this.taskResults, ReporterType.json);
-        ui.styledJSON(resultJson);
-      } else {
-        this.taskResults.forEach(taskResult => taskResult.stdout());
-      }
+      await generateReport();
     }
   }
 }
-
-export = RunCommand;

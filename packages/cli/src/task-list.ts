@@ -17,30 +17,26 @@ export default class TaskList {
   }
 
   constructor() {
-    this._categories = new Map<Category, PriorityMap>([
-      [Category.Meta, new PriorityMap()],
-      [Category.Core, new PriorityMap()],
-      [Category.Migration, new PriorityMap()],
-      [Category.Insights, new PriorityMap()],
-    ]);
+    this._categories = new Map<Category, PriorityMap>();
   }
 
   /**
-   * @function registerTask
-   *
    * Adds a default task to the task list, which is executed as part of checkup.
+   *
+   * @method registerTask
    * @param taskName {TaskName}
    * @param task {Task}
    * @param taskClassification
    */
   registerTask(task: Task) {
-    let priorityMap = this._categories.get(task.meta.taskClassification.category);
+    let priorityMap = this.getByCategory(task.meta.taskClassification.category);
     priorityMap!.setTaskByPriority(task.meta.taskClassification.priority, task.meta.taskName, task);
   }
 
   /**
    * Runs the task specified by the taskName parameter.
    *
+   * @method runTask
    * @param {TaskName} taskName
    * @returns {Promise<TaskResult>}
    * @memberof TaskList
@@ -67,7 +63,7 @@ export default class TaskList {
   /**
    * Runs all tasks that have been added to the task list.
    *
-   * @function runTasks
+   * @method runTasks
    * @returns {Promise<TaskResult[]>}
    * @memberof TaskList
    */
@@ -78,20 +74,45 @@ export default class TaskList {
   }
 
   /**
+   * Gets a priorityMap from the category map
+   *
+   * @private
+   * @method getByCategory
+   * @param category
+   */
+  private getByCategory(category: Category) {
+    if (!this._categories.has(category)) {
+      this._categories.set(category, new PriorityMap());
+    }
+
+    return this._categories.get(category);
+  }
+
+  /**
    * Runs each task in parallel
    *
    * @private
-   * @function eachTask
+   * @method eachTask
    * @param fn {Function} the function expressing the wrapped task to run
    * @returns {Promise<TaskResult[]>}
    */
   private eachTask(fn: (task: Task) => Promise<TaskResult>): Promise<TaskResult[]> {
-    return pMap(
-      [
-        ...this._categories.get(Category.Core)!.values(),
-        ...this._categories.get(Category.Migration)!.values(),
-      ],
-      fn
-    );
+    return pMap(this.getTasks(), fn);
+  }
+
+  /**
+   * Gets all tasks from all priorityMaps
+   *
+   * @private
+   * @method getTasks
+   */
+  private getTasks() {
+    let values: Task[] = [];
+
+    this._categories.forEach(category => {
+      values = [...values, ...category.values()];
+    });
+
+    return values;
   }
 }
