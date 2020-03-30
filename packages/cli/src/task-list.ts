@@ -18,6 +18,7 @@ export default class TaskList {
 
   constructor() {
     this._categories = new Map<Category, PriorityMap>([
+      [Category.Meta, new PriorityMap()],
       [Category.Core, new PriorityMap()],
       [Category.Migration, new PriorityMap()],
       [Category.Insights, new PriorityMap()],

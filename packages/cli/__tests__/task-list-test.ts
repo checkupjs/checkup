@@ -38,7 +38,7 @@ describe('TaskList', () => {
     let taskList = new TaskList();
 
     expect(taskList).toBeInstanceOf(TaskList);
-    expect(taskList.categories.size).toEqual(3);
+    expect(taskList.categories.size).toEqual(4);
   });
 
   it('registerTask adds a task to the TaskList', () => {

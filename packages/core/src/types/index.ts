@@ -2,6 +2,7 @@ import * as t from 'io-ts';
 
 import { JsonObject, PromiseValue } from 'type-fest';
 import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
+
 import CardData from '../pdf-components/card-data';
 
 export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
@@ -13,6 +14,7 @@ export interface Parser {
 }
 
 export const enum Category {
+  Meta = 'meta',
   Core = 'core',
   Migration = 'migration',
   Insights = 'insights',
