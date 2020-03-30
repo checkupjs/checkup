@@ -13,8 +13,8 @@ import { getRepositoryInfo } from '../helpers/repository';
 
 export default class ProjectMetaTask extends BaseTask implements Task {
   meta: TaskMetaData = {
-    taskName: 'project-info',
-    friendlyTaskName: 'Project Information',
+    taskName: 'project',
+    friendlyTaskName: 'Project',
     taskClassification: {
       category: Category.Meta,
       priority: Priority.High,

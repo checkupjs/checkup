@@ -9,5 +9,5 @@
       "@checkup/core": ["../core/lib/index.d.ts"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "types/**/*"]
 }

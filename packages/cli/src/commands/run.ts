@@ -2,6 +2,7 @@ import * as path from 'path';
 
 import {
   Category,
+  CheckupConfig,
   CheckupConfigService,
   Priority,
   ReporterType,
@@ -15,6 +16,7 @@ import {
 import { Command, flags } from '@oclif/command';
 import { getRegisteredParsers, registerParser } from '../parsers';
 
+import CheckupMetaTask from '../tasks/checkup-meta-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import { generateReport } from '../helpers/pdf';
@@ -76,6 +78,7 @@ class RunCommand extends Command {
 
   tasks: TaskList = new TaskList();
   taskResults: TaskResult[] = [];
+  checkupConfig!: CheckupConfig;
 
   async run() {
     let { args, flags } = this.parse(RunCommand);
@@ -107,8 +110,11 @@ class RunCommand extends Command {
         ? getFilepathLoader(configFlag)
         : getSearchLoader(pathArgument);
       const configService = await CheckupConfigService.load(configLoader);
-      const checkupConfig = configService.get();
-      let plugins = await loadPlugins(checkupConfig.plugins, pathArgument);
+
+      this.checkupConfig = configService.get();
+
+      let plugins = await loadPlugins(this.checkupConfig.plugins, pathArgument);
+
       this.config.plugins.push(...plugins);
     } catch (error) {
       this.error(error);
@@ -130,6 +136,7 @@ class RunCommand extends Command {
 
   private loadDefaultTasks(cliArguments: any) {
     this.tasks.registerTask(new ProjectMetaTask(cliArguments));
+    this.tasks.registerTask(new CheckupMetaTask(cliArguments, this.checkupConfig));
   }
 
   private async runHooks(cliArguments: any) {

@@ -9,7 +9,6 @@ export default class ProjectMetaTaskResult extends BaseTaskResult implements Tas
 
   stdout() {
     ui.styledHeader(this.meta.friendlyTaskName);
-    ui.blankLine();
     ui.styledObject({
       name: this.name,
       version: this.version,
