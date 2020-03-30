@@ -14,7 +14,7 @@
     "@checkup/test-helpers": "0.0.1",
     "@oclif/dev-cli": "^1",
     "fixturify-project": "^2.1.0",
-    "jest": "^25.2.3",
+    "jest": "^25.2.4",
     "rimraf": "^3.0.2",
     "ts-jest": "^25.2.1",
     "ts-node": "^8",
