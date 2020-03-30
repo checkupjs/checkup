@@ -48,7 +48,7 @@ describe('project-info-task', () => {
 
       expect(stdout()).toMatchInlineSnapshot(`
         "=== Checkup Configuration
-        configHash: Z8RYA1
+        configHash: ae3266e319bdfb51db83810a2f4dd161
         version:    0.0.1
 
         "
@@ -76,7 +76,7 @@ describe('project-info-task', () => {
           },
           "result": Object {
             "checkup": Object {
-              "configHash": "Z8RYA1",
+              "configHash": "ae3266e319bdfb51db83810a2f4dd161",
               "version": "0.0.1",
             },
           },
@@ -100,7 +100,7 @@ describe('project-info-task', () => {
 
       expect(stdout()).toMatchInlineSnapshot(`
         "=== Checkup Configuration
-        configHash: ZbvPrF
+        configHash: 07e8f7d8731ffbb323ad86f8f2f62460
         version:    0.0.1
 
         "
@@ -131,7 +131,7 @@ describe('project-info-task', () => {
           },
           "result": Object {
             "checkup": Object {
-              "configHash": "ZbvPrF",
+              "configHash": "07e8f7d8731ffbb323ad86f8f2f62460",
               "version": "0.0.1",
             },
           },

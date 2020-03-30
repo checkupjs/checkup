@@ -1,4 +1,4 @@
-import * as shorthash from 'shorthash';
+import * as crypto from 'crypto';
 import * as stringify from 'json-stable-stringify';
 
 import {
@@ -18,7 +18,10 @@ const { version } = require('../../package.json');
 function getConfigHash(checkupConfig: CheckupConfig) {
   let configAsJson = stringify(checkupConfig);
 
-  return shorthash.unique(configAsJson);
+  return crypto
+    .createHash('md5')
+    .update(configAsJson)
+    .digest('hex');
 }
 
 export default class CheckupMetaTask extends BaseTask implements Task {
