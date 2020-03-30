@@ -28,8 +28,19 @@ describe('octane-migration-status-task-result', () => {
       expect(migrationInfo.completionInfo.percentage).toBe('0.00');
     });
 
-    // TODO
-    // test('it should report 100% complete for a fully migrated task', () => {});
+    test('it should report 100% complete for a fully migrated task', () => {
+      let migrationTaskConfig: MigrationTaskConfig = {
+        fileMatchers: [/app\/resolver.js$/],
+        name: 'Foo Bar Baz',
+        rules: ['my-custom-rule'],
+      };
+
+      let migrationInfo = transformESLintReport(migrationTaskConfig, bareBonesReport);
+
+      expect(migrationInfo.completionInfo.completed).toBe(1);
+      expect(migrationInfo.completionInfo.total).toBe(1);
+      expect(migrationInfo.completionInfo.percentage).toBe('100.00');
+    });
 
     test('it should report 100% for tasks that do not have related files', () => {
       let migrationTaskConfig: MigrationTaskConfig = {
