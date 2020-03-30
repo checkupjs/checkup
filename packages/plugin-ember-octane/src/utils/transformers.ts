@@ -19,7 +19,10 @@ export function transformESLintReport(
   });
 
   let resultsWithoutViolations = totalApplicableFiles - relatedResultsWithViolations.length;
-  let percentageWithoutViolations = (resultsWithoutViolations / totalApplicableFiles) * 100;
+
+  // If we don't have any applicable files, we assume the application is migrated.
+  let percentageWithoutViolations =
+    totalApplicableFiles === 0 ? 100 : (resultsWithoutViolations / totalApplicableFiles) * 100;
 
   return {
     completionInfo: {
@@ -49,7 +52,10 @@ export function transformTemplateLintReport(
   let { length: totalApplicableFiles } = relatedResults;
 
   let resultsWithoutViolations = totalApplicableFiles - relatedResultsWithViolations.length;
-  let percentageWithoutViolations = (resultsWithoutViolations / totalApplicableFiles) * 100;
+
+  // If we don't have any applicable files, we assume the application is migrated.
+  let percentageWithoutViolations =
+    totalApplicableFiles === 0 ? 100 : (resultsWithoutViolations / totalApplicableFiles) * 100;
 
   return {
     completionInfo: {

@@ -5,7 +5,7 @@ export const ESLINT_MIGRATION_TASK_CONFIGS: {
 } = {
   [ESLintMigrationType.NativeClasses]: {
     fileMatchers: [
-      /app\/app\.js$/,
+      /app\/(app|router)\.js$/,
       /(app|addon)\/(adapters|components|controllers|helpers|models|routes|services)\/.*\.js$/,
     ],
     name: 'Native Class',

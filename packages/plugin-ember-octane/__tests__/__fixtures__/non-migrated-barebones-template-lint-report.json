@@ -1,0 +1,48 @@
+{
+  "errorCount": 4,
+  "results": [
+    {
+      "messages": [
+        {
+          "rule": "no-args-paths",
+          "severity": 2,
+          "moduleId": "/Users/lemiller/code/examples/octane-migration-debug//app/templates/application.hbs",
+          "message": "Component templates should avoid \"this.args.foo\" usage, try \"@foo\" instead.",
+          "line": 7,
+          "column": 4,
+          "source": "this.args.foo"
+        },
+        {
+          "rule": "no-args-paths",
+          "severity": 2,
+          "moduleId": "/Users/lemiller/code/examples/octane-migration-debug//app/templates/application.hbs",
+          "message": "Component templates should avoid \"args.foo\" usage, try \"@foo\" instead.",
+          "line": 8,
+          "column": 4,
+          "source": "args.foo"
+        },
+        {
+          "rule": "no-curly-component-invocation",
+          "severity": 2,
+          "moduleId": "/Users/lemiller/code/examples/octane-migration-debug//app/templates/application.hbs",
+          "message": "You are using the component {{args.foo}} with curly component syntax. You should use <Args.Foo> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. `'no-curly-component-invocation': { allow: ['args.foo'] }`.",
+          "line": 8,
+          "column": 2,
+          "source": "{{args.foo}}"
+        },
+        {
+          "rule": "no-implicit-this",
+          "severity": 2,
+          "moduleId": "/Users/lemiller/code/examples/octane-migration-debug//app/templates/application.hbs",
+          "message": "Ambiguous path 'args.foo' is not allowed. Use '@args.foo' if it is a named argument or 'this.args.foo' if it is a property on 'this'. If it is a helper or component that has no arguments you must manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['args.foo'] }.",
+          "line": 8,
+          "column": 4,
+          "source": "args.foo"
+        }
+      ],
+      "errorCount": 4,
+      "filePath": "/Users/lemiller/code/examples/octane-migration-debug//app/templates/application.hbs",
+      "source": "<div class=\"ember-view\">\n  {{!-- The following component displays Ember's default welcome message. --}}\n  <WelcomePage />\n  {{!-- Feel free to remove this! --}}\n\n  {{outlet}}\n  {{this.args.foo}}\n  {{args.foo}}\n</div>"
+    }
+  ]
+}
