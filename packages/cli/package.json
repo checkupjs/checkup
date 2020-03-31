@@ -22,7 +22,7 @@
     "cli-ux": "^5.4.4",
     "date-and-time": "^0.13.1",
     "devtools-protocol": "^0.0.753577",
-    "fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
     "globby": "^11.0.0",
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.15",
