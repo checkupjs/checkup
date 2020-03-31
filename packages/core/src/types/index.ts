@@ -3,7 +3,10 @@ import * as t from 'io-ts';
 import { JsonObject, PromiseValue } from 'type-fest';
 import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
 
-import CardData from '../pdf-components/card-data';
+import NumericalCardData from '../pdf-components/numerical-card-data';
+import TableData from '../pdf-components/table-data';
+import GradedTableData from '../pdf-components/graded-table-data';
+import PieChartData from '../pdf-components/pie-chart-data';
 
 export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
@@ -42,6 +45,14 @@ export type JsonTaskResult = {
   result: {};
 };
 
+export const enum Grade {
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
+  F = 'F',
+}
+
 export enum ReporterType {
   stdout = 'stdout',
   json = 'json',
@@ -51,7 +62,7 @@ export enum ReporterType {
 export interface TaskResult {
   stdout: () => void;
   json: () => JsonTaskResult;
-  pdf: () => CardData | undefined;
+  pdf: () => NumericalCardData | TableData | GradedTableData | PieChartData | undefined; //TODO: removed `undefined` once all tasks are retrofitted to return results
 }
 
 export interface TaskMetaData {
@@ -64,6 +75,12 @@ export interface TaskItemData {
   type: string;
   data: string[];
   total: number;
+}
+
+export interface DependencyResult {
+  name: string;
+  value: number;
+  grade?: Grade;
 }
 
 export type SearchPatterns = Record<string, string[]>;
