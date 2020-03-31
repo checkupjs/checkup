@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
-    "@types/eslint": "^6.1.8",
+    "@types/eslint": "^6.1.9",
     "babel-eslint": "^10.1.0",
     "fixturify-project": "^2.1.0",
     "jest": "^25.2.4",
