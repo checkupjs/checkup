@@ -1,9 +1,11 @@
-import { TaskMetaData } from '../types';
+import { TaskMetaData, ReportComponentType } from '../types';
 
 export abstract class PdfComponentData {
   meta: TaskMetaData;
+  componentType: ReportComponentType;
 
-  constructor(meta: TaskMetaData) {
+  constructor(meta: TaskMetaData, componentType: ReportComponentType) {
     this.meta = meta;
+    this.componentType = componentType;
   }
 }

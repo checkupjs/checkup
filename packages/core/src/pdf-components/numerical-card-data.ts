@@ -1,8 +1,7 @@
-import { TaskMetaData, Grade } from '../types';
+import { TaskMetaData, Grade, ReportComponentType } from '../types';
 import { PdfComponentData } from './pdf-component-data';
 
 export default class NumericalCardData extends PdfComponentData {
-  filePath = '/path/'; //TODO: @ckessler - use this to register the partial, instead of hardcoding the path in pdf.ts
   taskResult: number;
   resultDescription: string;
   resultHelp: string;
@@ -14,7 +13,7 @@ export default class NumericalCardData extends PdfComponentData {
     resultDescription: string,
     resultHelp?: string
   ) {
-    super(meta);
+    super(meta, ReportComponentType.NumericalCard);
     this.taskResult = taskResult;
     this.resultDescription = resultDescription;
     this.resultHelp = resultHelp || '';
