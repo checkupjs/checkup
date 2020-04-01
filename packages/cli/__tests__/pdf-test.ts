@@ -1,4 +1,4 @@
-import { CardData, Category, Priority, TaskMetaData } from '@checkup/core';
+import { NumericalCardData, Category, Priority, TaskMetaData } from '@checkup/core';
 import { generateHTML } from '../src/helpers/pdf';
 
 const meta: TaskMetaData = {
@@ -13,7 +13,7 @@ const meta: TaskMetaData = {
 const mergedResults: any = {
   [Category.Migration]: {
     [Priority.High]: [],
-    [Priority.Medium]: [new CardData(meta, 100)],
+    [Priority.Medium]: [new NumericalCardData(meta, 100, 'bad patterns in your app')],
     [Priority.Low]: [],
   },
 };
