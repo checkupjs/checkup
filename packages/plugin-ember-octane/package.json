@@ -35,6 +35,7 @@
   ],
   "homepage": "https://github.com/checkupjs/checkup",
   "keywords": [
+    "checkup-plugin",
     "oclif-plugin"
   ],
   "license": "MIT",

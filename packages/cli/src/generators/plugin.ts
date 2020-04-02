@@ -83,17 +83,15 @@ export default class PluginGenerator extends Generator {
     );
 
     this.fs.copyTpl(
-      this.templatePath(`src/tasks/index.${this._ext}.ejs`),
-      this.destinationPath(`src/tasks/index.${this._ext}`),
-      this.options
-    );
-
-    this.fs.copyTpl(
       this.templatePath(`src/types/index.${this._ext}.ejs`),
       this.destinationPath(`src/types/index.${this._ext}`),
       this.options
     );
 
+    this.fs.copy(
+      this.templatePath('src/tasks/.gitkeep'),
+      this.destinationPath('src/tasks/.gitkeep')
+    );
     this.fs.copy(this.templatePath('jest.config.js'), this.destinationPath('jest.config.js'));
     this.fs.copy(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'));
 

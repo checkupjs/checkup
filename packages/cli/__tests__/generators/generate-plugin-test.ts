@@ -28,10 +28,10 @@ describe('plugin generator', () => {
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
     expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
-    expect(root.file('src/tasks/index.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
+    expect(root.directory('src/tasks').contents).toMatchSnapshot();
   });
 
   it('generates plugin with custom options', async () => {
@@ -55,9 +55,9 @@ describe('plugin generator', () => {
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
     expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
-    expect(root.file('src/tasks/index.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
+    expect(root.directory('src/tasks').contents).toMatchSnapshot();
   });
 });

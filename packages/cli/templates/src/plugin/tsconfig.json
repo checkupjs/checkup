@@ -1,6 +1,12 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "declaration": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "strict": true,
+    "target": "es2017",
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
     "outDir": "lib",
     "rootDir": "src",
     "types": ["jest", "node"]
