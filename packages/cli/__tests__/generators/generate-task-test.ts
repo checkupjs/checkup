@@ -17,7 +17,6 @@ function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
 function assertPluginFiles(dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
 
-  expect(root.file(`src/tasks/index.${extension}`).contents).toMatchSnapshot();
   expect(root.file(`src/hooks/register-tasks.${extension}`).contents).toMatchSnapshot();
 }
 
