@@ -78,12 +78,10 @@ describe('my-foo-task', () => {
 });"
 `;
 
-exports[`task generator generates correct files with JavaScript 4`] = `"export { default as MyFooTask } from './my-foo-task';"`;
-
-exports[`task generator generates correct files with JavaScript 5`] = `
+exports[`task generator generates correct files with JavaScript 4`] = `
 "import { Hook } from '@oclif/config';
 
-import { MyFooTask } from '../tasks';
+import MyFooTask from '../tasks/my-foo-task';
 
 const hook = async function({ cliArguments, tasks }) {
   tasks.registerTask(new MyFooTask(cliArguments));
@@ -175,12 +173,10 @@ describe('my-foo-task', () => {
 });"
 `;
 
-exports[`task generator generates correct files with TypeScript for defaults 4`] = `"export { default as MyFooTask } from './my-foo-task';"`;
-
-exports[`task generator generates correct files with TypeScript for defaults 5`] = `
+exports[`task generator generates correct files with TypeScript for defaults 4`] = `
 "import { Hook } from '@oclif/config';
 
-import { MyFooTask } from '../tasks';
+import MyFooTask from '../tasks/my-foo-task';
 
 const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
   tasks.registerTask(new MyFooTask(cliArguments));
@@ -272,12 +268,10 @@ describe('my-foo-task', () => {
 });"
 `;
 
-exports[`task generator generates correct files with category 4`] = `"export { default as MyFooTask } from './my-foo-task';"`;
-
-exports[`task generator generates correct files with category 5`] = `
+exports[`task generator generates correct files with category 4`] = `
 "import { Hook } from '@oclif/config';
 
-import { MyFooTask } from '../tasks';
+import MyFooTask from '../tasks/my-foo-task';
 
 const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
   tasks.registerTask(new MyFooTask(cliArguments));
@@ -369,12 +363,10 @@ describe('my-foo-task', () => {
 });"
 `;
 
-exports[`task generator generates correct files with priority 4`] = `"export { default as MyFooTask } from './my-foo-task';"`;
-
-exports[`task generator generates correct files with priority 5`] = `
+exports[`task generator generates correct files with priority 4`] = `
 "import { Hook } from '@oclif/config';
 
-import { MyFooTask } from '../tasks';
+import MyFooTask from '../tasks/my-foo-task';
 
 const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
   tasks.registerTask(new MyFooTask(cliArguments));
@@ -549,14 +541,11 @@ describe('my-bar-task', () => {
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 7`] = `
-"export { default as MyFooTask } from './my-foo-task';
-export { default as MyBarTask } from './my-bar-task';"
-`;
-
-exports[`task generator generates multiple correct files with TypeScript for defaults 8`] = `
 "import { Hook } from '@oclif/config';
 
-import { MyFooTask, MyBarTask } from '../tasks';
+import MyBarTask from '../tasks/my-bar-task';
+
+import MyFooTask from '../tasks/my-foo-task';
 
 const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
   tasks.registerTask(new MyFooTask(cliArguments));

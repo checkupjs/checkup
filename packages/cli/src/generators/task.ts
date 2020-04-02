@@ -131,29 +131,7 @@ export default class TaskGenerator extends Generator {
       options
     );
 
-    this._transformTasksIndex();
     this._transformHooks();
-  }
-
-  private _transformTasksIndex() {
-    let tasksIndexPath = this.destinationPath(`src/tasks/index.${this._ext}`);
-
-    let tasksIndexSource = this.fs.read(tasksIndexPath);
-    let exportStatement = t.exportNamedDeclaration(
-      null,
-      [t.exportSpecifier(t.identifier('default'), t.identifier(this.options.taskClass))],
-      t.stringLiteral(`./${this.options.name}-task`)
-    );
-
-    let code = new AstTransformer(tasksIndexSource)
-      .traverse({
-        Program(path) {
-          path.node.body.push(exportStatement);
-        },
-      })
-      .generate();
-
-    this.fs.write(tasksIndexPath, code);
   }
 
   private _transformHooks() {
@@ -166,27 +144,16 @@ export default class TaskGenerator extends Generator {
       ])
     );
 
-    let newTaskImportSpecifier = t.importSpecifier(
-      t.identifier(this.options.taskClass),
-      t.identifier(this.options.taskClass)
-    );
+    let newTaskImportSpecifier = t.importDefaultSpecifier(t.identifier(this.options.taskClass));
     let tasksImportDeclaration: t.ImportDeclaration = t.importDeclaration(
       [newTaskImportSpecifier],
-      t.stringLiteral('../tasks')
+      t.stringLiteral(`../tasks/${this.options.name}-task`)
     );
 
     let code = new AstTransformer(registerTasksSource)
       .traverse({
         Program(path) {
-          let existingImportDeclaration: t.ImportDeclaration[] = path.node.body.filter(
-            node => t.isImportDeclaration(node) && node.source.value === '../tasks'
-          ) as t.ImportDeclaration[];
-
-          if (existingImportDeclaration.length > 0) {
-            existingImportDeclaration.pop()!.specifiers.push(newTaskImportSpecifier);
-          } else {
-            path.node.body.splice(1, 0, tasksImportDeclaration);
-          }
+          path.node.body.splice(1, 0, tasksImportDeclaration);
         },
         BlockStatement(path) {
           path.node.body.push(registerTaskStatement);
