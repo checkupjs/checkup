@@ -17,7 +17,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
-    "chalk": "^3.0.0",
+    "chalk": "^4.0.0",
     "chrome-debugging-client": "^1.2.0",
     "date-and-time": "^0.13.1",
     "devtools-protocol": "^0.0.754670",
