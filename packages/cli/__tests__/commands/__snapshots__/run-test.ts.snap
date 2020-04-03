@@ -19,7 +19,7 @@ Total files:   0
 
 === Checkup Configuration
 configHash: 47def66968059c89c59bb41f477c180c
-version:    0.0.1
+version:    0.0.0
 
 mock task is being run
 mock task2 is being run
@@ -42,7 +42,7 @@ exports[`@checkup/cli normal cli output with plugins should output checkup resul
     },
     \\"checkup\\": {
       \\"configHash\\": \\"47def66968059c89c59bb41f477c180c\\",
-      \\"version\\": \\"0.0.1\\"
+      \\"version\\": \\"0.0.0\\"
     }
   },
   \\"results\\": [
@@ -103,7 +103,7 @@ Total files:   0
 
 === Checkup Configuration
 configHash: 47def66968059c89c59bb41f477c180c
-version:    0.0.1
+version:    0.0.0
 
 mock task is being run
 "
@@ -122,7 +122,7 @@ Total files:   0
 
 === Checkup Configuration
 configHash: 052fa270c6764ec1da0fa838bbc43dde
-version:    0.0.1
+version:    0.0.0
 
 mock task is being run
 mock task2 is being run

@@ -8,8 +8,6 @@ const defaultConfig = {
   tasks: {},
 };
 
-const { version } = require('../../package.json');
-
 async function getConfig(config: CheckupConfig = defaultConfig) {
   const configService = await CheckupConfigService.load(async () => ({
     filepath: '.',
@@ -48,15 +46,13 @@ describe('checkup-meta-task', () => {
 
       taskResult.stdout();
 
-      expect(stdout()).toMatchInlineSnapshot(
-        `
+      expect(stdout()).toMatchInlineSnapshot(`
         "=== Checkup Configuration
         configHash: ae3266e319bdfb51db83810a2f4dd161
         version:    0.0.0
 
         "
-      `.replace(/\d\.\d\.\d/, version)
-      );
+      `);
     });
 
     it('can read checkup meta as JSON with default config', async () => {
@@ -68,26 +64,14 @@ describe('checkup-meta-task', () => {
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
-      expect(taskResult.json()).toMatchInlineSnapshot(
-        `
+      expect(taskResult.json()).toMatchInlineSnapshot(`
         Object {
-          "meta": Object {
-            "friendlyTaskName": "Checkup Configuration",
-            "taskClassification": Object {
-              "category": "meta",
-              "priority": "high",
-            },
-            "taskName": "checkup",
-          },
-          "result": Object {
-            "checkup": Object {
-              "configHash": "ae3266e319bdfb51db83810a2f4dd161",
-              "version": "0.0.0",
-            },
+          "checkup": Object {
+            "configHash": "ae3266e319bdfb51db83810a2f4dd161",
+            "version": "0.0.0",
           },
         }
-      `.replace(/\d\.\d\.\d/, version)
-      );
+      `);
     });
 
     it('can read checkup meta and output to console', async () => {
@@ -104,15 +88,13 @@ describe('checkup-meta-task', () => {
 
       taskResult.stdout();
 
-      expect(stdout()).toMatchInlineSnapshot(
-        `
+      expect(stdout()).toMatchInlineSnapshot(`
         "=== Checkup Configuration
         configHash: 07e8f7d8731ffbb323ad86f8f2f62460
         version:    0.0.0
 
         "
-      `.replace(/\d\.\d\.\d/, version)
-      );
+      `);
     });
 
     it('can read checkup meta as JSON', async () => {
@@ -127,26 +109,14 @@ describe('checkup-meta-task', () => {
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
-      expect(taskResult.json()).toMatchInlineSnapshot(
-        `
+      expect(taskResult.json()).toMatchInlineSnapshot(`
         Object {
-          "meta": Object {
-            "friendlyTaskName": "Checkup Configuration",
-            "taskClassification": Object {
-              "category": "meta",
-              "priority": "high",
-            },
-            "taskName": "checkup",
-          },
-          "result": Object {
-            "checkup": Object {
-              "configHash": "07e8f7d8731ffbb323ad86f8f2f62460",
-              "version": "0.0.0",
-            },
+          "checkup": Object {
+            "configHash": "07e8f7d8731ffbb323ad86f8f2f62460",
+            "version": "0.0.0",
           },
         }
-      `.replace(/\d\.\d\.\d/, version)
-      );
+      `);
     });
   });
 });
