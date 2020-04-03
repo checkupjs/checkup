@@ -7,7 +7,7 @@
   "dependencies": {
     "@checkup/core": "0.0.1",
     "fixturify-project": "^2.1.0",
-    "handlebars": "^4.7.4",
+    "handlebars": "^4.7.5",
     "stdout-stderr": "^0.1.13",
     "tmp": "^0.1.0"
   },
