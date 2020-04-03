@@ -8,6 +8,8 @@ const defaultConfig = {
   tasks: {},
 };
 
+const { version } = require('../../package.json');
+
 async function getConfig(config: CheckupConfig = defaultConfig) {
   const configService = await CheckupConfigService.load(async () => ({
     filepath: '.',
@@ -46,13 +48,15 @@ describe('project-info-task', () => {
 
       taskResult.stdout();
 
-      expect(stdout()).toMatchInlineSnapshot(`
+      expect(stdout()).toMatchInlineSnapshot(
+        `
         "=== Checkup Configuration
         configHash: ae3266e319bdfb51db83810a2f4dd161
-        version:    0.0.1
+        version:    0.0.0
 
         "
-      `);
+      `.replace(/\d\.\d\.\d/, version)
+      );
     });
 
     it('can read checkup meta as JSON with default config', async () => {
@@ -64,7 +68,8 @@ describe('project-info-task', () => {
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
-      expect(taskResult.json()).toMatchInlineSnapshot(`
+      expect(taskResult.json()).toMatchInlineSnapshot(
+        `
         Object {
           "meta": Object {
             "friendlyTaskName": "Checkup Configuration",
@@ -77,11 +82,12 @@ describe('project-info-task', () => {
           "result": Object {
             "checkup": Object {
               "configHash": "ae3266e319bdfb51db83810a2f4dd161",
-              "version": "0.0.1",
+              "version": "0.0.0",
             },
           },
         }
-      `);
+      `.replace(/\d\.\d\.\d/, version)
+      );
     });
 
     it('can read checkup meta and output to console', async () => {
@@ -98,13 +104,15 @@ describe('project-info-task', () => {
 
       taskResult.stdout();
 
-      expect(stdout()).toMatchInlineSnapshot(`
+      expect(stdout()).toMatchInlineSnapshot(
+        `
         "=== Checkup Configuration
         configHash: 07e8f7d8731ffbb323ad86f8f2f62460
-        version:    0.0.1
+        version:    0.0.0
 
         "
-      `);
+      `.replace(/\d\.\d\.\d/, version)
+      );
     });
 
     it('can read checkup meta as JSON', async () => {
@@ -119,7 +127,8 @@ describe('project-info-task', () => {
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
-      expect(taskResult.json()).toMatchInlineSnapshot(`
+      expect(taskResult.json()).toMatchInlineSnapshot(
+        `
         Object {
           "meta": Object {
             "friendlyTaskName": "Checkup Configuration",
@@ -132,11 +141,12 @@ describe('project-info-task', () => {
           "result": Object {
             "checkup": Object {
               "configHash": "07e8f7d8731ffbb323ad86f8f2f62460",
-              "version": "0.0.1",
+              "version": "0.0.0",
             },
           },
         }
-      `);
+      `.replace(/\d\.\d\.\d/, version)
+      );
     });
   });
 });
