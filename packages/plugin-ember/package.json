@@ -1,17 +1,17 @@
 {
   "name": "@checkup/plugin-ember",
   "description": "An oclif plugin for Ember project tasks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Steve Calvert @scalvert",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
-    "@checkup/core": "0.0.1",
+    "@checkup/core": "0.0.2",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "tslib": "^1"
   },
   "devDependencies": {
-    "@checkup/test-helpers": "0.0.1",
+    "@checkup/test-helpers": "0.0.2",
     "@oclif/dev-cli": "^1",
     "fixturify-project": "^2.1.0",
     "jest": "^25.2.7",

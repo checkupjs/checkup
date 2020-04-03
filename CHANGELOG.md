@@ -1,3 +1,20 @@
+## v0.0.2 (2020-04-03)
+
+#### :bug: Bug Fix
+* `cli`, `core`
+  * [#185](https://github.com/checkupjs/checkup/pull/185) Fixing missing deps in core ([@scalvert](https://github.com/scalvert))
+* `cli`
+  * [#166](https://github.com/checkupjs/checkup/pull/166) Fixing checkup-meta-task's use of shorthash ([@scalvert](https://github.com/scalvert))
+* `plugin-ember-octane`
+  * [#163](https://github.com/checkupjs/checkup/pull/163) Fix NaN bugs in lint reports ([@lbdm44](https://github.com/lbdm44))
+
+#### Committers: 4
+- Lewis Miller ([@lbdm44](https://github.com/lbdm44))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.0.1 (2020-03-27)
 
 #### :rocket: Enhancement
