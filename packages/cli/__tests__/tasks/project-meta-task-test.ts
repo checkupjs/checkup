@@ -2,7 +2,7 @@ import { CheckupProject, stdout } from '@checkup/test-helpers';
 import ProjectMetaTask from '../../src/tasks/project-meta-task';
 import ProjectMetaTaskResult from '../../src/results/project-meta-task-result';
 
-describe('project-info-task', () => {
+describe('project-meta-task', () => {
   let checkupProject: CheckupProject;
 
   describe('for Projects', () => {

@@ -20,7 +20,7 @@ async function getConfig(config: CheckupConfig = defaultConfig) {
   return configService.get();
 }
 
-describe('project-info-task', () => {
+describe('checkup-meta-task', () => {
   let checkupProject: CheckupProject;
 
   describe('for Projects', () => {
