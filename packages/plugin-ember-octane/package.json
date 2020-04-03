@@ -19,7 +19,7 @@
     "@types/eslint": "^6.1.9",
     "babel-eslint": "^10.1.0",
     "fixturify-project": "^2.1.0",
-    "jest": "^25.2.4",
+    "jest": "^25.2.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^25.2.1",
     "ts-node": "^8",
