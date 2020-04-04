@@ -134,10 +134,8 @@ export default class RunCommand extends Command {
   }
 
   private async report(flags: any) {
-    if (!flags.silent) {
-      let generateReport = getReporter(flags, this.metaTaskResults, this.pluginTaskResults);
+    let generateReport = getReporter(flags, this.metaTaskResults, this.pluginTaskResults);
 
-      await generateReport();
-    }
+    await generateReport();
   }
 }

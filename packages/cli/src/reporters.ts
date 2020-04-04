@@ -19,8 +19,10 @@ export function getReporter(
   switch (flags.reporter) {
     case ReporterType.stdout:
       return async () => {
-        metaTaskResults.forEach(taskResult => taskResult.stdout());
-        pluginTaskResults.forEach(taskResult => taskResult.stdout());
+        if (!flags.silent) {
+          metaTaskResults.forEach(taskResult => taskResult.stdout());
+          pluginTaskResults.forEach(taskResult => taskResult.stdout());
+        }
       };
     case ReporterType.json:
       return async () => {
