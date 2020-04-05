@@ -67,10 +67,12 @@ export default class TaskList {
    * @returns {Promise<TaskResult[]>}
    * @memberof TaskList
    */
-  runTasks(): Promise<TaskResult[]> {
-    return this.eachTask((task: Task) => {
+  async runTasks(): Promise<TaskResult[]> {
+    let results = await this.eachTask((task: Task) => {
       return task.run();
     });
+
+    return results;
   }
 
   /**
