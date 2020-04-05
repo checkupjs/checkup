@@ -72,6 +72,10 @@ export default class TaskList {
       return task.run();
     });
 
+    results.sort((a: TaskResult, b: TaskResult) => {
+      return a.compareTo(b);
+    });
+
     return results;
   }
 
