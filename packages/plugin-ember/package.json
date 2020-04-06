@@ -48,9 +48,9 @@
   },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
-    "build": "tsc",
+    "build": "yarn clean && tsc",
     "build:watch": "yarn build -w",
-    "clean": "rm -rf lib/*",
+    "clean": "rm -rf lib",
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "jest",
