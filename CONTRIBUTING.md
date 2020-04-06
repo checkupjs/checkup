@@ -51,7 +51,12 @@ yarn link @checkup/plugin-default
 ```
 Execute Checkup in your project
 ```
-checkup .
+checkup run
+```
+
+Running a specific Checkup task in your project
+```
+checkup run --task TASK_NAME
 ```
 
 ### Gotchas
