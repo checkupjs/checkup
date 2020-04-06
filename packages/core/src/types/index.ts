@@ -3,10 +3,10 @@ import * as t from 'io-ts';
 import { JsonObject, PromiseValue } from 'type-fest';
 import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
 
-import NumericalCardData from '../pdf-components/numerical-card-data';
-import TableData from '../pdf-components/table-data';
 import GradedTableData from '../pdf-components/graded-table-data';
+import NumericalCardData from '../pdf-components/numerical-card-data';
 import PieChartData from '../pdf-components/pie-chart-data';
+import TableData from '../pdf-components/table-data';
 
 export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
@@ -40,6 +40,8 @@ export interface Task {
   run: () => Promise<TaskResult>;
 }
 
+export type JsonMetaTaskResult = JsonObject;
+
 export type JsonTaskResult = {
   meta: TaskMetaData;
   result: {};
@@ -61,7 +63,7 @@ export enum ReporterType {
 
 export interface TaskResult {
   stdout: () => void;
-  json: () => JsonTaskResult;
+  json: () => JsonMetaTaskResult | JsonTaskResult;
   pdf: () => NumericalCardData | TableData | GradedTableData | PieChartData | undefined; //TODO: removed `undefined` once all tasks are retrofitted to return results
 }
 

@@ -27,13 +27,10 @@ export default class ProjectMetaTaskResult extends BaseTaskResult implements Tas
 
   json() {
     return {
-      meta: this.meta,
-      result: {
-        project: {
-          name: this.name,
-          version: this.version,
-          repository: this.repository,
-        },
+      project: {
+        name: this.name,
+        version: this.version,
+        repository: this.repository,
       },
     };
   }

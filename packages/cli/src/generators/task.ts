@@ -9,6 +9,7 @@ import { Category, Priority } from '@checkup/core';
 import AstTransformer from '../helpers/ast';
 import { Options } from '../commands/generate';
 import { PackageJson } from 'type-fest';
+import { getVersion } from '../helpers/get-version';
 
 interface TaskOptions extends Options {
   taskResultClass: string;
@@ -18,8 +19,6 @@ interface TaskOptions extends Options {
   category: string;
   priority: string;
 }
-
-const { version } = require('../../package.json');
 
 export default class TaskGenerator extends Generator {
   packageJson!: PackageJson;
@@ -56,7 +55,7 @@ export default class TaskGenerator extends Generator {
     this.log(
       `Adding a ${chalk.bold.white(this.options.name)} task to ${chalk.bold.white(
         this.packageJson.name
-      )}. Version: ${chalk.bold.white(version)}`
+      )}. Version: ${chalk.bold.white(getVersion())}`
     );
 
     const defaults = {

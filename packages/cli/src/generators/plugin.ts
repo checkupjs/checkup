@@ -3,7 +3,7 @@ import * as chalk from 'chalk';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const { version } = require('../../package.json');
+import { getVersion } from '../helpers/get-version';
 
 export default class PluginGenerator extends Generator {
   answers!: {
@@ -19,7 +19,9 @@ export default class PluginGenerator extends Generator {
 
   async prompting() {
     this.log(
-      `Adding ${chalk.bold.white(this.options.name)} plugin. Version: ${chalk.bold.white(version)}`
+      `Adding ${chalk.bold.white(this.options.name)} plugin. Version: ${chalk.bold.white(
+        getVersion()
+      )}`
     );
 
     const defaults = {

@@ -15,12 +15,9 @@ export default class CheckupMetaTaskResult extends BaseTaskResult implements Tas
 
   json() {
     return {
-      meta: this.meta,
-      result: {
-        checkup: {
-          configHash: this.configHash,
-          version: this.version,
-        },
+      checkup: {
+        configHash: this.configHash,
+        version: this.version,
       },
     };
   }

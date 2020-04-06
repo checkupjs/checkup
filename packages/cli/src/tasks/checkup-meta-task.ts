@@ -12,8 +12,7 @@ import {
 } from '@checkup/core';
 
 import CheckupMetaTaskResult from '../results/checkup-meta-task-result';
-
-const { version } = require('../../package.json');
+import { getVersion } from '../helpers/get-version';
 
 function getConfigHash(checkupConfig: CheckupConfig) {
   let configAsJson = stringify(checkupConfig);
@@ -42,7 +41,7 @@ export default class CheckupMetaTask extends BaseTask implements Task {
     let result: CheckupMetaTaskResult = new CheckupMetaTaskResult(this.meta);
 
     result.configHash = getConfigHash(this.checkupConfig);
-    result.version = version;
+    result.version = getVersion();
 
     return result;
   }

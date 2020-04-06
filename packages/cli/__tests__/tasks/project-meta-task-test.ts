@@ -2,7 +2,7 @@ import { CheckupProject, stdout } from '@checkup/test-helpers';
 import ProjectMetaTask from '../../src/tasks/project-meta-task';
 import ProjectMetaTaskResult from '../../src/results/project-meta-task-result';
 
-describe('project-info-task', () => {
+describe('project-meta-task', () => {
   let checkupProject: CheckupProject;
 
   describe('for Projects', () => {
@@ -46,25 +46,15 @@ describe('project-info-task', () => {
 
       expect(taskResult.json()).toMatchInlineSnapshot(`
         Object {
-          "meta": Object {
-            "friendlyTaskName": "Project",
-            "taskClassification": Object {
-              "category": "meta",
-              "priority": "high",
+          "project": Object {
+            "name": "checkup-app",
+            "repository": Object {
+              "activeDays": "0 days",
+              "age": "0 days",
+              "totalCommits": 0,
+              "totalFiles": 0,
             },
-            "taskName": "project",
-          },
-          "result": Object {
-            "project": Object {
-              "name": "checkup-app",
-              "repository": Object {
-                "activeDays": "0 days",
-                "age": "0 days",
-                "totalCommits": 0,
-                "totalFiles": 0,
-              },
-              "version": "0.0.0",
-            },
+            "version": "0.0.0",
           },
         }
       `);

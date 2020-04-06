@@ -7,7 +7,21 @@ tasks.someTask.isEnabled expected type boolean, but got \\"foo\\""
 `;
 
 exports[`@checkup/cli normal cli output with plugins should output checkup result 1`] = `
-"mock task is being run
+"=== Project
+name:    checkup-project
+version: 0.0.0
+
+=== Repository Information
+Active days:   0 days
+Age:           0 days
+Total commits: 0
+Total files:   0
+
+=== Checkup Configuration
+configHash: 47def66968059c89c59bb41f477c180c
+version:    0.0.0
+
+mock task is being run
 mock task2 is being run
 mock task3 is being run
 "
@@ -15,62 +29,102 @@ mock task3 is being run
 
 exports[`@checkup/cli normal cli output with plugins should output checkup result in JSON 1`] = `
 "{
-  \\"core\\": {
-    \\"high\\": [
-      {
-        \\"meta\\": {
-          \\"taskName\\": \\"mock-task\\",
-          \\"friendlyTaskName\\": \\"Mock Task\\",
-          \\"taskClassification\\": {
-            \\"category\\": \\"core\\",
-            \\"priority\\": \\"high\\"
-          }
-        },
-        \\"result\\": {
-          \\"mockTask1\\": 5
-        }
-      },
-      {
-        \\"meta\\": {
-          \\"taskName\\": \\"mock-task2\\",
-          \\"friendlyTaskName\\": \\"Mock Task 2\\",
-          \\"taskClassification\\": {
-            \\"category\\": \\"core\\",
-            \\"priority\\": \\"high\\"
-          }
-        },
-        \\"result\\": {
-          \\"mockTask2\\": 10
-        }
-      },
-      {
-        \\"meta\\": {
-          \\"taskName\\": \\"mock-task3\\",
-          \\"friendlyTaskName\\": \\"Mock Task 3\\",
-          \\"taskClassification\\": {
-            \\"category\\": \\"core\\",
-            \\"priority\\": \\"high\\"
-          }
-        },
-        \\"result\\": {
-          \\"mockTask2\\": 10
-        }
+  \\"meta\\": {
+    \\"project\\": {
+      \\"name\\": \\"checkup-project\\",
+      \\"version\\": \\"0.0.0\\",
+      \\"repository\\": {
+        \\"totalCommits\\": 0,
+        \\"totalFiles\\": 0,
+        \\"age\\": \\"0 days\\",
+        \\"activeDays\\": \\"0 days\\"
       }
-    ],
-    \\"medium\\": [],
-    \\"low\\": []
-  }
+    },
+    \\"checkup\\": {
+      \\"configHash\\": \\"47def66968059c89c59bb41f477c180c\\",
+      \\"version\\": \\"0.0.0\\"
+    }
+  },
+  \\"results\\": [
+    {
+      \\"meta\\": {
+        \\"taskName\\": \\"mock-task\\",
+        \\"friendlyTaskName\\": \\"Mock Task\\",
+        \\"taskClassification\\": {
+          \\"category\\": \\"core\\",
+          \\"priority\\": \\"high\\"
+        }
+      },
+      \\"result\\": {
+        \\"mockTask1\\": 5
+      }
+    },
+    {
+      \\"meta\\": {
+        \\"taskName\\": \\"mock-task2\\",
+        \\"friendlyTaskName\\": \\"Mock Task 2\\",
+        \\"taskClassification\\": {
+          \\"category\\": \\"core\\",
+          \\"priority\\": \\"high\\"
+        }
+      },
+      \\"result\\": {
+        \\"mockTask2\\": 10
+      }
+    },
+    {
+      \\"meta\\": {
+        \\"taskName\\": \\"mock-task3\\",
+        \\"friendlyTaskName\\": \\"Mock Task 3\\",
+        \\"taskClassification\\": {
+          \\"category\\": \\"core\\",
+          \\"priority\\": \\"high\\"
+        }
+      },
+      \\"result\\": {
+        \\"mockTask2\\": 10
+      }
+    }
+  ]
 }
 "
 `;
 
 exports[`@checkup/cli normal cli output with plugins should run a single task if the task option is specified 1`] = `
-"mock task is being run
+"=== Project
+name:    checkup-project
+version: 0.0.0
+
+=== Repository Information
+Active days:   0 days
+Age:           0 days
+Total commits: 0
+Total files:   0
+
+=== Checkup Configuration
+configHash: 47def66968059c89c59bb41f477c180c
+version:    0.0.0
+
+mock task is being run
 "
 `;
 
 exports[`@checkup/cli normal cli output with plugins should use the config at the config path if provided 1`] = `
-"mock task is being run
+"=== Project
+name:    checkup-project
+version: 0.0.0
+
+=== Repository Information
+Active days:   0 days
+Age:           0 days
+Total commits: 0
+Total files:   0
+
+=== Checkup Configuration
+configHash: 052fa270c6764ec1da0fa838bbc43dde
+version:    0.0.0
+
+mock task is being run
 mock task2 is being run
 "
 `;
