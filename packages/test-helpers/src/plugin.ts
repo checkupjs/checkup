@@ -43,7 +43,7 @@ export default class Plugin {
         },
       };
       pluginProject.pkg.files = [];
-      pluginProject.files.src = {
+      pluginProject.files.lib = {
         hooks: {
           'register-tasks.js': template({
             classes: [...this.tasks].map(task => task.toString()),
