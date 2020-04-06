@@ -40,7 +40,7 @@
       "@oclif/plugin-help"
     ],
     "hooks": {
-      "register-tasks": "./src/hooks/register-tasks"
+      "register-tasks": "./lib/hooks/register-tasks"
     }
   },
   "publishConfig": {
