@@ -65,8 +65,6 @@ export interface TaskResult {
   stdout: () => void;
   json: () => JsonMetaTaskResult | JsonTaskResult;
   pdf: () => NumericalCardData | TableData | GradedTableData | PieChartData | undefined; //TODO: removed `undefined` once all tasks are retrofitted to return results
-
-  compareTo(other: TaskResult): number;
 }
 
 export interface TaskMetaData {
