@@ -1,3 +1,22 @@
+## v0.0.5 (2020-04-06)
+
+#### :bug: Bug Fix
+* `plugin-ember-octane`
+  * [#207](https://github.com/checkupjs/checkup/pull/207) Move "babel-eslint" to deps for plugin-ember-octane ([@lbdm44](https://github.com/lbdm44))
+
+#### :memo: Documentation
+* [#209](https://github.com/checkupjs/checkup/pull/209) updating contributing.md ([@LLisa717](https://github.com/LLisa717))
+
+#### :house: Internal
+* `plugin-ember-octane`
+  * [#207](https://github.com/checkupjs/checkup/pull/207) Move "babel-eslint" to deps for plugin-ember-octane ([@lbdm44](https://github.com/lbdm44))
+
+#### Committers: 3
+- Lewis Miller ([@lbdm44](https://github.com/lbdm44))
+- Lisa Li ([@LLisa717](https://github.com/LLisa717))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.0.4 (2020-04-06)
 
 #### :house: Internal

@@ -1,7 +1,7 @@
 {
   "name": "@checkup/cli",
   "description": "A CLI that provides health check information about your project.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bin": {
     "checkup": "./bin/run"
@@ -10,10 +10,10 @@
   "dependencies": {
     "@babel/traverse": "^7.9.0",
     "@babel/types": "7.9.0",
-    "@checkup/core": "0.0.4",
-    "@checkup/parser-eslint": "0.0.4",
-    "@checkup/plugin-ember": "0.0.4",
-    "@checkup/plugin-ember-octane": "0.0.4",
+    "@checkup/core": "0.0.5",
+    "@checkup/parser-eslint": "0.0.5",
+    "@checkup/plugin-ember": "0.0.5",
+    "@checkup/plugin-ember-octane": "0.0.5",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-typescript": "^7.9.0",
-    "@checkup/test-helpers": "0.0.4",
+    "@checkup/test-helpers": "0.0.5",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "@types/chai": "^4",
