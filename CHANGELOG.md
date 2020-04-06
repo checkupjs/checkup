@@ -1,3 +1,13 @@
+## v0.0.4 (2020-04-06)
+
+#### :house: Internal
+* `cli`, `core`, `parser-eslint`, `plugin-ember-octane`, `plugin-ember`, `test-helpers`
+  * [#206](https://github.com/checkupjs/checkup/pull/206) Updating scripts to ensure lib is cleaned before build ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.0.3 (2020-04-06)
 
 #### :bug: Bug Fix
