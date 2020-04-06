@@ -37,9 +37,9 @@
   },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
-    "build": "tsc && yarn copystatic",
+    "build": "yarn clean && tsc && yarn copystatic",
     "build:watch": "yarn build -w",
-    "clean": "rm -rf lib/*",
+    "clean": "rm -rf lib",
     "test": "jest --passWithNoTests",
     "copystatic": "cp -a ./src/static ./lib/static"
   },
