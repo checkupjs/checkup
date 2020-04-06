@@ -1,3 +1,17 @@
+## v0.0.3 (2020-04-06)
+
+#### :bug: Bug Fix
+* `cli`, `plugin-ember-octane`, `plugin-ember`, `test-helpers`
+  * [#205](https://github.com/checkupjs/checkup/pull/205) Fixing hooks config paths to point to lib vs src ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `cli`
+  * [#195](https://github.com/checkupjs/checkup/pull/195) Fixing checkup meta test to account for dynamic version ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.0.2 (2020-04-03)
 
 #### :bug: Bug Fix

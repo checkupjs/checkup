@@ -1,11 +1,11 @@
 {
   "name": "@checkup/parser-eslint",
   "description": "ESLint parser for @checkup/cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
-    "@checkup/core": "0.0.2",
+    "@checkup/core": "0.0.3",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "eslint": "^6.8.0",
