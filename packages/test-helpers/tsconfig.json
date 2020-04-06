@@ -7,7 +7,8 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@checkup/core": ["../core/lib/index.d.ts"]
+      "@checkup/core": ["../core/lib/index.d.ts"],
+      "*": ["../../types/*"]
     }
   },
   "include": ["src/**/*"]
