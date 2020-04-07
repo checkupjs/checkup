@@ -8,40 +8,27 @@
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
 </head>
-<body class="min-h-screen bg-gray-100">
-  <h1>Checkup report</h1>
-
-  {{#each insights as |priority|}}
-    {{#each priority as |taskResult|}}
-      <div>
+<body class="min-h-screen bg-gray-100 p-5">
+  <h1 class="text-4xl">Checkup report</h1>
+  <div class="grid grid-cols-3 gap-4">
+    {{#each insights as |priority|}}
+      {{#each priority as |taskResult|}}
         {{> (lookup . 'componentType') taskResult=taskResult}}
-      </div>
+      {{/each}}
     {{/each}}
-  {{/each}}
 
-  {{#each insights as |priority|}}
-    {{#each priority as |taskResult|}}
-      <div>
+    {{#each migrations as |priority|}}
+      {{#each priority as |taskResult|}}
         {{> (lookup . 'componentType') taskResult=taskResult}}
-      </div>
+      {{/each}}
     {{/each}}
-  {{/each}}
 
-  {{#each migrations as |priority|}}
-    {{#each priority as |taskResult|}}
-      <div>
+    {{#each recommendations as |priority|}}
+      {{#each priority as |taskResult|}}
         {{> (lookup . 'componentType') taskResult=taskResult}}
-      </div>
+      {{/each}}
     {{/each}}
-  {{/each}}
-
-  {{#each recommendations as |priority|}}
-    {{#each priority as |taskResult|}}
-      <div>
-        {{> (lookup . 'componentType') taskResult=taskResult}}
-      </div>
-    {{/each}}
-  {{/each}}
+  </div>
 
 </body>
 </html>
