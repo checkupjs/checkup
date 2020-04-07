@@ -17,9 +17,9 @@ export default class CheckupConfigService {
     CheckupConfigFormat,
     (config: CheckupConfig) => string
   > = {
-    JSON: config => JSON.stringify(config, null, 2),
-    YAML: config => yaml.safeDump(config),
-    JavaScript: config => `module.exports = ${JSON.stringify(config, null, 2)}`,
+    JSON: (config) => JSON.stringify(config, null, 2),
+    YAML: (config) => yaml.safeDump(config),
+    JavaScript: (config) => `module.exports = ${JSON.stringify(config, null, 2)}`,
   };
   private readonly configPath: string;
   private readonly format: CheckupConfigFormat;
@@ -70,13 +70,13 @@ export default class CheckupConfigService {
     return pipe(
       RuntimeCheckupConfig.decode(this.config),
       fold(
-        errors => {
+        (errors) => {
           const errorString = errors
-            .map(error => error.context)
+            .map((error) => error.context)
             .map(
-              contexts =>
+              (contexts) =>
                 `${contexts
-                  .map(context => context.key)
+                  .map((context) => context.key)
                   .filter(Boolean)
                   .join('.')} expected type ${
                   contexts.slice(-1)[0].type.name

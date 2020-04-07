@@ -12,7 +12,7 @@ describe('@checkup/cli', () => {
   describe('normal cli output with plugins', () => {
     let project: CheckupProject;
 
-    beforeEach(function() {
+    beforeEach(function () {
       const plugin = new Plugin('@checkup/plugin-mock')
         .addTask(
           class MockTask implements Task {
@@ -140,7 +140,7 @@ describe('@checkup/cli', () => {
       project.writeSync();
     });
 
-    afterEach(function() {
+    afterEach(function () {
       project.dispose();
     });
 

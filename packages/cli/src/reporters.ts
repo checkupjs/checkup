@@ -4,8 +4,8 @@ import { generateReport } from './helpers/pdf';
 
 export function _transformResults(metaTaskResults: TaskResult[], pluginTaskResults: TaskResult[]) {
   let transformedResult = {
-    meta: Object.assign({}, ...metaTaskResults.map(result => result.json())),
-    results: pluginTaskResults.map(result => result.json()),
+    meta: Object.assign({}, ...metaTaskResults.map((result) => result.json())),
+    results: pluginTaskResults.map((result) => result.json()),
   };
 
   return transformedResult;
@@ -20,8 +20,8 @@ export function getReporter(
     case ReporterType.stdout:
       return async () => {
         if (!flags.silent) {
-          metaTaskResults.forEach(taskResult => taskResult.stdout());
-          pluginTaskResults.forEach(taskResult => taskResult.stdout());
+          metaTaskResults.forEach((taskResult) => taskResult.stdout());
+          pluginTaskResults.forEach((taskResult) => taskResult.stdout());
         }
       };
     case ReporterType.json:

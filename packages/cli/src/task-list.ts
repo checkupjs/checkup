@@ -119,7 +119,7 @@ export default class TaskList {
   private getTasks() {
     let values: Task[] = [];
 
-    this._categories.forEach(category => {
+    this._categories.forEach((category) => {
       values = [...values, ...category.values()];
     });
 

@@ -7,12 +7,12 @@ export function transformESLintReport(
   report: CLIEngine.LintReport
 ): MigrationInfo {
   let relatedResults = report.results.filter(({ filePath }) =>
-    migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
+    migrationConfig.fileMatchers.some((fileMatcher) => fileMatcher.test(filePath))
   );
 
   let { length: totalApplicableFiles } = relatedResults;
 
-  let relatedResultsWithViolations = relatedResults.filter(result => {
+  let relatedResultsWithViolations = relatedResults.filter((result) => {
     return result.messages.some(({ ruleId }) =>
       ruleId ? migrationConfig.rules.includes(ruleId) : false
     );
@@ -40,10 +40,10 @@ export function transformTemplateLintReport(
   report: TemplateLintReport
 ): MigrationInfo {
   let relatedResults = report.results.filter(({ filePath }) =>
-    migrationConfig.fileMatchers.some(fileMatcher => fileMatcher.test(filePath))
+    migrationConfig.fileMatchers.some((fileMatcher) => fileMatcher.test(filePath))
   );
 
-  let relatedResultsWithViolations = relatedResults.filter(result => {
+  let relatedResultsWithViolations = relatedResults.filter((result) => {
     return result.messages.some(({ rule }) =>
       rule ? migrationConfig.rules.includes(rule) : false
     );

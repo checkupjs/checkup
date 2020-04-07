@@ -59,7 +59,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   private async runTemplateLint(): Promise<TemplateLintReport> {
     let filePaths = await globby(`${this.rootPath}/+(app|addon)/**/*.hbs`);
 
-    let sources = filePaths.map(path => ({
+    let sources = filePaths.map((path) => ({
       path,
       template: fs.readFileSync(path, { encoding: 'utf8' }),
     }));

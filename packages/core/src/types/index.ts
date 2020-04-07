@@ -3,10 +3,10 @@ import * as t from 'io-ts';
 import { JsonObject, PromiseValue } from 'type-fest';
 import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
 
-import GradedTableData from '../pdf-components/graded-table-data';
-import NumericalCardData from '../pdf-components/numerical-card-data';
-import PieChartData from '../pdf-components/pie-chart-data';
-import TableData from '../pdf-components/table-data';
+import GradedTableData from '../report-components/graded-table-data';
+import NumericalCardData from '../report-components/numerical-card-data';
+import PieChartData from '../report-components/pie-chart-data';
+import TableData from '../report-components/table-data';
 
 export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
@@ -61,10 +61,24 @@ export enum ReporterType {
   pdf = 'pdf',
 }
 
+export type ReportResultData =
+  | NumericalCardData
+  | TableData
+  | GradedTableData
+  | PieChartData
+  | undefined; //TODO: removed `undefined` once all tasks are retrofitted to return results
+
+export enum ReportComponentType {
+  NumericalCard = 'numerical-card',
+  Table = 'table',
+  GradedTable = 'graded-table',
+  PieChart = 'pie-chart',
+}
+
 export interface TaskResult {
   stdout: () => void;
   json: () => JsonMetaTaskResult | JsonTaskResult;
-  pdf: () => NumericalCardData | TableData | GradedTableData | PieChartData | undefined; //TODO: removed `undefined` once all tasks are retrofitted to return results
+  pdf: () => ReportResultData;
 }
 
 export interface TaskMetaData {

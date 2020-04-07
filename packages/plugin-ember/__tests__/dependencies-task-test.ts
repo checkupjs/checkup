@@ -6,8 +6,8 @@ import { DependenciesTaskResult } from '../src/results';
 describe('dependencies-task', () => {
   let emberProject: EmberProject;
 
-  beforeEach(function() {
-    emberProject = new EmberProject('checkup-app', '0.0.0', project => {
+  beforeEach(function () {
+    emberProject = new EmberProject('checkup-app', '0.0.0', (project) => {
       project.addDependency('ember-source', '^3.15.0');
       project.addDependency('ember-cli', '^3.15.0');
       project.addDevDependency('ember-cli-string-utils', 'latest');
@@ -17,7 +17,7 @@ describe('dependencies-task', () => {
     emberProject.writeSync();
   });
 
-  afterEach(function() {
+  afterEach(function () {
     emberProject.dispose();
   });
 

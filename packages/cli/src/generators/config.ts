@@ -50,7 +50,7 @@ export default class ConfigGenerator extends Generator {
     const format = this.answers.format as CheckupConfigFormat;
     this.configService = await CheckupConfigService.load(
       getInitializationConfigLoader(this.destinationRoot(), format)
-    ).then(configService => configService.map(...this._getConfigMappers()));
+    ).then((configService) => configService.map(...this._getConfigMappers()));
   }
 
   async writing() {
@@ -75,7 +75,7 @@ export default class ConfigGenerator extends Generator {
   }
 
   private static _addPlugin(pluginName: string): ConfigMapper {
-    return config => {
+    return (config) => {
       config.plugins.push(pluginName);
       return config;
     };
