@@ -72,11 +72,11 @@ export default class TaskList {
    */
   async runTasks(): Promise<TaskResult[]> {
     let results = await this.eachTask(async (task: Task) => {
-      this.debug('start %s', task.constructor.name);
+      this.debug('start %s run', task.constructor.name);
 
       let result = await task.run();
 
-      this.debug('%s done', task.constructor.name);
+      this.debug('%s run done', task.constructor.name);
       return result;
     });
 
