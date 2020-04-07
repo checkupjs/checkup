@@ -15,6 +15,5 @@ export { ui } from './utils/ui';
 export { toPairs } from './utils/data-transformers';
 export { default as CosmiconfigService } from './configuration/cosmiconfig-service';
 export { default as getInitializationConfigLoader } from './configuration/loaders/get-initialization-loader';
-export { debug } from './decorators/debug';
 
 export * from './types';
