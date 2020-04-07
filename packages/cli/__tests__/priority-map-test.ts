@@ -8,7 +8,7 @@ class MockTask implements Task {
     taskName: 'mock-task',
     friendlyTaskName: 'Mock Task',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.High,
     },
   };

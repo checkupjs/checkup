@@ -21,7 +21,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     taskName: 'octane-migration-status',
     friendlyTaskName: 'Ember Octane Migration Status',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Medium,
     },
   };

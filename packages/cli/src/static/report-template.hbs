@@ -11,7 +11,7 @@
 <body class="min-h-screen bg-gray-100">
   <h1>Checkup report</h1>
 
-  {{#each core as |priority|}}
+  {{#each insights as |priority|}}
     {{#each priority as |taskResult|}}
       <div>
         {{> (lookup . 'componentType') taskResult=taskResult}}
@@ -27,7 +27,15 @@
     {{/each}}
   {{/each}}
 
-  {{#each migration as |priority|}}
+  {{#each migrations as |priority|}}
+    {{#each priority as |taskResult|}}
+      <div>
+        {{> (lookup . 'componentType') taskResult=taskResult}}
+      </div>
+    {{/each}}
+  {{/each}}
+
+  {{#each recommendations as |priority|}}
     {{#each priority as |taskResult|}}
       <div>
         {{> (lookup . 'componentType') taskResult=taskResult}}

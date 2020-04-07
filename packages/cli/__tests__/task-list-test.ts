@@ -8,7 +8,7 @@ class MockTask implements Task {
     taskName: 'mock-task',
     friendlyTaskName: 'Mock Task',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.High,
     },
   };
@@ -23,7 +23,7 @@ class AnotherMockTask implements Task {
     taskName: 'another-mock-task',
     friendlyTaskName: 'Another Mock Task',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Low,
     },
   };
@@ -46,7 +46,7 @@ describe('TaskList', () => {
 
     taskList.registerTask(new MockTask());
 
-    expect(taskList.categories.get(Category.Core)!.size).toEqual(1);
+    expect(taskList.categories.get(Category.Insights)!.size).toEqual(1);
   });
 
   it('runTask will run a task by taskName', async () => {

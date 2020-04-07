@@ -18,9 +18,9 @@ export interface Parser {
 
 export const enum Category {
   Meta = 'meta',
-  Core = 'core',
-  Migration = 'migration',
   Insights = 'insights',
+  Migrations = 'migrations',
+  Recommendations = 'recommendations',
 }
 
 export const enum Priority {

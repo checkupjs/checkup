@@ -60,7 +60,7 @@ export default class TaskGenerator extends Generator {
 
     const defaults = {
       typescript: true,
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Low,
     };
 
@@ -79,11 +79,12 @@ export default class TaskGenerator extends Generator {
           name: 'category',
           message: 'Select a task category',
           choices: [
-            { name: 'core', value: 'Core' },
-            { name: 'migration', value: 'Migration' },
+            { name: 'meta', value: 'Meta' },
             { name: 'insights', value: 'Insights' },
+            { name: 'migrations', value: 'Migrations' },
+            { name: 'recommendations', value: 'Recommendations' },
           ],
-          default: 'Core',
+          default: 'Insights',
         },
         {
           type: 'list',

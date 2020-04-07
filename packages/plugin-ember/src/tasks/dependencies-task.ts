@@ -61,7 +61,7 @@ export default class DependenciesTask extends BaseTask implements Task {
     taskName: 'dependencies',
     friendlyTaskName: 'Project Dependencies',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Medium,
     },
   };

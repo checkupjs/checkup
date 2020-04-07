@@ -26,6 +26,7 @@ exports[`generateHTML returns correct HTML string 1`] = `
         </div>
       </div>
 
+
 </body>
 </html>
 "

@@ -5,7 +5,7 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Mock Task",
     "taskClassification": Object {
-      "category": "core",
+      "category": "insights",
       "priority": "high",
     },
     "taskName": "mock-task",
@@ -19,7 +19,7 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Mock Task",
     "taskClassification": Object {
-      "category": "core",
+      "category": "insights",
       "priority": "high",
     },
     "taskName": "mock-task",
@@ -33,7 +33,7 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Another Mock Task",
     "taskClassification": Object {
-      "category": "core",
+      "category": "insights",
       "priority": "low",
     },
     "taskName": "another-mock-task",
