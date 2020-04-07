@@ -5,15 +5,12 @@ import * as path from 'path';
 import { pathToFileURL } from 'url';
 import { printToPDF } from './print-to-pdf';
 import { readFileSync } from 'fs-extra';
+import { ReportComponentType } from '@checkup/core';
 
 import tmp = require('tmp');
 
 const date = require('date-and-time');
-const REPORT_PATH = path.join(__dirname, '../static/report-template.hbs');
-const CARD_PATH = path.join(__dirname, '../static/components/card.hbs');
 
-let REPORT_TEMPLATE_RAW = readFileSync(REPORT_PATH, 'utf8');
-let CARD_TEMPLATE_RAW = readFileSync(CARD_PATH, 'utf8');
 /**
  * @param jsonResult
  * @param results
@@ -45,7 +42,25 @@ export async function generateReport(
 }
 
 export function generateHTML(resultsForPdf: any) {
-  const template = Handlebars.compile(REPORT_TEMPLATE_RAW);
-  Handlebars.registerPartial('cardPartial', CARD_TEMPLATE_RAW);
+  const reportPath = path.join(__dirname, '../static/report-template.hbs');
+  const reportTemplateRaw = readFileSync(reportPath, 'utf8');
+
+  const template = Handlebars.compile(reportTemplateRaw);
+  registerPartials();
   return template(resultsForPdf);
+}
+
+function registerPartials() {
+  const partials = [
+    { path: 'numerical-card.hbs', type: ReportComponentType.NumericalCard },
+    { path: 'table.hbs', type: ReportComponentType.Table },
+    { path: 'graded-table.hbs', type: ReportComponentType.GradedTable },
+    { path: 'pie-chart.hbs', type: ReportComponentType.PieChart },
+  ];
+
+  partials.forEach(partial => {
+    const fullPartialPath = path.join(__dirname, `../static/components/${partial.path}`);
+    const partialTemplateRaw = readFileSync(fullPartialPath, 'utf8');
+    Handlebars.registerPartial(partial.type, partialTemplateRaw);
+  });
 }
