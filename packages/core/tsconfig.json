@@ -3,7 +3,11 @@
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
-    "types": ["chai", "jest", "node"]
+    "types": ["chai", "jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["../../types/*"]
+    }
   },
   "include": ["src/**/*"]
 }

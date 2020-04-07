@@ -1,3 +1,4 @@
+import * as debug from 'debug';
 import * as pMap from 'p-map';
 
 import { Category, Task, TaskName, TaskResult } from '@checkup/core';
@@ -11,6 +12,7 @@ import PriorityMap from './priority-map';
  */
 export default class TaskList {
   private _categories: Map<Category, PriorityMap>;
+  debug: debug.Debugger;
 
   get categories() {
     return this._categories;
@@ -18,6 +20,7 @@ export default class TaskList {
 
   constructor() {
     this._categories = new Map<Category, PriorityMap>();
+    this.debug = debug('checkup:task');
   }
 
   /**
@@ -68,8 +71,13 @@ export default class TaskList {
    * @memberof TaskList
    */
   async runTasks(): Promise<TaskResult[]> {
-    let results = await this.eachTask((task: Task) => {
-      return task.run();
+    let results = await this.eachTask(async (task: Task) => {
+      this.debug('start %s run', task.constructor.name);
+
+      let result = await task.run();
+
+      this.debug('%s run done', task.constructor.name);
+      return result;
     });
 
     return results;

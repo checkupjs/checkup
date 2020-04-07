@@ -1,9 +1,12 @@
-import { CheckupConfig, CheckupConfigFormat, CheckupConfigLoader, ConfigMapper } from '../types';
-import * as yaml from 'js-yaml';
+import * as debug from 'debug';
 import * as fs from 'fs';
+import * as yaml from 'js-yaml';
+
+import { CheckupConfig, CheckupConfigFormat, CheckupConfigLoader, ConfigMapper } from '../types';
+
 import { RuntimeCheckupConfig } from '../types/runtime-types';
-import { pipe } from 'fp-ts/lib/pipeable';
 import { fold } from 'fp-ts/lib/Either';
+import { pipe } from 'fp-ts/lib/pipeable';
 
 /**
  * A service to interact with a {@link CheckupConfig}. Create an instance via
@@ -47,6 +50,7 @@ export default class CheckupConfigService {
     this.config = this.mappers.reduce((config, mapper) => mapper(config), this.config);
     this.mappers = [];
     this.validate();
+    debug('checkup:config')('%j', this.config);
     return this.config;
   }
 
