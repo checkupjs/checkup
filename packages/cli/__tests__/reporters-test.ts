@@ -34,14 +34,14 @@ describe('_transformResults', () => {
       createMockTaskResult(
         'mock-meta-task-7',
         'Mock Meta Task 7',
-        Category.Migration,
+        Category.Migrations,
         Priority.High,
         {}
       ),
       createMockTaskResult(
         'mock-meta-task-3',
         'Mock Meta Task 3',
-        Category.Core,
+        Category.Insights,
         Priority.High,
         {}
       ),
@@ -55,14 +55,14 @@ describe('_transformResults', () => {
       createMockTaskResult(
         'mock-meta-task-8',
         'Mock Meta Task 8',
-        Category.Migration,
+        Category.Migrations,
         Priority.Low,
         {}
       ),
       createMockTaskResult(
         'mock-meta-task-4',
         'Mock Meta Task 4',
-        Category.Core,
+        Category.Insights,
         Priority.Medium,
         {}
       ),
@@ -100,7 +100,7 @@ describe('_transformResults', () => {
             "meta": Object {
               "friendlyTaskName": "Mock Meta Task 7",
               "taskClassification": Object {
-                "category": "migration",
+                "category": "migrations",
                 "priority": "high",
               },
               "taskName": "mock-meta-task-7",
@@ -111,7 +111,7 @@ describe('_transformResults', () => {
             "meta": Object {
               "friendlyTaskName": "Mock Meta Task 3",
               "taskClassification": Object {
-                "category": "core",
+                "category": "insights",
                 "priority": "high",
               },
               "taskName": "mock-meta-task-3",
@@ -133,7 +133,7 @@ describe('_transformResults', () => {
             "meta": Object {
               "friendlyTaskName": "Mock Meta Task 8",
               "taskClassification": Object {
-                "category": "migration",
+                "category": "migrations",
                 "priority": "low",
               },
               "taskName": "mock-meta-task-8",
@@ -144,7 +144,7 @@ describe('_transformResults', () => {
             "meta": Object {
               "friendlyTaskName": "Mock Meta Task 4",
               "taskClassification": Object {
-                "category": "core",
+                "category": "insights",
                 "priority": "medium",
               },
               "taskName": "mock-meta-task-4",

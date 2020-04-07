@@ -20,7 +20,7 @@ describe('@checkup/cli', () => {
               taskName: 'mock-task',
               friendlyTaskName: 'Mock Task',
               taskClassification: {
-                category: Category.Core,
+                category: Category.Insights,
                 priority: Priority.High,
               },
             };
@@ -33,7 +33,7 @@ describe('@checkup/cli', () => {
                       taskName: 'mock-task',
                       friendlyTaskName: 'Mock Task',
                       taskClassification: {
-                        category: Category.Core,
+                        category: Category.Insights,
                         priority: Priority.High,
                       },
                     },
@@ -58,7 +58,7 @@ describe('@checkup/cli', () => {
               taskName: 'mock-task2',
               friendlyTaskName: 'Mock Task 2',
               taskClassification: {
-                category: Category.Core,
+                category: Category.Insights,
                 priority: Priority.High,
               },
             };
@@ -71,7 +71,7 @@ describe('@checkup/cli', () => {
                       taskName: 'mock-task2',
                       friendlyTaskName: 'Mock Task 2',
                       taskClassification: {
-                        category: Category.Core,
+                        category: Category.Insights,
                         priority: Priority.High,
                       },
                     },
@@ -96,7 +96,7 @@ describe('@checkup/cli', () => {
             taskName: 'mock-task3',
             friendlyTaskName: 'Mock Task3',
             taskClassification: {
-              category: Category.Core,
+              category: Category.Insights,
               priority: Priority.High,
             },
           };
@@ -109,7 +109,7 @@ describe('@checkup/cli', () => {
                     taskName: 'mock-task3',
                     friendlyTaskName: 'Mock Task 3',
                     taskClassification: {
-                      category: Category.Core,
+                      category: Category.Insights,
                       priority: Priority.High,
                     },
                   },

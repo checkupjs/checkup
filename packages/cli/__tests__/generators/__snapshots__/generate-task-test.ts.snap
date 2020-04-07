@@ -9,7 +9,7 @@ export default class MyFooTask extends BaseTask {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Low,
     },
   };
@@ -100,7 +100,7 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Low,
     },
   };
@@ -195,7 +195,7 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Low,
     },
   };
@@ -290,7 +290,7 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.High,
     },
   };
@@ -385,7 +385,7 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Low,
     },
   };
@@ -467,7 +467,7 @@ export default class MyBarTask extends BaseTask implements Task {
     taskName: 'my-bar',
     friendlyTaskName: 'My Bar',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Low,
     },
   };

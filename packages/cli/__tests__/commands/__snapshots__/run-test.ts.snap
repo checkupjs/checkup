@@ -51,7 +51,7 @@ exports[`@checkup/cli normal cli output with plugins should output checkup resul
         \\"taskName\\": \\"mock-task\\",
         \\"friendlyTaskName\\": \\"Mock Task\\",
         \\"taskClassification\\": {
-          \\"category\\": \\"core\\",
+          \\"category\\": \\"insights\\",
           \\"priority\\": \\"high\\"
         }
       },
@@ -64,7 +64,7 @@ exports[`@checkup/cli normal cli output with plugins should output checkup resul
         \\"taskName\\": \\"mock-task2\\",
         \\"friendlyTaskName\\": \\"Mock Task 2\\",
         \\"taskClassification\\": {
-          \\"category\\": \\"core\\",
+          \\"category\\": \\"insights\\",
           \\"priority\\": \\"high\\"
         }
       },
@@ -77,7 +77,7 @@ exports[`@checkup/cli normal cli output with plugins should output checkup resul
         \\"taskName\\": \\"mock-task3\\",
         \\"friendlyTaskName\\": \\"Mock Task 3\\",
         \\"taskClassification\\": {
-          \\"category\\": \\"core\\",
+          \\"category\\": \\"insights\\",
           \\"priority\\": \\"high\\"
         }
       },

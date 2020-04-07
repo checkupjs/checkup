@@ -33,7 +33,7 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Project Dependencies",
     "taskClassification": Object {
-      "category": "core",
+      "category": "insights",
       "priority": "medium",
     },
     "taskName": "dependencies",

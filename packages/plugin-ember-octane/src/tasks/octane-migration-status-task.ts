@@ -1,15 +1,17 @@
-import { CLIEngine } from 'eslint';
 import * as globby from 'globby';
+
 import { BaseTask, Category, Priority, Task } from '@checkup/core';
-import { getESLintEngine } from '../linters/es-lint';
-import { getTemplateLinter } from '../linters/ember-template-lint';
 import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lint-configs';
-import { OctaneMigrationStatusTaskResult } from '../results';
 import {
   TemplateLintMessage,
   TemplateLintReport,
   TemplateLintResult,
 } from '../types/ember-template-lint';
+
+import { CLIEngine } from 'eslint';
+import { OctaneMigrationStatusTaskResult } from '../results';
+import { getESLintEngine } from '../linters/es-lint';
+import { getTemplateLinter } from '../linters/ember-template-lint';
 
 const fs = require('fs');
 const TemplateLinter = require('ember-template-lint');
@@ -20,7 +22,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     taskName: 'octane-migration-status',
     friendlyTaskName: 'Ember Octane Migration Status',
     taskClassification: {
-      category: Category.Core,
+      category: Category.Insights,
       priority: Priority.Medium,
     },
   };

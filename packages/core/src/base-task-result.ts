@@ -2,9 +2,9 @@ import { Category, TaskMetaData } from './types';
 
 const CATEGORY_SORT_MAP = {
   [Category.Meta]: 4,
-  [Category.Core]: 3,
-  [Category.Insights]: 2,
-  [Category.Migration]: 1,
+  [Category.Insights]: 3,
+  [Category.Migrations]: 2,
+  [Category.Recommendations]: 1,
 };
 
 export default abstract class BaseTaskResult {

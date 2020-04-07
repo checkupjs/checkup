@@ -90,7 +90,7 @@ describe('task generator', () => {
         name: 'my-foo',
       })
       .withPrompts({
-        category: 'Core',
+        category: 'Insights',
       });
 
     assertTaskFiles('my-foo', dir);

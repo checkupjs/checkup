@@ -1,17 +1,18 @@
-import { NumericalCardData, Category, Priority, TaskMetaData } from '@checkup/core';
+import { Category, NumericalCardData, Priority, TaskMetaData } from '@checkup/core';
+
 import { generateHTML } from '../src/helpers/pdf';
 
 const meta: TaskMetaData = {
   taskName: 'mock-task',
   friendlyTaskName: 'Mock Task',
   taskClassification: {
-    category: Category.Migration,
+    category: Category.Migrations,
     priority: Priority.Medium,
   },
 };
 
 const mergedResults: any = {
-  [Category.Migration]: {
+  [Category.Migrations]: {
     [Priority.High]: [],
     [Priority.Medium]: [new NumericalCardData(meta, 100, 'bad patterns in your app')],
     [Priority.Low]: [],
