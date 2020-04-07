@@ -1,3 +1,25 @@
+## v0.0.6 (2020-04-07)
+
+#### :memo: Documentation
+* `plugin-ember-octane`
+  * [#218](https://github.com/checkupjs/checkup/pull/218) plugin-ember-octane: update docs ([@lbdm44](https://github.com/lbdm44))
+
+#### :house: Internal
+* `cli`, `core`, `plugin-ember-octane`, `plugin-ember`
+  * [#220](https://github.com/checkupjs/checkup/pull/220) Removing Core category. Adding Recommendations and renaming Migration ([@scalvert](https://github.com/scalvert))
+* `cli`, `core`, `parser-eslint`, `plugin-ember-octane`, `plugin-ember`, `test-helpers`
+  * [#219](https://github.com/checkupjs/checkup/pull/219) Adds debug package to provide useful debugging info for tasks ([@scalvert](https://github.com/scalvert))
+  * [#217](https://github.com/checkupjs/checkup/pull/217) chore(deps) Bumping prettier ([@carakessler](https://github.com/carakessler))
+* `cli`, `core`
+  * [#210](https://github.com/checkupjs/checkup/pull/210) Adding report data infrastructure for generating HTML/PDF reports ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 4
+- Lewis Miller ([@lbdm44](https://github.com/lbdm44))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.0.5 (2020-04-06)
 
 #### :bug: Bug Fix
