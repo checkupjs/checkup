@@ -9,7 +9,7 @@ describe('project-info-task', () => {
     beforeEach(() => {
       let packageJson = require('./__fixtures__/app-package.json');
 
-      emberProject = new EmberProject('checkup-app', '0.0.0', project => {
+      emberProject = new EmberProject('checkup-app', '0.0.0', (project) => {
         project.addDependency('ember-cli', '^3.15.0');
       });
 
@@ -43,7 +43,7 @@ describe('project-info-task', () => {
     beforeEach(() => {
       let packageJson = require('./__fixtures__/addon-package.json');
 
-      emberProject = new EmberProject('checkup-app', '0.0.0', project => {
+      emberProject = new EmberProject('checkup-app', '0.0.0', (project) => {
         project.addDependency('ember-cli', '^3.15.0');
       });
 

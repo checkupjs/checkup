@@ -58,7 +58,7 @@ function registerPartials() {
     { path: 'pie-chart.hbs', type: ReportComponentType.PieChart },
   ];
 
-  partials.forEach(partial => {
+  partials.forEach((partial) => {
     const fullPartialPath = path.join(__dirname, `../static/components/${partial.path}`);
     const partialTemplateRaw = readFileSync(fullPartialPath, 'utf8');
     Handlebars.registerPartial(partial.type, partialTemplateRaw);

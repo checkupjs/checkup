@@ -4,7 +4,7 @@ export default class TypesTaskResult extends BaseTaskResult implements TaskResul
   types!: TaskItemData[];
 
   findByType(typeName: string): TaskItemData | undefined {
-    return this.types.find(type => type.type === typeName);
+    return this.types.find((type) => type.type === typeName);
   }
 
   stdout() {

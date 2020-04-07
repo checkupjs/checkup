@@ -15,10 +15,10 @@ export async function loadPlugins(
   resolutionBaseDirectory: string
 ): Promise<Config.Plugin[]> {
   const plugins = pluginNames
-    .map(pluginName => resolve.sync(pluginName, { basedir: resolutionBaseDirectory }))
-    .map(pluginPath => new Config.Plugin({ root: pluginPath, type: 'core' }));
+    .map((pluginName) => resolve.sync(pluginName, { basedir: resolutionBaseDirectory }))
+    .map((pluginPath) => new Config.Plugin({ root: pluginPath, type: 'core' }));
 
-  await Promise.all(plugins.map(plugin => plugin.load()));
+  await Promise.all(plugins.map((plugin) => plugin.load()));
 
   return plugins;
 }

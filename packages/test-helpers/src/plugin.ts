@@ -34,7 +34,7 @@ export default class Plugin {
   }
 
   toProject() {
-    return new Project(this.pluginName, this.version, pluginProject => {
+    return new Project(this.pluginName, this.version, (pluginProject) => {
       pluginProject.pkg.keywords = [];
       pluginProject.pkg.keywords.push('oclif-plugin');
       pluginProject.pkg.oclif = {
@@ -46,8 +46,8 @@ export default class Plugin {
       pluginProject.files.lib = {
         hooks: {
           'register-tasks.js': template({
-            classes: [...this.tasks].map(task => task.toString()),
-            taskNames: [...this.tasks].map(task => task.name),
+            classes: [...this.tasks].map((task) => task.toString()),
+            taskNames: [...this.tasks].map((task) => task.name),
           }),
         },
       };

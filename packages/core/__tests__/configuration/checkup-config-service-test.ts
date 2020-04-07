@@ -85,9 +85,9 @@ describe('checkup-config-service', () => {
     });
   });
 
-  it.each(Object.keys(CheckupConfigFormat).map(format => [format]))(
+  it.each(Object.keys(CheckupConfigFormat).map((format) => [format]))(
     'should write the config applying the given mappers on calling write for %s files',
-    async format => {
+    async (format) => {
       const project = new CheckupFixturifyProject('test');
       const filepath = path.join(project.baseDir, '.checkuprc');
       project.writeSync();
