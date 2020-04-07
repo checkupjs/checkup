@@ -39,11 +39,11 @@ const TYPES = {
 describe('types-task', () => {
   let project: EmberProject;
 
-  beforeEach(function() {
+  beforeEach(function () {
     project = new EmberProject('checkup-app', '0.0.0');
   });
 
-  afterEach(function() {
+  afterEach(function () {
     project.dispose();
   });
 

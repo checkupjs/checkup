@@ -15,7 +15,7 @@ export default class DependenciesTaskResult extends BaseTaskResult implements Ta
   get hasDependencies() {
     return (
       Object.keys(this.emberLibraries).length ||
-      [this.emberAddons, this.emberCliAddons].every(addons => {
+      [this.emberAddons, this.emberCliAddons].every((addons) => {
         return Object.keys(addons.dependencies).length && Object.keys(addons.devDependencies);
       })
     );

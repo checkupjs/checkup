@@ -6,9 +6,9 @@ import CosmiconfigService from '../../src/configuration/cosmiconfig-service';
 
 describe('cosmiconfig-service-factory', () => {
   const formatToWriteMapper: Record<CheckupConfigFormat, (config: CheckupConfig) => string> = {
-    JSON: config => JSON.stringify(config, null, 2),
-    YAML: config => yaml.safeDump(config),
-    JavaScript: config => `module.exports = ${JSON.stringify(config, null, 2)}`,
+    JSON: (config) => JSON.stringify(config, null, 2),
+    YAML: (config) => yaml.safeDump(config),
+    JavaScript: (config) => `module.exports = ${JSON.stringify(config, null, 2)}`,
   };
   const defaultConfig = {
     plugins: [],

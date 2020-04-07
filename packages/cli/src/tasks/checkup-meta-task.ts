@@ -17,10 +17,7 @@ import { getVersion } from '../helpers/get-version';
 function getConfigHash(checkupConfig: CheckupConfig) {
   let configAsJson = stringify(checkupConfig);
 
-  return crypto
-    .createHash('md5')
-    .update(configAsJson)
-    .digest('hex');
+  return crypto.createHash('md5').update(configAsJson).digest('hex');
 }
 
 export default class CheckupMetaTask extends BaseTask implements Task {

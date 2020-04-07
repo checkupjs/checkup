@@ -23,12 +23,12 @@ function assertPluginFiles(dir: string, extension: string = 'ts') {
 describe('task generator', () => {
   let project: CheckupPluginProject;
 
-  beforeEach(function() {
+  beforeEach(function () {
     project = new CheckupPluginProject('@checkup/plugin-mock');
     project.writeSync();
   });
 
-  afterEach(function() {
+  afterEach(function () {
     project.dispose();
   });
 

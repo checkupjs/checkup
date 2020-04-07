@@ -7,7 +7,7 @@ describe('project-meta-task', () => {
 
   describe('for Projects', () => {
     beforeEach(() => {
-      checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
+      checkupProject = new CheckupProject('checkup-app', '0.0.0', (project) => {
         project.addDependency('ember-cli', '^3.15.0');
       });
 

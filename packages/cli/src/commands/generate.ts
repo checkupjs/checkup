@@ -45,7 +45,7 @@ export default class GenerateCommand extends Command {
 
   get validGenerators() {
     if (!this._generators) {
-      this._generators = readdirSync(join(__dirname, '../generators')).map(file =>
+      this._generators = readdirSync(join(__dirname, '../generators')).map((file) =>
         basename(file, '.ts')
       );
     }

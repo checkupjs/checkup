@@ -1,5 +1,4 @@
-plugin-ember
-============
+# plugin-ember
 
 An oclif plugin for Ember project tasks
 
@@ -9,11 +8,15 @@ An oclif plugin for Ember project tasks
 [![License](https://img.shields.io/npm/l/plugin-ember.svg)](https://github.com/https://github.com/checkupjs/checkup/https://github.com/checkupjs/checkup/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g @checkup/plugin-ember
 $ @checkup/plugin-ember COMMAND
@@ -25,8 +28,11 @@ USAGE
   $ @checkup/plugin-ember COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
 
 <!-- commandsstop -->
