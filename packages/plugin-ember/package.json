@@ -14,12 +14,7 @@
     "@checkup/test-helpers": "0.0.6",
     "@oclif/dev-cli": "^1",
     "fixturify-project": "^2.1.0",
-    "jest": "^25.2.7",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^25.3.1",
-    "ts-node": "^8",
-    "type-fest": "^0.13.0",
-    "typescript": "^3.8"
+    "rimraf": "^3.0.2"
   },
   "engines": {
     "node": "10.* || >= 12.*"
