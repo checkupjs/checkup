@@ -35,7 +35,7 @@
     "yeoman-generator": "^4.7.2"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
     "@checkup/test-helpers": "0.0.6",
     "@oclif/dev-cli": "^1",
