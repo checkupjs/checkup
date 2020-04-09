@@ -2567,20 +2567,20 @@ ember-rfc176-data@^0.3.12:
   resolved "https://registry.yarnpkg.com/ember-rfc176-data/-/ember-rfc176-data-0.3.12.tgz#90d82878e69e2ac9a5438e8ce14d12c6031c5bd2"
   integrity sha512-g9HeZj/gU5bfIIrGXkP7MhS2b3Vu5DfNUrYr14hy99TgIvtZETO+96QF4WOEUXGjIJdfTRjerVnQlqngPQSv1g==
 
-ember-template-lint@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.4.1.tgz#c388ea9d7112621c308967033f2e197ec199ebaa"
-  integrity sha512-qDTvfL9kNGFqr3DJKfRW9WSAp/jtGdl74mqEf/C6aq/m5n+oIwYTXEvG38UwnA310GWWToyt6yutLoQzRgX+HQ==
+ember-template-lint@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-2.5.0.tgz#784fe69f6740600cd107c6fd535e1edba363feb4"
+  integrity sha512-fs9Mx9+XQSQ6zA5qrHRJTGnZzVLCj9PlHw9KU2+pk1hJGYOCT7Kl8MeSXE308mjSs7gMv86inb5km9k6Khmtfw==
   dependencies:
-    chalk "^3.0.0"
-    ember-template-recast "^4.1.1"
+    chalk "^4.0.0"
+    ember-template-recast "^4.1.2"
     find-up "^4.1.0"
     globby "^11.0.0"
     micromatch "^4.0.2"
     resolve "^1.15.1"
     yargs "^15.3.1"
 
-ember-template-recast@^4.1.1:
+ember-template-recast@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-4.1.2.tgz#1999c49df482a042fe3ad02712d62b6d3566addd"
   integrity sha512-ySBuPVKnGPvJ+y+5MEZ7qHE1p2LunM2CV9RUES0CP4O+fksPNwl79HPV+8rL0gJvN2nUOfkatNF6pcWNxxXaxg==
