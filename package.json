@@ -55,7 +55,7 @@
     "stdout-stderr": "^0.1.13",
     "ts-jest": "^25.3.1",
     "ts-node": "^8",
-    "type-fest": "^0.13.0",
+    "type-fest": "^0.13.1",
     "typescript": "^3.8",
     "release-it": "^13.5.1",
     "release-it-lerna-changelog": "^2.1.2",
