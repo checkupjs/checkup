@@ -1,7 +1,24 @@
-<h1>Table</h1>
+<div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+  <div class="px-6 py-4 flex flex-wrap flex-col">
+    <div class="text-xl font-bold self-center">{{taskResult.meta.friendlyTaskName}}</div>
 
-<div class="max-w-sm rounded overflow-hidden shadow-lg">
-  <div class="px-6 py-4">
-    <div class="font-bold text-xl mb-2">{{taskResult.meta.friendlyTaskName}}</div>
+    <table class="table-auto rounded">
+      <thead>
+        <tr class="font-bold">
+          {{#each taskResult.tableHeaders as |header|}}
+            <th class="px-4 py-2">{{header}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each taskResult.taskResult as |result|}}
+          <tr class="bg-gray-100">
+            {{#each result as |row|}}
+              <td class="border px-4 py-2">{{row}}</td>
+            {{/each}}
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
 </div>
