@@ -28,7 +28,7 @@ export function getPartialDelegate(partialPath: string): HandlebarsTemplateDeleg
 export function renderPartialAsHtml(componentData: ReportResultData): string {
   // TODO: remove this check once all tasks are retrofitted to return results (and undefined  is no longer a valid option for ReportResultsData)
   if (componentData) {
-    return compiledPartials[componentData.componentType]({ taskResult: componentData });
+    return COMPILED_PARTIALS[componentData.componentType]({ taskResult: componentData });
   }
   return '';
 }
