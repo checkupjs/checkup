@@ -95,7 +95,7 @@ export interface TaskItemData {
 
 export interface DependencyResult {
   name: string;
-  value: number;
+  value: string;
   grade?: Grade;
 }
 

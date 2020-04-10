@@ -5,7 +5,7 @@ export default class GradedTableData extends TableData {
   grade: Grade;
 
   constructor(meta: TaskMetaData, public taskResult: DependencyResult[]) {
-    super(meta, ReportComponentType.GradedTable, taskResult);
+    super(meta, taskResult, ReportComponentType.GradedTable);
 
     this.grade = this._deriveGrade();
   }
