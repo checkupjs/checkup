@@ -67,25 +67,37 @@ export default class RunCommand extends Command {
 
     this.validatePackageJson(args.path);
 
-    await this.runDefaultTasks(args);
-    await this.runPluginHooks(args);
-    await this.runPluginTasks(flags);
+    await this.registerTasks(args);
+    await this.runTasks(flags);
     await this.report(flags);
 
     ui.action.stop();
   }
 
-  private async runDefaultTasks(cliArguments: any) {
+  private async registerDefaultTasks(cliArguments: any) {
     this.defaultTasks.registerTask(new ProjectMetaTask(cliArguments));
     this.defaultTasks.registerTask(new CheckupMetaTask(cliArguments, this.checkupConfig));
-
-    this.metaTaskResults = await this.defaultTasks.runTasks();
   }
 
-  private async runPluginTasks(flags: any) {
+  private async runTasks(flags: any) {
     if (flags.task !== undefined) {
-      this.pluginTaskResults = [await this.pluginTasks.runTask(flags.task)];
+      let taskFound: boolean = false;
+
+      if (this.defaultTasks.hasTask(flags.task)) {
+        taskFound = true;
+        this.metaTaskResults = [await this.defaultTasks.runTask(flags.task)];
+      }
+
+      if (this.pluginTasks.hasTask(flags.task)) {
+        taskFound = true;
+        this.pluginTaskResults = [await this.pluginTasks.runTask(flags.task)];
+      }
+
+      if (!taskFound) {
+        this.error(`Cannot find the ${flags.task} task.`);
+      }
     } else {
+      this.metaTaskResults = await this.defaultTasks.runTasks();
       this.pluginTaskResults = await this.pluginTasks.runTasks();
     }
   }
@@ -120,7 +132,9 @@ export default class RunCommand extends Command {
     }
   }
 
-  private async runPluginHooks(cliArguments: any) {
+  private async registerTasks(cliArguments: any) {
+    await this.registerDefaultTasks(cliArguments);
+
     await this.config.runHook('register-parsers', {
       registerParser,
     });
