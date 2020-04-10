@@ -25,6 +25,6 @@ export function renderPartialAsHtml(componentData: ReportResultData): string {
   if (componentData) {
     return COMPILED_PARTIALS[componentData.componentType]({ taskResult: componentData });
   }
-  
+
   return '';
 }
