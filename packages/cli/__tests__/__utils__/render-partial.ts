@@ -7,7 +7,7 @@ export type CompiledPartials = {
   [key in ReportComponentType]: HandlebarsTemplateDelegate;
 };
 
-const compiledPartials: CompiledPartials = {
+const COMPILED_PARTIALS: CompiledPartials = {
   [ReportComponentType.NumericalCard]: getPartialDelegate('numerical-card.hbs'),
   [ReportComponentType.Table]: getPartialDelegate('table.hbs'),
   [ReportComponentType.GradedTable]: getPartialDelegate('graded-table.hbs'),
@@ -28,7 +28,7 @@ function getPartialDelegate(partialPath: string): HandlebarsTemplateDelegate {
 export function renderPartialAsHtml(componentData: ReportResultData): string {
   // TODO: remove this check once all tasks are retrofitted to return results (and undefined  is no longer a valid option for ReportResultsData)
   if (componentData) {
-    return compiledPartials[componentData.componentType]({ taskResult: componentData });
+    return COMPILED_PARTIALS[componentData.componentType]({ taskResult: componentData });
   }
   return '';
 }
