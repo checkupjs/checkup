@@ -27,7 +27,7 @@ exports[`task generator generates correct files with JavaScript 2`] = `
 
 export default class MyFooTaskResult extends BaseTaskResult {
   stdout() {
-    ui.styledHeader(this.meta.taskName);
+    ui.styledHeader(this.meta.friendlyTaskName);
   }
 
   json() {
@@ -118,7 +118,7 @@ exports[`task generator generates correct files with TypeScript for defaults 2`]
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
   stdout() {
-    ui.styledHeader(this.meta.taskName);
+    ui.styledHeader(this.meta.friendlyTaskName);
   }
 
   json() {
@@ -213,7 +213,7 @@ exports[`task generator generates correct files with category 2`] = `
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
   stdout() {
-    ui.styledHeader(this.meta.taskName);
+    ui.styledHeader(this.meta.friendlyTaskName);
   }
 
   json() {
@@ -308,7 +308,7 @@ exports[`task generator generates correct files with priority 2`] = `
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
   stdout() {
-    ui.styledHeader(this.meta.taskName);
+    ui.styledHeader(this.meta.friendlyTaskName);
   }
 
   json() {
@@ -403,7 +403,7 @@ exports[`task generator generates multiple correct files with TypeScript for def
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
   stdout() {
-    ui.styledHeader(this.meta.taskName);
+    ui.styledHeader(this.meta.friendlyTaskName);
   }
 
   json() {
@@ -485,7 +485,7 @@ exports[`task generator generates multiple correct files with TypeScript for def
 
 export default class MyBarTaskResult extends BaseTaskResult implements TaskResult {
   stdout() {
-    ui.styledHeader(this.meta.taskName);
+    ui.styledHeader(this.meta.friendlyTaskName);
   }
 
   json() {
