@@ -1,23 +1,22 @@
 import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
-import { DepFreshnessInfo } from '../types';
+import { OutdatedDependencies } from '../tasks/outdated-dependencies-task';
 
 export default class DependenciesFreshnessTaskResult extends BaseTaskResult implements TaskResult {
-  depFreshnessInfo!: DepFreshnessInfo;
+  outdatedDependencies!: OutdatedDependencies;
 
   stdout() {
-    ui.styledHeader(this.meta.taskName);
+    ui.styledHeader(this.meta.friendlyTaskName);
     ui.blankLine();
 
-    this._writeFreshnessTable(this.depFreshnessInfo);
+    this._writeFreshnessTable(this.outdatedDependencies);
     ui.blankLine();
-    // Todo: should look into color schemes
   }
 
   json() {
     return {
       meta: this.meta,
       result: {
-        depFreshnessInfo: this.depFreshnessInfo,
+        outdatedDependencies: this.outdatedDependencies,
       },
     };
   }
@@ -26,7 +25,7 @@ export default class DependenciesFreshnessTaskResult extends BaseTaskResult impl
     return undefined;
   }
 
-  _writeFreshnessTable(dependencies: DepFreshnessInfo) {
+  _writeFreshnessTable(dependencies: OutdatedDependencies) {
     if (dependencies.tableBody && dependencies.tableBody.length === 0) {
       return;
     }
@@ -51,7 +50,7 @@ export default class DependenciesFreshnessTaskResult extends BaseTaskResult impl
       url: String;
     }[] = [];
     // Todo: should look into making it cleaner here
-    data.forEach(dependency => {
+    data.forEach((dependency) => {
       const row = {
         package: dependency[0],
         current: dependency[1],

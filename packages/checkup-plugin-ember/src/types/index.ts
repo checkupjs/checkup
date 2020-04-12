@@ -4,8 +4,3 @@ export const enum ProjectType {
   Engine = 'engine',
   Unknown = 'unknown',
 }
-
-export type DepFreshnessInfo = {
-  tableHead: [string];
-  tableBody: Array<String[]>;
-};

@@ -1,12 +1,16 @@
 import { BaseTask, Category, Priority, Task, TaskMetaData, TaskResult } from '@checkup/core';
-import DependenciesFreshnessTaskResult from '../results/dependencies-freshness-task-result';
-import { DepFreshnessInfo } from '../types';
+import OutdatedDependenciesTaskResult from '../results/outdated-dependencies-task-result';
 
 const hash = require('promise.hash.helper');
 const shell = require('shelljs');
 const OUTDATED_DEP = 'yarn outdated --json';
 
-async function getOutdatedDep(): Promise<DepFreshnessInfo> {
+export type OutdatedDependencies = {
+  tableHead: [string];
+  tableBody: Array<String[]>;
+};
+
+async function getOutdatedDep(): Promise<OutdatedDependencies> {
   const { stdout } = await shell.exec(OUTDATED_DEP, { silent: true });
 
   // stripping out color legend info from the output
@@ -18,10 +22,10 @@ async function getOutdatedDep(): Promise<DepFreshnessInfo> {
   });
 }
 
-export default class DependenciesFreshnessTask extends BaseTask implements Task {
+export default class OutdatedDependenciesTask extends BaseTask implements Task {
   meta: TaskMetaData = {
-    taskName: 'dependencies-freshness',
-    friendlyTaskName: 'Dependencies Freshness',
+    taskName: 'outdated-dependencies',
+    friendlyTaskName: 'Outdated Dependencies',
     taskClassification: {
       category: Category.Insights,
       priority: Priority.High,
@@ -29,8 +33,8 @@ export default class DependenciesFreshnessTask extends BaseTask implements Task 
   };
 
   async run(): Promise<TaskResult> {
-    let result: DependenciesFreshnessTaskResult = new DependenciesFreshnessTaskResult(this.meta);
-    result.depFreshnessInfo = await getOutdatedDep();
+    let result: OutdatedDependenciesTaskResult = new OutdatedDependenciesTaskResult(this.meta);
+    result.outdatedDependencies = await getOutdatedDep();
 
     return result;
   }

@@ -2,7 +2,6 @@ import EmberDependenciesTask from '../tasks/ember-dependencies-task';
 import EmberInRepoAddonsEnginesTask from '../tasks/ember-in-repo-addons-engines-task';
 import EmberTypesTask from '../tasks/ember-types-task';
 import DependenciesFreshnessTask from '../tasks/dependencies-freshness-task';
-
 import { Hook } from '@oclif/config';
 import { getPluginName } from '@checkup/core';
 

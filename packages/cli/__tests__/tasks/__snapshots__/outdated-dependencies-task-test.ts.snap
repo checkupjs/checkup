@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`outdated-dependencies-task can read task and output to console 1`] = `
+"=== Outdated Dependencies
+
+Package             Current Wanted Latest Packagetype                  Url          
+ember-template-lint 2.5.1   2.5.2  2.5.2  @checkup/plugin-ember-octane dependencies 
+eslint-plugin-ember 8.1.1   8.2.0  8.2.0  @checkup/plugin-ember-octane dependencies 
+
+"
+`;
+
+exports[`outdated-dependencies-task can read task as JSON 1`] = `
+Object {
+  "meta": Object {
+    "friendlyTaskName": "Outdated Dependencies",
+    "taskClassification": Object {
+      "category": "insights",
+      "priority": "high",
+    },
+    "taskName": "outdated-dependencies",
+  },
+  "result": Object {
+    "outdatedDependencies": Object {
+      "tableBody": Array [
+        Array [
+          "ember-template-lint",
+          "2.5.1",
+          "2.5.2",
+          "2.5.2",
+          "@checkup/plugin-ember-octane",
+          "dependencies",
+          "https://github.com/ember-template-lint/ember-template-lint",
+        ],
+        Array [
+          "eslint-plugin-ember",
+          "8.1.1",
+          "8.2.0",
+          "8.2.0",
+          "@checkup/plugin-ember-octane",
+          "dependencies",
+          "https://github.com/ember-cli/eslint-plugin-ember#readme",
+        ],
+      ],
+      "tableHead": Array [
+        "Package",
+        "Current",
+        "Wanted",
+        "Latest",
+        "Workspace",
+        "Package Type",
+        "URL",
+      ],
+    },
+  },
+}
+`;
+
+exports[`outdated-dependencies-task detects outdated dependencies and output to console 1`] = `
+"=== Outdated Dependencies
+
+Package             Current Wanted Latest Packagetype                  Url          
+ember-template-lint 2.5.1   2.5.2  2.5.2  @checkup/plugin-ember-octane dependencies 
+eslint-plugin-ember 8.1.1   8.2.0  8.2.0  @checkup/plugin-ember-octane dependencies 
+
+"
+`;
+
+exports[`outdated-dependencies-task detects outdated dependencies as JSON 1`] = `
+Object {
+  "meta": Object {
+    "friendlyTaskName": "Outdated Dependencies",
+    "taskClassification": Object {
+      "category": "insights",
+      "priority": "high",
+    },
+    "taskName": "outdated-dependencies",
+  },
+  "result": Object {
+    "outdatedDependencies": Object {
+      "tableBody": Array [
+        Array [
+          "ember-template-lint",
+          "2.5.1",
+          "2.5.2",
+          "2.5.2",
+          "@checkup/plugin-ember-octane",
+          "dependencies",
+          "https://github.com/ember-template-lint/ember-template-lint",
+        ],
+        Array [
+          "eslint-plugin-ember",
+          "8.1.1",
+          "8.2.0",
+          "8.2.0",
+          "@checkup/plugin-ember-octane",
+          "dependencies",
+          "https://github.com/ember-cli/eslint-plugin-ember#readme",
+        ],
+      ],
+      "tableHead": Array [
+        "Package",
+        "Current",
+        "Wanted",
+        "Latest",
+        "Workspace",
+        "Package Type",
+        "URL",
+      ],
+    },
+  },
+}
+`;

@@ -22,6 +22,7 @@ import CheckupMetaTask from '../tasks/checkup-meta-task';
 import MetaTaskList from '../meta-task-list';
 import { MetaTaskResult } from '../types';
 import ProjectMetaTask from '../tasks/project-meta-task';
+import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';
 import TaskList from '../task-list';
 import { getReporter } from '../reporters';
 
@@ -92,6 +93,7 @@ export default class RunCommand extends Command {
 
     this.defaultTasks.registerTask(new ProjectMetaTask(pluginName, context));
     this.defaultTasks.registerTask(new CheckupMetaTask(pluginName, context));
+    this.defaultTasks.registerTask(new OutdatedDependenciesTask(pluginName, context));
   }
 
   private async runTasks() {
