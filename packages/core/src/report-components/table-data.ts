@@ -8,10 +8,10 @@ export default class TableData extends ReportComponentData {
   constructor(
     meta: TaskMetaData,
     public taskResult: DependencyResult[],
-    reportComponentType: ReportComponentType = ReportComponentType.Table
+    defaultTableHeaders?: Array<string>
   ) {
-    super(meta, reportComponentType);
-    this.tableHeaders = this._deriveTableHeaders(taskResult);
+    super(meta, ReportComponentType.Table);
+    this.tableHeaders = defaultTableHeaders || this._deriveTableHeaders(taskResult);
   }
   _deriveTableHeaders(taskResult: DependencyResult[]): Array<string> {
     return Object.keys(taskResult[0]);

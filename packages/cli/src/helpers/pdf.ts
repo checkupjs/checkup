@@ -55,7 +55,6 @@ function registerPartials() {
   const partials = [
     { path: 'numerical-card.hbs', type: ReportComponentType.NumericalCard },
     { path: 'table.hbs', type: ReportComponentType.Table },
-    { path: 'graded-table.hbs', type: ReportComponentType.GradedTable },
     { path: 'pie-chart.hbs', type: ReportComponentType.PieChart },
   ];
 

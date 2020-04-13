@@ -1,5 +1,8 @@
 <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
   <div class="px-6 py-4 flex flex-wrap flex-col">
+    {{#if taskResult.grade}}
+      <div class="text-xl font-bold self-end">{{taskResult.grade}}</div>
+    {{/if}}
     <div class="text-xl font-bold self-center">{{taskResult.meta.friendlyTaskName}}</div>
 
     <table class="table-auto rounded">
@@ -12,10 +15,9 @@
       </thead>
       <tbody>
         {{#each taskResult.taskResult as |result|}}
-          <tr class="bg-gray-100">
-            {{#each result as |row|}}
-              <td class="border px-4 py-2">{{row}}</td>
-            {{/each}}
+          <tr class="{{#if result.gradeClass}} {{result.gradeClass}} {{else}}bg-gray-100{{/if}}">
+            <td class="border px-4 py-2">{{result.name}}</td>
+            <td class="border px-4 py-2">{{result.value}}</td>
           </tr>
         {{/each}}
       </tbody>
