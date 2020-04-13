@@ -8237,10 +8237,10 @@ yargs@^15.0.0, yargs@^15.3.1:
     y18n "^4.0.0"
     yargs-parser "^18.1.1"
 
-yeoman-environment@^2.3.4, yeoman-environment@^2.8.1, yeoman-environment@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-2.9.0.tgz#de64a88100fcd0d33bf8816fa04d8a69f2b8945b"
-  integrity sha512-wPbGhMyO1iVCis5+vSteQObRMpQ8O2eoINUEvCivDqjm29X2bTyLYyg1EIkysJsYysFskFuszOfXDwDe/Q3MTA==
+yeoman-environment@^2.3.4, yeoman-environment@^2.8.1, yeoman-environment@^2.9.1:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-2.9.1.tgz#53334c18eae036fc5a28df78faca8c59adbc903f"
+  integrity sha512-m9sotsBPqOrV2aqaCM68pbY0HfLzeYuWnEAsJblfGSuMiIy+xie1S1j9qboOlHyGe9Wyvg8AQx3xSwrQvIvb0A==
   dependencies:
     chalk "^2.4.1"
     debug "^3.1.0"
@@ -8259,12 +8259,12 @@ yeoman-environment@^2.3.4, yeoman-environment@^2.8.1, yeoman-environment@^2.9.0:
     strip-ansi "^4.0.0"
     text-table "^0.2.0"
     untildify "^3.0.3"
-    yeoman-generator "^4.7.2"
+    yeoman-generator "^4.8.2"
 
-yeoman-generator@^4.7.2, yeoman-generator@^4.8.0:
-  version "4.8.0"
-  resolved "https://registry.yarnpkg.com/yeoman-generator/-/yeoman-generator-4.8.0.tgz#d2631376205f0e626036eee82c2a8855aafe82c1"
-  integrity sha512-3olXkJbFbTJGvq63Cv1ZEhiYv5avQYCqqlLvI1vLqHOgKjtyLW/R4LgmIPjI2oaYhJ2+HM08e+iq6KTwnl9j+w==
+yeoman-generator@^4.7.2, yeoman-generator@^4.8.0, yeoman-generator@^4.8.2:
+  version "4.8.2"
+  resolved "https://registry.yarnpkg.com/yeoman-generator/-/yeoman-generator-4.8.2.tgz#054e6123251bf92f7fd5aa91bfdf6a18632559c9"
+  integrity sha512-4kJAf2u5mee8yO7Ph6e64KLHeC7sCSYPCP7YcCUjussBFzoMEqJ2+Dn2Yj41rBLArSBBmZOQ/e2bMYlh6qQ9ag==
   dependencies:
     async "^2.6.2"
     chalk "^2.4.2"
