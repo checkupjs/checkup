@@ -12,8 +12,14 @@ export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
 export type ParserName = string;
 
-export interface Parser {
-  execute(paths: string[]): JsonObject;
+export type ParserOptions = Record<string, any>;
+export type ParserReport = any;
+export interface Parser<ParserReport> {
+  execute(paths: string[]): ParserReport;
+}
+
+export interface CreateParser<ParserOptions, TParser = Parser<ParserReport>> {
+  (config: ParserOptions): TParser;
 }
 
 export const enum Category {

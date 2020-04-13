@@ -1,5 +1,5 @@
 import { CLIEngine } from 'eslint';
-import { TemplateLintResult } from './ember-template-lint';
+import { TemplateLintResult } from '@checkup/core';
 
 export enum ESLintMigrationType {
   NativeClasses = 'native-classes',

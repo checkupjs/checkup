@@ -1,19 +1,22 @@
 import * as globby from 'globby';
 
-import { BaseTask, Category, Priority, Task } from '@checkup/core';
-import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lint-configs';
 import {
-  TemplateLintMessage,
+  BaseTask,
+  Category,
+  CreateParser,
+  Parser,
+  ParserName,
+  ParserOptions,
+  ParserReport,
+  Priority,
+  Task,
   TemplateLintReport,
-  TemplateLintResult,
-} from '../types/ember-template-lint';
+} from '@checkup/core';
+import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lint-configs';
 
 import { CLIEngine } from 'eslint';
 import { OctaneMigrationStatusTaskResult } from '../results';
-import { getESLintEngine } from '../linters/es-lint';
-import { getTemplateLinter } from '../linters/ember-template-lint';
 
-const fs = require('fs');
 const TemplateLinter = require('ember-template-lint');
 
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
@@ -26,14 +29,21 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     },
   };
 
-  private esLintEngine: CLIEngine;
+  private eslintParser: Parser<CLIEngine.LintReport>;
   private templateLinter: typeof TemplateLinter;
 
-  constructor(cliArguments: any) {
+  constructor(
+    cliArguments: any,
+    parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>
+  ) {
     super(cliArguments);
 
-    this.esLintEngine = getESLintEngine(OCTANE_ES_LINT_CONFIG);
-    this.templateLinter = getTemplateLinter(OCTANE_TEMPLATE_LINT_CONFIG);
+    let createEslintParser = parsers.get('eslint')!;
+
+    let createEmberTemplateLintParser = parsers.get('ember-template-lint')!;
+
+    this.eslintParser = createEslintParser(OCTANE_ES_LINT_CONFIG);
+    this.templateLinter = createEmberTemplateLintParser(OCTANE_TEMPLATE_LINT_CONFIG);
   }
 
   get rootPath(): string {
@@ -53,38 +63,12 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   }
 
   private runEsLint(): CLIEngine.LintReport {
-    return this.esLintEngine.executeOnFiles([`${this.rootPath}/+(app|addon)/**/*.js`]);
+    return this.eslintParser.execute([`${this.rootPath}/+(app|addon)/**/*.js`]);
   }
 
   private async runTemplateLint(): Promise<TemplateLintReport> {
-    let filePaths = await globby(`${this.rootPath}/+(app|addon)/**/*.hbs`);
+    let paths = await globby(`${this.rootPath}/+(app|addon)/**/*.hbs`);
 
-    let sources = filePaths.map((path) => ({
-      path,
-      template: fs.readFileSync(path, { encoding: 'utf8' }),
-    }));
-
-    let results: TemplateLintResult[] = sources.map(({ path, template }) => {
-      let messages: TemplateLintMessage[] = this.templateLinter.verify({
-        source: template,
-        moduleId: path,
-      });
-
-      return {
-        messages,
-        errorCount: messages.length,
-        filePath: path,
-        source: template,
-      };
-    });
-
-    let errorCount = results
-      .map(({ errorCount }) => errorCount)
-      .reduce((totalErrorCount, currentErrorCount) => totalErrorCount + currentErrorCount, 0);
-
-    return {
-      errorCount,
-      results,
-    };
+    return this.templateLinter.execute(paths);
   }
 }

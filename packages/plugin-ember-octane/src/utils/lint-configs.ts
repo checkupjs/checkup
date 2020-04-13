@@ -1,5 +1,5 @@
 import { CLIEngine } from 'eslint';
-import { TemplateLintConfig } from '../types/ember-template-lint';
+import { TemplateLintConfig } from '@checkup/core';
 
 // These options are taken from a default ember application build on top of ember-source 3.16.*
 export const OCTANE_ES_LINT_CONFIG: CLIEngine.Options = {

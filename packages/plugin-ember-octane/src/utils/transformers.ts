@@ -1,6 +1,7 @@
-import { CLIEngine } from 'eslint';
 import { MigrationInfo, MigrationTaskConfig } from '../types';
-import { TemplateLintReport } from '../types/ember-template-lint';
+
+import { CLIEngine } from 'eslint';
+import { TemplateLintReport } from '@checkup/core';
 
 export function transformESLintReport(
   migrationConfig: MigrationTaskConfig,

@@ -1,7 +1,8 @@
 import { transformESLintReport, transformTemplateLintReport } from '../../src/utils/transformers';
+
 import { CLIEngine } from 'eslint';
 import { MigrationTaskConfig } from '../../src/types';
-import { TemplateLintReport } from '../../src/types/ember-template-lint';
+import { TemplateLintReport } from '@checkup/core';
 
 describe('octane-migration-status-task-result', () => {
   describe('ESLint Transformer', () => {

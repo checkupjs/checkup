@@ -7,12 +7,13 @@ import {
   TaskResult,
   getFilepathLoader,
   getPackageJson,
+  getRegisteredParsers,
   getSearchLoader,
   loadPlugins,
+  registerParser,
   ui,
 } from '@checkup/core';
 import { Command, flags } from '@oclif/command';
-import { getRegisteredParsers, registerParser } from '../parsers';
 
 import CheckupMetaTask from '../tasks/checkup-meta-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
@@ -140,7 +141,7 @@ export default class RunCommand extends Command {
     });
 
     await this.config.runHook('register-tasks', {
-      cliArguments: cliArguments,
+      cliArguments,
       cliFlags: flags,
       parsers: getRegisteredParsers(),
       tasks: this.pluginTasks,
