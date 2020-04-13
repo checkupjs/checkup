@@ -68,7 +68,7 @@
     "build:watch": "yarn build -w",
     "clean": "rm -rf lib",
     "prepack": "yarn build && oclif-dev readme",
-    "test": "jest --runInBand",
+    "test": "jest --runInBand --no-cache",
     "version": "oclif-dev readme && git add README.md",
     "copystatic": "cp -a ./src/static ./lib/static"
   },

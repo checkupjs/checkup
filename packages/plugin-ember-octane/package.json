@@ -53,7 +53,7 @@
     "clean": "rm -rf lib",
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "test": "jest",
+    "test": "jest --no-cache",
     "test:debug": "yarn clean && yarn build && node --inspect-brk=1337 node_modules/.bin/jest",
     "version": "oclif-dev readme && git add README.md"
   },

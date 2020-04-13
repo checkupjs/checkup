@@ -41,7 +41,7 @@
     "build": "yarn clean && tsc",
     "build:watch": "yarn build -w",
     "clean": "rm -rf lib",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests --no-cache"
   },
   "types": "lib/index.d.ts"
 }
