@@ -28,7 +28,7 @@
     "build": "yarn clean && tsc && yarn copystatic",
     "build:watch": "yarn build -w",
     "clean": "rm -rf lib",
-    "test": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests --no-cache",
     "copystatic": "cp -a ./src/static ./lib/static"
   },
   "types": "lib/index.d.ts"
