@@ -12,7 +12,7 @@
     "debug": "^4.1.1",
     "ember-template-lint": "^2.5.1",
     "eslint": "^6.8.0",
-    "eslint-plugin-ember": "^8.1.1",
+    "eslint-plugin-ember": "^8.2.0",
     "tslib": "^1"
   },
   "devDependencies": {
