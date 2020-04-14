@@ -49,6 +49,38 @@ describe('TaskList', () => {
     expect(taskList.categories.get(Category.Insights)!.size).toEqual(1);
   });
 
+  it('hasTask returns false if no task exists with that name', () => {
+    let taskList = new TaskList();
+
+    taskList.registerTask(new MockTask());
+
+    expect(taskList.hasTask('foo')).toEqual(false);
+  });
+
+  it('hasTask returns true if task exists with that name', () => {
+    let taskList = new TaskList();
+
+    taskList.registerTask(new MockTask());
+
+    expect(taskList.hasTask('mock-task')).toEqual(true);
+  });
+
+  it('findTask returns undefined if no task exists with that name', () => {
+    let taskList = new TaskList();
+
+    taskList.registerTask(new MockTask());
+
+    expect(taskList.findTask('foo')).toBeUndefined();
+  });
+
+  it('findTask returns task instance if task exists with that name', () => {
+    let taskList = new TaskList();
+
+    taskList.registerTask(new MockTask());
+
+    expect(taskList.findTask('mock-task')).toBeDefined();
+  });
+
   it('runTask will run a task by taskName', async () => {
     let taskList = new TaskList();
 

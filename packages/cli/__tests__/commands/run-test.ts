@@ -197,7 +197,7 @@ describe('@checkup/cli', () => {
     );
 
     it('should run a single task if the task option is specified', async () => {
-      await cmd.run(['run', '--task', 'mock-task', project.baseDir]);
+      await cmd.run(['run', '--task', 'project', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });

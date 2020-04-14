@@ -37,6 +37,26 @@ export default class TaskList {
   }
 
   /**
+   * Evaluates whether a task exists
+   *
+   * @method hasTask
+   * @param taskName The name of the task to check for existence of
+   */
+  hasTask(taskName: TaskName): boolean {
+    return this.findTask(taskName) !== undefined;
+  }
+
+  /**
+   * Finds a task by task name
+   *
+   * @method findTask
+   * @param taskName The name of the task to find
+   */
+  findTask(taskName: TaskName): Task | undefined {
+    return this.getTasks().find((task) => task.meta.taskName === taskName);
+  }
+
+  /**
    * Runs the task specified by the taskName parameter.
    *
    * @method runTask
@@ -44,23 +64,14 @@ export default class TaskList {
    * @returns {Promise<TaskResult>}
    * @memberof TaskList
    */
-  runTask(taskName: TaskName): Promise<TaskResult> {
-    let task: Task | undefined;
-
-    // TODO: Find a less gross way to do this
-    for (let [, map] of this.categories) {
-      task = map.getTask(taskName);
-
-      if (task !== undefined) {
-        break;
-      }
-    }
+  async runTask(taskName: TaskName): Promise<TaskResult> {
+    let task: Task | undefined = this.findTask(taskName);
 
     if (task === undefined) {
       throw new Error(`The ${taskName} task was not found`);
     }
 
-    return task.run();
+    return await task.run();
   }
 
   /**
