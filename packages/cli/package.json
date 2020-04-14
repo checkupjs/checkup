@@ -11,7 +11,6 @@
     "@babel/traverse": "^7.9.5",
     "@babel/types": "7.9.5",
     "@checkup/core": "0.0.6",
-    "@checkup/parser-eslint": "0.0.6",
     "@checkup/plugin-ember": "0.0.6",
     "@checkup/plugin-ember-octane": "0.0.6",
     "@oclif/command": "^1",
