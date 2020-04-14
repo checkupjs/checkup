@@ -1,5 +1,5 @@
 import { EmberProject } from '@checkup/test-helpers';
-import { OctaneMigrationStatusTask } from '../../src/tasks';
+import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
 import { getRegisteredParsers } from '@checkup/core';
 
 describe('octane-migration-status-task', () => {

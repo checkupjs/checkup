@@ -10,7 +10,7 @@ import {
 
 const TemplateLinter = require('ember-template-lint');
 
-class EmberTemplateLintParser implements Parser<Promise<TemplateLintReport>> {
+class EmberTemplateLintParser implements Parser<TemplateLintReport> {
   engine: typeof TemplateLinter;
 
   constructor(config: TemplateLintConfig) {
@@ -50,7 +50,7 @@ class EmberTemplateLintParser implements Parser<Promise<TemplateLintReport>> {
   }
 }
 
-let createParser: CreateParser<TemplateLintConfig, Parser<Promise<TemplateLintReport>>> = function (
+let createParser: CreateParser<TemplateLintConfig, Parser<TemplateLintReport>> = function (
   config: TemplateLintConfig
 ) {
   return new EmberTemplateLintParser(config);

@@ -15,7 +15,7 @@ import {
 import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lint-configs';
 
 import { CLIEngine } from 'eslint';
-import { OctaneMigrationStatusTaskResult } from '../results';
+import OctaneMigrationStatusTaskResult from '../results/octane-migration-status-task-result';
 
 const TemplateLinter = require('ember-template-lint');
 
@@ -51,8 +51,10 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   }
 
   async run(): Promise<OctaneMigrationStatusTaskResult> {
-    let esLintReport = this.runEsLint();
-    let templateLintReport = await this.runTemplateLint();
+    let [esLintReport, templateLintReport] = await Promise.all([
+      this.runEsLint(),
+      this.runTemplateLint(),
+    ]);
 
     this.debug('ESLint Report', esLintReport);
     this.debug('Ember Template Lint Report', templateLintReport);
@@ -62,7 +64,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     return result;
   }
 
-  private runEsLint(): CLIEngine.LintReport {
+  private async runEsLint(): Promise<CLIEngine.LintReport> {
     return this.eslintParser.execute([`${this.rootPath}/+(app|addon)/**/*.js`]);
   }
 

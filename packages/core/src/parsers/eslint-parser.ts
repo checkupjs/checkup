@@ -9,8 +9,15 @@ class ESLintParser implements Parser<CLIEngine.LintReport> {
     this.engine = new CLIEngine(config);
   }
 
-  execute(paths: string[]): CLIEngine.LintReport {
-    return this.engine.executeOnFiles(paths);
+  async execute(paths: string[]): Promise<CLIEngine.LintReport> {
+    return new Promise((resolve, reject) => {
+      try {
+        let report = this.engine.executeOnFiles(paths);
+        resolve(report);
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 }
 

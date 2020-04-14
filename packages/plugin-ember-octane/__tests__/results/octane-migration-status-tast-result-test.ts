@@ -1,8 +1,8 @@
 import { TemplateLintReport, getRegisteredParsers } from '@checkup/core';
 
 import { CLIEngine } from 'eslint';
-import { OctaneMigrationStatusTask } from '../../src/tasks';
-import { OctaneMigrationStatusTaskResult } from '../../src/results';
+import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
+import OctaneMigrationStatusTaskResult from '../../src/results/octane-migration-status-task-result';
 import { stdout } from '@checkup/test-helpers';
 
 describe('octane-migration-status-task-result', () => {
