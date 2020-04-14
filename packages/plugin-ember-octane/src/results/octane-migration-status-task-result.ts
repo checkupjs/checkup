@@ -1,12 +1,12 @@
-import { CLIEngine } from 'eslint';
-import { BaseTaskResult, TaskMetaData, TaskResult, ui } from '@checkup/core';
-import { ESLintMigrationType, MigrationInfo, TemplateLintMigrationType } from '../types';
-import { TemplateLintReport } from '../types/ember-template-lint';
-import { transformESLintReport, transformTemplateLintReport } from '../utils/transformers';
+import { BaseTaskResult, TaskMetaData, TaskResult, TemplateLintReport, ui } from '@checkup/core';
 import {
   ESLINT_MIGRATION_TASK_CONFIGS,
   TEMPLATE_LINT_MIGRATION_TASK_CONFIGS,
 } from '../utils/task-configs';
+import { ESLintMigrationType, MigrationInfo, TemplateLintMigrationType } from '../types';
+import { transformESLintReport, transformTemplateLintReport } from '../utils/transformers';
+
+import { CLIEngine } from 'eslint';
 
 export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
   taskName: string = 'Octane Migration Status';

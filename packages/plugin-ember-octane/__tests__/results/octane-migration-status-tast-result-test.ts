@@ -1,8 +1,9 @@
+import { TemplateLintReport, getRegisteredParsers } from '@checkup/core';
+
 import { CLIEngine } from 'eslint';
+import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
+import OctaneMigrationStatusTaskResult from '../../src/results/octane-migration-status-task-result';
 import { stdout } from '@checkup/test-helpers';
-import { OctaneMigrationStatusTask } from '../../src/tasks';
-import { OctaneMigrationStatusTaskResult } from '../../src/results';
-import { TemplateLintReport } from '../../src/types/ember-template-lint';
 
 describe('octane-migration-status-task-result', () => {
   let sampleESLintReport: CLIEngine.LintReport;
@@ -15,7 +16,7 @@ describe('octane-migration-status-task-result', () => {
 
   describe('console output', () => {
     test('simple console output', async () => {
-      let task = new OctaneMigrationStatusTask({});
+      let task = new OctaneMigrationStatusTask({}, getRegisteredParsers());
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
         sampleESLintReport,
@@ -30,7 +31,7 @@ describe('octane-migration-status-task-result', () => {
 
   describe('JSON output', () => {
     test('it should have basic JSON results', () => {
-      let task = new OctaneMigrationStatusTask({});
+      let task = new OctaneMigrationStatusTask({}, getRegisteredParsers());
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
         sampleESLintReport,
