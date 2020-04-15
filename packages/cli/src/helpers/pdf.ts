@@ -2,10 +2,10 @@ import * as Handlebars from 'handlebars';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { ReportComponentType } from '@checkup/core';
 import { pathToFileURL } from 'url';
 import { printToPDF } from './print-to-pdf';
 import { readFileSync } from 'fs-extra';
+import { ReportComponentType, ReportResultData } from '@checkup/core';
 
 import tmp = require('tmp');
 
@@ -43,10 +43,11 @@ export async function generateReport(
 
 export function generateHTML(resultsForPdf: any) {
   const reportPath = path.join(__dirname, '../../static/report-template.hbs');
-  const reportTemplateRaw = readFileSync(reportPath, 'utf8');
-
-  const template = Handlebars.compile(reportTemplateRaw);
+  const reportTemplateRaw = chartjsRequired(resultsForPdf)
+    ? appendChartjsCssSourceFiles(readFileSync(reportPath, 'utf8'))
+    : readFileSync(reportPath, 'utf8');
   registerPartials();
+  const template = Handlebars.compile(reportTemplateRaw);
   return template(resultsForPdf);
 }
 
@@ -60,7 +61,33 @@ function registerPartials() {
 
   partials.forEach((partial) => {
     const fullPartialPath = path.join(__dirname, `../../static/components/${partial.path}`);
-    const partialTemplateRaw = readFileSync(fullPartialPath, 'utf8');
+    const partialTemplateRaw =
+      partial.type === ReportComponentType.PieChart
+        ? appendChartjsJsSourceFiles(readFileSync(fullPartialPath, 'utf8'))
+        : readFileSync(fullPartialPath, 'utf8');
     Handlebars.registerPartial(partial.type, partialTemplateRaw);
   });
+}
+
+function chartjsRequired(resultsForPdf: any): boolean {
+  return (
+    resultsForPdf.results.filter(
+      (result: ReportResultData) => result && result.componentType === 'pie-chart'
+    ).length > 0
+  );
+}
+
+function appendChartjsCssSourceFiles(reportTemplateRaw: string): string {
+  const CHART_CSS = readFileSync(path.join(__dirname, '../static/chart-bootstrap.css'), 'utf8');
+  return reportTemplateRaw
+    .toString()
+    .replace('{{!-- CHECKUP-CHART-BOOTSTRAP.CSS --}}', `<style>${CHART_CSS}</style>`);
+}
+
+function appendChartjsJsSourceFiles(reportTemplateRaw: string): string {
+  const CHART_JS = readFileSync(path.join(__dirname, '../static/chartjs-2.9.3.min.js'), 'utf8');
+
+  return reportTemplateRaw
+    .toString()
+    .replace('{{!-- CHECKUP-CHART-JS --}}', `<script>${CHART_JS}</script>`);
 }
