@@ -2,6 +2,7 @@ export { default as BaseTask } from './base-task';
 export { default as BaseTaskResult } from './base-task-result';
 export { default as FileSearcherTask } from './file-searcher-task';
 export { default as FileSearcher } from './searchers/file-searcher';
+export { taskComparator } from './utils/task-result-comparator';
 
 export { getRegisteredParsers, registerParser } from './parsers/registered-parsers';
 export { createParser as createEslintParser } from './parsers/eslint-parser';

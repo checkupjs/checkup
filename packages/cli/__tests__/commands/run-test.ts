@@ -1,8 +1,9 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { Category, CheckupConfig, Priority, Task } from '@checkup/core';
-import { CheckupProject, Plugin, createTmpDir, stdout } from '@checkup/test-helpers';
+import { CheckupProject, createTmpDir, stdout } from '@checkup/test-helpers';
+
+import { CheckupConfig } from '@checkup/core';
 
 import cmd = require('../../src');
 
@@ -13,129 +14,10 @@ describe('@checkup/cli', () => {
     let project: CheckupProject;
 
     beforeEach(function () {
-      const plugin = new Plugin('@checkup/plugin-mock')
-        .addTask(
-          class MockTask implements Task {
-            meta = {
-              taskName: 'mock-task',
-              friendlyTaskName: 'Mock Task',
-              taskClassification: {
-                category: Category.Insights,
-                priority: Priority.High,
-              },
-            };
-
-            async run() {
-              return {
-                json() {
-                  return {
-                    meta: {
-                      taskName: 'mock-task',
-                      friendlyTaskName: 'Mock Task',
-                      taskClassification: {
-                        category: Category.Insights,
-                        priority: Priority.High,
-                      },
-                    },
-                    result: {
-                      mockTask1: 5,
-                    },
-                  };
-                },
-                stdout() {
-                  process.stdout.write('mock task is being run\n');
-                },
-                pdf() {
-                  return undefined;
-                },
-              };
-            }
-          }
-        )
-        .addTask(
-          class MockTask2 implements Task {
-            meta = {
-              taskName: 'mock-task2',
-              friendlyTaskName: 'Mock Task 2',
-              taskClassification: {
-                category: Category.Insights,
-                priority: Priority.High,
-              },
-            };
-
-            async run() {
-              return {
-                json() {
-                  return {
-                    meta: {
-                      taskName: 'mock-task2',
-                      friendlyTaskName: 'Mock Task 2',
-                      taskClassification: {
-                        category: Category.Insights,
-                        priority: Priority.High,
-                      },
-                    },
-                    result: {
-                      mockTask2: 10,
-                    },
-                  };
-                },
-                stdout() {
-                  process.stdout.write('mock task2 is being run\n');
-                },
-                pdf() {
-                  return undefined;
-                },
-              };
-            }
-          }
-        );
-      const anotherPlugin = new Plugin('another-plugin-mock').addTask(
-        class MockTask implements Task {
-          meta = {
-            taskName: 'mock-task3',
-            friendlyTaskName: 'Mock Task3',
-            taskClassification: {
-              category: Category.Insights,
-              priority: Priority.High,
-            },
-          };
-
-          async run() {
-            return {
-              json() {
-                return {
-                  meta: {
-                    taskName: 'mock-task3',
-                    friendlyTaskName: 'Mock Task 3',
-                    taskClassification: {
-                      category: Category.Insights,
-                      priority: Priority.High,
-                    },
-                  },
-                  result: {
-                    mockTask2: 10,
-                  },
-                };
-              },
-              stdout() {
-                process.stdout.write('mock task3 is being run\n');
-              },
-              pdf() {
-                return undefined;
-              },
-            };
-          }
-        }
-      );
-
-      project = new CheckupProject('checkup-project', '0.0.0')
-        .addCheckupConfig({
-          plugins: ['@checkup/plugin-mock', 'another-plugin-mock'],
-          tasks: {},
-        })
-        .addPlugin(plugin)
-        .addPlugin(anotherPlugin);
+      project = new CheckupProject('checkup-project', '0.0.0').addCheckupConfig({
+        plugins: [],
+        tasks: {},
+      });
 
       project.writeSync();
     });
@@ -204,7 +86,7 @@ describe('@checkup/cli', () => {
 
     it('should use the config at the config path if provided', async () => {
       const anotherProject = new CheckupProject('another-project').addCheckupConfig({
-        plugins: ['@checkup/plugin-mock'],
+        plugins: [],
         tasks: {},
       });
       anotherProject.writeSync();

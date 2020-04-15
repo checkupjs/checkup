@@ -1,7 +1,7 @@
-import { BaseTaskResult, TaskMetaData, TaskResult } from '@checkup/core';
+import { BaseTaskResult, Category, TaskMetaData, TaskResult } from '@checkup/core';
 
 export default class MockTaskResult extends BaseTaskResult implements TaskResult {
-  constructor(meta: TaskMetaData, public result: string) {
+  constructor(meta: TaskMetaData, public result: any) {
     super(meta);
   }
 
@@ -10,10 +10,16 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
   }
 
   json() {
-    return {
-      meta: this.meta,
-      result: this.result,
-    };
+    if (this.meta.taskClassification.category === Category.Meta) {
+      return {
+        [this.meta.taskName]: this.result,
+      };
+    } else {
+      return {
+        meta: this.meta,
+        result: this.result,
+      };
+    }
   }
 
   pdf() {
