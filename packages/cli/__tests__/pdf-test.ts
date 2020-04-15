@@ -65,15 +65,16 @@ describe('generateHTML', () => {
     `);
   });
 
-  it('includes tailwind UI lib and stylesheet, but no chartjs (since results dont require it)', async () => {
+  it('includes tailwind UI lib and stylesheet, but no chartjs (since results dont require it by default)', async () => {
     const htmlString = await generateHTML(mergedResults);
 
     expect(htmlString).toContain('tailwind.min.css');
     expect(htmlString).toContain('tailwind-ui.min.css');
     expect(htmlString).not.toContain('Chart.js v2.9.3 CSS');
+    expect(htmlString).not.toContain('Chart.js v2.9.3 JS');
   });
 
-  it('includes chartsjs css when there is a pie-chart being rendered as part of the results', async () => {
+  it('includes chartsjs css and js when there is a pie-chart being rendered as part of the results', async () => {
     const htmlString = await generateHTML({
       meta: projectMeta,
       results: [
@@ -98,5 +99,6 @@ describe('generateHTML', () => {
     });
 
     expect(htmlString).toContain('Chart.js v2.9.3 CSS');
+    expect(htmlString).toContain('Chart.js v2.9.3 JS');
   });
 });

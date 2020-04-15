@@ -43,7 +43,7 @@ export async function generateReport(
 
 export function generateHTML(resultsForPdf: any) {
   const reportPath = path.join(__dirname, '../../static/report-template.hbs');
-  const reportTemplateRaw = chartjsRequired(resultsForPdf)
+  const reportTemplateRaw = requiresChart(resultsForPdf)
     ? appendChartjsCssSourceFiles(readFileSync(reportPath, 'utf8'))
     : readFileSync(reportPath, 'utf8');
   registerPartials();
@@ -69,11 +69,9 @@ function registerPartials() {
   });
 }
 
-function chartjsRequired(resultsForPdf: any): boolean {
-  return (
-    resultsForPdf.results.filter(
-      (result: ReportResultData) => result && result.componentType === 'pie-chart'
-    ).length > 0
+function requiresChart(resultsForPdf: any): boolean {
+  return resultsForPdf.results.some(
+    (result: ReportResultData) => result.componentType === ReportComponentType.PieChart
   );
 }
 

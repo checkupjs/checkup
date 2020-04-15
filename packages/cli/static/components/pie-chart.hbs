@@ -1,7 +1,29 @@
-<h1>Pie Chart</h1>
-
-<div class="max-w-sm rounded overflow-hidden shadow-lg">
+<div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
   <div class="px-6 py-4">
     <div class="font-bold text-xl mb-2">{{taskResult.meta.friendlyTaskName}}</div>
+    <canvas id="chart-area-{{taskResult.UUID}}"></canvas>
   </div>
 </div>
+
+{{!-- CHECKUP-CHART-JS --}}
+
+<script>
+  let canvasFor{{taskResult.UUID}} = document.getElementById('chart-area-{{taskResult.UUID}}').getContext('2d');
+  let optionFor{{taskResult.UUID}} = {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: [{{taskResult.values}}],
+        backgroundColor: [{{{taskResult.backgroundColors}}}],
+      }],
+      labels: [{{{taskResult.labels}}}],
+    },
+    options: {
+      legend: {
+        position: 'right',
+      },
+    }
+  };
+
+  window['pieChart-{{taskresult.UUID}}'] = new Chart(canvasFor{{taskResult.UUID}}, optionFor{{taskResult.UUID}});
+</script>
