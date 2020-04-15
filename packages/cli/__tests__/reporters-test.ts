@@ -1,7 +1,7 @@
 import { Category, Priority, TaskResult } from '@checkup/core';
 
+import MockTaskResult from './__utils__/mock-task-result';
 import { _transformResults } from '../src/reporters';
-import { createMockTaskResult } from '@checkup/test-helpers';
 
 describe('_transformResults', () => {
   let metaTaskResults: TaskResult[];
@@ -9,62 +9,120 @@ describe('_transformResults', () => {
 
   it('transforms meta and plugin results into correct format', () => {
     metaTaskResults = [
-      createMockTaskResult('mock-meta-task-1', 'Mock Meta Task 1', Category.Meta, Priority.High, {
-        task1: {
+      new MockTaskResult(
+        {
+          taskName: 'mock-meta-task-1',
+          friendlyTaskName: 'Mock Meta Task 1',
+          taskClassification: {
+            category: Category.Meta,
+            priority: Priority.High,
+          },
+        },
+        {
           foo: true,
           bar: 'baz',
+        }
+      ),
+      new MockTaskResult(
+        {
+          taskName: 'mock-meta-task-2',
+          friendlyTaskName: 'Mock Meta Task 2',
+          taskClassification: {
+            category: Category.Meta,
+            priority: Priority.High,
+          },
         },
-      }),
-      createMockTaskResult('mock-meta-task-2', 'Mock Meta Task 2', Category.Meta, Priority.High, {
-        task2: {
+        {
           blarg: false,
           bleek: { bork: 'bye!' },
-        },
-      }),
+        }
+      ),
     ];
 
     pluginTaskResults = [
-      createMockTaskResult(
-        'mock-meta-task-6',
-        'Mock Meta Task 6',
-        Category.Insights,
-        Priority.Low,
-        {}
+      new MockTaskResult(
+        {
+          taskName: 'mock-meta-task-6',
+          friendlyTaskName: 'Mock Meta Task 6',
+          taskClassification: {
+            category: Category.Insights,
+            priority: Priority.Low,
+          },
+        },
+        {
+          foo: true,
+          bar: 'baz',
+        }
       ),
-      createMockTaskResult(
-        'mock-meta-task-7',
-        'Mock Meta Task 7',
-        Category.Migrations,
-        Priority.High,
-        {}
+      new MockTaskResult(
+        {
+          taskName: 'mock-meta-task-7',
+          friendlyTaskName: 'Mock Meta Task 7',
+          taskClassification: {
+            category: Category.Migrations,
+            priority: Priority.High,
+          },
+        },
+        {
+          foo: true,
+          bar: 'baz',
+        }
       ),
-      createMockTaskResult(
-        'mock-meta-task-3',
-        'Mock Meta Task 3',
-        Category.Insights,
-        Priority.High,
-        {}
+      new MockTaskResult(
+        {
+          taskName: 'mock-meta-task-3',
+          friendlyTaskName: 'Mock Meta Task 3',
+          taskClassification: {
+            category: Category.Insights,
+            priority: Priority.High,
+          },
+        },
+        {
+          foo: true,
+          bar: 'baz',
+        }
       ),
-      createMockTaskResult(
-        'mock-meta-task-5',
-        'Mock Meta Task 5',
-        Category.Insights,
-        Priority.High,
-        {}
+      new MockTaskResult(
+        {
+          taskName: 'mock-meta-task-5',
+          friendlyTaskName: 'Mock Meta Task 5',
+          taskClassification: {
+            category: Category.Insights,
+            priority: Priority.High,
+          },
+        },
+        {
+          foo: true,
+          bar: 'baz',
+        }
       ),
-      createMockTaskResult(
-        'mock-meta-task-8',
-        'Mock Meta Task 8',
-        Category.Migrations,
-        Priority.Low,
-        {}
+      new MockTaskResult(
+        {
+          taskName: 'mock-meta-task-8',
+          friendlyTaskName: 'Mock Meta Task 8',
+          taskClassification: {
+            category: Category.Migrations,
+            priority: Priority.Low,
+          },
+        },
+        {
+          foo: true,
+          bar: 'baz',
+        }
       ),
-      createMockTaskResult(
-        'mock-meta-task-4',
-        'Mock Meta Task 4',
-        Category.Insights,
-        Priority.Medium,
-        {}
+      new MockTaskResult(
+        {
+          taskName: 'mock-meta-task-4',
+          friendlyTaskName: 'Mock Meta Task 4',
+          taskClassification: {
+            category: Category.Insights,
+            priority: Priority.Medium,
+          },
+        },
+        {
+          foo: true,
+          bar: 'baz',
+        }
       ),
     ];
 
@@ -73,11 +131,11 @@ describe('_transformResults', () => {
     expect(transformed).toMatchInlineSnapshot(`
       Object {
         "meta": Object {
-          "task1": Object {
+          "mock-meta-task-1": Object {
             "bar": "baz",
             "foo": true,
           },
-          "task2": Object {
+          "mock-meta-task-2": Object {
             "blarg": false,
             "bleek": Object {
               "bork": "bye!",
@@ -94,7 +152,10 @@ describe('_transformResults', () => {
               },
               "taskName": "mock-meta-task-6",
             },
-            "result": Object {},
+            "result": Object {
+              "bar": "baz",
+              "foo": true,
+            },
           },
           Object {
             "meta": Object {
@@ -105,7 +166,10 @@ describe('_transformResults', () => {
               },
               "taskName": "mock-meta-task-7",
             },
-            "result": Object {},
+            "result": Object {
+              "bar": "baz",
+              "foo": true,
+            },
           },
           Object {
             "meta": Object {
@@ -116,7 +180,10 @@ describe('_transformResults', () => {
               },
               "taskName": "mock-meta-task-3",
             },
-            "result": Object {},
+            "result": Object {
+              "bar": "baz",
+              "foo": true,
+            },
           },
           Object {
             "meta": Object {
@@ -127,7 +194,10 @@ describe('_transformResults', () => {
               },
               "taskName": "mock-meta-task-5",
             },
-            "result": Object {},
+            "result": Object {
+              "bar": "baz",
+              "foo": true,
+            },
           },
           Object {
             "meta": Object {
@@ -138,7 +208,10 @@ describe('_transformResults', () => {
               },
               "taskName": "mock-meta-task-8",
             },
-            "result": Object {},
+            "result": Object {
+              "bar": "baz",
+              "foo": true,
+            },
           },
           Object {
             "meta": Object {
@@ -149,7 +222,10 @@ describe('_transformResults', () => {
               },
               "taskName": "mock-meta-task-4",
             },
-            "result": Object {},
+            "result": Object {
+              "bar": "baz",
+              "foo": true,
+            },
           },
         ],
       }

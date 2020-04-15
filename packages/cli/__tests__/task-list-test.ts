@@ -1,23 +1,10 @@
 import { Category, Priority, Task, TaskResult } from '@checkup/core';
 
+import MockTask from './__utils__/mock-task';
 import MockTaskResult from './__utils__/mock-task-result';
 import TaskList from '../src/task-list';
 
 //#region
-class MockTask implements Task {
-  meta = {
-    taskName: 'mock-task',
-    friendlyTaskName: 'Mock Task',
-    taskClassification: {
-      category: Category.Insights,
-      priority: Priority.High,
-    },
-  };
-
-  async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, 'mock task is being run');
-  }
-}
 
 class InsightsTaskHigh implements Task {
   meta = {

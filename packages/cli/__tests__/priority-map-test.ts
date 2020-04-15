@@ -1,22 +1,6 @@
-import { Category, Priority, Task, TaskResult } from '@checkup/core';
-
-import MockTaskResult from './__utils__/mock-task-result';
+import MockTask from './__utils__/mock-task';
+import { Priority } from '@checkup/core';
 import PriorityMap from '../src/priority-map';
-
-class MockTask implements Task {
-  meta = {
-    taskName: 'mock-task',
-    friendlyTaskName: 'Mock Task',
-    taskClassification: {
-      category: Category.Insights,
-      priority: Priority.High,
-    },
-  };
-
-  async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, 'mock task is being run');
-  }
-}
 
 describe('PriorityMap', () => {
   it('can create an instance of a PriorityMap', () => {
