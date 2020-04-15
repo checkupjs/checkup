@@ -31,13 +31,13 @@ Object {
 exports[`TaskList runTasks will run all registered tasks 2`] = `
 Object {
   "meta": Object {
-    "friendlyTaskName": "Another Mock Task",
+    "friendlyTaskName": "Insights Task High",
     "taskClassification": Object {
       "category": "insights",
-      "priority": "low",
+      "priority": "high",
     },
-    "taskName": "another-mock-task",
+    "taskName": "insights-task-high",
   },
-  "result": "another mock task is being run",
+  "result": "insights task high is being run",
 }
 `;

@@ -18,12 +18,9 @@ Total commits: 0
 Total files:   0
 
 === Checkup Configuration
-configHash: 47def66968059c89c59bb41f477c180c
+configHash: ae3266e319bdfb51db83810a2f4dd161
 version:    0.0.0
 
-mock task is being run
-mock task2 is being run
-mock task3 is being run
 "
 `;
 
@@ -41,51 +38,11 @@ exports[`@checkup/cli normal cli output with plugins should output checkup resul
       }
     },
     \\"checkup\\": {
-      \\"configHash\\": \\"47def66968059c89c59bb41f477c180c\\",
+      \\"configHash\\": \\"ae3266e319bdfb51db83810a2f4dd161\\",
       \\"version\\": \\"0.0.0\\"
     }
   },
-  \\"results\\": [
-    {
-      \\"meta\\": {
-        \\"taskName\\": \\"mock-task\\",
-        \\"friendlyTaskName\\": \\"Mock Task\\",
-        \\"taskClassification\\": {
-          \\"category\\": \\"insights\\",
-          \\"priority\\": \\"high\\"
-        }
-      },
-      \\"result\\": {
-        \\"mockTask1\\": 5
-      }
-    },
-    {
-      \\"meta\\": {
-        \\"taskName\\": \\"mock-task2\\",
-        \\"friendlyTaskName\\": \\"Mock Task 2\\",
-        \\"taskClassification\\": {
-          \\"category\\": \\"insights\\",
-          \\"priority\\": \\"high\\"
-        }
-      },
-      \\"result\\": {
-        \\"mockTask2\\": 10
-      }
-    },
-    {
-      \\"meta\\": {
-        \\"taskName\\": \\"mock-task3\\",
-        \\"friendlyTaskName\\": \\"Mock Task 3\\",
-        \\"taskClassification\\": {
-          \\"category\\": \\"insights\\",
-          \\"priority\\": \\"high\\"
-        }
-      },
-      \\"result\\": {
-        \\"mockTask2\\": 10
-      }
-    }
-  ]
+  \\"results\\": []
 }
 "
 `;
@@ -116,10 +73,8 @@ Total commits: 0
 Total files:   0
 
 === Checkup Configuration
-configHash: 052fa270c6764ec1da0fa838bbc43dde
+configHash: ae3266e319bdfb51db83810a2f4dd161
 version:    0.0.0
 
-mock task is being run
-mock task2 is being run
 "
 `;

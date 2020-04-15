@@ -1,7 +1,14 @@
 import * as debug from 'debug';
 import * as pMap from 'p-map';
 
-import { Category, Task, TaskName, TaskResult } from '@checkup/core';
+import {
+  BaseTaskResult,
+  Category,
+  Task,
+  TaskName,
+  TaskResult,
+  taskComparator,
+} from '@checkup/core';
 
 import PriorityMap from './priority-map';
 
@@ -90,6 +97,8 @@ export default class TaskList {
       this.debug('%s run done', task.constructor.name);
       return result;
     });
+
+    ((results as unknown) as BaseTaskResult[]).sort(taskComparator);
 
     return results;
   }
