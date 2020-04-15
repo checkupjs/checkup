@@ -2,10 +2,14 @@ import { ReporterType, TaskResult, ui } from '@checkup/core';
 
 import { generateReport } from './helpers/pdf';
 
-export function _transformResults(metaTaskResults: TaskResult[], pluginTaskResults: TaskResult[]) {
+export function _transformResults(
+  metaTaskResults: TaskResult[],
+  pluginTaskResults: TaskResult[],
+  reporterType: ReporterType
+) {
   let transformedResult = {
-    meta: Object.assign({}, ...metaTaskResults.map((result) => result.json())),
-    results: pluginTaskResults.map((result) => result.json()),
+    meta: Object.assign({}, ...metaTaskResults.map((result) => result[reporterType]())),
+    results: pluginTaskResults.map((result) => result[reporterType]()),
   };
 
   return transformedResult;
@@ -26,12 +30,12 @@ export function getReporter(
       };
     case ReporterType.json:
       return async () => {
-        let resultJson = _transformResults(metaTaskResults, pluginTaskResults);
+        let resultJson = _transformResults(metaTaskResults, pluginTaskResults, ReporterType.json);
         ui.styledJSON(resultJson);
       };
     case ReporterType.pdf:
       return async () => {
-        let resultsForPdf = _transformResults(metaTaskResults, pluginTaskResults);
+        let resultsForPdf = _transformResults(metaTaskResults, pluginTaskResults, ReporterType.pdf);
         let reportPath = await generateReport(flags.reportOutputPath, resultsForPdf);
 
         ui.log(reportPath);
