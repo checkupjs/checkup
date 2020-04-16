@@ -22,5 +22,5 @@ function getPartialDelegate(partialPath: string): HandlebarsTemplateDelegate {
 }
 
 export function renderPartialAsHtml(componentData: ReportResultData): string {
-  return COMPILED_PARTIALS[componentData.componentType]({ taskResult: componentData });
+  return COMPILED_PARTIALS[componentData.componentType]({ resultData: componentData });
 }

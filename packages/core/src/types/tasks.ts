@@ -1,4 +1,3 @@
-import GradedTableData from '../report-components/graded-table-data';
 import { JsonObject } from 'type-fest';
 import NumericalCardData from '../report-components/numerical-card-data';
 import PieChartData from '../report-components/pie-chart-data';

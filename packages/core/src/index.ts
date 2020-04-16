@@ -9,7 +9,6 @@ export { createParser as createEslintParser } from './parsers/eslint-parser';
 
 export { default as NumericalCardData } from './report-components/numerical-card-data';
 export { default as TableData } from './report-components/table-data';
-export { default as GradedTableData } from './report-components/graded-table-data';
 export { default as PieChartData } from './report-components/pie-chart-data';
 
 export { loadPlugins } from './loaders/plugin-loader';

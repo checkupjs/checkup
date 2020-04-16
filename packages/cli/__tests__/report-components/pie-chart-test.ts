@@ -51,7 +51,7 @@ describe('the correct data is rendered for a pie chart', () => {
           }
         };
 
-        window['pieChart-'] = new Chart(canvasFor100, optionFor100);
+        window['pieChart-100'] = new Chart(canvasFor100, optionFor100);
       </script>
       "
     `);

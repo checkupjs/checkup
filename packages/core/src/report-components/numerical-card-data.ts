@@ -7,7 +7,7 @@ export default class NumericalCardData extends ReportComponentData {
 
   constructor(
     meta: TaskMetaData,
-    public taskResult: number,
+    public resultData: number,
     public resultDescription: string,
     public resultHelp?: string
   ) {
