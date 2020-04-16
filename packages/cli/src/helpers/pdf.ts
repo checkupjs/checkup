@@ -2,10 +2,10 @@ import * as Handlebars from 'handlebars';
 import * as fs from 'fs';
 import * as path from 'path';
 
+import { ReportComponentType } from '@checkup/core';
 import { pathToFileURL } from 'url';
 import { printToPDF } from './print-to-pdf';
 import { readFileSync } from 'fs-extra';
-import { ReportComponentType } from '@checkup/core';
 
 import tmp = require('tmp');
 
@@ -42,7 +42,7 @@ export async function generateReport(
 }
 
 export function generateHTML(resultsForPdf: any) {
-  const reportPath = path.join(__dirname, '../static/report-template.hbs');
+  const reportPath = path.join(__dirname, '../../static/report-template.hbs');
   const reportTemplateRaw = readFileSync(reportPath, 'utf8');
 
   const template = Handlebars.compile(reportTemplateRaw);
@@ -59,7 +59,7 @@ function registerPartials() {
   ];
 
   partials.forEach((partial) => {
-    const fullPartialPath = path.join(__dirname, `../static/components/${partial.path}`);
+    const fullPartialPath = path.join(__dirname, `../../static/components/${partial.path}`);
     const partialTemplateRaw = readFileSync(fullPartialPath, 'utf8');
     Handlebars.registerPartial(partial.type, partialTemplateRaw);
   });

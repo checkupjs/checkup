@@ -25,11 +25,10 @@
   },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
-    "build": "yarn clean && tsc && yarn copystatic",
+    "build": "yarn clean && tsc",
     "build:watch": "yarn build -w",
     "clean": "rm -rf lib",
-    "test": "jest --passWithNoTests --no-cache",
-    "copystatic": "cp -a ./src/static ./lib/static"
+    "test": "jest --passWithNoTests --no-cache"
   },
   "types": "lib/index.d.ts"
 }

@@ -1,7 +1,9 @@
-import { ReportResultData, ReportComponentType } from '@checkup/core';
-import { readFileSync } from 'fs-extra';
 import * as Handlebars from 'handlebars';
 import * as path from 'path';
+
+import { ReportComponentType, ReportResultData } from '@checkup/core';
+
+import { readFileSync } from 'fs-extra';
 
 export type CompiledPartials = {
   [key in ReportComponentType]: HandlebarsTemplateDelegate;
@@ -15,7 +17,7 @@ const COMPILED_PARTIALS: CompiledPartials = {
 };
 
 function getPartialDelegate(partialPath: string): HandlebarsTemplateDelegate {
-  let fullPartialPath = path.join(__dirname, `../../src/static/components/${partialPath}`);
+  let fullPartialPath = path.join(__dirname, `../../static/components/${partialPath}`);
   let partialRaw = readFileSync(fullPartialPath, 'utf8');
   return Handlebars.compile(partialRaw);
 }

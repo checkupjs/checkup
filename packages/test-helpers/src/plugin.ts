@@ -8,7 +8,7 @@ import { Task } from '@checkup/core';
 import Project = require('fixturify-project');
 
 const REGISTER_TASKS_TEMPLATE = fs.readFileSync(
-  path.resolve(__dirname, 'static/templates/register-tasks.hbs'),
+  path.resolve(__dirname, '../static/templates/register-tasks.hbs'),
   'utf-8'
 );
 const template = Handlebars.compile(REGISTER_TASKS_TEMPLATE);
