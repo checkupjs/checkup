@@ -10,9 +10,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn wsrun --stages build",
-    "build:watch": "yarn wsrun watch",
-    "clean": "yarn wsrun clean",
+    "build": "tsc --build",
+    "build:watch": "tsc --watch",
+    "clean": "tsc --build --clean",
     "lint": "eslint . --cache --ext .ts",
     "test": "yarn wsrun test"
   },

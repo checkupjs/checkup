@@ -25,9 +25,7 @@
   },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
-    "build": "yarn clean && tsc",
-    "build:watch": "yarn build -w",
-    "clean": "rm -rf lib",
+    "build": "tsc --build",
     "test": "jest --passWithNoTests --no-cache"
   },
   "types": "lib/index.d.ts"
