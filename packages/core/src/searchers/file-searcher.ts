@@ -1,6 +1,6 @@
 import * as globby from 'globby';
 
-import { SearchPatterns, TaskItemData } from '../types';
+import { SearchPatterns, TaskItemData } from '../types/tasks';
 
 const IGNORE_PATTERNS: string[] = [
   '!**/node_modules/**',

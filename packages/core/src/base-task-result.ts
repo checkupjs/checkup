@@ -1,4 +1,4 @@
-import { TaskMetaData } from './types';
+import { TaskMetaData } from './types/tasks';
 
 export default abstract class BaseTaskResult {
   meta: TaskMetaData;

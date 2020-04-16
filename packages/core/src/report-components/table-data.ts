@@ -1,4 +1,5 @@
-import { TaskMetaData, ReportComponentType, DependencyResult } from '../types';
+import { DependencyResult, ReportComponentType, TaskMetaData } from '../types/tasks';
+
 import { ReportComponentData } from './report-component-data';
 
 export default class TableData extends ReportComponentData {

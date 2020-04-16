@@ -2,7 +2,12 @@ import * as debug from 'debug';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 
-import { CheckupConfig, CheckupConfigFormat, CheckupConfigLoader, ConfigMapper } from '../types';
+import {
+  CheckupConfig,
+  CheckupConfigFormat,
+  CheckupConfigLoader,
+  ConfigMapper,
+} from '../types/configuration';
 
 import { RuntimeCheckupConfig } from '../types/runtime-types';
 import { fold } from 'fp-ts/lib/Either';

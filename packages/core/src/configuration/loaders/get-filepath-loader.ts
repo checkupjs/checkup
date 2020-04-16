@@ -1,4 +1,4 @@
-import { CheckupConfigLoader } from '../../types';
+import { CheckupConfigLoader } from '../../types/configuration';
 import CosmiconfigService from '../cosmiconfig-service';
 
 /**

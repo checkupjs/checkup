@@ -23,5 +23,7 @@ export { getPackageJson } from './utils/get-package-json';
 export { ui } from './utils/ui';
 export { toPairs } from './utils/data-transformers';
 
-export * from './types';
+export * from './types/parsers';
+export * from './types/tasks';
+export * from './types/configuration';
 export * from './types/ember-template-lint';

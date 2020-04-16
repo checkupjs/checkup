@@ -1,4 +1,4 @@
-import { CreateParser, Parser } from '../types';
+import { CreateParser, Parser } from '../types/parsers';
 
 import { CLIEngine } from 'eslint';
 
