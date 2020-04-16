@@ -46,7 +46,9 @@
   },
   "files": [
     "/bin",
-    "/lib"
+    "/lib",
+    "/templates",
+    "/static"
   ],
   "homepage": "https://github.com/checkupjs/checkup",
   "keywords": [
@@ -63,13 +65,10 @@
   },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
-    "build": "yarn clean && tsc && yarn copystatic",
-    "build:watch": "yarn build -w",
-    "clean": "rm -rf lib",
+    "build": "tsc --build",
     "prepack": "yarn build && oclif-dev readme",
     "test": "jest --runInBand --no-cache",
-    "version": "oclif-dev readme && git add README.md",
-    "copystatic": "cp -a ./src/static ./lib/static"
+    "version": "oclif-dev readme && git add README.md"
   },
   "types": "lib/index.d.ts"
 }

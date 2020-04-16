@@ -10,11 +10,11 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn wsrun --stages build",
-    "build:watch": "yarn wsrun watch",
-    "clean": "yarn wsrun clean",
+    "build": "tsc --build",
+    "build:watch": "tsc --watch",
+    "clean": "tsc --build --clean",
     "lint": "eslint . --cache --ext .ts",
-    "test": "yarn wsrun test"
+    "test": "yarn workspaces run test"
   },
   "husky": {
     "hooks": {
@@ -59,8 +59,7 @@
     "typescript": "^3.8",
     "release-it": "^13.5.1",
     "release-it-lerna-changelog": "^2.1.2",
-    "release-it-yarn-workspaces": "^1.2.0",
-    "wsrun": "^5.2.0"
+    "release-it-yarn-workspaces": "^1.2.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

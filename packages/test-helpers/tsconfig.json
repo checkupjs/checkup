@@ -1,15 +1,15 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
     "types": ["chai", "jest", "node"],
-    "esModuleInterop": true,
-    "baseUrl": ".",
-    "paths": {
-      "@checkup/core": ["../core/lib/index.d.ts"],
-      "*": ["../../types/*"]
-    }
+    "esModuleInterop": true
   },
+  "references": [
+    {
+      "path": "../core"
+    }
+  ],
   "include": ["src/**/*"]
 }

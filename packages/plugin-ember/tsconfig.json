@@ -1,14 +1,17 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
-    "types": ["jest", "node"],
-    "baseUrl": ".",
-    "paths": {
-      "@checkup/core": ["../core/lib/index.d.ts"],
-      "*": ["../../types/*"]
-    }
+    "types": ["jest", "node"]
   },
+  "references": [
+    {
+      "path": "../core"
+    },
+    {
+      "path": "../test-helpers"
+    }
+  ],
   "include": ["src/**/*"]
 }

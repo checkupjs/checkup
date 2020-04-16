@@ -1,13 +1,9 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
-    "types": ["chai", "jest", "node"],
-    "baseUrl": ".",
-    "paths": {
-      "*": ["../../types/*"]
-    }
+    "types": ["chai", "jest", "node"]
   },
-  "include": ["src/**/*"]
+  "include": ["./src"]
 }
