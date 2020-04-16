@@ -1,3 +1,41 @@
+## v0.0.7 (2020-04-16)
+
+#### :rocket: Enhancement
+* [#246](https://github.com/checkupjs/checkup/pull/246) Using volta to pin node && yarn versions ([@carakessler](https://github.com/carakessler))
+
+#### :bug: Bug Fix
+* `cli`
+  * [#247](https://github.com/checkupjs/checkup/pull/247) Fixing `task` flag ([@scalvert](https://github.com/scalvert))
+
+#### :memo: Documentation
+* [#252](https://github.com/checkupjs/checkup/pull/252) Adding badges to top-level readme ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `cli`, `core`, `plugin-ember-octane`, `plugin-ember`, `test-helpers`
+  * [#262](https://github.com/checkupjs/checkup/pull/262) Refactoring build to utilize typescript project references ([@scalvert](https://github.com/scalvert))
+* `cli`
+  * [#257](https://github.com/checkupjs/checkup/pull/257) Modifying reporter results to use pdf hook ([@carakessler](https://github.com/carakessler))
+  * [#222](https://github.com/checkupjs/checkup/pull/222) Implementing numerical-card ([@carakessler](https://github.com/carakessler))
+* `cli`, `core`, `plugin-ember-octane`, `plugin-ember`
+  * [#221](https://github.com/checkupjs/checkup/pull/221) Removing `undefined` from `ReportResultData`, and adding mock results to all existing tasks ([@carakessler](https://github.com/carakessler))
+* `cli`, `core`, `test-helpers`
+  * [#256](https://github.com/checkupjs/checkup/pull/256) Updating task ordering to sort by category then priority ([@scalvert](https://github.com/scalvert))
+* `cli`, `core`, `parser-eslint`, `plugin-ember-octane`
+  * [#251](https://github.com/checkupjs/checkup/pull/251) Extracting parsers to @checkup/core package ([@scalvert](https://github.com/scalvert))
+* Other
+  * [#250](https://github.com/checkupjs/checkup/pull/250) Use volta-cli/action for CI ([@rwjblue](https://github.com/rwjblue))
+* `cli`, `core`, `parser-eslint`, `plugin-ember-octane`, `test-helpers`
+  * [#245](https://github.com/checkupjs/checkup/pull/245) Adding --no-cache for jest tests to address test caching issues ([@scalvert](https://github.com/scalvert))
+* `cli`, `core`
+  * [#237](https://github.com/checkupjs/checkup/pull/237) Implementing table ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 4
+- Robert Jackson ([@rwjblue](https://github.com/rwjblue))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.0.6 (2020-04-07)
 
 #### :memo: Documentation

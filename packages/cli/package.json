@@ -1,7 +1,7 @@
 {
   "name": "@checkup/cli",
   "description": "A CLI that provides health check information about your project.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bin": {
     "checkup": "./bin/run"
@@ -10,9 +10,9 @@
   "dependencies": {
     "@babel/traverse": "^7.9.5",
     "@babel/types": "7.9.5",
-    "@checkup/core": "0.0.6",
-    "@checkup/plugin-ember": "0.0.6",
-    "@checkup/plugin-ember-octane": "0.0.6",
+    "@checkup/core": "0.0.7",
+    "@checkup/plugin-ember": "0.0.7",
+    "@checkup/plugin-ember-octane": "0.0.7",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
@@ -34,7 +34,7 @@
     "yeoman-generator": "^4.8.0"
   },
   "devDependencies": {
-    "@checkup/test-helpers": "0.0.6",
+    "@checkup/test-helpers": "0.0.7",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "@types/yeoman-environment": "^2.3.3",
