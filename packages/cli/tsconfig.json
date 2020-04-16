@@ -7,6 +7,10 @@
     "baseUrl": ".",
     "paths": {
       "@checkup/core": ["../core/lib/index.d.ts"],
+      "@checkup/cli": ["../cli/lib/index.d.ts"],
+      "@checkup/plugin-ember": ["../plugin-ember/lib/index.d.ts"],
+      "@checkup/plugin-ember-octane": ["../plugin-ember-octane/lib/index.d.ts"],
+      "@checkup/test-helpers": ["../test-helpers/lib/index.d.ts"],
       "*": ["../../types/*"]
     }
   },
