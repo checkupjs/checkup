@@ -10,7 +10,16 @@
   {{!-- CHECKUP-CHART-BOOTSTRAP.CSS --}}
 </head>
 <body class="min-h-screen bg-gray-100 p-5">
-  <h1 class="text-4xl">Checkup report</h1>
+  <div class="py-4 flex flex-wrap flex-col">
+    <div class="self-end text-xs">
+      Checkup version {{meta.checkup.version}}
+      <br />
+      Config hash {{meta.checkup.configHash}}
+    </div>
+    <h1 class="text-4xl">Checkup Report for {{meta.project.name}} <span class="text-xl">(v. {{meta.project.version}})</span></h1>
+    <h2 class="text-base italic">This project is {{meta.project.repository.age}} old, has been active for {{meta.project.repository.activeDays}} days, has {{meta.project.repository.totalFiles}} files, and {{meta.project.repository.totalCommits}} commits</h2>
+  </div>
+
   <div class="grid grid-cols-3 gap-4">
     {{#each results as |result|}}
       {{> (lookup . 'componentType') resultData=result}}

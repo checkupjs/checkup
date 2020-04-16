@@ -48,7 +48,16 @@ describe('generateHTML', () => {
         <link rel=\\"stylesheet\\" href=\\"https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css\\">
       </head>
       <body class=\\"min-h-screen bg-gray-100 p-5\\">
-        <h1 class=\\"text-4xl\\">Checkup report</h1>
+        <div class=\\"py-4 flex flex-wrap flex-col\\">
+          <div class=\\"self-end text-xs\\">
+            Checkup version 0.0.6
+            <br />
+            Config hash 07e8f7d8731ffbb321ad86f8f2f62460
+          </div>
+          <h1 class=\\"text-4xl\\">Checkup Report for some-app <span class=\\"text-xl\\">(v. 0.0.1)</span></h1>
+          <h2 class=\\"text-base italic\\">This project is 8 years old, has been active for 1380 days, has 1571 files, and 5870 commits</h2>
+        </div>
+
         <div class=\\"grid grid-cols-3 gap-4\\">
             <div class=\\"max-w-sm rounded overflow-hidden shadow-lg bg-white\\">
               <div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
