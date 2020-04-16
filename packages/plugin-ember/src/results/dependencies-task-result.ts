@@ -1,4 +1,11 @@
-import { BaseTaskResult, TaskMetaData, TaskResult, toPairs, ui } from '@checkup/core';
+import {
+  BaseTaskResult,
+  TaskMetaData,
+  TaskResult,
+  toPairs,
+  ui,
+  NumericalCardData,
+} from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 
@@ -54,7 +61,8 @@ export default class DependenciesTaskResult extends BaseTaskResult implements Ta
   }
 
   pdf() {
-    return undefined;
+    // TODO: add in correct data type for DependenciesTaskResult
+    return new NumericalCardData(this.meta, 22, 'this is a description of your result');
   }
 
   _writeDependencySection(header: string, dependencies: PackageJson.Dependency) {

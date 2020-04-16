@@ -67,14 +67,9 @@ export enum ReporterType {
   pdf = 'pdf',
 }
 
-export type ReportResultData =
-  | NumericalCardData
-  | TableData
-  | GradedTableData
-  | PieChartData
-  | undefined; //TODO: removed `undefined` once all tasks are retrofitted to return results
+export type ReportResultData = NumericalCardData | TableData | GradedTableData | PieChartData;
 
-export enum ReportComponentType {
+export const enum ReportComponentType {
   NumericalCard = 'numerical-card',
   Table = 'table',
   GradedTable = 'graded-table',

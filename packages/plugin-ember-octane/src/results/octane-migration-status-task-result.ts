@@ -1,12 +1,18 @@
-import { BaseTaskResult, TaskMetaData, TaskResult, TemplateLintReport, ui } from '@checkup/core';
+import {
+  BaseTaskResult,
+  NumericalCardData,
+  TaskMetaData,
+  TaskResult,
+  ui,
+  TemplateLintReport,
+} from '@checkup/core';
+import { CLIEngine } from 'eslint';
+import { ESLintMigrationType, MigrationInfo, TemplateLintMigrationType } from '../types';
 import {
   ESLINT_MIGRATION_TASK_CONFIGS,
   TEMPLATE_LINT_MIGRATION_TASK_CONFIGS,
 } from '../utils/task-configs';
-import { ESLintMigrationType, MigrationInfo, TemplateLintMigrationType } from '../types';
 import { transformESLintReport, transformTemplateLintReport } from '../utils/transformers';
-
-import { CLIEngine } from 'eslint';
 
 export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
   taskName: string = 'Octane Migration Status';
@@ -118,6 +124,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
   }
 
   pdf() {
-    return undefined;
+    // TODO: add in correct data type for OctaneMigrationStatusTaskResult
+    return new NumericalCardData(this.meta, 22, 'this is a description of your result');
   }
 }

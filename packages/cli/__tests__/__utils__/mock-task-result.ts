@@ -1,4 +1,10 @@
-import { BaseTaskResult, Category, TaskMetaData, TaskResult } from '@checkup/core';
+import {
+  BaseTaskResult,
+  Category,
+  TaskMetaData,
+  TaskResult,
+  NumericalCardData,
+} from '@checkup/core';
 
 export default class MockTaskResult extends BaseTaskResult implements TaskResult {
   constructor(meta: TaskMetaData, public result: any) {
@@ -23,6 +29,6 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
   }
 
   pdf() {
-    return undefined;
+    return new NumericalCardData(this.meta, this.result, 'this is a description of your result');
   }
 }
