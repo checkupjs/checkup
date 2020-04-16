@@ -1,11 +1,10 @@
 {
-  "compilerOptions": {
-    "declaration": true,
-    "importHelpers": true,
-    "module": "commonjs",
-    "strict": true,
-    "target": "es2017",
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true
-  }
+  "files": [],
+  "references": [
+    { "path": "./packages/cli" },
+    { "path": "./packages/core" },
+    { "path": "./packages/plugin-ember" },
+    { "path": "./packages/plugin-ember-octane" },
+    { "path": "./packages/test-helpers" }
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
@@ -14,5 +14,19 @@
       "*": ["../../types/*"]
     }
   },
+  "references": [
+    {
+      "path": "../core"
+    },
+    {
+      "path": "../plugin-ember"
+    },
+    {
+      "path": "../plugin-ember-octane"
+    },
+    {
+      "path": "../test-helpers"
+    }
+  ],
   "include": ["src/**/*"]
 }

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "strict": true,
+    "target": "es2017",
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["**/node_modules/**"]
+}
