@@ -1,4 +1,4 @@
-import { Category, Priority, TaskClassification } from '../types';
+import { Category, Priority, TaskClassification } from '../types/tasks';
 
 import BaseTaskResult from '../base-task-result';
 

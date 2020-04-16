@@ -1,5 +1,6 @@
-import { CheckupConfigFormat, CheckupConfigLoader } from '../../types';
 import * as path from 'path';
+
+import { CheckupConfigFormat, CheckupConfigLoader } from '../../types/configuration';
 
 /**
  * Get a config loader given a filepath and the config format. This loader should

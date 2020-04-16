@@ -1,4 +1,5 @@
-import { TaskMetaData, Grade, DependencyResult, ReportComponentType } from '../types';
+import { DependencyResult, Grade, ReportComponentType, TaskMetaData } from '../types/tasks';
+
 import { default as TableData } from './table-data';
 
 export default class GradedTableData extends TableData {

@@ -1,4 +1,5 @@
-import { TaskMetaData, Grade, ReportComponentType } from '../types';
+import { Grade, ReportComponentType, TaskMetaData } from '../types/tasks';
+
 import { ReportComponentData } from './report-component-data';
 
 export default class PieChartData extends ReportComponentData {

@@ -1,4 +1,4 @@
-import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from '../types';
+import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from '../types/parsers';
 
 import { createParser as createEmberTemplateLintParser } from './ember-template-lint-parser';
 import { createParser as createEslintParser } from './eslint-parser';

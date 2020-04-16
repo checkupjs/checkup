@@ -1,6 +1,6 @@
 import BaseTask from './base-task';
 import FileSearcher from './searchers/file-searcher';
-import { SearchPatterns } from './types';
+import { SearchPatterns } from './types/tasks';
 
 /**
  * @class FileSearcherTask

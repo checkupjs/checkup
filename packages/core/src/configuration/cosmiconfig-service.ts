@@ -1,6 +1,7 @@
-import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 import * as path from 'path';
-import { CheckupConfigFormat, CosmiconfigServiceResult } from '../types';
+
+import { CheckupConfigFormat, CosmiconfigServiceResult } from '../types/configuration';
+import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 
 type ConfigExtension = '.js' | '.json' | '.yml' | '.yaml';
 const EXTENSION_TO_FORMAT: Record<ConfigExtension, CheckupConfigFormat> = {

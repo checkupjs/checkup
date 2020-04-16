@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-import { CreateParser, Parser } from '../types';
+import { CreateParser, Parser } from '../types/parsers';
 import {
   TemplateLintConfig,
   TemplateLintMessage,
