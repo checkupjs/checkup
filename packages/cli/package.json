@@ -47,7 +47,8 @@
   "files": [
     "/bin",
     "/lib",
-    "/templates"
+    "/templates",
+    "/static"
   ],
   "homepage": "https://github.com/checkupjs/checkup",
   "keywords": [

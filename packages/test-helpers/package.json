@@ -15,7 +15,8 @@
     "node": "10.* || >= 12.*"
   },
   "files": [
-    "/lib"
+    "/lib",
+    "/static"
   ],
   "homepage": "https://github.com/checkupjs/checkup",
   "license": "MIT",
