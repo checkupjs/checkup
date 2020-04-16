@@ -11,24 +11,9 @@
 <body class="min-h-screen bg-gray-100 p-5">
   <h1 class="text-4xl">Checkup report</h1>
   <div class="grid grid-cols-3 gap-4">
-    {{#each insights as |priority|}}
-      {{#each priority as |taskResult|}}
-        {{> (lookup . 'componentType') taskResult=taskResult}}
-      {{/each}}
-    {{/each}}
-
-    {{#each migrations as |priority|}}
-      {{#each priority as |taskResult|}}
-        {{> (lookup . 'componentType') taskResult=taskResult}}
-      {{/each}}
-    {{/each}}
-
-    {{#each recommendations as |priority|}}
-      {{#each priority as |taskResult|}}
-        {{> (lookup . 'componentType') taskResult=taskResult}}
-      {{/each}}
+    {{#each results as |result|}}
+      {{> (lookup . 'componentType') taskResult=result}}
     {{/each}}
   </div>
-
 </body>
 </html>

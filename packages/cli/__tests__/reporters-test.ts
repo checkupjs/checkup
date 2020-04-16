@@ -1,4 +1,4 @@
-import { Category, Priority, TaskResult } from '@checkup/core';
+import { Category, Priority, TaskResult, ReporterType } from '@checkup/core';
 
 import MockTaskResult from './__utils__/mock-task-result';
 import { _transformResults } from '../src/reporters';
@@ -126,7 +126,7 @@ describe('_transformResults', () => {
       ),
     ];
 
-    let transformed = _transformResults(metaTaskResults, pluginTaskResults);
+    let transformed = _transformResults(metaTaskResults, pluginTaskResults, ReporterType.json);
 
     expect(transformed).toMatchInlineSnapshot(`
       Object {
