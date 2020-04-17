@@ -1,17 +1,69 @@
-import { ReporterType, TaskResult, ui } from '@checkup/core';
+import {
+  ReporterType,
+  TaskResult,
+  ui,
+  Category,
+  Priority,
+  ReportComponentType,
+  UIResultData,
+  UIReportData,
+} from '@checkup/core';
 
 import { MetaTaskResult } from './types';
 import { RunFlags } from './commands/run';
 import { generateReport } from './helpers/pdf';
 
-export function _transformResults(
+export function _transformPdfResults(
   metaTaskResults: MetaTaskResult[],
-  pluginTaskResults: TaskResult[],
-  reporterType: ReporterType
+  pluginTaskResults: TaskResult[]
+): UIReportData {
+  let mergedResults: UIResultData = {
+    [Category.Insights]: {
+      [Priority.High]: [],
+      [Priority.Medium]: [],
+      [Priority.Low]: [],
+    },
+    [Category.Migrations]: {
+      [Priority.High]: [],
+      [Priority.Medium]: [],
+      [Priority.Low]: [],
+    },
+    [Category.Recommendations]: {
+      [Priority.High]: [],
+      [Priority.Medium]: [],
+      [Priority.Low]: [],
+    },
+  };
+  let requiresChart = false;
+
+  pluginTaskResults
+    .map((result) => result.pdf())
+    .forEach((taskResult) => {
+      if (taskResult) {
+        let { category, priority } = taskResult.meta.taskClassification;
+
+        mergedResults[category][priority].push(taskResult);
+
+        if (taskResult.componentType === ReportComponentType.PieChart) {
+          requiresChart = true;
+        }
+      }
+    });
+
+  return {
+    meta: Object.assign({}, ...metaTaskResults.map((result) => result.json())),
+    results: mergedResults,
+    requiresChart,
+  };
+}
+
+export function _transformJsonResults(
+  metaTaskResults: MetaTaskResult[],
+  pluginTaskResults: TaskResult[]
 ) {
   let transformedResult = {
     meta: Object.assign({}, ...metaTaskResults.map((result) => result.json())),
-    results: pluginTaskResults.map((result) => result[reporterType]()),
+    results: pluginTaskResults.map((result) => result.json()),
   };
 
   return transformedResult;
@@ -32,12 +84,12 @@ export function getReporter(
       };
     case ReporterType.json:
       return async () => {
-        let resultJson = _transformResults(metaTaskResults, pluginTaskResults, ReporterType.json);
+        let resultJson = _transformJsonResults(metaTaskResults, pluginTaskResults);
         ui.styledJSON(resultJson);
       };
     case ReporterType.pdf:
       return async () => {
-        let resultsForPdf = _transformResults(metaTaskResults, pluginTaskResults, ReporterType.pdf);
+        let resultsForPdf = _transformPdfResults(metaTaskResults, pluginTaskResults);
         let reportPath = await generateReport(flags.reportOutputPath, resultsForPdf);
 
         ui.log(reportPath);

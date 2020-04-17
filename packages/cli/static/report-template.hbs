@@ -20,10 +20,21 @@
     <h2 class="text-base italic">This project is {{meta.project.repository.age}} old, has been active for {{meta.project.repository.activeDays}} days, has {{meta.project.repository.totalFiles}} files, and {{meta.project.repository.totalCommits}} commits</h2>
   </div>
 
-  <div class="grid grid-cols-3 gap-4">
-    {{#each results as |result|}}
-      {{> (lookup . 'componentType') resultData=result}}
-    {{/each}}
-  </div>
+  {{#each results as |categorizedResults resultCategory|}}
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border border-gray-500 m-5">
+    <h3>{{resultCategory}}</h3>
+      {{#each categorizedResults as |prioritizedResults priority|}}
+        <div class="grid grid-cols-3 gap-4">
+          <h4>{{priority}}</h4>
+          {{#each prioritizedResults as |resultData|}}
+            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+              {{> (lookup . 'componentType') resultData=resultData}}
+            </div>
+          {{/each}}
+        </div>
+      {{/each}}
+    </section>
+  {{/each}}
+
 </body>
 </html>

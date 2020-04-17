@@ -8,7 +8,7 @@ export default class EmberProjectTask extends BaseTask implements Task {
     taskName: 'ember-project',
     friendlyTaskName: 'Ember Project',
     taskClassification: {
-      category: Category.Insights,
+      category: Category.Recommendations,
       priority: Priority.Medium,
     },
   };

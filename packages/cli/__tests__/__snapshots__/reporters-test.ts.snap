@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`_transformPdfResults transforms meta and plugin results into correct format when chart IS required 1`] = `
+Object {
+  "meta": Object {
+    "mock-meta-task-1": Object {
+      "bar": "baz",
+      "foo": true,
+    },
+    "mock-meta-task-2": Object {
+      "blarg": false,
+      "bleek": Object {
+        "bork": "bye!",
+      },
+    },
+  },
+  "requiresChart": true,
+  "results": Object {
+    "insights": Object {
+      "high": Array [],
+      "low": Array [],
+      "medium": Array [
+        PieChartData {
+          "UUID": 100,
+          "backgroundColors": Array [
+            "\\"#4FD1C5\\"",
+            "\\"#7F9CF5\\"",
+            "\\"#FC8181\\"",
+            "\\"#63B3ED\\"",
+          ],
+          "componentType": "pie-chart",
+          "grade": "A",
+          "labels": Array [
+            "\\"blah\\"",
+            "\\"blah\\"",
+            "\\"black\\"",
+            "\\"sheep\\"",
+          ],
+          "meta": Object {
+            "friendlyTaskName": "Mock Task",
+            "taskClassification": Object {
+              "category": "insights",
+              "priority": "medium",
+            },
+            "taskName": "mock-task",
+          },
+          "resultDescription": "this is a chart",
+          "values": Array [
+            33,
+            23,
+            13,
+            3,
+          ],
+        },
+      ],
+    },
+    "migrations": Object {
+      "high": Array [],
+      "low": Array [],
+      "medium": Array [],
+    },
+    "recommendations": Object {
+      "high": Array [],
+      "low": Array [],
+      "medium": Array [],
+    },
+  },
+}
+`;
+
+exports[`_transformPdfResults transforms meta and plugin results into correct format when chart is not required 1`] = `
+Object {
+  "meta": Object {
+    "mock-meta-task-1": Object {
+      "bar": "baz",
+      "foo": true,
+    },
+    "mock-meta-task-2": Object {
+      "blarg": false,
+      "bleek": Object {
+        "bork": "bye!",
+      },
+    },
+  },
+  "requiresChart": false,
+  "results": Object {
+    "insights": Object {
+      "high": Array [
+        NumericalCardData {
+          "componentType": "numerical-card",
+          "grade": "A",
+          "meta": Object {
+            "friendlyTaskName": "Mock Meta Task 3",
+            "taskClassification": Object {
+              "category": "insights",
+              "priority": "high",
+            },
+            "taskName": "mock-meta-task-3",
+          },
+          "resultData": Object {
+            "bar": "baz",
+            "foo": true,
+          },
+          "resultDescription": "this is a description of your result",
+          "resultHelp": undefined,
+        },
+        NumericalCardData {
+          "componentType": "numerical-card",
+          "grade": "A",
+          "meta": Object {
+            "friendlyTaskName": "Mock Meta Task 5",
+            "taskClassification": Object {
+              "category": "insights",
+              "priority": "high",
+            },
+            "taskName": "mock-meta-task-5",
+          },
+          "resultData": Object {
+            "bar": "baz",
+            "foo": true,
+          },
+          "resultDescription": "this is a description of your result",
+          "resultHelp": undefined,
+        },
+      ],
+      "low": Array [
+        NumericalCardData {
+          "componentType": "numerical-card",
+          "grade": "A",
+          "meta": Object {
+            "friendlyTaskName": "Mock Meta Task 6",
+            "taskClassification": Object {
+              "category": "insights",
+              "priority": "low",
+            },
+            "taskName": "mock-meta-task-6",
+          },
+          "resultData": Object {
+            "bar": "baz",
+            "foo": true,
+          },
+          "resultDescription": "this is a description of your result",
+          "resultHelp": undefined,
+        },
+      ],
+      "medium": Array [
+        NumericalCardData {
+          "componentType": "numerical-card",
+          "grade": "A",
+          "meta": Object {
+            "friendlyTaskName": "Mock Meta Task 4",
+            "taskClassification": Object {
+              "category": "insights",
+              "priority": "medium",
+            },
+            "taskName": "mock-meta-task-4",
+          },
+          "resultData": Object {
+            "bar": "baz",
+            "foo": true,
+          },
+          "resultDescription": "this is a description of your result",
+          "resultHelp": undefined,
+        },
+      ],
+    },
+    "migrations": Object {
+      "high": Array [
+        NumericalCardData {
+          "componentType": "numerical-card",
+          "grade": "A",
+          "meta": Object {
+            "friendlyTaskName": "Mock Meta Task 7",
+            "taskClassification": Object {
+              "category": "migrations",
+              "priority": "high",
+            },
+            "taskName": "mock-meta-task-7",
+          },
+          "resultData": Object {
+            "bar": "baz",
+            "foo": true,
+          },
+          "resultDescription": "this is a description of your result",
+          "resultHelp": undefined,
+        },
+      ],
+      "low": Array [
+        NumericalCardData {
+          "componentType": "numerical-card",
+          "grade": "A",
+          "meta": Object {
+            "friendlyTaskName": "Mock Meta Task 8",
+            "taskClassification": Object {
+              "category": "migrations",
+              "priority": "low",
+            },
+            "taskName": "mock-meta-task-8",
+          },
+          "resultData": Object {
+            "bar": "baz",
+            "foo": true,
+          },
+          "resultDescription": "this is a description of your result",
+          "resultHelp": undefined,
+        },
+      ],
+      "medium": Array [],
+    },
+    "recommendations": Object {
+      "high": Array [],
+      "low": Array [],
+      "medium": Array [],
+    },
+  },
+}
+`;

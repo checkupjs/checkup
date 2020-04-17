@@ -21,13 +21,11 @@ describe('the correct data is rendered for a numerical card', () => {
     );
 
     expect(htmlString).toMatchInlineSnapshot(`
-      "<div class=\\"max-w-sm rounded overflow-hidden shadow-lg bg-white\\">
-        <div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
-          <div class=\\"text-xl font-bold self-end\\">A</div>
-          <h1 class=\\"text-xl self-center\\">Mock Task</h1>
-          <div class=\\"text-4xl self-center\\">100</div>
-          <p>bad patterns in your app</p>
-        </div>
+      "<div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
+        <div class=\\"text-xl font-bold self-end\\">A</div>
+        <h1 class=\\"text-xl self-center\\">Mock Task</h1>
+        <div class=\\"text-4xl self-center\\">100</div>
+        <p>bad patterns in your app</p>
       </div>
       "
     `);

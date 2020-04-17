@@ -62,6 +62,18 @@ export type JsonTaskResult = {
 
 export type ReportResultData = NumericalCardData | TableData | PieChartData;
 
+export type UIResultData = {
+  [key in Category]: {
+    [key in Priority]: ReportResultData[];
+  };
+};
+
+export type UIReportData = {
+  meta: JsonMetaTaskResult;
+  results: UIResultData;
+  requiresChart: boolean;
+};
+
 export const enum ReportComponentType {
   NumericalCard = 'numerical-card',
   Table = 'table',

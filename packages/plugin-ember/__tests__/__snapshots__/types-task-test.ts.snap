@@ -6,7 +6,7 @@ Object {
     "friendlyTaskName": "Project Types",
     "taskClassification": Object {
       "category": "insights",
-      "priority": "medium",
+      "priority": "high",
     },
     "taskName": "types",
   },
@@ -121,7 +121,7 @@ Object {
     "friendlyTaskName": "Project Types",
     "taskClassification": Object {
       "category": "insights",
-      "priority": "medium",
+      "priority": "high",
     },
     "taskName": "types",
   },

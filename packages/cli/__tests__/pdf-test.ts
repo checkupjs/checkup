@@ -1,4 +1,11 @@
-import { Category, NumericalCardData, Priority, TaskMetaData, PieChartData } from '@checkup/core';
+import {
+  Category,
+  NumericalCardData,
+  Priority,
+  TaskMetaData,
+  PieChartData,
+  UIReportData,
+} from '@checkup/core';
 
 import { generateHTML } from '../src/helpers/pdf';
 
@@ -29,9 +36,26 @@ describe('generateHTML', () => {
     },
   };
 
-  const mergedResults: any = {
+  const mergedResults: UIReportData = {
     meta: projectMeta,
-    results: [new NumericalCardData(taskMeta, 100, 'bad patterns in your app')],
+    results: {
+      [Category.Insights]: {
+        [Priority.High]: [],
+        [Priority.Medium]: [new NumericalCardData(taskMeta, 100, 'bad patterns in your app')],
+        [Priority.Low]: [],
+      },
+      [Category.Migrations]: {
+        [Priority.High]: [],
+        [Priority.Medium]: [],
+        [Priority.Low]: [],
+      },
+      [Category.Recommendations]: {
+        [Priority.High]: [],
+        [Priority.Medium]: [],
+        [Priority.Low]: [],
+      },
+    },
+    requiresChart: false,
   };
 
   it('returns correct HTML string', async () => {
@@ -58,16 +82,51 @@ describe('generateHTML', () => {
           <h2 class=\\"text-base italic\\">This project is 8 years old, has been active for 1380 days, has 1571 files, and 5870 commits</h2>
         </div>
 
-        <div class=\\"grid grid-cols-3 gap-4\\">
-            <div class=\\"max-w-sm rounded overflow-hidden shadow-lg bg-white\\">
-              <div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
-                <div class=\\"text-xl font-bold self-end\\">A</div>
-                <h1 class=\\"text-xl self-center\\">Mock Task</h1>
-                <div class=\\"text-4xl self-center\\">100</div>
-                <p>bad patterns in your app</p>
+          <section class=\\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border border-gray-500 m-5\\">
+          <h3>insights</h3>
+              <div class=\\"grid grid-cols-3 gap-4\\">
+                <h4>high</h4>
               </div>
-            </div>
-        </div>
+              <div class=\\"grid grid-cols-3 gap-4\\">
+                <h4>medium</h4>
+                  <div class=\\"max-w-sm rounded overflow-hidden shadow-lg bg-white\\">
+                    <div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
+                      <div class=\\"text-xl font-bold self-end\\">A</div>
+                      <h1 class=\\"text-xl self-center\\">Mock Task</h1>
+                      <div class=\\"text-4xl self-center\\">100</div>
+                      <p>bad patterns in your app</p>
+                    </div>
+                  </div>
+              </div>
+              <div class=\\"grid grid-cols-3 gap-4\\">
+                <h4>low</h4>
+              </div>
+          </section>
+          <section class=\\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border border-gray-500 m-5\\">
+          <h3>migrations</h3>
+              <div class=\\"grid grid-cols-3 gap-4\\">
+                <h4>high</h4>
+              </div>
+              <div class=\\"grid grid-cols-3 gap-4\\">
+                <h4>medium</h4>
+              </div>
+              <div class=\\"grid grid-cols-3 gap-4\\">
+                <h4>low</h4>
+              </div>
+          </section>
+          <section class=\\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border border-gray-500 m-5\\">
+          <h3>recommendations</h3>
+              <div class=\\"grid grid-cols-3 gap-4\\">
+                <h4>high</h4>
+              </div>
+              <div class=\\"grid grid-cols-3 gap-4\\">
+                <h4>medium</h4>
+              </div>
+              <div class=\\"grid grid-cols-3 gap-4\\">
+                <h4>low</h4>
+              </div>
+          </section>
+
       </body>
       </html>
       "
@@ -86,25 +145,42 @@ describe('generateHTML', () => {
   it('includes chartsjs css and js when there is a pie-chart being rendered as part of the results', async () => {
     const htmlString = await generateHTML({
       meta: projectMeta,
-      results: [
-        new PieChartData(
-          {
-            taskName: 'mock-task',
-            friendlyTaskName: 'Mock Task',
-            taskClassification: {
-              category: Category.Insights,
-              priority: Priority.Medium,
-            },
-          },
-          [
-            { value: 33, description: 'blah' },
-            { value: 23, description: 'blah' },
-            { value: 13, description: 'black' },
-            { value: 3, description: 'sheep' },
+      results: {
+        [Category.Insights]: {
+          [Priority.High]: [],
+          [Priority.Medium]: [],
+          [Priority.Low]: [],
+        },
+        [Category.Migrations]: {
+          [Priority.High]: [],
+          [Priority.Medium]: [],
+          [Priority.Low]: [],
+        },
+        [Category.Recommendations]: {
+          [Priority.High]: [],
+          [Priority.Medium]: [
+            new PieChartData(
+              {
+                taskName: 'mock-task',
+                friendlyTaskName: 'Mock Task',
+                taskClassification: {
+                  category: Category.Insights,
+                  priority: Priority.Medium,
+                },
+              },
+              [
+                { value: 33, description: 'blah' },
+                { value: 23, description: 'blah' },
+                { value: 13, description: 'black' },
+                { value: 3, description: 'sheep' },
+              ],
+              'this is a chart'
+            ),
           ],
-          'this is a chart'
-        ),
-      ],
+          [Priority.Low]: [],
+        },
+      },
+      requiresChart: true,
     });
 
     expect(htmlString).toContain('Chart.js v2.9.3 CSS');

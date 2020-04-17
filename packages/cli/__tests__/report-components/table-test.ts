@@ -34,33 +34,31 @@ describe('the correct data is rendered for a table', () => {
     );
 
     expect(htmlString).toMatchInlineSnapshot(`
-      "<div class=\\"max-w-sm rounded overflow-hidden shadow-lg bg-white\\">
-        <div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
-          <div class=\\"text-xl font-bold self-center\\">Mock Task</div>
+      "<div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
+        <div class=\\"text-xl font-bold self-center\\">Mock Task</div>
 
-          <table class=\\"table-auto rounded\\">
-            <thead>
-              <tr class=\\"font-bold\\">
-                  <th class=\\"px-4 py-2\\">name</th>
-                  <th class=\\"px-4 py-2\\">value</th>
+        <table class=\\"table-auto rounded\\">
+          <thead>
+            <tr class=\\"font-bold\\">
+                <th class=\\"px-4 py-2\\">name</th>
+                <th class=\\"px-4 py-2\\">value</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr class=\\"bg-gray-100\\">
+                  <td class=\\"border px-4 py-2\\">reaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaly-long-name</td>
+                  <td class=\\"border px-4 py-2\\">12.2.2</td>
               </tr>
-            </thead>
-            <tbody>
-                <tr class=\\"bg-gray-100\\">
-                    <td class=\\"border px-4 py-2\\">reaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaly-long-name</td>
-                    <td class=\\"border px-4 py-2\\">12.2.2</td>
-                </tr>
-                <tr class=\\"bg-gray-100\\">
-                    <td class=\\"border px-4 py-2\\">foo</td>
-                    <td class=\\"border px-4 py-2\\">4.2.2</td>
-                </tr>
-                <tr class=\\"bg-gray-100\\">
-                    <td class=\\"border px-4 py-2\\">bar</td>
-                    <td class=\\"border px-4 py-2\\">6.1.2</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
+              <tr class=\\"bg-gray-100\\">
+                  <td class=\\"border px-4 py-2\\">foo</td>
+                  <td class=\\"border px-4 py-2\\">4.2.2</td>
+              </tr>
+              <tr class=\\"bg-gray-100\\">
+                  <td class=\\"border px-4 py-2\\">bar</td>
+                  <td class=\\"border px-4 py-2\\">6.1.2</td>
+              </tr>
+          </tbody>
+        </table>
       </div>
       "
     `);
@@ -89,33 +87,31 @@ describe('the correct data is rendered for a graded table', () => {
     );
 
     expect(htmlString).toMatchInlineSnapshot(`
-      "<div class=\\"max-w-sm rounded overflow-hidden shadow-lg bg-white\\">
-        <div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
-          <div class=\\"text-xl font-bold self-center\\">Mock Task</div>
+      "<div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
+        <div class=\\"text-xl font-bold self-center\\">Mock Task</div>
 
-          <table class=\\"table-auto rounded\\">
-            <thead>
-              <tr class=\\"font-bold\\">
-                  <th class=\\"px-4 py-2\\">name</th>
-                  <th class=\\"px-4 py-2\\">value</th>
+        <table class=\\"table-auto rounded\\">
+          <thead>
+            <tr class=\\"font-bold\\">
+                <th class=\\"px-4 py-2\\">name</th>
+                <th class=\\"px-4 py-2\\">value</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr class=\\"bg-green-600\\">
+                  <td class=\\"border px-4 py-2\\">foo</td>
+                  <td class=\\"border px-4 py-2\\">12.2.2</td>
               </tr>
-            </thead>
-            <tbody>
-                <tr class=\\"bg-green-600\\">
-                    <td class=\\"border px-4 py-2\\">foo</td>
-                    <td class=\\"border px-4 py-2\\">12.2.2</td>
-                </tr>
-                <tr class=\\"bg-green-200\\">
-                    <td class=\\"border px-4 py-2\\">bar</td>
-                    <td class=\\"border px-4 py-2\\">4.2.2</td>
-                </tr>
-                <tr class=\\"bg-orange-500\\">
-                    <td class=\\"border px-4 py-2\\">baz</td>
-                    <td class=\\"border px-4 py-2\\">6.1.2</td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
+              <tr class=\\"bg-green-200\\">
+                  <td class=\\"border px-4 py-2\\">bar</td>
+                  <td class=\\"border px-4 py-2\\">4.2.2</td>
+              </tr>
+              <tr class=\\"bg-orange-500\\">
+                  <td class=\\"border px-4 py-2\\">baz</td>
+                  <td class=\\"border px-4 py-2\\">6.1.2</td>
+              </tr>
+          </tbody>
+        </table>
       </div>
       "
     `);
