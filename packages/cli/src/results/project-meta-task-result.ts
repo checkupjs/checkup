@@ -1,8 +1,9 @@
-import { BaseTaskResult, TaskResult, ui, NumericalCardData } from '@checkup/core';
+import { MetaTaskResult, RepositoryInfo } from '../types';
 
-import { RepositoryInfo } from '../types';
+import BaseMetaTaskResult from '../base-meta-task-result';
+import { ui } from '@checkup/core';
 
-export default class ProjectMetaTaskResult extends BaseTaskResult implements TaskResult {
+export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements MetaTaskResult {
   name!: string;
   version!: string;
   repository!: RepositoryInfo;
@@ -33,10 +34,5 @@ export default class ProjectMetaTaskResult extends BaseTaskResult implements Tas
         repository: this.repository,
       },
     };
-  }
-
-  pdf() {
-    // TODO: add in correct data type for CheckupMetaTaskResult
-    return new NumericalCardData(this.meta, 22, 'this is a description of your result');
   }
 }

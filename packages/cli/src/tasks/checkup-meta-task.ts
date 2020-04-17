@@ -1,15 +1,8 @@
 import * as crypto from 'crypto';
 import * as stringify from 'json-stable-stringify';
 
-import {
-  BaseTask,
-  Category,
-  CheckupConfig,
-  Priority,
-  Task,
-  TaskMetaData,
-  TaskResult,
-} from '@checkup/core';
+import { BaseTask, CheckupConfig } from '@checkup/core';
+import { MetaTask, MetaTaskResult, TaskIdentifier } from '../types';
 
 import CheckupMetaTaskResult from '../results/checkup-meta-task-result';
 import { getVersion } from '../helpers/get-version';
@@ -20,21 +13,17 @@ function getConfigHash(checkupConfig: CheckupConfig) {
   return crypto.createHash('md5').update(configAsJson).digest('hex');
 }
 
-export default class CheckupMetaTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
+export default class CheckupMetaTask extends BaseTask implements MetaTask {
+  meta: TaskIdentifier = {
     taskName: 'checkup',
     friendlyTaskName: 'Checkup Configuration',
-    taskClassification: {
-      category: Category.Meta,
-      priority: Priority.High,
-    },
   };
 
   constructor(cliArguments: any, public checkupConfig: CheckupConfig) {
     super(cliArguments);
   }
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<MetaTaskResult> {
     let result: CheckupMetaTaskResult = new CheckupMetaTaskResult(this.meta);
 
     result.configHash = getConfigHash(this.checkupConfig);

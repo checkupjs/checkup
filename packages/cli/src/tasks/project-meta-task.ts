@@ -1,27 +1,16 @@
-import {
-  BaseTask,
-  Category,
-  Priority,
-  Task,
-  TaskMetaData,
-  TaskResult,
-  getPackageJson,
-} from '@checkup/core';
+import { BaseTask, getPackageJson } from '@checkup/core';
+import { MetaTask, MetaTaskResult, TaskIdentifier } from '../types';
 
 import ProjectMetaTaskResult from '../results/project-meta-task-result';
 import { getRepositoryInfo } from '../helpers/repository';
 
-export default class ProjectMetaTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
+export default class ProjectMetaTask extends BaseTask implements MetaTask {
+  meta: TaskIdentifier = {
     taskName: 'project',
     friendlyTaskName: 'Project',
-    taskClassification: {
-      category: Category.Meta,
-      priority: Priority.High,
-    },
   };
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<MetaTaskResult> {
     let result: ProjectMetaTaskResult = new ProjectMetaTaskResult(this.meta);
     let package_ = getPackageJson(this.args.path);
 

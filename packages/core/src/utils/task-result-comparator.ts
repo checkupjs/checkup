@@ -3,7 +3,6 @@ import { Category, Priority, TaskClassification } from '../types/tasks';
 import BaseTaskResult from '../base-task-result';
 
 const CATEGORY_SORT_MAP = {
-  [Category.Meta]: 4,
   [Category.Insights]: 3,
   [Category.Migrations]: 2,
   [Category.Recommendations]: 1,

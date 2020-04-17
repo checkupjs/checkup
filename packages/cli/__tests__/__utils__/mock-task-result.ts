@@ -1,10 +1,4 @@
-import {
-  BaseTaskResult,
-  Category,
-  TaskMetaData,
-  TaskResult,
-  NumericalCardData,
-} from '@checkup/core';
+import { BaseTaskResult, NumericalCardData, TaskMetaData, TaskResult } from '@checkup/core';
 
 export default class MockTaskResult extends BaseTaskResult implements TaskResult {
   constructor(meta: TaskMetaData, public result: any) {
@@ -16,16 +10,10 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
   }
 
   json() {
-    if (this.meta.taskClassification.category === Category.Meta) {
-      return {
-        [this.meta.taskName]: this.result,
-      };
-    } else {
-      return {
-        meta: this.meta,
-        result: this.result,
-      };
-    }
+    return {
+      meta: this.meta,
+      result: this.result,
+    };
   }
 
   pdf() {

@@ -16,6 +16,8 @@ import {
 import { Command, flags } from '@oclif/command';
 
 import CheckupMetaTask from '../tasks/checkup-meta-task';
+import MetaTaskList from '../meta-task-list';
+import { MetaTaskResult } from '../types';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import { getReporter } from '../reporters';
@@ -53,8 +55,8 @@ export default class RunCommand extends Command {
     }),
   };
 
-  defaultTasks: TaskList = new TaskList();
-  metaTaskResults: TaskResult[] = [];
+  defaultTasks: MetaTaskList = new MetaTaskList();
+  metaTaskResults: MetaTaskResult[] = [];
   pluginTasks: TaskList = new TaskList();
   pluginTaskResults: TaskResult[] = [];
   checkupConfig!: CheckupConfig;
