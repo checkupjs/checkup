@@ -1,6 +1,6 @@
 # Checkup
 
-> A health check on your project
+## _A health checkup on your project_
 
 ![CI Build](https://github.com/checkupjs/checkup/workflows/CI%20Build/badge.svg)
 [![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -9,56 +9,35 @@
 ![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![Code Style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](#badge)
 
-Often, when building large (and ambitious) applications, the state of the code is almost in constant flux. This is a good thing, and is indicative of a healthy, maintained application. The dark side to this can be the app feeling like it's constantly in a half state - migrations from old APIs to new are taking place, patterns are being reinvented and rolled out, and tests are being created and maintained (and sometimes 😱 skipped). Keeping track of all these ongoing changes in your codebase can be challenging.
+Checkup aims to provide you with insights into your codebase. You can track the progress of your codebase for things such as:
 
-Checkup aims to provide you with insights into your codebase. You can see things like dependencies, types used, test types used, etc. allowing you to have a more full, high level view of your codebase at any one point in time. This will help you with making maintenance decisions, charting progress of migrations, and keeping up with the general health of your codebase.
+1. Insights
+   - types of code constructs used (types, etc)
+   - dependency health
+   - test type breakdown (unit, integration, functional, visual, etc)
+1. Migrations
+   - chart the progress of active code migrations to help you get a sense of progress
+1. Recommendations
+   - suggested areas of improvement
 
-## Goals
+This allows you to have a more full, high level view of your codebase at any one point in time. Checkup can help you with making resourcing decisions, planning and prioritizing the general health of your codebase.
 
-1. Give constant insights into the historical and current state of your codebase
-1. Provide a mechanism to customize the data you want to gather within the codebase
-1. Enable health checkups to ensure that an application or addon is adhering to required standards
-1. Monitor migrations as they progress, helping you estimate the scope of migration tasks
+## What you get with Checkup
 
-## What Checkup Does
+Checkup provides you with a CLI, which can be run against your code base. Using a custom Checkup configuration file, **plugins** can be configured and loaded containing **tasks** to run. The CLI will execute these tasks on your codebase, ultimately aggregating and producing a comprehensive **Checkup report**.
 
-Checkup is a set of tools to allow you to achieve the goals outlined above. It includes:
+### Plugins
 
-- A CLI to perform static analysis across your application or addon
-- A plugin infrastructure, which allows you to write your own Checkup tasks based on your organization's needs
-- A set of recommended tasks based on best practices that you can configure to run by default
-- A generated report on the health of your application or addon
-- A dashboard to visualize the data
+Plugins are collections of Checkup tasks that are intended to be configured and run. Conceptually, they're very similar to eslint plugins, which themselves contain a collection of eslint rules to run.
 
-### Extensibility
+Plugins can be authored by anyone, and configured to run for any codebase. Checkup comes with a plugin generator, making it easy to generate the scaffolding needed.
 
-Checkup includes a plugin system, which allows you to author tasks to be run by checkup that will gather data for your application or addon based on your organization's needs. This can be things like:
+To generate a plugin, run:
 
-- Ensuring applications use required dependencies
-- Ensuring an application's dependency versions are at least a certain version
-- Tracking migration statuses
+```shell
+$ checkup generate plugin checkup-plugin-foo
+```
 
-### Health Check
+### Tasks
 
-By default, Checkup comes with some recommended tasks that can be run to ensure your application is adhering to specific standards.
-
-- Ensuring dependency freshness
-- Validating required dependencies
-- Ensuring correct linting plugins are part of the project
-- Ensuring correct types and versions of tools are installed
-
-### Recommended Fixes
-
-Checkup, as part of its reporting, will alert on specific fixes that should be undertaken. These fixes will include a severity, which will help identify what problems should be addressed first, and in what order.
-
-### Migration Management
-
-Migrations can be a long and tedious process, but are a normal part of a project’s life cycle. Checkup aims to provide information on the status of migrations, which can serve a number of purposes.
-
-- Giving a level of visibility to the progress of all migrations
-- Tracking the completion of a migration
-- Helping to assist in the estimation of the duration of a migration
-
-## Summary
-
-While Checkup isn’t a silver bullet, bringing visibility to the ongoing health of a project will help enable teams to make informed decisions about where to invest their precious time and resources.
+Tasks are the core primitive that Checkup uses to gather data for the Checkup report.
