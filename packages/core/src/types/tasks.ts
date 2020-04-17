@@ -1,4 +1,3 @@
-import GradedTableData from '../report-components/graded-table-data';
 import { JsonObject } from 'type-fest';
 import NumericalCardData from '../report-components/numerical-card-data';
 import PieChartData from '../report-components/pie-chart-data';
@@ -62,6 +61,14 @@ export type JsonTaskResult = {
   result: {};
 };
 
+export type ReportResultData = NumericalCardData | TableData | PieChartData;
+
+export const enum ReportComponentType {
+  NumericalCard = 'numerical-card',
+  Table = 'table',
+  PieChart = 'pie-chart',
+}
+
 export const enum Grade {
   A = 'A',
   B = 'B',
@@ -74,15 +81,6 @@ export enum ReporterType {
   stdout = 'stdout',
   json = 'json',
   pdf = 'pdf',
-}
-
-export type ReportResultData = NumericalCardData | TableData | GradedTableData | PieChartData;
-
-export const enum ReportComponentType {
-  NumericalCard = 'numerical-card',
-  Table = 'table',
-  GradedTable = 'graded-table',
-  PieChart = 'pie-chart',
 }
 
 export interface PieChartItem {

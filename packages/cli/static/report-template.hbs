@@ -13,7 +13,7 @@
   <h1 class="text-4xl">Checkup report</h1>
   <div class="grid grid-cols-3 gap-4">
     {{#each results as |result|}}
-      {{> (lookup . 'componentType') taskResult=result}}
+      {{> (lookup . 'componentType') resultData=result}}
     {{/each}}
   </div>
 </body>

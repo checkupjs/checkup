@@ -12,7 +12,6 @@ export type CompiledPartials = {
 const COMPILED_PARTIALS: CompiledPartials = {
   [ReportComponentType.NumericalCard]: getPartialDelegate('numerical-card.hbs'),
   [ReportComponentType.Table]: getPartialDelegate('table.hbs'),
-  [ReportComponentType.GradedTable]: getPartialDelegate('graded-table.hbs'),
   [ReportComponentType.PieChart]: getPartialDelegate('pie-chart.hbs'),
 };
 
@@ -23,5 +22,5 @@ function getPartialDelegate(partialPath: string): HandlebarsTemplateDelegate {
 }
 
 export function renderPartialAsHtml(componentData: ReportResultData): string {
-  return COMPILED_PARTIALS[componentData.componentType]({ taskResult: componentData });
+  return COMPILED_PARTIALS[componentData.componentType]({ resultData: componentData });
 }
