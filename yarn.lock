@@ -3981,10 +3981,10 @@ interpret@^1.0.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
-io-ts@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.1.3.tgz#02c03c375d14079496f0c046ef8a9aad4fbaeb74"
-  integrity sha512-QFMR2QEBSP6w1TPmkpfca6xkzBbXO+K7ubdbV26GlCGI7CP9LV59bfty422JYtWgbBITuL/zBb1+mziv9f5Wfg==
+io-ts@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.0.tgz#e01ee2031098f05ab2ef17d137b8bebc928644e2"
+  integrity sha512-BIZkC9IJ1ix8v3ttSWb5CWVzbEbMkGwjl0dMBGCXVT921/4f/9wAngsqA8VLXFe5JjLJ3INxBufz3BaQVf2zKw==
 
 ip-regex@^2.1.0:
   version "2.1.0"
