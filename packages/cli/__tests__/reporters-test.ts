@@ -1,36 +1,30 @@
-import { Category, Priority, TaskResult, ReporterType } from '@checkup/core';
+import { Category, Priority, ReporterType, TaskResult } from '@checkup/core';
 
+import { MetaTaskResult } from '../src/types';
+import MockMetaTaskResult from './__utils__/mock-meta-task-result';
 import MockTaskResult from './__utils__/mock-task-result';
 import { _transformResults } from '../src/reporters';
 
 describe('_transformResults', () => {
-  let metaTaskResults: TaskResult[];
+  let metaTaskResults: MetaTaskResult[];
   let pluginTaskResults: TaskResult[];
 
   it('transforms meta and plugin results into correct format', () => {
     metaTaskResults = [
-      new MockTaskResult(
+      new MockMetaTaskResult(
         {
           taskName: 'mock-meta-task-1',
           friendlyTaskName: 'Mock Meta Task 1',
-          taskClassification: {
-            category: Category.Meta,
-            priority: Priority.High,
-          },
         },
         {
           foo: true,
           bar: 'baz',
         }
       ),
-      new MockTaskResult(
+      new MockMetaTaskResult(
         {
           taskName: 'mock-meta-task-2',
           friendlyTaskName: 'Mock Meta Task 2',
-          taskClassification: {
-            category: Category.Meta,
-            priority: Priority.High,
-          },
         },
         {
           blarg: false,

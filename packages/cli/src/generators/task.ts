@@ -79,7 +79,6 @@ export default class TaskGenerator extends Generator {
           name: 'category',
           message: 'Select a task category',
           choices: [
-            { name: 'meta', value: 'Meta' },
             { name: 'insights', value: 'Insights' },
             { name: 'migrations', value: 'Migrations' },
             { name: 'recommendations', value: 'Recommendations' },

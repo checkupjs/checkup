@@ -1,14 +1,15 @@
 import { ReporterType, TaskResult, ui } from '@checkup/core';
 
+import { MetaTaskResult } from './types';
 import { generateReport } from './helpers/pdf';
 
 export function _transformResults(
-  metaTaskResults: TaskResult[],
+  metaTaskResults: MetaTaskResult[],
   pluginTaskResults: TaskResult[],
   reporterType: ReporterType
 ) {
   let transformedResult = {
-    meta: Object.assign({}, ...metaTaskResults.map((result) => result[reporterType]())),
+    meta: Object.assign({}, ...metaTaskResults.map((result) => result.json())),
     results: pluginTaskResults.map((result) => result[reporterType]()),
   };
 
@@ -17,7 +18,7 @@ export function _transformResults(
 
 export function getReporter(
   flags: any,
-  metaTaskResults: TaskResult[],
+  metaTaskResults: MetaTaskResult[],
   pluginTaskResults: TaskResult[]
 ) {
   switch (flags.reporter) {

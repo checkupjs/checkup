@@ -36,7 +36,6 @@ export interface TaskItemData {
 }
 
 export const enum Category {
-  Meta = 'meta',
   Insights = 'insights',
   Migrations = 'migrations',
   Recommendations = 'recommendations',

@@ -1,4 +1,19 @@
+import { JsonMetaTaskResult } from '@checkup/core';
+
 export default {};
+
+export type TaskIdentifier = { taskName: string; friendlyTaskName: string };
+
+export interface MetaTask {
+  meta: TaskIdentifier;
+
+  run: () => Promise<MetaTaskResult>;
+}
+
+export interface MetaTaskResult {
+  stdout: () => void;
+  json: () => JsonMetaTaskResult;
+}
 
 export const enum TestType {
   Application = 'application',
