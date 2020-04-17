@@ -4,6 +4,8 @@ import NumericalCardData from '../report-components/numerical-card-data';
 import PieChartData from '../report-components/pie-chart-data';
 import TableData from '../report-components/table-data';
 
+export type SearchPatterns = Record<string, string[]>;
+
 export type TaskName = string;
 export type TaskClassification = {
   category: Category;
@@ -60,15 +62,6 @@ export type JsonTaskResult = {
   result: {};
 };
 
-export type ReportResultData = NumericalCardData | TableData | GradedTableData | PieChartData;
-
-export const enum ReportComponentType {
-  NumericalCard = 'numerical-card',
-  Table = 'table',
-  GradedTable = 'graded-table',
-  PieChart = 'pie-chart',
-}
-
 export const enum Grade {
   A = 'A',
   B = 'B',
@@ -83,4 +76,16 @@ export enum ReporterType {
   pdf = 'pdf',
 }
 
-export type SearchPatterns = Record<string, string[]>;
+export type ReportResultData = NumericalCardData | TableData | GradedTableData | PieChartData;
+
+export const enum ReportComponentType {
+  NumericalCard = 'numerical-card',
+  Table = 'table',
+  GradedTable = 'graded-table',
+  PieChart = 'pie-chart',
+}
+
+export interface PieChartItem {
+  value: number;
+  description: string;
+}

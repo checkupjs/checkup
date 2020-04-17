@@ -1,4 +1,4 @@
-import { Category, NumericalCardData, Priority, TaskMetaData } from '@checkup/core';
+import { Category, NumericalCardData, Priority, TaskMetaData, PieChartData } from '@checkup/core';
 
 import { generateHTML } from '../src/helpers/pdf';
 
@@ -65,10 +65,40 @@ describe('generateHTML', () => {
     `);
   });
 
-  it('includes tailwind UI lib and stylesheet', async () => {
+  it('includes tailwind UI lib and stylesheet, but no chartjs (since results dont require it by default)', async () => {
     const htmlString = await generateHTML(mergedResults);
 
     expect(htmlString).toContain('tailwind.min.css');
     expect(htmlString).toContain('tailwind-ui.min.css');
+    expect(htmlString).not.toContain('Chart.js v2.9.3 CSS');
+    expect(htmlString).not.toContain('Chart.js v2.9.3 JS');
+  });
+
+  it('includes chartsjs css and js when there is a pie-chart being rendered as part of the results', async () => {
+    const htmlString = await generateHTML({
+      meta: projectMeta,
+      results: [
+        new PieChartData(
+          {
+            taskName: 'mock-task',
+            friendlyTaskName: 'Mock Task',
+            taskClassification: {
+              category: Category.Insights,
+              priority: Priority.Medium,
+            },
+          },
+          [
+            { value: 33, description: 'blah' },
+            { value: 23, description: 'blah' },
+            { value: 13, description: 'black' },
+            { value: 3, description: 'sheep' },
+          ],
+          'this is a chart'
+        ),
+      ],
+    });
+
+    expect(htmlString).toContain('Chart.js v2.9.3 CSS');
+    expect(htmlString).toContain('Chart.js v2.9.3 JS');
   });
 });
