@@ -1,6 +1,4 @@
-# Checkup
-
-## _A health checkup on your project_
+# Checkup: A health checkup for your project
 
 ![CI Build](https://github.com/checkupjs/checkup/workflows/CI%20Build/badge.svg)
 [![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -11,13 +9,13 @@
 
 Checkup aims to provide you with insights into your codebase. You can track the progress of your codebase for things such as:
 
-1. Insights
+1. **Insights**
    - types of code constructs used (types, etc)
    - dependency health
    - test type breakdown (unit, integration, functional, visual, etc)
-1. Migrations
+1. **Migrations**
    - chart the progress of active code migrations to help you get a sense of progress
-1. Recommendations
+1. **Recommendations**
    - suggested areas of improvement
 
 This allows you to have a more full, high level view of your codebase at any one point in time. Checkup can help you with making resourcing decisions, planning and prioritizing the general health of your codebase.
@@ -26,18 +24,10 @@ This allows you to have a more full, high level view of your codebase at any one
 
 Checkup provides you with a CLI, which can be run against your code base. Using a custom Checkup configuration file, **plugins** can be configured and loaded containing **tasks** to run. The CLI will execute these tasks on your codebase, ultimately aggregating and producing a comprehensive **Checkup report**.
 
-### Plugins
+## Usage
 
-Plugins are collections of Checkup tasks that are intended to be configured and run. Conceptually, they're very similar to eslint plugins, which themselves contain a collection of eslint rules to run.
+See the [CLI README](packages/cli/README.md) for information on usage.
 
-Plugins can be authored by anyone, and configured to run for any codebase. Checkup comes with a plugin generator, making it easy to generate the scaffolding needed.
+## Spec
 
-To generate a plugin, run:
-
-```shell
-$ checkup generate plugin checkup-plugin-foo
-```
-
-### Tasks
-
-Tasks are the core primitive that Checkup uses to gather data for the Checkup report.
+Read more about the mission, vision, and overall direction of checkup in the [spec](docs/SPEC.md) document.
