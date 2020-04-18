@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MetaTaskList runTasks will run all registered tasks 1`] = `
+Object {
+  "fake-meta-task": "fake meta task is being run",
+}
+`;
+
+exports[`MetaTaskList runTasks will run all registered tasks 2`] = `
+Object {
+  "other-fake-meta-task": "other fake meta task is being run",
+}
+`;

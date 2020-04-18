@@ -3,32 +3,18 @@
 exports[`TaskList runTask will run a task by taskName 1`] = `
 Object {
   "meta": Object {
-    "friendlyTaskName": "Mock Task",
+    "friendlyTaskName": "Insights Task High",
     "taskClassification": Object {
       "category": "insights",
       "priority": "high",
     },
-    "taskName": "mock-task",
+    "taskName": "insights-task-high",
   },
-  "result": "mock-task is being run",
+  "result": "insights task high is being run",
 }
 `;
 
 exports[`TaskList runTasks will run all registered tasks 1`] = `
-Object {
-  "meta": Object {
-    "friendlyTaskName": "Mock Task",
-    "taskClassification": Object {
-      "category": "insights",
-      "priority": "high",
-    },
-    "taskName": "mock-task",
-  },
-  "result": "mock-task is being run",
-}
-`;
-
-exports[`TaskList runTasks will run all registered tasks 2`] = `
 Object {
   "meta": Object {
     "friendlyTaskName": "Insights Task High",
@@ -39,5 +25,19 @@ Object {
     "taskName": "insights-task-high",
   },
   "result": "insights task high is being run",
+}
+`;
+
+exports[`TaskList runTasks will run all registered tasks 2`] = `
+Object {
+  "meta": Object {
+    "friendlyTaskName": "Insights Task Low",
+    "taskClassification": Object {
+      "category": "insights",
+      "priority": "low",
+    },
+    "taskName": "insights-task-low",
+  },
+  "result": "insights task low is being run",
 }
 `;

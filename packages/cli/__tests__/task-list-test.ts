@@ -1,101 +1,14 @@
-import { Category, Priority, Task, TaskResult } from '@checkup/core';
+import {
+  InsightsTaskHigh,
+  InsightsTaskLow,
+  MigrationTaskHigh,
+  MigrationTaskLow,
+  RecommendationsTaskHigh,
+  RecommendationsTaskLow,
+} from './__utils__/mock-tasks';
 
-import MockTask from './__utils__/mock-task';
-import MockTaskResult from './__utils__/mock-task-result';
+import { Category } from '@checkup/core';
 import TaskList from '../src/task-list';
-
-//#region
-
-class InsightsTaskHigh implements Task {
-  meta = {
-    taskName: 'insights-task-high',
-    friendlyTaskName: 'Insights Task High',
-    taskClassification: {
-      category: Category.Insights,
-      priority: Priority.High,
-    },
-  };
-
-  async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, 'insights task high is being run');
-  }
-}
-
-class InsightsTaskLow implements Task {
-  meta = {
-    taskName: 'insights-task-low',
-    friendlyTaskName: 'Insights Task Low',
-    taskClassification: {
-      category: Category.Insights,
-      priority: Priority.Low,
-    },
-  };
-
-  async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, 'insights task low is being run');
-  }
-}
-
-class RecommendationsTaskHigh implements Task {
-  meta = {
-    taskName: 'recommendations-task-high',
-    friendlyTaskName: 'Recommendations Task High',
-    taskClassification: {
-      category: Category.Recommendations,
-      priority: Priority.High,
-    },
-  };
-
-  async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, 'recommendations task high is being run');
-  }
-}
-
-class RecommendationsTaskLow implements Task {
-  meta = {
-    taskName: 'recommendations-task-low',
-    friendlyTaskName: 'Recommendations Task Low',
-    taskClassification: {
-      category: Category.Recommendations,
-      priority: Priority.Low,
-    },
-  };
-
-  async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, 'recommendations task low is being run');
-  }
-}
-
-class MigrationTaskHigh implements Task {
-  meta = {
-    taskName: 'migration-task-high',
-    friendlyTaskName: 'Migration Task High',
-    taskClassification: {
-      category: Category.Migrations,
-      priority: Priority.High,
-    },
-  };
-
-  async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, 'migration task high is being run');
-  }
-}
-
-class MigrationTaskLow implements Task {
-  meta = {
-    taskName: 'migration-task-low',
-    friendlyTaskName: 'Migration Task Low',
-    taskClassification: {
-      category: Category.Migrations,
-      priority: Priority.Low,
-    },
-  };
-
-  async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, 'migration task low is being run');
-  }
-}
-//#endregion
 
 describe('TaskList', () => {
   it('can create an instance of a TaskList', () => {
@@ -108,7 +21,7 @@ describe('TaskList', () => {
   it('registerTask adds a task to the TaskList', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask());
+    taskList.registerTask(new InsightsTaskHigh());
 
     expect(taskList.categories.get(Category.Insights)!.size).toEqual(1);
   });
@@ -116,7 +29,7 @@ describe('TaskList', () => {
   it('hasTask returns false if no task exists with that name', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask());
+    taskList.registerTask(new InsightsTaskHigh());
 
     expect(taskList.hasTask('foo')).toEqual(false);
   });
@@ -124,15 +37,15 @@ describe('TaskList', () => {
   it('hasTask returns true if task exists with that name', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask());
+    taskList.registerTask(new InsightsTaskHigh());
 
-    expect(taskList.hasTask('mock-task')).toEqual(true);
+    expect(taskList.hasTask('insights-task-high')).toEqual(true);
   });
 
   it('findTask returns undefined if no task exists with that name', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask());
+    taskList.registerTask(new InsightsTaskHigh());
 
     expect(taskList.findTask('foo')).toBeUndefined();
   });
@@ -140,17 +53,17 @@ describe('TaskList', () => {
   it('findTask returns task instance if task exists with that name', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask());
+    taskList.registerTask(new InsightsTaskHigh());
 
-    expect(taskList.findTask('mock-task')).toBeDefined();
+    expect(taskList.findTask('insights-task-high')).toBeDefined();
   });
 
   it('runTask will run a task by taskName', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask());
+    taskList.registerTask(new InsightsTaskHigh());
 
-    let result = await taskList.runTask('mock-task');
+    let result = await taskList.runTask('insights-task-high');
 
     expect(result.json()).toMatchSnapshot();
   });
@@ -158,8 +71,8 @@ describe('TaskList', () => {
   it('runTasks will run all registered tasks', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new MockTask());
     taskList.registerTask(new InsightsTaskHigh());
+    taskList.registerTask(new InsightsTaskLow());
 
     let result = await taskList.runTasks();
 
