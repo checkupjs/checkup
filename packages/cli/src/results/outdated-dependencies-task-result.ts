@@ -1,13 +1,23 @@
-import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, NumericalCardData } from '@checkup/core';
 import { OutdatedDependencies } from '../tasks/outdated-dependencies-task';
 
-export default class DependenciesFreshnessTaskResult extends BaseTaskResult implements TaskResult {
+export default class OutdatedDependenciesTaskResult extends BaseTaskResult implements TaskResult {
   outdatedDependencies!: OutdatedDependencies;
+  versionTypes!: Map<string, Array<string[]>>;
 
   stdout() {
     ui.styledHeader(this.meta.friendlyTaskName);
     ui.blankLine();
 
+    ui.styledHeader('Outdated Dependencies Overview');
+    ui.styledObject({
+      Major: this.versionTypes.get('major')?.length,
+      Minor: this.versionTypes.get('minor')?.length,
+      Patch: this.versionTypes.get('patch')?.length,
+    });
+    ui.blankLine();
+
+    ui.styledHeader('Outdated Dependencies Details');
     this._writeFreshnessTable(this.outdatedDependencies);
     ui.blankLine();
   }
@@ -22,7 +32,7 @@ export default class DependenciesFreshnessTaskResult extends BaseTaskResult impl
   }
 
   pdf() {
-    return undefined;
+    return new NumericalCardData(this.meta, 22, 'this is a description of your result');
   }
 
   _writeFreshnessTable(dependencies: OutdatedDependencies) {
