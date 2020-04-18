@@ -108,8 +108,6 @@ _See code: [src/commands/generate.ts](https://github.com/checkupjs/checkup/blob/
 
 # Configuration
 
-<!-- configuration -->
-
 Checkup is designed to be completely configurable via a configuration object.
 
 Checkup uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load your configuration object. Starting from the current working directory, it looks for the following possible sources:
@@ -135,20 +133,30 @@ The configuration object has the following properties:
 
 ## Plugins
 
-Checkup supports the use of plugins. Before using the plugin, you have to install it using npm/yarn.
+Plugins are collections of Checkup tasks that are intended to be configured and run. Conceptually, they're very similar to eslint plugins, which themselves contain a collection of eslint rules to run.
 
-```sh-session
-$ yarn add -D @checkup/plugin-ember
+Plugins can be authored by anyone, and configured to run for any codebase. Checkup comes with a plugin generator, making it easy to generate the scaffolding needed.
+
+To generate a plugin, run:
+
+```shell
+$ checkup generate plugin checkup-plugin-foo
 ```
 
 To configure plugins, use the plugins key in your configuration file, which contains a list of plugin names.
 
 ```json
 {
-  "plugins": ["@checkup/plugin-ember"]
+  "plugins": ["checkup-plugin-foo"]
 }
 ```
 
-<!-- TODO: Describe properties in CheckupConfig -->
+## Tasks
 
-<!-- configurationstop -->
+Tasks are the core primitive that Checkup uses to gather data for the Checkup report.
+
+To generate a task, run the following in the plugin directory you want to add the task to:
+
+```shell
+$ checkup generate task example-task
+```
