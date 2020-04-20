@@ -76,7 +76,7 @@ describe('checkup-meta-task', () => {
 
     it('can read checkup meta and output to console', async () => {
       let checkupConfig = await getConfig({
-        plugins: ['@checkup/plugin-ember'],
+        plugins: ['checkup-plugin-ember'],
         tasks: {},
       });
 
@@ -90,7 +90,7 @@ describe('checkup-meta-task', () => {
 
       expect(stdout()).toMatchInlineSnapshot(`
         "=== Checkup Configuration
-        configHash: 07e8f7d8731ffbb323ad86f8f2f62460
+        configHash: 705deefb6abf2b6d34f93cede7acba07
         version:    0.0.0
 
         "
@@ -99,7 +99,7 @@ describe('checkup-meta-task', () => {
 
     it('can read checkup meta as JSON', async () => {
       let checkupConfig = await getConfig({
-        plugins: ['@checkup/plugin-ember'],
+        plugins: ['checkup-plugin-ember'],
         tasks: {},
       });
 
@@ -112,7 +112,7 @@ describe('checkup-meta-task', () => {
       expect(taskResult.json()).toMatchInlineSnapshot(`
         Object {
           "checkup": Object {
-            "configHash": "07e8f7d8731ffbb323ad86f8f2f62460",
+            "configHash": "705deefb6abf2b6d34f93cede7acba07",
             "version": "0.0.0",
           },
         }

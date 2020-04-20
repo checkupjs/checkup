@@ -13,11 +13,9 @@
     "paths": {
       "@checkup/core": ["./packages/core/lib/index.d.ts"],
       "@checkup/cli": ["./packages/cli/lib/index.d.ts"],
-      "@checkup/plugin-ember": ["./packages/plugin-ember/lib/index.d.ts"],
-      "@checkup/checkup-plugin-ember-octane": [
-        "./packages/checkup-plugin-ember-octane/lib/index.d.ts"
-      ],
       "@checkup/test-helpers": ["./packages/test-helpers/lib/index.d.ts"],
+      "checkup-plugin-ember": ["./packages/plugin-ember/lib/index.d.ts"],
+      "checkup-plugin-ember-octane": ["./packages/checkup-plugin-ember-octane/lib/index.d.ts"],
       "*": ["./types/*"]
     }
   },
