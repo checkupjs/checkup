@@ -62,3 +62,125 @@ Object {
   },
 }
 `;
+
+exports[`dependencies-task detects Ember dependencies as PDF, and doesnt create a table without dependencies 1`] = `
+Array [
+  TableData {
+    "componentType": "table",
+    "formattedResult": Array [
+      Object {
+        "result": Object {
+          "name": "ember-source",
+          "value": "^3.15.0",
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "ember-cli",
+          "value": "^3.15.0",
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "ember-data",
+          "value": "Not found",
+        },
+        "rowClass": "bg-gray-100",
+      },
+    ],
+    "meta": Object {
+      "friendlyTaskName": "Project Dependencies",
+      "taskClassification": Object {
+        "category": "insights",
+        "priority": "low",
+      },
+      "taskName": "dependencies",
+    },
+    "tableHeaders": Array [
+      "name",
+      "value",
+    ],
+  },
+  TableData {
+    "componentType": "table",
+    "formattedResult": Array [
+      Object {
+        "result": Object {
+          "name": "ember-source",
+          "value": "^3.15.0",
+        },
+        "rowClass": "bg-gray-100",
+      },
+    ],
+    "meta": Object {
+      "friendlyTaskName": "Project Dependencies",
+      "taskClassification": Object {
+        "category": "insights",
+        "priority": "low",
+      },
+      "taskName": "dependencies",
+    },
+    "tableHeaders": Array [
+      "name",
+      "value",
+    ],
+  },
+  TableData {
+    "componentType": "table",
+    "formattedResult": Array [
+      Object {
+        "result": Object {
+          "name": "ember-cli",
+          "value": "^3.15.0",
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "ember-cli-blueprint-test-helpers",
+          "value": "latest",
+        },
+        "rowClass": "bg-gray-100",
+      },
+    ],
+    "meta": Object {
+      "friendlyTaskName": "Project Dependencies",
+      "taskClassification": Object {
+        "category": "insights",
+        "priority": "low",
+      },
+      "taskName": "dependencies",
+    },
+    "tableHeaders": Array [
+      "name",
+      "value",
+    ],
+  },
+  TableData {
+    "componentType": "table",
+    "formattedResult": Array [
+      Object {
+        "result": Object {
+          "name": "ember-cli-string-utils",
+          "value": "latest",
+        },
+        "rowClass": "bg-gray-100",
+      },
+    ],
+    "meta": Object {
+      "friendlyTaskName": "Project Dependencies",
+      "taskClassification": Object {
+        "category": "insights",
+        "priority": "low",
+      },
+      "taskName": "dependencies",
+    },
+    "tableHeaders": Array [
+      "name",
+      "value",
+    ],
+  },
+]
+`;

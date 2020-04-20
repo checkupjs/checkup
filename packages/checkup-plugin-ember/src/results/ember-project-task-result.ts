@@ -1,4 +1,4 @@
-import { BaseTaskResult, TaskResult, ui, NumericalCardData } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, TableData } from '@checkup/core';
 
 export default class EmberProjectTaskResult extends BaseTaskResult implements TaskResult {
   type!: string;
@@ -19,7 +19,6 @@ export default class EmberProjectTaskResult extends BaseTaskResult implements Ta
   }
 
   pdf() {
-    // TODO: add in correct data type for EmberProjectTaskResult
-    return [new NumericalCardData(this.meta, 22, 'this is a description of your result')];
+    return [new TableData(this.meta, [{ name: 'type', value: this.type }])];
   }
 }

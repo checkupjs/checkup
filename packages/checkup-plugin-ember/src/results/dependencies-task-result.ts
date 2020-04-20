@@ -1,11 +1,4 @@
-import {
-  BaseTaskResult,
-  TaskMetaData,
-  TaskResult,
-  toPairs,
-  ui,
-  NumericalCardData,
-} from '@checkup/core';
+import { BaseTaskResult, TaskMetaData, TaskResult, toPairs, ui, TableData } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 
@@ -61,8 +54,31 @@ export default class DependenciesTaskResult extends BaseTaskResult implements Ta
   }
 
   pdf() {
-    // TODO: add in correct data type for DependenciesTaskResult
-    return [new NumericalCardData(this.meta, 22, 'this is a description of your result')];
+    let dependencyGroups = [
+      this.emberLibraries,
+      this.emberAddons.devDependencies,
+      this.emberAddons.dependencies,
+      this.emberCliAddons.dependencies,
+      this.emberCliAddons.devDependencies,
+    ];
+
+    return dependencyGroups
+      .map((dependencyGroup) => this._createTableData(dependencyGroup))
+      .filter((item) => item !== undefined) as TableData[];
+  }
+
+  _createTableData(dependencyGroup: PackageJson.Dependency): TableData | undefined {
+    if (Object.keys(dependencyGroup).length === 0) {
+      return;
+    }
+
+    return new TableData(
+      this.meta,
+      Object.entries(dependencyGroup).map((dependency) => ({
+        name: dependency[0],
+        value: dependency[1],
+      }))
+    );
   }
 
   _writeDependencySection(header: string, dependencies: PackageJson.Dependency) {

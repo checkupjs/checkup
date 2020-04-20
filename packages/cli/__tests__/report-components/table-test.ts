@@ -1,15 +1,8 @@
-import {
-  Category,
-  TableData,
-  Priority,
-  TaskMetaData,
-  DependencyResult,
-  Grade,
-} from '@checkup/core';
+import { Category, TableData, Priority, TaskMetaData, TableResult, Grade } from '@checkup/core';
 import { renderPartialAsHtml } from '../__utils__/render-partial';
 
 describe('the correct data is rendered for a table', () => {
-  const expectedOutput: { meta: TaskMetaData; result: DependencyResult[] } = {
+  const expectedOutput: { meta: TaskMetaData; result: TableResult[] } = {
     meta: {
       taskName: 'mock-task',
       friendlyTaskName: 'Mock Task',
@@ -66,7 +59,7 @@ describe('the correct data is rendered for a table', () => {
 });
 
 describe('the correct data is rendered for a graded table', () => {
-  const expectedOutput: { meta: TaskMetaData; result: DependencyResult[] } = {
+  const expectedOutput: { meta: TaskMetaData; result: TableResult[] } = {
     meta: {
       taskName: 'mock-task',
       friendlyTaskName: 'Mock Task',

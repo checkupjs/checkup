@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      {{#each resultData.resultsToRender as |formattedResult|}}
+      {{#each resultData.formattedResult as |formattedResult|}}
         <tr class="{{formattedResult.rowClass}}">
           {{#each formattedResult.result as |resultItem|}}
             <td class="border px-4 py-2">{{resultItem}}</td>
