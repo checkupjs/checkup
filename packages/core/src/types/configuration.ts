@@ -19,6 +19,4 @@ export type CheckupConfigLoader = () => Promise<{
   config: CheckupConfig;
 }>;
 
-export type ConfigMapper = (config: CheckupConfig) => CheckupConfig;
-
 export type CosmiconfigServiceResult = PromiseValue<ReturnType<CheckupConfigLoader>> | null;
