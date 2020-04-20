@@ -1,27 +1,25 @@
-<div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-  <div class="px-6 py-4 flex flex-wrap flex-col">
-    {{#if resultData.grade}}
-      <div class="text-xl font-bold self-end">{{resultData.grade}}</div>
-    {{/if}}
-    <div class="text-xl font-bold self-center">{{resultData.meta.friendlyTaskName}}</div>
+<div class="px-6 py-4 flex flex-wrap flex-col">
+  {{#if resultData.grade}}
+    <div class="text-xl font-bold self-end">{{resultData.grade}}</div>
+  {{/if}}
+  <div class="text-xl font-bold self-center">{{resultData.meta.friendlyTaskName}}</div>
 
-    <table class="table-auto rounded">
-      <thead>
-        <tr class="font-bold">
-          {{#each resultData.tableHeaders as |header|}}
-            <th class="px-4 py-2">{{header}}</th>
+  <table class="table-auto rounded">
+    <thead>
+      <tr class="font-bold">
+        {{#each resultData.tableHeaders as |header|}}
+          <th class="px-4 py-2">{{header}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each resultData.resultsToRender as |formattedResult|}}
+        <tr class="{{formattedResult.rowClass}}">
+          {{#each formattedResult.result as |resultItem|}}
+            <td class="border px-4 py-2">{{resultItem}}</td>
           {{/each}}
         </tr>
-      </thead>
-      <tbody>
-        {{#each resultData.resultsToRender as |formattedResult|}}
-          <tr class="{{formattedResult.rowClass}}">
-            {{#each formattedResult.result as |resultItem|}}
-              <td class="border px-4 py-2">{{resultItem}}</td>
-            {{/each}}
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+      {{/each}}
+    </tbody>
+  </table>
 </div>

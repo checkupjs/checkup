@@ -34,7 +34,7 @@ Object {
     "friendlyTaskName": "Project Dependencies",
     "taskClassification": Object {
       "category": "insights",
-      "priority": "medium",
+      "priority": "low",
     },
     "taskName": "dependencies",
   },

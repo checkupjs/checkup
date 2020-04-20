@@ -5,7 +5,7 @@ import * as path from 'path';
 import { pathToFileURL } from 'url';
 import { printToPDF } from './print-to-pdf';
 import { readFileSync } from 'fs-extra';
-import { ReportComponentType, ReportResultData } from '@checkup/core';
+import { ReportComponentType, UIReportData } from '@checkup/core';
 
 import tmp = require('tmp');
 
@@ -17,7 +17,7 @@ const date = require('date-and-time');
  */
 export async function generateReport(
   resultOutputPath: string,
-  resultsForPdf: any
+  resultsForPdf: UIReportData
 ): Promise<string> {
   let reportHTML = generateHTML(resultsForPdf);
 
@@ -41,7 +41,7 @@ export async function generateReport(
   return outputFilePath;
 }
 
-export function generateHTML(resultsForPdf: any) {
+export function generateHTML(resultsForPdf: UIReportData) {
   const reportPath = path.join(__dirname, '../../static/report-template.hbs');
   const reportTemplateRaw = requiresChart(resultsForPdf)
     ? appendChartjsCssSourceFiles(readFileSync(reportPath, 'utf8'))
@@ -69,9 +69,7 @@ function registerPartials() {
 }
 
 function requiresChart(resultsForPdf: any): boolean {
-  return resultsForPdf.results.some(
-    (result: ReportResultData) => result.componentType === ReportComponentType.PieChart
-  );
+  return resultsForPdf.requiresChart;
 }
 
 function appendChartjsCssSourceFiles(reportTemplateRaw: string): string {

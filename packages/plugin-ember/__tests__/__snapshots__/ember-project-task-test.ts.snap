@@ -13,7 +13,7 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Ember Project",
     "taskClassification": Object {
-      "category": "insights",
+      "category": "recommendations",
       "priority": "medium",
     },
     "taskName": "ember-project",
@@ -37,7 +37,7 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Ember Project",
     "taskClassification": Object {
-      "category": "insights",
+      "category": "recommendations",
       "priority": "medium",
     },
     "taskName": "ember-project",

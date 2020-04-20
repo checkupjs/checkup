@@ -5,8 +5,8 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Ember Octane Migration Status",
     "taskClassification": Object {
-      "category": "insights",
-      "priority": "medium",
+      "category": "migrations",
+      "priority": "high",
     },
     "taskName": "octane-migration-status",
   },

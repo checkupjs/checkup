@@ -21,7 +21,7 @@ export default class TypesTask extends FileSearcherTask implements Task {
     friendlyTaskName: 'Project Types',
     taskClassification: {
       category: Category.Insights,
-      priority: Priority.Medium,
+      priority: Priority.High,
     },
   };
 

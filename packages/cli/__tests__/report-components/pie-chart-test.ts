@@ -25,11 +25,9 @@ describe('the correct data is rendered for a pie chart', () => {
     );
 
     expect(htmlString).toMatchInlineSnapshot(`
-      "<div class=\\"max-w-sm rounded overflow-hidden shadow-lg bg-white\\">
-        <div class=\\"px-6 py-4\\">
-          <div class=\\"font-bold text-xl mb-2\\">Mock Task</div>
-          <canvas id=\\"chart-area-100\\"></canvas>
-        </div>
+      "<div class=\\"px-6 py-4\\">
+        <div class=\\"font-bold text-xl mb-2\\">Mock Task</div>
+        <canvas id=\\"chart-area-100\\"></canvas>
       </div>
 
 
