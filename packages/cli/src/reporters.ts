@@ -1,6 +1,7 @@
 import { ReporterType, TaskResult, ui } from '@checkup/core';
 
 import { MetaTaskResult } from './types';
+import { RunFlags } from './commands/run';
 import { generateReport } from './helpers/pdf';
 
 export function _transformResults(
@@ -17,7 +18,7 @@ export function _transformResults(
 }
 
 export function getReporter(
-  flags: any,
+  flags: RunFlags,
   metaTaskResults: MetaTaskResult[],
   pluginTaskResults: TaskResult[]
 ) {

@@ -1,7 +1,7 @@
 import { Priority, Task, TaskName } from '@checkup/core';
 
 export default class PriorityMap {
-  maps: Map<any, Map<TaskName, Task>>;
+  maps: Map<Priority, Map<TaskName, Task>>;
 
   constructor() {
     this.maps = new Map<Priority, Map<TaskName, Task>>([
