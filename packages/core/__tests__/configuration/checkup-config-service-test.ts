@@ -1,7 +1,9 @@
-import { CheckupConfig, CheckupConfigFormat, CheckupConfigService } from '../../src';
-import CheckupFixturifyProject from '@checkup/test-helpers/lib/checkup-fixturify-project';
-import * as path from 'path';
 import * as fs from 'fs';
+import * as path from 'path';
+
+import { CheckupConfig, CheckupConfigFormat, CheckupConfigService } from '../../src';
+
+import CheckupFixturifyProject from '@checkup/test-helpers/lib/checkup-fixturify-project';
 
 describe('checkup-config-service', () => {
   let defaultConfig: CheckupConfig;
@@ -53,40 +55,8 @@ describe('checkup-config-service', () => {
     expect(() => configService.write()).toThrowErrorMatchingSnapshot();
   });
 
-  it('should map a config given a set of mappers', async () => {
-    const config = (
-      await CheckupConfigService.load(async () => ({
-        filepath: '.',
-        config: defaultConfig,
-        format: CheckupConfigFormat.JSON,
-      }))
-    )
-      .map(
-        ...[
-          (config: CheckupConfig) => {
-            config.plugins.push('plugin-foo');
-            return config;
-          },
-          (config: CheckupConfig) => {
-            config.tasks.bar = {
-              isEnabled: false,
-            };
-            return config;
-          },
-        ]
-      )
-      .get();
-
-    expect(config.plugins).toStrictEqual(['plugin-foo']);
-    expect(config.tasks).toStrictEqual({
-      bar: {
-        isEnabled: false,
-      },
-    });
-  });
-
   it.each(Object.keys(CheckupConfigFormat).map((format) => [format]))(
-    'should write the config applying the given mappers on calling write for %s files',
+    'should write the config on calling write for %s files',
     async (format) => {
       const project = new CheckupFixturifyProject('test');
       const filepath = path.join(project.baseDir, '.checkuprc');
@@ -97,22 +67,7 @@ describe('checkup-config-service', () => {
           config: defaultConfig,
           format: format as CheckupConfigFormat,
         }))
-      )
-        .map(
-          ...[
-            (config: CheckupConfig) => {
-              config.plugins.push('plugin-foo');
-              return config;
-            },
-            (config: CheckupConfig) => {
-              config.tasks.bar = {
-                isEnabled: false,
-              };
-              return config;
-            },
-          ]
-        )
-        .write();
+      ).write();
 
       expect(fs.readFileSync(filepath, 'utf8')).toMatchSnapshot();
       project.dispose();

@@ -2,12 +2,7 @@ import * as debug from 'debug';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 
-import {
-  CheckupConfig,
-  CheckupConfigFormat,
-  CheckupConfigLoader,
-  ConfigMapper,
-} from '../types/configuration';
+import { CheckupConfig, CheckupConfigFormat, CheckupConfigLoader } from '../types/configuration';
 
 import { RuntimeCheckupConfig } from '../types/runtime-types';
 import { fold } from 'fp-ts/lib/Either';
@@ -29,7 +24,6 @@ export default class CheckupConfigService {
   private readonly configPath: string;
   private readonly format: CheckupConfigFormat;
   private config: CheckupConfig;
-  private mappers: ConfigMapper[];
 
   static async load(loader: CheckupConfigLoader) {
     const { config, filepath, format } = await loader();
@@ -37,23 +31,10 @@ export default class CheckupConfigService {
   }
 
   /**
-   * Lazily apply a series of {@link ConfigMapper}s over the internal {@link CheckupConfig}
-   * object. Note that the mappers are applied lazily, only applied during a
-   * {@link CheckupConfigService#write} or {@link CheckupConfigService#get})
-   * @param {ConfigMapper[]} mappers - the mappers to apply to internal config
-   */
-  map(...mappers: ConfigMapper[]) {
-    this.mappers.push(...mappers);
-    return this;
-  }
-
-  /**
    * Validate and get the internal {@link CheckupConfig} object. Will throw
    * if the config is not valid.
    */
   get() {
-    this.config = this.mappers.reduce((config, mapper) => mapper(config), this.config);
-    this.mappers = [];
     this.validate();
     debug('checkup:config')('%j', this.config);
     return this.config;
@@ -99,6 +80,5 @@ export default class CheckupConfigService {
     this.config = config;
     this.configPath = configPath;
     this.format = format;
-    this.mappers = [];
   }
 }

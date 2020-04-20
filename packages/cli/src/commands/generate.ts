@@ -1,11 +1,14 @@
 import * as chalk from 'chalk';
+import * as debug from 'debug';
 
 import { basename, join } from 'path';
 
 import Command from '@oclif/command';
+import { IConfig } from '@oclif/config';
 import { createEnv } from 'yeoman-environment';
 import { flags } from '@oclif/command';
 import { readdirSync } from 'fs';
+import { rmdirSync } from 'fs';
 
 export interface Options {
   type: string;
@@ -30,7 +33,7 @@ export default class GenerateCommand extends Command {
     {
       name: 'type',
       required: true,
-      description: 'type of generator to run (task, plugin)',
+      description: 'type of generator to run (config, plugin, task)',
     },
     {
       name: 'name',
@@ -42,6 +45,12 @@ export default class GenerateCommand extends Command {
       default: '.',
     },
   ];
+
+  constructor(argv: string[], config: IConfig) {
+    super(argv, config);
+
+    this.debug = debug('checkup:generator');
+  }
 
   get validGenerators() {
     if (!this._generators) {
@@ -55,6 +64,8 @@ export default class GenerateCommand extends Command {
 
   async run() {
     const { flags, args } = this.parse(GenerateCommand);
+
+    this.debug('available generators', this.validGenerators);
 
     if (!this.validGenerators.includes(args.type)) {
       this.error(
@@ -73,6 +84,8 @@ export default class GenerateCommand extends Command {
   }
 
   async generate(type: string, generatorOptions: object = {}) {
+    this.debug('generatorOptions', generatorOptions);
+
     const env = createEnv();
 
     env.register(require.resolve(`../generators/${type}`), `checkup:${type}`);
@@ -82,6 +95,10 @@ export default class GenerateCommand extends Command {
         if (err) {
           reject(err);
         } else {
+          // this is ugly, but I couldn't find the correct configuration to ignore
+          // generating the yeoman repository directory in the cwd
+          rmdirSync(join(process.cwd(), '.yo-repository'));
+
           resolve();
         }
       });
