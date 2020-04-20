@@ -125,6 +125,6 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
 
   pdf() {
     // TODO: add in correct data type for OctaneMigrationStatusTaskResult
-    return new NumericalCardData(this.meta, 22, 'this is a description of your result');
+    return [new NumericalCardData(this.meta, 22, 'this is a description of your result')];
   }
 }

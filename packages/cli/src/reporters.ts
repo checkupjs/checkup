@@ -37,7 +37,7 @@ export function _transformPdfResults(
   let requiresChart = false;
 
   pluginTaskResults
-    .map((result) => result.pdf())
+    .flatMap((result) => result.pdf())
     .forEach((taskResult) => {
       if (taskResult) {
         let { category, priority } = taskResult.meta.taskClassification;

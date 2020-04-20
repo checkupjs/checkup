@@ -24,23 +24,25 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
   }
 
   pdf() {
-    return new PieChartData(
-      {
-        taskName: 'mock-task',
-        friendlyTaskName: 'Mock Task',
-        taskClassification: {
-          category: Category.Insights,
-          priority: Priority.Medium,
+    return [
+      new PieChartData(
+        {
+          taskName: 'mock-task',
+          friendlyTaskName: 'Mock Task',
+          taskClassification: {
+            category: Category.Insights,
+            priority: Priority.Medium,
+          },
         },
-      },
-      [
-        { value: 33, description: 'blah' },
-        { value: 23, description: 'blah' },
-        { value: 13, description: 'black' },
-        { value: 3, description: 'sheep' },
-      ],
-      'this is a chart',
-      100
-    );
+        [
+          { value: 33, description: 'blah' },
+          { value: 23, description: 'blah' },
+          { value: 13, description: 'black' },
+          { value: 3, description: 'sheep' },
+        ],
+        'this is a chart',
+        100
+      ),
+    ];
   }
 }
