@@ -3657,10 +3657,10 @@ graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0,
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
   integrity sha512-a30VEBm4PEdx1dRB7MFK7BejejvCvBronbLjht+sHuGYj8PHs7M/5Z+rt5lw551vZ7yfTCj4Vuyy3mSJytDWRQ==
 
-grouped-queue@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/grouped-queue/-/grouped-queue-1.0.0.tgz#5bdb97934a9a17b19626ff3cc23c103f2622ef49"
-  integrity sha512-XslfWrAGCYovQjveHODR0hllUrsn3UtvPFTkamHbgVHmkUA6eCIDmw3JDWVLJvuntTvYjwaPGamlyzK4/HAEOA==
+grouped-queue@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/grouped-queue/-/grouped-queue-1.1.0.tgz#63e3f9ca90af952269d1d40879e41221eacc74cb"
+  integrity sha512-rZOFKfCqLhsu5VqjBjEWiwrYqJR07KxIkH4mLZlNlGDfntbb4FbMyGFP14TlvRPrU9S3Hnn/sgxbC5ZeN0no3Q==
   dependencies:
     lodash "^4.17.15"
 
@@ -8039,10 +8039,10 @@ yargs@^15.0.0, yargs@^15.3.1:
     y18n "^4.0.0"
     yargs-parser "^18.1.1"
 
-yeoman-environment@^2.3.4, yeoman-environment@^2.8.1, yeoman-environment@^2.9.1:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-2.9.1.tgz#53334c18eae036fc5a28df78faca8c59adbc903f"
-  integrity sha512-m9sotsBPqOrV2aqaCM68pbY0HfLzeYuWnEAsJblfGSuMiIy+xie1S1j9qboOlHyGe9Wyvg8AQx3xSwrQvIvb0A==
+yeoman-environment@^2.3.4, yeoman-environment@^2.8.1, yeoman-environment@^2.9.4:
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-2.9.4.tgz#e07080ba537d9783431d665cbec3a2bad4b417f7"
+  integrity sha512-iWxGhG2G0wnFAWK12J925o5UCMpsyMS77cgyLwFoErS6lvC0N6SpvvYFYcYxFQKmKtxI7X+Hmpvg+Y+7hM4FPw==
   dependencies:
     chalk "^2.4.1"
     debug "^3.1.0"
@@ -8050,7 +8050,7 @@ yeoman-environment@^2.3.4, yeoman-environment@^2.8.1, yeoman-environment@^2.9.1:
     escape-string-regexp "^1.0.2"
     execa "^4.0.0"
     globby "^8.0.1"
-    grouped-queue "^1.0.0"
+    grouped-queue "^1.1.0"
     inquirer "^7.1.0"
     is-scoped "^1.0.0"
     lodash "^4.17.10"
