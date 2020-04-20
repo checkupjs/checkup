@@ -1,5 +1,5 @@
 {
-  "name": "@checkup/plugin-ember-octane",
+  "name": "checkup-plugin-ember-octane",
   "description": "An oclif plugin for Ember Octane migration tasks",
   "version": "0.0.7",
   "author": "Lewis Miller @lbdm44",
