@@ -13,7 +13,7 @@
       "path": "../plugin-ember"
     },
     {
-      "path": "../plugin-ember-octane"
+      "path": "../checkup-plugin-ember-octane"
     },
     {
       "path": "../test-helpers"

@@ -264,6 +264,31 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@checkup/plugin-ember-octane@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@checkup/plugin-ember-octane/-/plugin-ember-octane-0.0.7.tgz#eeac7f2a04738cb3bfbd750db428c2dc272723be"
+  integrity sha512-7sQ0enbu6Wpt2A6Dn40decrve6b0LQe1XrAqGAo8C/W60vMWD2PBf6uBSmoAoHe5dp2jEyMpVlbNnECGKpcpOQ==
+  dependencies:
+    "@checkup/core" "0.0.7"
+    "@oclif/command" "^1"
+    "@oclif/config" "^1"
+    babel-eslint "^10.1.0"
+    debug "^4.1.1"
+    ember-template-lint "^2.5.2"
+    eslint "^6.8.0"
+    eslint-plugin-ember "^8.4.0"
+    tslib "^1"
+
+"@checkup/plugin-ember@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@checkup/plugin-ember/-/plugin-ember-0.0.7.tgz#401872fe9a7c76a933aa3a7a04820efceaf3527f"
+  integrity sha512-wk7ffPdfrKErw3+v6a5Ef+6i8VVtHT5pH9E+5ydBgNOzFVlMscPkdnjelsFz5qnheVvMvNBqSW5Wm7NwVyhAlg==
+  dependencies:
+    "@checkup/core" "0.0.7"
+    "@oclif/command" "^1"
+    "@oclif/config" "^1"
+    tslib "^1"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
