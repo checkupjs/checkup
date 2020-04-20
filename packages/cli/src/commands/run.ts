@@ -22,6 +22,21 @@ import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import { getReporter } from '../reporters';
 
+export type RunArgs = {
+  [name: string]: any;
+};
+
+export type RunFlags = {
+  version: void;
+  help: void;
+  force: boolean;
+  silent: boolean;
+  reporter: string;
+  reportOutputPath: string;
+  task: string | undefined;
+  config: string | undefined;
+};
+
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
 
@@ -55,49 +70,56 @@ export default class RunCommand extends Command {
     }),
   };
 
+  runArgs!: RunArgs;
+  runFlags!: RunFlags;
   defaultTasks: MetaTaskList = new MetaTaskList();
   metaTaskResults: MetaTaskResult[] = [];
   pluginTasks: TaskList = new TaskList();
   pluginTaskResults: TaskResult[] = [];
   checkupConfig!: CheckupConfig;
 
-  async run() {
+  public async init() {
     let { args, flags } = this.parse(RunCommand);
 
+    this.runArgs = args;
+    this.runFlags = flags;
+  }
+
+  public async run() {
     ui.action.start('Checking up on your project');
 
-    await this.loadConfig(flags.config, args.path);
+    await this.loadConfig();
 
-    this.validatePackageJson(args.path);
+    this.validatePackageJson();
 
-    await this.registerTasks(args);
-    await this.runTasks(flags);
-    await this.report(flags);
+    await this.registerTasks();
+    await this.runTasks();
+    await this.report();
 
     ui.action.stop();
   }
 
-  private async registerDefaultTasks(cliArguments: any) {
-    this.defaultTasks.registerTask(new ProjectMetaTask(cliArguments));
-    this.defaultTasks.registerTask(new CheckupMetaTask(cliArguments, this.checkupConfig));
+  private async registerDefaultTasks() {
+    this.defaultTasks.registerTask(new ProjectMetaTask(this.runArgs));
+    this.defaultTasks.registerTask(new CheckupMetaTask(this.runArgs, this.checkupConfig));
   }
 
-  private async runTasks(flags: any) {
-    if (flags.task !== undefined) {
+  private async runTasks() {
+    if (this.runFlags.task !== undefined) {
       let taskFound: boolean = false;
 
-      if (this.defaultTasks.hasTask(flags.task)) {
+      if (this.defaultTasks.hasTask(this.runFlags.task)) {
         taskFound = true;
-        this.metaTaskResults = [await this.defaultTasks.runTask(flags.task)];
+        this.metaTaskResults = [await this.defaultTasks.runTask(this.runFlags.task)];
       }
 
-      if (this.pluginTasks.hasTask(flags.task)) {
+      if (this.pluginTasks.hasTask(this.runFlags.task)) {
         taskFound = true;
-        this.pluginTaskResults = [await this.pluginTasks.runTask(flags.task)];
+        this.pluginTaskResults = [await this.pluginTasks.runTask(this.runFlags.task)];
       }
 
       if (!taskFound) {
-        this.error(`Cannot find the ${flags.task} task.`);
+        this.error(`Cannot find the ${this.runFlags.task} task.`);
       }
     } else {
       this.metaTaskResults = await this.defaultTasks.runTasks();
@@ -105,16 +127,16 @@ export default class RunCommand extends Command {
     }
   }
 
-  private async loadConfig(configFlag: any, pathArgument: string) {
+  private async loadConfig() {
     try {
-      const configLoader = configFlag
-        ? getFilepathLoader(configFlag)
-        : getSearchLoader(pathArgument);
+      const configLoader = this.runArgs.config
+        ? getFilepathLoader(this.runArgs.config)
+        : getSearchLoader(this.runArgs.path);
       const configService = await CheckupConfigService.load(configLoader);
 
       this.checkupConfig = configService.get();
 
-      let plugins = await loadPlugins(this.checkupConfig.plugins, pathArgument);
+      let plugins = await loadPlugins(this.checkupConfig.plugins, this.runArgs.path);
 
       this.config.plugins.push(...plugins);
     } catch (error) {
@@ -122,36 +144,36 @@ export default class RunCommand extends Command {
     }
   }
 
-  private validatePackageJson(pathArgument: string) {
+  private validatePackageJson() {
     try {
-      getPackageJson(pathArgument);
+      getPackageJson(this.runArgs.path);
     } catch (error) {
       this.error(
         `The ${path.resolve(
-          pathArgument
+          this.runArgs.path
         )} directory found through the 'path' option does not contain a package.json file. You must run checkup in a directory with a package.json file.`,
         error
       );
     }
   }
 
-  private async registerTasks(cliArguments: any) {
-    await this.registerDefaultTasks(cliArguments);
+  private async registerTasks() {
+    await this.registerDefaultTasks();
 
     await this.config.runHook('register-parsers', {
       registerParser,
     });
 
     await this.config.runHook('register-tasks', {
-      cliArguments,
-      cliFlags: flags,
+      cliArguments: this.runArgs,
+      cliFlags: this.runFlags,
       parsers: getRegisteredParsers(),
       tasks: this.pluginTasks,
     });
   }
 
-  private async report(flags: any) {
-    let generateReport = getReporter(flags, this.metaTaskResults, this.pluginTaskResults);
+  private async report() {
+    let generateReport = getReporter(this.runFlags, this.metaTaskResults, this.pluginTaskResults);
 
     await generateReport();
   }
