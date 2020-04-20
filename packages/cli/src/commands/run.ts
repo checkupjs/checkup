@@ -85,7 +85,7 @@ export default class RunCommand extends Command {
     this.runFlags = flags;
   }
 
-  async run() {
+  public async run() {
     ui.action.start('Checking up on your project');
 
     await this.loadConfig();
