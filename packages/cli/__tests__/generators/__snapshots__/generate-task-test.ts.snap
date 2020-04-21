@@ -128,10 +128,9 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  pdf() {
-    return undefined;
-  }
-}"
+  pdf() {}
+}
+"
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults 3`] = `
@@ -223,10 +222,9 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  pdf() {
-    return undefined;
-  }
-}"
+  pdf() {}
+}
+"
 `;
 
 exports[`task generator generates correct files with category 3`] = `
@@ -318,10 +316,9 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  pdf() {
-    return undefined;
-  }
-}"
+  pdf() {}
+}
+"
 `;
 
 exports[`task generator generates correct files with priority 3`] = `
@@ -413,10 +410,9 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  pdf() {
-    return undefined;
-  }
-}"
+  pdf() {}
+}
+"
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 3`] = `
@@ -495,10 +491,9 @@ export default class MyBarTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  pdf() {
-    return undefined;
-  }
-}"
+  pdf() {}
+}
+"
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 6`] = `
