@@ -23,12 +23,11 @@ exports[`plugin generator generates plugin into existing directory with defaults
     \\"typescript\\": \\"^3.8\\"
   },
   \\"engines\\": {
-    \\"node\\": \\"10.* || >= 12.*\\"
+    \\"node\\": \\">= 12.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
-    \\"/oclif.manifest.json\\",
-    \\"/yarn.lock\\"
+    \\"/oclif.manifest.json\\"
   ],
   \\"keywords\\": [
     \\"checkup-plugin\\",
@@ -182,12 +181,11 @@ exports[`plugin generator generates plugin with custom options 1`] = `
     \\"typescript\\": \\"^3.8\\"
   },
   \\"engines\\": {
-    \\"node\\": \\"10.* || >= 12.*\\"
+    \\"node\\": \\">= 12.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
-    \\"/oclif.manifest.json\\",
-    \\"/yarn.lock\\"
+    \\"/oclif.manifest.json\\"
   ],
   \\"keywords\\": [
     \\"checkup-plugin\\",
@@ -341,12 +339,11 @@ exports[`plugin generator generates plugin with defaults 1`] = `
     \\"typescript\\": \\"^3.8\\"
   },
   \\"engines\\": {
-    \\"node\\": \\"10.* || >= 12.*\\"
+    \\"node\\": \\">= 12.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
-    \\"/oclif.manifest.json\\",
-    \\"/yarn.lock\\"
+    \\"/oclif.manifest.json\\"
   ],
   \\"keywords\\": [
     \\"checkup-plugin\\",
@@ -500,12 +497,11 @@ exports[`plugin generator generates plugin with unmodified name with defaults 1`
     \\"typescript\\": \\"^3.8\\"
   },
   \\"engines\\": {
-    \\"node\\": \\"10.* || >= 12.*\\"
+    \\"node\\": \\">= 12.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
-    \\"/oclif.manifest.json\\",
-    \\"/yarn.lock\\"
+    \\"/oclif.manifest.json\\"
   ],
   \\"keywords\\": [
     \\"checkup-plugin\\",
