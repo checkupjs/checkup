@@ -1,7 +1,7 @@
 {
   "name": "@checkup/cli",
   "description": "A CLI that provides health check information about your project.",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bin": {
     "checkup": "./bin/run"
@@ -10,13 +10,13 @@
   "dependencies": {
     "@babel/traverse": "^7.9.5",
     "@babel/types": "7.9.5",
-    "@checkup/core": "0.0.8",
+    "@checkup/core": "0.0.9",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
     "chalk": "^4.0.0",
-    "checkup-plugin-ember": "0.0.8",
-    "checkup-plugin-ember-octane": "0.0.8",
+    "checkup-plugin-ember": "0.0.9",
+    "checkup-plugin-ember-octane": "0.0.9",
     "chrome-debugging-client": "^1.2.0",
     "date-and-time": "^0.13.1",
     "debug": "^4.1.1",
@@ -34,7 +34,7 @@
     "yeoman-generator": "^4.8.0"
   },
   "devDependencies": {
-    "@checkup/test-helpers": "0.0.8",
+    "@checkup/test-helpers": "0.0.9",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "@types/yeoman-environment": "^2.3.3",

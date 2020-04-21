@@ -1,3 +1,13 @@
+## v0.0.9 (2020-04-21)
+
+#### :house: Internal
+* `cli`
+  * [#296](https://github.com/checkupjs/checkup/pull/296) Updating package references ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.0.8 (2020-04-21)
 
 #### :boom: Breaking Change
