@@ -10,7 +10,7 @@
       "path": "../core"
     },
     {
-      "path": "../plugin-ember"
+      "path": "../checkup-plugin-ember"
     },
     {
       "path": "../checkup-plugin-ember-octane"
