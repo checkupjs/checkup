@@ -1,9 +1,9 @@
-import { DependencyResult, ReportComponentType, TaskMetaData, Grade } from '../types/tasks';
+import { TableResult, ReportComponentType, TaskMetaData, Grade } from '../types/tasks';
 
 import { ReportComponentData } from './report-component-data';
 
-export interface ResultToRender {
-  result: DependencyResult;
+export interface FormattedResult {
+  result: TableResult;
   rowClass: string;
 }
 
@@ -20,13 +20,13 @@ const GRADE_CLASSES: GradeClass = {
 
 export default class TableData extends ReportComponentData {
   tableHeaders: Array<string>;
-  resultsToRender: ResultToRender[];
+  formattedResult: FormattedResult[];
   grade?: Grade;
 
-  constructor(meta: TaskMetaData, resultData: DependencyResult[]) {
+  constructor(meta: TaskMetaData, resultData: TableResult[]) {
     super(meta, ReportComponentType.Table);
 
-    this.resultsToRender = resultData.map(({ name, value, grade }) => ({
+    this.formattedResult = resultData.map(({ name, value, grade }) => ({
       result: { name, value },
       rowClass: grade ? GRADE_CLASSES[grade] : 'bg-gray-100',
     }));
@@ -39,10 +39,10 @@ export default class TableData extends ReportComponentData {
   }
 
   get containsGrades() {
-    return this.resultsToRender[0].result.grade !== undefined;
+    return this.formattedResult[0].result.grade !== undefined;
   }
 
-  _deriveTableHeaders(resultData: DependencyResult[]): Array<string> {
+  _deriveTableHeaders(resultData: TableResult[]): Array<string> {
     return Object.keys(resultData[0]).filter((item) => item !== 'grade');
   }
 

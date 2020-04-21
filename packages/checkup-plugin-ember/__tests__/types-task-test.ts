@@ -118,4 +118,38 @@ describe('types-task', () => {
 
     expect(typesTaskResult.json()).toMatchSnapshot();
   });
+
+  it('returns all the types found in the app and outputs to PDF', async () => {
+    project.files = Object.assign(project.files, {
+      'index.js': 'index js file',
+      addon: TYPES,
+    });
+
+    project.writeSync();
+
+    const result = await new TypesTask({ path: project.baseDir }).run();
+    const typesTaskResult = <TypesTaskResult>result;
+
+    expect(typesTaskResult.pdf()).toMatchSnapshot();
+  });
+
+  it('returns all the types (including nested) found in the app and outputs to PDF', async () => {
+    project.files = Object.assign(project.files, {
+      'index.js': 'index js file',
+      addon: TYPES,
+    });
+
+    project.addInRepoAddon('ember-super-button', 'latest');
+
+    // @ts-ignore
+    project.files.lib['ember-super-button'].addon = TYPES;
+    // @ts-ignore
+
+    project.writeSync();
+
+    const result = await new TypesTask({ path: project.baseDir }).run();
+    const typesTaskResult = <TypesTaskResult>result;
+
+    expect(typesTaskResult.pdf()).toMatchSnapshot();
+  });
 });

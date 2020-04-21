@@ -37,6 +37,13 @@ describe('project-info-task', () => {
 
       expect(taskResult.json()).toMatchSnapshot();
     });
+
+    it('can read project info as PDF', async () => {
+      const result = await new EmberProjectTask({ path: emberProject.baseDir }).run();
+      const taskResult = <EmberProjectTaskResult>result;
+
+      expect(taskResult.pdf()).toMatchSnapshot();
+    });
   });
 
   describe('for Ember Addons', () => {
@@ -70,6 +77,13 @@ describe('project-info-task', () => {
       const taskResult = <EmberProjectTaskResult>result;
 
       expect(taskResult.json()).toMatchSnapshot();
+    });
+
+    it('can read project info as PDF', async () => {
+      const result = await new EmberProjectTask({ path: emberProject.baseDir }).run();
+      const taskResult = <EmberProjectTaskResult>result;
+
+      expect(taskResult.pdf()).toMatchSnapshot();
     });
   });
 });

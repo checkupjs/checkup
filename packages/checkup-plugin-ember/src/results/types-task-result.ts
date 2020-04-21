@@ -1,4 +1,4 @@
-import { BaseTaskResult, TaskItemData, TaskResult, ui, NumericalCardData } from '@checkup/core';
+import { BaseTaskResult, TaskItemData, TaskResult, ui, TableData } from '@checkup/core';
 
 export default class TypesTaskResult extends BaseTaskResult implements TaskResult {
   types!: TaskItemData[];
@@ -19,7 +19,14 @@ export default class TypesTaskResult extends BaseTaskResult implements TaskResul
   }
 
   pdf() {
-    // TODO: add in correct data type for TypesTaskResult
-    return [new NumericalCardData(this.meta, 22, 'this is a description of your result')];
+    return [
+      new TableData(
+        this.meta,
+        this.types.map((type) => ({
+          name: type.type,
+          value: type.total,
+        }))
+      ),
+    ];
   }
 }

@@ -47,9 +47,9 @@ export const enum Priority {
   Low = 'low',
 }
 
-export interface DependencyResult {
+export interface TableResult {
   name: string;
-  value: string;
+  value: string | number;
   grade?: Grade;
 }
 

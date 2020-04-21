@@ -97,6 +97,98 @@ Object {
 }
 `;
 
+exports[`types-task returns all the types (including nested) found in the app and outputs to PDF 1`] = `
+Array [
+  TableData {
+    "componentType": "table",
+    "formattedResult": Array [
+      Object {
+        "result": Object {
+          "name": "components",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "controllers",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "helpers",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "initializers",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "instance-initializers",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "mixins",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "models",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "routes",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "services",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "templates",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+    ],
+    "meta": Object {
+      "friendlyTaskName": "Project Types",
+      "taskClassification": Object {
+        "category": "insights",
+        "priority": "high",
+      },
+      "taskName": "types",
+    },
+    "tableHeaders": Array [
+      "name",
+      "value",
+    ],
+  },
+]
+`;
+
 exports[`types-task returns all the types (including nested) found in the app and outputs to the console 1`] = `
 "=== Project Types
 
@@ -200,6 +292,98 @@ Object {
     ],
   },
 }
+`;
+
+exports[`types-task returns all the types found in the app and outputs to PDF 1`] = `
+Array [
+  TableData {
+    "componentType": "table",
+    "formattedResult": Array [
+      Object {
+        "result": Object {
+          "name": "components",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "controllers",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "helpers",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "initializers",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "instance-initializers",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "mixins",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "models",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "routes",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "services",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "templates",
+          "value": 1,
+        },
+        "rowClass": "bg-gray-100",
+      },
+    ],
+    "meta": Object {
+      "friendlyTaskName": "Project Types",
+      "taskClassification": Object {
+        "category": "insights",
+        "priority": "high",
+      },
+      "taskName": "types",
+    },
+    "tableHeaders": Array [
+      "name",
+      "value",
+    ],
+  },
+]
 `;
 
 exports[`types-task returns all the types found in the app and outputs to the console 1`] = `
