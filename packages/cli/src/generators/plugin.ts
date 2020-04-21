@@ -1,9 +1,10 @@
 import * as Generator from 'yeoman-generator';
 import * as chalk from 'chalk';
-import * as fs from 'fs';
 import * as path from 'path';
 
 import { getVersion } from '../helpers/get-version';
+
+const PLUGIN_DIR_PATTERN = /checkup-plugin-.*/;
 
 export default class PluginGenerator extends Generator {
   answers!: {
@@ -15,6 +16,16 @@ export default class PluginGenerator extends Generator {
 
   private get _ext() {
     return this.options.typescript ? 'ts' : 'js';
+  }
+
+  private get _destinationPath() {
+    let cwd = process.cwd();
+
+    if (PLUGIN_DIR_PATTERN.test(cwd)) {
+      return cwd;
+    }
+
+    return path.join(cwd, this.options.name);
   }
 
   async prompting() {
@@ -62,6 +73,8 @@ export default class PluginGenerator extends Generator {
       ]);
     }
 
+    this._normalizeName();
+
     this.options.typescript = this.answers.typescript;
     this.options.description = this.answers.description;
     this.options.author = this.answers.author;
@@ -70,7 +83,7 @@ export default class PluginGenerator extends Generator {
 
   writing() {
     this.sourceRoot(path.join(__dirname, '../../templates/src/plugin'));
-    this.destinationRoot(path.join(process.cwd(), this.options.name));
+    this.destinationRoot(this._destinationPath);
 
     this.fs.copyTpl(
       this.templatePath(`src/index.${this._ext}.ejs`),
@@ -91,11 +104,19 @@ export default class PluginGenerator extends Generator {
     );
 
     this.fs.copy(
+      this.templatePath('__tests__/.gitkeep'),
+      this.destinationPath('__tests__/.gitkeep')
+    );
+    this.fs.copy(
+      this.templatePath('src/results/.gitkeep'),
+      this.destinationPath('src/results/.gitkeep')
+    );
+    this.fs.copy(
       this.templatePath('src/tasks/.gitkeep'),
       this.destinationPath('src/tasks/.gitkeep')
     );
-    this.fs.copy(this.templatePath('jest.config.js'), this.destinationPath('jest.config.js'));
-    this.fs.copy(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'));
+    this.fs.copy(this.templatePath('jest.config.js.ejs'), this.destinationPath('jest.config.js'));
+    this.fs.copy(this.templatePath('tsconfig.json.ejs'), this.destinationPath('tsconfig.json'));
 
     this.fs.copyTpl(
       this.templatePath('package.json.ejs'),
@@ -108,8 +129,13 @@ export default class PluginGenerator extends Generator {
       this.destinationPath('README.md'),
       this.options
     );
+  }
 
-    fs.mkdirSync(this.destinationPath('__tests__'), { recursive: true });
-    fs.mkdirSync(this.destinationPath('src/results'), { recursive: true });
+  _normalizeName(): void {
+    let name = this.options.name;
+
+    if (!PLUGIN_DIR_PATTERN.test(name)) {
+      this.options.name = `checkup-plugin-${name}`;
+    }
   }
 }
