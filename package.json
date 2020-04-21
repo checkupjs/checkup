@@ -58,7 +58,7 @@
     "type-fest": "^0.13.1",
     "typescript": "^3.8",
     "release-it": "^13.5.4",
-    "release-it-lerna-changelog": "^2.1.2",
+    "release-it-lerna-changelog": "^2.2.0",
     "release-it-yarn-workspaces": "^1.2.0"
   },
   "publishConfig": {
