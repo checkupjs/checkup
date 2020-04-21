@@ -73,14 +73,20 @@ function requiresChart(resultsForPdf: any): boolean {
 }
 
 function appendChartjsCssSourceFiles(reportTemplateRaw: string): string {
-  const CHART_CSS = readFileSync(path.join(__dirname, '../static/chart-bootstrap.css'), 'utf8');
+  const CHART_CSS = readFileSync(
+    path.join(__dirname, '../../static/external-libraries/chart-bootstrap.css'),
+    'utf8'
+  );
   return reportTemplateRaw
     .toString()
     .replace('{{!-- CHECKUP-CHART-BOOTSTRAP.CSS --}}', `<style>${CHART_CSS}</style>`);
 }
 
 function appendChartjsJsSourceFiles(reportTemplateRaw: string): string {
-  const CHART_JS = readFileSync(path.join(__dirname, '../static/chartjs-2.9.3.min.js'), 'utf8');
+  const CHART_JS = readFileSync(
+    path.join(__dirname, '../../static/external-libraries/chartjs-2.9.3.min.js'),
+    'utf8'
+  );
 
   return reportTemplateRaw
     .toString()
