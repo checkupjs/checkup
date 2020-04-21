@@ -2534,10 +2534,10 @@ detect-repo-changelog@1.0.1:
     lodash.find "^4.6.0"
     pify "^2.3.0"
 
-devtools-protocol@^0.0.758979:
-  version "0.0.758979"
-  resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.758979.tgz#65c3349ad74a0ff5dcf77c5a7cda3392d6131582"
-  integrity sha512-rU7YGyga8TR+SS+XQaX5Nbd0qa9sb8MGrChAvBXWuzIBMGOzNgUAgsKwMiOD5cji4VUk6qYWHfM1VkytjRmYag==
+devtools-protocol@^0.0.760817:
+  version "0.0.760817"
+  resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.760817.tgz#9a12db9f05b9bd87a23b0fdf67ac22a290d8f9a0"
+  integrity sha512-Bhlv5qzwu3ieiyaoNM7C4785L/2JMQDXORH5yUqHUF6QO7f+PJoS2qU/56jY+1eNQJrap6hJO7MfXvkHApK4Og==
 
 diff-sequences@^25.2.6:
   version "25.2.6"
