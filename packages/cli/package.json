@@ -42,7 +42,7 @@
     "yeoman-test": "^2.4.1"
   },
   "engines": {
-    "node": "10.* || >= 12.*"
+    "node": ">= 12.*"
   },
   "files": [
     "/bin",
