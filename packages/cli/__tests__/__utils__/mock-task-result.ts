@@ -17,6 +17,6 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
   }
 
   pdf() {
-    return new NumericalCardData(this.meta, this.result, 'this is a description of your result');
+    return [new NumericalCardData(this.meta, this.result, 'this is a description of your result')];
   }
 }

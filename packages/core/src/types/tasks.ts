@@ -20,7 +20,7 @@ export interface Task {
 export interface TaskResult {
   stdout: () => void;
   json: () => JsonMetaTaskResult | JsonTaskResult;
-  pdf: () => ReportResultData;
+  pdf: () => ReportResultData[];
 }
 
 export interface TaskMetaData {

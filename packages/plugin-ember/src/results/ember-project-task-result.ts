@@ -20,6 +20,6 @@ export default class EmberProjectTaskResult extends BaseTaskResult implements Ta
 
   pdf() {
     // TODO: add in correct data type for EmberProjectTaskResult
-    return new NumericalCardData(this.meta, 22, 'this is a description of your result');
+    return [new NumericalCardData(this.meta, 22, 'this is a description of your result')];
   }
 }
