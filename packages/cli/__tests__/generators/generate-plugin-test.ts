@@ -90,7 +90,7 @@ describe('plugin generator', () => {
       .withPrompts({
         description: 'My custom plugin',
         author: 'scalvert <steve.calvert@gmail.com>',
-        repository: 'http://github.com/scalvert/plugin-custom',
+        repository: 'http://github.com/scalvert/checkup-plugin-my-plugin',
       });
 
     let root = testRoot(dir, 'checkup-plugin-my-plugin');

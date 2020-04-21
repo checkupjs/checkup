@@ -141,9 +141,17 @@ export default hook;
 
 exports[`plugin generator generates plugin into existing directory with defaults 7`] = `""`;
 
-exports[`plugin generator generates plugin into existing directory with defaults 8`] = `Array []`;
+exports[`plugin generator generates plugin into existing directory with defaults 8`] = `
+Array [
+  ".gitkeep",
+]
+`;
 
-exports[`plugin generator generates plugin into existing directory with defaults 9`] = `Array []`;
+exports[`plugin generator generates plugin into existing directory with defaults 9`] = `
+Array [
+  ".gitkeep",
+]
+`;
 
 exports[`plugin generator generates plugin into existing directory with defaults 10`] = `
 Array [
@@ -194,7 +202,7 @@ exports[`plugin generator generates plugin with custom options 1`] = `
       \\"register-tasks\\": \\"./lib/hooks/register-tasks\\"
     }
   },
-  \\"repository\\": \\"http://github.com/scalvert/plugin-custom\\",
+  \\"repository\\": \\"http://github.com/scalvert/checkup-plugin-my-plugin\\",
   \\"scripts\\": {
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
@@ -292,9 +300,17 @@ export default hook;
 
 exports[`plugin generator generates plugin with custom options 7`] = `""`;
 
-exports[`plugin generator generates plugin with custom options 8`] = `Array []`;
+exports[`plugin generator generates plugin with custom options 8`] = `
+Array [
+  ".gitkeep",
+]
+`;
 
-exports[`plugin generator generates plugin with custom options 9`] = `Array []`;
+exports[`plugin generator generates plugin with custom options 9`] = `
+Array [
+  ".gitkeep",
+]
+`;
 
 exports[`plugin generator generates plugin with custom options 10`] = `
 Array [
@@ -443,9 +459,17 @@ export default hook;
 
 exports[`plugin generator generates plugin with defaults 7`] = `""`;
 
-exports[`plugin generator generates plugin with defaults 8`] = `Array []`;
+exports[`plugin generator generates plugin with defaults 8`] = `
+Array [
+  ".gitkeep",
+]
+`;
 
-exports[`plugin generator generates plugin with defaults 9`] = `Array []`;
+exports[`plugin generator generates plugin with defaults 9`] = `
+Array [
+  ".gitkeep",
+]
+`;
 
 exports[`plugin generator generates plugin with defaults 10`] = `
 Array [
@@ -594,9 +618,17 @@ export default hook;
 
 exports[`plugin generator generates plugin with unmodified name with defaults 7`] = `""`;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 8`] = `Array []`;
+exports[`plugin generator generates plugin with unmodified name with defaults 8`] = `
+Array [
+  ".gitkeep",
+]
+`;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 9`] = `Array []`;
+exports[`plugin generator generates plugin with unmodified name with defaults 9`] = `
+Array [
+  ".gitkeep",
+]
+`;
 
 exports[`plugin generator generates plugin with unmodified name with defaults 10`] = `
 Array [

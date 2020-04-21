@@ -1,6 +1,5 @@
 import * as Generator from 'yeoman-generator';
 import * as chalk from 'chalk';
-import * as fs from 'fs';
 import * as path from 'path';
 
 import { getVersion } from '../helpers/get-version';
@@ -105,11 +104,19 @@ export default class PluginGenerator extends Generator {
     );
 
     this.fs.copy(
+      this.templatePath('__tests__/.gitkeep'),
+      this.destinationPath('__tests__/.gitkeep')
+    );
+    this.fs.copy(
+      this.templatePath('src/results/.gitkeep'),
+      this.destinationPath('src/results/.gitkeep')
+    );
+    this.fs.copy(
       this.templatePath('src/tasks/.gitkeep'),
       this.destinationPath('src/tasks/.gitkeep')
     );
-    this.fs.copy(this.templatePath('jest.config.js'), this.destinationPath('jest.config.js'));
-    this.fs.copy(this.templatePath('tsconfig.json'), this.destinationPath('tsconfig.json'));
+    this.fs.copy(this.templatePath('jest.config.js.ejs'), this.destinationPath('jest.config.js'));
+    this.fs.copy(this.templatePath('tsconfig.json.ejs'), this.destinationPath('tsconfig.json'));
 
     this.fs.copyTpl(
       this.templatePath('package.json.ejs'),
@@ -122,9 +129,6 @@ export default class PluginGenerator extends Generator {
       this.destinationPath('README.md'),
       this.options
     );
-
-    fs.mkdirSync(this.destinationPath('__tests__'), { recursive: true });
-    fs.mkdirSync(this.destinationPath('src/results'), { recursive: true });
   }
 
   _normalizeName(): void {
