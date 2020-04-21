@@ -1,3 +1,48 @@
+## v0.0.8 (2020-04-21)
+
+#### :boom: Breaking Change
+* `checkup-plugin-ember-octane`, `cli`, `plugin-ember-octane`, `plugin-ember`
+  * [#278](https://github.com/checkupjs/checkup/pull/278) Renaming plugins to `checkup-*` ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `cli`
+  * [#283](https://github.com/checkupjs/checkup/pull/283) Updating plugin generator to standardize plugin naming ([@scalvert](https://github.com/scalvert))
+* `cli`, `core`
+  * [#280](https://github.com/checkupjs/checkup/pull/280) Cleanup of config generator ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `cli`
+  * [#295](https://github.com/checkupjs/checkup/pull/295) Moving static external libraries out of src ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember`, `cli`
+  * [#294](https://github.com/checkupjs/checkup/pull/294) Fixing misnamed packages ([@scalvert](https://github.com/scalvert))
+
+#### :memo: Documentation
+* `cli`
+  * [#268](https://github.com/checkupjs/checkup/pull/268) Cleaning up documentation ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `checkup-plugin-ember`, `cli`, `core`
+  * [#292](https://github.com/checkupjs/checkup/pull/292) Backporting table tasks to return table data ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `cli`, `core`, `test-helpers`
+  * [#293](https://github.com/checkupjs/checkup/pull/293) Removing all relics of node 10 ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember-octane`, `cli`, `core`, `plugin-ember`
+  * [#281](https://github.com/checkupjs/checkup/pull/281) Modifying pdf hook to return array of values ([@carakessler](https://github.com/carakessler))
+  * [#277](https://github.com/checkupjs/checkup/pull/277) Splitting out pdf results into sections ([@carakessler](https://github.com/carakessler))
+* Other
+  * [#282](https://github.com/checkupjs/checkup/pull/282) Removing node 10 from our CI test flow ([@carakessler](https://github.com/carakessler))
+* `cli`
+  * [#276](https://github.com/checkupjs/checkup/pull/276) Cleaning up types in run command ([@scalvert](https://github.com/scalvert))
+  * [#266](https://github.com/checkupjs/checkup/pull/266) Displaying results from meta tasks in the pdf  ([@carakessler](https://github.com/carakessler))
+  * [#267](https://github.com/checkupjs/checkup/pull/267) Adding tests for meta-task-list ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember-octane`, `cli`, `plugin-ember-octane`, `plugin-ember`
+  * [#278](https://github.com/checkupjs/checkup/pull/278) Renaming plugins to `checkup-*` ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.0.7 (2020-04-16)
 
 #### :rocket: Enhancement
