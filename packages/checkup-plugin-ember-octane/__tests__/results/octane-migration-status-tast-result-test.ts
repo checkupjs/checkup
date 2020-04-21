@@ -3,7 +3,7 @@ import { TemplateLintReport, getRegisteredParsers } from '@checkup/core';
 import { CLIEngine } from 'eslint';
 import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
 import OctaneMigrationStatusTaskResult from '../../src/results/octane-migration-status-task-result';
-import { stdout } from '@checkup/test-helpers';
+import { stdout, filterPieChartDataForTest } from '@checkup/test-helpers';
 
 describe('octane-migration-status-task-result', () => {
   let sampleESLintReport: CLIEngine.LintReport;
@@ -41,6 +41,20 @@ describe('octane-migration-status-task-result', () => {
       let jsonResults = taskResult.json();
 
       expect(jsonResults).toMatchSnapshot();
+    });
+  });
+
+  describe('PDF output', () => {
+    test('it should have basic PDF results', () => {
+      let task = new OctaneMigrationStatusTask({}, getRegisteredParsers());
+      let taskResult = new OctaneMigrationStatusTaskResult(
+        task.meta,
+        sampleESLintReport,
+        sampleTemplateLintReport
+      );
+      let pdfResults = taskResult.pdf();
+
+      expect(filterPieChartDataForTest(pdfResults)).toMatchSnapshot();
     });
   });
 });
