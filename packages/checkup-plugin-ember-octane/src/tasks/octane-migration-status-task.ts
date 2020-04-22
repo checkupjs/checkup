@@ -11,13 +11,12 @@ import {
   Priority,
   Task,
   TemplateLintReport,
+  TemplateLinter,
 } from '@checkup/core';
 import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lint-configs';
 
 import { CLIEngine } from 'eslint';
 import OctaneMigrationStatusTaskResult from '../results/octane-migration-status-task-result';
-
-const TemplateLinter = require('ember-template-lint');
 
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {
@@ -30,7 +29,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   };
 
   private eslintParser: Parser<CLIEngine.LintReport>;
-  private templateLinter: typeof TemplateLinter;
+  private templateLinter: TemplateLinter;
 
   constructor(
     cliArguments: any,
