@@ -14,7 +14,7 @@
     "globby": "^11.0.0",
     "io-ts": "^2.2.1",
     "js-yaml": "^3.13.1",
-    "resolve": "^1.16.1"
+    "resolve": "^1.17.0"
   },
   "devDependencies": {
     "@types/eslint": "^6.8.0",
