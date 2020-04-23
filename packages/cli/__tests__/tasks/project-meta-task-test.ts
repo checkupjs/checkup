@@ -26,15 +26,10 @@ describe('project-meta-task', () => {
       taskResult.stdout();
 
       expect(stdout()).toMatchInlineSnapshot(`
-        "=== Project
-        name:    checkup-app
-        version: 0.0.0
+        "
+        Checkup report generated for checkup-app v0.0.0 .
 
-        === Repository Information
-        Active days:   0 days
-        Age:           0 days
-        Total commits: 0
-        Total files:   0
+        This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
         "
       `);

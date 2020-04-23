@@ -1,7 +1,7 @@
 import { EmberProject, stdout } from '@checkup/test-helpers';
 
-import { DependenciesTask } from '../src/tasks';
-import { DependenciesTaskResult } from '../src/results';
+import EmberDependenciesTask from '../src/tasks/ember-dependencies-task';
+import EmberDependenciesTaskResult from '../src/results/ember-dependencies-task-result';
 
 describe('dependencies-task', () => {
   let emberProject: EmberProject;
@@ -22,8 +22,8 @@ describe('dependencies-task', () => {
   });
 
   it('detects Ember dependencies', async () => {
-    const result = await new DependenciesTask({ path: emberProject.baseDir }).run();
-    const dependencyTaskResult = <DependenciesTaskResult>result;
+    const result = await new EmberDependenciesTask({ path: emberProject.baseDir }).run();
+    const dependencyTaskResult = <EmberDependenciesTaskResult>result;
 
     dependencyTaskResult.stdout();
 
@@ -31,15 +31,15 @@ describe('dependencies-task', () => {
   });
 
   it('detects Ember dependencies as JSON', async () => {
-    const result = await new DependenciesTask({ path: emberProject.baseDir }).run();
-    const dependencyTaskResult = <DependenciesTaskResult>result;
+    const result = await new EmberDependenciesTask({ path: emberProject.baseDir }).run();
+    const dependencyTaskResult = <EmberDependenciesTaskResult>result;
 
     expect(dependencyTaskResult.json()).toMatchSnapshot();
   });
 
   it('detects Ember dependencies for html, and doesnt create a table without dependencies', async () => {
-    const result = await new DependenciesTask({ path: emberProject.baseDir }).run();
-    const dependencyTaskResult = <DependenciesTaskResult>result;
+    const result = await new EmberDependenciesTask({ path: emberProject.baseDir }).run();
+    const dependencyTaskResult = <EmberDependenciesTaskResult>result;
     const htmlResults = dependencyTaskResult.html();
 
     expect(htmlResults).toMatchSnapshot();

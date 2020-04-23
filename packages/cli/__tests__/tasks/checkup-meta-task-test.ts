@@ -47,9 +47,7 @@ describe('checkup-meta-task', () => {
       taskResult.stdout();
 
       expect(stdout()).toMatchInlineSnapshot(`
-        "=== Checkup Configuration
-        configHash: ae3266e319bdfb51db83810a2f4dd161
-        version:    0.0.0
+        "Generated using Checkup v0.0.0. Config: ae3266e319bdfb51db83810a2f4dd161
 
         "
       `);
@@ -89,9 +87,7 @@ describe('checkup-meta-task', () => {
       taskResult.stdout();
 
       expect(stdout()).toMatchInlineSnapshot(`
-        "=== Checkup Configuration
-        configHash: 705deefb6abf2b6d34f93cede7acba07
-        version:    0.0.0
+        "Generated using Checkup v0.0.0. Config: 705deefb6abf2b6d34f93cede7acba07
 
         "
       `);

@@ -1728,19 +1728,19 @@ Object {
 `;
 
 exports[`octane-migration-status-task-result console output simple console output 1`] = `
-"=== Ember Octane Migration Status
+"=== Ember Octane Migration Status ===
 
 Octane Violations: 33
 
-Migration Task      Completion Percentage 
-Native Class        9.09%                 
-Tagless Component   83.33%                
-Glimmer Component   66.67%                
-Tracked Properties  83.33%                
-Angle Brackets      66.67%                
-Use Named Arguments 100.00%               
-Own Properties      66.67%                
-Use Modifiers       66.67%                
+Octane Feature      Completion 
+Native Class        9.09%      
+Tagless Component   83.33%     
+Glimmer Component   66.67%     
+Tracked Properties  83.33%     
+Angle Brackets      66.67%     
+Use Named Arguments 100.00%    
+Own Properties      66.67%     
+Use Modifiers       66.67%     
 
 "
 `;

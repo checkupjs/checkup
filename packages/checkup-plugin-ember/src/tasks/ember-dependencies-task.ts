@@ -1,6 +1,6 @@
 import { BaseTask, Category, Priority, Task, TaskResult, getPackageJson } from '@checkup/core';
 
-import { DependenciesTaskResult } from '../results';
+import EmberDependenciesTaskResult from '../results/ember-dependencies-task-result';
 import { PackageJson } from 'type-fest';
 
 /**
@@ -56,18 +56,18 @@ function emberCliAddonFilter(dependency: string) {
   return dependency.startsWith('ember-cli');
 }
 
-export default class DependenciesTask extends BaseTask implements Task {
+export default class EmberDependenciesTask extends BaseTask implements Task {
   meta = {
     taskName: 'dependencies',
-    friendlyTaskName: 'Project Dependencies',
+    friendlyTaskName: 'Ember Dependencies',
     taskClassification: {
       category: Category.Insights,
-      priority: Priority.Low,
+      priority: Priority.High,
     },
   };
 
   async run(): Promise<TaskResult> {
-    let result: DependenciesTaskResult = new DependenciesTaskResult(this.meta);
+    let result: EmberDependenciesTaskResult = new EmberDependenciesTaskResult(this.meta);
     let packageJson = getPackageJson(this.args.path);
 
     result.emberLibraries['ember-source'] = findDependency(packageJson, 'ember-source');

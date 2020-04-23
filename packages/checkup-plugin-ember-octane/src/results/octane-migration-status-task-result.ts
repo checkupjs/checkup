@@ -1,18 +1,19 @@
 import {
   BaseTaskResult,
+  PieChartData,
   TaskMetaData,
   TaskResult,
-  ui,
   TemplateLintReport,
-  PieChartData,
+  ui,
 } from '@checkup/core';
-import { CLIEngine } from 'eslint';
-import { ESLintMigrationType, MigrationInfo, TemplateLintMigrationType } from '../types';
 import {
   ESLINT_MIGRATION_TASK_CONFIGS,
   TEMPLATE_LINT_MIGRATION_TASK_CONFIGS,
 } from '../utils/task-configs';
+import { ESLintMigrationType, MigrationInfo, TemplateLintMigrationType } from '../types';
 import { transformESLintReport, transformTemplateLintReport } from '../utils/transformers';
+
+import { CLIEngine } from 'eslint';
 
 export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
   migrationResults: MigrationInfo[];
@@ -29,20 +30,17 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
   }
 
   stdout() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-    ui.blankLine();
-    ui.styledObject({
-      'Octane Violations': this.totalViolations,
+    ui.section(this.meta.friendlyTaskName, () => {
+      ui.log(`${ui.emphasize('Octane Violations')}: ${this.totalViolations}`);
+      ui.blankLine();
+      ui.table(this.migrationResults, {
+        name: { header: 'Octane Feature' },
+        completion: {
+          header: 'Completion',
+          get: (row: MigrationInfo) => `${row.completionInfo.percentage}%`,
+        },
+      });
     });
-    ui.blankLine();
-    ui.table(this.migrationResults, {
-      name: { header: 'Migration Task' },
-      completion: {
-        header: 'Completion Percentage',
-        get: (row: MigrationInfo) => `${row.completionInfo.percentage}%`,
-      },
-    });
-    ui.blankLine();
   }
 
   json() {

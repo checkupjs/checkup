@@ -1,6 +1,6 @@
 import { Category, FileSearcherTask, Priority, Task, TaskResult } from '@checkup/core';
 
-import { TypesTaskResult } from '../results';
+import EmberTypesTaskResult from '../results/ember-types-task-result';
 
 const SEARCH_PATTERNS = {
   components: ['**/components/**/*.js'],
@@ -15,7 +15,7 @@ const SEARCH_PATTERNS = {
   templates: ['**/templates/**/*.hbs'],
 };
 
-export default class TypesTask extends FileSearcherTask implements Task {
+export default class EmberTypesTask extends FileSearcherTask implements Task {
   meta = {
     taskName: 'types',
     friendlyTaskName: 'Project Types',
@@ -30,7 +30,7 @@ export default class TypesTask extends FileSearcherTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    let result = new TypesTaskResult(this.meta);
+    let result = new EmberTypesTaskResult(this.meta);
     result.types = await this.searcher.search();
 
     return result;
