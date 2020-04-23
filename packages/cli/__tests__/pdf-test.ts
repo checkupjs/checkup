@@ -83,48 +83,24 @@ describe('generateHTML', () => {
         </div>
 
           <section class=\\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border border-gray-500 m-5\\">
-          <h3>insights</h3>
-              <div class=\\"grid grid-cols-3 gap-4\\">
-                <h4>high</h4>
-              </div>
-              <div class=\\"grid grid-cols-3 gap-4\\">
-                <h4>medium</h4>
-                  <div class=\\"max-w-sm rounded overflow-hidden shadow-lg bg-white\\">
-                    <div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
-                      <div class=\\"text-xl font-bold self-end\\">A</div>
-                      <h1 class=\\"text-xl self-center\\">Mock Task</h1>
-                      <div class=\\"text-4xl self-center\\">100</div>
-                      <p>bad patterns in your app</p>
+          <h3 class=\\"text-center capitalize text-3xl font-bold\\">insights</h3>
+              <h4 class=\\"capitalize text-2xl font-bold m-5\\">medium priority insightss</h4>
+                <div class=\\"grid grid-cols-2 gap-4\\">
+                    <div class=\\"border rounded overflow-hidden shadow-lg bg-white my-4 row-start-1\\">
+                      <div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
+                        <div class=\\"text-xl font-bold self-end\\">A</div>
+                        <h1 class=\\"text-xl self-center\\">Mock Task</h1>
+                        <div class=\\"text-4xl self-center\\">100</div>
+                        <p>bad patterns in your app</p>
+                      </div>
                     </div>
-                  </div>
-              </div>
-              <div class=\\"grid grid-cols-3 gap-4\\">
-                <h4>low</h4>
-              </div>
+                </div>
           </section>
           <section class=\\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border border-gray-500 m-5\\">
-          <h3>migrations</h3>
-              <div class=\\"grid grid-cols-3 gap-4\\">
-                <h4>high</h4>
-              </div>
-              <div class=\\"grid grid-cols-3 gap-4\\">
-                <h4>medium</h4>
-              </div>
-              <div class=\\"grid grid-cols-3 gap-4\\">
-                <h4>low</h4>
-              </div>
+          <h3 class=\\"text-center capitalize text-3xl font-bold\\">migrations</h3>
           </section>
           <section class=\\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border border-gray-500 m-5\\">
-          <h3>recommendations</h3>
-              <div class=\\"grid grid-cols-3 gap-4\\">
-                <h4>high</h4>
-              </div>
-              <div class=\\"grid grid-cols-3 gap-4\\">
-                <h4>medium</h4>
-              </div>
-              <div class=\\"grid grid-cols-3 gap-4\\">
-                <h4>low</h4>
-              </div>
+          <h3 class=\\"text-center capitalize text-3xl font-bold\\">recommendations</h3>
           </section>
 
       </body>

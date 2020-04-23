@@ -9,6 +9,8 @@ import { ReportComponentType, UIReportData } from '@checkup/core';
 
 import tmp = require('tmp');
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const hbsHelpers = require('handlebars-helpers')('comparison');
 const date = require('date-and-time');
 
 /**
