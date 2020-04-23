@@ -84,9 +84,9 @@ describe('generateHTML', () => {
 
           <section class=\\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border border-gray-500 m-5\\">
           <h3 class=\\"text-center capitalize text-3xl font-bold\\">insights</h3>
-              <h4 class=\\"capitalize text-2xl font-bold m-5\\">medium priority insightss</h4>
+              <h4 class=\\"capitalize text-2xl font-bold m-5\\">medium priority insights</h4>
                 <div class=\\"grid grid-cols-2 gap-4\\">
-                    <div class=\\"border rounded overflow-hidden shadow-lg bg-white my-4 row-start-1\\">
+                    <div style=\\"max-height:30rem\\" class=\\"border rounded overflow-scroll shadow-lg bg-white my-4 row-start-1\\">
                       <div class=\\"px-6 py-4 flex flex-wrap flex-col\\">
                         <div class=\\"text-xl font-bold self-end\\">A</div>
                         <h1 class=\\"text-xl self-center\\">Mock Task</h1>

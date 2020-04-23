@@ -25,10 +25,10 @@
     <h3 class="text-center capitalize text-3xl font-bold">{{resultCategory}}</h3>
       {{#each categorizedResults as |prioritizedResults priority|}}
         {{#if prioritizedResults}}
-        <h4 class="capitalize text-2xl font-bold m-5">{{priority}} priority {{resultCategory}}s</h4>
+        <h4 class="capitalize text-2xl font-bold m-5">{{priority}} priority {{resultCategory}}</h4>
           <div class="grid grid-cols-2 gap-4">
             {{#each prioritizedResults as |resultData index|}}
-              <div class="border rounded overflow-hidden shadow-lg bg-white my-4{{#if (eq index 0)}} row-start-1{{/if}}">
+              <div style="max-height:30rem" class="border rounded overflow-scroll shadow-lg bg-white my-4{{#if (eq index 0)}} row-start-1{{/if}}">
                 {{> (lookup . 'componentType') resultData=resultData}}
               </div>
             {{/each}}
