@@ -55,7 +55,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     };
   }
 
-  pdf() {
+  html() {
     return this.migrationResults
       .map((migrationResult) => this._createPieChartData(migrationResult))
       .filter(Boolean) as PieChartData[];

@@ -2,10 +2,10 @@ import * as Handlebars from 'handlebars';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { pathToFileURL } from 'url';
-import { printToPDF } from './print-to-pdf';
 import { readFileSync } from 'fs-extra';
 import { ReportComponentType, UIReportData } from '@checkup/core';
+import { pathToFileURL } from 'url';
+import { printToPDF } from './print-to-pdf';
 
 import tmp = require('tmp');
 
@@ -13,11 +13,26 @@ import tmp = require('tmp');
 const hbsHelpers = require('handlebars-helpers')('comparison');
 const date = require('date-and-time');
 
-/**
- * @param jsonResult
- * @param results
- */
-export async function generateReport(
+export async function generateHTMLReport(
+  resultOutputPath: string,
+  resultsForPdf: UIReportData
+): Promise<string> {
+  let reportHTML = generateHTML(resultsForPdf);
+
+  if (!fs.existsSync(resultOutputPath)) {
+    fs.mkdirSync(resultOutputPath, { recursive: true });
+  }
+
+  let htmlPath = path.join(
+    resultOutputPath,
+    `checkup-report-${date.format(new Date(), 'YYYY-MM-DD-HH-mm-ss')}.html`
+  );
+  fs.writeFileSync(htmlPath, reportHTML);
+
+  return path.resolve(htmlPath);
+}
+
+export async function generatePDFReport(
   resultOutputPath: string,
   resultsForPdf: UIReportData
 ): Promise<string> {

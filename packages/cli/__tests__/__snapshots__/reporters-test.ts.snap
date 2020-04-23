@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`_transformPdfResults transforms meta and plugin results into correct format when chart IS required 1`] = `
+exports[`_transformHTMLResults transforms meta and plugin results into correct format when chart IS required 1`] = `
 Object {
   "meta": Object {
     "mock-meta-task-1": Object {
@@ -68,7 +68,7 @@ Object {
 }
 `;
 
-exports[`_transformPdfResults transforms meta and plugin results into correct format when chart is not required 1`] = `
+exports[`_transformHTMLResults transforms meta and plugin results into correct format when chart is not required 1`] = `
 Object {
   "meta": Object {
     "mock-meta-task-1": Object {

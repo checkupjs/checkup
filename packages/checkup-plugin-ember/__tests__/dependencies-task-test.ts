@@ -37,12 +37,12 @@ describe('dependencies-task', () => {
     expect(dependencyTaskResult.json()).toMatchSnapshot();
   });
 
-  it('detects Ember dependencies as PDF, and doesnt create a table without dependencies', async () => {
+  it('detects Ember dependencies for html, and doesnt create a table without dependencies', async () => {
     const result = await new DependenciesTask({ path: emberProject.baseDir }).run();
     const dependencyTaskResult = <DependenciesTaskResult>result;
-    const pdfResults = dependencyTaskResult.pdf();
+    const htmlResults = dependencyTaskResult.html();
 
-    expect(pdfResults).toMatchSnapshot();
-    expect(pdfResults).toHaveLength(4);
+    expect(htmlResults).toMatchSnapshot();
+    expect(htmlResults).toHaveLength(4);
   });
 });

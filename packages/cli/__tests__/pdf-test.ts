@@ -7,7 +7,7 @@ import {
   UIReportData,
 } from '@checkup/core';
 
-import { generateHTML } from '../src/helpers/pdf';
+import { generateHTML } from '../src/helpers/ui-report';
 
 describe('generateHTML', () => {
   const taskMeta: TaskMetaData = {
@@ -109,7 +109,7 @@ describe('generateHTML', () => {
     `);
   });
 
-  it('includes tailwind UI lib and stylesheet, but no chartjs (since results dont require it by default)', async () => {
+  it('includes tailwind html lib and stylesheet, but no chartjs (since results dont require it by default)', async () => {
     const htmlString = await generateHTML(mergedResults);
 
     expect(htmlString).toContain('tailwind.min.css');

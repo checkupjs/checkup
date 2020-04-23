@@ -43,14 +43,14 @@ describe('@checkup/cli', () => {
     });
 
     it(
-      'should output a PDF in the current directory if the pdf reporter option is provided',
+      'should output an html file in the current directory if the html reporter option is provided',
       async () => {
-        await cmd.run(['run', '--reporter', 'pdf', project.baseDir]);
+        await cmd.run(['run', '--reporter', 'html', project.baseDir]);
 
         let outputPath = stdout().trim();
 
         expect(outputPath).toMatch(
-          /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.pdf/
+          /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.html/
         );
         expect(fs.existsSync(outputPath)).toEqual(true);
 
@@ -60,16 +60,16 @@ describe('@checkup/cli', () => {
     );
 
     it(
-      'should output a PDF in a custom directory if the pdf reporter and reporterOutputPath options are provided',
+      'should output an html file in a custom directory if the html reporter and reporterOutputPath options are provided',
       async () => {
         let tmp = createTmpDir();
 
-        await cmd.run(['run', '--reporter', 'pdf', `--reportOutputPath`, tmp, project.baseDir]);
+        await cmd.run(['run', '--reporter', 'html', `--reportOutputPath`, tmp, project.baseDir]);
 
         let outputPath = stdout().trim();
 
         expect(outputPath).toMatch(
-          /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.pdf/
+          /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.html/
         );
         expect(fs.existsSync(outputPath)).toEqual(true);
 

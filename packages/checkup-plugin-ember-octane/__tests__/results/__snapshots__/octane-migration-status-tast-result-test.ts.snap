@@ -1,5 +1,98 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`octane-migration-status-task-result HTML output it should have basic HTML results 1`] = `
+Array [
+  Object {
+    "labels": Array [
+      "\\"migrated\\"",
+      "\\"unmigrated\\"",
+    ],
+    "resultDescription": "Native Class",
+    "values": Array [
+      1,
+      10,
+    ],
+  },
+  Object {
+    "labels": Array [
+      "\\"migrated\\"",
+      "\\"unmigrated\\"",
+    ],
+    "resultDescription": "Tagless Component",
+    "values": Array [
+      5,
+      1,
+    ],
+  },
+  Object {
+    "labels": Array [
+      "\\"migrated\\"",
+      "\\"unmigrated\\"",
+    ],
+    "resultDescription": "Glimmer Component",
+    "values": Array [
+      4,
+      2,
+    ],
+  },
+  Object {
+    "labels": Array [
+      "\\"migrated\\"",
+      "\\"unmigrated\\"",
+    ],
+    "resultDescription": "Tracked Properties",
+    "values": Array [
+      5,
+      1,
+    ],
+  },
+  Object {
+    "labels": Array [
+      "\\"migrated\\"",
+      "\\"unmigrated\\"",
+    ],
+    "resultDescription": "Angle Brackets",
+    "values": Array [
+      2,
+      1,
+    ],
+  },
+  Object {
+    "labels": Array [
+      "\\"migrated\\"",
+      "\\"unmigrated\\"",
+    ],
+    "resultDescription": "Use Named Arguments",
+    "values": Array [
+      3,
+      0,
+    ],
+  },
+  Object {
+    "labels": Array [
+      "\\"migrated\\"",
+      "\\"unmigrated\\"",
+    ],
+    "resultDescription": "Own Properties",
+    "values": Array [
+      2,
+      1,
+    ],
+  },
+  Object {
+    "labels": Array [
+      "\\"migrated\\"",
+      "\\"unmigrated\\"",
+    ],
+    "resultDescription": "Use Modifiers",
+    "values": Array [
+      2,
+      1,
+    ],
+  },
+]
+`;
+
 exports[`octane-migration-status-task-result JSON output it should have basic JSON results 1`] = `
 Object {
   "meta": Object {
@@ -1632,99 +1725,6 @@ Object {
     "totalViolations": 33,
   },
 }
-`;
-
-exports[`octane-migration-status-task-result PDF output it should have basic PDF results 1`] = `
-Array [
-  Object {
-    "labels": Array [
-      "\\"migrated\\"",
-      "\\"unmigrated\\"",
-    ],
-    "resultDescription": "Native Class",
-    "values": Array [
-      1,
-      10,
-    ],
-  },
-  Object {
-    "labels": Array [
-      "\\"migrated\\"",
-      "\\"unmigrated\\"",
-    ],
-    "resultDescription": "Tagless Component",
-    "values": Array [
-      5,
-      1,
-    ],
-  },
-  Object {
-    "labels": Array [
-      "\\"migrated\\"",
-      "\\"unmigrated\\"",
-    ],
-    "resultDescription": "Glimmer Component",
-    "values": Array [
-      4,
-      2,
-    ],
-  },
-  Object {
-    "labels": Array [
-      "\\"migrated\\"",
-      "\\"unmigrated\\"",
-    ],
-    "resultDescription": "Tracked Properties",
-    "values": Array [
-      5,
-      1,
-    ],
-  },
-  Object {
-    "labels": Array [
-      "\\"migrated\\"",
-      "\\"unmigrated\\"",
-    ],
-    "resultDescription": "Angle Brackets",
-    "values": Array [
-      2,
-      1,
-    ],
-  },
-  Object {
-    "labels": Array [
-      "\\"migrated\\"",
-      "\\"unmigrated\\"",
-    ],
-    "resultDescription": "Use Named Arguments",
-    "values": Array [
-      3,
-      0,
-    ],
-  },
-  Object {
-    "labels": Array [
-      "\\"migrated\\"",
-      "\\"unmigrated\\"",
-    ],
-    "resultDescription": "Own Properties",
-    "values": Array [
-      2,
-      1,
-    ],
-  },
-  Object {
-    "labels": Array [
-      "\\"migrated\\"",
-      "\\"unmigrated\\"",
-    ],
-    "resultDescription": "Use Modifiers",
-    "values": Array [
-      2,
-      1,
-    ],
-  },
-]
 `;
 
 exports[`octane-migration-status-task-result console output simple console output 1`] = `

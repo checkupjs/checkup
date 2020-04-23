@@ -18,7 +18,7 @@ export default class TypesTaskResult extends BaseTaskResult implements TaskResul
     return { meta: this.meta, result: { types: this.types } };
   }
 
-  pdf() {
+  html() {
     return [
       new TableData(
         this.meta,

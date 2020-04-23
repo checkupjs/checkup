@@ -119,7 +119,7 @@ describe('types-task', () => {
     expect(typesTaskResult.json()).toMatchSnapshot();
   });
 
-  it('returns all the types found in the app and outputs to PDF', async () => {
+  it('returns all the types found in the app and outputs to html', async () => {
     project.files = Object.assign(project.files, {
       'index.js': 'index js file',
       addon: TYPES,
@@ -130,10 +130,10 @@ describe('types-task', () => {
     const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
-    expect(typesTaskResult.pdf()).toMatchSnapshot();
+    expect(typesTaskResult.html()).toMatchSnapshot();
   });
 
-  it('returns all the types (including nested) found in the app and outputs to PDF', async () => {
+  it('returns all the types (including nested) found in the app and outputs to html', async () => {
     project.files = Object.assign(project.files, {
       'index.js': 'index js file',
       addon: TYPES,
@@ -150,6 +150,6 @@ describe('types-task', () => {
     const result = await new TypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <TypesTaskResult>result;
 
-    expect(typesTaskResult.pdf()).toMatchSnapshot();
+    expect(typesTaskResult.html()).toMatchSnapshot();
   });
 });

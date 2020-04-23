@@ -4,7 +4,7 @@ import { MetaTaskResult } from '../src/types';
 import MockMetaTaskResult from './__utils__/mock-meta-task-result';
 import MockTaskResult from './__utils__/mock-task-result';
 import MockPieChartTaskResult from './__utils__/mock-pie-chart-task-result';
-import { _transformJsonResults, _transformPdfResults } from '../src/reporters';
+import { _transformJsonResults, _transformHTMLResults } from '../src/reporters';
 
 let metaTaskResults: MetaTaskResult[];
 let pluginTaskResults: TaskResult[];
@@ -228,14 +228,14 @@ describe('_transformJsonResults', () => {
   });
 });
 
-describe('_transformPdfResults', () => {
+describe('_transformHTMLResults', () => {
   it('transforms meta and plugin results into correct format when chart is not required', () => {
-    let transformed = _transformPdfResults(metaTaskResults, pluginTaskResults);
+    let transformed = _transformHTMLResults(metaTaskResults, pluginTaskResults);
 
     expect(transformed).toMatchSnapshot();
   });
   it('transforms meta and plugin results into correct format when chart IS required', () => {
-    let transformed = _transformPdfResults(metaTaskResults, [
+    let transformed = _transformHTMLResults(metaTaskResults, [
       new MockPieChartTaskResult(
         {
           taskName: 'mock-meta-task-8',

@@ -38,11 +38,11 @@ describe('project-info-task', () => {
       expect(taskResult.json()).toMatchSnapshot();
     });
 
-    it('can read project info as PDF', async () => {
+    it('can read project info for html', async () => {
       const result = await new EmberProjectTask({ path: emberProject.baseDir }).run();
       const taskResult = <EmberProjectTaskResult>result;
 
-      expect(taskResult.pdf()).toMatchSnapshot();
+      expect(taskResult.html()).toMatchSnapshot();
     });
   });
 
@@ -79,11 +79,11 @@ describe('project-info-task', () => {
       expect(taskResult.json()).toMatchSnapshot();
     });
 
-    it('can read project info as PDF', async () => {
+    it('can read project info for html', async () => {
       const result = await new EmberProjectTask({ path: emberProject.baseDir }).run();
       const taskResult = <EmberProjectTaskResult>result;
 
-      expect(taskResult.pdf()).toMatchSnapshot();
+      expect(taskResult.html()).toMatchSnapshot();
     });
   });
 });

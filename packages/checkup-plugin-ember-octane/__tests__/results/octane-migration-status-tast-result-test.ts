@@ -44,17 +44,17 @@ describe('octane-migration-status-task-result', () => {
     });
   });
 
-  describe('PDF output', () => {
-    test('it should have basic PDF results', () => {
+  describe('HTML output', () => {
+    test('it should have basic HTML results', () => {
       let task = new OctaneMigrationStatusTask({}, getRegisteredParsers());
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
         sampleESLintReport,
         sampleTemplateLintReport
       );
-      let pdfResults = taskResult.pdf();
+      let htmlResults = taskResult.html();
 
-      expect(filterPieChartDataForTest(pdfResults)).toMatchSnapshot();
+      expect(filterPieChartDataForTest(htmlResults)).toMatchSnapshot();
     });
   });
 });

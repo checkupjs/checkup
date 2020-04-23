@@ -97,7 +97,7 @@ Object {
 }
 `;
 
-exports[`types-task returns all the types (including nested) found in the app and outputs to PDF 1`] = `
+exports[`types-task returns all the types (including nested) found in the app and outputs to html 1`] = `
 Array [
   TableData {
     "componentType": "table",
@@ -294,7 +294,7 @@ Object {
 }
 `;
 
-exports[`types-task returns all the types found in the app and outputs to PDF 1`] = `
+exports[`types-task returns all the types found in the app and outputs to html 1`] = `
 Array [
   TableData {
     "componentType": "table",
