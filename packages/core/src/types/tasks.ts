@@ -20,7 +20,7 @@ export interface Task {
 export interface TaskResult {
   stdout: () => void;
   json: () => JsonMetaTaskResult | JsonTaskResult;
-  pdf: () => ReportResultData[];
+  html: () => ReportResultData[];
 }
 
 export interface TaskMetaData {
@@ -91,7 +91,7 @@ export const enum Grade {
 export enum ReporterType {
   stdout = 'stdout',
   json = 'json',
-  pdf = 'pdf',
+  html = 'html',
 }
 
 export interface PieChartItem {

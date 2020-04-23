@@ -23,7 +23,7 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
     };
   }
 
-  pdf() {
+  html() {
     return [
       new PieChartData(
         {

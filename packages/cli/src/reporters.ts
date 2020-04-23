@@ -11,9 +11,9 @@ import {
 
 import { MetaTaskResult } from './types';
 import { RunFlags } from './commands/run';
-import { generateReport } from './helpers/pdf';
+import { generateHTMLReport } from './helpers/ui-report';
 
-export function _transformPdfResults(
+export function _transformHTMLResults(
   metaTaskResults: MetaTaskResult[],
   pluginTaskResults: TaskResult[]
 ): UIReportData {
@@ -37,7 +37,7 @@ export function _transformPdfResults(
   let requiresChart = false;
 
   pluginTaskResults
-    .flatMap((result) => result.pdf())
+    .flatMap((result) => result.html())
     .forEach((taskResult) => {
       if (taskResult) {
         let { category, priority } = taskResult.meta.taskClassification;
@@ -87,10 +87,10 @@ export function getReporter(
         let resultJson = _transformJsonResults(metaTaskResults, pluginTaskResults);
         ui.styledJSON(resultJson);
       };
-    case ReporterType.pdf:
+    case ReporterType.html:
       return async () => {
-        let resultsForPdf = _transformPdfResults(metaTaskResults, pluginTaskResults);
-        let reportPath = await generateReport(flags.reportOutputPath, resultsForPdf);
+        let resultsForPdf = _transformHTMLResults(metaTaskResults, pluginTaskResults);
+        let reportPath = await generateHTMLReport(flags.reportOutputPath, resultsForPdf);
 
         ui.log(reportPath);
       };

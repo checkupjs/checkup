@@ -63,7 +63,7 @@ Object {
 }
 `;
 
-exports[`dependencies-task detects Ember dependencies as PDF, and doesnt create a table without dependencies 1`] = `
+exports[`dependencies-task detects Ember dependencies for html, and doesnt create a table without dependencies 1`] = `
 Array [
   TableData {
     "componentType": "table",

@@ -53,7 +53,7 @@ export default class DependenciesTaskResult extends BaseTaskResult implements Ta
     };
   }
 
-  pdf() {
+  html() {
     let dependencyGroups = [
       this.emberLibraries,
       this.emberAddons.devDependencies,
