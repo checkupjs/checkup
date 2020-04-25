@@ -1,15 +1,14 @@
-import { BaseTaskResult, TaskResult, ui, NumericalCardData } from '@checkup/core';
-import { OutdatedDependencies } from '../tasks/outdated-dependencies-task';
+import { ui } from '@checkup/core';
+import BaseMetaTaskResult from '../base-meta-task-result';
+import { MetaTaskResult } from '../types';
+import { OutdatedDependency } from '../tasks/outdated-dependencies-task';
 
-export default class OutdatedDependenciesTaskResult extends BaseTaskResult implements TaskResult {
-  outdatedDependencies!: OutdatedDependencies;
-  versionTypes!: Map<string, Array<string[]>>;
+export default class OutdatedDependenciesTaskResult extends BaseMetaTaskResult
+  implements MetaTaskResult {
+  versionTypes!: Map<string, Array<OutdatedDependency>>;
 
   stdout() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-    ui.blankLine();
-
-    ui.styledHeader('Outdated Dependencies Overview');
+    ui.styledHeader(`${this.meta.friendlyTaskName} -- Overview`);
     ui.styledObject({
       Major: this.versionTypes.get('major')?.length,
       Minor: this.versionTypes.get('minor')?.length,
@@ -17,30 +16,34 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
     });
     ui.blankLine();
 
-    ui.styledHeader('Outdated Dependencies Details');
-    this._writeFreshnessTable(this.outdatedDependencies);
+    if (this.versionTypes.get('major')?.length) {
+      ui.styledHeader(`${this.meta.friendlyTaskName} -- Major`);
+      this._writeToTable(this.versionTypes.get('major')!);
+    }
+    ui.blankLine();
+
+    if (this.versionTypes.get('minor')?.length) {
+      ui.styledHeader(`${this.meta.friendlyTaskName} -- Minor`);
+      this._writeToTable(this.versionTypes.get('minor')!);
+    }
+    ui.blankLine();
+
+    if (this.versionTypes.get('patch')?.length) {
+      ui.styledHeader(`${this.meta.friendlyTaskName} -- Patch`);
+      this._writeToTable(this.versionTypes.get('patch')!);
+    }
     ui.blankLine();
   }
 
   json() {
     return {
       meta: this.meta,
-      result: {
-        outdatedDependencies: this.outdatedDependencies,
-      },
+      result: {},
     };
   }
 
-  pdf() {
-    return new NumericalCardData(this.meta, 22, 'this is a description of your result');
-  }
-
-  _writeFreshnessTable(dependencies: OutdatedDependencies) {
-    if (dependencies.tableBody && dependencies.tableBody.length === 0) {
-      return;
-    }
-
-    ui.table(this._transformToTableData(dependencies.tableBody), {
+  _writeToTable(dependencies: OutdatedDependency[]) {
+    ui.table(dependencies, {
       package: {},
       current: {},
       wanted: {},
@@ -48,29 +51,5 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
       packageType: {},
       url: {},
     });
-  }
-
-  _transformToTableData(data: Array<String[]>) {
-    let result: {
-      package: String;
-      current: String;
-      wanted: String;
-      latest: String;
-      packageType: String;
-      url: String;
-    }[] = [];
-    // Todo: should look into making it cleaner here
-    data.forEach((dependency) => {
-      const row = {
-        package: dependency[0],
-        current: dependency[1],
-        wanted: dependency[2],
-        latest: dependency[3],
-        packageType: dependency[4],
-        url: dependency[5],
-      };
-      result.push(row);
-    });
-    return result;
   }
 }
