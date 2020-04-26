@@ -1,5 +1,6 @@
 import {
   BaseTaskResult,
+  ESLintReport,
   PieChartData,
   TaskMetaData,
   TaskResult,
@@ -13,15 +14,13 @@ import {
 import { ESLintMigrationType, MigrationInfo, TemplateLintMigrationType } from '../types';
 import { transformESLintReport, transformTemplateLintReport } from '../utils/transformers';
 
-import { CLIEngine } from 'eslint';
-
 export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
   migrationResults: MigrationInfo[];
   totalViolations: number;
 
   constructor(
     meta: TaskMetaData,
-    public esLintReport: CLIEngine.LintReport,
+    public esLintReport: ESLintReport,
     public templateLintReport: TemplateLintReport
   ) {
     super(meta);

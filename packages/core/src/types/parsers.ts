@@ -1,3 +1,5 @@
+import { CLIEngine } from 'eslint';
+
 const TemplateLinter = require('ember-template-lint');
 
 export type ParserName = string;
@@ -12,3 +14,5 @@ export interface CreateParser<ParserOptions, TParser = Parser<ParserReport>> {
 }
 
 export type TemplateLinter = typeof TemplateLinter;
+
+export type ESLintReport = CLIEngine.LintReport;
