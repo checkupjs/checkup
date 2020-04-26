@@ -2,6 +2,10 @@ import { BaseTaskResult, TableData, TaskMetaData, TaskResult, toPairs, ui } from
 
 import { PackageJson } from 'type-fest';
 
+function getLength(dependencies: PackageJson.Dependency): number {
+  return Object.keys(dependencies).length;
+}
+
 export default class EmberDependenciesTaskResult extends BaseTaskResult implements TaskResult {
   emberLibraries!: PackageJson.Dependency;
   emberAddons!: Record<string, PackageJson.Dependency>;
@@ -16,9 +20,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     return (
       Object.keys(this.emberLibraries).length ||
       [this.emberAddons, this.emberCliAddons].every((addons) => {
-        return (
-          Object.keys(addons.dependencies).length && Object.keys(addons.devDependencies).length
-        );
+        return getLength(addons.dependencies) && getLength(addons.devDependencies);
       })
     );
   }
@@ -30,19 +32,19 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
 
     this._writeDependencySection('Ember Core Libraries', this.emberLibraries);
     this._writeDependencySection(
-      `Ember Addons | ${this.emberAddons.dependencies.length} dependencies`,
+      `Ember Addons | ${getLength(this.emberAddons.dependencies)} dependencies`,
       this.emberAddons.dependencies
     );
     this._writeDependencySection(
-      `Ember Addons | ${this.emberAddons.devDependencies.length} devDependencies`,
+      `Ember Addons | ${getLength(this.emberAddons.devDependencies)} devDependencies`,
       this.emberAddons.devDependencies
     );
     this._writeDependencySection(
-      `Ember CLI Addons ${this.emberCliAddons.dependencies.length} dependencies`,
+      `Ember CLI Addons ${getLength(this.emberCliAddons.dependencies)} dependencies`,
       this.emberCliAddons.dependencies
     );
     this._writeDependencySection(
-      `Ember CLI Addons | ${this.emberCliAddons.devDependencies.length} devDependencies`,
+      `Ember CLI Addons | ${getLength(this.emberCliAddons.devDependencies)} devDependencies`,
       this.emberCliAddons.devDependencies
     );
   }
@@ -73,7 +75,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
   }
 
   _createTableData(dependencyGroup: PackageJson.Dependency): TableData | undefined {
-    if (Object.keys(dependencyGroup).length === 0) {
+    if (getLength(dependencyGroup) === 0) {
       return;
     }
 
@@ -87,7 +89,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
   }
 
   _writeDependencySection(header: string, dependencies: PackageJson.Dependency) {
-    let total = Object.keys(dependencies).length;
+    let total = getLength(dependencies);
 
     if (total === 0) {
       return;
