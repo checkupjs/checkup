@@ -1,12 +1,11 @@
-import { TemplateLintReport, getRegisteredParsers } from '@checkup/core';
+import { ESLintReport, TemplateLintReport, getRegisteredParsers } from '@checkup/core';
+import { filterPieChartDataForTest, stdout } from '@checkup/test-helpers';
 
-import { CLIEngine } from 'eslint';
 import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
 import OctaneMigrationStatusTaskResult from '../../src/results/octane-migration-status-task-result';
-import { stdout, filterPieChartDataForTest } from '@checkup/test-helpers';
 
 describe('octane-migration-status-task-result', () => {
-  let sampleESLintReport: CLIEngine.LintReport;
+  let sampleESLintReport: ESLintReport;
   let sampleTemplateLintReport: TemplateLintReport;
 
   beforeEach(() => {

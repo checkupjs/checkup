@@ -4,6 +4,7 @@ import {
   BaseTask,
   Category,
   CreateParser,
+  ESLintReport,
   Parser,
   ParserName,
   ParserOptions,
@@ -15,7 +16,6 @@ import {
 } from '@checkup/core';
 import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lint-configs';
 
-import { CLIEngine } from 'eslint';
 import OctaneMigrationStatusTaskResult from '../results/octane-migration-status-task-result';
 
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
@@ -28,7 +28,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     },
   };
 
-  private eslintParser: Parser<CLIEngine.LintReport>;
+  private eslintParser: Parser<ESLintReport>;
   private templateLinter: TemplateLinter;
 
   constructor(
@@ -63,7 +63,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     return result;
   }
 
-  private async runEsLint(): Promise<CLIEngine.LintReport> {
+  private async runEsLint(): Promise<ESLintReport> {
     return this.eslintParser.execute([`${this.rootPath}/+(app|addon)/**/*.js`]);
   }
 

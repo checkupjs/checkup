@@ -1,8 +1,7 @@
-import { CLIEngine } from 'eslint';
-import { TemplateLintConfig } from '@checkup/core';
+import { ESLintOptions, TemplateLintConfig } from '@checkup/core';
 
 // These options are taken from a default ember application build on top of ember-source 3.16.*
-export const OCTANE_ES_LINT_CONFIG: CLIEngine.Options = {
+export const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2018,

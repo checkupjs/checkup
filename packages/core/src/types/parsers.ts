@@ -15,4 +15,6 @@ export interface CreateParser<ParserOptions, TParser = Parser<ParserReport>> {
 
 export type TemplateLinter = typeof TemplateLinter;
 
+export type ESLintOptions = CLIEngine.Options;
 export type ESLintReport = CLIEngine.LintReport;
+export type ESLintResult = CLIEngine.LintResult;
