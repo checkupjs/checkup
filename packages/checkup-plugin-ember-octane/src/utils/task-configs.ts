@@ -8,7 +8,7 @@ export const ESLINT_MIGRATION_TASK_CONFIGS: {
       /app\/(app|router)\.js$/,
       /(app|addon)\/(adapters|components|controllers|helpers|models|routes|services)\/.*\.js$/,
     ],
-    name: 'Native Class',
+    name: 'Native Classes',
     rules: [
       'ember/no-classic-classes',
       'ember/classic-decorator-no-classic-methods',
@@ -18,12 +18,12 @@ export const ESLINT_MIGRATION_TASK_CONFIGS: {
   },
   [ESLintMigrationType.TaglessComponents]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Tagless Component',
+    name: 'Tagless Components',
     rules: ['ember/require-tagless-components'],
   },
   [ESLintMigrationType.GlimmerComponents]: {
     fileMatchers: [/(app|addon)\/components\/.*\.js$/],
-    name: 'Glimmer Component',
+    name: 'Glimmer Components',
     rules: ['ember/no-classic-components'],
   },
   [ESLintMigrationType.TrackedProperties]: {
@@ -38,12 +38,12 @@ export const TEMPLATE_LINT_MIGRATION_TASK_CONFIGS: {
 } = {
   [TemplateLintMigrationType.AngleBrackets]: {
     fileMatchers: [/(addon|app)\/.*\.hbs$/],
-    name: 'Angle Brackets',
+    name: 'Angle Brackets Syntax',
     rules: ['no-curly-component-invocation'],
   },
   [TemplateLintMigrationType.NamedArgs]: {
     fileMatchers: [/(addon|app)\/.*\.hbs$/],
-    name: 'Use Named Arguments',
+    name: 'Named Arguments',
     rules: ['no-args-paths'],
   },
   [TemplateLintMigrationType.OwnProperties]: {
@@ -53,7 +53,7 @@ export const TEMPLATE_LINT_MIGRATION_TASK_CONFIGS: {
   },
   [TemplateLintMigrationType.UseModifiers]: {
     fileMatchers: [/(addon|app)\/.*\.hbs$/],
-    name: 'Use Modifiers',
+    name: 'Modifiers',
     rules: ['no-action'],
   },
 };
