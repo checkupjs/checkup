@@ -9,20 +9,16 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
   repository!: RepositoryInfo;
 
   stdout() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-    ui.styledObject({
-      name: this.name,
-      version: this.version,
-    });
     ui.blankLine();
-
-    ui.styledHeader('Repository Information');
-    ui.styledObject({
-      Age: this.repository.age,
-      'Active days': this.repository.activeDays,
-      'Total commits': this.repository.totalCommits,
-      'Total files': this.repository.totalFiles,
-    });
+    ui.log(`Checkup report generated for ${ui.emphasize(`${this.name} v${this.version}`)} .`);
+    ui.blankLine();
+    ui.log(
+      `This project is ${ui.emphasize(`${this.repository.age} old`)}, with ${ui.emphasize(
+        `${this.repository.activeDays} active days`
+      )}, ${ui.emphasize(`${this.repository.totalCommits} commits`)} and ${ui.emphasize(
+        `${this.repository.totalFiles} files`
+      )}.`
+    );
     ui.blankLine();
   }
 

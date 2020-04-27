@@ -1,26 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`dependencies-task detects Ember dependencies 1`] = `
-"=== Project Dependencies
-=== Dependencies - Core Libraries
+"=== Ember Core Libraries | Total: 3
 
 Dependency   Version   
 ember-source ^3.15.0   
 ember-cli    ^3.15.0   
 ember-data   Not found 
 
-=== Dependencies - Ember Addons
+=== Ember Addons | 1 dependencies | Total: 1
 
 Dependency   Version 
 ember-source ^3.15.0 
 
-=== Dependencies - Ember CLI Addons
+=== Ember CLI Addons 2 dependencies | Total: 2
 
 Dependency                       Version 
 ember-cli                        ^3.15.0 
 ember-cli-blueprint-test-helpers latest  
 
-=== Dev Dependencies - Ember CLI Addons
+=== Ember CLI Addons | 1 devDependencies | Total: 1
 
 Dependency             Version 
 ember-cli-string-utils latest  
@@ -31,10 +30,10 @@ ember-cli-string-utils latest
 exports[`dependencies-task detects Ember dependencies as JSON 1`] = `
 Object {
   "meta": Object {
-    "friendlyTaskName": "Project Dependencies",
+    "friendlyTaskName": "Ember Dependencies",
     "taskClassification": Object {
       "category": "insights",
-      "priority": "low",
+      "priority": "high",
     },
     "taskName": "dependencies",
   },
@@ -91,10 +90,10 @@ Array [
       },
     ],
     "meta": Object {
-      "friendlyTaskName": "Project Dependencies",
+      "friendlyTaskName": "Ember Dependencies",
       "taskClassification": Object {
         "category": "insights",
-        "priority": "low",
+        "priority": "high",
       },
       "taskName": "dependencies",
     },
@@ -115,10 +114,10 @@ Array [
       },
     ],
     "meta": Object {
-      "friendlyTaskName": "Project Dependencies",
+      "friendlyTaskName": "Ember Dependencies",
       "taskClassification": Object {
         "category": "insights",
-        "priority": "low",
+        "priority": "high",
       },
       "taskName": "dependencies",
     },
@@ -146,10 +145,10 @@ Array [
       },
     ],
     "meta": Object {
-      "friendlyTaskName": "Project Dependencies",
+      "friendlyTaskName": "Ember Dependencies",
       "taskClassification": Object {
         "category": "insights",
-        "priority": "low",
+        "priority": "high",
       },
       "taskName": "dependencies",
     },
@@ -170,10 +169,10 @@ Array [
       },
     ],
     "meta": Object {
-      "friendlyTaskName": "Project Dependencies",
+      "friendlyTaskName": "Ember Dependencies",
       "taskClassification": Object {
         "category": "insights",
-        "priority": "low",
+        "priority": "high",
       },
       "taskName": "dependencies",
     },

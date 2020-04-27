@@ -7,19 +7,12 @@ tasks.someTask.isEnabled expected type boolean, but got \\"foo\\""
 `;
 
 exports[`@checkup/cli normal cli output with plugins should output checkup result 1`] = `
-"=== Project
-name:    checkup-project
-version: 0.0.0
+"
+Checkup report generated for checkup-project v0.0.0 .
 
-=== Repository Information
-Active days:   0 days
-Age:           0 days
-Total commits: 0
-Total files:   0
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Checkup Configuration
-configHash: ae3266e319bdfb51db83810a2f4dd161
-version:    0.0.0
+Generated using Checkup v0.0.0. Config: ae3266e319bdfb51db83810a2f4dd161
 
 "
 `;
@@ -48,33 +41,21 @@ exports[`@checkup/cli normal cli output with plugins should output checkup resul
 `;
 
 exports[`@checkup/cli normal cli output with plugins should run a single task if the task option is specified 1`] = `
-"=== Project
-name:    checkup-project
-version: 0.0.0
+"
+Checkup report generated for checkup-project v0.0.0 .
 
-=== Repository Information
-Active days:   0 days
-Age:           0 days
-Total commits: 0
-Total files:   0
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 "
 `;
 
 exports[`@checkup/cli normal cli output with plugins should use the config at the config path if provided 1`] = `
-"=== Project
-name:    checkup-project
-version: 0.0.0
+"
+Checkup report generated for checkup-project v0.0.0 .
 
-=== Repository Information
-Active days:   0 days
-Age:           0 days
-Total commits: 0
-Total files:   0
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Checkup Configuration
-configHash: ae3266e319bdfb51db83810a2f4dd161
-version:    0.0.0
+Generated using Checkup v0.0.0. Config: ae3266e319bdfb51db83810a2f4dd161
 
 "
 `;

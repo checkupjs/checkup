@@ -7,7 +7,7 @@ Array [
       "\\"migrated\\"",
       "\\"unmigrated\\"",
     ],
-    "resultDescription": "Native Class",
+    "resultDescription": "Native Classes",
     "values": Array [
       1,
       10,
@@ -18,7 +18,7 @@ Array [
       "\\"migrated\\"",
       "\\"unmigrated\\"",
     ],
-    "resultDescription": "Tagless Component",
+    "resultDescription": "Tagless Components",
     "values": Array [
       5,
       1,
@@ -29,7 +29,7 @@ Array [
       "\\"migrated\\"",
       "\\"unmigrated\\"",
     ],
-    "resultDescription": "Glimmer Component",
+    "resultDescription": "Glimmer Components",
     "values": Array [
       4,
       2,
@@ -51,7 +51,7 @@ Array [
       "\\"migrated\\"",
       "\\"unmigrated\\"",
     ],
-    "resultDescription": "Angle Brackets",
+    "resultDescription": "Angle Brackets Syntax",
     "values": Array [
       2,
       1,
@@ -62,7 +62,7 @@ Array [
       "\\"migrated\\"",
       "\\"unmigrated\\"",
     ],
-    "resultDescription": "Use Named Arguments",
+    "resultDescription": "Named Arguments",
     "values": Array [
       3,
       0,
@@ -84,7 +84,7 @@ Array [
       "\\"migrated\\"",
       "\\"unmigrated\\"",
     ],
-    "resultDescription": "Use Modifiers",
+    "resultDescription": "Modifiers",
     "values": Array [
       2,
       1,
@@ -111,7 +111,7 @@ Object {
           "percentage": "9.09",
           "total": 11,
         },
-        "name": "Native Class",
+        "name": "Native Classes",
         "relatedResults": Array [
           Object {
             "errorCount": 4,
@@ -420,7 +420,7 @@ Object {
           "percentage": "83.33",
           "total": 6,
         },
-        "name": "Tagless Component",
+        "name": "Tagless Components",
         "relatedResults": Array [
           Object {
             "errorCount": 4,
@@ -629,7 +629,7 @@ Object {
           "percentage": "66.67",
           "total": 6,
         },
-        "name": "Glimmer Component",
+        "name": "Glimmer Components",
         "relatedResults": Array [
           Object {
             "errorCount": 4,
@@ -1047,7 +1047,7 @@ Object {
           "percentage": "66.67",
           "total": 3,
         },
-        "name": "Angle Brackets",
+        "name": "Angle Brackets Syntax",
         "relatedResults": Array [
           Object {
             "errorCount": 16,
@@ -1217,7 +1217,7 @@ Object {
           "percentage": "100.00",
           "total": 3,
         },
-        "name": "Use Named Arguments",
+        "name": "Named Arguments",
         "relatedResults": Array [
           Object {
             "errorCount": 16,
@@ -1557,7 +1557,7 @@ Object {
           "percentage": "66.67",
           "total": 3,
         },
-        "name": "Use Modifiers",
+        "name": "Modifiers",
         "relatedResults": Array [
           Object {
             "errorCount": 16,
@@ -1728,19 +1728,19 @@ Object {
 `;
 
 exports[`octane-migration-status-task-result console output simple console output 1`] = `
-"=== Ember Octane Migration Status
+"=== Ember Octane Migration Status ===
 
 Octane Violations: 33
 
-Migration Task      Completion Percentage 
-Native Class        9.09%                 
-Tagless Component   83.33%                
-Glimmer Component   66.67%                
-Tracked Properties  83.33%                
-Angle Brackets      66.67%                
-Use Named Arguments 100.00%               
-Own Properties      66.67%                
-Use Modifiers       66.67%                
+Octane Feature        Completion 
+Native Classes        9.09%      
+Tagless Components    83.33%     
+Glimmer Components    66.67%     
+Tracked Properties    83.33%     
+Angle Brackets Syntax 66.67%     
+Named Arguments       100.00%    
+Own Properties        66.67%     
+Modifiers             66.67%     
 
 "
 `;

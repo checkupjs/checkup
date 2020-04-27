@@ -1,12 +1,12 @@
 import {
-  ReporterType,
-  TaskResult,
-  ui,
   Category,
   Priority,
   ReportComponentType,
-  UIResultData,
+  ReporterType,
+  TaskResult,
   UIReportData,
+  UIResultData,
+  ui,
 } from '@checkup/core';
 
 import { MetaTaskResult } from './types';

@@ -1,6 +1,6 @@
-import { BaseTaskResult, TaskItemData, TaskResult, ui, TableData } from '@checkup/core';
+import { BaseTaskResult, TableData, TaskItemData, TaskResult, ui } from '@checkup/core';
 
-export default class TypesTaskResult extends BaseTaskResult implements TaskResult {
+export default class EmberTypesTaskResult extends BaseTaskResult implements TaskResult {
   types!: TaskItemData[];
 
   findByType(typeName: string): TaskItemData | undefined {
@@ -8,10 +8,9 @@ export default class TypesTaskResult extends BaseTaskResult implements TaskResul
   }
 
   stdout() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-    ui.blankLine();
-    ui.table(this.types, { type: {}, total: {} });
-    ui.blankLine();
+    ui.section(this.meta.friendlyTaskName, () => {
+      ui.table(this.types, { type: {}, total: {} });
+    });
   }
 
   json() {

@@ -1,12 +1,11 @@
+import { ESLintReport, TemplateLintReport } from '@checkup/core';
 import { transformESLintReport, transformTemplateLintReport } from '../../src/utils/transformers';
 
-import { CLIEngine } from 'eslint';
 import { MigrationTaskConfig } from '../../src/types';
-import { TemplateLintReport } from '@checkup/core';
 
 describe('octane-migration-status-task-result', () => {
   describe('ESLint Transformer', () => {
-    let bareBonesReport: CLIEngine.LintReport;
+    let bareBonesReport: ESLintReport;
 
     beforeEach(() => {
       bareBonesReport = require('../__fixtures__/non-migrated-barebones-eslint-report.json');

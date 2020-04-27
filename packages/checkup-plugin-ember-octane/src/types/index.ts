@@ -1,5 +1,4 @@
-import { CLIEngine } from 'eslint';
-import { TemplateLintResult } from '@checkup/core';
+import { ESLintResult, TemplateLintResult } from '@checkup/core';
 
 export enum ESLintMigrationType {
   NativeClasses = 'native-classes',
@@ -15,7 +14,7 @@ export enum TemplateLintMigrationType {
   UseModifiers = 'use-modifiers',
 }
 
-type LintResultCollection = CLIEngine.LintResult[] | TemplateLintResult[];
+type LintResultCollection = ESLintResult[] | TemplateLintResult[];
 
 interface CompletionInfo {
   total: number;

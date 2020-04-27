@@ -1,7 +1,7 @@
 import { EmberProject, stdout } from '@checkup/test-helpers';
 
-import { TypesTask } from '../src/tasks';
-import { TypesTaskResult } from '../src/results';
+import EmberTypesTask from '../src/tasks/ember-types-task';
+import EmberTypesTaskResult from '../src/results/ember-types-task-result';
 
 const TYPES = {
   components: {
@@ -55,8 +55,8 @@ describe('types-task', () => {
 
     project.writeSync();
 
-    const result = await new TypesTask({ path: project.baseDir }).run();
-    const typesTaskResult = <TypesTaskResult>result;
+    const result = await new EmberTypesTask({ path: project.baseDir }).run();
+    const typesTaskResult = <EmberTypesTaskResult>result;
 
     typesTaskResult.stdout();
 
@@ -77,8 +77,8 @@ describe('types-task', () => {
 
     project.writeSync();
 
-    const result = await new TypesTask({ path: project.baseDir }).run();
-    const typesTaskResult = <TypesTaskResult>result;
+    const result = await new EmberTypesTask({ path: project.baseDir }).run();
+    const typesTaskResult = <EmberTypesTaskResult>result;
 
     typesTaskResult.stdout();
 
@@ -93,8 +93,8 @@ describe('types-task', () => {
 
     project.writeSync();
 
-    const result = await new TypesTask({ path: project.baseDir }).run();
-    const typesTaskResult = <TypesTaskResult>result;
+    const result = await new EmberTypesTask({ path: project.baseDir }).run();
+    const typesTaskResult = <EmberTypesTaskResult>result;
 
     expect(typesTaskResult.json()).toMatchSnapshot();
   });
@@ -113,8 +113,8 @@ describe('types-task', () => {
 
     project.writeSync();
 
-    const result = await new TypesTask({ path: project.baseDir }).run();
-    const typesTaskResult = <TypesTaskResult>result;
+    const result = await new EmberTypesTask({ path: project.baseDir }).run();
+    const typesTaskResult = <EmberTypesTaskResult>result;
 
     expect(typesTaskResult.json()).toMatchSnapshot();
   });
@@ -127,8 +127,8 @@ describe('types-task', () => {
 
     project.writeSync();
 
-    const result = await new TypesTask({ path: project.baseDir }).run();
-    const typesTaskResult = <TypesTaskResult>result;
+    const result = await new EmberTypesTask({ path: project.baseDir }).run();
+    const typesTaskResult = <EmberTypesTaskResult>result;
 
     expect(typesTaskResult.html()).toMatchSnapshot();
   });
@@ -147,8 +147,8 @@ describe('types-task', () => {
 
     project.writeSync();
 
-    const result = await new TypesTask({ path: project.baseDir }).run();
-    const typesTaskResult = <TypesTaskResult>result;
+    const result = await new EmberTypesTask({ path: project.baseDir }).run();
+    const typesTaskResult = <EmberTypesTaskResult>result;
 
     expect(typesTaskResult.html()).toMatchSnapshot();
   });

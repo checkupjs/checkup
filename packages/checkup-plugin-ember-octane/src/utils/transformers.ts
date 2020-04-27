@@ -1,11 +1,9 @@
+import { ESLintReport, TemplateLintReport } from '@checkup/core';
 import { MigrationInfo, MigrationTaskConfig } from '../types';
-
-import { CLIEngine } from 'eslint';
-import { TemplateLintReport } from '@checkup/core';
 
 export function transformESLintReport(
   migrationConfig: MigrationTaskConfig,
-  report: CLIEngine.LintReport
+  report: ESLintReport
 ): MigrationInfo {
   let relatedResults = report.results.filter(({ filePath }) =>
     migrationConfig.fileMatchers.some((fileMatcher) => fileMatcher.test(filePath))

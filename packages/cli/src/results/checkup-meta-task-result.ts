@@ -7,11 +7,7 @@ export default class CheckupMetaTaskResult extends BaseMetaTaskResult implements
   version!: string;
 
   stdout() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-    ui.styledObject({
-      configHash: this.configHash,
-      version: this.version,
-    });
+    ui.dimmed(`Generated using Checkup v${this.version}. Config: ${this.configHash}`);
     ui.blankLine();
   }
 
