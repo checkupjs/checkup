@@ -1,3 +1,19 @@
+## v0.0.10 (2020-04-27)
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember-octane`, `core`
+  * [#306](https://github.com/checkupjs/checkup/pull/306) Fixing missing dependencies in core ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `cli`, `core`
+  * [#314](https://github.com/checkupjs/checkup/pull/314) Standardizing stdout output ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.0.9 (2020-04-21)
 
 #### :house: Internal
