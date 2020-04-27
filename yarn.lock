@@ -8566,10 +8566,10 @@ year@^0.2.1:
   resolved "https://registry.yarnpkg.com/year/-/year-0.2.1.tgz#4083ae520a318b23ec86037f3000cb892bdf9bb0"
   integrity sha1-QIOuUgoxiyPshgN/MADLiSvfm7A=
 
-yeoman-environment@^2.8.1, yeoman-environment@^2.9.5:
-  version "2.9.5"
-  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-2.9.5.tgz#372ff3f81bc6a979c6d7f7c9d7d8822088c6a805"
-  integrity sha512-ntxV8VTZbP8QFuJZGT7vG8AsKeyGz8lXlfq2V2T5sl6SrU6UAEVgRreEGz9t+JbFGx1CSM/Ly2atG/avGuheyQ==
+yeoman-environment@^2.8.1, yeoman-environment@^2.9.5, yeoman-environment@^2.9.6:
+  version "2.9.6"
+  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-2.9.6.tgz#3defd8a1c66fd44df0c8ee9603ac44ecada0a370"
+  integrity sha512-olp9jFDfF35F6YbE2PvWw8idX+JUW9Wf5bY9OYntFdyl4YGnmxJVO6VokYwK+ZoC3asciyO7tteoxTyYG4AxXA==
   dependencies:
     chalk "^2.4.1"
     debug "^3.1.0"
