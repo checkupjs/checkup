@@ -7,7 +7,7 @@ import { CheckupConfig } from '@checkup/core';
 
 import cmd = require('../../src');
 
-const TEST_TIMEOUT = 50000;
+const TEST_TIMEOUT = 100000;
 
 describe('@checkup/cli', () => {
   describe('normal cli output with plugins', () => {
