@@ -13,5 +13,5 @@ describe('print-to-pdf', () => {
     await printToPDF(pathToFileURL(htmlPath).toString(), outputFilePath);
 
     expect(existsSync(outputFilePath)).toEqual(true);
-  });
+  }, 100000);
 });
