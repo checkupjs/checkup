@@ -20,7 +20,7 @@
     "chrome-debugging-client": "^1.2.0",
     "date-and-time": "^0.13.1",
     "debug": "^4.1.1",
-    "devtools-protocol": "^0.0.761827",
+    "devtools-protocol": "^0.0.762508",
     "fs-extra": "^9.0.0",
     "handlebars-helpers": "^0.10.0",
     "json-stable-stringify": "^1.0.1",
