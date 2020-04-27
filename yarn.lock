@@ -8566,10 +8566,10 @@ year@^0.2.1:
   resolved "https://registry.yarnpkg.com/year/-/year-0.2.1.tgz#4083ae520a318b23ec86037f3000cb892bdf9bb0"
   integrity sha1-QIOuUgoxiyPshgN/MADLiSvfm7A=
 
-yeoman-environment@^2.3.4, yeoman-environment@^2.8.1, yeoman-environment@^2.9.5:
-  version "2.9.5"
-  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-2.9.5.tgz#372ff3f81bc6a979c6d7f7c9d7d8822088c6a805"
-  integrity sha512-ntxV8VTZbP8QFuJZGT7vG8AsKeyGz8lXlfq2V2T5sl6SrU6UAEVgRreEGz9t+JbFGx1CSM/Ly2atG/avGuheyQ==
+yeoman-environment@^2.8.1, yeoman-environment@^2.9.5, yeoman-environment@^2.9.6:
+  version "2.9.6"
+  resolved "https://registry.yarnpkg.com/yeoman-environment/-/yeoman-environment-2.9.6.tgz#3defd8a1c66fd44df0c8ee9603ac44ecada0a370"
+  integrity sha512-olp9jFDfF35F6YbE2PvWw8idX+JUW9Wf5bY9OYntFdyl4YGnmxJVO6VokYwK+ZoC3asciyO7tteoxTyYG4AxXA==
   dependencies:
     chalk "^2.4.1"
     debug "^3.1.0"
@@ -8590,10 +8590,10 @@ yeoman-environment@^2.3.4, yeoman-environment@^2.8.1, yeoman-environment@^2.9.5:
     untildify "^3.0.3"
     yeoman-generator "^4.8.2"
 
-yeoman-generator@^4.7.2, yeoman-generator@^4.8.2, yeoman-generator@^4.8.3:
-  version "4.8.3"
-  resolved "https://registry.yarnpkg.com/yeoman-generator/-/yeoman-generator-4.8.3.tgz#efbe9a7ba630dc30325ed9724f4766583832005b"
-  integrity sha512-yDPHBhfglqiyYlqBnaAmcE/wPznwSx11HCGVCpnnsqpnp45HmdsuBtiFSNDcygiFmz1HmkFWRLWHTai/b+9eiQ==
+yeoman-generator@^4.7.2, yeoman-generator@^4.8.2, yeoman-generator@^4.9.0:
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/yeoman-generator/-/yeoman-generator-4.9.0.tgz#823dabd4606148c87ea2cc8144508fe0945e939f"
+  integrity sha512-yAtwM+gpxZr1yJGmA8aQqQiI1KrkS6oBqtISy7CwijiXwQZy1SvBakcmaMmYQSp0NjlXW7zXNfo0PdBInmAFOA==
   dependencies:
     async "^2.6.2"
     chalk "^2.4.2"
@@ -8622,7 +8622,7 @@ yeoman-generator@^4.7.2, yeoman-generator@^4.8.2, yeoman-generator@^4.8.3:
   optionalDependencies:
     grouped-queue "^1.1.0"
     mem-fs-editor "^6.0.0"
-    yeoman-environment "^2.3.4"
+    yeoman-environment "^2.9.5"
 
 yeoman-test@^2.4.1:
   version "2.4.1"
