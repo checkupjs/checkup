@@ -31,7 +31,7 @@
     "shorthash": "^0.0.2",
     "tmp": "^0.1.0",
     "tslib": "^1",
-    "yeoman-environment": "^2.9.5",
+    "yeoman-environment": "^2.9.6",
     "yeoman-generator": "^4.9.0"
   },
   "devDependencies": {
