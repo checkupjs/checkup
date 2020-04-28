@@ -32,12 +32,13 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     ui.section(this.meta.friendlyTaskName, () => {
       ui.log(`${ui.emphasize('Octane Violations')}: ${this.totalViolations}`);
       ui.blankLine();
-      ui.table(this.migrationResults, {
-        name: { header: 'Octane Feature' },
-        completion: {
-          header: 'Completion',
-          get: (row: MigrationInfo) => `${row.completionInfo.percentage}%`,
-        },
+      this.migrationResults.forEach((migrationResult) => {
+        ui.bar(
+          migrationResult.name,
+          Number.parseInt(migrationResult.completionInfo.percentage),
+          100,
+          '%'
+        );
       });
     });
   }
