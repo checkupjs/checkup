@@ -5,7 +5,7 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
     super(meta);
   }
 
-  stdout() {
+  toConsole() {
     process.stdout.write(`Result for ${this.meta.taskName}`);
   }
 

@@ -23,7 +23,7 @@ describe('project-meta-task', () => {
       const result = await new ProjectMetaTask({ path: checkupProject.baseDir }).run();
       const taskResult = <ProjectMetaTaskResult>result;
 
-      taskResult.stdout();
+      taskResult.toConsole();
 
       expect(stdout()).toMatchInlineSnapshot(`
         "

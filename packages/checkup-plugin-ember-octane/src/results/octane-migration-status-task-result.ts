@@ -28,7 +28,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     this.totalViolations = this.esLintReport.errorCount + this.templateLintReport.errorCount;
   }
 
-  stdout() {
+  toConsole() {
     ui.section(this.meta.friendlyTaskName, () => {
       ui.log(`${ui.emphasize('Octane Violations')}: ${this.totalViolations}`);
       ui.blankLine();

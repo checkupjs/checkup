@@ -58,7 +58,7 @@ describe('types-task', () => {
     const result = await new EmberTypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    typesTaskResult.stdout();
+    typesTaskResult.toConsole();
 
     expect(stdout()).toMatchSnapshot();
   });
@@ -80,7 +80,7 @@ describe('types-task', () => {
     const result = await new EmberTypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    typesTaskResult.stdout();
+    typesTaskResult.toConsole();
 
     expect(stdout()).toMatchSnapshot();
   });

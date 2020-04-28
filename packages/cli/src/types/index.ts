@@ -11,7 +11,7 @@ export interface MetaTask {
 }
 
 export interface MetaTaskResult {
-  stdout: () => void;
+  toConsole: () => void;
   json: () => JsonMetaTaskResult;
 }
 

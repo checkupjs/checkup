@@ -22,7 +22,7 @@ describe('octane-migration-status-task-result', () => {
         sampleTemplateLintReport
       );
 
-      taskResult.stdout();
+      taskResult.toConsole();
 
       expect(stdout()).toMatchSnapshot();
     });

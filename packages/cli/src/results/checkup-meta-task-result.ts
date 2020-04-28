@@ -6,7 +6,7 @@ export default class CheckupMetaTaskResult extends BaseMetaTaskResult implements
   configHash!: string;
   version!: string;
 
-  stdout() {
+  toConsole() {
     ui.dimmed(`Generated using Checkup v${this.version}. Config: ${this.configHash}`);
     ui.blankLine();
   }

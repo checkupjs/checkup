@@ -25,7 +25,7 @@ describe('dependencies-task', () => {
     const result = await new EmberDependenciesTask({ path: emberProject.baseDir }).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
 
-    dependencyTaskResult.stdout();
+    dependencyTaskResult.toConsole();
 
     expect(stdout()).toMatchSnapshot();
   });

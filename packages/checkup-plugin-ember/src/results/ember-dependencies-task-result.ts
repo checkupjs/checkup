@@ -25,7 +25,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     );
   }
 
-  stdout() {
+  toConsole() {
     if (!this.hasDependencies) {
       return;
     }

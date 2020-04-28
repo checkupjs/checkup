@@ -7,7 +7,7 @@ export default class EmberTypesTaskResult extends BaseTaskResult implements Task
     return this.types.find((type) => type.type === typeName);
   }
 
-  stdout() {
+  toConsole() {
     ui.section(this.meta.friendlyTaskName, () => {
       ui.table(this.types, { type: {}, total: {} });
     });

@@ -78,8 +78,8 @@ export function getReporter(
     case ReporterType.stdout:
       return async () => {
         if (!flags.silent) {
-          metaTaskResults.forEach((taskResult) => taskResult.stdout());
-          pluginTaskResults.forEach((taskResult) => taskResult.stdout());
+          metaTaskResults.forEach((taskResult) => taskResult.toConsole());
+          pluginTaskResults.forEach((taskResult) => taskResult.toConsole());
         }
       };
     case ReporterType.json:

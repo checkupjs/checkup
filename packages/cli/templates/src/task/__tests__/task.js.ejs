@@ -23,7 +23,7 @@ describe('<%- name %>-task', () => {
   it('can read task and output to console', async () => {
     const taskResult = await new <%- taskClass %>({ path: checkupProject.baseDir }).run();
 
-    taskResult.stdout();
+    taskResult.toConsole();
 
     expect(stdout()).toMatchSnapshot();
   });
