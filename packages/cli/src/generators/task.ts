@@ -1,3 +1,4 @@
+import * as Errors from '@oclif/errors';
 import * as _ from 'lodash';
 import * as path from 'path';
 import * as t from '@babel/types';
@@ -43,7 +44,7 @@ export default class TaskGenerator extends BaseGenerator {
       !this.packageJson ||
       !(this.packageJson.keywords && this.packageJson.keywords.includes('oclif-plugin'))
     ) {
-      throw new Error('not in a plugin directory');
+      Errors.error('You must be in a Checkup plugin directory in order to run the task generator');
     }
 
     this.headline(`${this.options.name}-task`);
