@@ -31,20 +31,17 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     }
 
     this._writeDependencySection('Ember Core Libraries', this.emberLibraries);
+    this._writeDependencySection(`Ember Addons (dependencies)`, this.emberAddons.dependencies);
     this._writeDependencySection(
-      `Ember Addons | ${getLength(this.emberAddons.dependencies)} dependencies`,
-      this.emberAddons.dependencies
-    );
-    this._writeDependencySection(
-      `Ember Addons | ${getLength(this.emberAddons.devDependencies)} devDependencies`,
+      `Ember Addons (devDependencies)`,
       this.emberAddons.devDependencies
     );
     this._writeDependencySection(
-      `Ember CLI Addons ${getLength(this.emberCliAddons.dependencies)} dependencies`,
+      `Ember CLI Addons (dependencies)`,
       this.emberCliAddons.dependencies
     );
     this._writeDependencySection(
-      `Ember CLI Addons | ${getLength(this.emberCliAddons.devDependencies)} devDependencies`,
+      `Ember CLI Addons (devDependencies)`,
       this.emberCliAddons.devDependencies
     );
   }
