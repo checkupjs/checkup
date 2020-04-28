@@ -1,13 +1,13 @@
-import { CheckupConfig, CheckupConfigFormat } from '../../src';
-import { CheckupProject } from '@checkup/test-helpers';
 import * as path from 'path';
-import * as yaml from 'js-yaml';
+
+import { CheckupConfig, CheckupConfigFormat } from '../../src';
+
+import { CheckupProject } from '@checkup/test-helpers';
 import CosmiconfigService from '../../src/configuration/cosmiconfig-service';
 
 describe('cosmiconfig-service-factory', () => {
   const formatToWriteMapper: Record<CheckupConfigFormat, (config: CheckupConfig) => string> = {
     JSON: (config) => JSON.stringify(config, null, 2),
-    YAML: (config) => yaml.safeDump(config),
     JavaScript: (config) => `module.exports = ${JSON.stringify(config, null, 2)}`,
   };
   const defaultConfig = {
@@ -42,7 +42,7 @@ describe('cosmiconfig-service-factory', () => {
     expect(result).toBeNull();
   });
 
-  it.each([[CheckupConfigFormat.JSON], [CheckupConfigFormat.YAML]])(
+  it.each([[CheckupConfigFormat.JSON], [CheckupConfigFormat.JavaScript]])(
     'should correctly search extensionless %s config files',
     async (configFormat: CheckupConfigFormat) => {
       project.files['.checkuprc'] = formatToWriteMapper[configFormat](defaultConfig);
@@ -58,8 +58,6 @@ describe('cosmiconfig-service-factory', () => {
   it.each([
     ['.checkuprc.js', CheckupConfigFormat.JavaScript],
     ['.checkuprc.json', CheckupConfigFormat.JSON],
-    ['.checkuprc.yml', CheckupConfigFormat.YAML],
-    ['.checkuprc.yaml', CheckupConfigFormat.YAML],
     ['checkup.config.js', CheckupConfigFormat.JavaScript],
   ])(
     'should correctly search config files of type %s',
@@ -74,7 +72,7 @@ describe('cosmiconfig-service-factory', () => {
     }
   );
 
-  it.each([[CheckupConfigFormat.JSON], [CheckupConfigFormat.YAML]])(
+  it.each([[CheckupConfigFormat.JSON], [CheckupConfigFormat.JavaScript]])(
     'should correctly load extensionless %s config files',
     async (configFormat: CheckupConfigFormat) => {
       project.files['.checkuprc'] = formatToWriteMapper[configFormat](defaultConfig);
@@ -92,8 +90,6 @@ describe('cosmiconfig-service-factory', () => {
   it.each([
     ['.checkuprc.js', CheckupConfigFormat.JavaScript],
     ['.checkuprc.json', CheckupConfigFormat.JSON],
-    ['.checkuprc.yml', CheckupConfigFormat.YAML],
-    ['.checkuprc.yaml', CheckupConfigFormat.YAML],
     ['checkup.config.js', CheckupConfigFormat.JavaScript],
   ])(
     'should correctly load config files of type %s',

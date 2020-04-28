@@ -14,13 +14,11 @@
     "fp-ts": "^2.5.4",
     "globby": "^11.0.0",
     "io-ts": "^2.2.1",
-    "js-yaml": "^3.13.1",
     "resolve": "^1.17.0"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",
     "@types/eslint": "^6.8.0",
-    "@types/js-yaml": "^3.12.3",
     "@types/resolve": "^1.14.0",
     "eslint-plugin-jest": "^23.8.2"
   },

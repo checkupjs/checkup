@@ -2,12 +2,12 @@ import * as chalk from 'chalk';
 import * as debug from 'debug';
 
 import { basename, join } from 'path';
+import { existsSync, readdirSync } from 'fs';
 
 import Command from '@oclif/command';
 import { IConfig } from '@oclif/config';
 import { createEnv } from 'yeoman-environment';
 import { flags } from '@oclif/command';
-import { readdirSync } from 'fs';
 import { rmdirSync } from 'fs';
 
 export interface Options {
@@ -20,6 +20,7 @@ export interface Options {
 
 export default class GenerateCommand extends Command {
   private _generators!: string[];
+  private baseDir: string;
 
   static description = 'Runs a generator to scaffold Checkup code';
 
@@ -49,6 +50,7 @@ export default class GenerateCommand extends Command {
   constructor(argv: string[], config: IConfig) {
     super(argv, config);
 
+    this.baseDir = process.cwd();
     this.debug = debug('checkup:generator');
   }
 
@@ -90,18 +92,26 @@ export default class GenerateCommand extends Command {
 
     env.register(require.resolve(`../generators/${type}`), `checkup:${type}`);
 
-    await new Promise((resolve, reject) => {
-      env.run(`checkup:${type}`, generatorOptions, (err: Error | null) => {
-        if (err) {
-          reject(err);
-        } else {
-          // this is ugly, but I couldn't find the correct configuration to ignore
-          // generating the yeoman repository directory in the cwd
-          rmdirSync(join(process.cwd(), '.yo-repository'));
+    try {
+      await new Promise((resolve, reject) => {
+        env.run(`checkup:${type}`, generatorOptions, (err: Error | null) => {
+          if (err) {
+            reject(err);
+          } else {
+            // this is ugly, but I couldn't find the correct configuration to ignore
+            // generating the yeoman repository directory in the cwd
+            let yoRepoPath = join(this.baseDir, '.yo-repository');
 
-          resolve();
-        }
+            if (existsSync(yoRepoPath)) {
+              rmdirSync(yoRepoPath);
+            }
+
+            resolve();
+          }
+        });
       });
-    });
+    } catch (error) {
+      this.error(error);
+    }
   }
 }

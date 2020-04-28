@@ -1,4 +1,4 @@
-import * as Generator from 'yeoman-generator';
+import * as chalk from 'chalk';
 
 import {
   CheckupConfigFormat,
@@ -8,8 +8,9 @@ import {
 } from '@checkup/core';
 
 import { Answers } from 'inquirer';
+import BaseGenerator from './base-generator';
 
-export default class ConfigGenerator extends Generator {
+export default class ConfigGenerator extends BaseGenerator {
   private answers!: Answers;
   private configService!: CheckupConfigService;
 
@@ -24,6 +25,8 @@ export default class ConfigGenerator extends Generator {
   }
 
   async prompting() {
+    this.headline('checkup config');
+
     this.answers = await this.prompt([
       {
         name: 'format',
@@ -41,6 +44,7 @@ export default class ConfigGenerator extends Generator {
   }
 
   async writing() {
-    this.configService.write();
+    let configPath = this.configService.write();
+    this.log(`   ${chalk.green('create')} ${configPath}`);
   }
 }

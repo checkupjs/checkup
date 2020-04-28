@@ -1,18 +1,12 @@
-import * as Generator from 'yeoman-generator';
-import * as chalk from 'chalk';
 import * as path from 'path';
 
-import { getVersion } from '../helpers/get-version';
+import { Answers } from 'inquirer';
+import BaseGenerator from './base-generator';
 
 const PLUGIN_DIR_PATTERN = /checkup-plugin-.*/;
 
-export default class PluginGenerator extends Generator {
-  answers!: {
-    typescript: boolean;
-    description: string;
-    author: string;
-    repository: string;
-  };
+export default class PluginGenerator extends BaseGenerator {
+  answers!: Answers;
 
   private get _ext() {
     return this.options.typescript ? 'ts' : 'js';
@@ -29,11 +23,9 @@ export default class PluginGenerator extends Generator {
   }
 
   async prompting() {
-    this.log(
-      `Adding ${chalk.bold.white(this.options.name)} plugin. Version: ${chalk.bold.white(
-        getVersion()
-      )}`
-    );
+    this._normalizeName();
+
+    this.headline(this.options.name);
 
     const defaults = {
       typescript: true,
@@ -72,8 +64,6 @@ export default class PluginGenerator extends Generator {
         },
       ]);
     }
-
-    this._normalizeName();
 
     this.options.typescript = this.answers.typescript;
     this.options.description = this.answers.description;

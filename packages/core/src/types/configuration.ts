@@ -9,7 +9,6 @@ export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
 
 export enum CheckupConfigFormat {
   JSON = 'JSON',
-  YAML = 'YAML',
   JavaScript = 'JavaScript',
 }
 
