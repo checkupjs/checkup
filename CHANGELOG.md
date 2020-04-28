@@ -1,3 +1,17 @@
+## v0.0.12 (2020-04-28)
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember`
+  * [#332](https://github.com/checkupjs/checkup/pull/332) Fixing output of check-plugin-ember dependency task ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `checkup-plugin-ember-octane`, `core`
+  * [#333](https://github.com/checkupjs/checkup/pull/333) Updates output in octane task to be in bar format ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.0.11 (2020-04-28)
 
 #### :house: Internal
