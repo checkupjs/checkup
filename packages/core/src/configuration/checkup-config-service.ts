@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import { CheckupConfig, CheckupConfigFormat, CheckupConfigLoader } from '../types/configuration';
 
 import { RuntimeCheckupConfig } from '../types/runtime-types';
+import { basename } from 'path';
 import { fold } from 'fp-ts/lib/Either';
 import { pipe } from 'fp-ts/lib/pipeable';
 
@@ -44,6 +45,8 @@ export default class CheckupConfigService {
   write() {
     const configToWrite = CheckupConfigService.formatToWriteMapper[this.format](this.get());
     fs.writeFileSync(this.configPath, configToWrite);
+
+    return basename(this.configPath);
   }
 
   /**

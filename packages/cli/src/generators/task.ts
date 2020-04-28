@@ -1,15 +1,14 @@
-import * as Generator from 'yeoman-generator';
 import * as _ from 'lodash';
-import * as chalk from 'chalk';
 import * as path from 'path';
 import * as t from '@babel/types';
 
 import { Category, Priority } from '@checkup/core';
 
+import { Answers } from 'inquirer';
 import AstTransformer from '../helpers/ast';
+import BaseGenerator from './base-generator';
 import { Options } from '../commands/generate';
 import { PackageJson } from 'type-fest';
-import { getVersion } from '../helpers/get-version';
 
 interface TaskOptions extends Options {
   taskResultClass: string;
@@ -20,14 +19,9 @@ interface TaskOptions extends Options {
   priority: string;
 }
 
-export default class TaskGenerator extends Generator {
+export default class TaskGenerator extends BaseGenerator {
   packageJson!: PackageJson;
-
-  answers!: {
-    typescript: boolean;
-    category: string;
-    priority: string;
-  };
+  answers!: Answers;
 
   private get _ts() {
     let devDeps = this.packageJson.devDependencies;
@@ -52,11 +46,7 @@ export default class TaskGenerator extends Generator {
       throw new Error('not in a plugin directory');
     }
 
-    this.log(
-      `Adding a ${chalk.bold.white(this.options.name)} task to ${chalk.bold.white(
-        this.packageJson.name
-      )}. Version: ${chalk.bold.white(getVersion())}`
-    );
+    this.headline(`${this.options.name}-task`);
 
     const defaults = {
       typescript: true,
