@@ -46,4 +46,18 @@ export const ui = Object.assign(ux, {
   emphasize(format: string) {
     return chalk.bold(chalk.white(format));
   },
+
+  bar(title: string, complete: number, total: number, unit: string, maximum: number = 50) {
+    const barTick = '■';
+    const barSegment = Math.ceil(total / maximum);
+    const fullSegments = Math.ceil(complete / barSegment);
+    const emptySegments = maximum - fullSegments;
+    const bar = `${chalk.green(barTick.repeat(fullSegments))}${chalk.grey(
+      barTick.repeat(emptySegments)
+    )}`;
+
+    ui.log(title);
+    ui.log(`${bar} ${complete}${unit}`);
+    ui.blankLine();
+  },
 });

@@ -1732,15 +1732,30 @@ exports[`octane-migration-status-task-result console output simple console outpu
 
 Octane Violations: 33
 
-Octane Feature        Completion 
-Native Classes        9.09%      
-Tagless Components    83.33%     
-Glimmer Components    66.67%     
-Tracked Properties    83.33%     
-Angle Brackets Syntax 66.67%     
-Named Arguments       100.00%    
-Own Properties        66.67%     
-Modifiers             66.67%     
+Native Classes
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 9%
+
+Tagless Components
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 83%
+
+Glimmer Components
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 66%
+
+Tracked Properties
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 83%
+
+Angle Brackets Syntax
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 66%
+
+Named Arguments
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 100%
+
+Own Properties
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 66%
+
+Modifiers
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 66%
+
 
 "
 `;
