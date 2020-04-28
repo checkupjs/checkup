@@ -1,3 +1,13 @@
+## v0.0.11 (2020-04-28)
+
+#### :house: Internal
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `cli`, `core`
+  * [#330](https://github.com/checkupjs/checkup/pull/330) Renaming task result methods ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
 ## v0.0.10 (2020-04-27)
 
 #### :bug: Bug Fix
