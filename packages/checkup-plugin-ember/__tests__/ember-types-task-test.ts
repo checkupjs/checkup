@@ -58,7 +58,7 @@ describe('types-task', () => {
     const result = await new EmberTypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    typesTaskResult.stdout();
+    typesTaskResult.toConsole();
 
     expect(stdout()).toMatchSnapshot();
   });
@@ -80,7 +80,7 @@ describe('types-task', () => {
     const result = await new EmberTypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    typesTaskResult.stdout();
+    typesTaskResult.toConsole();
 
     expect(stdout()).toMatchSnapshot();
   });
@@ -96,7 +96,7 @@ describe('types-task', () => {
     const result = await new EmberTypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(typesTaskResult.json()).toMatchSnapshot();
+    expect(typesTaskResult.toJson()).toMatchSnapshot();
   });
 
   it('returns all the types (including nested) found in the app and outputs to JSON', async () => {
@@ -116,7 +116,7 @@ describe('types-task', () => {
     const result = await new EmberTypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(typesTaskResult.json()).toMatchSnapshot();
+    expect(typesTaskResult.toJson()).toMatchSnapshot();
   });
 
   it('returns all the types found in the app and outputs to html', async () => {
@@ -130,7 +130,7 @@ describe('types-task', () => {
     const result = await new EmberTypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(typesTaskResult.html()).toMatchSnapshot();
+    expect(typesTaskResult.toReportData()).toMatchSnapshot();
   });
 
   it('returns all the types (including nested) found in the app and outputs to html', async () => {
@@ -150,6 +150,6 @@ describe('types-task', () => {
     const result = await new EmberTypesTask({ path: project.baseDir }).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(typesTaskResult.html()).toMatchSnapshot();
+    expect(typesTaskResult.toReportData()).toMatchSnapshot();
   });
 });

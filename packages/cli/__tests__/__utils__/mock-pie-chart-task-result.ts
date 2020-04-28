@@ -1,8 +1,8 @@
 import {
   BaseTaskResult,
-  Priority,
-  PieChartData,
   Category,
+  PieChartData,
+  Priority,
   TaskMetaData,
   TaskResult,
 } from '@checkup/core';
@@ -12,18 +12,18 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
     super(meta);
   }
 
-  stdout() {
+  toConsole() {
     process.stdout.write(`Result for ${this.meta.taskName}`);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: this.result,
     };
   }
 
-  html() {
+  toReportData() {
     return [
       new PieChartData(
         {

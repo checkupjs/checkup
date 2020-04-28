@@ -25,7 +25,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     );
   }
 
-  stdout() {
+  toConsole() {
     if (!this.hasDependencies) {
       return;
     }
@@ -49,7 +49,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     );
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {
@@ -60,7 +60,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     };
   }
 
-  html() {
+  toReportData() {
     let dependencyGroups = [
       this.emberLibraries,
       this.emberAddons.devDependencies,

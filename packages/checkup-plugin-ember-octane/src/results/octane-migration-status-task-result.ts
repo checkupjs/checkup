@@ -28,7 +28,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     this.totalViolations = this.esLintReport.errorCount + this.templateLintReport.errorCount;
   }
 
-  stdout() {
+  toConsole() {
     ui.section(this.meta.friendlyTaskName, () => {
       ui.log(`${ui.emphasize('Octane Violations')}: ${this.totalViolations}`);
       ui.blankLine();
@@ -42,7 +42,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     });
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {
@@ -52,7 +52,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     };
   }
 
-  html() {
+  toReportData() {
     return this.migrationResults
       .map((migrationResult) => this._createPieChartData(migrationResult))
       .filter(Boolean) as PieChartData[];

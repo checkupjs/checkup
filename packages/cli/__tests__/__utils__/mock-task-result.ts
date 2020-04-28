@@ -5,18 +5,18 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
     super(meta);
   }
 
-  stdout() {
+  toConsole() {
     process.stdout.write(`Result for ${this.meta.taskName}`);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: this.result,
     };
   }
 
-  html() {
+  toReportData() {
     return [new NumericalCardData(this.meta, this.result, 'this is a description of your result')];
   }
 }

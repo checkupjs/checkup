@@ -18,9 +18,9 @@ export interface Task {
 }
 
 export interface TaskResult {
-  stdout: () => void;
-  json: () => JsonMetaTaskResult | JsonTaskResult;
-  html: () => ReportResultData[];
+  toConsole: () => void;
+  toJson: () => JsonMetaTaskResult | JsonTaskResult;
+  toReportData: () => ReportResultData[];
 }
 
 export interface TaskMetaData {

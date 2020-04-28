@@ -8,7 +8,7 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
   version!: string;
   repository!: RepositoryInfo;
 
-  stdout() {
+  toConsole() {
     ui.blankLine();
     ui.log(`Checkup report generated for ${ui.emphasize(`${this.name} v${this.version}`)} .`);
     ui.blankLine();
@@ -22,7 +22,7 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
     ui.blankLine();
   }
 
-  json() {
+  toJson() {
     return {
       project: {
         name: this.name,

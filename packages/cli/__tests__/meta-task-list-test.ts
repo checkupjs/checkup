@@ -71,7 +71,7 @@ describe('MetaTaskList', () => {
 
     let result = await taskList.runTask('fake-meta-task');
 
-    expect(result.json()).toMatchInlineSnapshot(`
+    expect(result.toJson()).toMatchInlineSnapshot(`
       Object {
         "fake-meta-task": "fake meta task is being run",
       }
@@ -86,7 +86,7 @@ describe('MetaTaskList', () => {
 
     let result = await taskList.runTasks();
 
-    expect(result[0].json()).toMatchSnapshot();
-    expect(result[1].json()).toMatchSnapshot();
+    expect(result[0].toJson()).toMatchSnapshot();
+    expect(result[1].toJson()).toMatchSnapshot();
   });
 });

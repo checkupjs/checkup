@@ -37,7 +37,7 @@ export function _transformHTMLResults(
   let requiresChart = false;
 
   pluginTaskResults
-    .flatMap((result) => result.html())
+    .flatMap((result) => result.toReportData())
     .forEach((taskResult) => {
       if (taskResult) {
         let { category, priority } = taskResult.meta.taskClassification;
@@ -51,7 +51,7 @@ export function _transformHTMLResults(
     });
 
   return {
-    meta: Object.assign({}, ...metaTaskResults.map((result) => result.json())),
+    meta: Object.assign({}, ...metaTaskResults.map((result) => result.toJson())),
     results: mergedResults,
     requiresChart,
   };
@@ -62,8 +62,8 @@ export function _transformJsonResults(
   pluginTaskResults: TaskResult[]
 ) {
   let transformedResult = {
-    meta: Object.assign({}, ...metaTaskResults.map((result) => result.json())),
-    results: pluginTaskResults.map((result) => result.json()),
+    meta: Object.assign({}, ...metaTaskResults.map((result) => result.toJson())),
+    results: pluginTaskResults.map((result) => result.toJson()),
   };
 
   return transformedResult;
@@ -78,8 +78,8 @@ export function getReporter(
     case ReporterType.stdout:
       return async () => {
         if (!flags.silent) {
-          metaTaskResults.forEach((taskResult) => taskResult.stdout());
-          pluginTaskResults.forEach((taskResult) => taskResult.stdout());
+          metaTaskResults.forEach((taskResult) => taskResult.toConsole());
+          pluginTaskResults.forEach((taskResult) => taskResult.toConsole());
         }
       };
     case ReporterType.json:

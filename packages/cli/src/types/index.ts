@@ -11,8 +11,8 @@ export interface MetaTask {
 }
 
 export interface MetaTaskResult {
-  stdout: () => void;
-  json: () => JsonMetaTaskResult;
+  toConsole: () => void;
+  toJson: () => JsonMetaTaskResult;
 }
 
 export const enum TestType {

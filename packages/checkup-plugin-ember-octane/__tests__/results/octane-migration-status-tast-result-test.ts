@@ -22,7 +22,7 @@ describe('octane-migration-status-task-result', () => {
         sampleTemplateLintReport
       );
 
-      taskResult.stdout();
+      taskResult.toConsole();
 
       expect(stdout()).toMatchSnapshot();
     });
@@ -37,7 +37,7 @@ describe('octane-migration-status-task-result', () => {
         sampleTemplateLintReport
       );
 
-      let jsonResults = taskResult.json();
+      let jsonResults = taskResult.toJson();
 
       expect(jsonResults).toMatchSnapshot();
     });
@@ -51,7 +51,7 @@ describe('octane-migration-status-task-result', () => {
         sampleESLintReport,
         sampleTemplateLintReport
       );
-      let htmlResults = taskResult.html();
+      let htmlResults = taskResult.toReportData();
 
       expect(filterPieChartDataForTest(htmlResults)).toMatchSnapshot();
     });
