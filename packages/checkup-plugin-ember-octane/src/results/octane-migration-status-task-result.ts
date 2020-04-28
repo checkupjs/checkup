@@ -42,7 +42,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     });
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {

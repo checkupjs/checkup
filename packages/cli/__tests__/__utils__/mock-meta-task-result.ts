@@ -11,7 +11,7 @@ export default class MockMetaTaskResult extends BaseMetaTaskResult implements Me
     process.stdout.write(`Result for ${this.meta.taskName}`);
   }
 
-  json() {
+  toJson() {
     return {
       [this.meta.taskName]: this.result,
     };

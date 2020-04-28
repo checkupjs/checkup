@@ -33,6 +33,6 @@ describe('<%- name %>-task', () => {
     const result = await new <%- taskClass %>({ path: checkupProject.baseDir }).run();
     const taskResult = <<%- resultClass %>>result;
 
-    expect(taskResult.json()).toMatchSnapshot();
+    expect(taskResult.toJson()).toMatchSnapshot();
   });
 });

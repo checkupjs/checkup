@@ -62,7 +62,7 @@ describe('checkup-meta-task', () => {
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
-      expect(taskResult.json()).toMatchInlineSnapshot(`
+      expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
           "checkup": Object {
             "configHash": "ae3266e319bdfb51db83810a2f4dd161",
@@ -105,7 +105,7 @@ describe('checkup-meta-task', () => {
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
-      expect(taskResult.json()).toMatchInlineSnapshot(`
+      expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
           "checkup": Object {
             "configHash": "705deefb6abf2b6d34f93cede7acba07",

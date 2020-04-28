@@ -31,6 +31,6 @@ describe('<%- name %>-task', () => {
   it('can read task as JSON', async () => {
     const taskResult = await new <%- taskClass %>({ path: checkupProject.baseDir }).run();
 
-    expect(taskResult.json()).toMatchSnapshot();
+    expect(taskResult.toJson()).toMatchSnapshot();
   });
 });

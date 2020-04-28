@@ -65,7 +65,7 @@ describe('TaskList', () => {
 
     let result = await taskList.runTask('insights-task-high');
 
-    expect(result.json()).toMatchSnapshot();
+    expect(result.toJson()).toMatchSnapshot();
   });
 
   it('runTasks will run all registered tasks', async () => {
@@ -76,8 +76,8 @@ describe('TaskList', () => {
 
     let result = await taskList.runTasks();
 
-    expect(result[0].json()).toMatchSnapshot();
-    expect(result[1].json()).toMatchSnapshot();
+    expect(result[0].toJson()).toMatchSnapshot();
+    expect(result[1].toJson()).toMatchSnapshot();
   });
 
   it('runTasks will sort tasks in the correct order', async () => {

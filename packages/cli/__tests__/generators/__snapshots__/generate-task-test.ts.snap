@@ -30,7 +30,7 @@ export default class MyFooTaskResult extends BaseTaskResult {
     ui.styledHeader(this.meta.friendlyTaskName);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {},
@@ -74,7 +74,7 @@ describe('my-foo-task', () => {
   it('can read task as JSON', async () => {
     const taskResult = await new MyFooTask({ path: checkupProject.baseDir }).run();
 
-    expect(taskResult.json()).toMatchSnapshot();
+    expect(taskResult.toJson()).toMatchSnapshot();
   });
 });"
 `;
@@ -122,7 +122,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     ui.styledHeader(this.meta.friendlyTaskName);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {},
@@ -168,7 +168,7 @@ describe('my-foo-task', () => {
     const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.json()).toMatchSnapshot();
+    expect(taskResult.toJson()).toMatchSnapshot();
   });
 });"
 `;
@@ -216,7 +216,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     ui.styledHeader(this.meta.friendlyTaskName);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {},
@@ -262,7 +262,7 @@ describe('my-foo-task', () => {
     const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.json()).toMatchSnapshot();
+    expect(taskResult.toJson()).toMatchSnapshot();
   });
 });"
 `;
@@ -310,7 +310,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     ui.styledHeader(this.meta.friendlyTaskName);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {},
@@ -356,7 +356,7 @@ describe('my-foo-task', () => {
     const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.json()).toMatchSnapshot();
+    expect(taskResult.toJson()).toMatchSnapshot();
   });
 });"
 `;
@@ -404,7 +404,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     ui.styledHeader(this.meta.friendlyTaskName);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {},
@@ -450,7 +450,7 @@ describe('my-foo-task', () => {
     const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.json()).toMatchSnapshot();
+    expect(taskResult.toJson()).toMatchSnapshot();
   });
 });"
 `;
@@ -485,7 +485,7 @@ export default class MyBarTaskResult extends BaseTaskResult implements TaskResul
     ui.styledHeader(this.meta.friendlyTaskName);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {},
@@ -531,7 +531,7 @@ describe('my-bar-task', () => {
     const result = await new MyBarTask({ path: checkupProject.baseDir }).run();
     const taskResult = <MyBarTaskResult>result;
 
-    expect(taskResult.json()).toMatchSnapshot();
+    expect(taskResult.toJson()).toMatchSnapshot();
   });
 });"
 `;

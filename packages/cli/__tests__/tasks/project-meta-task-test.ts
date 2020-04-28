@@ -39,7 +39,7 @@ describe('project-meta-task', () => {
       const result = await new ProjectMetaTask({ path: checkupProject.baseDir }).run();
       const taskResult = <ProjectMetaTaskResult>result;
 
-      expect(taskResult.json()).toMatchInlineSnapshot(`
+      expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
           "project": Object {
             "name": "checkup-app",

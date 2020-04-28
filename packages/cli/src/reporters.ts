@@ -51,7 +51,7 @@ export function _transformHTMLResults(
     });
 
   return {
-    meta: Object.assign({}, ...metaTaskResults.map((result) => result.json())),
+    meta: Object.assign({}, ...metaTaskResults.map((result) => result.toJson())),
     results: mergedResults,
     requiresChart,
   };
@@ -62,8 +62,8 @@ export function _transformJsonResults(
   pluginTaskResults: TaskResult[]
 ) {
   let transformedResult = {
-    meta: Object.assign({}, ...metaTaskResults.map((result) => result.json())),
-    results: pluginTaskResults.map((result) => result.json()),
+    meta: Object.assign({}, ...metaTaskResults.map((result) => result.toJson())),
+    results: pluginTaskResults.map((result) => result.toJson()),
   };
 
   return transformedResult;

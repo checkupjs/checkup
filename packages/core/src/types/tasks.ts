@@ -19,7 +19,7 @@ export interface Task {
 
 export interface TaskResult {
   toConsole: () => void;
-  json: () => JsonMetaTaskResult | JsonTaskResult;
+  toJson: () => JsonMetaTaskResult | JsonTaskResult;
   html: () => ReportResultData[];
 }
 

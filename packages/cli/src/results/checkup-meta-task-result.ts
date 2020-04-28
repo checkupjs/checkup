@@ -11,7 +11,7 @@ export default class CheckupMetaTaskResult extends BaseMetaTaskResult implements
     ui.blankLine();
   }
 
-  json() {
+  toJson() {
     return {
       checkup: {
         configHash: this.configHash,

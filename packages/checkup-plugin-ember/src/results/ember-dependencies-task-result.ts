@@ -49,7 +49,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     );
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {

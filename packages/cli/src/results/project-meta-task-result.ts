@@ -22,7 +22,7 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
     ui.blankLine();
   }
 
-  json() {
+  toJson() {
     return {
       project: {
         name: this.name,

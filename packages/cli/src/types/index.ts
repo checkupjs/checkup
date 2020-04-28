@@ -12,7 +12,7 @@ export interface MetaTask {
 
 export interface MetaTaskResult {
   toConsole: () => void;
-  json: () => JsonMetaTaskResult;
+  toJson: () => JsonMetaTaskResult;
 }
 
 export const enum TestType {

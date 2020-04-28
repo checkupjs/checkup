@@ -37,7 +37,7 @@ describe('octane-migration-status-task-result', () => {
         sampleTemplateLintReport
       );
 
-      let jsonResults = taskResult.json();
+      let jsonResults = taskResult.toJson();
 
       expect(jsonResults).toMatchSnapshot();
     });

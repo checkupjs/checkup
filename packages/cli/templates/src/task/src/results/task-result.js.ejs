@@ -5,7 +5,7 @@ export default class <%- taskResultClass %> extends BaseTaskResult {
     ui.styledHeader(this.meta.friendlyTaskName);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: {},

@@ -9,7 +9,7 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
     process.stdout.write(`Result for ${this.meta.taskName}`);
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
       result: this.result,
