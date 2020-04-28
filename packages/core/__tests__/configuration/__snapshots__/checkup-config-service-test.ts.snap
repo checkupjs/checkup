@@ -25,9 +25,3 @@ exports[`checkup-config-service should write the config on calling write for Jav
   \\"tasks\\": {}
 }"
 `;
-
-exports[`checkup-config-service should write the config on calling write for YAML files 1`] = `
-"plugins: []
-tasks: {}
-"
-`;

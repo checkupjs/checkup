@@ -117,10 +117,9 @@ Checkup uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find
 
 The search stops when one of these is found, and Checkup uses that object.
 
-The .checkuprc file (without extension) can be in JSON or YAML format. You can add a filename extension to help your text editor provide syntax checking and highlighting:
+The .checkuprc file (without extension) can be in JSON or JavaScript format. You can add a filename extension to help your text editor provide syntax checking and highlighting:
 
 - .checkup.json
-- .checkup.yaml / .checkup.yml
 - .checkup.js
 
 You can also specify an explicit path to a configuration via the command line, which will override any configurations found in any `.checkuprc.*` files

@@ -3,11 +3,9 @@ import * as path from 'path';
 import { CheckupConfigFormat, CosmiconfigServiceResult } from '../types/configuration';
 import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 
-type ConfigExtension = '.js' | '.json' | '.yml' | '.yaml';
+type ConfigExtension = '.js' | '.json';
 const EXTENSION_TO_FORMAT: Record<ConfigExtension, CheckupConfigFormat> = {
   '.js': CheckupConfigFormat.JavaScript,
-  '.yml': CheckupConfigFormat.YAML,
-  '.yaml': CheckupConfigFormat.YAML,
   '.json': CheckupConfigFormat.JSON,
 };
 
@@ -16,29 +14,22 @@ const EXTENSION_TO_FORMAT: Record<ConfigExtension, CheckupConfigFormat> = {
  * data from the loaded config, like {@link CheckupConfigFormat}.
  */
 export default class CosmiconfigService {
-  private static readonly MODULE_NAME = 'checkup';
   private cosmiconfig: ReturnType<typeof cosmiconfig>;
   private outputFormat: CheckupConfigFormat | undefined;
 
   constructor() {
-    this.cosmiconfig = cosmiconfig(CosmiconfigService.MODULE_NAME, {
-      searchPlaces: [
-        `.${CosmiconfigService.MODULE_NAME}rc`,
-        `.${CosmiconfigService.MODULE_NAME}rc.json`,
-        `.${CosmiconfigService.MODULE_NAME}rc.yaml`,
-        `.${CosmiconfigService.MODULE_NAME}rc.yml`,
-        `.${CosmiconfigService.MODULE_NAME}rc.js`,
-        `${CosmiconfigService.MODULE_NAME}.config.js`,
-      ],
+    this.cosmiconfig = cosmiconfig('checkup', {
+      searchPlaces: ['.checkuprc', '.checkuprc.json', '.checkuprc.js', 'checkup.config.js'],
       loaders: {
         noExt: (filepath, content) => {
           try {
             JSON.parse(content);
             this.outputFormat = CheckupConfigFormat.JSON;
+            return defaultLoaders['.json'](filepath, content);
           } catch {
-            this.outputFormat = CheckupConfigFormat.YAML;
+            this.outputFormat = CheckupConfigFormat.JavaScript;
+            return defaultLoaders['.js'](filepath, content);
           }
-          return defaultLoaders['noExt'](filepath, content);
         },
       },
     });
