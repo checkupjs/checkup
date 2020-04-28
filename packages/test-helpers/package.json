@@ -9,7 +9,7 @@
     "fixturify-project": "^2.1.0",
     "handlebars": "^4.7.6",
     "stdout-stderr": "^0.1.13",
-    "tmp": "^0.1.0"
+    "tmp": "^0.2.0"
   },
   "engines": {
     "node": ">= 12.*"
