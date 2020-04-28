@@ -60,7 +60,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     };
   }
 
-  html() {
+  toReportData() {
     let dependencyGroups = [
       this.emberLibraries,
       this.emberAddons.devDependencies,

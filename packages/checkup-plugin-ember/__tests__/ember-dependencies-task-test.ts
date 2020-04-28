@@ -40,7 +40,7 @@ describe('dependencies-task', () => {
   it('detects Ember dependencies for html, and doesnt create a table without dependencies', async () => {
     const result = await new EmberDependenciesTask({ path: emberProject.baseDir }).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
-    const htmlResults = dependencyTaskResult.html();
+    const htmlResults = dependencyTaskResult.toReportData();
 
     expect(htmlResults).toMatchSnapshot();
     expect(htmlResults).toHaveLength(4);

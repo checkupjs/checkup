@@ -51,7 +51,7 @@ describe('octane-migration-status-task-result', () => {
         sampleESLintReport,
         sampleTemplateLintReport
       );
-      let htmlResults = taskResult.html();
+      let htmlResults = taskResult.toReportData();
 
       expect(filterPieChartDataForTest(htmlResults)).toMatchSnapshot();
     });

@@ -37,7 +37,7 @@ export function _transformHTMLResults(
   let requiresChart = false;
 
   pluginTaskResults
-    .flatMap((result) => result.html())
+    .flatMap((result) => result.toReportData())
     .forEach((taskResult) => {
       if (taskResult) {
         let { category, priority } = taskResult.meta.taskClassification;

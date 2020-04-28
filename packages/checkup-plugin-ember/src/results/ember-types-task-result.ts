@@ -17,7 +17,7 @@ export default class EmberTypesTaskResult extends BaseTaskResult implements Task
     return { meta: this.meta, result: { types: this.types } };
   }
 
-  html() {
+  toReportData() {
     return [
       new TableData(
         this.meta,

@@ -37,7 +37,7 @@ export default class MyFooTaskResult extends BaseTaskResult {
     };
   }
 
-  html() {}
+  toReportData() {}
 }
 "
 `;
@@ -129,7 +129,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  html() {}
+  toReportData() {}
 }
 "
 `;
@@ -223,7 +223,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  html() {}
+  toReportData() {}
 }
 "
 `;
@@ -317,7 +317,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  html() {}
+  toReportData() {}
 }
 "
 `;
@@ -411,7 +411,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  html() {}
+  toReportData() {}
 }
 "
 `;
@@ -492,7 +492,7 @@ export default class MyBarTaskResult extends BaseTaskResult implements TaskResul
     };
   }
 
-  html() {}
+  toReportData() {}
 }
 "
 `;
