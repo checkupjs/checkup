@@ -2,9 +2,11 @@
 
 import * as helpers from 'yeoman-test';
 
-import { CheckupPluginProject, testRoot } from '@checkup/test-helpers';
+import { createTmpDir, testRoot } from '@checkup/test-helpers';
 
+import PluginGenerator from '../../src/generators/plugin';
 import TaskGenerator from '../../src/generators/task';
+import { join } from 'path';
 
 function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
@@ -20,22 +22,31 @@ function assertPluginFiles(dir: string, extension: string = 'ts') {
   expect(root.file(`src/hooks/register-tasks.${extension}`).contents).toMatchSnapshot();
 }
 
+async function generatePlugin(
+  options: object = {
+    name: 'my-plugin',
+    defaults: true,
+  },
+  prompts: object = {
+    typescript: true,
+  }
+) {
+  let tmp = createTmpDir();
+  let dir = await helpers
+    .run(PluginGenerator, { namespace: 'checkup:plugin' })
+    .cd(tmp)
+    .withOptions(options)
+    .withPrompts(prompts);
+
+  return join(dir, 'checkup-plugin-my-plugin');
+}
+
 describe('task generator', () => {
-  let project: CheckupPluginProject;
-
-  beforeEach(function () {
-    project = new CheckupPluginProject('@checkup/plugin-mock');
-    project.writeSync();
-  });
-
-  afterEach(function () {
-    project.dispose();
-  });
-
   it('generates correct files with TypeScript for defaults', async () => {
+    let baseDir = await generatePlugin();
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
-      .cd(project.baseDir)
+      .cd(baseDir)
       .withOptions({
         name: 'my-foo',
         defaults: true,
@@ -46,21 +57,19 @@ describe('task generator', () => {
   });
 
   it('generates multiple correct files with TypeScript for defaults', async () => {
+    let baseDir = await generatePlugin();
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
-      .cd(project.baseDir)
+      .cd(baseDir)
       .withOptions({
         name: 'my-foo',
         defaults: true,
       });
 
-    dir = await helpers
-      .run(TaskGenerator, { namespace: 'checkup:task' })
-      .cd(project.baseDir)
-      .withOptions({
-        name: 'my-bar',
-        defaults: true,
-      });
+    dir = await helpers.run(TaskGenerator, { namespace: 'checkup:task' }).cd(baseDir).withOptions({
+      name: 'my-bar',
+      defaults: true,
+    });
 
     assertTaskFiles('my-foo', dir);
     assertTaskFiles('my-bar', dir);
@@ -68,9 +77,10 @@ describe('task generator', () => {
   });
 
   it('generates correct files with JavaScript', async () => {
+    let baseDir = await generatePlugin({ name: 'my-plugin' }, { typescript: false });
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
-      .cd(project.baseDir)
+      .cd(baseDir)
       .withOptions({
         name: 'my-foo',
       })
@@ -83,9 +93,10 @@ describe('task generator', () => {
   });
 
   it('generates correct files with category', async () => {
+    let baseDir = await generatePlugin();
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
-      .cd(project.baseDir)
+      .cd(baseDir)
       .withOptions({
         name: 'my-foo',
       })
@@ -98,9 +109,10 @@ describe('task generator', () => {
   });
 
   it('generates correct files with priority', async () => {
+    let baseDir = await generatePlugin();
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
-      .cd(project.baseDir)
+      .cd(baseDir)
       .withOptions({
         name: 'my-foo',
       })

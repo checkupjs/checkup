@@ -256,7 +256,7 @@ exports[`plugin generator generates plugin with JavaScript defaults 4`] = `
 exports[`plugin generator generates plugin with JavaScript defaults 5`] = `
 "import { Hook } from '@oclif/config';
 
-const hook = async function({ cliArguments, tasks }) {
+const hook = async function({ context, tasks }) {
   
 };
 

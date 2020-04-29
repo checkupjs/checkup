@@ -84,7 +84,7 @@ exports[`task generator generates correct files with JavaScript 4`] = `
 
 import MyFooTask from '../tasks/my-foo-task';
 
-const hook = async function({ cliArguments, tasks }) {
+const hook = async function({ context, tasks }) {
   tasks.registerTask(new MyFooTask(context));
 };
 
@@ -178,7 +178,7 @@ exports[`task generator generates correct files with TypeScript for defaults 4`]
 
 import MyFooTask from '../tasks/my-foo-task';
 
-const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
   tasks.registerTask(new MyFooTask(context));
 };
 
@@ -272,7 +272,7 @@ exports[`task generator generates correct files with category 4`] = `
 
 import MyFooTask from '../tasks/my-foo-task';
 
-const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
   tasks.registerTask(new MyFooTask(context));
 };
 
@@ -366,7 +366,7 @@ exports[`task generator generates correct files with priority 4`] = `
 
 import MyFooTask from '../tasks/my-foo-task';
 
-const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
   tasks.registerTask(new MyFooTask(context));
 };
 
@@ -543,7 +543,7 @@ import MyBarTask from '../tasks/my-bar-task';
 
 import MyFooTask from '../tasks/my-foo-task';
 
-const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
   tasks.registerTask(new MyFooTask(context));
   tasks.registerTask(new MyBarTask(context));
 };

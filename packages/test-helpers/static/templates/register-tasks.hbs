@@ -3,9 +3,9 @@
 {{{class}}}
 {{/each}}
 
-const hook = async function({ cliArguments, tasks }) {
+const hook = async function({ context, tasks }) {
   {{#each taskNames as |taskName|}}
-  tasks.registerTask(new {{taskName}}(cliArguments));
+  tasks.registerTask(new {{taskName}}(context));
   {{/each}}
 };
 

@@ -24,13 +24,8 @@ export default class TaskGenerator extends BaseGenerator {
   packageJson!: PackageJson;
   answers!: Answers;
 
-  private get _ts() {
-    let devDeps = this.packageJson.devDependencies;
-    return (devDeps !== undefined && devDeps.typescript) || this.options.typescript;
-  }
-
   private get _ext() {
-    return this._ts ? 'ts' : 'js';
+    return this.options.typescript ? 'ts' : 'js';
   }
 
   constructor(args: any, public options: TaskOptions) {
