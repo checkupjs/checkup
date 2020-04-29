@@ -3,6 +3,7 @@ import {
   Priority,
   ReportComponentType,
   ReporterType,
+  RunFlags,
   TaskResult,
   UIReportData,
   UIResultData,
@@ -10,7 +11,6 @@ import {
 } from '@checkup/core';
 
 import { MetaTaskResult } from './types';
-import { RunFlags } from './commands/run';
 import { generateHTMLReport } from './helpers/ui-report';
 
 export function _transformHTMLResults(

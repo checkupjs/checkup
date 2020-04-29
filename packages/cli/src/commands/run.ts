@@ -4,6 +4,9 @@ import {
   CheckupConfig,
   CheckupConfigService,
   ReporterType,
+  RunArgs,
+  RunFlags,
+  TaskContext,
   TaskResult,
   getFilepathLoader,
   getPackageJson,
@@ -21,21 +24,6 @@ import { MetaTaskResult } from '../types';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import { getReporter } from '../reporters';
-
-export type RunArgs = {
-  [name: string]: any;
-};
-
-export type RunFlags = {
-  version: void;
-  help: void;
-  force: boolean;
-  silent: boolean;
-  reporter: string;
-  reportOutputPath: string;
-  task: string | undefined;
-  config: string | undefined;
-};
 
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
@@ -99,9 +87,9 @@ export default class RunCommand extends Command {
     ui.action.stop();
   }
 
-  private async registerDefaultTasks() {
-    this.defaultTasks.registerTask(new ProjectMetaTask(this.runArgs));
-    this.defaultTasks.registerTask(new CheckupMetaTask(this.runArgs, this.checkupConfig));
+  private async registerDefaultTasks(context: TaskContext) {
+    this.defaultTasks.registerTask(new ProjectMetaTask(context));
+    this.defaultTasks.registerTask(new CheckupMetaTask(context));
   }
 
   private async runTasks() {
@@ -158,16 +146,23 @@ export default class RunCommand extends Command {
   }
 
   private async registerTasks() {
-    await this.registerDefaultTasks();
+    let taskContext: TaskContext;
 
     await this.config.runHook('register-parsers', {
       registerParser,
     });
 
-    await this.config.runHook('register-tasks', {
+    taskContext = {
       cliArguments: this.runArgs,
       cliFlags: this.runFlags,
       parsers: getRegisteredParsers(),
+      config: this.checkupConfig,
+    };
+
+    await this.registerDefaultTasks(taskContext);
+
+    await this.config.runHook('register-tasks', {
+      context: taskContext,
       tasks: this.pluginTasks,
     });
   }

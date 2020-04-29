@@ -3,14 +3,11 @@ import * as globby from 'globby';
 import {
   BaseTask,
   Category,
-  CreateParser,
   ESLintReport,
   Parser,
-  ParserName,
-  ParserOptions,
-  ParserReport,
   Priority,
   Task,
+  TaskContext,
   TemplateLintReport,
   TemplateLinter,
 } from '@checkup/core';
@@ -31,22 +28,19 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   private eslintParser: Parser<ESLintReport>;
   private templateLinter: TemplateLinter;
 
-  constructor(
-    cliArguments: any,
-    parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>
-  ) {
-    super(cliArguments);
+  constructor(context: TaskContext) {
+    super(context);
 
-    let createEslintParser = parsers.get('eslint')!;
+    let createEslintParser = this.context.parsers.get('eslint')!;
 
-    let createEmberTemplateLintParser = parsers.get('ember-template-lint')!;
+    let createEmberTemplateLintParser = this.context.parsers.get('ember-template-lint')!;
 
     this.eslintParser = createEslintParser(OCTANE_ES_LINT_CONFIG);
     this.templateLinter = createEmberTemplateLintParser(OCTANE_TEMPLATE_LINT_CONFIG);
   }
 
   get rootPath(): string {
-    return this.args.path;
+    return this.context.cliArguments.path;
   }
 
   async run(): Promise<OctaneMigrationStatusTaskResult> {

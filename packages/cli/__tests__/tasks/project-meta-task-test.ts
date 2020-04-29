@@ -1,4 +1,4 @@
-import { CheckupProject, stdout } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import ProjectMetaTask from '../../src/tasks/project-meta-task';
 import ProjectMetaTaskResult from '../../src/results/project-meta-task-result';
 
@@ -20,7 +20,9 @@ describe('project-meta-task', () => {
     });
 
     it('can read project info and output to console', async () => {
-      const result = await new ProjectMetaTask({ path: checkupProject.baseDir }).run();
+      const result = await new ProjectMetaTask(
+        getTaskContext({ path: checkupProject.baseDir })
+      ).run();
       const taskResult = <ProjectMetaTaskResult>result;
 
       taskResult.toConsole();
@@ -36,7 +38,9 @@ describe('project-meta-task', () => {
     });
 
     it('can read project info as JSON', async () => {
-      const result = await new ProjectMetaTask({ path: checkupProject.baseDir }).run();
+      const result = await new ProjectMetaTask(
+        getTaskContext({ path: checkupProject.baseDir })
+      ).run();
       const taskResult = <ProjectMetaTaskResult>result;
 
       expect(taskResult.toJson()).toMatchInlineSnapshot(`

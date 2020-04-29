@@ -130,7 +130,7 @@ export default class TaskGenerator extends BaseGenerator {
     let registerTasksSource = this.fs.read(hooksDestinationPath);
     let registerTaskStatement = t.expressionStatement(
       t.callExpression(t.memberExpression(t.identifier('tasks'), t.identifier('registerTask')), [
-        t.newExpression(t.identifier(this.options.taskClass), [t.identifier('cliArguments')]),
+        t.newExpression(t.identifier(this.options.taskClass), [t.identifier('context')]),
       ])
     );
 

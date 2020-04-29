@@ -1,4 +1,4 @@
-import { Category, FileSearcherTask, Priority, Task, TaskResult } from '@checkup/core';
+import { Category, FileSearcherTask, Priority, Task, TaskContext, TaskResult } from '@checkup/core';
 
 import EmberTypesTaskResult from '../results/ember-types-task-result';
 
@@ -25,8 +25,8 @@ export default class EmberTypesTask extends FileSearcherTask implements Task {
     },
   };
 
-  constructor(cliArguments: any) {
-    super(cliArguments, SEARCH_PATTERNS);
+  constructor(context: TaskContext) {
+    super(context, SEARCH_PATTERNS);
   }
 
   async run(): Promise<TaskResult> {

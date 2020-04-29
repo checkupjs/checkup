@@ -1,3 +1,7 @@
+import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
+import { RunArgs, RunFlags } from './cli';
+
+import { CheckupConfig } from './configuration';
 import { JsonObject } from 'type-fest';
 import NumericalCardData from '../report-components/numerical-card-data';
 import PieChartData from '../report-components/pie-chart-data';
@@ -15,6 +19,13 @@ export interface Task {
   meta: TaskMetaData;
 
   run: () => Promise<TaskResult>;
+}
+
+export interface TaskContext {
+  cliArguments: RunArgs;
+  cliFlags: RunFlags;
+  parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
+  config: CheckupConfig;
 }
 
 export interface TaskResult {
