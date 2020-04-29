@@ -35,6 +35,30 @@ describe('plugin generator', () => {
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
   });
 
+  it('generates plugin with JavaScript defaults', async () => {
+    let dir = await helpers
+      .run(PluginGenerator, { namespace: 'checkup:plugin' })
+      .cd(tmp)
+      .withOptions({
+        name: 'my-plugin',
+      })
+      .withPrompts({
+        typescript: false,
+      });
+
+    let root = testRoot(dir, 'checkup-plugin-my-plugin');
+
+    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('README.md').contents).toMatchSnapshot();
+    expect(root.file('jest.config.js').contents).toMatchSnapshot();
+    expect(root.file('src/index.js').contents).toMatchSnapshot();
+    expect(root.file('src/hooks/register-tasks.js').contents).toMatchSnapshot();
+    expect(root.file('src/types/index.js').contents).toMatchSnapshot();
+    expect(root.directory('__tests__').contents).toMatchSnapshot();
+    expect(root.directory('src/results').contents).toMatchSnapshot();
+    expect(root.directory('src/tasks').contents).toMatchSnapshot();
+  });
+
   it('generates plugin with unmodified name with defaults', async () => {
     let dir = await helpers
       .run(PluginGenerator, { namespace: 'checkup:plugin' })

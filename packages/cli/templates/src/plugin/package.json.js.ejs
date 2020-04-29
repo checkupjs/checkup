@@ -1,0 +1,44 @@
+{
+  "name": "<%- name %>",
+  "description": "<%- description %>",
+  "version": "0.0.0",
+  "author": "<%- author %>",
+  "dependencies": {
+    "@checkup/core": "^0.0.1",
+    "@oclif/command": "^1",
+    "@oclif/config": "^1"
+  },
+  "devDependencies": {
+    "@checkup/test-helpers": "^0.0.1",
+    "@oclif/dev-cli": "^1",
+    "jest": "^25.1.0"
+  },
+  "engines": {
+    "node": ">= 12.*"
+  },
+  "files": [
+    "/lib",
+    "/oclif.manifest.json"
+  ],
+  "keywords": [
+    "checkup-plugin",
+    "oclif-plugin"
+  ],
+  "license": "MIT",
+  "oclif": {
+    "devPlugins": [
+      "@oclif/plugin-help"
+    ],
+    "hooks": {
+      "register-tasks": "./lib/hooks/register-tasks"
+    }
+  },
+  "repository": "<%- repository %>",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "jest --no-cache",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "main": "lib/index.js"
+}

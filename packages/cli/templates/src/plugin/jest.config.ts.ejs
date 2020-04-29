@@ -1,8 +1,9 @@
 module.exports = {
   testEnvironment: 'node',
-  moduleFileExtensions: ['js', 'json'],
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  transform: { '\\.ts$': 'ts-jest' },
   coverageReporters: ['lcov', 'text-summary'],
-  collectCoverageFrom: ['src/**/*.js'],
+  collectCoverageFrom: ['src/**/*.ts'],
   coveragePathIgnorePatterns: ['/templates/'],
   coverageThreshold: {
     global: {
