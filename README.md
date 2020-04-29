@@ -28,6 +28,10 @@ Checkup provides you with a CLI, which can be run against your code base. Using 
 
 See the [CLI README](packages/cli/README.md) for information on usage.
 
+## Installation and Contributing
+
+To contribute to Checkup, you'll need to clone and setup the repository. See the [installation](CONTRIBUTING.md#installation) documentation to start. To contribute, please read the [CONTRIBUTING](CONTRIBUTING.md) guidelines.
+
 ## Spec
 
 Read more about the mission, vision, and overall direction of checkup in the [spec](docs/SPEC.md) document.

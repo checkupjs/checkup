@@ -1,100 +1,112 @@
-# Contributing
+# Contributing to Checkup
 
-## Running the project
+The Checkup project is run by community members who want to build tools that provide insights to improve projects. We welcome any contributions to this effort.
 
-Clone the repository:
+The Open Source Guides website has a collection of resources for individuals, communities, and companies who want to learn how to run and contribute to an open source project. Contributors and people new to open source alike will find the following guides especially useful:
 
-```
-git clone https://github.com/checkupjs/checkup.git
-```
+- [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
+- [Building Welcoming Communities](https://opensource.guide/building-community/)
 
-Cd into that directory, and install dependencies (this will install all dependencies for all packages via yarn workspaces):
+## Bugs
 
-```
-yarn
-```
+We use [GitHub Issues](https://github.com/checkupjs/checkup/issues) for bugs. If you would like to report a problem, take a look around and see if someone already opened an issue about it. If you a are certain this is a new, unreported bug, you can submit a bug report.
 
-Build the project:
+## Pull Requests
 
-```
-yarn build
-```
+### Your First Pull Request
 
-Link the CLI package:
+Working on your first Pull Request? You can learn how from this free video series:
 
-```
-cd packages/cli && yarn link
-```
+[**How to Contribute to an Open Source Project on GitHub**](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-Link the default plugin
+### Sending a Pull Request
 
-```
-cd packages/plugin-default && yarn link
-```
+Small pull requests are much easier to review and more likely to get merged. Make sure the PR does only one thing, otherwise please split it.
 
-**Note:** do this for any additional packages you want to use, such as plugin-default
+Please make sure the following is done when submitting a pull request:
 
-### In the project you want to run Checkup in:
+1. Fork [the repository](https://github.com/checkupjs/checkup) and create your branch from `master`.
+1. Make sure to [test your changes](#running-tests)!
+1. Make sure your Jest tests pass (`yarn test`).
 
-Add required dependencies to package.json:
+All pull requests should be opened against the `master` branch.
 
-```
-  "devDependencies": {
-    "@checkup/cli": "0.0.0",
-    "@checkup/plugin-default": "0.0.0",
-    ...
-  }
+#### Breaking Changes
+
+When adding a new breaking change, follow this template in your pull request:
+
+```md
+### New breaking change here
+
+- **Who does this affect**:
+- **How to migrate**:
+- **Why make this breaking change**:
+- **Severity (number of people affected x effort)**:
 ```
 
-Create a checkup config file (`.checkuprc`):
+## Installation
 
-```
-  {
-    "plugins": [
-      "@checkup/plugin-default"
-    ],
-    "tasks": {}
-  }
-```
+1. Clone the repository:
 
-Locally link dependencies:
+   ```
+   git clone https://github.com/checkupjs/checkup.git
+   ```
 
-```
-yarn link @checkup/cli
-yarn link @checkup/plugin-default
-```
+1. Change into that directory, and install dependencies by running `yarn install` (this will install all dependencies for all packages via yarn workspaces):
 
-Execute Checkup in your project
+1. Build the project by running `yarn build`
 
-```
-checkup run
-```
+## To run Checkup in a project
 
-Running a specific Checkup task in your project
+1. Add required dependencies to package.json:
+
+   ```
+     "devDependencies": {
+       "@checkup/cli": "0.0.0",
+       ...
+     }
+   ```
+
+1. Run Checkup's config generator to generate a checkup config:
+
+   ```shell
+   checkup generate config
+   ```
+
+1. Execute Checkup in your project
+
+   ```shell
+   checkup run .
+   ```
+
+### Running a specific Checkup task in your project
+
+To run a specific task:
 
 ```
 checkup run --task TASK_NAME
 ```
 
-### Gotchas
+## Running tests
 
-- You will need to rerun `yarn link` if `node_modules` of `travis-web` get flushed, but otherwise the link should persist through changes made to checkup
-- If you update types from `core`, or any other package consumed by other packages within checkup, you may need to restart your TS server so these changes propagate throughout the IDE
-- You can also develop in `watch` mode (as documented in the `package.json`) by running `yarn build:watch`
-- You can run checkup in debug mode by running `DEBUG='*' checkup`
-
-## Debugging checkup's code
-
-Add a debugger in `packages/cli/src/index.ts` and run the following in the linked project
+To run tests in the checkup repository:
 
 ```
-node --inspect-brk $(which checkup)
+yarn test
+```
+
+## Using the DEBUG environment variable
+
+Checkup using the debug package to provide useful information for debugging. You can enable it by running:
+
+```shell
+DEBUG='*' checkup run .
 ```
 
 ## Debugging tests
 
-You'll want to ensure you're navigating into the specific yarn workspace when debugging jest:
+cd into the specific package you want to debug, then run:
 
 ```
-node --inspect-brk node_modules/.bin/jest --runInBand
+node --inspect-brk ../../node_modules/.bin/jest --runInBand
 ```
