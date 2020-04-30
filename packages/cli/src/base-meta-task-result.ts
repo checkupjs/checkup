@@ -1,4 +1,4 @@
-import { TaskIdentifier } from './types';
+import { TaskIdentifier } from '@checkup/core';
 
 export default abstract class BaseMetaTaskResult {
   meta: TaskIdentifier;

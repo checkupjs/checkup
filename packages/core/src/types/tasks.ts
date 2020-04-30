@@ -10,6 +10,7 @@ import TableData from '../report-components/table-data';
 export type SearchPatterns = Record<string, string[]>;
 
 export type TaskName = string;
+export type TaskIdentifier = { taskName: string; friendlyTaskName: string };
 export type TaskClassification = {
   category: Category;
   priority: Priority;

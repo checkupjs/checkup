@@ -1,8 +1,8 @@
 import * as crypto from 'crypto';
 import * as stringify from 'json-stable-stringify';
 
-import { BaseTask, CheckupConfig, TaskContext } from '@checkup/core';
-import { MetaTask, MetaTaskResult, TaskIdentifier } from '../types';
+import { BaseTask, CheckupConfig, TaskContext, TaskIdentifier } from '@checkup/core';
+import { MetaTask, MetaTaskResult } from '../types';
 
 import CheckupMetaTaskResult from '../results/checkup-meta-task-result';
 import { getVersion } from '../helpers/get-version';

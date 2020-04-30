@@ -130,11 +130,7 @@ describe('@checkup/cli', () => {
     it('should error if the config is malformed', async () => {
       const project = new CheckupProject('checkup-project', '0.0.0').addCheckupConfig(({
         plugins: undefined,
-        tasks: {
-          someTask: {
-            isEnabled: 'foo',
-          },
-        },
+        tasks: {},
       } as unknown) as CheckupConfig);
       project.writeSync();
 

@@ -1,5 +1,5 @@
-import { BaseTask, getPackageJson } from '@checkup/core';
-import { MetaTask, MetaTaskResult, TaskIdentifier } from '../types';
+import { BaseTask, TaskIdentifier, getPackageJson } from '@checkup/core';
+import { MetaTask, MetaTaskResult } from '../types';
 
 import ProjectMetaTaskResult from '../results/project-meta-task-result';
 import { getRepositoryInfo } from '../helpers/repository';
