@@ -5,6 +5,7 @@ export enum ESLintMigrationType {
   TaglessComponents = 'tagless-components',
   GlimmerComponents = 'glimmer-components',
   TrackedProperties = 'tracked-properties',
+  Mixins = 'mixin-usage',
 }
 
 export enum TemplateLintMigrationType {

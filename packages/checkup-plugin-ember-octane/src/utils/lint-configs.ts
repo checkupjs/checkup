@@ -24,6 +24,7 @@ export const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
     'ember/no-get': 'error',
     'ember/no-jquery': 'error',
     'ember/require-tagless-components': 'error',
+    'ember/no-mixins': 'error',
   },
   useEslintrc: false,
 };

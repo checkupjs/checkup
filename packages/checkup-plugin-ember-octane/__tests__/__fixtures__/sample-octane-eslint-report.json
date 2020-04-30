@@ -42,9 +42,19 @@
           "nodeType": "Property",
           "endLine": 22,
           "endColumn": 4
+        },
+        {
+          "column": 1,
+          "endColumn": 68,
+          "endLine": 11,
+          "line": 11,
+          "message": "Don't use a mixin",
+          "nodeType": "ImportDeclaration",
+          "ruleId": "ember/no-mixins",
+          "severity": 2
         }
       ],
-      "errorCount": 4,
+      "errorCount": 5,
       "warningCount": 0,
       "fixableErrorCount": 0,
       "fixableWarningCount": 0,
@@ -273,16 +283,26 @@
           "nodeType": "CallExpression",
           "endLine": 70,
           "endColumn": 3
+        },
+        {
+          "column": 31,
+          "endColumn": 8,
+          "endLine": 1,
+          "line": 91,
+          "message": "Don't use a mixin",
+          "nodeType": "ImportDeclaration",
+          "ruleId": "ember/no-mixins",
+          "severity": 2
         }
       ],
-      "errorCount": 1,
+      "errorCount": 2,
       "warningCount": 0,
       "fixableErrorCount": 0,
       "fixableWarningCount": 0,
       "source": ""
     }
   ],
-  "errorCount": 17,
+  "errorCount": 19,
   "warningCount": 0,
   "fixableErrorCount": 0,
   "fixableWarningCount": 0,
