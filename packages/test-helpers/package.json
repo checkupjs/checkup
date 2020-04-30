@@ -6,6 +6,7 @@
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@checkup/core": "0.0.12",
+    "@oclif/config": "^1.15.1",
     "fixturify-project": "^2.1.0",
     "handlebars": "^4.7.6",
     "stdout-stderr": "^0.1.13",
