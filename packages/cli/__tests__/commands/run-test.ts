@@ -8,7 +8,7 @@ import { runCommand } from '../__utils__/run-command';
 const TEST_TIMEOUT = 100000;
 
 describe('@checkup/cli', () => {
-  describe('normal cli output without plugins', () => {
+  describe('normal cli output', () => {
     let project: CheckupProject;
 
     beforeEach(function () {

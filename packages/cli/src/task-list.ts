@@ -127,7 +127,10 @@ export default class TaskList {
    * @returns {Promise<TaskResult[]>}
    */
   private eachTask(fn: (task: Task) => Promise<TaskResult>): Promise<TaskResult[]> {
-    return pMap(this.getTasks(), fn);
+    return pMap(
+      this.getTasks().filter((task) => task.enabled),
+      fn
+    );
   }
 
   /**

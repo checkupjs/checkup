@@ -1,8 +1,8 @@
-import { Category, Priority, Task, TaskResult } from '@checkup/core';
+import { BaseTask, Category, Priority, Task, TaskResult } from '@checkup/core';
 
 import MockTaskResult from './mock-task-result';
 
-export class InsightsTaskHigh implements Task {
+export class InsightsTaskHigh extends BaseTask implements Task {
   meta = {
     taskName: 'insights-task-high',
     friendlyTaskName: 'Insights Task High',
@@ -17,7 +17,7 @@ export class InsightsTaskHigh implements Task {
   }
 }
 
-export class InsightsTaskLow implements Task {
+export class InsightsTaskLow extends BaseTask implements Task {
   meta = {
     taskName: 'insights-task-low',
     friendlyTaskName: 'Insights Task Low',
@@ -32,7 +32,7 @@ export class InsightsTaskLow implements Task {
   }
 }
 
-export class RecommendationsTaskHigh implements Task {
+export class RecommendationsTaskHigh extends BaseTask implements Task {
   meta = {
     taskName: 'recommendations-task-high',
     friendlyTaskName: 'Recommendations Task High',
@@ -47,7 +47,7 @@ export class RecommendationsTaskHigh implements Task {
   }
 }
 
-export class RecommendationsTaskLow implements Task {
+export class RecommendationsTaskLow extends BaseTask implements Task {
   meta = {
     taskName: 'recommendations-task-low',
     friendlyTaskName: 'Recommendations Task Low',
@@ -62,7 +62,7 @@ export class RecommendationsTaskLow implements Task {
   }
 }
 
-export class MigrationTaskHigh implements Task {
+export class MigrationTaskHigh extends BaseTask implements Task {
   meta = {
     taskName: 'migration-task-high',
     friendlyTaskName: 'Migration Task High',
@@ -77,7 +77,7 @@ export class MigrationTaskHigh implements Task {
   }
 }
 
-export class MigrationTaskLow implements Task {
+export class MigrationTaskLow extends BaseTask implements Task {
   meta = {
     taskName: 'migration-task-low',
     friendlyTaskName: 'Migration Task Low',

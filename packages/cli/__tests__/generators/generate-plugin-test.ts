@@ -1,8 +1,6 @@
-import * as helpers from 'yeoman-test';
-
 import { createTmpDir, testRoot } from '@checkup/test-helpers';
 
-import PluginGenerator from '../../src/generators/plugin';
+import { generatePlugin } from '../__utils__/generate-plugin';
 import { join } from 'path';
 
 describe('plugin generator', () => {
@@ -13,15 +11,9 @@ describe('plugin generator', () => {
   });
 
   it('generates plugin with defaults', async () => {
-    let dir = await helpers
-      .run(PluginGenerator, { namespace: 'checkup:plugin' })
-      .cd(tmp)
-      .withOptions({
-        name: 'my-plugin',
-        defaults: true,
-      });
+    let dir = await generatePlugin();
 
-    let root = testRoot(dir, 'checkup-plugin-my-plugin');
+    let root = testRoot(dir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();
@@ -36,17 +28,9 @@ describe('plugin generator', () => {
   });
 
   it('generates plugin with JavaScript defaults', async () => {
-    let dir = await helpers
-      .run(PluginGenerator, { namespace: 'checkup:plugin' })
-      .cd(tmp)
-      .withOptions({
-        name: 'my-plugin',
-      })
-      .withPrompts({
-        typescript: false,
-      });
+    let dir = await generatePlugin({ defaults: false }, { typescript: false });
 
-    let root = testRoot(dir, 'checkup-plugin-my-plugin');
+    let root = testRoot(dir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();
@@ -60,15 +44,9 @@ describe('plugin generator', () => {
   });
 
   it('generates plugin with unmodified name with defaults', async () => {
-    let dir = await helpers
-      .run(PluginGenerator, { namespace: 'checkup:plugin' })
-      .cd(tmp)
-      .withOptions({
-        name: 'checkup-plugin-foo',
-        defaults: true,
-      });
+    let dir = await generatePlugin({ name: 'foo' });
 
-    let root = testRoot(dir, 'checkup-plugin-foo');
+    let root = testRoot(dir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();
@@ -85,10 +63,7 @@ describe('plugin generator', () => {
   it('generates plugin into existing directory with defaults', async () => {
     let existingDir = join(tmp, 'checkup-plugin-bar');
 
-    await helpers.run(PluginGenerator, { namespace: 'checkup:plugin' }).cd(tmp).withOptions({
-      name: 'checkup-plugin-bar',
-      defaults: true,
-    });
+    await generatePlugin({ name: 'bar' }, {}, tmp);
 
     let root = testRoot(existingDir);
 
@@ -105,19 +80,19 @@ describe('plugin generator', () => {
   });
 
   it('generates plugin with custom options', async () => {
-    let dir = await helpers
-      .run(PluginGenerator, { namespace: 'checkup:plugin' })
-      .cd(tmp)
-      .withOptions({
+    let dir = await generatePlugin(
+      {
         name: 'my-plugin',
-      })
-      .withPrompts({
+        defaults: false,
+      },
+      {
         description: 'My custom plugin',
         author: 'scalvert <steve.calvert@gmail.com>',
         repository: 'http://github.com/scalvert/checkup-plugin-my-plugin',
-      });
+      }
+    );
 
-    let root = testRoot(dir, 'checkup-plugin-my-plugin');
+    let root = testRoot(dir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();

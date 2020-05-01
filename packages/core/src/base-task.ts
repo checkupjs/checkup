@@ -2,28 +2,53 @@ import * as debug from 'debug';
 
 import { TaskContext, TaskIdentifier, TaskMetaData } from './types/tasks';
 
+import { TaskConfig } from './types/configuration';
+
 export default abstract class BaseTask {
   context: TaskContext;
   meta!: TaskMetaData | TaskIdentifier;
   debug: debug.Debugger;
-  private _options!: boolean | object;
+
+  private _config!: unknown;
+  private _enabled!: string;
 
   constructor(context: TaskContext) {
     this.context = context;
+
     this.debug = debug('checkup:task');
 
     this.debug('%s %s', this.constructor.name, 'created');
   }
 
-  get enabled() {
-    let options = this.context.config.tasks[this.meta.taskName];
+  private _parseConfig() {
+    if (this._config) {
+      return;
+    }
 
-    return typeof options === 'undefined' || typeof options === 'object' || options;
+    let config: TaskConfig | undefined = this.context.config.tasks[this.meta.taskName];
+
+    this._config = {};
+    this._enabled = 'on';
+
+    if (typeof config === 'string') {
+      this._enabled = config;
+    } else if (Array.isArray(config)) {
+      let [enabled, taskConfig] = config;
+
+      this._enabled = enabled;
+      this._config = taskConfig;
+    }
   }
 
-  get options() {
-    let options = this.context.config.tasks[this.meta.taskName];
+  get config() {
+    this._parseConfig();
 
-    return typeof options === 'object' ? options : {};
+    return this._config;
+  }
+
+  get enabled() {
+    this._parseConfig();
+
+    return this._enabled === 'on';
   }
 }
