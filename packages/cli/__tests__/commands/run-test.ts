@@ -3,13 +3,12 @@ import * as path from 'path';
 
 import { CheckupProject, createTmpDir, stdout } from '@checkup/test-helpers';
 
-import { CheckupConfig } from '@checkup/core';
 import { runCommand } from '../__utils__/run-command';
 
 const TEST_TIMEOUT = 100000;
 
 describe('@checkup/cli', () => {
-  describe('normal cli output with plugins', () => {
+  describe('normal cli output without plugins', () => {
     let project: CheckupProject;
 
     beforeEach(function () {
@@ -98,49 +97,6 @@ describe('@checkup/cli', () => {
 
       expect(stdout()).toMatchSnapshot();
       anotherProject.dispose();
-    });
-  });
-
-  describe('cli error cases', () => {
-    it('should error if no checkup config is present', async () => {
-      const project = new CheckupProject('checkup-project', '0.0.0');
-      project.writeSync();
-
-      await expect(runCommand(['run', project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
-        `"Could not find a checkup configuration starting from the given path: ${project.baseDir}. See https://github.com/checkupjs/checkup/tree/master/packages/cli#configuration for more info on how to setup a configuration."`
-      );
-
-      project.dispose();
-    });
-
-    it('should error if a plugin cannot be loaded', async () => {
-      const project = new CheckupProject('checkup-project', '0.0.0').addCheckupConfig({
-        plugins: ['@checkup/unknown-plugin'],
-        tasks: {},
-      });
-      project.writeSync();
-
-      await expect(runCommand(['run', project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
-        `"Cannot find module '@checkup/unknown-plugin' from '${project.baseDir}'"`
-      );
-
-      project.dispose();
-    });
-
-    it('should error if the config is malformed', async () => {
-      const project = new CheckupProject('checkup-project', '0.0.0').addCheckupConfig(({
-        plugins: undefined,
-        tasks: {
-          someTask: {
-            isEnabled: 'foo',
-          },
-        },
-      } as unknown) as CheckupConfig);
-      project.writeSync();
-
-      await expect(runCommand(['run', project.baseDir])).rejects.toThrowErrorMatchingSnapshot();
-
-      project.dispose();
     });
   });
 });

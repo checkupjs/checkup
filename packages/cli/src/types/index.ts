@@ -1,8 +1,6 @@
-import { JsonMetaTaskResult } from '@checkup/core';
+import { JsonMetaTaskResult, TaskIdentifier } from '@checkup/core';
 
 export default {};
-
-export type TaskIdentifier = { taskName: string; friendlyTaskName: string };
 
 export interface MetaTask {
   meta: TaskIdentifier;

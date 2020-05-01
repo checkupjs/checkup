@@ -3,13 +3,15 @@
 exports[`checkup-config-service should throw an error if an invalid config is present and get is called 1`] = `
 "Checkup configuration is malformed:
 plugins expected type Array<string>, but got {}
-tasks.someTask expected type { isEnabled: boolean }, but got \\"foo\\""
+tasks.someTask.0 expected type boolean, but got \\"foo\\"
+tasks.someTask.1 expected type object, but got \\"foo\\""
 `;
 
 exports[`checkup-config-service should throw an error if an invalid config is present and write is called 1`] = `
 "Checkup configuration is malformed:
 plugins expected type Array<string>, but got {}
-tasks.someTask expected type { isEnabled: boolean }, but got \\"foo\\""
+tasks.someTask.0 expected type boolean, but got \\"foo\\"
+tasks.someTask.1 expected type object, but got \\"foo\\""
 `;
 
 exports[`checkup-config-service should write the config on calling write for JSON files 1`] = `

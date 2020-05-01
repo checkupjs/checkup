@@ -130,7 +130,7 @@ export * from './types';
 exports[`plugin generator generates plugin into existing directory with defaults 6`] = `
 "import { Hook } from '@oclif/config';
 
-const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
   
 };
 
@@ -256,7 +256,7 @@ exports[`plugin generator generates plugin with JavaScript defaults 4`] = `
 exports[`plugin generator generates plugin with JavaScript defaults 5`] = `
 "import { Hook } from '@oclif/config';
 
-const hook = async function({ cliArguments, tasks }) {
+const hook = async function({ context, tasks }) {
   
 };
 
@@ -414,7 +414,7 @@ export * from './types';
 exports[`plugin generator generates plugin with custom options 6`] = `
 "import { Hook } from '@oclif/config';
 
-const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
   
 };
 
@@ -572,7 +572,7 @@ export * from './types';
 exports[`plugin generator generates plugin with defaults 6`] = `
 "import { Hook } from '@oclif/config';
 
-const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
   
 };
 
@@ -730,7 +730,7 @@ export * from './types';
 exports[`plugin generator generates plugin with unmodified name with defaults 6`] = `
 "import { Hook } from '@oclif/config';
 
-const hook: Hook<'register-tasks'> = async function({ cliArguments, tasks }: any) {
+const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
   
 };
 

@@ -1,6 +1,7 @@
+import { SearchPatterns, TaskContext } from './types/tasks';
+
 import BaseTask from './base-task';
 import FileSearcher from './searchers/file-searcher';
-import { SearchPatterns } from './types/tasks';
 
 /**
  * @class FileSearcherTask
@@ -18,9 +19,9 @@ export default abstract class FileSearcherTask extends BaseTask {
    * @param result {TaskResult[]} the result object that aggregates data together for output.
    * @param searchPatterns {SearchPatterns} the search pattern that your FileSearcher uses to return the results.
    */
-  constructor(cliArguments: any, searchPatterns: SearchPatterns) {
-    super(cliArguments);
+  constructor(context: TaskContext, searchPatterns: SearchPatterns) {
+    super(context);
 
-    this.searcher = new FileSearcher(cliArguments.path, searchPatterns);
+    this.searcher = new FileSearcher(context.cliArguments.path, searchPatterns);
   }
 }

@@ -1,6 +1,6 @@
-import { EmberProject } from '@checkup/test-helpers';
+import { EmberProject, getTaskContext } from '@checkup/test-helpers';
+
 import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
-import { getRegisteredParsers } from '@checkup/core';
 
 describe('octane-migration-status-task', () => {
   let project: EmberProject;
@@ -35,7 +35,7 @@ describe('octane-migration-status-task', () => {
 
     project.writeSync();
 
-    let task = new OctaneMigrationStatusTask({ path: project.baseDir }, getRegisteredParsers());
+    let task = new OctaneMigrationStatusTask(getTaskContext({ path: project.baseDir }));
     let taskResult = await task.run();
     let { results, errorCount } = taskResult.esLintReport;
 

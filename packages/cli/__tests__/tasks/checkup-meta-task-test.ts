@@ -1,4 +1,4 @@
-import { CheckupProject, stdout } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import CheckupMetaTask from '../../src/tasks/checkup-meta-task';
 import CheckupMetaTaskResult from '../../src/results/checkup-meta-task-result';
 import { CheckupConfig, CheckupConfigFormat, CheckupConfigService } from '@checkup/core';
@@ -39,8 +39,7 @@ describe('checkup-meta-task', () => {
       let checkupConfig = await getConfig();
 
       const result = await new CheckupMetaTask(
-        { path: checkupProject.baseDir },
-        checkupConfig
+        getTaskContext({ path: checkupProject.baseDir }, {}, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
@@ -57,8 +56,7 @@ describe('checkup-meta-task', () => {
       let checkupConfig = await getConfig();
 
       const result = await new CheckupMetaTask(
-        { path: checkupProject.baseDir },
-        checkupConfig
+        getTaskContext({ path: checkupProject.baseDir }, {}, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
@@ -79,8 +77,7 @@ describe('checkup-meta-task', () => {
       });
 
       const result = await new CheckupMetaTask(
-        { path: checkupProject.baseDir },
-        checkupConfig
+        getTaskContext({ path: checkupProject.baseDir }, {}, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
@@ -100,8 +97,7 @@ describe('checkup-meta-task', () => {
       });
 
       const result = await new CheckupMetaTask(
-        { path: checkupProject.baseDir },
-        checkupConfig
+        getTaskContext({ path: checkupProject.baseDir }, {}, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
