@@ -41,7 +41,7 @@
     "@oclif/test": "^1",
     "@types/yeoman-environment": "^2.3.3",
     "@types/yeoman-generator": "^3.1.4",
-    "yeoman-test": "^2.4.1"
+    "yeoman-test": "^2.5.0"
   },
   "engines": {
     "node": ">= 12.*"

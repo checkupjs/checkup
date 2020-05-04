@@ -8738,10 +8738,10 @@ yeoman-generator@^4.7.2, yeoman-generator@^4.8.2, yeoman-generator@^4.9.0:
     mem-fs-editor "^6.0.0"
     yeoman-environment "^2.9.5"
 
-yeoman-test@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/yeoman-test/-/yeoman-test-2.4.1.tgz#29091d6e2c9cdf809f803315e13aa84d981f3c17"
-  integrity sha512-1tcNVP7I8wizHV9eN7iZhDOVfFm6GHOaAfK50c1E1adbe9lpiUZ57wdc7q5GVB4QheWP98maEsDcswLWU2Xv9A==
+yeoman-test@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/yeoman-test/-/yeoman-test-2.5.0.tgz#73b31f6114b5e17864e8413910371a07611b2807"
+  integrity sha512-y0/cfUn86yOvCupjQ96AN8tQzC3ttUsQhJswZB06mn8Or0f+x95d2j7UC+z6K9xL7FbEGekuTQzZLg5+GG5nkw==
   dependencies:
     inquirer "^7.1.0"
     lodash "^4.17.15"
