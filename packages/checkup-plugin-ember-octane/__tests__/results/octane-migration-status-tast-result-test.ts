@@ -1,4 +1,4 @@
-import { ESLintReport, TemplateLintReport } from '@checkup/core';
+import { ESLintReport, TemplateLintReport, getPluginName } from '@checkup/core';
 import { filterPieChartDataForTest, getTaskContext, stdout } from '@checkup/test-helpers';
 
 import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
@@ -7,6 +7,7 @@ import OctaneMigrationStatusTaskResult from '../../src/results/octane-migration-
 describe('octane-migration-status-task-result', () => {
   let sampleESLintReport: ESLintReport;
   let sampleTemplateLintReport: TemplateLintReport;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(() => {
     sampleESLintReport = require('../__fixtures__/sample-octane-eslint-report.json');
@@ -15,7 +16,7 @@ describe('octane-migration-status-task-result', () => {
 
   describe('console output', () => {
     test('simple console output', async () => {
-      let task = new OctaneMigrationStatusTask(getTaskContext());
+      let task = new OctaneMigrationStatusTask(pluginName, getTaskContext());
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
         sampleESLintReport,
@@ -30,7 +31,7 @@ describe('octane-migration-status-task-result', () => {
 
   describe('JSON output', () => {
     test('it should have basic JSON results', () => {
-      let task = new OctaneMigrationStatusTask(getTaskContext());
+      let task = new OctaneMigrationStatusTask(pluginName, getTaskContext());
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
         sampleESLintReport,
@@ -45,7 +46,7 @@ describe('octane-migration-status-task-result', () => {
 
   describe('HTML output', () => {
     test('it should have basic HTML results', () => {
-      let task = new OctaneMigrationStatusTask(getTaskContext());
+      let task = new OctaneMigrationStatusTask(pluginName, getTaskContext());
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
         sampleESLintReport,

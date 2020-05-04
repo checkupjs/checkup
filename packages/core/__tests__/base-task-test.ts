@@ -39,7 +39,7 @@ describe('BaseTask', () => {
       config: DEFAULT_CONFIG,
     };
 
-    let fakeTask = new FakeTask(context);
+    let fakeTask = new FakeTask('fake', context);
 
     expect(fakeTask.context).toEqual(context);
     expect(fakeTask.config).toEqual({});
@@ -54,12 +54,12 @@ describe('BaseTask', () => {
       config: {
         plugins: [],
         tasks: {
-          'my-fake': 'off',
+          'fake/my-fake': 'off',
         },
       },
     };
 
-    let fakeTask = new FakeTask(context);
+    let fakeTask = new FakeTask('fake', context);
 
     expect(fakeTask.enabled).toEqual(false);
   });
@@ -72,12 +72,12 @@ describe('BaseTask', () => {
       config: {
         plugins: [],
         tasks: {
-          'my-fake': ['on', { 'my-fake-option': true }],
+          'fake/my-fake': ['on', { 'my-fake-option': true }],
         },
       },
     };
 
-    let fakeTask = new FakeTask(context);
+    let fakeTask = new FakeTask('fake', context);
 
     expect(fakeTask.enabled).toEqual(true);
     expect(fakeTask.config).toEqual({ 'my-fake-option': true });

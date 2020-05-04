@@ -18,6 +18,7 @@ export { default as getFilepathLoader } from './configuration/loaders/get-filepa
 export { default as CosmiconfigService } from './configuration/cosmiconfig-service';
 export { default as getInitializationConfigLoader } from './configuration/loaders/get-initialization-loader';
 
+export { getPluginName, toShortPluginName, toFullPluginName } from './utils/plugin-name';
 export { getPackageJson } from './utils/get-package-json';
 export { ui } from './utils/ui';
 export { toPairs } from './utils/data-transformers';

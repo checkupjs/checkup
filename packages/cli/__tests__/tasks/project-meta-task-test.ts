@@ -21,6 +21,7 @@ describe('project-meta-task', () => {
 
     it('can read project info and output to console', async () => {
       const result = await new ProjectMetaTask(
+        'core',
         getTaskContext({ path: checkupProject.baseDir })
       ).run();
       const taskResult = <ProjectMetaTaskResult>result;
@@ -39,6 +40,7 @@ describe('project-meta-task', () => {
 
     it('can read project info as JSON', async () => {
       const result = await new ProjectMetaTask(
+        'core',
         getTaskContext({ path: checkupProject.baseDir })
       ).run();
       const taskResult = <ProjectMetaTaskResult>result;

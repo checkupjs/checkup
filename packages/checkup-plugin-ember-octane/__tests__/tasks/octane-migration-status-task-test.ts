@@ -1,9 +1,11 @@
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 
 import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
+import { getPluginName } from '@checkup/core';
 
 describe('octane-migration-status-task', () => {
   let project: EmberProject;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(function () {
     project = new EmberProject('checkup-app', '0.0.0');
@@ -35,7 +37,7 @@ describe('octane-migration-status-task', () => {
 
     project.writeSync();
 
-    let task = new OctaneMigrationStatusTask(getTaskContext({ path: project.baseDir }));
+    let task = new OctaneMigrationStatusTask(pluginName, getTaskContext({ path: project.baseDir }));
     let taskResult = await task.run();
     let { results, errorCount } = taskResult.esLintReport;
 

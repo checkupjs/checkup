@@ -25,6 +25,23 @@ describe('checkup-config-service', () => {
     expect(configService.get()).toStrictEqual(defaultConfig);
   });
 
+  it('should normalize plugin names when get is called', async () => {
+    const configService = await CheckupConfigService.load(async () => ({
+      filepath: '.',
+      config: {
+        plugins: ['checkup-plugin-foo', 'bar', 'baz'],
+        tasks: {},
+      },
+      format: CheckupConfigFormat.JSON,
+    }));
+
+    expect(configService.get().plugins).toStrictEqual([
+      'checkup-plugin-foo',
+      'checkup-plugin-bar',
+      'checkup-plugin-baz',
+    ]);
+  });
+
   it('should throw an error if an invalid config is present and get is called', async () => {
     const configService = await CheckupConfigService.load(async () => ({
       filepath: '.',

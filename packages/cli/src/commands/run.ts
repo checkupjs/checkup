@@ -88,8 +88,10 @@ export default class RunCommand extends Command {
   }
 
   private async registerDefaultTasks(context: TaskContext) {
-    this.defaultTasks.registerTask(new ProjectMetaTask(context));
-    this.defaultTasks.registerTask(new CheckupMetaTask(context));
+    let pluginName = 'core';
+
+    this.defaultTasks.registerTask(new ProjectMetaTask(pluginName, context));
+    this.defaultTasks.registerTask(new CheckupMetaTask(pluginName, context));
   }
 
   private async runTasks() {

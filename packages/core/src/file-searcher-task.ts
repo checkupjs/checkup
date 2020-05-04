@@ -19,8 +19,8 @@ export default abstract class FileSearcherTask extends BaseTask {
    * @param result {TaskResult[]} the result object that aggregates data together for output.
    * @param searchPatterns {SearchPatterns} the search pattern that your FileSearcher uses to return the results.
    */
-  constructor(context: TaskContext, searchPatterns: SearchPatterns) {
-    super(context);
+  constructor(pluginName: string, context: TaskContext, searchPatterns: SearchPatterns) {
+    super(pluginName, context);
 
     this.searcher = new FileSearcher(context.cliArguments.path, searchPatterns);
   }

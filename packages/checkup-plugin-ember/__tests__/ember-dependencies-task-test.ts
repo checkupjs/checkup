@@ -2,9 +2,11 @@ import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
 
 import EmberDependenciesTask from '../src/tasks/ember-dependencies-task';
 import EmberDependenciesTaskResult from '../src/results/ember-dependencies-task-result';
+import { getPluginName } from '@checkup/core';
 
 describe('dependencies-task', () => {
   let emberProject: EmberProject;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(function () {
     emberProject = new EmberProject('checkup-app', '0.0.0', (project) => {
@@ -23,6 +25,7 @@ describe('dependencies-task', () => {
 
   it('detects Ember dependencies', async () => {
     const result = await new EmberDependenciesTask(
+      pluginName,
       getTaskContext({ path: emberProject.baseDir })
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
@@ -34,6 +37,7 @@ describe('dependencies-task', () => {
 
   it('detects Ember dependencies as JSON', async () => {
     const result = await new EmberDependenciesTask(
+      pluginName,
       getTaskContext({ path: emberProject.baseDir })
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
@@ -43,6 +47,7 @@ describe('dependencies-task', () => {
 
   it('detects Ember dependencies for html, and doesnt create a table without dependencies', async () => {
     const result = await new EmberDependenciesTask(
+      pluginName,
       getTaskContext({ path: emberProject.baseDir })
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
