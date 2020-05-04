@@ -9,8 +9,8 @@ export default abstract class BaseTask {
   meta!: TaskMetaData | TaskIdentifier;
   debug: debug.Debugger;
 
-  private _config!: unknown;
-  private _enabled!: string;
+  private #config: unknown;
+  private #enabled: string;
 
   constructor(context: TaskContext) {
     this.context = context;
