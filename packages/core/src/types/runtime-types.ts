@@ -12,5 +12,5 @@ export const RuntimeTaskConfig = t.union([
 
 export const RuntimeCheckupConfig = t.type({
   plugins: t.array(t.string),
-  tasks: t.record(t.string, RuntimeTaskConfig),
+  tasks: t.record(t.string, RuntimeTaskConfig, 'fullyQualifiedTaskName'),
 });

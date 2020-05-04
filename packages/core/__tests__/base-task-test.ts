@@ -20,18 +20,14 @@ const DEFAULT_CONFIG = {
 };
 
 class FakeTask extends BaseTask {
-  constructor(context: TaskContext) {
-    super(context);
-
-    this.meta = {
-      taskName: 'my-fake',
-      friendlyTaskName: 'Fake',
-      taskClassification: {
-        category: Category.Insights,
-        priority: Priority.High,
-      },
-    };
-  }
+  meta = {
+    taskName: 'my-fake',
+    friendlyTaskName: 'Fake',
+    taskClassification: {
+      category: Category.Insights,
+      priority: Priority.High,
+    },
+  };
 }
 
 describe('BaseTask', () => {
