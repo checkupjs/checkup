@@ -9,8 +9,8 @@ export default abstract class BaseTask {
   meta!: TaskMetaData | TaskIdentifier;
   debug: debug.Debugger;
 
-  private #config: unknown;
-  private #enabled: string;
+  #config!: unknown;
+  #enabled!: string;
 
   constructor(context: TaskContext) {
     this.context = context;
@@ -21,7 +21,7 @@ export default abstract class BaseTask {
   }
 
   private _parseConfig() {
-    if (this._config) {
+    if (this.#config) {
       return;
     }
 
