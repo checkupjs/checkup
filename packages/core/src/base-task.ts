@@ -49,6 +49,6 @@ export default abstract class BaseTask {
   get enabled() {
     this._parseConfig();
 
-    return this._enabled === 'on';
+    return this.#enabled === 'on';
   }
 }
