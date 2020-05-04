@@ -31,12 +31,12 @@ export default abstract class BaseTask {
     this.#enabled = 'on';
 
     if (typeof config === 'string') {
-      this._enabled = config;
+      this.#enabled = config;
     } else if (Array.isArray(config)) {
       let [enabled, taskConfig] = config;
 
-      this._enabled = enabled;
-      this._config = taskConfig;
+      this.#enabled = enabled;
+      this.#config = taskConfig;
     }
   }
 
