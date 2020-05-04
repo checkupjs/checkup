@@ -13,7 +13,7 @@
     "eslint": "^6.8.0",
     "fp-ts": "^2.5.4",
     "globby": "^11.0.0",
-    "io-ts": "^2.2.1",
+    "io-ts": "^2.2.2",
     "resolve": "^1.17.0"
   },
   "devDependencies": {
