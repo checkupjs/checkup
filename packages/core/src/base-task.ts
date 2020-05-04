@@ -27,8 +27,8 @@ export default abstract class BaseTask {
 
     let config: TaskConfig | undefined = this.context.config.tasks[this.meta.taskName];
 
-    this._config = {};
-    this._enabled = 'on';
+    this.#config = {};
+    this.#enabled = 'on';
 
     if (typeof config === 'string') {
       this._enabled = config;
