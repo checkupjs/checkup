@@ -54,6 +54,8 @@ When adding a new breaking change, follow this template in your pull request:
 
 1. Change into that directory, and install dependencies by running `yarn install` (this will install all dependencies for all packages via yarn workspaces):
 
+1. Test the project by running `yarn test`, it will build all the packages prior running the tests.
+
 1. Build the project by running `yarn build`
 
 ## To run Checkup in a project

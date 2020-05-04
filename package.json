@@ -14,6 +14,7 @@
     "build:watch": "tsc --watch",
     "clean": "tsc --build --clean",
     "lint": "eslint . --cache --ext .ts",
+    "pretest": "yarn build",
     "test": "yarn workspaces run test"
   },
   "husky": {
