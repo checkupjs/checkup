@@ -43,7 +43,7 @@ export default abstract class BaseTask {
   get config() {
     this._parseConfig();
 
-    return this._config;
+    return this.#config;
   }
 
   get enabled() {
