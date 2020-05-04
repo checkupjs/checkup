@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@checkup/cli normal cli output without plugins should output checkup result 1`] = `
+exports[`@checkup/cli normal cli output should output checkup result 1`] = `
 "
 Checkup report generated for checkup-project v0.0.0 .
 
@@ -11,7 +11,7 @@ Generated using Checkup v0.0.0. Config: ae3266e319bdfb51db83810a2f4dd161
 "
 `;
 
-exports[`@checkup/cli normal cli output without plugins should output checkup result in JSON 1`] = `
+exports[`@checkup/cli normal cli output should output checkup result in JSON 1`] = `
 "{
   \\"meta\\": {
     \\"project\\": {
@@ -34,7 +34,7 @@ exports[`@checkup/cli normal cli output without plugins should output checkup re
 "
 `;
 
-exports[`@checkup/cli normal cli output without plugins should run a single task if the task option is specified 1`] = `
+exports[`@checkup/cli normal cli output should run a single task if the task option is specified 1`] = `
 "
 Checkup report generated for checkup-project v0.0.0 .
 
@@ -43,7 +43,7 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 "
 `;
 
-exports[`@checkup/cli normal cli output without plugins should use the config at the config path if provided 1`] = `
+exports[`@checkup/cli normal cli output should use the config at the config path if provided 1`] = `
 "
 Checkup report generated for checkup-project v0.0.0 .
 

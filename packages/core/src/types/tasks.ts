@@ -18,6 +18,7 @@ export type TaskClassification = {
 
 export interface Task {
   meta: TaskMetaData;
+  readonly enabled: boolean;
 
   run: () => Promise<TaskResult>;
 }

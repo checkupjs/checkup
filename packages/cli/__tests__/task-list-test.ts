@@ -9,6 +9,7 @@ import {
 
 import { Category } from '@checkup/core';
 import TaskList from '../src/task-list';
+import { getTaskContext } from '@checkup/test-helpers';
 
 describe('TaskList', () => {
   it('can create an instance of a TaskList', () => {
@@ -21,7 +22,7 @@ describe('TaskList', () => {
   it('registerTask adds a task to the TaskList', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new InsightsTaskHigh());
+    taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
     expect(taskList.categories.get(Category.Insights)!.size).toEqual(1);
   });
@@ -29,7 +30,7 @@ describe('TaskList', () => {
   it('hasTask returns false if no task exists with that name', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new InsightsTaskHigh());
+    taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
     expect(taskList.hasTask('foo')).toEqual(false);
   });
@@ -37,7 +38,7 @@ describe('TaskList', () => {
   it('hasTask returns true if task exists with that name', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new InsightsTaskHigh());
+    taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
     expect(taskList.hasTask('insights-task-high')).toEqual(true);
   });
@@ -45,7 +46,7 @@ describe('TaskList', () => {
   it('findTask returns undefined if no task exists with that name', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new InsightsTaskHigh());
+    taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
     expect(taskList.findTask('foo')).toBeUndefined();
   });
@@ -53,7 +54,7 @@ describe('TaskList', () => {
   it('findTask returns task instance if task exists with that name', () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new InsightsTaskHigh());
+    taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
     expect(taskList.findTask('insights-task-high')).toBeDefined();
   });
@@ -61,7 +62,7 @@ describe('TaskList', () => {
   it('runTask will run a task by taskName', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new InsightsTaskHigh());
+    taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
     let result = await taskList.runTask('insights-task-high');
 
@@ -71,8 +72,8 @@ describe('TaskList', () => {
   it('runTasks will run all registered tasks', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new InsightsTaskHigh());
-    taskList.registerTask(new InsightsTaskLow());
+    taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
+    taskList.registerTask(new InsightsTaskLow(getTaskContext()));
 
     let result = await taskList.runTasks();
 
@@ -83,12 +84,12 @@ describe('TaskList', () => {
   it('runTasks will sort tasks in the correct order', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new InsightsTaskLow());
-    taskList.registerTask(new RecommendationsTaskHigh());
-    taskList.registerTask(new MigrationTaskLow());
-    taskList.registerTask(new MigrationTaskHigh());
-    taskList.registerTask(new RecommendationsTaskLow());
-    taskList.registerTask(new InsightsTaskHigh());
+    taskList.registerTask(new InsightsTaskLow(getTaskContext()));
+    taskList.registerTask(new RecommendationsTaskHigh(getTaskContext()));
+    taskList.registerTask(new MigrationTaskLow(getTaskContext()));
+    taskList.registerTask(new MigrationTaskHigh(getTaskContext()));
+    taskList.registerTask(new RecommendationsTaskLow(getTaskContext()));
+    taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
     let result = await taskList.runTasks();
 

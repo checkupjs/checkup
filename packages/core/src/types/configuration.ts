@@ -4,8 +4,8 @@ import { RuntimeCheckupConfig, RuntimeTaskConfig } from './runtime-types';
 
 import { PromiseValue } from 'type-fest';
 
-export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 export type TaskConfig = t.TypeOf<typeof RuntimeTaskConfig>;
+export type CheckupConfig = t.TypeOf<typeof RuntimeCheckupConfig>;
 
 export enum CheckupConfigFormat {
   JSON = 'JSON',

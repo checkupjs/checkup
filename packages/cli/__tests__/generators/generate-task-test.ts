@@ -2,11 +2,9 @@
 
 import * as helpers from 'yeoman-test';
 
-import { createTmpDir, testRoot } from '@checkup/test-helpers';
-
-import PluginGenerator from '../../src/generators/plugin';
 import TaskGenerator from '../../src/generators/task';
-import { join } from 'path';
+import { generatePlugin } from '../__utils__/generate-plugin';
+import { testRoot } from '@checkup/test-helpers';
 
 function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
@@ -20,25 +18,6 @@ function assertPluginFiles(dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
 
   expect(root.file(`src/hooks/register-tasks.${extension}`).contents).toMatchSnapshot();
-}
-
-async function generatePlugin(
-  options: object = {
-    name: 'my-plugin',
-    defaults: true,
-  },
-  prompts: object = {
-    typescript: true,
-  }
-) {
-  let tmp = createTmpDir();
-  let dir = await helpers
-    .run(PluginGenerator, { namespace: 'checkup:plugin' })
-    .cd(tmp)
-    .withOptions(options)
-    .withPrompts(prompts);
-
-  return join(dir, 'checkup-plugin-my-plugin');
 }
 
 describe('task generator', () => {
@@ -77,7 +56,10 @@ describe('task generator', () => {
   });
 
   it('generates correct files with JavaScript', async () => {
-    let baseDir = await generatePlugin({ name: 'my-plugin' }, { typescript: false });
+    let baseDir = await generatePlugin(
+      { name: 'my-plugin', defaults: false },
+      { typescript: false }
+    );
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(baseDir)
