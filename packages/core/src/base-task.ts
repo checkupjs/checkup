@@ -9,8 +9,8 @@ export default abstract class BaseTask {
   meta!: TaskMetaData | TaskIdentifier;
   debug: debug.Debugger;
 
-  private _config!: unknown;
-  private _enabled!: string;
+  private #config: unknown;
+  private #enabled: string;
 
   constructor(context: TaskContext) {
     this.context = context;
@@ -27,28 +27,28 @@ export default abstract class BaseTask {
 
     let config: TaskConfig | undefined = this.context.config.tasks[this.meta.taskName];
 
-    this._config = {};
-    this._enabled = 'on';
+    this.#config = {};
+    this.#enabled = 'on';
 
     if (typeof config === 'string') {
-      this._enabled = config;
+      this.#enabled = config;
     } else if (Array.isArray(config)) {
       let [enabled, taskConfig] = config;
 
-      this._enabled = enabled;
-      this._config = taskConfig;
+      this.#enabled = enabled;
+      this.#config = taskConfig;
     }
   }
 
   get config() {
     this._parseConfig();
 
-    return this._config;
+    return this.#config;
   }
 
   get enabled() {
     this._parseConfig();
 
-    return this._enabled === 'on';
+    return this.#enabled === 'on';
   }
 }
