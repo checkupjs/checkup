@@ -17,7 +17,15 @@ export function toFullPluginName(pluginName: string) {
 }
 
 export function getPluginName(cwd: string): string {
-  let packageJson: PackageJson = readJsonSync(sync({ cwd })!);
+  let packageJsonPath = sync({ cwd });
+  let packageJson: PackageJson = readJsonSync(packageJsonPath!);
+
+  if (!packageJson.keywords?.includes('checkup-plugin')) {
+    throw new Error(
+      `You tried to retrieve a pluginName from a package.json that isn't from a checkup plugin.
+Path: ${packageJsonPath}`
+    );
+  }
 
   return packageJson.name!;
 }
