@@ -39,7 +39,7 @@ describe('checkup-meta-task', () => {
       let checkupConfig = await getConfig();
 
       const result = await new CheckupMetaTask(
-        'core',
+        'meta',
         getTaskContext({ path: checkupProject.baseDir }, {}, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
@@ -57,7 +57,7 @@ describe('checkup-meta-task', () => {
       let checkupConfig = await getConfig();
 
       const result = await new CheckupMetaTask(
-        'core',
+        'meta',
         getTaskContext({ path: checkupProject.baseDir }, {}, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
@@ -79,7 +79,7 @@ describe('checkup-meta-task', () => {
       });
 
       const result = await new CheckupMetaTask(
-        'core',
+        'meta',
         getTaskContext({ path: checkupProject.baseDir }, {}, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
@@ -100,7 +100,7 @@ describe('checkup-meta-task', () => {
       });
 
       const result = await new CheckupMetaTask(
-        'core',
+        'meta',
         getTaskContext({ path: checkupProject.baseDir }, {}, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
