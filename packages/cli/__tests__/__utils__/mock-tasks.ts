@@ -1,4 +1,4 @@
-import { BaseTask, Category, Priority, Task, TaskResult } from '@checkup/core';
+import { BaseTask, Category, Priority, Task, TaskContext, TaskResult } from '@checkup/core';
 
 import MockTaskResult from './mock-task-result';
 
@@ -11,6 +11,10 @@ export class InsightsTaskHigh extends BaseTask implements Task {
       priority: Priority.High,
     },
   };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
 
   async run(): Promise<TaskResult> {
     return new MockTaskResult(this.meta, 'insights task high is being run');
@@ -27,6 +31,9 @@ export class InsightsTaskLow extends BaseTask implements Task {
     },
   };
 
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
   async run(): Promise<TaskResult> {
     return new MockTaskResult(this.meta, 'insights task low is being run');
   }
@@ -42,6 +49,9 @@ export class RecommendationsTaskHigh extends BaseTask implements Task {
     },
   };
 
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
   async run(): Promise<TaskResult> {
     return new MockTaskResult(this.meta, 'recommendations task high is being run');
   }
@@ -57,6 +67,9 @@ export class RecommendationsTaskLow extends BaseTask implements Task {
     },
   };
 
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
   async run(): Promise<TaskResult> {
     return new MockTaskResult(this.meta, 'recommendations task low is being run');
   }
@@ -72,6 +85,9 @@ export class MigrationTaskHigh extends BaseTask implements Task {
     },
   };
 
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
   async run(): Promise<TaskResult> {
     return new MockTaskResult(this.meta, 'migration task high is being run');
   }
@@ -87,6 +103,9 @@ export class MigrationTaskLow extends BaseTask implements Task {
     },
   };
 
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
   async run(): Promise<TaskResult> {
     return new MockTaskResult(this.meta, 'migration task low is being run');
   }

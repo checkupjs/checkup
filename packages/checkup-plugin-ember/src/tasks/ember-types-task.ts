@@ -25,8 +25,8 @@ export default class EmberTypesTask extends FileSearcherTask implements Task {
     },
   };
 
-  constructor(context: TaskContext) {
-    super(context, SEARCH_PATTERNS);
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context, SEARCH_PATTERNS);
   }
 
   async run(): Promise<TaskResult> {

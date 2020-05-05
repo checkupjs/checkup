@@ -129,9 +129,10 @@ export * from './types';
 
 exports[`plugin generator generates plugin into existing directory with defaults 6`] = `
 "import { Hook } from '@oclif/config';
+import { getPluginName } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
-  
+  let pluginName = getPluginName(__dirname);
 };
 
 export default hook;
@@ -255,9 +256,10 @@ exports[`plugin generator generates plugin with JavaScript defaults 4`] = `
 
 exports[`plugin generator generates plugin with JavaScript defaults 5`] = `
 "import { Hook } from '@oclif/config';
+import { getPluginName } from '@checkup/core';
 
 const hook = async function({ context, tasks }) {
-  
+  let pluginName = getPluginName(__dirname);
 };
 
 export default hook;
@@ -413,9 +415,10 @@ export * from './types';
 
 exports[`plugin generator generates plugin with custom options 6`] = `
 "import { Hook } from '@oclif/config';
+import { getPluginName } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
-  
+  let pluginName = getPluginName(__dirname);
 };
 
 export default hook;
@@ -571,9 +574,10 @@ export * from './types';
 
 exports[`plugin generator generates plugin with defaults 6`] = `
 "import { Hook } from '@oclif/config';
+import { getPluginName } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
-  
+  let pluginName = getPluginName(__dirname);
 };
 
 export default hook;
@@ -729,9 +733,10 @@ export * from './types';
 
 exports[`plugin generator generates plugin with unmodified name with defaults 6`] = `
 "import { Hook } from '@oclif/config';
+import { getPluginName } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
-  
+  let pluginName = getPluginName(__dirname);
 };
 
 export default hook;

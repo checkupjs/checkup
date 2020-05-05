@@ -1,7 +1,7 @@
 import * as crypto from 'crypto';
 import * as stringify from 'json-stable-stringify';
 
-import { BaseTask, CheckupConfig, TaskContext, TaskIdentifier } from '@checkup/core';
+import { BaseTask, CheckupConfig, TaskIdentifier } from '@checkup/core';
 import { MetaTask, MetaTaskResult } from '../types';
 
 import CheckupMetaTaskResult from '../results/checkup-meta-task-result';
@@ -18,10 +18,6 @@ export default class CheckupMetaTask extends BaseTask implements MetaTask {
     taskName: 'checkup',
     friendlyTaskName: 'Checkup Configuration',
   };
-
-  constructor(context: TaskContext) {
-    super(context);
-  }
 
   async run(): Promise<MetaTaskResult> {
     let result: CheckupMetaTaskResult = new CheckupMetaTaskResult(this.meta);

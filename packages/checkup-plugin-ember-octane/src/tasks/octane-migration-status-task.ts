@@ -28,8 +28,8 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   private eslintParser: Parser<ESLintReport>;
   private templateLinter: TemplateLinter;
 
-  constructor(context: TaskContext) {
-    super(context);
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
 
     let createEslintParser = this.context.parsers.get('eslint')!;
 

@@ -6,6 +6,7 @@ import { CheckupConfig, CheckupConfigFormat, CheckupConfigLoader } from '../type
 import { RuntimeCheckupConfig } from '../types/runtime-types';
 import { basename } from 'path';
 import { fold } from 'fp-ts/lib/Either';
+import { normalizePackageName } from '../utils/plugin-name';
 import { pipe } from 'fp-ts/lib/pipeable';
 
 /**
@@ -35,6 +36,7 @@ export default class CheckupConfigService {
    */
   get() {
     this.validate();
+    this.normalizePluginNames();
     debug('checkup:config')('%j', this.config);
     return this.config;
   }
@@ -75,6 +77,12 @@ export default class CheckupConfigService {
         () => ['no errors']
       )
     );
+  }
+
+  private normalizePluginNames() {
+    this.config.plugins.forEach((plugin, index, arr) => {
+      arr[index] = normalizePackageName(plugin);
+    });
   }
 
   private constructor(config: CheckupConfig, configPath: string, format: CheckupConfigFormat) {

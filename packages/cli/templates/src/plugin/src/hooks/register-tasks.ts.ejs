@@ -1,7 +1,8 @@
 import { Hook } from '@oclif/config';
+import { getPluginName } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
-  
+  let pluginName = getPluginName(__dirname);
 };
 
 export default hook;

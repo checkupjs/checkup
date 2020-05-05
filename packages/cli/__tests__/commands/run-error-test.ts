@@ -17,13 +17,13 @@ describe('@checkup/cli', () => {
 
     it('should error if a plugin cannot be loaded', async () => {
       const project = new CheckupProject('checkup-project', '0.0.0').addCheckupConfig({
-        plugins: ['@checkup/unknown-plugin'],
+        plugins: ['unknown'],
         tasks: {},
       });
       project.writeSync();
 
       await expect(runCommand(['run', project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
-        `"Cannot find module '@checkup/unknown-plugin' from '${project.baseDir}'"`
+        `"Cannot find module 'checkup-plugin-unknown' from '${project.baseDir}'"`
       );
 
       project.dispose();

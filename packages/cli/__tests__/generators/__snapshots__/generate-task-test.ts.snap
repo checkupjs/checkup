@@ -43,28 +43,30 @@ export default class MyFooTaskResult extends BaseTaskResult {
 `;
 
 exports[`task generator generates correct files with JavaScript 3`] = `
-"import { CheckupProject, stdout } from '@checkup/test-helpers';
+"import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
-  let checkupProject;
+  let project;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(() => {
-    checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
+    project = new CheckupProject('checkup-app', '0.0.0', project => {
       project.addDependency('ember-cli', '^3.15.0');
     });
 
-    checkupProject.writeSync();
-    checkupProject.gitInit();
+    project.writeSync();
+    project.gitInit();
   });
 
   afterEach(() => {
-    checkupProject.dispose();
+    project.dispose();
   });
 
   it('can read task and output to console', async () => {
-    const taskResult = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const taskResult = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
 
     taskResult.toConsole();
 
@@ -72,7 +74,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const taskResult = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const taskResult = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
 
     expect(taskResult.toJson()).toMatchSnapshot();
   });
@@ -81,11 +83,12 @@ describe('my-foo-task', () => {
 
 exports[`task generator generates correct files with JavaScript 4`] = `
 "import { Hook } from '@oclif/config';
-
 import MyFooTask from '../tasks/my-foo-task';
+import { getPluginName } from '@checkup/core';
 
 const hook = async function({ context, tasks }) {
-  tasks.registerTask(new MyFooTask(context));
+  let pluginName = getPluginName(__dirname);
+  tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
 export default hook;
@@ -135,28 +138,30 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults 3`] = `
-"import { CheckupProject, stdout } from '@checkup/test-helpers';
+"import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
-  let checkupProject: CheckupProject;
+  let project: CheckupProject;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(() => {
-    checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
+    project = new CheckupProject('checkup-app', '0.0.0', project => {
       project.addDependency('ember-cli', '^3.15.0');
     });
 
-    checkupProject.writeSync();
-    checkupProject.gitInit();
+    project.writeSync();
+    project.gitInit();
   });
 
   afterEach(() => {
-    checkupProject.dispose();
+    project.dispose();
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
     taskResult.toConsole();
@@ -165,7 +170,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
@@ -175,11 +180,12 @@ describe('my-foo-task', () => {
 
 exports[`task generator generates correct files with TypeScript for defaults 4`] = `
 "import { Hook } from '@oclif/config';
-
 import MyFooTask from '../tasks/my-foo-task';
+import { getPluginName } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
-  tasks.registerTask(new MyFooTask(context));
+  let pluginName = getPluginName(__dirname);
+  tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
 export default hook;
@@ -229,28 +235,30 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 `;
 
 exports[`task generator generates correct files with category 3`] = `
-"import { CheckupProject, stdout } from '@checkup/test-helpers';
+"import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
-  let checkupProject: CheckupProject;
+  let project: CheckupProject;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(() => {
-    checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
+    project = new CheckupProject('checkup-app', '0.0.0', project => {
       project.addDependency('ember-cli', '^3.15.0');
     });
 
-    checkupProject.writeSync();
-    checkupProject.gitInit();
+    project.writeSync();
+    project.gitInit();
   });
 
   afterEach(() => {
-    checkupProject.dispose();
+    project.dispose();
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
     taskResult.toConsole();
@@ -259,7 +267,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
@@ -269,11 +277,12 @@ describe('my-foo-task', () => {
 
 exports[`task generator generates correct files with category 4`] = `
 "import { Hook } from '@oclif/config';
-
 import MyFooTask from '../tasks/my-foo-task';
+import { getPluginName } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
-  tasks.registerTask(new MyFooTask(context));
+  let pluginName = getPluginName(__dirname);
+  tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
 export default hook;
@@ -323,28 +332,30 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 `;
 
 exports[`task generator generates correct files with priority 3`] = `
-"import { CheckupProject, stdout } from '@checkup/test-helpers';
+"import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
-  let checkupProject: CheckupProject;
+  let project: CheckupProject;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(() => {
-    checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
+    project = new CheckupProject('checkup-app', '0.0.0', project => {
       project.addDependency('ember-cli', '^3.15.0');
     });
 
-    checkupProject.writeSync();
-    checkupProject.gitInit();
+    project.writeSync();
+    project.gitInit();
   });
 
   afterEach(() => {
-    checkupProject.dispose();
+    project.dispose();
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
     taskResult.toConsole();
@@ -353,7 +364,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
@@ -363,11 +374,12 @@ describe('my-foo-task', () => {
 
 exports[`task generator generates correct files with priority 4`] = `
 "import { Hook } from '@oclif/config';
-
 import MyFooTask from '../tasks/my-foo-task';
+import { getPluginName } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
-  tasks.registerTask(new MyFooTask(context));
+  let pluginName = getPluginName(__dirname);
+  tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
 export default hook;
@@ -417,28 +429,30 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 3`] = `
-"import { CheckupProject, stdout } from '@checkup/test-helpers';
+"import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
-  let checkupProject: CheckupProject;
+  let project: CheckupProject;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(() => {
-    checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
+    project = new CheckupProject('checkup-app', '0.0.0', project => {
       project.addDependency('ember-cli', '^3.15.0');
     });
 
-    checkupProject.writeSync();
-    checkupProject.gitInit();
+    project.writeSync();
+    project.gitInit();
   });
 
   afterEach(() => {
-    checkupProject.dispose();
+    project.dispose();
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
     taskResult.toConsole();
@@ -447,7 +461,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyFooTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyFooTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
@@ -498,28 +512,30 @@ export default class MyBarTaskResult extends BaseTaskResult implements TaskResul
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 6`] = `
-"import { CheckupProject, stdout } from '@checkup/test-helpers';
+"import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { getPluginName } from '@checkup/core';
 import MyBarTask from '../src/tasks/my-bar-task';
 import MyBarTaskResult from '../src/results/my-bar-task-result';
 
 describe('my-bar-task', () => {
-  let checkupProject: CheckupProject;
+  let project: CheckupProject;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(() => {
-    checkupProject = new CheckupProject('checkup-app', '0.0.0', project => {
+    project = new CheckupProject('checkup-app', '0.0.0', project => {
       project.addDependency('ember-cli', '^3.15.0');
     });
 
-    checkupProject.writeSync();
-    checkupProject.gitInit();
+    project.writeSync();
+    project.gitInit();
   });
 
   afterEach(() => {
-    checkupProject.dispose();
+    project.dispose();
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyBarTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyBarTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyBarTaskResult>result;
 
     taskResult.toConsole();
@@ -528,7 +544,7 @@ describe('my-bar-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyBarTask({ path: checkupProject.baseDir }).run();
+    const result = await new MyBarTask(pluginName, getTaskContext({ path: project.baseDir }).run();
     const taskResult = <MyBarTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
@@ -538,14 +554,14 @@ describe('my-bar-task', () => {
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 7`] = `
 "import { Hook } from '@oclif/config';
-
 import MyBarTask from '../tasks/my-bar-task';
-
 import MyFooTask from '../tasks/my-foo-task';
+import { getPluginName } from '@checkup/core';
 
 const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
-  tasks.registerTask(new MyFooTask(context));
-  tasks.registerTask(new MyBarTask(context));
+  let pluginName = getPluginName(__dirname);
+  tasks.registerTask(new MyFooTask(pluginName, context));
+  tasks.registerTask(new MyBarTask(pluginName, context));
 };
 
 export default hook;
