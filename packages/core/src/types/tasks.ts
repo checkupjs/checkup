@@ -44,7 +44,7 @@ export interface TaskMetaData {
 
 export interface TaskItemData {
   type: string;
-  data: string[];
+  data: string[] | Record<string, string>;
   total: number;
 }
 

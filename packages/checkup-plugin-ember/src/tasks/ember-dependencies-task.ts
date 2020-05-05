@@ -1,4 +1,12 @@
-import { BaseTask, Category, Priority, Task, TaskResult, getPackageJson } from '@checkup/core';
+import {
+  BaseTask,
+  Category,
+  Priority,
+  Task,
+  TaskItemData,
+  TaskResult,
+  getPackageJson,
+} from '@checkup/core';
 
 import EmberDependenciesTaskResult from '../results/ember-dependencies-task-result';
 import { PackageJson } from 'type-fest';
@@ -70,18 +78,50 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
     let result: EmberDependenciesTaskResult = new EmberDependenciesTaskResult(this.meta);
     let packageJson = getPackageJson(this.context.cliArguments.path);
 
-    result.emberLibraries['ember-source'] = findDependency(packageJson, 'ember-source');
-    result.emberLibraries['ember-cli'] = findDependency(packageJson, 'ember-cli');
-    result.emberLibraries['ember-data'] = findDependency(packageJson, 'ember-data');
-    result.emberAddons = {
-      dependencies: findDependencies(packageJson.dependencies, emberAddonFilter),
-      devDependencies: findDependencies(packageJson.devDependencies, emberAddonFilter),
+    let coreLibraries: Record<string, string> = {
+      'ember-source': findDependency(packageJson, 'ember-source'),
+      'ember-cli': findDependency(packageJson, 'ember-cli'),
+      'ember-data': findDependency(packageJson, 'ember-data'),
     };
+    let emberDependencies = findDependencies(packageJson.dependencies, emberAddonFilter);
+    let emberDevDependencies = findDependencies(packageJson.devDependencies, emberAddonFilter);
+    let emberCliDependencies = findDependencies(packageJson.dependencies, emberCliAddonFilter);
+    let emberCliDevDependencies = findDependencies(
+      packageJson.devDependencies,
+      emberCliAddonFilter
+    );
 
-    result.emberCliAddons = {
-      dependencies: findDependencies(packageJson.dependencies, emberCliAddonFilter),
-      devDependencies: findDependencies(packageJson.devDependencies, emberCliAddonFilter),
-    };
+    let taskItemData: TaskItemData[] = [];
+
+    taskItemData.push(
+      {
+        type: 'ember core libraries',
+        data: coreLibraries,
+        total: Object.keys(coreLibraries).length,
+      },
+      {
+        type: 'ember dependencies',
+        data: emberDependencies,
+        total: Object.keys(emberDependencies).length,
+      },
+      {
+        type: 'ember devDependencies',
+        data: emberDevDependencies,
+        total: Object.keys(emberDevDependencies).length,
+      },
+      {
+        type: 'ember-cli dependencies',
+        data: emberCliDependencies,
+        total: Object.keys(emberCliDependencies).length,
+      },
+      {
+        type: 'ember-cli devDependencies',
+        data: emberCliDevDependencies,
+        total: Object.keys(emberCliDevDependencies).length,
+      }
+    );
+
+    result.dependencies = taskItemData;
 
     return result;
   }

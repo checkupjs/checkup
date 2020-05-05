@@ -1,28 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`dependencies-task detects Ember dependencies 1`] = `
-"=== Ember Core Libraries | Total: 3
+"=== dependencies ===
 
-Dependency   Version   
-ember-source ^3.15.0   
-ember-cli    ^3.15.0   
-ember-data   Not found 
-
-=== Ember Addons (dependencies) | Total: 1
-
-Dependency   Version 
-ember-source ^3.15.0 
-
-=== Ember CLI Addons (dependencies) | Total: 2
-
-Dependency                       Version 
-ember-cli                        ^3.15.0 
-ember-cli-blueprint-test-helpers latest  
-
-=== Ember CLI Addons (devDependencies) | Total: 1
-
-Dependency             Version 
-ember-cli-string-utils latest  
+Type                      Total 
+ember core libraries      3     
+ember dependencies        1     
+ember devDependencies     0     
+ember-cli dependencies    2     
+ember-cli devDependencies 1     
 
 "
 `;
@@ -37,28 +23,44 @@ Object {
     },
     "taskName": "dependencies",
   },
-  "result": Object {
-    "emberAddons": Object {
-      "dependencies": Object {
+  "result": Array [
+    Object {
+      "data": Object {
+        "ember-cli": "^3.15.0",
+        "ember-data": "Not found",
         "ember-source": "^3.15.0",
       },
-      "devDependencies": Object {},
+      "total": 3,
+      "type": "ember core libraries",
     },
-    "emberCliAddons": Object {
-      "dependencies": Object {
+    Object {
+      "data": Object {
+        "ember-source": "^3.15.0",
+      },
+      "total": 1,
+      "type": "ember dependencies",
+    },
+    Object {
+      "data": Object {},
+      "total": 0,
+      "type": "ember devDependencies",
+    },
+    Object {
+      "data": Object {
         "ember-cli": "^3.15.0",
         "ember-cli-blueprint-test-helpers": "latest",
       },
-      "devDependencies": Object {
+      "total": 2,
+      "type": "ember-cli dependencies",
+    },
+    Object {
+      "data": Object {
         "ember-cli-string-utils": "latest",
       },
+      "total": 1,
+      "type": "ember-cli devDependencies",
     },
-    "emberLibraries": Object {
-      "ember-cli": "^3.15.0",
-      "ember-data": "Not found",
-      "ember-source": "^3.15.0",
-    },
-  },
+  ],
 }
 `;
 
@@ -69,101 +71,36 @@ Array [
     "formattedResult": Array [
       Object {
         "result": Object {
-          "name": "ember-source",
-          "value": "^3.15.0",
+          "name": "ember core libraries",
+          "value": 3,
         },
         "rowClass": "bg-gray-100",
       },
       Object {
         "result": Object {
-          "name": "ember-cli",
-          "value": "^3.15.0",
+          "name": "ember dependencies",
+          "value": 1,
         },
         "rowClass": "bg-gray-100",
       },
       Object {
         "result": Object {
-          "name": "ember-data",
-          "value": "Not found",
-        },
-        "rowClass": "bg-gray-100",
-      },
-    ],
-    "meta": Object {
-      "friendlyTaskName": "Ember Dependencies",
-      "taskClassification": Object {
-        "category": "insights",
-        "priority": "high",
-      },
-      "taskName": "dependencies",
-    },
-    "tableHeaders": Array [
-      "name",
-      "value",
-    ],
-  },
-  TableData {
-    "componentType": "table",
-    "formattedResult": Array [
-      Object {
-        "result": Object {
-          "name": "ember-source",
-          "value": "^3.15.0",
-        },
-        "rowClass": "bg-gray-100",
-      },
-    ],
-    "meta": Object {
-      "friendlyTaskName": "Ember Dependencies",
-      "taskClassification": Object {
-        "category": "insights",
-        "priority": "high",
-      },
-      "taskName": "dependencies",
-    },
-    "tableHeaders": Array [
-      "name",
-      "value",
-    ],
-  },
-  TableData {
-    "componentType": "table",
-    "formattedResult": Array [
-      Object {
-        "result": Object {
-          "name": "ember-cli",
-          "value": "^3.15.0",
+          "name": "ember devDependencies",
+          "value": 0,
         },
         "rowClass": "bg-gray-100",
       },
       Object {
         "result": Object {
-          "name": "ember-cli-blueprint-test-helpers",
-          "value": "latest",
+          "name": "ember-cli dependencies",
+          "value": 2,
         },
         "rowClass": "bg-gray-100",
       },
-    ],
-    "meta": Object {
-      "friendlyTaskName": "Ember Dependencies",
-      "taskClassification": Object {
-        "category": "insights",
-        "priority": "high",
-      },
-      "taskName": "dependencies",
-    },
-    "tableHeaders": Array [
-      "name",
-      "value",
-    ],
-  },
-  TableData {
-    "componentType": "table",
-    "formattedResult": Array [
       Object {
         "result": Object {
-          "name": "ember-cli-string-utils",
-          "value": "latest",
+          "name": "ember-cli devDependencies",
+          "value": 1,
         },
         "rowClass": "bg-gray-100",
       },
