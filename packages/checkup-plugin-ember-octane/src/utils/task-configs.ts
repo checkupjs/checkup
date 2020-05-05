@@ -31,6 +31,14 @@ export const ESLINT_MIGRATION_TASK_CONFIGS: {
     name: 'Tracked Properties',
     rules: ['ember/no-computed-properties-in-native-classes'],
   },
+  [ESLintMigrationType.Mixins]: {
+    fileMatchers: [
+      /app\/(app|router)\.js$/,
+      /(app|addon)\/(adapters|components|controllers|helpers|models|routes|services)\/.*\.js$/,
+    ],
+    name: 'No Mixins',
+    rules: ['ember/no-mixins'],
+  },
 };
 
 export const TEMPLATE_LINT_MIGRATION_TASK_CONFIGS: {

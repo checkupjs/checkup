@@ -83,6 +83,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
       ESLintMigrationType.TaglessComponents,
       ESLintMigrationType.GlimmerComponents,
       ESLintMigrationType.TrackedProperties,
+      ESLintMigrationType.Mixins,
     ];
     let templateLintMigrationTasks: TemplateLintMigrationType[] = [
       TemplateLintMigrationType.AngleBrackets,
