@@ -6,8 +6,8 @@ import { CheckupConfig, CheckupConfigFormat, CheckupConfigLoader } from '../type
 import { RuntimeCheckupConfig } from '../types/runtime-types';
 import { basename } from 'path';
 import { fold } from 'fp-ts/lib/Either';
+import { normalizePackageName } from '../utils/plugin-name';
 import { pipe } from 'fp-ts/lib/pipeable';
-import { toFullPluginName } from '../utils/plugin-name';
 
 /**
  * A service to interact with a {@link CheckupConfig}. Create an instance via
@@ -81,7 +81,7 @@ export default class CheckupConfigService {
 
   private normalizePluginNames() {
     this.config.plugins.forEach((plugin, index, arr) => {
-      arr[index] = toFullPluginName(plugin);
+      arr[index] = normalizePackageName(plugin);
     });
   }
 

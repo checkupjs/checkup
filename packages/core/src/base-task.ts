@@ -3,7 +3,7 @@ import * as debug from 'debug';
 import { TaskContext, TaskIdentifier, TaskMetaData } from './types/tasks';
 
 import { TaskConfig } from './types/configuration';
-import { toShortPluginName } from './utils/plugin-name';
+import { getShorthandName } from './utils/plugin-name';
 
 export default abstract class BaseTask {
   context: TaskContext;
@@ -15,7 +15,7 @@ export default abstract class BaseTask {
   #enabled!: string;
 
   constructor(pluginName: string, context: TaskContext) {
-    this.#pluginName = toShortPluginName(pluginName);
+    this.#pluginName = getShorthandName(pluginName);
     this.context = context;
 
     this.debug = debug('checkup:task');
