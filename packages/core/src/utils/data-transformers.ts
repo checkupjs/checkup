@@ -1,4 +1,5 @@
 import * as startCase from 'startcase';
+
 import { TaskItemData } from '../types/tasks';
 /**
  * @param data
@@ -17,13 +18,16 @@ export function toPairs(
   return result;
 }
 
-export function toTaskData(results: [string, string[] | Record<string, string>][]) : TaskItemData[] { 
+export function toTaskData(results: [string, string[] | Record<string, string>][]): TaskItemData[] {
   return results.map(([type, data]) => {
     return toTaskItemData(type, data);
   });
 }
 
-export function toTaskItemData(type: string, data: string[] | Record<string, string>) : TaskItemData {
+export function toTaskItemData(
+  type: string,
+  data: string[] | Record<string, string>
+): TaskItemData {
   return {
     displayName: startCase(type),
     type,
