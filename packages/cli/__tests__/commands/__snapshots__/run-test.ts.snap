@@ -14,6 +14,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
 
+=== Number of TODOs ===
+
+TODOs found: 0
+
 "
 `;
 
@@ -37,6 +41,7 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
   },
   \\"results\\": [
     {
+<<<<<<< HEAD
       \\"meta\\": {
         \\"taskName\\": \\"outdated-dependencies\\",
         \\"friendlyTaskName\\": \\"Outdated Dependencies\\",
@@ -81,6 +86,9 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
           }
         ]
       }
+=======
+      \\"todos\\": 0
+>>>>>>> Adding TODOs task
     }
   ]
 }
@@ -109,6 +117,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
+
+=== Number of TODOs ===
+
+TODOs found: 0
 
 "
 `;
