@@ -202,7 +202,7 @@ Array [
 exports[`types-task returns all the types (including nested) found in the app and outputs to the console 1`] = `
 "=== Project Types ===
 
-Displayname           Total 
+Types                 Total 
 Components            2     
 Controllers           2     
 Helpers               2     
@@ -409,7 +409,7 @@ Array [
 exports[`types-task returns all the types found in the app and outputs to the console 1`] = `
 "=== Project Types ===
 
-Displayname           Total 
+Types                 Total 
 Components            1     
 Controllers           1     
 Helpers               1     
