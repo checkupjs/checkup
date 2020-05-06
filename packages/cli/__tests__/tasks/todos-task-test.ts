@@ -4,13 +4,13 @@ import TodosTask from '../../src/tasks/todos-task';
 import TodosTaskResult from '../../src/results/todos-task-result';
 import Project = require('fixturify-project');
 
-describe('types-task', () => {
+describe('todos-task', () => {
   let project: Project;
 
   beforeEach(function () {
     project = new Project('foo', '0.0.0');
     project.files['index.js'] = '// TODO: write better code';
-    project.files['index.hbs'] = '{{!-- i should todo: write code --}}';
+    project.files['index.hbs'] = '{{!-- i should TODO: write code --}}';
     project.writeSync();
   });
 
@@ -19,7 +19,10 @@ describe('types-task', () => {
   });
 
   it('returns all the types found in the app and outputs to the console', async () => {
-    const result = await new TodosTask('internal', getTaskContext({ path: project.baseDir })).run();
+    const result = await new TodosTask(
+      'internal',
+      getTaskContext({}, { cwd: project.baseDir })
+    ).run();
     const typesTaskResult = <TodosTaskResult>result;
 
     typesTaskResult.toConsole();
@@ -34,7 +37,10 @@ describe('types-task', () => {
   });
 
   it('returns all the types found in the app and outputs to json', async () => {
-    const result = await new TodosTask('internal', getTaskContext({ path: project.baseDir })).run();
+    const result = await new TodosTask(
+      'internal',
+      getTaskContext({}, { cwd: project.baseDir })
+    ).run();
     const typesTaskResult = <TodosTaskResult>result;
 
     const json = typesTaskResult.toJson();
@@ -47,7 +53,10 @@ describe('types-task', () => {
   });
 
   it('returns all the types found in the app and outputs toReportData', async () => {
-    const result = await new TodosTask('internal', getTaskContext({ path: project.baseDir })).run();
+    const result = await new TodosTask(
+      'internal',
+      getTaskContext({}, { cwd: project.baseDir })
+    ).run();
     const typesTaskResult = <TodosTaskResult>result;
 
     const reportData = typesTaskResult.toReportData();

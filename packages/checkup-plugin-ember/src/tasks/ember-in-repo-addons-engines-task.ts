@@ -29,7 +29,7 @@ export default class EmberInRepoAddonsEnginesTask extends FileSearcherTask imple
     let result: EmberInRepoAddonEnginesTaskResult = new EmberInRepoAddonEnginesTaskResult(
       this.meta
     );
-    let searchResults = await this.searcher.search();
+    let searchResults = await this.searcher.findFiles();
 
     result.inRepoAddons = [];
     result.inRepoEngines = [];
