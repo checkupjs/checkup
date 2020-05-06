@@ -2,6 +2,7 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "outDir": "lib",
+    "allowJs": true,
     "rootDir": "src",
     "types": ["jest", "node"]
   },
