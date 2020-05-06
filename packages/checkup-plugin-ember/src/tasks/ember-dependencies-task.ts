@@ -3,13 +3,54 @@ import {
   Category,
   Priority,
   Task,
-  TaskItemData,
   TaskResult,
   getPackageJson,
+  toTaskData,
 } from '@checkup/core';
 
 import EmberDependenciesTaskResult from '../results/ember-dependencies-task-result';
 import { PackageJson } from 'type-fest';
+
+export default class EmberDependenciesTask extends BaseTask implements Task {
+  meta = {
+    taskName: 'dependencies',
+    friendlyTaskName: 'Ember Dependencies',
+    taskClassification: {
+      category: Category.Insights,
+      priority: Priority.High,
+    },
+  };
+
+  async run(): Promise<TaskResult> {
+    let result: EmberDependenciesTaskResult = new EmberDependenciesTaskResult(this.meta);
+    let packageJson = getPackageJson(this.context.cliArguments.path);
+
+    let coreLibraries: Record<string, string> = {
+      'ember-source': findDependency(packageJson, 'ember-source'),
+      'ember-cli': findDependency(packageJson, 'ember-cli'),
+      'ember-data': findDependency(packageJson, 'ember-data'),
+    };
+    let emberDependencies = findDependencies(packageJson.dependencies, emberAddonFilter);
+    let emberDevDependencies = findDependencies(packageJson.devDependencies, emberAddonFilter);
+    let emberCliDependencies = findDependencies(packageJson.dependencies, emberCliAddonFilter);
+    let emberCliDevDependencies = findDependencies(
+      packageJson.devDependencies,
+      emberCliAddonFilter
+    );
+
+    let results: [string, Record<string, string>][] = [
+      ['ember core libraries', coreLibraries],
+      ['ember addon dependencies', emberDependencies],
+      ['ember addon devDependencies', emberDevDependencies],
+      ['ember-cli addon dependencies', emberCliDependencies],
+      ['ember-cli addon devDependencies', emberCliDevDependencies],
+    ];
+
+    result.dependencies = toTaskData(results);
+
+    return result;
+  }
+}
 
 /**
  * @param packageJson
@@ -62,67 +103,4 @@ function emberAddonFilter(dependency: string) {
  */
 function emberCliAddonFilter(dependency: string) {
   return dependency.startsWith('ember-cli');
-}
-
-export default class EmberDependenciesTask extends BaseTask implements Task {
-  meta = {
-    taskName: 'dependencies',
-    friendlyTaskName: 'Ember Dependencies',
-    taskClassification: {
-      category: Category.Insights,
-      priority: Priority.High,
-    },
-  };
-
-  async run(): Promise<TaskResult> {
-    let result: EmberDependenciesTaskResult = new EmberDependenciesTaskResult(this.meta);
-    let packageJson = getPackageJson(this.context.cliArguments.path);
-
-    let coreLibraries: Record<string, string> = {
-      'ember-source': findDependency(packageJson, 'ember-source'),
-      'ember-cli': findDependency(packageJson, 'ember-cli'),
-      'ember-data': findDependency(packageJson, 'ember-data'),
-    };
-    let emberDependencies = findDependencies(packageJson.dependencies, emberAddonFilter);
-    let emberDevDependencies = findDependencies(packageJson.devDependencies, emberAddonFilter);
-    let emberCliDependencies = findDependencies(packageJson.dependencies, emberCliAddonFilter);
-    let emberCliDevDependencies = findDependencies(
-      packageJson.devDependencies,
-      emberCliAddonFilter
-    );
-
-    let taskItemData: TaskItemData[] = [];
-
-    taskItemData.push(
-      {
-        type: 'ember core libraries',
-        data: coreLibraries,
-        total: Object.keys(coreLibraries).length,
-      },
-      {
-        type: 'ember dependencies',
-        data: emberDependencies,
-        total: Object.keys(emberDependencies).length,
-      },
-      {
-        type: 'ember devDependencies',
-        data: emberDevDependencies,
-        total: Object.keys(emberDevDependencies).length,
-      },
-      {
-        type: 'ember-cli dependencies',
-        data: emberCliDependencies,
-        total: Object.keys(emberCliDependencies).length,
-      },
-      {
-        type: 'ember-cli devDependencies',
-        data: emberCliDevDependencies,
-        total: Object.keys(emberCliDevDependencies).length,
-      }
-    );
-
-    result.dependencies = taskItemData;
-
-    return result;
-  }
 }

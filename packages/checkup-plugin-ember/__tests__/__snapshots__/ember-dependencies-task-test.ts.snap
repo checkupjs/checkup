@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`dependencies-task detects Ember dependencies 1`] = `
-"=== dependencies ===
+"=== Ember Dependencies ===
 
-Type                      Total 
-ember core libraries      3     
-ember dependencies        1     
-ember devDependencies     0     
-ember-cli dependencies    2     
-ember-cli devDependencies 1     
+Displayname                Total 
+Ember Core Libraries       3     
+Ember Dependencies         1     
+Ember Dev Dependencies     0     
+Ember CLI Dependencies     2     
+Ember CLI Dev Dependencies 1     
 
 "
 `;
@@ -30,6 +30,7 @@ Object {
         "ember-data": "Not found",
         "ember-source": "^3.15.0",
       },
+      "displayName": "Ember Core Libraries",
       "total": 3,
       "type": "ember core libraries",
     },
@@ -37,11 +38,13 @@ Object {
       "data": Object {
         "ember-source": "^3.15.0",
       },
+      "displayName": "Ember Dependencies",
       "total": 1,
       "type": "ember dependencies",
     },
     Object {
       "data": Object {},
+      "displayName": "Ember Dev Dependencies",
       "total": 0,
       "type": "ember devDependencies",
     },
@@ -50,6 +53,7 @@ Object {
         "ember-cli": "^3.15.0",
         "ember-cli-blueprint-test-helpers": "latest",
       },
+      "displayName": "Ember CLI Dependencies",
       "total": 2,
       "type": "ember-cli dependencies",
     },
@@ -57,6 +61,7 @@ Object {
       "data": Object {
         "ember-cli-string-utils": "latest",
       },
+      "displayName": "Ember CLI Dev Dependencies",
       "total": 1,
       "type": "ember-cli devDependencies",
     },

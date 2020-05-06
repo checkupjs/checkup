@@ -43,6 +43,7 @@ export interface TaskMetaData {
 }
 
 export interface TaskItemData {
+  displayName: string;
   type: string;
   data: string[] | Record<string, string>;
   total: number;

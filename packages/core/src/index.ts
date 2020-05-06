@@ -21,7 +21,7 @@ export { default as getInitializationConfigLoader } from './configuration/loader
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { getPackageJson } from './utils/get-package-json';
 export { ui } from './utils/ui';
-export { toPairs } from './utils/data-transformers';
+export { toPairs, toTaskData, toTaskItemData } from './utils/data-transformers';
 
 export * from './types/cli';
 export * from './types/parsers';

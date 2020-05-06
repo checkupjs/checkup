@@ -25,8 +25,11 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
       return;
     }
 
-    ui.section(this.meta.taskName, () => {
-      ui.table(this.dependencies, { type: {}, total: {} });
+    ui.section(this.meta.friendlyTaskName, () => {
+      ui.table(this.dependencies, {
+        displayName: { header: 'Dependency Types' },
+        total: { header: 'Total' },
+      });
     });
   }
 

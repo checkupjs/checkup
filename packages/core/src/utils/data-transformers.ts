@@ -1,3 +1,5 @@
+import * as startCase from 'startcase';
+
 /**
  * @param data
  * @param schema
@@ -13,4 +15,19 @@ export function toPairs(
   }
 
   return result;
+}
+
+export function toTaskData(results: [string, string[] | Record<string, string>][]) {
+  return results.map(([type, data]) => {
+    return toTaskItemData(type, data);
+  });
+}
+
+export function toTaskItemData(type: string, data: string[] | Record<string, string>) {
+  return {
+    displayName: startCase(type),
+    type,
+    data,
+    total: Array.isArray(data) ? data.length : Object.keys(data).length,
+  };
 }
