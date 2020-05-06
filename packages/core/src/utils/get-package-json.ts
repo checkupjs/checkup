@@ -6,9 +6,9 @@ import { PackageJson } from 'type-fest';
 /**
  * @param basePath
  */
-export function getPackageJson(basePath: string): PackageJson {
+export function getPackageJson(basePath: string, pathName: string = 'package.json'): PackageJson {
   let package_ = {};
-  let packageJsonPath = path.join(path.resolve(basePath), 'package.json');
+  let packageJsonPath = path.join(path.resolve(basePath), pathName);
 
   try {
     package_ = fs.readJsonSync(packageJsonPath);

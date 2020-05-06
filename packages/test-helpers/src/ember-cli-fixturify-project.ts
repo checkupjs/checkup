@@ -2,6 +2,11 @@
 
 import CheckupFixturifyProject from './checkup-fixturify-project';
 
+const enum InRepoPackageType {
+  Addon = 'addon',
+  Engine = 'engine',
+}
+
 const Project = require('fixturify-project');
 
 /**
@@ -35,12 +40,22 @@ export default class EmberCLIFixturifyProject extends CheckupFixturifyProject {
   }
 
   addInRepoAddon(name: string, version = '0.0.0') {
-    const inRepoAddon = new Project(name, version, (project: any) => {
+    this.createPackage(name, version, InRepoPackageType.Addon);
+  }
+
+  addInRepoEngine(name: string, version = '0.0.0') {
+    this.createPackage(name, version, InRepoPackageType.Engine);
+  }
+
+  private createPackage(name: string, version = '0.0.0', type: InRepoPackageType) {
+    const inRepoPackage = new Project(name, version, (project: any) => {
       project.pkg.keywords.push('ember-addon');
+      if (type === InRepoPackageType.Engine) {
+        project.pkg.keywords.push('ember-engine');
+      }
       project.pkg['ember-addon'] = {};
       project.files['index.js'] = 'module.exports = { name: require("./package").name };';
     });
-
     // configure the current project to have an ember-addon configured at the appropriate path
     let addon: any = (this.pkg['ember-addon'] = this.pkg['ember-addon'] || {});
     addon.paths = addon.paths || [];
@@ -55,6 +70,6 @@ export default class EmberCLIFixturifyProject extends CheckupFixturifyProject {
     this.files.lib = this.files.lib || {};
 
     // insert inRepoAddon into files
-    Object.assign(this.files.lib, inRepoAddon.toJSON());
+    Object.assign(this.files.lib, inRepoPackage.toJSON());
   }
 }

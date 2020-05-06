@@ -23,7 +23,7 @@ describe('<%- name %>-task', () => {
   });
 
   it('can read task and output to console', async () => {
-    const result = await new <%- taskClass %>(pluginName, getTaskContext({ path: project.baseDir }).run();
+    const result = await new <%- taskClass %>(pluginName, getTaskContext({ path: project.baseDir })).run();
     const taskResult = <<%- resultClass %>>result;
 
     taskResult.toConsole();
@@ -32,7 +32,7 @@ describe('<%- name %>-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new <%- taskClass %>(pluginName, getTaskContext({ path: project.baseDir }).run();
+    const result = await new <%- taskClass %>(pluginName, getTaskContext({ path: project.baseDir })).run();
     const taskResult = <<%- resultClass %>>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
