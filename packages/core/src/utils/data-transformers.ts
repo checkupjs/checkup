@@ -23,7 +23,7 @@ export function toTaskData(results: [string, string[] | Record<string, string>][
   });
 }
 
-export function toTaskItemData(type: string, data: string[] | Record<string, string>) {
+export function toTaskItemData(type: string, data: string[] | Record<string, string>) : TaskItemData {
   return {
     displayName: startCase(type),
     type,
