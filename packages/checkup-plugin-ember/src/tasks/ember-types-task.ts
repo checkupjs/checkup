@@ -17,8 +17,8 @@ const SEARCH_PATTERNS = {
 
 export default class EmberTypesTask extends FileSearcherTask implements Task {
   meta = {
-    taskName: 'types',
-    friendlyTaskName: 'Project Types',
+    taskName: 'ember-types',
+    friendlyTaskName: 'Ember Types',
     taskClassification: {
       category: Category.Insights,
       priority: Priority.High,

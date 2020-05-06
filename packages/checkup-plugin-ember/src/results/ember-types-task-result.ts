@@ -9,7 +9,7 @@ export default class EmberTypesTaskResult extends BaseTaskResult implements Task
 
   toConsole() {
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.table(this.types, { type: {}, total: {} });
+      ui.table(this.types, { displayName: { header: 'Types' }, total: { header: 'Total' } });
     });
   }
 

@@ -54,6 +54,5 @@ describe('dependencies-task', () => {
     const htmlResults = dependencyTaskResult.toReportData();
 
     expect(htmlResults).toMatchSnapshot();
-    expect(htmlResults).toHaveLength(4);
   });
 });

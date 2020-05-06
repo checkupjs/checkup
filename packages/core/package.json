@@ -15,7 +15,8 @@
     "globby": "^11.0.0",
     "io-ts": "^2.2.2",
     "pkg-up": "^3.1.0",
-    "resolve": "^1.17.0"
+    "resolve": "^1.17.0",
+    "startcase": "^1.0.0"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",

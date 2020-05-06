@@ -2,6 +2,8 @@ import * as globby from 'globby';
 
 import { SearchPatterns, TaskItemData } from '../types/tasks';
 
+import { toTaskItemData } from '../utils/data-transformers';
+
 const IGNORE_PATTERNS: string[] = [
   '!**/node_modules/**',
   '!bower_components/**',
@@ -42,7 +44,7 @@ export default class FileSearcher {
     for (const searchPatternName in this.searchPatterns) {
       if (Object.prototype.hasOwnProperty.call(this.searchPatterns, searchPatternName)) {
         let data = await this._getSearchItem(searchPatternName);
-        resultData.push({ type: searchPatternName, data, total: data.length });
+        resultData.push(toTaskItemData(searchPatternName, data));
       }
     }
     return resultData;
