@@ -13,7 +13,7 @@ import { PackageJson } from 'type-fest';
 
 export default class EmberDependenciesTask extends BaseTask implements Task {
   meta = {
-    taskName: 'dependencies',
+    taskName: 'ember-dependencies',
     friendlyTaskName: 'Ember Dependencies',
     taskClassification: {
       category: Category.Insights,

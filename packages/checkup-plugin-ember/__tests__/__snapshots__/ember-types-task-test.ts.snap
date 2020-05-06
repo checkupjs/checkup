@@ -3,12 +3,12 @@
 exports[`types-task returns all the types (including nested) found in the app and outputs to JSON 1`] = `
 Object {
   "meta": Object {
-    "friendlyTaskName": "Project Types",
+    "friendlyTaskName": "Ember Types",
     "taskClassification": Object {
       "category": "insights",
       "priority": "high",
     },
-    "taskName": "types",
+    "taskName": "ember-types",
   },
   "result": Object {
     "types": Array [
@@ -184,12 +184,12 @@ Array [
       },
     ],
     "meta": Object {
-      "friendlyTaskName": "Project Types",
+      "friendlyTaskName": "Ember Types",
       "taskClassification": Object {
         "category": "insights",
         "priority": "high",
       },
-      "taskName": "types",
+      "taskName": "ember-types",
     },
     "tableHeaders": Array [
       "name",
@@ -200,7 +200,7 @@ Array [
 `;
 
 exports[`types-task returns all the types (including nested) found in the app and outputs to the console 1`] = `
-"=== Project Types ===
+"=== Ember Types ===
 
 Types                 Total 
 Components            2     
@@ -220,12 +220,12 @@ Templates             2
 exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
 Object {
   "meta": Object {
-    "friendlyTaskName": "Project Types",
+    "friendlyTaskName": "Ember Types",
     "taskClassification": Object {
       "category": "insights",
       "priority": "high",
     },
-    "taskName": "types",
+    "taskName": "ember-types",
   },
   "result": Object {
     "types": Array [
@@ -391,12 +391,12 @@ Array [
       },
     ],
     "meta": Object {
-      "friendlyTaskName": "Project Types",
+      "friendlyTaskName": "Ember Types",
       "taskClassification": Object {
         "category": "insights",
         "priority": "high",
       },
-      "taskName": "types",
+      "taskName": "ember-types",
     },
     "tableHeaders": Array [
       "name",
@@ -407,7 +407,7 @@ Array [
 `;
 
 exports[`types-task returns all the types found in the app and outputs to the console 1`] = `
-"=== Project Types ===
+"=== Ember Types ===
 
 Types                 Total 
 Components            1     

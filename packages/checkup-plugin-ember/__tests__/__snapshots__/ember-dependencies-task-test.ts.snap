@@ -21,7 +21,7 @@ Object {
       "category": "insights",
       "priority": "high",
     },
-    "taskName": "dependencies",
+    "taskName": "ember-dependencies",
   },
   "result": Array [
     Object {
@@ -116,7 +116,7 @@ Array [
         "category": "insights",
         "priority": "high",
       },
-      "taskName": "dependencies",
+      "taskName": "ember-dependencies",
     },
     "tableHeaders": Array [
       "name",
