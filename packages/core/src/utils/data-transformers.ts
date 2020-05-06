@@ -35,3 +35,7 @@ export function toTaskItemData(
     total: Array.isArray(data) ? data.length : Object.keys(data).length,
   };
 }
+
+export function derivePercentageString(numerator: number, denominator: number): string {
+  return `${((numerator / denominator) * 100).toFixed()}%`;
+}

@@ -76,9 +76,7 @@ describe('types-task', () => {
 
     project.addInRepoAddon('ember-super-button', 'latest');
 
-    // @ts-ignore
-    project.files.lib['ember-super-button'].addon = TYPES;
-    // @ts-ignore
+    (project.files.lib as any)['ember-super-button'].addon = TYPES;
 
     project.writeSync();
 
@@ -118,9 +116,7 @@ describe('types-task', () => {
 
     project.addInRepoAddon('ember-super-button', 'latest');
 
-    // @ts-ignore
-    project.files.lib['ember-super-button'].addon = TYPES;
-    // @ts-ignore
+    (project.files.lib as any)['ember-super-button'].addon = TYPES;
 
     project.writeSync();
 

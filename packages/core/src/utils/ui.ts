@@ -53,7 +53,7 @@ export const ui = Object.assign(ux, {
     const completedSegments = Math.ceil(complete / barSegment);
     const incompleteSegments = maximum - completedSegments;
     const bar = `${chalk.green(barTick.repeat(completedSegments))}${chalk.grey(
-      barTick.repeat(incompleteSegments)
+      barTick.repeat(incompleteSegments < 0 ? 0 : incompleteSegments)
     )}`;
 
     ui.log(title);
@@ -79,7 +79,7 @@ export const ui = Object.assign(ux, {
       maximum - completedSegments.reduce((prev, curr) => prev + curr.completed, 0);
     const bar = `${completedSegments
       .map((segment) => chalk.keyword(segment.color)(barTick.repeat(segment.completed)))
-      .join('')}${chalk.grey(barTick.repeat(incompleteSegments))}`;
+      .join('')}${chalk.grey(barTick.repeat(incompleteSegments < 0 ? 0 : incompleteSegments))}`;
 
     ui.log(`${bar} ${total}${unit}`);
     ui.log(

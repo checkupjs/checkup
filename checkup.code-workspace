@@ -10,5 +10,11 @@
       "editorconfig.editorconfig",
       "esbenp.prettier-vscode"
     ]
-  }
+  },
+  "settings": {
+    "files.exclude": {
+      "**/node_modules/**": true
+    }
+  },
+  "files.associations": {}
 }
