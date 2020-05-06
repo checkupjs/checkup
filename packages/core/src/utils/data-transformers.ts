@@ -1,5 +1,5 @@
 import * as startCase from 'startcase';
-
+import { TaskItemData } from '../types/tasks';
 /**
  * @param data
  * @param schema
