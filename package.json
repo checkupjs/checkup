@@ -81,6 +81,17 @@
     },
     "npm": false
   },
+  "changelog": {
+    "labels": {
+      "breaking": ":boom: Breaking Change",
+      "enhancement": ":rocket: Enhancement",
+      "bug": ":bug: Bug Fix",
+      "documentation": ":memo: Documentation",
+      "internal": ":house: Internal",
+      "checkup-task": ":bar_chart: Checkup Task",
+      "generators": ":recycle: Generators"
+    }
+  },
   "resolutions": {
     "type-fest": "^0.13.1"
   },
