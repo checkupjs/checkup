@@ -1,3 +1,39 @@
+## v0.0.13 (2020-05-07)
+
+#### :bug: Bug Fix
+* `cli`, `test-helpers`
+  * [#354](https://github.com/checkupjs/checkup/pull/354) Fixing command tests ([@scalvert](https://github.com/scalvert))
+* `cli`
+  * [#340](https://github.com/checkupjs/checkup/pull/340) Fixes plugin generator incorrectly generating TS for JavaScript ([@scalvert](https://github.com/scalvert))
+
+#### :memo: Documentation
+* [#392](https://github.com/checkupjs/checkup/pull/392) Adding more labels for publishing ([@scalvert](https://github.com/scalvert))
+* [#339](https://github.com/checkupjs/checkup/pull/339) Updating installation and contributing guidelines ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `cli`, `core`
+  * [#373](https://github.com/checkupjs/checkup/pull/373) Part 3 of task context refactoring: Passing normalized plugin names to tasks ([@scalvert](https://github.com/scalvert))
+* `cli`, `core`
+  * [#372](https://github.com/checkupjs/checkup/pull/372) Part 2 of task context refactoring ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `cli`, `core`, `test-helpers`
+  * [#358](https://github.com/checkupjs/checkup/pull/358) Part 1 Refactoring tasks to include taskContext and task options ([@scalvert](https://github.com/scalvert))
+
+#### :bar_chart: Checkup Task
+* `checkup-plugin-ember`, `core`
+  * [#378](https://github.com/checkupjs/checkup/pull/378) [task] Correctly summarizing output of ember tasks ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember-octane`
+  * [#349](https://github.com/checkupjs/checkup/pull/349) [task] Adding in check to octane migration task for mixin usage ([@carakessler](https://github.com/carakessler))
+
+#### :recycle: Generators
+* `cli`
+  * [#340](https://github.com/checkupjs/checkup/pull/340) Fixes plugin generator incorrectly generating TS for JavaScript ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.0.12 (2020-04-28)
 
 #### :bug: Bug Fix
