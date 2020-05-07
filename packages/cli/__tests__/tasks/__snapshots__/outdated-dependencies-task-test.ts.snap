@@ -1,67 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`outdated-dependencies-task can read task and output to console 1`] = `
-"=== Outdated Dependencies
-
-Package             Current Wanted Latest Packagetype                  Url          
-ember-template-lint 2.5.1   2.5.2  2.5.2  @checkup/plugin-ember-octane dependencies 
-eslint-plugin-ember 8.1.1   8.2.0  8.2.0  @checkup/plugin-ember-octane dependencies 
-
-"
-`;
-
-exports[`outdated-dependencies-task can read task as JSON 1`] = `
-Object {
-  "meta": Object {
-    "friendlyTaskName": "Outdated Dependencies",
-    "taskClassification": Object {
-      "category": "insights",
-      "priority": "high",
-    },
-    "taskName": "outdated-dependencies",
-  },
-  "result": Object {
-    "outdatedDependencies": Object {
-      "tableBody": Array [
-        Array [
-          "ember-template-lint",
-          "2.5.1",
-          "2.5.2",
-          "2.5.2",
-          "@checkup/plugin-ember-octane",
-          "dependencies",
-          "https://github.com/ember-template-lint/ember-template-lint",
-        ],
-        Array [
-          "eslint-plugin-ember",
-          "8.1.1",
-          "8.2.0",
-          "8.2.0",
-          "@checkup/plugin-ember-octane",
-          "dependencies",
-          "https://github.com/ember-cli/eslint-plugin-ember#readme",
-        ],
-      ],
-      "tableHead": Array [
-        "Package",
-        "Current",
-        "Wanted",
-        "Latest",
-        "Workspace",
-        "Package Type",
-        "URL",
-      ],
-    },
-  },
-}
-`;
-
 exports[`outdated-dependencies-task detects outdated dependencies and output to console 1`] = `
-"=== Outdated Dependencies
+"=== Outdated Dependencies ===
 
-Package             Current Wanted Latest Packagetype                  Url          
-ember-template-lint 2.5.1   2.5.2  2.5.2  @checkup/plugin-ember-octane dependencies 
-eslint-plugin-ember 8.1.1   8.2.0  8.2.0  @checkup/plugin-ember-octane dependencies 
+Major: 2
+Minor: 0
+Patch: 0
 
 "
 `;
@@ -77,36 +21,51 @@ Object {
     "taskName": "outdated-dependencies",
   },
   "result": Object {
-    "outdatedDependencies": Object {
-      "tableBody": Array [
-        Array [
-          "ember-template-lint",
-          "2.5.1",
-          "2.5.2",
-          "2.5.2",
-          "@checkup/plugin-ember-octane",
-          "dependencies",
-          "https://github.com/ember-template-lint/ember-template-lint",
-        ],
-        Array [
-          "eslint-plugin-ember",
-          "8.1.1",
-          "8.2.0",
-          "8.2.0",
-          "@checkup/plugin-ember-octane",
-          "dependencies",
-          "https://github.com/ember-cli/eslint-plugin-ember#readme",
-        ],
+    "dependencies": Map {
+      "major" => Array [
+        Object {
+          "bump": "major",
+          "devDependency": false,
+          "easyUpgrade": false,
+          "homepage": "https://reactjs.org/",
+          "installed": "15.6.2",
+          "isInstalled": true,
+          "latest": "16.13.1",
+          "mismatch": false,
+          "moduleName": "react",
+          "notInPackageJson": undefined,
+          "notInstalled": false,
+          "packageJson": "^15.0.0",
+          "packageWanted": "15.6.2",
+          "pkgError": undefined,
+          "regError": undefined,
+          "semverValid": "15.6.2",
+          "unused": true,
+          "usedInScripts": undefined,
+        },
+        Object {
+          "bump": "major",
+          "devDependency": false,
+          "easyUpgrade": false,
+          "homepage": "https://reactjs.org/",
+          "installed": "15.6.2",
+          "isInstalled": true,
+          "latest": "16.13.1",
+          "mismatch": false,
+          "moduleName": "react-dom",
+          "notInPackageJson": undefined,
+          "notInstalled": false,
+          "packageJson": "^15.0.0",
+          "packageWanted": "15.6.2",
+          "pkgError": undefined,
+          "regError": undefined,
+          "semverValid": "15.6.2",
+          "unused": true,
+          "usedInScripts": undefined,
+        },
       ],
-      "tableHead": Array [
-        "Package",
-        "Current",
-        "Wanted",
-        "Latest",
-        "Workspace",
-        "Package Type",
-        "URL",
-      ],
+      "minor" => Array [],
+      "patch" => Array [],
     },
   },
 }

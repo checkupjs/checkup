@@ -1,45 +1,40 @@
-import { ui } from '@checkup/core';
-import BaseMetaTaskResult from '../base-meta-task-result';
-import { MetaTaskResult } from '../types';
+import { BaseTaskResult, TableData, TaskResult, ui } from '@checkup/core';
+
 import { OutdatedDependency } from '../tasks/outdated-dependencies-task';
 
-export default class OutdatedDependenciesTaskResult extends BaseMetaTaskResult
-  implements MetaTaskResult {
+export default class OutdatedDependenciesTaskResult extends BaseTaskResult implements TaskResult {
   versionTypes!: Map<string, Array<OutdatedDependency>>;
+  dependencies!: OutdatedDependency[];
 
-  stdout() {
-    ui.styledHeader(`${this.meta.friendlyTaskName} -- Overview`);
-    ui.styledObject({
-      Major: this.versionTypes.get('major')?.length,
-      Minor: this.versionTypes.get('minor')?.length,
-      Patch: this.versionTypes.get('patch')?.length,
+  toConsole() {
+    ui.section(this.meta.friendlyTaskName, () => {
+      ui.styledObject({
+        Major: this.versionTypes.get('major')?.length,
+        Minor: this.versionTypes.get('minor')?.length,
+        Patch: this.versionTypes.get('patch')?.length,
+      });
     });
-    ui.blankLine();
-
-    if (this.versionTypes.get('major')?.length) {
-      ui.styledHeader(`${this.meta.friendlyTaskName} -- Major`);
-      this._writeToTable(this.versionTypes.get('major')!);
-    }
-    ui.blankLine();
-
-    if (this.versionTypes.get('minor')?.length) {
-      ui.styledHeader(`${this.meta.friendlyTaskName} -- Minor`);
-      this._writeToTable(this.versionTypes.get('minor')!);
-    }
-    ui.blankLine();
-
-    if (this.versionTypes.get('patch')?.length) {
-      ui.styledHeader(`${this.meta.friendlyTaskName} -- Patch`);
-      this._writeToTable(this.versionTypes.get('patch')!);
-    }
-    ui.blankLine();
   }
 
-  json() {
+  toJson() {
     return {
       meta: this.meta,
-      result: {},
+      result: {
+        dependencies: this.versionTypes,
+      },
     };
+  }
+
+  toReportData() {
+    return [
+      new TableData(
+        this.meta,
+        this.dependencies.map((dependency) => ({
+          name: dependency.moduleName,
+          value: dependency.installed,
+        }))
+      ),
+    ];
   }
 
   _writeToTable(dependencies: OutdatedDependency[]) {

@@ -1,60 +1,57 @@
-import OutdatedDependenciesTaskResult from '../results/outdated-dependencies-task-result';
-import { BaseTask } from '@checkup/core';
-import { MetaTask, MetaTaskResult, TaskIdentifier } from '../types';
+import * as npmCheck from 'npm-check';
 
-// const hash = require('promise.hash.helper');
-const shell = require('shelljs');
-const semver = require('semver');
-const OUTDATED_DEP = 'yarn outdated --json';
+import { BaseTask, Category, Priority, Task, TaskMetaData, TaskResult } from '@checkup/core';
+
+import OutdatedDependenciesTaskResult from '../results/outdated-dependencies-task-result';
 
 export type OutdatedDependency = {
-  package: String;
-  current: String;
-  wanted: String;
-  latest: String;
-  packageType: String;
-  url: String;
+  moduleName: string;
+  homepage: string;
+  regError: string | undefined;
+  pkgError: string | undefined;
+  latest: string;
+  installed: string;
+  isInstalled: boolean;
+  notInstalled: boolean;
+  packageWanted: string;
+  packageJson: string;
+  devDependency: boolean;
+  usedInScripts: string[] | undefined;
+  mismatch: boolean;
+  semverValid: string;
+  easyUpgrade: boolean;
+  bump: string;
+  unused: boolean;
 };
 
-async function getOutdatedDep(): Promise<OutdatedDependency[]> {
-  const { stdout } = await shell.exec(OUTDATED_DEP, { silent: true });
-  let outdatedDepTable;
+async function getOutdated(path: string): Promise<OutdatedDependency[]> {
+  let result;
+  let packages;
+
   try {
-    // stripping out color legend info from the output
-    outdatedDepTable = JSON.parse(stdout.split('}')[1] + '}}');
+    result = await npmCheck({ cwd: path });
   } catch (error) {
-    console.log('invalid JSON object');
+    throw new Error('Could not check project dependencies');
   }
 
-  return _transformToTableData(outdatedDepTable.data.body);
+  packages = result.get('packages');
+
+  return packages;
 }
 
-function _transformToTableData(data: Array<String[]>) {
-  let result: OutdatedDependency[] = [];
-
-  data.forEach((dependency) => {
-    const row = {
-      package: dependency[0],
-      current: dependency[1],
-      wanted: dependency[2],
-      latest: dependency[3],
-      packageType: dependency[4],
-      url: dependency[5],
-    };
-    result.push(row);
-  });
-  return result!;
-}
-
-export default class OutdatedDependenciesTask extends BaseTask implements MetaTask {
-  meta: TaskIdentifier = {
+export default class OutdatedDependenciesTask extends BaseTask implements Task {
+  meta: TaskMetaData = {
     taskName: 'outdated-dependencies',
     friendlyTaskName: 'Outdated Dependencies',
+    taskClassification: {
+      category: Category.Insights,
+      priority: Priority.High,
+    },
   };
 
-  async run(): Promise<MetaTaskResult> {
+  async run(): Promise<TaskResult> {
     let result: OutdatedDependenciesTaskResult = new OutdatedDependenciesTaskResult(this.meta);
-    const outdatedDep = await getOutdatedDep();
+    let dependencies = await getOutdated(this.context.cliArguments.path);
     let versionTypes: Map<string, Array<OutdatedDependency>> = new Map<
       string,
       Array<OutdatedDependency>
@@ -64,16 +61,16 @@ export default class OutdatedDependenciesTask extends BaseTask implements MetaTa
       ['patch', []],
     ]);
 
-    for (let dependency of outdatedDep) {
+    for (let dependency of dependencies) {
       try {
-        // for catching when dependency version is 'exotic', which means yarn cannot retect for you whether the package has become outdated
-        const versionType = semver.diff(dependency.current, dependency.latest);
-        versionTypes.get(versionType)?.push(dependency);
+        // for catching when dependency version is 'exotic', which means yarn cannot detect for you whether the package has become outdated
+        versionTypes.get(dependency.bump)?.push(dependency);
       } catch (error) {
         // do nothing
       }
     }
 
+    result.dependencies = dependencies;
     result.versionTypes = versionTypes;
     return result;
   }

@@ -5,6 +5,8 @@ import { PackageJson } from 'type-fest';
 import Plugin from './plugin';
 import Project from 'fixturify-project';
 import { execSync } from 'child_process';
+import { existsSync } from 'fs-extra';
+import { join } from 'path';
 
 /**
  * An extension of {@link Project} that adds methods specific to creating
@@ -44,6 +46,22 @@ export default class CheckupFixturifyProject extends Project {
       execSync(`git init -q ${this.baseDir}`);
     } catch (error) {
       throw new Error("Couldn't initialize git repository.");
+    }
+  }
+
+  install() {
+    let cmd: string;
+
+    if (existsSync(join(this.baseDir, 'yarn.lock'))) {
+      cmd = 'yarn install';
+    } else {
+      cmd = 'npm install';
+    }
+
+    try {
+      execSync(cmd, { cwd: this.baseDir });
+    } catch (error) {
+      throw new Error(`Couldn't install dependencies using ${cmd}`);
     }
   }
 
