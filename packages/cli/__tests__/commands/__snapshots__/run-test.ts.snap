@@ -46,7 +46,40 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
         }
       },
       \\"result\\": {
-        \\"dependencies\\": {}
+        \\"dependencies\\": [
+          {
+            \\"moduleName\\": \\"react\\",
+            \\"homepage\\": \\"https://reactjs.org/\\",
+            \\"latest\\": \\"16.13.1\\",
+            \\"installed\\": \\"15.6.2\\",
+            \\"isInstalled\\": true,
+            \\"notInstalled\\": false,
+            \\"packageWanted\\": \\"15.6.2\\",
+            \\"packageJson\\": \\"^15.0.0\\",
+            \\"devDependency\\": false,
+            \\"mismatch\\": false,
+            \\"semverValid\\": \\"15.6.2\\",
+            \\"easyUpgrade\\": false,
+            \\"bump\\": \\"major\\",
+            \\"unused\\": true
+          },
+          {
+            \\"moduleName\\": \\"react-dom\\",
+            \\"homepage\\": \\"https://reactjs.org/\\",
+            \\"latest\\": \\"16.13.1\\",
+            \\"installed\\": \\"15.6.2\\",
+            \\"isInstalled\\": true,
+            \\"notInstalled\\": false,
+            \\"packageWanted\\": \\"15.6.2\\",
+            \\"packageJson\\": \\"^15.0.0\\",
+            \\"devDependency\\": false,
+            \\"mismatch\\": false,
+            \\"semverValid\\": \\"15.6.2\\",
+            \\"easyUpgrade\\": false,
+            \\"bump\\": \\"major\\",
+            \\"unused\\": true
+          }
+        ]
       }
     }
   ]

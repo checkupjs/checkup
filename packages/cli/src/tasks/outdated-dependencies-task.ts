@@ -52,26 +52,8 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
   async run(): Promise<TaskResult> {
     let result: OutdatedDependenciesTaskResult = new OutdatedDependenciesTaskResult(this.meta);
     let dependencies = await getOutdated(this.context.cliArguments.path);
-    let versionTypes: Map<string, Array<OutdatedDependency>> = new Map<
-      string,
-      Array<OutdatedDependency>
-    >([
-      ['major', []],
-      ['minor', []],
-      ['patch', []],
-    ]);
-
-    for (let dependency of dependencies) {
-      try {
-        // for catching when dependency version is 'exotic', which means yarn cannot detect for you whether the package has become outdated
-        versionTypes.get(dependency.bump)?.push(dependency);
-      } catch (error) {
-        // do nothing
-      }
-    }
 
     result.dependencies = dependencies;
-    result.versionTypes = versionTypes;
     return result;
   }
 }
