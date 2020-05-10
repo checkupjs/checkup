@@ -37,17 +37,6 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
       ),
     ];
   }
-
-  _writeToTable(dependencies: OutdatedDependency[]) {
-    ui.table(dependencies, {
-      package: {},
-      current: {},
-      wanted: {},
-      latest: {},
-      packageType: {},
-      url: {},
-    });
-  }
 }
 
 function groupByVersionType(dependencies: OutdatedDependency[]) {
