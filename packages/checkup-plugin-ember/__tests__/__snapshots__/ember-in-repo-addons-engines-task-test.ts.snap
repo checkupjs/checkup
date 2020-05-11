@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ember-in-repo-addons-engines-task can read task and output to console 1`] = `
+"=== Ember In-Repo Addons / Engines ===
+
+In-Repo Addons: 2
+In-Repo Engines: 2
+
+"
+`;
+
+exports[`ember-in-repo-addons-engines-task can read task as JSON 1`] = `
+Object {
+  "meta": Object {
+    "friendlyTaskName": "Ember In-Repo Addons / Engines",
+    "taskClassification": Object {
+      "category": "insights",
+      "priority": "low",
+    },
+    "taskName": "ember-in-repo-addons-engines",
+  },
+  "result": Object {
+    "inRepoAddons": Array [
+      "admin",
+      "shopping-cart",
+    ],
+    "inRepoEngines": Array [
+      "foo-engine",
+      "shmoo-engine",
+    ],
+  },
+}
+`;
+
+exports[`ember-in-repo-addons-engines-task can read task as report data 1`] = `
+Array [
+  TableData {
+    "componentType": "table",
+    "formattedResult": Array [
+      Object {
+        "result": Object {
+          "name": "In-Repo Addons",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+      Object {
+        "result": Object {
+          "name": "In-Repo Engines",
+          "value": 2,
+        },
+        "rowClass": "bg-gray-100",
+      },
+    ],
+    "meta": Object {
+      "friendlyTaskName": "Ember In-Repo Addons / Engines",
+      "taskClassification": Object {
+        "category": "insights",
+        "priority": "low",
+      },
+      "taskName": "ember-in-repo-addons-engines",
+    },
+    "tableHeaders": Array [
+      "name",
+      "value",
+    ],
+  },
+]
+`;
