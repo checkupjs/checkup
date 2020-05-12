@@ -2,11 +2,18 @@
 
 exports[`@checkup/cli normal cli output should output checkup result 1`] = `
 "
-Checkup report generated for checkup-project v0.0.0 .
+Checkup report generated for checkup-app v0.0.0 .
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 Generated using Checkup v0.0.0. Config: ae3266e319bdfb51db83810a2f4dd161
+
+=== Outdated Dependencies ===
+
+Type      Outdated/Total 
+major     2/2            
+minor     0/2            
+patch     0/2            
 
 "
 `;
@@ -15,7 +22,7 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
 "{
   \\"meta\\": {
     \\"project\\": {
-      \\"name\\": \\"checkup-project\\",
+      \\"name\\": \\"checkup-app\\",
       \\"version\\": \\"0.0.0\\",
       \\"repository\\": {
         \\"totalCommits\\": 0,
@@ -29,14 +36,61 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
       \\"version\\": \\"0.0.0\\"
     }
   },
-  \\"results\\": []
+  \\"results\\": [
+    {
+      \\"meta\\": {
+        \\"taskName\\": \\"outdated-dependencies\\",
+        \\"friendlyTaskName\\": \\"Outdated Dependencies\\",
+        \\"taskClassification\\": {
+          \\"category\\": \\"insights\\",
+          \\"priority\\": \\"high\\"
+        }
+      },
+      \\"result\\": {
+        \\"dependencies\\": [
+          {
+            \\"moduleName\\": \\"react\\",
+            \\"homepage\\": \\"https://reactjs.org/\\",
+            \\"latest\\": \\"16.13.1\\",
+            \\"installed\\": \\"15.6.2\\",
+            \\"isInstalled\\": true,
+            \\"notInstalled\\": false,
+            \\"packageWanted\\": \\"15.6.2\\",
+            \\"packageJson\\": \\"^15.0.0\\",
+            \\"devDependency\\": false,
+            \\"mismatch\\": false,
+            \\"semverValid\\": \\"15.6.2\\",
+            \\"easyUpgrade\\": false,
+            \\"bump\\": \\"major\\",
+            \\"unused\\": true
+          },
+          {
+            \\"moduleName\\": \\"react-dom\\",
+            \\"homepage\\": \\"https://reactjs.org/\\",
+            \\"latest\\": \\"16.13.1\\",
+            \\"installed\\": \\"15.6.2\\",
+            \\"isInstalled\\": true,
+            \\"notInstalled\\": false,
+            \\"packageWanted\\": \\"15.6.2\\",
+            \\"packageJson\\": \\"^15.0.0\\",
+            \\"devDependency\\": false,
+            \\"mismatch\\": false,
+            \\"semverValid\\": \\"15.6.2\\",
+            \\"easyUpgrade\\": false,
+            \\"bump\\": \\"major\\",
+            \\"unused\\": true
+          }
+        ]
+      }
+    }
+  ]
 }
 "
 `;
 
 exports[`@checkup/cli normal cli output should run a single task if the task option is specified 1`] = `
 "
-Checkup report generated for checkup-project v0.0.0 .
+Checkup report generated for checkup-app v0.0.0 .
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
@@ -45,11 +99,18 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 exports[`@checkup/cli normal cli output should use the config at the config path if provided 1`] = `
 "
-Checkup report generated for checkup-project v0.0.0 .
+Checkup report generated for checkup-app v0.0.0 .
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 Generated using Checkup v0.0.0. Config: ae3266e319bdfb51db83810a2f4dd161
+
+=== Outdated Dependencies ===
+
+Type      Outdated/Total 
+major     2/2            
+minor     0/2            
+patch     0/2            
 
 "
 `;

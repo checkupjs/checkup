@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`outdated-dependencies-task detects outdated dependencies and output to console 1`] = `
+"=== Outdated Dependencies ===
+
+Type      Outdated/Total 
+major     2/2            
+minor     0/2            
+patch     0/2            
+
+"
+`;
+
+exports[`outdated-dependencies-task detects outdated dependencies as JSON 1`] = `
+Object {
+  "meta": Object {
+    "friendlyTaskName": "Outdated Dependencies",
+    "taskClassification": Object {
+      "category": "insights",
+      "priority": "high",
+    },
+    "taskName": "outdated-dependencies",
+  },
+  "result": Object {
+    "dependencies": Array [
+      Object {
+        "bump": "major",
+        "devDependency": false,
+        "easyUpgrade": false,
+        "homepage": "https://reactjs.org/",
+        "installed": "15.6.2",
+        "isInstalled": true,
+        "latest": "16.13.1",
+        "mismatch": false,
+        "moduleName": "react",
+        "notInPackageJson": undefined,
+        "notInstalled": false,
+        "packageJson": "^15.0.0",
+        "packageWanted": "15.6.2",
+        "pkgError": undefined,
+        "regError": undefined,
+        "semverValid": "15.6.2",
+        "unused": true,
+        "usedInScripts": undefined,
+      },
+      Object {
+        "bump": "major",
+        "devDependency": false,
+        "easyUpgrade": false,
+        "homepage": "https://reactjs.org/",
+        "installed": "15.6.2",
+        "isInstalled": true,
+        "latest": "16.13.1",
+        "mismatch": false,
+        "moduleName": "react-dom",
+        "notInPackageJson": undefined,
+        "notInstalled": false,
+        "packageJson": "^15.0.0",
+        "packageWanted": "15.6.2",
+        "pkgError": undefined,
+        "regError": undefined,
+        "semverValid": "15.6.2",
+        "unused": true,
+        "usedInScripts": undefined,
+      },
+    ],
+  },
+}
+`;

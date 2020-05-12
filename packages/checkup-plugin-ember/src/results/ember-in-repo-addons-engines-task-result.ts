@@ -1,4 +1,4 @@
-import { BaseTaskResult, TaskResult, ui, TableData } from '@checkup/core';
+import { BaseTaskResult, TableData, TaskResult, ui } from '@checkup/core';
 
 export default class EmberInRepoAddonEnginesTaskResult extends BaseTaskResult
   implements TaskResult {
@@ -6,7 +6,7 @@ export default class EmberInRepoAddonEnginesTaskResult extends BaseTaskResult
   inRepoEngines!: string[];
 
   toConsole() {
-    if (!this.inRepoAddons && !this.inRepoEngines) {
+    if (this.inRepoAddons.length === 0 && this.inRepoEngines.length === 0) {
       return;
     }
 

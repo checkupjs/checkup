@@ -12,12 +12,18 @@ describe('@checkup/cli', () => {
     let project: CheckupProject;
 
     beforeEach(function () {
-      project = new CheckupProject('checkup-project', '0.0.0').addCheckupConfig({
+      project = new CheckupProject('checkup-app', '0.0.0', (project) => {
+        project.addDependency('react', '^15.0.0');
+        project.addDependency('react-dom', '^15.0.0');
+      });
+
+      project.addCheckupConfig({
         plugins: [],
         tasks: {},
       });
-
       project.writeSync();
+      project.gitInit();
+      project.install();
     });
 
     afterEach(function () {
