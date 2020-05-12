@@ -3,17 +3,24 @@ import { BaseTaskResult, TableData, TaskResult, ui } from '@checkup/core';
 import { OutdatedDependency } from '../tasks/outdated-dependencies-task';
 
 export default class OutdatedDependenciesTaskResult extends BaseTaskResult implements TaskResult {
-  dependencies!: OutdatedDependency[];
+  outdatedDependencies!: OutdatedDependency[];
+  totalDependencies!: number;
 
   toConsole() {
-    let versionTypes = groupByVersionType(this.dependencies);
+    let versionTypes = groupByVersionType(this.outdatedDependencies);
 
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.styledObject({
-        Major: versionTypes.get('major')!.length,
-        Minor: versionTypes.get('minor')!.length,
-        Patch: versionTypes.get('patch')!.length,
-      });
+      ui.table(
+        [
+          getTableItem('major', versionTypes.get('major')!.length, this.totalDependencies),
+          getTableItem('minor', versionTypes.get('minor')!.length, this.totalDependencies),
+          getTableItem('patch', versionTypes.get('patch')!.length, this.totalDependencies),
+        ],
+        {
+          type: { minWidth: 10 },
+          outdatedOfTotal: { header: 'Outdated/Total' },
+        }
+      );
     });
   }
 
@@ -21,7 +28,7 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
     return {
       meta: this.meta,
       result: {
-        dependencies: this.dependencies,
+        dependencies: this.outdatedDependencies,
       },
     };
   }
@@ -30,13 +37,20 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
     return [
       new TableData(
         this.meta,
-        this.dependencies.map((dependency) => ({
+        this.outdatedDependencies.map((dependency) => ({
           name: dependency.moduleName,
           value: dependency.installed,
         }))
       ),
     ];
   }
+}
+
+function getTableItem(type: string, outdated: number, total: number) {
+  return {
+    type: type,
+    outdatedOfTotal: `${outdated}/${total}`,
+  };
 }
 
 function groupByVersionType(dependencies: OutdatedDependency[]) {

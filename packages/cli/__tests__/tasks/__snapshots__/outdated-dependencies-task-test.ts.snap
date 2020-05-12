@@ -3,9 +3,10 @@
 exports[`outdated-dependencies-task detects outdated dependencies and output to console 1`] = `
 "=== Outdated Dependencies ===
 
-Major: 2
-Minor: 0
-Patch: 0
+Type      Outdated/Total 
+major     2/2            
+minor     0/2            
+patch     0/2            
 
 "
 `;
