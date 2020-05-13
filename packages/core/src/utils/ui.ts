@@ -47,17 +47,48 @@ export const ui = Object.assign(ux, {
     return chalk.bold(chalk.white(format));
   },
 
-  bar(title: string, complete: number, total: number, unit: string, maximum: number = 50) {
+  bar(title: string, complete: number, total: number, unit: string = '', maximum: number = 50) {
     const barTick = '■';
     const barSegment = Math.ceil(total / maximum);
-    const fullSegments = Math.ceil(complete / barSegment);
-    const emptySegments = maximum - fullSegments;
-    const bar = `${chalk.green(barTick.repeat(fullSegments))}${chalk.grey(
-      barTick.repeat(emptySegments)
+    const completedSegments = Math.ceil(complete / barSegment);
+    const incompleteSegments = maximum - completedSegments;
+    const bar = `${chalk.green(barTick.repeat(completedSegments))}${chalk.grey(
+      barTick.repeat(incompleteSegments)
     )}`;
 
     ui.log(title);
     ui.log(`${bar} ${complete}${unit}`);
     ui.blankLine();
+  },
+
+  sectionedBar(
+    segments: { title: string; count: number; color: string }[],
+    total: number,
+    unit: string = '',
+    maximum: number = 50
+  ) {
+    const barTick = '■';
+    const barSegment = Math.ceil(total / maximum);
+    const completedSegments = segments.map((segment) => {
+      return Object.assign({}, segment, {
+        completed: Math.ceil(segment.count / barSegment),
+      });
+    });
+
+    const incompleteSegments =
+      maximum - completedSegments.reduce((prev, curr) => prev + curr.completed, 0);
+    const bar = `${completedSegments
+      .map((segment) => chalk.keyword(segment.color)(barTick.repeat(segment.completed)))
+      .join('')}${chalk.grey(barTick.repeat(incompleteSegments))}`;
+
+    ui.log(`${bar} ${total}${unit}`);
+    ui.log(
+      `${completedSegments
+        .map(
+          (segment) =>
+            `${chalk.keyword(segment.color)(barTick)} ${segment.title} (${segment.count})  `
+        )
+        .join('')}`
+    );
   },
 });
