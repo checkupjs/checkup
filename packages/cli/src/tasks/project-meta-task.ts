@@ -12,11 +12,11 @@ export default class ProjectMetaTask extends BaseTask implements MetaTask {
 
   async run(): Promise<MetaTaskResult> {
     let result: ProjectMetaTaskResult = new ProjectMetaTaskResult(this.meta);
-    let package_ = getPackageJson(this.context.cliArguments.path);
+    let package_ = getPackageJson(this.context.cliFlags.cwd);
 
     result.name = package_.name || '';
     result.version = package_.version || '';
-    result.repository = await getRepositoryInfo(this.context.cliArguments.path);
+    result.repository = await getRepositoryInfo(this.context.cliFlags.cwd);
 
     return result;
   }

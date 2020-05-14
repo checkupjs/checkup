@@ -66,7 +66,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task and output to console', async () => {
-    const taskResult = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const taskResult = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
 
     taskResult.toConsole();
 
@@ -74,7 +74,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const taskResult = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const taskResult = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
 
     expect(taskResult.toJson()).toMatchSnapshot();
   });
@@ -162,7 +162,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyFooTaskResult>result;
 
     taskResult.toConsole();
@@ -171,7 +171,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyFooTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
@@ -260,7 +260,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyFooTaskResult>result;
 
     taskResult.toConsole();
@@ -269,7 +269,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyFooTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
@@ -358,7 +358,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyFooTaskResult>result;
 
     taskResult.toConsole();
@@ -367,7 +367,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyFooTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
@@ -456,7 +456,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyFooTaskResult>result;
 
     taskResult.toConsole();
@@ -465,7 +465,7 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyFooTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();
@@ -540,7 +540,7 @@ describe('my-bar-task', () => {
   });
 
   it('can read task and output to console', async () => {
-    const result = await new MyBarTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyBarTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyBarTaskResult>result;
 
     taskResult.toConsole();
@@ -549,7 +549,7 @@ describe('my-bar-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new MyBarTask(pluginName, getTaskContext({ path: project.baseDir })).run();
+    const result = await new MyBarTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
     const taskResult = <MyBarTaskResult>result;
 
     expect(taskResult.toJson()).toMatchSnapshot();

@@ -8,7 +8,9 @@ describe('@checkup/cli', () => {
       const project = new CheckupProject('checkup-project', '0.0.0');
       project.writeSync();
 
-      await expect(runCommand(['run', project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
+      await expect(
+        runCommand(['run', '--cwd', project.baseDir])
+      ).rejects.toThrowErrorMatchingInlineSnapshot(
         `"Could not find a checkup configuration starting from the given path: ${project.baseDir}. See https://github.com/checkupjs/checkup/tree/master/packages/cli#configuration for more info on how to setup a configuration."`
       );
 
@@ -22,7 +24,9 @@ describe('@checkup/cli', () => {
       });
       project.writeSync();
 
-      await expect(runCommand(['run', project.baseDir])).rejects.toThrowErrorMatchingInlineSnapshot(
+      await expect(
+        runCommand(['run', '--cwd', project.baseDir])
+      ).rejects.toThrowErrorMatchingInlineSnapshot(
         `"Cannot find module 'checkup-plugin-unknown' from '${project.baseDir}'"`
       );
 
@@ -36,7 +40,9 @@ describe('@checkup/cli', () => {
       } as unknown) as CheckupConfig);
       project.writeSync();
 
-      await expect(runCommand(['run', project.baseDir])).rejects.toThrowErrorMatchingSnapshot();
+      await expect(
+        runCommand(['run', '--cwd', project.baseDir])
+      ).rejects.toThrowErrorMatchingSnapshot();
 
       project.dispose();
     });

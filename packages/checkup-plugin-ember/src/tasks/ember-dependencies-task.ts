@@ -23,7 +23,7 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
 
   async run(): Promise<TaskResult> {
     let result: EmberDependenciesTaskResult = new EmberDependenciesTaskResult(this.meta);
-    let packageJson = getPackageJson(this.context.cliArguments.path);
+    let packageJson = getPackageJson(this.context.cliFlags.cwd);
 
     let coreLibraries: Record<string, string> = {
       'ember-source': findDependency(packageJson, 'ember-source'),

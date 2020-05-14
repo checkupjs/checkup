@@ -37,7 +37,7 @@ export default class EmberInRepoAddonsEnginesTask extends FileSearcherTask imple
     let packageJsonPaths: string[] = searchResults[0].data as string[];
 
     packageJsonPaths.forEach((pathName: string) => {
-      let packageJson: PackageJson = getPackageJson(this.context.cliArguments.path, pathName);
+      let packageJson: PackageJson = getPackageJson(this.context.cliFlags.cwd, pathName);
 
       if (packageJson.keywords?.includes('ember-engine') && packageJson.name) {
         result.inRepoEngines.push(packageJson.name);

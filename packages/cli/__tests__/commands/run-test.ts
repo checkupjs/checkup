@@ -33,7 +33,7 @@ describe('@checkup/cli', () => {
     it(
       'should output checkup result',
       async () => {
-        await runCommand(['run', project.baseDir]);
+        await runCommand(['run', '--cwd', project.baseDir]);
 
         expect(stdout()).toMatchSnapshot();
       },
@@ -41,7 +41,7 @@ describe('@checkup/cli', () => {
     );
 
     it('should output checkup result in JSON', async () => {
-      await runCommand(['run', '--reporter', 'json', project.baseDir]);
+      await runCommand(['run', '--reporter', 'json', '--cwd', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });
@@ -49,7 +49,7 @@ describe('@checkup/cli', () => {
     it(
       'should output an html file in the current directory if the html reporter option is provided',
       async () => {
-        await runCommand(['run', '--reporter', 'html', project.baseDir]);
+        await runCommand(['run', '--reporter', 'html', '--cwd', project.baseDir]);
 
         let outputPath = stdout().trim();
 
@@ -68,7 +68,15 @@ describe('@checkup/cli', () => {
       async () => {
         let tmp = createTmpDir();
 
-        await runCommand(['run', '--reporter', 'html', `--reportOutputPath`, tmp, project.baseDir]);
+        await runCommand([
+          'run',
+          '--reporter',
+          'html',
+          `--reportOutputPath`,
+          tmp,
+          '--cwd',
+          project.baseDir,
+        ]);
 
         let outputPath = stdout().trim();
 
@@ -83,7 +91,7 @@ describe('@checkup/cli', () => {
     );
 
     it('should run a single task if the task option is specified', async () => {
-      await runCommand(['run', '--task', 'project', project.baseDir]);
+      await runCommand(['run', '--task', 'project', '--cwd', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });
@@ -98,6 +106,7 @@ describe('@checkup/cli', () => {
         'run',
         '--config',
         path.join(anotherProject.baseDir, '.checkuprc'),
+        '--cwd',
         project.baseDir,
       ]);
 

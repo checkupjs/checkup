@@ -59,7 +59,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({ path: project.baseDir })
+      getTaskContext({}, { cwd: project.baseDir })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
@@ -84,7 +84,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({ path: project.baseDir })
+      getTaskContext({}, { cwd: project.baseDir })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
@@ -103,7 +103,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({ path: project.baseDir })
+      getTaskContext({}, { cwd: project.baseDir })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
@@ -126,7 +126,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({ path: project.baseDir })
+      getTaskContext({}, { cwd: project.baseDir })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
@@ -143,7 +143,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({ path: project.baseDir })
+      getTaskContext({}, { cwd: project.baseDir })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
@@ -166,7 +166,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({ path: project.baseDir })
+      getTaskContext({}, { cwd: project.baseDir })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
