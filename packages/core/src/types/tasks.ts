@@ -24,10 +24,10 @@ export interface Task {
 }
 
 export interface TaskContext {
-  cliArguments: RunArgs;
-  cliFlags: RunFlags;
-  parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
-  config: CheckupConfig;
+  readonly cliArguments: RunArgs;
+  readonly cliFlags: RunFlags;
+  readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
+  readonly config: CheckupConfig;
 }
 
 export interface TaskResult {

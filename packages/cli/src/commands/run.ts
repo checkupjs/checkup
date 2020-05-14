@@ -157,12 +157,12 @@ export default class RunCommand extends Command {
       registerParser,
     });
 
-    taskContext = {
+    taskContext = Object.freeze({
       cliArguments: this.runArgs,
       cliFlags: this.runFlags,
       parsers: getRegisteredParsers(),
       config: this.checkupConfig,
-    };
+    });
 
     await this.registerDefaultTasks(taskContext);
 
