@@ -76,7 +76,7 @@ When adding a new breaking change, follow this template in your pull request:
 1. Execute Checkup in your project
 
    ```shell
-   checkup run .
+   checkup .
    ```
 
 ### Running a specific Checkup task in your project
@@ -84,7 +84,7 @@ When adding a new breaking change, follow this template in your pull request:
 To run a specific task:
 
 ```
-checkup run --task TASK_NAME
+checkup --task TASK_NAME
 ```
 
 ## Running tests
@@ -100,7 +100,7 @@ yarn test
 Checkup using the debug package to provide useful information for debugging. You can enable it by running:
 
 ```shell
-DEBUG='*' checkup run .
+DEBUG='*' checkup
 ```
 
 ## Debugging tests

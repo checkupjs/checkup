@@ -29,6 +29,8 @@ import { getReporter } from '../reporters';
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
 
+  static usage = '[run] PATH';
+
   static args = [
     {
       name: 'path',
