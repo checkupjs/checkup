@@ -9,8 +9,14 @@ export interface MetaTask {
 }
 
 export interface MetaTaskResult {
+  outputPosition: OutputPosition;
   toConsole: () => void;
   toJson: () => JsonMetaTaskResult;
+}
+
+export const enum OutputPosition {
+  Header,
+  Footer,
 }
 
 export const enum TestType {

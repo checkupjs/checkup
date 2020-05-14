@@ -9,8 +9,8 @@ import {
   UIResultData,
   ui,
 } from '@checkup/core';
+import { MetaTaskResult, OutputPosition } from './types';
 
-import { MetaTaskResult } from './types';
 import { generateHTMLReport } from './helpers/ui-report';
 
 export function _transformHTMLResults(
@@ -78,8 +78,13 @@ export function getReporter(
     case ReporterType.stdout:
       return async () => {
         if (!flags.silent) {
-          metaTaskResults.forEach((taskResult) => taskResult.toConsole());
+          metaTaskResults
+            .filter((taskResult) => taskResult.outputPosition === OutputPosition.Header)
+            .forEach((taskResult) => taskResult.toConsole());
           pluginTaskResults.forEach((taskResult) => taskResult.toConsole());
+          metaTaskResults
+            .filter((taskResult) => taskResult.outputPosition === OutputPosition.Footer)
+            .forEach((taskResult) => taskResult.toConsole());
         }
       };
     case ReporterType.json:
