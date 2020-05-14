@@ -1,16 +1,17 @@
-import { MetaTaskResult, RepositoryInfo } from '../types';
+import { MetaTaskResult, OutputPosition, RepositoryInfo } from '../types';
 
 import BaseMetaTaskResult from '../base-meta-task-result';
 import { ui } from '@checkup/core';
 
 export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements MetaTaskResult {
+  outputPosition: OutputPosition = OutputPosition.Header;
   name!: string;
   version!: string;
   repository!: RepositoryInfo;
 
   toConsole() {
     ui.blankLine();
-    ui.log(`Checkup report generated for ${ui.emphasize(`${this.name} v${this.version}`)} .`);
+    ui.log(`Checkup report generated for ${ui.emphasize(`${this.name} v${this.version}`)}`);
     ui.blankLine();
     ui.log(
       `This project is ${ui.emphasize(`${this.repository.age} old`)}, with ${ui.emphasize(

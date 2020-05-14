@@ -30,7 +30,7 @@ describe('project-meta-task', () => {
 
       expect(stdout()).toMatchInlineSnapshot(`
         "
-        Checkup report generated for checkup-app v0.0.0 .
+        Checkup report generated for checkup-app v0.0.0
 
         This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
