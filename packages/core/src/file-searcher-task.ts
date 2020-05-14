@@ -22,6 +22,6 @@ export default abstract class FileSearcherTask extends BaseTask {
   constructor(pluginName: string, context: TaskContext, searchPatterns: SearchPatterns) {
     super(pluginName, context);
 
-    this.searcher = new FileSearcher(context.cliArguments.path, searchPatterns);
+    this.searcher = new FileSearcher(context.cliFlags.cwd, searchPatterns);
   }
 }

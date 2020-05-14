@@ -26,7 +26,7 @@ describe('dependencies-task', () => {
   it('detects Ember dependencies', async () => {
     const result = await new EmberDependenciesTask(
       pluginName,
-      getTaskContext({ path: emberProject.baseDir })
+      getTaskContext({}, { cwd: emberProject.baseDir })
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
 
@@ -38,7 +38,7 @@ describe('dependencies-task', () => {
   it('detects Ember dependencies as JSON', async () => {
     const result = await new EmberDependenciesTask(
       pluginName,
-      getTaskContext({ path: emberProject.baseDir })
+      getTaskContext({}, { cwd: emberProject.baseDir })
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
 
@@ -48,7 +48,7 @@ describe('dependencies-task', () => {
   it('detects Ember dependencies for html, and doesnt create a table without dependencies', async () => {
     const result = await new EmberDependenciesTask(
       pluginName,
-      getTaskContext({ path: emberProject.baseDir })
+      getTaskContext({}, { cwd: emberProject.baseDir })
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
     const htmlResults = dependencyTaskResult.toReportData();

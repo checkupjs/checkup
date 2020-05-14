@@ -69,8 +69,8 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
   async run(): Promise<TaskResult> {
     let result: OutdatedDependenciesTaskResult = new OutdatedDependenciesTaskResult(this.meta);
 
-    result.outdatedDependencies = await getOutdated(this.context.cliArguments.path);
-    result.totalDependencies = getTotalDependencies(this.context.cliArguments.path);
+    result.outdatedDependencies = await getOutdated(this.context.cliFlags.cwd);
+    result.totalDependencies = getTotalDependencies(this.context.cliFlags.cwd);
 
     return result;
   }

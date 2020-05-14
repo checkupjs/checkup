@@ -7,6 +7,7 @@ const DEFAULT_FLAGS = {
   silent: false,
   reporter: 'stdout',
   reportOutputPath: '.',
+  cwd: '.',
   task: undefined,
   config: undefined,
 };

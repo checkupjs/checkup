@@ -40,7 +40,7 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   }
 
   get rootPath(): string {
-    return this.context.cliArguments.path;
+    return this.context.cliFlags.cwd;
   }
 
   async run(): Promise<OctaneMigrationStatusTaskResult> {

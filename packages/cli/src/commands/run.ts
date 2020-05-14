@@ -33,14 +33,18 @@ export default class RunCommand extends Command {
 
   static args = [
     {
-      name: 'path',
-      required: true,
-      description: 'The path referring to the root directory that Checkup will run in',
-      default: '.',
+      name: 'paths',
+      description:
+        'The paths that checkup will operate on. If no paths are provided, checkup will run on the entire directory beginning at --cwd',
     },
   ];
 
   static flags = {
+    cwd: flags.string({
+      default: '.',
+      char: 'd',
+      description: 'The path referring to the root directory that Checkup will run in',
+    }),
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
     force: flags.boolean({ char: 'f' }),
@@ -126,12 +130,12 @@ export default class RunCommand extends Command {
     try {
       const configLoader = this.runArgs.config
         ? getFilepathLoader(this.runArgs.config)
-        : getSearchLoader(this.runArgs.path);
+        : getSearchLoader(this.runFlags.cwd);
       const configService = await CheckupConfigService.load(configLoader);
 
       this.checkupConfig = configService.get();
 
-      let plugins = await loadPlugins(this.checkupConfig.plugins, this.runArgs.path);
+      let plugins = await loadPlugins(this.checkupConfig.plugins, this.runFlags.cwd);
 
       this.config.plugins.push(...plugins);
     } catch (error) {
@@ -141,11 +145,11 @@ export default class RunCommand extends Command {
 
   private validatePackageJson() {
     try {
-      getPackageJson(this.runArgs.path);
+      getPackageJson(this.runFlags.cwd);
     } catch (error) {
       this.error(
         `The ${path.resolve(
-          this.runArgs.path
+          this.runFlags.cwd
         )} directory found through the 'path' option does not contain a package.json file. You must run checkup in a directory with a package.json file.`,
         error
       );

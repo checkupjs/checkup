@@ -9,9 +9,15 @@ A CLI that provides health check information about your project.
 [![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
 
 - [@checkup/cli](#checkupcli)
-  - [Usage](#usage)
-  - [Configuration](#configuration)
-  - [Commands](#commands)
+- [Usage](#usage)
+- [Checkup Command (alias `checkup run`)](#checkup-command-alias-checkup-run)
+  - [`checkup PATH`](#checkup-path)
+- [Generate Command](#generate-command)
+  - [`checkup generate plugin PLUGIN_NAME PATH`](#checkup-generate-plugin-pluginname-path)
+  - [`checkup generate task TASK_NAME PATH`](#checkup-generate-task-taskname-path)
+- [Configuration](#configuration)
+  - [Plugins](#plugins)
+  - [Tasks](#tasks)
 
 # Usage
 
@@ -49,13 +55,14 @@ USAGE
   $ checkup PATH
 
 ARGUMENTS
-  PATH  [default: .] The path referring to the root directory that Checkup will run in
+  PATHS    The paths that checkup will operate on. If no paths are provided, checkup will run on the entire directory beginning at --cwd
 
 OPTIONS
   -c, --config=config                      Use this configuration, overriding .checkuprc.* if present
   -f, --force
   -h, --help                               show CLI help
   -o, --reportOutputPath=reportOutputPath  [default: .]
+  -d, --cwd=cwd  [default: .]              [defaultL .] The path referring to the root directory that Checkup will run in
   -r, --reporter=stdout|json|pdf           [default: stdout]
   -s, --silent
   -t, --task=task

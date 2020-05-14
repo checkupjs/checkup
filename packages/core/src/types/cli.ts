@@ -9,6 +9,7 @@ export type RunFlags = {
   silent: boolean;
   reporter: string;
   reportOutputPath: string;
+  cwd: string;
   task: string | undefined;
   config: string | undefined;
 };
