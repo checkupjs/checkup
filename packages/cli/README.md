@@ -34,19 +34,19 @@ $ checkup generate config
 The `checkup` CLI is now available to run. Use the `run` command to run Checkup against your project directory:
 
 ```sh-session
-$ checkup run .
+$ checkup
 Checking up on your project...
 ```
 
-# Run Command
+# Checkup Command (alias `checkup run`)
 
-## `checkup run PATH`
+## `checkup PATH`
 
 A CLI that provides health check information about your project
 
 ```
 USAGE
-  $ checkup run PATH
+  $ checkup PATH
 
 ARGUMENTS
   PATH  [default: .] The path referring to the root directory that Checkup will run in

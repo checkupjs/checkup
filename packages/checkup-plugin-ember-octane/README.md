@@ -42,5 +42,5 @@ A plugin for CheckupJS that tracks progress of Ember Octane migration tasks.
 4. Run checkup.
 
    ```sh-session
-   $ checkup run .
+   $ checkup
    ```
