@@ -10,16 +10,13 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
     let versionTypes = groupByVersionType(this.outdatedDependencies);
 
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.table(
+      ui.sectionedBar(
         [
-          getTableItem('major', versionTypes.get('major')!.length, this.totalDependencies),
-          getTableItem('minor', versionTypes.get('minor')!.length, this.totalDependencies),
-          getTableItem('patch', versionTypes.get('patch')!.length, this.totalDependencies),
+          { title: 'major', count: versionTypes.get('major')!.length, color: 'red' },
+          { title: 'minor', count: versionTypes.get('minor')!.length, color: 'orange' },
+          { title: 'patch', count: versionTypes.get('patch')!.length, color: 'yellow' },
         ],
-        {
-          type: { minWidth: 10 },
-          outdatedOfTotal: { header: 'Outdated/Total' },
-        }
+        this.totalDependencies
       );
     });
   }
@@ -44,13 +41,6 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
       ),
     ];
   }
-}
-
-function getTableItem(type: string, outdated: number, total: number) {
-  return {
-    type: type,
-    outdatedOfTotal: `${outdated}/${total}`,
-  };
 }
 
 function groupByVersionType(dependencies: OutdatedDependency[]) {
