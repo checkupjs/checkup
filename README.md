@@ -7,6 +7,8 @@
 ![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![Code Style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](#badge)
 
+> :warning: Checkup is pre-release and still in active development.
+
 Checkup aims to provide you with insights into your codebase. You can track the progress of your codebase for things such as:
 
 1. **Insights**
