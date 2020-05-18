@@ -31,7 +31,7 @@ export default class EmberTypesTask extends FileSearcherTask implements Task {
 
   async run(): Promise<TaskResult> {
     let result = new EmberTypesTaskResult(this.meta);
-    result.types = await this.searcher.search();
+    result.types = await this.searcher.findFiles();
 
     return result;
   }

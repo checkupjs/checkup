@@ -33,6 +33,7 @@
     "shorthash": "^0.0.2",
     "tmp": "^0.2.1",
     "tslib": "^1",
+    "walk-sync": "^2.1.0",
     "yeoman-environment": "^2.10.2",
     "yeoman-generator": "^4.10.1"
   },
