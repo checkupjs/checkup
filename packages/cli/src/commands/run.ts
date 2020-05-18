@@ -25,6 +25,7 @@ import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import { getReporter } from '../reporters';
+import TodosTask from '../tasks/todos-task';
 
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
@@ -99,7 +100,9 @@ export default class RunCommand extends Command {
 
     this.defaultTasks.registerTask(new ProjectMetaTask(pluginName, context));
     this.defaultTasks.registerTask(new CheckupMetaTask(pluginName, context));
+
     // TODO: figure out where to put this. Internal? External?
+    this.pluginTasks.registerTask(new TodosTask(pluginName, context));
     this.pluginTasks.registerTask(new OutdatedDependenciesTask(pluginName, context));
   }
 

@@ -1,8 +1,7 @@
 import { RepositoryInfo } from '../types';
+import { exec } from '@checkup/core';
 
 const hash = require('promise.hash.helper');
-const util = require('util');
-const execAsPromise = util.promisify(require('child_process').exec);
 
 const COMMIT_COUNT = "git log --oneline $commit | wc -l | tr -d ' '";
 const FILE_COUNT = "git ls-files | wc -l | tr -d ' '";
@@ -12,23 +11,6 @@ const ACTIVE_DAYS = `git log --pretty='format: %ai' $1 | cut -d ' ' -f 2 | sort 
     { sum += 1 }
     END { print sum }
   '`;
-
-/**
- * @param cmd
- * @param options
- * @param defaultValue
- * @param toType
- */
-async function exec(
-  cmd: string,
-  options: any,
-  defaultValue: string | number,
-  toType: Function = String
-) {
-  const { stdout } = await execAsPromise(cmd, options);
-
-  return toType(stdout.trim()) || defaultValue;
-}
 
 /**
  * @param path

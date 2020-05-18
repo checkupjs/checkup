@@ -20,6 +20,7 @@ export { default as getInitializationConfigLoader } from './configuration/loader
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { getPackageJson } from './utils/get-package-json';
+export { exec } from './utils/exec';
 export { ui } from './utils/ui';
 export { toPairs, toTaskData, toTaskItemData } from './utils/data-transformers';
 
