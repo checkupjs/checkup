@@ -3,7 +3,7 @@ import * as path from 'path';
 import {
   CheckupConfig,
   CheckupConfigService,
-  ReporterType,
+  OutputFormat,
   RunArgs,
   RunFlags,
   TaskContext,
@@ -24,8 +24,8 @@ import { MetaTaskResult } from '../types';
 import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
-import { getReporter } from '../reporters';
 import TodosTask from '../tasks/todos-task';
+import { getReporter } from '../reporters';
 
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
@@ -41,28 +41,29 @@ export default class RunCommand extends Command {
   ];
 
   static flags = {
+    version: flags.version({ char: 'v' }),
+    help: flags.help({ char: 'h' }),
+    config: flags.string({
+      char: 'c',
+      description: 'Use this configuration, overriding .checkuprc.* if present',
+    }),
     cwd: flags.string({
       default: '.',
       char: 'd',
       description: 'The path referring to the root directory that Checkup will run in',
     }),
-    version: flags.version({ char: 'v' }),
-    help: flags.help({ char: 'h' }),
-    force: flags.boolean({ char: 'f' }),
-    silent: flags.boolean({ char: 's' }),
-    reporter: flags.string({
-      char: 'r',
-      options: [...Object.values(ReporterType)],
-      default: 'stdout',
-    }),
-    reportOutputPath: flags.string({
-      char: 'o',
-      default: '.',
-    }),
+
     task: flags.string({ char: 't' }),
-    config: flags.string({
-      char: 'c',
-      description: 'Use this configuration, overriding .checkuprc.* if present',
+    format: flags.string({
+      char: 'f',
+      options: [...Object.values(OutputFormat)],
+      default: 'stdout',
+      description: `The output format, one of ${[...Object.values(OutputFormat)].join(', ')}`,
+    }),
+    outputFile: flags.string({
+      char: 'o',
+      default: '',
+      description: 'Specify file to write report to',
     }),
   };
 

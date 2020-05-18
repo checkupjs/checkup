@@ -5,11 +5,9 @@ export type RunArgs = {
 export type RunFlags = {
   version: void;
   help: void;
-  force: boolean;
-  silent: boolean;
-  reporter: string;
-  reportOutputPath: string;
+  config: string | undefined;
   cwd: string;
   task: string | undefined;
-  config: string | undefined;
+  format: string;
+  outputFile: string;
 };

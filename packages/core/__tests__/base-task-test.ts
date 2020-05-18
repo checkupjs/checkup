@@ -6,13 +6,11 @@ import { getRegisteredParsers } from '../src/parsers/registered-parsers';
 const DEFAULT_FLAGS = {
   version: undefined,
   help: undefined,
-  force: false,
-  silent: false,
-  reporter: 'stdout',
-  reportOutputPath: '.',
+  config: undefined,
   cwd: '.',
   task: undefined,
-  config: undefined,
+  format: 'stdout',
+  outputFile: '',
 };
 
 const DEFAULT_CONFIG = {

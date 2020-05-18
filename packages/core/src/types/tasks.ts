@@ -102,7 +102,7 @@ export const enum Grade {
   F = 'F',
 }
 
-export enum ReporterType {
+export enum OutputFormat {
   stdout = 'stdout',
   json = 'json',
   html = 'html',
