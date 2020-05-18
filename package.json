@@ -59,7 +59,7 @@
     "ts-jest": "^25.5.1",
     "ts-node": "^8",
     "type-fest": "^0.13.1",
-    "typescript": "^3.8"
+    "typescript": "^3.9"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
