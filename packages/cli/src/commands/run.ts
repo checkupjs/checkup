@@ -23,6 +23,7 @@ import TodosTask from '../tasks/todos-task';
 import { getPackageJson } from '../helpers/get-package-json';
 import { getReporter } from '../reporters';
 import { getFilePaths } from '../helpers/get-paths';
+import LinesOfCodeTask from '../tasks/lines-of-code-task';
 
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
@@ -103,6 +104,7 @@ export default class RunCommand extends Command {
     // TODO: figure out where to put this. Internal? External?
     this.pluginTasks.registerTask(new TodosTask(pluginName, context));
     this.pluginTasks.registerTask(new OutdatedDependenciesTask(pluginName, context));
+    this.pluginTasks.registerTask(new LinesOfCodeTask(pluginName, context));
   }
 
   private async runTasks() {

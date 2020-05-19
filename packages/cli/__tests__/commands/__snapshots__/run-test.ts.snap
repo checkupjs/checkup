@@ -15,6 +15,12 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 TODOs found: 0
 
+=== Lines of Code ===
+
+File type   Total LOC   Todos 
+js          3           0     
+json        175         0     
+
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
 
@@ -105,6 +111,65 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
           }
         ]
       }
+    },
+    {
+      \\"meta\\": {
+        \\"taskName\\": \\"lines-of-code\\",
+        \\"friendlyTaskName\\": \\"Lines of Code\\",
+        \\"taskClassification\\": {
+          \\"category\\": \\"insights\\",
+          \\"priority\\": \\"low\\"
+        }
+      },
+      \\"result\\": {
+        \\"fileResults\\": [
+          {
+            \\"errors\\": [],
+            \\"results\\": [
+              {
+                \\"total\\": 3,
+                \\"source\\": 2,
+                \\"comment\\": 0,
+                \\"single\\": 0,
+                \\"block\\": 0,
+                \\"mixed\\": 0,
+                \\"empty\\": 1,
+                \\"todo\\": 0,
+                \\"blockEmpty\\": 0
+              }
+            ],
+            \\"fileExension\\": \\"js\\"
+          },
+          {
+            \\"errors\\": [],
+            \\"results\\": [
+              {
+                \\"total\\": 165,
+                \\"source\\": 165,
+                \\"comment\\": 22,
+                \\"single\\": 22,
+                \\"block\\": 0,
+                \\"mixed\\": 22,
+                \\"empty\\": 0,
+                \\"todo\\": 0,
+                \\"blockEmpty\\": 0
+              },
+              {
+                \\"total\\": 10,
+                \\"source\\": 10,
+                \\"comment\\": 0,
+                \\"single\\": 0,
+                \\"block\\": 0,
+                \\"mixed\\": 0,
+                \\"empty\\": 0,
+                \\"todo\\": 0,
+                \\"blockEmpty\\": 0
+              }
+            ],
+            \\"fileExension\\": \\"json\\"
+          }
+        ]
+      }
     }
   ]
 }
@@ -135,6 +200,12 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 TODOs found: 2
 
+=== Lines of Code ===
+
+File type   Total LOC   Todos 
+js          1           1     
+hbs         1           0     
+
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
 
@@ -156,6 +227,13 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 TODOs found: 3
 
+=== Lines of Code ===
+
+File type   Total LOC   Todos 
+js          5           2     
+hbs         1           0     
+json        7           0     
+
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
 
@@ -176,6 +254,12 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 === Number of TODOs ===
 
 TODOs found: 0
+
+=== Lines of Code ===
+
+File type   Total LOC   Todos 
+js          3           0     
+json        175         0     
 
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
