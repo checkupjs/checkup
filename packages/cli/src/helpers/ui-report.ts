@@ -2,10 +2,11 @@ import * as Handlebars from 'handlebars';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { readFileSync } from 'fs-extra';
 import { ReportComponentType, UIReportData } from '@checkup/core';
+
 import { pathToFileURL } from 'url';
 import { printToPDF } from './print-to-pdf';
+import { readFileSync } from 'fs-extra';
 
 import tmp = require('tmp');
 
@@ -19,17 +20,9 @@ export async function generateHTMLReport(
 ): Promise<string> {
   let reportHTML = generateHTML(resultsForPdf);
 
-  if (!fs.existsSync(resultOutputPath)) {
-    fs.mkdirSync(resultOutputPath, { recursive: true });
-  }
+  fs.writeFileSync(resultOutputPath, reportHTML);
 
-  let htmlPath = path.join(
-    resultOutputPath,
-    `checkup-report-${date.format(new Date(), 'YYYY-MM-DD-HH-mm-ss')}.html`
-  );
-  fs.writeFileSync(htmlPath, reportHTML);
-
-  return path.resolve(htmlPath);
+  return resultOutputPath;
 }
 
 export async function generatePDFReport(

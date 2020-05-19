@@ -1,10 +1,16 @@
-import { Category, Priority, TaskResult } from '@checkup/core';
+import { Category, OutputFormat, Priority, TaskResult } from '@checkup/core';
+import {
+  DEFAULT_OUTPUT_FILENAME,
+  _transformHTMLResults,
+  _transformJsonResults,
+  getOutputPath,
+} from '../src/reporters';
 
 import { MetaTaskResult } from '../src/types';
 import MockMetaTaskResult from './__utils__/mock-meta-task-result';
-import MockTaskResult from './__utils__/mock-task-result';
 import MockPieChartTaskResult from './__utils__/mock-pie-chart-task-result';
-import { _transformJsonResults, _transformHTMLResults } from '../src/reporters';
+import MockTaskResult from './__utils__/mock-task-result';
+import { join } from 'path';
 
 let metaTaskResults: MetaTaskResult[];
 let pluginTaskResults: TaskResult[];
@@ -253,5 +259,37 @@ describe('_transformHTMLResults', () => {
     ]);
 
     expect(transformed).toMatchSnapshot();
+  });
+});
+
+describe('getOutputPath', () => {
+  it('throws if output format is stdout', () => {
+    expect(() => {
+      getOutputPath(OutputFormat.stdout, '');
+    }).toThrow('The `stdout` format cannot be used to generate an output file path');
+  });
+
+  [OutputFormat.json, OutputFormat.html].forEach((format) => {
+    it(`returns same path when absolute path provided for ${format}`, () => {
+      expect(getOutputPath(format, `/some-file.${format}`)).toEqual(`/some-file.${format}`);
+    });
+
+    it(`returns resolved path when path provided for ${format}`, () => {
+      expect(getOutputPath(format, `some-file.${format}`, __dirname)).toEqual(
+        join(__dirname, `some-file.${format}`)
+      );
+    });
+
+    it(`returns default file format if no outputFile provided for ${format}`, () => {
+      expect(getOutputPath(format, '', __dirname)).toEqual(
+        join(__dirname, `${DEFAULT_OUTPUT_FILENAME}.${format}`)
+      );
+    });
+
+    it(`returns default output path format if {default} token provided for ${format}`, () => {
+      expect(getOutputPath(format, `{default}.${format}`, __dirname)).toEqual(
+        join(__dirname, `${DEFAULT_OUTPUT_FILENAME}.${format}`)
+      );
+    });
   });
 });

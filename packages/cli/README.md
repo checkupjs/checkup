@@ -58,15 +58,13 @@ ARGUMENTS
   PATHS    The paths that checkup will operate on. If no paths are provided, checkup will run on the entire directory beginning at --cwd
 
 OPTIONS
-  -c, --config=config                      Use this configuration, overriding .checkuprc.* if present
-  -f, --force
   -h, --help                               show CLI help
-  -o, --reportOutputPath=reportOutputPath  [default: .]
-  -d, --cwd=cwd  [default: .]              [defaultL .] The path referring to the root directory that Checkup will run in
-  -r, --reporter=stdout|json|pdf           [default: stdout]
-  -s, --silent
-  -t, --task=task
   -v, --version                            show CLI version
+  -c, --config=config                      Use this configuration, overriding .checkuprc.* if present
+  -d, --cwd=cwd  [default: .]              [default: .] The path referring to the root directory that Checkup will run in
+  -t, --task=task
+  -f, --format=stdout|json|html            [default: stdout]
+  -o, --outputFile=outputFile              [default: .]
 ```
 
 _See code: [src/commands/run.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/run.ts)_

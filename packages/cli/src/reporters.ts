@@ -1,8 +1,8 @@
 import {
   Category,
+  OutputFormat,
   Priority,
   ReportComponentType,
-  ReporterType,
   RunFlags,
   TaskResult,
   UIReportData,
@@ -10,8 +10,15 @@ import {
   ui,
 } from '@checkup/core';
 import { MetaTaskResult, OutputPosition } from './types';
+import { dirname, isAbsolute, resolve } from 'path';
+import { existsSync, mkdirpSync, writeJsonSync } from 'fs-extra';
 
 import { generateHTMLReport } from './helpers/ui-report';
+
+const date = require('date-and-time');
+
+export const TODAY = date.format(new Date(), 'YYYY-MM-DD-HH_mm_ss');
+export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${TODAY}`;
 
 export function _transformHTMLResults(
   metaTaskResults: MetaTaskResult[],
@@ -69,33 +76,62 @@ export function _transformJsonResults(
   return transformedResult;
 }
 
+export function getOutputPath(format: OutputFormat, outputFile: string, cwd: string = '') {
+  if (format === OutputFormat.stdout) {
+    throw new Error('The `stdout` format cannot be used to generate an output file path');
+  }
+
+  if (/{default}/.test(outputFile)) {
+    outputFile = outputFile.replace('{default}', DEFAULT_OUTPUT_FILENAME);
+  }
+
+  let outputPath = isAbsolute(outputFile)
+    ? outputFile
+    : resolve(cwd, outputFile || `${DEFAULT_OUTPUT_FILENAME}.${format}`);
+
+  let dir = dirname(outputPath);
+
+  if (!existsSync(dir)) {
+    mkdirpSync(dir);
+  }
+
+  return outputPath;
+}
+
 export function getReporter(
   flags: RunFlags,
   metaTaskResults: MetaTaskResult[],
   pluginTaskResults: TaskResult[]
 ) {
-  switch (flags.reporter) {
-    case ReporterType.stdout:
+  switch (flags.format) {
+    case OutputFormat.stdout:
       return async () => {
-        if (!flags.silent) {
-          metaTaskResults
-            .filter((taskResult) => taskResult.outputPosition === OutputPosition.Header)
-            .forEach((taskResult) => taskResult.toConsole());
-          pluginTaskResults.forEach((taskResult) => taskResult.toConsole());
-          metaTaskResults
-            .filter((taskResult) => taskResult.outputPosition === OutputPosition.Footer)
-            .forEach((taskResult) => taskResult.toConsole());
-        }
+        metaTaskResults
+          .filter((taskResult) => taskResult.outputPosition === OutputPosition.Header)
+          .forEach((taskResult) => taskResult.toConsole());
+        pluginTaskResults.forEach((taskResult) => taskResult.toConsole());
+        metaTaskResults
+          .filter((taskResult) => taskResult.outputPosition === OutputPosition.Footer)
+          .forEach((taskResult) => taskResult.toConsole());
       };
-    case ReporterType.json:
+    case OutputFormat.json:
       return async () => {
         let resultJson = _transformJsonResults(metaTaskResults, pluginTaskResults);
-        ui.styledJSON(resultJson);
+
+        if (flags.outputFile) {
+          let outputPath = getOutputPath(OutputFormat.json, flags.outputFile, flags.cwd);
+          writeJsonSync(outputPath, resultJson);
+        } else {
+          ui.styledJSON(resultJson);
+        }
       };
-    case ReporterType.html:
+    case OutputFormat.html:
       return async () => {
-        let resultsForPdf = _transformHTMLResults(metaTaskResults, pluginTaskResults);
-        let reportPath = await generateHTMLReport(flags.reportOutputPath, resultsForPdf);
+        let resultsForHtml = _transformHTMLResults(metaTaskResults, pluginTaskResults);
+        let reportPath = await generateHTMLReport(
+          getOutputPath(OutputFormat.html, flags.outputFile, flags.cwd),
+          resultsForHtml
+        );
 
         ui.log(reportPath);
       };

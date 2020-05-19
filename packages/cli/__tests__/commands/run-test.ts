@@ -3,6 +3,7 @@ import * as path from 'path';
 
 import { CheckupProject, createTmpDir, stdout } from '@checkup/test-helpers';
 
+import { join } from 'path';
 import { runCommand } from '../__utils__/run-command';
 
 const TEST_TIMEOUT = 100000;
@@ -41,20 +42,20 @@ describe('@checkup/cli', () => {
     );
 
     it('should output checkup result in JSON', async () => {
-      await runCommand(['run', '--reporter', 'json', '--cwd', project.baseDir]);
+      await runCommand(['run', '--format', 'json', '--cwd', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });
 
     it(
-      'should output an html file in the current directory if the html reporter option is provided',
+      'should output an html file in the current directory if the html format option is provided',
       async () => {
-        await runCommand(['run', '--reporter', 'html', '--cwd', project.baseDir]);
+        await runCommand(['run', '--format', 'html', '--cwd', project.baseDir]);
 
         let outputPath = stdout().trim();
 
         expect(outputPath).toMatch(
-          /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.html/
+          /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})_(\d{2})_(\d{2})\.html/
         );
         expect(fs.existsSync(outputPath)).toEqual(true);
 
@@ -64,25 +65,23 @@ describe('@checkup/cli', () => {
     );
 
     it(
-      'should output an html file in a custom directory if the html reporter and reporterOutputPath options are provided',
+      'should output an html file in a custom directory if the html format and outputFile options are provided',
       async () => {
         let tmp = createTmpDir();
 
         await runCommand([
           'run',
-          '--reporter',
+          '--format',
           'html',
-          `--reportOutputPath`,
-          tmp,
+          `--outputFile`,
+          join(tmp, 'my-checkup-file.html'),
           '--cwd',
           project.baseDir,
         ]);
 
         let outputPath = stdout().trim();
 
-        expect(outputPath).toMatch(
-          /^(.*)\/checkup-report-(\d{4})-(\d{2})-(\d{2})-(\d{2})-(\d{2})-(\d{2})\.html/
-        );
+        expect(outputPath).toMatch(/^(.*)\/my-checkup-file.html/);
         expect(fs.existsSync(outputPath)).toEqual(true);
 
         fs.unlinkSync(outputPath);
