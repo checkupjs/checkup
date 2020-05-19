@@ -63,7 +63,7 @@ OPTIONS
   -c, --config=config                      Use this configuration, overriding .checkuprc.* if present
   -d, --cwd=cwd  [default: .]              [default: .] The path referring to the root directory that Checkup will run in
   -t, --task=task
-  -f, --format=stdout|json|html            [default: stdout]
+  -f, --format=stdout|json                 [default: stdout]
   -o, --outputFile=outputFile              [default: .]
 ```
 

@@ -51,34 +51,4 @@ describe('todos-task', () => {
       }
     `);
   });
-
-  it('returns all the types found in the app and outputs toReportData', async () => {
-    const result = await new TodosTask(
-      'internal',
-      getTaskContext({}, { cwd: project.baseDir })
-    ).run();
-    const typesTaskResult = <TodosTaskResult>result;
-
-    const reportData = typesTaskResult.toReportData();
-
-    expect(reportData).toMatchInlineSnapshot(`
-      Array [
-        NumericalCardData {
-          "componentType": "numerical-card",
-          "grade": "A",
-          "meta": Object {
-            "friendlyTaskName": "Number of TODOs",
-            "taskClassification": Object {
-              "category": "insights",
-              "priority": "low",
-            },
-            "taskName": "todos",
-          },
-          "resultData": 2,
-          "resultDescription": "TODOs found",
-          "resultHelp": undefined,
-        },
-      ]
-    `);
-  });
 });

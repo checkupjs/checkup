@@ -33,7 +33,6 @@ export interface TaskContext {
 export interface TaskResult {
   toConsole: () => void;
   toJson: () => JsonMetaTaskResult | JsonTaskResult;
-  toReportData: () => ReportResultData[];
 }
 
 export interface TaskMetaData {
@@ -105,7 +104,6 @@ export const enum Grade {
 export enum OutputFormat {
   stdout = 'stdout',
   json = 'json',
-  html = 'html',
 }
 
 export interface PieChartItem {

@@ -1,7 +1,6 @@
 import {
   BaseTaskResult,
   ESLintReport,
-  PieChartData,
   TaskMetaData,
   TaskResult,
   TemplateLintReport,
@@ -51,30 +50,6 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
         migrationTaskResults: this.migrationResults,
       },
     };
-  }
-
-  toReportData() {
-    return this.migrationResults
-      .map((migrationResult) => this._createPieChartData(migrationResult))
-      .filter(Boolean) as PieChartData[];
-  }
-
-  _createPieChartData(migrationResult: MigrationInfo): PieChartData | undefined {
-    if (Object.keys(migrationResult).length === 0) {
-      return;
-    }
-
-    return new PieChartData(
-      this.meta,
-      [
-        { value: migrationResult.completionInfo.completed, description: 'migrated' },
-        {
-          value: migrationResult.completionInfo.total - migrationResult.completionInfo.completed,
-          description: 'unmigrated',
-        },
-      ],
-      migrationResult.name
-    );
   }
 
   get formattedMigrationResults() {

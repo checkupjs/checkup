@@ -1,4 +1,4 @@
-import { BaseTaskResult, TableData, TaskItemData, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskItemData, TaskResult, ui } from '@checkup/core';
 
 export default class EmberTypesTaskResult extends BaseTaskResult implements TaskResult {
   types!: TaskItemData[];
@@ -15,17 +15,5 @@ export default class EmberTypesTaskResult extends BaseTaskResult implements Task
 
   toJson() {
     return { meta: this.meta, result: { types: this.types } };
-  }
-
-  toReportData() {
-    return [
-      new TableData(
-        this.meta,
-        this.types.map((type) => ({
-          name: type.type,
-          value: type.total,
-        }))
-      ),
-    ];
   }
 }

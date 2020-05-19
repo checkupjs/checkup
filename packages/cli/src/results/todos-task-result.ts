@@ -1,4 +1,4 @@
-import { ui, BaseTaskResult, TaskResult, NumericalCardData } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class TodosTaskResult extends BaseTaskResult implements TaskResult {
   count!: number;
@@ -13,8 +13,5 @@ export default class TodosTaskResult extends BaseTaskResult implements TaskResul
     return {
       todos: this.count,
     };
-  }
-  toReportData() {
-    return [new NumericalCardData(this.meta, this.count, 'TODOs found')];
   }
 }

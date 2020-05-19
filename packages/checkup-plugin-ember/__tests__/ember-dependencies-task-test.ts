@@ -44,15 +44,4 @@ describe('dependencies-task', () => {
 
     expect(dependencyTaskResult.toJson()).toMatchSnapshot();
   });
-
-  it('detects Ember dependencies for html, and doesnt create a table without dependencies', async () => {
-    const result = await new EmberDependenciesTask(
-      pluginName,
-      getTaskContext({}, { cwd: emberProject.baseDir })
-    ).run();
-    const dependencyTaskResult = <EmberDependenciesTaskResult>result;
-    const htmlResults = dependencyTaskResult.toReportData();
-
-    expect(htmlResults).toMatchSnapshot();
-  });
 });

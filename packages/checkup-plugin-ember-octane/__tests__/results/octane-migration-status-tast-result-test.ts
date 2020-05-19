@@ -1,5 +1,5 @@
 import { ESLintReport, TemplateLintReport, getPluginName } from '@checkup/core';
-import { filterPieChartDataForTest, getTaskContext, stdout } from '@checkup/test-helpers';
+import { getTaskContext, stdout } from '@checkup/test-helpers';
 
 import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
 import OctaneMigrationStatusTaskResult from '../../src/results/octane-migration-status-task-result';
@@ -41,20 +41,6 @@ describe('octane-migration-status-task-result', () => {
       let jsonResults = taskResult.toJson();
 
       expect(jsonResults).toMatchSnapshot();
-    });
-  });
-
-  describe('HTML output', () => {
-    test('it should have basic HTML results', () => {
-      let task = new OctaneMigrationStatusTask(pluginName, getTaskContext());
-      let taskResult = new OctaneMigrationStatusTaskResult(
-        task.meta,
-        sampleESLintReport,
-        sampleTemplateLintReport
-      );
-      let htmlResults = taskResult.toReportData();
-
-      expect(filterPieChartDataForTest(htmlResults)).toMatchSnapshot();
     });
   });
 });

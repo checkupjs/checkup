@@ -31,39 +31,3 @@ Object {
   },
 }
 `;
-
-exports[`ember-in-repo-addons-engines-task can read task as report data 1`] = `
-Array [
-  TableData {
-    "componentType": "table",
-    "formattedResult": Array [
-      Object {
-        "result": Object {
-          "name": "In-Repo Addons",
-          "value": 2,
-        },
-        "rowClass": "bg-gray-100",
-      },
-      Object {
-        "result": Object {
-          "name": "In-Repo Engines",
-          "value": 2,
-        },
-        "rowClass": "bg-gray-100",
-      },
-    ],
-    "meta": Object {
-      "friendlyTaskName": "Ember In-Repo Addons / Engines",
-      "taskClassification": Object {
-        "category": "insights",
-        "priority": "low",
-      },
-      "taskName": "ember-in-repo-addons-engines",
-    },
-    "tableHeaders": Array [
-      "name",
-      "value",
-    ],
-  },
-]
-`;

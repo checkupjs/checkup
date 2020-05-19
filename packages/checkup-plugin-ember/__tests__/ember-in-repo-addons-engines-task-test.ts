@@ -43,14 +43,4 @@ describe('ember-in-repo-addons-engines-task', () => {
 
     expect(taskResult.toJson()).toMatchSnapshot();
   });
-
-  it('can read task as report data', async () => {
-    const result = await new EmberInRepoAddonEnginesTask(
-      pluginName,
-      getTaskContext({}, { cwd: emberProject.baseDir })
-    ).run();
-    const taskResult = <EmberInRepoAddonEnginesTaskResult>result;
-
-    expect(taskResult.toReportData()).toMatchSnapshot();
-  });
 });

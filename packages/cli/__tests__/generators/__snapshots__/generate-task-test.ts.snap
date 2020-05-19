@@ -36,8 +36,6 @@ export default class MyFooTaskResult extends BaseTaskResult {
       result: {},
     };
   }
-
-  toReportData() {}
 }
 "
 `;
@@ -132,8 +130,6 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
       result: {},
     };
   }
-
-  toReportData() {}
 }
 "
 `;
@@ -230,8 +226,6 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
       result: {},
     };
   }
-
-  toReportData() {}
 }
 "
 `;
@@ -328,8 +322,6 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
       result: {},
     };
   }
-
-  toReportData() {}
 }
 "
 `;
@@ -426,8 +418,6 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
       result: {},
     };
   }
-
-  toReportData() {}
 }
 "
 `;
@@ -510,8 +500,6 @@ export default class MyBarTaskResult extends BaseTaskResult implements TaskResul
       result: {},
     };
   }
-
-  toReportData() {}
 }
 "
 `;

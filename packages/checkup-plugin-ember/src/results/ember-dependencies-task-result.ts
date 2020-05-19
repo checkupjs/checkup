@@ -1,11 +1,4 @@
-import {
-  BaseTaskResult,
-  TableData,
-  TaskItemData,
-  TaskMetaData,
-  TaskResult,
-  ui,
-} from '@checkup/core';
+import { BaseTaskResult, TaskItemData, TaskMetaData, TaskResult, ui } from '@checkup/core';
 
 export default class EmberDependenciesTaskResult extends BaseTaskResult implements TaskResult {
   dependencies: TaskItemData[];
@@ -38,17 +31,5 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
       meta: this.meta,
       result: this.dependencies,
     };
-  }
-
-  toReportData() {
-    return [
-      new TableData(
-        this.meta,
-        this.dependencies.map((dependency) => ({
-          name: dependency.type,
-          value: dependency.total,
-        }))
-      ),
-    ];
   }
 }
