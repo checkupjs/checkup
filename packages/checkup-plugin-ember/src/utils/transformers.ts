@@ -1,7 +1,7 @@
 import { ESLintReport, derivePercentageString } from '@checkup/core';
 import { TestType, TestTypeInfo } from '../types';
 
-enum testCategories {
+enum TestCategories {
   skipUnit = 'skipUnit',
   todoUnit = 'todoUnit',
   onlyUnit = 'onlyUnit',
@@ -16,17 +16,17 @@ enum testCategories {
   testApplication = 'testApplication',
 }
 
-type testCategoriesCounts = {
-  [key in testCategories]: number;
+type TestCategoriesCounts = {
+  [key in TestCategories]: number;
 };
 
 export function transformESLintReport(report: ESLintReport): TestTypeInfo[] {
   const eslintMessages = report.results.flatMap((report) =>
     report.messages.flatMap((message) => message.message)
-  ) as testCategories[];
+  ) as TestCategories[];
 
   const formattedCounts = eslintMessages.reduce(
-    (acc: testCategoriesCounts, item: testCategories) => {
+    (acc: TestCategoriesCounts, item: TestCategories) => {
       acc[item]++;
       return acc;
     },
@@ -43,7 +43,7 @@ export function transformESLintReport(report: ESLintReport): TestTypeInfo[] {
       todoApplication: 0,
       onlyApplication: 0,
       testApplication: 0,
-    } as testCategoriesCounts
+    } as TestCategoriesCounts
   );
 
   return [
