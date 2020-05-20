@@ -1,5 +1,5 @@
 import { ESLintReport, derivePercentageString } from '@checkup/core';
-import { TestTypeInfo, TestType } from '../types';
+import { TestType, TestTypeInfo } from '../types';
 
 enum testCategories {
   skipUnit = 'skipUnit',
@@ -54,10 +54,10 @@ export function transformESLintReport(report: ESLintReport): TestTypeInfo[] {
         formattedCounts.todoUnit +
         formattedCounts.skipUnit +
         formattedCounts.testUnit,
-      onlys: formattedCounts.onlyUnit,
-      todos: formattedCounts.todoUnit,
-      skips: formattedCounts.skipUnit,
-      tests: formattedCounts.testUnit,
+      only: formattedCounts.onlyUnit,
+      todo: formattedCounts.todoUnit,
+      skip: formattedCounts.skipUnit,
+      test: formattedCounts.testUnit,
       percentageSkipped: derivePercentageString(
         formattedCounts.skipUnit,
         formattedCounts.testUnit + formattedCounts.skipUnit
@@ -70,10 +70,10 @@ export function transformESLintReport(report: ESLintReport): TestTypeInfo[] {
         formattedCounts.todoRendering +
         formattedCounts.skipRendering +
         formattedCounts.testRendering,
-      onlys: formattedCounts.onlyRendering,
-      todos: formattedCounts.todoRendering,
-      skips: formattedCounts.skipRendering,
-      tests: formattedCounts.testRendering,
+      only: formattedCounts.onlyRendering,
+      todo: formattedCounts.todoRendering,
+      skip: formattedCounts.skipRendering,
+      test: formattedCounts.testRendering,
       percentageSkipped: derivePercentageString(
         formattedCounts.skipRendering,
         formattedCounts.testRendering + formattedCounts.skipRendering
@@ -86,10 +86,10 @@ export function transformESLintReport(report: ESLintReport): TestTypeInfo[] {
         formattedCounts.todoApplication +
         formattedCounts.skipApplication +
         formattedCounts.testApplication,
-      onlys: formattedCounts.onlyApplication,
-      todos: formattedCounts.todoApplication,
-      skips: formattedCounts.skipApplication,
-      tests: formattedCounts.testApplication,
+      only: formattedCounts.onlyApplication,
+      todo: formattedCounts.todoApplication,
+      skip: formattedCounts.skipApplication,
+      test: formattedCounts.testApplication,
       percentageSkipped: derivePercentageString(
         formattedCounts.skipApplication,
         formattedCounts.testApplication + formattedCounts.skipApplication

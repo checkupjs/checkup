@@ -12,10 +12,10 @@ export enum TestType {
 }
 
 export interface TestTypeInfo {
-  skips: number;
-  onlys: number;
-  todos: number;
-  tests: number;
+  skip: number;
+  only: number;
+  todo: number;
+  test: number;
   total: number;
   percentageSkipped: string;
   type: TestType;

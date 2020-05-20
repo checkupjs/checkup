@@ -3,7 +3,7 @@
 exports[`ember-test-types-task only renders todos/only test types if they a value > 0 1`] = `
 "=== Ember Test Types ===
 
-Type           Tests   Onlys   Todos   
+Type           test    only    todo    
 unit           0       0       0       
 rendering      1       1       1       
 application    0       0       0       
@@ -19,10 +19,10 @@ application    0       0       0
 exports[`ember-test-types-task returns all the test types (including nested) found in the app and outputs to the console 1`] = `
 "=== Ember Test Types ===
 
-Type           Tests   Skips     
-unit           2       4     67% 
-rendering      2       4     67% 
-application    4       8     67% 
+Type           test    skip     
+unit           2       4    67% 
+rendering      2       4    67% 
+application    4       8    67% 
 
 === Test Type Breakdown
 
@@ -45,29 +45,29 @@ Object {
   "result": Object {
     "types": Array [
       Object {
-        "onlys": 0,
+        "only": 0,
         "percentageSkipped": "67%",
-        "skips": 2,
-        "tests": 1,
-        "todos": 0,
+        "skip": 2,
+        "test": 1,
+        "todo": 0,
         "total": 3,
         "type": "unit",
       },
       Object {
-        "onlys": 0,
+        "only": 0,
         "percentageSkipped": "67%",
-        "skips": 2,
-        "tests": 1,
-        "todos": 0,
+        "skip": 2,
+        "test": 1,
+        "todo": 0,
         "total": 3,
         "type": "rendering",
       },
       Object {
-        "onlys": 0,
+        "only": 0,
         "percentageSkipped": "67%",
-        "skips": 4,
-        "tests": 2,
-        "todos": 0,
+        "skip": 4,
+        "test": 2,
+        "todo": 0,
         "total": 6,
         "type": "application",
       },
@@ -79,10 +79,10 @@ Object {
 exports[`ember-test-types-task returns all the test types found in the app and outputs to the console 1`] = `
 "=== Ember Test Types ===
 
-Type           Tests   Skips     
-unit           1       2     67% 
-rendering      1       2     67% 
-application    2       4     67% 
+Type           test    skip     
+unit           1       2    67% 
+rendering      1       2    67% 
+application    2       4    67% 
 
 === Test Type Breakdown
 

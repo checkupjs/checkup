@@ -1,5 +1,7 @@
 import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
+
 import { TestTypeInfo } from '../types';
+
 export default class EmberTestTypesTaskResult extends BaseTaskResult implements TaskResult {
   testTypes!: TestTypeInfo[];
 
@@ -31,22 +33,25 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
 function deriveTableData(testTypes: TestTypeInfo[]): any {
   let tableColumns = {
     type: { minWidth: 15 },
-    tests: { minWidth: 8 },
+    test: { minWidth: 8, header: 'test' },
   };
 
-  let totalTodoCounts = getTotalOfType(testTypes, 'todos');
-  let totalOnlyCounts = getTotalOfType(testTypes, 'onlys');
-  let totalSkipCounts = getTotalOfType(testTypes, 'skips');
+  let totalTodoCounts = getTotalOfType(testTypes, 'todo');
+  let totalOnlyCounts = getTotalOfType(testTypes, 'only');
+  let totalSkipCounts = getTotalOfType(testTypes, 'skip');
 
   if (totalOnlyCounts > 0) {
-    tableColumns = { ...tableColumns, ...{ onlys: { minWidth: 8 } } };
+    tableColumns = { ...tableColumns, ...{ only: { minWidth: 8, header: 'only' } } };
   }
   if (totalTodoCounts > 0) {
-    tableColumns = { ...tableColumns, ...{ todos: { minWidth: 8 } } };
+    tableColumns = { ...tableColumns, ...{ todo: { minWidth: 8, header: 'todo' } } };
   }
 
   if (totalSkipCounts > 0) {
-    tableColumns = { ...tableColumns, ...{ skips: {}, percentageSkipped: { header: '' } } };
+    tableColumns = {
+      ...tableColumns,
+      ...{ skip: { header: 'skip' }, percentageSkipped: { header: '' } },
+    };
   }
 
   return tableColumns;
