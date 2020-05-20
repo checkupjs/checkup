@@ -1,6 +1,7 @@
 import * as startCase from 'startcase';
 
 import { TaskItemData } from '../types/tasks';
+
 /**
  * @param data
  * @param schema
@@ -34,4 +35,8 @@ export function toTaskItemData(
     data,
     total: Array.isArray(data) ? data.length : Object.keys(data).length,
   };
+}
+
+export function toPercent(numerator: number, denominator: number): string {
+  return `${((numerator / denominator) * 100).toFixed()}%`;
 }

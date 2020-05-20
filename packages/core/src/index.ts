@@ -22,7 +22,7 @@ export { getPluginName, normalizePackageName, getShorthandName } from './utils/p
 export { getPackageJson } from './utils/get-package-json';
 export { exec } from './utils/exec';
 export { ui } from './utils/ui';
-export { toPairs, toTaskData, toTaskItemData } from './utils/data-transformers';
+export { toPairs, toTaskData, toTaskItemData, toPercent } from './utils/data-transformers';
 
 export * from './types/cli';
 export * from './types/parsers';
