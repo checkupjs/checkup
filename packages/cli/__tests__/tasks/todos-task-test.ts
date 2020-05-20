@@ -59,7 +59,9 @@ describe('todos-task', () => {
         },
         "result": Array [
           Object {
-            "data": Array [],
+            "data": Array [
+              2,
+            ],
             "displayName": "Todo",
             "total": 2,
             "type": "todo",

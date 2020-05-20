@@ -61,13 +61,17 @@ describe('file-searcher', () => {
     expect(clearFilePaths(stringsFound.results)).toMatchInlineSnapshot(`
       Array [
         Object {
-          "data": Array [],
+          "data": Array [
+            14,
+          ],
           "displayName": "Test",
           "total": 14,
           "type": "test",
         },
         Object {
-          "data": Array [],
+          "data": Array [
+            1,
+          ],
           "displayName": "Bite",
           "total": 1,
           "type": "bite",
