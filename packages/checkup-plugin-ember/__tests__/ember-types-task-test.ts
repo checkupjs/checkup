@@ -132,44 +132,4 @@ describe('types-task', () => {
 
     expect(typesTaskResult.toJson()).toMatchSnapshot();
   });
-
-  it('returns all the types found in the app and outputs to html', async () => {
-    project.files = Object.assign(project.files, {
-      'index.js': 'index js file',
-      addon: TYPES,
-    });
-
-    project.writeSync();
-
-    const result = await new EmberTypesTask(
-      pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
-    ).run();
-    const typesTaskResult = <EmberTypesTaskResult>result;
-
-    expect(typesTaskResult.toReportData()).toMatchSnapshot();
-  });
-
-  it('returns all the types (including nested) found in the app and outputs to html', async () => {
-    project.files = Object.assign(project.files, {
-      'index.js': 'index js file',
-      addon: TYPES,
-    });
-
-    project.addInRepoAddon('ember-super-button', 'latest');
-
-    // @ts-ignore
-    project.files.lib['ember-super-button'].addon = TYPES;
-    // @ts-ignore
-
-    project.writeSync();
-
-    const result = await new EmberTypesTask(
-      pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
-    ).run();
-    const typesTaskResult = <EmberTypesTaskResult>result;
-
-    expect(typesTaskResult.toReportData()).toMatchSnapshot();
-  });
 });

@@ -1,14 +1,8 @@
-import { Category, OutputFormat, Priority, TaskResult } from '@checkup/core';
-import {
-  DEFAULT_OUTPUT_FILENAME,
-  _transformHTMLResults,
-  _transformJsonResults,
-  getOutputPath,
-} from '../src/reporters';
+import { Category, Priority, TaskResult } from '@checkup/core';
+import { DEFAULT_OUTPUT_FILENAME, _transformJsonResults, getOutputPath } from '../src/reporters';
 
 import { MetaTaskResult } from '../src/types';
 import MockMetaTaskResult from './__utils__/mock-meta-task-result';
-import MockPieChartTaskResult from './__utils__/mock-pie-chart-task-result';
 import MockTaskResult from './__utils__/mock-task-result';
 import { join } from 'path';
 
@@ -234,62 +228,24 @@ describe('_transformJsonResults', () => {
   });
 });
 
-describe('_transformHTMLResults', () => {
-  it('transforms meta and plugin results into correct format when chart is not required', () => {
-    let transformed = _transformHTMLResults(metaTaskResults, pluginTaskResults);
-
-    expect(transformed).toMatchSnapshot();
-  });
-  it('transforms meta and plugin results into correct format when chart IS required', () => {
-    let transformed = _transformHTMLResults(metaTaskResults, [
-      new MockPieChartTaskResult(
-        {
-          taskName: 'mock-meta-task-8',
-          friendlyTaskName: 'Mock Meta Task 8',
-          taskClassification: {
-            category: Category.Migrations,
-            priority: Priority.Low,
-          },
-        },
-        {
-          foo: true,
-          bar: 'baz',
-        }
-      ),
-    ]);
-
-    expect(transformed).toMatchSnapshot();
-  });
-});
-
 describe('getOutputPath', () => {
-  it('throws if output format is stdout', () => {
-    expect(() => {
-      getOutputPath(OutputFormat.stdout, '');
-    }).toThrow('The `stdout` format cannot be used to generate an output file path');
+  it(`returns same path when absolute path provided `, () => {
+    expect(getOutputPath('/some-file.json')).toEqual('/some-file.json');
   });
 
-  [OutputFormat.json, OutputFormat.html].forEach((format) => {
-    it(`returns same path when absolute path provided for ${format}`, () => {
-      expect(getOutputPath(format, `/some-file.${format}`)).toEqual(`/some-file.${format}`);
-    });
+  it(`returns resolved path when path provided `, () => {
+    expect(getOutputPath('some-file.json', __dirname)).toEqual(join(__dirname, 'some-file.json'));
+  });
 
-    it(`returns resolved path when path provided for ${format}`, () => {
-      expect(getOutputPath(format, `some-file.${format}`, __dirname)).toEqual(
-        join(__dirname, `some-file.${format}`)
-      );
-    });
+  it(`returns default file format if no outputFile provided `, () => {
+    expect(getOutputPath('', __dirname)).toEqual(
+      join(__dirname, `${DEFAULT_OUTPUT_FILENAME}.json`)
+    );
+  });
 
-    it(`returns default file format if no outputFile provided for ${format}`, () => {
-      expect(getOutputPath(format, '', __dirname)).toEqual(
-        join(__dirname, `${DEFAULT_OUTPUT_FILENAME}.${format}`)
-      );
-    });
-
-    it(`returns default output path format if {default} token provided for ${format}`, () => {
-      expect(getOutputPath(format, `{default}.${format}`, __dirname)).toEqual(
-        join(__dirname, `${DEFAULT_OUTPUT_FILENAME}.${format}`)
-      );
-    });
+  it(`returns default output path format if {default} token provided `, () => {
+    expect(getOutputPath(`{default}.json`, __dirname)).toEqual(
+      join(__dirname, `${DEFAULT_OUTPUT_FILENAME}.json`)
+    );
   });
 });

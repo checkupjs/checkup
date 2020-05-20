@@ -1,4 +1,4 @@
-import { BaseTaskResult, TableData, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class EmberInRepoAddonEnginesTaskResult extends BaseTaskResult
   implements TaskResult {
@@ -21,14 +21,5 @@ export default class EmberInRepoAddonEnginesTaskResult extends BaseTaskResult
       meta: this.meta,
       result: { inRepoAddons: this.inRepoAddons, inRepoEngines: this.inRepoEngines },
     };
-  }
-
-  toReportData() {
-    return [
-      new TableData(this.meta, [
-        { name: 'In-Repo Addons', value: this.inRepoAddons.length },
-        { name: 'In-Repo Engines', value: this.inRepoEngines.length },
-      ]),
-    ];
   }
 }

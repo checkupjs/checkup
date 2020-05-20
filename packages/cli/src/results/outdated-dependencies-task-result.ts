@@ -1,4 +1,4 @@
-import { BaseTaskResult, TableData, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 import { OutdatedDependency } from '../tasks/outdated-dependencies-task';
 
@@ -28,18 +28,6 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
         dependencies: this.outdatedDependencies,
       },
     };
-  }
-
-  toReportData() {
-    return [
-      new TableData(
-        this.meta,
-        this.outdatedDependencies.map((dependency) => ({
-          name: dependency.moduleName,
-          value: dependency.installed,
-        }))
-      ),
-    ];
   }
 }
 
