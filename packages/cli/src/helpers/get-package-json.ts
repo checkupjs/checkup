@@ -14,7 +14,11 @@ export function getPackageJson(basePath: string, pathName: string = 'package.jso
     package_ = fs.readJsonSync(packageJsonPath);
   } catch (error) {
     if (error.code === 'ENOENT') {
-      throw new Error(`No package.json file detected at ${packageJsonPath}`);
+      throw new Error(
+        `The ${path.resolve(
+          basePath
+        )} directory found through the 'path' option does not contain a package.json file. You must run checkup in a directory with a package.json file.`
+      );
     }
   }
 

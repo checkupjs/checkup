@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { ProjectType } from '../types';
-import { getPackageJson } from '@checkup/core';
+import { PackageJson } from 'type-fest';
 
 /**
  * Gets the current type of project, either App, Engine, or Addon
@@ -10,22 +10,16 @@ import { getPackageJson } from '@checkup/core';
  * @returns {ProjectType}
  * @param basePath
  */
-export function getProjectType(basePath: string): ProjectType {
-  let package_ = getPackageJson(basePath);
-
-  if (
-    package_.keywords &&
-    Array.isArray(package_.keywords) &&
-    package_.keywords.includes('ember-addon')
-  ) {
+export function getProjectType(pkg: PackageJson): ProjectType {
+  if (pkg.keywords && Array.isArray(pkg.keywords) && pkg.keywords.includes('ember-addon')) {
     if (fs.existsSync(path.join(process.cwd(), 'addon', 'engine.js'))) {
       return ProjectType.Engine;
     } else {
       return ProjectType.Addon;
     }
   } else if (
-    (package_.dependencies && Object.keys(package_.dependencies).includes('ember-cli')) ||
-    (package_.devDependencies && Object.keys(package_.devDependencies).includes('ember-cli'))
+    (pkg.dependencies && Object.keys(pkg.dependencies).includes('ember-cli')) ||
+    (pkg.devDependencies && Object.keys(pkg.devDependencies).includes('ember-cli'))
   ) {
     return ProjectType.App;
   }

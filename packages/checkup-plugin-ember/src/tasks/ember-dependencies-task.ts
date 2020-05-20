@@ -1,12 +1,4 @@
-import {
-  BaseTask,
-  Category,
-  Priority,
-  Task,
-  TaskResult,
-  getPackageJson,
-  toTaskData,
-} from '@checkup/core';
+import { BaseTask, Category, Priority, Task, TaskResult, toTaskData } from '@checkup/core';
 
 import EmberDependenciesTaskResult from '../results/ember-dependencies-task-result';
 import { PackageJson } from 'type-fest';
@@ -23,7 +15,7 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
 
   async run(): Promise<TaskResult> {
     let result: EmberDependenciesTaskResult = new EmberDependenciesTaskResult(this.meta);
-    let packageJson = getPackageJson(this.context.cliFlags.cwd);
+    let packageJson = this.context.pkg;
 
     let coreLibraries: Record<string, string> = {
       'ember-source': findDependency(packageJson, 'ember-source'),

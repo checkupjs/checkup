@@ -26,7 +26,7 @@ describe('dependencies-task', () => {
   it('detects Ember dependencies', async () => {
     const result = await new EmberDependenciesTask(
       pluginName,
-      getTaskContext({}, { cwd: emberProject.baseDir })
+      getTaskContext({}, { cwd: emberProject.baseDir }, {}, emberProject.pkg)
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
 
@@ -38,7 +38,7 @@ describe('dependencies-task', () => {
   it('detects Ember dependencies as JSON', async () => {
     const result = await new EmberDependenciesTask(
       pluginName,
-      getTaskContext({}, { cwd: emberProject.baseDir })
+      getTaskContext({}, { cwd: emberProject.baseDir }, {}, emberProject.pkg)
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
 

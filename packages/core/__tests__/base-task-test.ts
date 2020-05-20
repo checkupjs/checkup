@@ -1,22 +1,7 @@
 import { Category, Priority, TaskContext } from '../src/types/tasks';
+import { getTaskContext } from '@checkup/test-helpers';
 
 import BaseTask from '../src/base-task';
-import { getRegisteredParsers } from '../src/parsers/registered-parsers';
-
-const DEFAULT_FLAGS = {
-  version: undefined,
-  help: undefined,
-  config: undefined,
-  cwd: '.',
-  task: undefined,
-  format: 'stdout',
-  outputFile: '',
-};
-
-const DEFAULT_CONFIG = {
-  plugins: [],
-  tasks: {},
-};
 
 class FakeTask extends BaseTask {
   meta = {
@@ -31,12 +16,7 @@ class FakeTask extends BaseTask {
 
 describe('BaseTask', () => {
   it('creates a task with correct defaults set', () => {
-    let context: TaskContext = {
-      cliArguments: {},
-      cliFlags: DEFAULT_FLAGS,
-      parsers: getRegisteredParsers(),
-      config: DEFAULT_CONFIG,
-    };
+    let context: TaskContext = getTaskContext();
 
     let fakeTask = new FakeTask('fake', context);
 
@@ -46,17 +26,16 @@ describe('BaseTask', () => {
   });
 
   it('creates a disabled task if config is set to "off"', () => {
-    let context: TaskContext = {
-      cliArguments: {},
-      cliFlags: DEFAULT_FLAGS,
-      parsers: getRegisteredParsers(),
-      config: {
+    let context: TaskContext = getTaskContext(
+      {},
+      {},
+      {
         plugins: [],
         tasks: {
           'fake/my-fake': 'off',
         },
-      },
-    };
+      }
+    );
 
     let fakeTask = new FakeTask('fake', context);
 
@@ -64,17 +43,16 @@ describe('BaseTask', () => {
   });
 
   it('creates a task with custom config values', () => {
-    let context: TaskContext = {
-      cliArguments: {},
-      cliFlags: DEFAULT_FLAGS,
-      parsers: getRegisteredParsers(),
-      config: {
+    let context: TaskContext = getTaskContext(
+      {},
+      {},
+      {
         plugins: [],
         tasks: {
           'fake/my-fake': ['on', { 'my-fake-option': true }],
         },
-      },
-    };
+      }
+    );
 
     let fakeTask = new FakeTask('fake', context);
 

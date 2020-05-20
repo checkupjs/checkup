@@ -1,5 +1,3 @@
-import * as path from 'path';
-
 import {
   CheckupConfig,
   CheckupConfigService,
@@ -9,7 +7,6 @@ import {
   TaskContext,
   TaskResult,
   getFilepathLoader,
-  getPackageJson,
   getRegisteredParsers,
   getSearchLoader,
   loadPlugins,
@@ -26,6 +23,7 @@ import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import TodosTask from '../tasks/todos-task';
 import { getReporter } from '../reporters';
+import { getPackageJson } from '../helpers/get-package-json';
 
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
@@ -87,8 +85,6 @@ export default class RunCommand extends Command {
 
     await this.loadConfig();
 
-    this.validatePackageJson();
-
     await this.registerTasks();
     await this.runTasks();
     await this.report();
@@ -147,19 +143,6 @@ export default class RunCommand extends Command {
     }
   }
 
-  private validatePackageJson() {
-    try {
-      getPackageJson(this.runFlags.cwd);
-    } catch (error) {
-      this.error(
-        `The ${path.resolve(
-          this.runFlags.cwd
-        )} directory found through the 'path' option does not contain a package.json file. You must run checkup in a directory with a package.json file.`,
-        error
-      );
-    }
-  }
-
   private async registerTasks() {
     let taskContext: TaskContext;
 
@@ -172,6 +155,7 @@ export default class RunCommand extends Command {
       cliFlags: this.runFlags,
       parsers: getRegisteredParsers(),
       config: this.checkupConfig,
+      pkg: getPackageJson(this.runFlags.cwd),
     });
 
     await this.registerDefaultTasks(taskContext);
