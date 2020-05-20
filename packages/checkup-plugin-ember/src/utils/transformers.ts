@@ -1,5 +1,6 @@
-import { ESLintReport, derivePercentageString } from '@checkup/core';
 import { TestType, TestTypeInfo } from '../types';
+
+import { ESLintReport } from '@checkup/core';
 
 enum TestCategories {
   skipUnit = 'skipUnit',
@@ -58,10 +59,6 @@ export function transformESLintReport(report: ESLintReport): TestTypeInfo[] {
       todo: formattedCounts.todoUnit,
       skip: formattedCounts.skipUnit,
       test: formattedCounts.testUnit,
-      percentageSkipped: derivePercentageString(
-        formattedCounts.skipUnit,
-        formattedCounts.testUnit + formattedCounts.skipUnit
-      ),
     },
     {
       type: TestType.Rendering,
@@ -74,10 +71,6 @@ export function transformESLintReport(report: ESLintReport): TestTypeInfo[] {
       todo: formattedCounts.todoRendering,
       skip: formattedCounts.skipRendering,
       test: formattedCounts.testRendering,
-      percentageSkipped: derivePercentageString(
-        formattedCounts.skipRendering,
-        formattedCounts.testRendering + formattedCounts.skipRendering
-      ),
     },
     {
       type: TestType.Application,
@@ -90,10 +83,6 @@ export function transformESLintReport(report: ESLintReport): TestTypeInfo[] {
       todo: formattedCounts.todoApplication,
       skip: formattedCounts.skipApplication,
       test: formattedCounts.testApplication,
-      percentageSkipped: derivePercentageString(
-        formattedCounts.skipApplication,
-        formattedCounts.testApplication + formattedCounts.skipApplication
-      ),
     },
   ];
 }

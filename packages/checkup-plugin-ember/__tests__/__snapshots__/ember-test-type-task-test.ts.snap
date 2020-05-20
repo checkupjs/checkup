@@ -19,10 +19,10 @@ application    0       0       0
 exports[`ember-test-types-task returns all the test types (including nested) found in the app and outputs to the console 1`] = `
 "=== Ember Test Types ===
 
-Type           test    skip     
-unit           2       4    67% 
-rendering      2       4    67% 
-application    4       8    67% 
+Type           test    skip    
+unit           2       4 (67%) 
+rendering      2       4 (67%) 
+application    4       8 (67%) 
 
 === Test Type Breakdown
 
@@ -46,7 +46,6 @@ Object {
     "types": Array [
       Object {
         "only": 0,
-        "percentageSkipped": "67%",
         "skip": 2,
         "test": 1,
         "todo": 0,
@@ -55,7 +54,6 @@ Object {
       },
       Object {
         "only": 0,
-        "percentageSkipped": "67%",
         "skip": 2,
         "test": 1,
         "todo": 0,
@@ -64,7 +62,6 @@ Object {
       },
       Object {
         "only": 0,
-        "percentageSkipped": "67%",
         "skip": 4,
         "test": 2,
         "todo": 0,
@@ -79,10 +76,10 @@ Object {
 exports[`ember-test-types-task returns all the test types found in the app and outputs to the console 1`] = `
 "=== Ember Test Types ===
 
-Type           test    skip     
-unit           1       2    67% 
-rendering      1       2    67% 
-application    2       4    67% 
+Type           test    skip    
+unit           1       2 (67%) 
+rendering      1       2 (67%) 
+application    2       4 (67%) 
 
 === Test Type Breakdown
 

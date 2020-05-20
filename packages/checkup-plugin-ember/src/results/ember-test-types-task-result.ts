@@ -1,4 +1,4 @@
-import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskResult, toPercent, ui } from '@checkup/core';
 
 import { TestTypeInfo } from '../types';
 
@@ -6,10 +6,24 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
   testTypes!: TestTypeInfo[];
 
   toConsole() {
-    let barColors = ['blue', 'green', 'yellow'];
+    let barColors = ['blue', 'cyan', 'green'];
 
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.table(this.testTypes, deriveTableData(this.testTypes));
+      ui.table(
+        this.testTypes.map((testTypeInfo) => {
+          return {
+            ...testTypeInfo,
+            ...{
+              skipInfo: `${testTypeInfo.skip} ${
+                testTypeInfo.skip > 0
+                  ? `(${toPercent(testTypeInfo.skip, testTypeInfo.test + testTypeInfo.skip)})`
+                  : ''
+              }`,
+            },
+          };
+        }),
+        getColumns(this.testTypes)
+      );
 
       ui.blankLine();
 
@@ -30,7 +44,7 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
   }
 }
 
-function deriveTableData(testTypes: TestTypeInfo[]): any {
+function getColumns(testTypes: TestTypeInfo[]): any {
   let tableColumns = {
     type: { minWidth: 15 },
     test: { minWidth: 8, header: 'test' },
@@ -50,7 +64,7 @@ function deriveTableData(testTypes: TestTypeInfo[]): any {
   if (totalSkipCounts > 0) {
     tableColumns = {
       ...tableColumns,
-      ...{ skip: { header: 'skip' }, percentageSkipped: { header: '' } },
+      ...{ skipInfo: { header: 'skip' } },
     };
   }
 
