@@ -19,7 +19,6 @@ export { default as CosmiconfigService } from './configuration/cosmiconfig-servi
 export { default as getInitializationConfigLoader } from './configuration/loaders/get-initialization-loader';
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
-export { getPackageJson } from './utils/get-package-json';
 export { exec } from './utils/exec';
 export { ui } from './utils/ui';
 export { toPairs, toTaskData, toTaskItemData, toPercent } from './utils/data-transformers';

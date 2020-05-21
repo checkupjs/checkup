@@ -1,16 +1,9 @@
 import * as npmCheck from 'npm-check';
 
-import {
-  BaseTask,
-  Category,
-  Priority,
-  Task,
-  TaskMetaData,
-  TaskResult,
-  getPackageJson,
-} from '@checkup/core';
+import { BaseTask, Category, Priority, Task, TaskMetaData, TaskResult } from '@checkup/core';
 
 import OutdatedDependenciesTaskResult from '../results/outdated-dependencies-task-result';
+import { PackageJson } from 'type-fest';
 
 export type OutdatedDependency = {
   moduleName: string;
@@ -47,9 +40,7 @@ async function getOutdated(path: string): Promise<OutdatedDependency[]> {
   return packages;
 }
 
-function getTotalDependencies(path: string) {
-  let packageJson = getPackageJson(path);
-
+function getTotalDependencies(packageJson: PackageJson) {
   return (
     Object.keys(packageJson.dependencies ?? {}).length +
     Object.keys(packageJson.devDependencies ?? {}).length
@@ -70,7 +61,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
     let result: OutdatedDependenciesTaskResult = new OutdatedDependenciesTaskResult(this.meta);
 
     result.outdatedDependencies = await getOutdated(this.context.cliFlags.cwd);
-    result.totalDependencies = getTotalDependencies(this.context.cliFlags.cwd);
+    result.totalDependencies = getTotalDependencies(this.context.pkg);
 
     return result;
   }

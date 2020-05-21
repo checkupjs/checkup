@@ -1,4 +1,4 @@
-import { BaseTask, TaskIdentifier, getPackageJson } from '@checkup/core';
+import { BaseTask, TaskIdentifier } from '@checkup/core';
 import { MetaTask, MetaTaskResult } from '../types';
 
 import ProjectMetaTaskResult from '../results/project-meta-task-result';
@@ -12,7 +12,7 @@ export default class ProjectMetaTask extends BaseTask implements MetaTask {
 
   async run(): Promise<MetaTaskResult> {
     let result: ProjectMetaTaskResult = new ProjectMetaTaskResult(this.meta);
-    let package_ = getPackageJson(this.context.cliFlags.cwd);
+    let package_ = this.context.pkg;
 
     result.name = package_.name || '';
     result.version = package_.version || '';

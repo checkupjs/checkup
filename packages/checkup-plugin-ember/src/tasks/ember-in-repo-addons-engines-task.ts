@@ -8,8 +8,10 @@ import {
   TaskContext,
 } from '@checkup/core';
 import EmberInRepoAddonEnginesTaskResult from '../results/ember-in-repo-addons-engines-task-result';
-import { getPackageJson } from '@checkup/core';
+
 import { PackageJson } from 'type-fest';
+import * as path from 'path';
+import * as fs from 'fs-extra';
 
 export default class EmberInRepoAddonsEnginesTask extends FileSearcherTask implements Task {
   meta: TaskMetaData = {
@@ -47,4 +49,19 @@ export default class EmberInRepoAddonsEnginesTask extends FileSearcherTask imple
     });
     return result;
   }
+}
+
+function getPackageJson(basePath: string, pathName: string = 'package.json'): PackageJson {
+  let package_ = {};
+  let packageJsonPath = path.join(path.resolve(basePath), pathName);
+
+  try {
+    package_ = fs.readJsonSync(packageJsonPath);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      throw new Error(`No package.json file detected at ${packageJsonPath}`);
+    }
+  }
+
+  return package_;
 }
