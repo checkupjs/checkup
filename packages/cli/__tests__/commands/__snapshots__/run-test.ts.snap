@@ -87,7 +87,24 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
       }
     },
     {
-      \\"todos\\": 0
+      \\"meta\\": {
+        \\"taskName\\": \\"todos\\",
+        \\"friendlyTaskName\\": \\"Number of TODOs\\",
+        \\"taskClassification\\": {
+          \\"category\\": \\"insights\\",
+          \\"priority\\": \\"low\\"
+        }
+      },
+      \\"result\\": {
+        \\"todos\\": [
+          {
+            \\"displayName\\": \\"Todo\\",
+            \\"type\\": \\"todo\\",
+            \\"data\\": [],
+            \\"total\\": 0
+          }
+        ]
+      }
     }
   ]
 }
@@ -99,6 +116,48 @@ exports[`@checkup/cli normal cli output should run a single task if the task opt
 Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should run the tasks on the globs passed into checkup, if provided, instead of entire app 1`] = `
+"
+Checkup report generated for another-project v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Outdated Dependencies ===
+
+ 0
+■ major (0)  ■ minor (0)  ■ patch (0)  
+
+=== Number of TODOs ===
+
+TODOs found: 2
+
+checkup v0.0.0
+config ae3266e319bdfb51db83810a2f4dd161
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should run the tasks on the globs passed into checkup, if provided, instead of entire app 2`] = `
+"
+Checkup report generated for another-project v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Outdated Dependencies ===
+
+ 0
+■ major (0)  ■ minor (0)  ■ patch (0)  
+
+=== Number of TODOs ===
+
+TODOs found: 3
+
+checkup v0.0.0
+config ae3266e319bdfb51db83810a2f4dd161
 
 "
 `;

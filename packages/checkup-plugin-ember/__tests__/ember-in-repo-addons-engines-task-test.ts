@@ -25,7 +25,11 @@ describe('ember-in-repo-addons-engines-task', () => {
   it('can read task and output to console', async () => {
     const result = await new EmberInRepoAddonEnginesTask(
       pluginName,
-      getTaskContext({}, { cwd: emberProject.baseDir })
+      getTaskContext({
+        cliFlags: { cwd: emberProject.baseDir },
+        pkg: emberProject.pkg,
+        paths: emberProject.getFilePaths(),
+      })
     ).run();
     const taskResult = <EmberInRepoAddonEnginesTaskResult>result;
 
@@ -37,7 +41,11 @@ describe('ember-in-repo-addons-engines-task', () => {
   it('can read task as JSON', async () => {
     const result = await new EmberInRepoAddonEnginesTask(
       pluginName,
-      getTaskContext({}, { cwd: emberProject.baseDir })
+      getTaskContext({
+        pkg: emberProject.pkg,
+        cliFlags: { cwd: emberProject.baseDir },
+        paths: emberProject.getFilePaths(),
+      })
     ).run();
     const taskResult = <EmberInRepoAddonEnginesTaskResult>result;
 

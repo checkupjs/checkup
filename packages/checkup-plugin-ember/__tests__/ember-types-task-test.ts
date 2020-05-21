@@ -1,4 +1,9 @@
-import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import {
+  EmberProject,
+  stdout,
+  getTaskContext,
+  filterTaskItemDataJson,
+} from '@checkup/test-helpers';
 
 import EmberTypesTask from '../src/tasks/ember-types-task';
 import EmberTypesTaskResult from '../src/results/ember-types-task-result';
@@ -59,7 +64,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.getFilePaths() })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
@@ -82,7 +87,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.getFilePaths() })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
@@ -101,11 +106,11 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.getFilePaths() })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(typesTaskResult.toJson()).toMatchSnapshot();
+    expect(filterTaskItemDataJson(typesTaskResult.toJson().result.types)).toMatchSnapshot();
   });
 
   it('returns all the types (including nested) found in the app and outputs to JSON', async () => {
@@ -122,10 +127,10 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.getFilePaths() })
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(typesTaskResult.toJson()).toMatchSnapshot();
+    expect(filterTaskItemDataJson(typesTaskResult.toJson().result.types)).toMatchSnapshot();
   });
 });

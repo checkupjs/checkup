@@ -18,3 +18,8 @@ afterEach(() => {
 export function stdout() {
   return pso.output;
 }
+
+export function clearStdout() {
+  pso.stop();
+  pso.start();
+}

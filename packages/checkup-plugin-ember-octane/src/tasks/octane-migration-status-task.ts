@@ -1,5 +1,3 @@
-import * as globby from 'globby';
-
 import {
   BaseTask,
   Category,
@@ -14,6 +12,8 @@ import {
 import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lint-configs';
 
 import OctaneMigrationStatusTaskResult from '../results/octane-migration-status-task-result';
+
+const micromatch = require('micromatch');
 
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {
@@ -58,12 +58,14 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   }
 
   private async runEsLint(): Promise<ESLintReport> {
-    return this.eslintParser.execute([`${this.rootPath}/+(app|addon)/**/*.js`]);
+    let jsPaths = micromatch(this.context.paths, '**/*.js');
+
+    return this.eslintParser.execute(jsPaths);
   }
 
   private async runTemplateLint(): Promise<TemplateLintReport> {
-    let paths = await globby(`${this.rootPath}/+(app|addon)/**/*.hbs`);
+    let hbsPaths = micromatch(this.context.paths, '**/*.hbs');
 
-    return this.templateLinter.execute(paths);
+    return this.templateLinter.execute(hbsPaths);
   }
 }

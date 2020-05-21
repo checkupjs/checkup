@@ -26,16 +26,14 @@ describe('BaseTask', () => {
   });
 
   it('creates a disabled task if config is set to "off"', () => {
-    let context: TaskContext = getTaskContext(
-      {},
-      {},
-      {
+    let context: TaskContext = getTaskContext({
+      config: {
         plugins: [],
         tasks: {
           'fake/my-fake': 'off',
         },
-      }
-    );
+      },
+    });
 
     let fakeTask = new FakeTask('fake', context);
 
@@ -43,16 +41,14 @@ describe('BaseTask', () => {
   });
 
   it('creates a task with custom config values', () => {
-    let context: TaskContext = getTaskContext(
-      {},
-      {},
-      {
+    let context: TaskContext = getTaskContext({
+      config: {
         plugins: [],
         tasks: {
           'fake/my-fake': ['on', { 'my-fake-option': true }],
         },
-      }
-    );
+      },
+    });
 
     let fakeTask = new FakeTask('fake', context);
 

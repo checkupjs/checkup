@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { CheckupProject, createTmpDir, stdout } from '@checkup/test-helpers';
+import { CheckupProject, createTmpDir, stdout, clearStdout } from '@checkup/test-helpers';
 
 import { join } from 'path';
 import { runCommand } from '../__utils__/run-command';
@@ -95,5 +95,41 @@ describe('@checkup/cli', () => {
       expect(stdout()).toMatchSnapshot();
       anotherProject.dispose();
     });
+
+    // how should we better test this? right now its relying on todo-task being run
+    it(
+      'should run the tasks on the globs passed into checkup, if provided, instead of entire app',
+      async () => {
+        const anotherProject = new CheckupProject('another-project');
+        anotherProject.addCheckupConfig();
+        anotherProject.files = Object.assign(anotherProject.files, {
+          foo: {
+            'index.hbs': '{{!-- i should todo: write code --}}',
+          },
+          bar: {
+            'index.js': '// TODO: write better code',
+          },
+          baz: {
+            'index.js': '// TODO: write better code',
+          },
+        });
+
+        anotherProject.writeSync();
+        await runCommand(['run', '**/*.hbs', '**baz/**', '--cwd', anotherProject.baseDir]);
+        let filteredRun = stdout();
+        expect(filteredRun).toMatchSnapshot();
+
+        clearStdout();
+
+        await runCommand(['run', '--cwd', anotherProject.baseDir]);
+        let unFilteredRun = stdout();
+        expect(unFilteredRun).toMatchSnapshot();
+
+        expect(filteredRun).not.toStrictEqual(unFilteredRun);
+
+        anotherProject.dispose();
+      },
+      TEST_TIMEOUT
+    );
   });
 });

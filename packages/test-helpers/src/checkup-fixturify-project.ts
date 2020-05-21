@@ -7,8 +7,10 @@ import Plugin from './plugin';
 import Project from 'fixturify-project';
 import { execSync } from 'child_process';
 import { existsSync } from 'fs-extra';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import stringify from 'json-stable-stringify';
+
+const walkSync = require('walk-sync');
 
 /**
  * An extension of {@link Project} that adds methods specific to creating
@@ -76,4 +78,23 @@ export default class CheckupFixturifyProject extends Project {
 
     this.pkg = packageJsonContent;
   }
+
+  getFilePaths(): string[] {
+    try {
+      this.readSync(this.root);
+      let allFiles = walkSync(this.baseDir, { directories: false });
+      return resolveFilePaths(allFiles, this.baseDir);
+    } catch (error) {
+      throw new Error('You must call writeSync on your project before getting the file paths.');
+    }
+  }
+}
+
+function resolveFilePaths(filePaths: string[], basePath: string): string[] {
+  if (basePath !== '.') {
+    return filePaths.map((pathName: string) => {
+      return join(resolve(basePath), pathName);
+    });
+  }
+  return filePaths;
 }

@@ -1,16 +1,20 @@
-import { stdout, getTaskContext } from '@checkup/test-helpers';
+import {
+  CheckupProject,
+  stdout,
+  getTaskContext,
+  filterTaskItemDataJson,
+} from '@checkup/test-helpers';
 
 import TodosTask from '../../src/tasks/todos-task';
 import TodosTaskResult from '../../src/results/todos-task-result';
-import Project = require('fixturify-project');
 
 describe('todos-task', () => {
-  let project: Project;
+  let project: CheckupProject;
 
   beforeEach(function () {
-    project = new Project('foo', '0.0.0');
+    project = new CheckupProject('foo', '0.0.0');
     project.files['index.js'] = '// TODO: write better code';
-    project.files['index.hbs'] = '{{!-- i should TODO: write code --}}';
+    project.files['index.hbs'] = '{{!-- i should todo: write code --}}';
     project.writeSync();
   });
 
@@ -21,7 +25,9 @@ describe('todos-task', () => {
   it('returns all the types found in the app and outputs to the console', async () => {
     const result = await new TodosTask(
       'internal',
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({
+        paths: project.getFilePaths(),
+      })
     ).run();
     const typesTaskResult = <TodosTaskResult>result;
 
@@ -39,15 +45,32 @@ describe('todos-task', () => {
   it('returns all the types found in the app and outputs to json', async () => {
     const result = await new TodosTask(
       'internal',
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({
+        paths: project.getFilePaths(),
+      })
     ).run();
     const typesTaskResult = <TodosTaskResult>result;
 
     const json = typesTaskResult.toJson();
-
-    expect(json).toMatchInlineSnapshot(`
+    expect({ ...json, ...{ result: filterTaskItemDataJson(json.result.todos) } })
+      .toMatchInlineSnapshot(`
       Object {
-        "todos": 2,
+        "meta": Object {
+          "friendlyTaskName": "Number of TODOs",
+          "taskClassification": Object {
+            "category": "insights",
+            "priority": "low",
+          },
+          "taskName": "todos",
+        },
+        "result": Array [
+          Object {
+            "data": Array [],
+            "displayName": "Todo",
+            "total": 2,
+            "type": "todo",
+          },
+        ],
       }
     `);
   });

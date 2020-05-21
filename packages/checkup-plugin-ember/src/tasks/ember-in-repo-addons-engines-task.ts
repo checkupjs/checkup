@@ -1,19 +1,12 @@
-import {
-  Category,
-  Priority,
-  Task,
-  TaskMetaData,
-  TaskResult,
-  FileSearcherTask,
-  TaskContext,
-} from '@checkup/core';
+import { Category, Priority, Task, TaskMetaData, TaskResult, BaseTask } from '@checkup/core';
 import EmberInRepoAddonEnginesTaskResult from '../results/ember-in-repo-addons-engines-task-result';
 
 import { PackageJson } from 'type-fest';
-import * as path from 'path';
-import * as fs from 'fs-extra';
+import { readJsonSync } from 'fs-extra';
 
-export default class EmberInRepoAddonsEnginesTask extends FileSearcherTask implements Task {
+const micromatch = require('micromatch');
+
+export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Task {
   meta: TaskMetaData = {
     taskName: 'ember-in-repo-addons-engines',
     friendlyTaskName: 'Ember In-Repo Addons / Engines',
@@ -23,23 +16,18 @@ export default class EmberInRepoAddonsEnginesTask extends FileSearcherTask imple
     },
   };
 
-  constructor(pluginName: string, context: TaskContext) {
-    super(pluginName, context, { packageJson: ['**/*package.json'] });
-  }
-
   async run(): Promise<TaskResult> {
     let result: EmberInRepoAddonEnginesTaskResult = new EmberInRepoAddonEnginesTaskResult(
       this.meta
     );
-    let searchResults = await this.searcher.findFiles();
 
     result.inRepoAddons = [];
     result.inRepoEngines = [];
 
-    let packageJsonPaths: string[] = searchResults[0].data as string[];
+    let packageJsonPaths: string[] = micromatch(this.context.paths, ['**/*package.json']);
 
     packageJsonPaths.forEach((pathName: string) => {
-      let packageJson: PackageJson = getPackageJson(this.context.cliFlags.cwd, pathName);
+      let packageJson: PackageJson = getPackageJson(pathName);
 
       if (packageJson.keywords?.includes('ember-engine') && packageJson.name) {
         result.inRepoEngines.push(packageJson.name);
@@ -51,12 +39,11 @@ export default class EmberInRepoAddonsEnginesTask extends FileSearcherTask imple
   }
 }
 
-function getPackageJson(basePath: string, pathName: string = 'package.json'): PackageJson {
+function getPackageJson(packageJsonPath: string): PackageJson {
   let package_ = {};
-  let packageJsonPath = path.join(path.resolve(basePath), pathName);
 
   try {
-    package_ = fs.readJsonSync(packageJsonPath);
+    package_ = readJsonSync(packageJsonPath);
   } catch (error) {
     if (error.code === 'ENOENT') {
       throw new Error(`No package.json file detected at ${packageJsonPath}`);

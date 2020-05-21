@@ -1,7 +1,3 @@
-export type RunArgs = {
-  [name: string]: any;
-};
-
 export type RunFlags = {
   version: void;
   help: void;

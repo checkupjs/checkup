@@ -23,7 +23,10 @@ describe('outdated-dependencies-task', () => {
   it('detects outdated dependencies and output to console', async () => {
     const result = await new OutdatedDependenciesTask(
       'meta',
-      getTaskContext({}, { cwd: project.baseDir }, {}, project.pkg)
+      getTaskContext({
+        cliFlags: { cwd: project.baseDir },
+        pkg: project.pkg,
+      })
     ).run();
     const taskResult = <OutdatedDependenciesTaskResult>result;
 
@@ -35,7 +38,10 @@ describe('outdated-dependencies-task', () => {
   it('detects outdated dependencies as JSON', async () => {
     const result = await new OutdatedDependenciesTask(
       'meta',
-      getTaskContext({}, { cwd: project.baseDir }, {}, project.pkg)
+      getTaskContext({
+        cliFlags: { cwd: project.baseDir },
+        pkg: project.pkg,
+      })
     ).run();
     const taskResult = <OutdatedDependenciesTaskResult>result;
 

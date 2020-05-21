@@ -22,17 +22,19 @@ const DEFAULT_PACKAGE_JSON = {
   keywords: [],
 };
 
-export function getTaskContext(
-  cliArguments: {} = {},
-  cliFlags: {} = DEFAULT_FLAGS,
-  config: {} = DEFAULT_CONFIG,
-  pkg: PackageJson = DEFAULT_PACKAGE_JSON
-): TaskContext {
+export function getTaskContext({
+  cliArguments = [] as [],
+  cliFlags = DEFAULT_FLAGS as {},
+  config = DEFAULT_CONFIG as {},
+  pkg = DEFAULT_PACKAGE_JSON as PackageJson,
+  paths = [] as string[],
+} = {}): TaskContext {
   return {
     cliArguments,
     cliFlags: Object.assign({}, DEFAULT_FLAGS, cliFlags),
     parsers: getRegisteredParsers(),
     config: Object.assign({}, DEFAULT_CONFIG, config),
     pkg: pkg,
+    paths: paths,
   };
 }

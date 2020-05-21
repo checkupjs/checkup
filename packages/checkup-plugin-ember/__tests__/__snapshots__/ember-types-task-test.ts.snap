@@ -1,110 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`types-task returns all the types (including nested) found in the app and outputs to JSON 1`] = `
-Object {
-  "meta": Object {
-    "friendlyTaskName": "Ember Types",
-    "taskClassification": Object {
-      "category": "insights",
-      "priority": "high",
-    },
-    "taskName": "ember-types",
+Array [
+  Object {
+    "data": Array [],
+    "displayName": "Components",
+    "total": 2,
+    "type": "components",
   },
-  "result": Object {
-    "types": Array [
-      Object {
-        "data": Array [
-          "addon/components/my-component.js",
-          "lib/ember-super-button/addon/components/my-component.js",
-        ],
-        "displayName": "Components",
-        "total": 2,
-        "type": "components",
-      },
-      Object {
-        "data": Array [
-          "addon/controllers/my-controller.js",
-          "lib/ember-super-button/addon/controllers/my-controller.js",
-        ],
-        "displayName": "Controllers",
-        "total": 2,
-        "type": "controllers",
-      },
-      Object {
-        "data": Array [
-          "addon/helpers/my-helper.js",
-          "lib/ember-super-button/addon/helpers/my-helper.js",
-        ],
-        "displayName": "Helpers",
-        "total": 2,
-        "type": "helpers",
-      },
-      Object {
-        "data": Array [
-          "addon/initializers/my-initializer.js",
-          "lib/ember-super-button/addon/initializers/my-initializer.js",
-        ],
-        "displayName": "Initializers",
-        "total": 2,
-        "type": "initializers",
-      },
-      Object {
-        "data": Array [
-          "addon/instance-initializers/my-helper.js",
-          "lib/ember-super-button/addon/instance-initializers/my-helper.js",
-        ],
-        "displayName": "Instance Initializers",
-        "total": 2,
-        "type": "instance-initializers",
-      },
-      Object {
-        "data": Array [
-          "addon/mixins/my-mixin.js",
-          "lib/ember-super-button/addon/mixins/my-mixin.js",
-        ],
-        "displayName": "Mixins",
-        "total": 2,
-        "type": "mixins",
-      },
-      Object {
-        "data": Array [
-          "addon/models/my-model.js",
-          "lib/ember-super-button/addon/models/my-model.js",
-        ],
-        "displayName": "Models",
-        "total": 2,
-        "type": "models",
-      },
-      Object {
-        "data": Array [
-          "addon/routes/my-route.js",
-          "lib/ember-super-button/addon/routes/my-route.js",
-        ],
-        "displayName": "Routes",
-        "total": 2,
-        "type": "routes",
-      },
-      Object {
-        "data": Array [
-          "addon/services/my-service.js",
-          "lib/ember-super-button/addon/services/my-service.js",
-        ],
-        "displayName": "Services",
-        "total": 2,
-        "type": "services",
-      },
-      Object {
-        "data": Array [
-          "addon/templates/my-component.hbs",
-          "lib/ember-super-button/addon/templates/my-component.hbs",
-        ],
-        "displayName": "Templates",
-        "total": 2,
-        "type": "templates",
-      },
-    ],
+  Object {
+    "data": Array [],
+    "displayName": "Controllers",
+    "total": 2,
+    "type": "controllers",
   },
-}
+  Object {
+    "data": Array [],
+    "displayName": "Helpers",
+    "total": 2,
+    "type": "helpers",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Initializers",
+    "total": 2,
+    "type": "initializers",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Instance Initializers",
+    "total": 2,
+    "type": "instance-initializers",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Mixins",
+    "total": 2,
+    "type": "mixins",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Models",
+    "total": 2,
+    "type": "models",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Routes",
+    "total": 2,
+    "type": "routes",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Services",
+    "total": 2,
+    "type": "services",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Templates",
+    "total": 2,
+    "type": "templates",
+  },
+]
 `;
 
 exports[`types-task returns all the types (including nested) found in the app and outputs to the console 1`] = `
@@ -126,100 +84,68 @@ Templates             2
 `;
 
 exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
-Object {
-  "meta": Object {
-    "friendlyTaskName": "Ember Types",
-    "taskClassification": Object {
-      "category": "insights",
-      "priority": "high",
-    },
-    "taskName": "ember-types",
+Array [
+  Object {
+    "data": Array [],
+    "displayName": "Components",
+    "total": 1,
+    "type": "components",
   },
-  "result": Object {
-    "types": Array [
-      Object {
-        "data": Array [
-          "addon/components/my-component.js",
-        ],
-        "displayName": "Components",
-        "total": 1,
-        "type": "components",
-      },
-      Object {
-        "data": Array [
-          "addon/controllers/my-controller.js",
-        ],
-        "displayName": "Controllers",
-        "total": 1,
-        "type": "controllers",
-      },
-      Object {
-        "data": Array [
-          "addon/helpers/my-helper.js",
-        ],
-        "displayName": "Helpers",
-        "total": 1,
-        "type": "helpers",
-      },
-      Object {
-        "data": Array [
-          "addon/initializers/my-initializer.js",
-        ],
-        "displayName": "Initializers",
-        "total": 1,
-        "type": "initializers",
-      },
-      Object {
-        "data": Array [
-          "addon/instance-initializers/my-helper.js",
-        ],
-        "displayName": "Instance Initializers",
-        "total": 1,
-        "type": "instance-initializers",
-      },
-      Object {
-        "data": Array [
-          "addon/mixins/my-mixin.js",
-        ],
-        "displayName": "Mixins",
-        "total": 1,
-        "type": "mixins",
-      },
-      Object {
-        "data": Array [
-          "addon/models/my-model.js",
-        ],
-        "displayName": "Models",
-        "total": 1,
-        "type": "models",
-      },
-      Object {
-        "data": Array [
-          "addon/routes/my-route.js",
-        ],
-        "displayName": "Routes",
-        "total": 1,
-        "type": "routes",
-      },
-      Object {
-        "data": Array [
-          "addon/services/my-service.js",
-        ],
-        "displayName": "Services",
-        "total": 1,
-        "type": "services",
-      },
-      Object {
-        "data": Array [
-          "addon/templates/my-component.hbs",
-        ],
-        "displayName": "Templates",
-        "total": 1,
-        "type": "templates",
-      },
-    ],
+  Object {
+    "data": Array [],
+    "displayName": "Controllers",
+    "total": 1,
+    "type": "controllers",
   },
-}
+  Object {
+    "data": Array [],
+    "displayName": "Helpers",
+    "total": 1,
+    "type": "helpers",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Initializers",
+    "total": 1,
+    "type": "initializers",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Instance Initializers",
+    "total": 1,
+    "type": "instance-initializers",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Mixins",
+    "total": 1,
+    "type": "mixins",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Models",
+    "total": 1,
+    "type": "models",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Routes",
+    "total": 1,
+    "type": "routes",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Services",
+    "total": 1,
+    "type": "services",
+  },
+  Object {
+    "data": Array [],
+    "displayName": "Templates",
+    "total": 1,
+    "type": "templates",
+  },
+]
 `;
 
 exports[`types-task returns all the types found in the app and outputs to the console 1`] = `

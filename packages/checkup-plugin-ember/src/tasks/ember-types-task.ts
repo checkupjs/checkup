@@ -1,21 +1,23 @@
-import { Category, FileSearcherTask, Priority, Task, TaskContext, TaskResult } from '@checkup/core';
+import { Category, Priority, Task, TaskResult, BaseTask, toTaskItemData } from '@checkup/core';
 
 import EmberTypesTaskResult from '../results/ember-types-task-result';
 
-const SEARCH_PATTERNS = {
-  components: ['**/components/**/*.js'],
-  controllers: ['**/controllers/**/*.js'],
-  helpers: ['**/helpers/**/*.js'],
-  initializers: ['**/initializers/**/*.js'],
-  'instance-initializers': ['**/instance-initializers/**/*.js'],
-  mixins: ['**/mixins/**/*.js'],
-  models: ['**/models/**/*.js'],
-  routes: ['**/routes/**/*.js'],
-  services: ['**/services/**/*.js'],
-  templates: ['**/templates/**/*.hbs'],
-};
+const micromatch = require('micromatch');
 
-export default class EmberTypesTask extends FileSearcherTask implements Task {
+const SEARCH_PATTERNS = [
+  { patternName: 'components', pattern: ['**/components/**/*.js'] },
+  { patternName: 'controllers', pattern: ['**/controllers/**/*.js'] },
+  { patternName: 'helpers', pattern: ['**/helpers/**/*.js'] },
+  { patternName: 'initializers', pattern: ['**/initializers/**/*.js'] },
+  { patternName: 'instance-initializers', pattern: ['**/instance-initializers/**/*.js'] },
+  { patternName: 'mixins', pattern: ['**/mixins/**/*.js'] },
+  { patternName: 'models', pattern: ['**/models/**/*.js'] },
+  { patternName: 'routes', pattern: ['**/routes/**/*.js'] },
+  { patternName: 'services', pattern: ['**/services/**/*.js'] },
+  { patternName: 'templates', pattern: ['**/templates/**/*.hbs'] },
+];
+
+export default class EmberTypesTask extends BaseTask implements Task {
   meta = {
     taskName: 'ember-types',
     friendlyTaskName: 'Ember Types',
@@ -25,13 +27,11 @@ export default class EmberTypesTask extends FileSearcherTask implements Task {
     },
   };
 
-  constructor(pluginName: string, context: TaskContext) {
-    super(pluginName, context, SEARCH_PATTERNS);
-  }
-
   async run(): Promise<TaskResult> {
     let result = new EmberTypesTaskResult(this.meta);
-    result.types = await this.searcher.findFiles();
+    result.types = SEARCH_PATTERNS.map((pattern) => {
+      return toTaskItemData(pattern.patternName, micromatch(this.context.paths, pattern.pattern));
+    });
 
     return result;
   }
