@@ -2,7 +2,7 @@ import * as debug from 'debug';
 
 import { TaskContext, TaskIdentifier, TaskMetaData } from './types/tasks';
 
-import { TaskConfig } from './types/configuration';
+import { TaskConfig } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
 
 export default abstract class BaseTask {

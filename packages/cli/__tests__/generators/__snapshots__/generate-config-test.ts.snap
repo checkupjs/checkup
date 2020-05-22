@@ -4,5 +4,6 @@ exports[`config-init-generator should write a config given default answers 1`] =
 "{
   \\"plugins\\": [],
   \\"tasks\\": {}
-}"
+}
+"
 `;

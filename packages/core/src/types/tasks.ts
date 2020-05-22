@@ -1,8 +1,8 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
+import { JsonObject, PackageJson } from 'type-fest';
 import { RunArgs, RunFlags } from './cli';
 
-import { CheckupConfig } from './configuration';
-import { JsonObject, PackageJson } from 'type-fest';
+import { CheckupConfig } from './config';
 import NumericalCardData from '../report-components/numerical-card-data';
 import PieChartData from '../report-components/pie-chart-data';
 import TableData from '../report-components/table-data';

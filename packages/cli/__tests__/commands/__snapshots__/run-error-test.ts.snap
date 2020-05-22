@@ -1,6 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`@checkup/cli cli error cases should error if the config is malformed 1`] = `
-"Checkup configuration is malformed:
-plugins expected type Array<string>, but got undefined"
-`;

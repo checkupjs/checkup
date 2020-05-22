@@ -1,12 +1,14 @@
 'use strict';
 
-import { CheckupConfig } from '@checkup/core';
+import { CheckupConfig, mergeConfig } from '@checkup/core';
+
 import { PackageJson } from 'type-fest';
 import Plugin from './plugin';
 import Project from 'fixturify-project';
 import { execSync } from 'child_process';
 import { existsSync } from 'fs-extra';
 import { join } from 'path';
+import stringify from 'json-stable-stringify';
 
 /**
  * An extension of {@link Project} that adds methods specific to creating
@@ -19,10 +21,8 @@ export default class CheckupFixturifyProject extends Project {
    * @memberof CheckupFixturifyProject
    * @param config - a partial {@link CheckupConfig} to write to .checkuprc file
    */
-  addCheckupConfig(config: Partial<CheckupConfig>) {
-    const defaultConfig: CheckupConfig = { plugins: [], tasks: {} };
-    this.files['.checkuprc'] = JSON.stringify(Object.assign(defaultConfig, config));
-    return this;
+  addCheckupConfig(config: Partial<CheckupConfig> = {}) {
+    this.files['.checkuprc'] = stringify(mergeConfig(config));
   }
 
   /**

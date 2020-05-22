@@ -1,15 +1,14 @@
 import {
   CheckupConfig,
-  CheckupConfigService,
   OutputFormat,
   RunArgs,
   RunFlags,
   TaskContext,
   TaskResult,
-  getFilepathLoader,
+  getConfigPath,
   getRegisteredParsers,
-  getSearchLoader,
   loadPlugins,
+  readConfig,
   registerParser,
   ui,
 } from '@checkup/core';
@@ -22,8 +21,8 @@ import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import TodosTask from '../tasks/todos-task';
-import { getReporter } from '../reporters';
 import { getPackageJson } from '../helpers/get-package-json';
+import { getReporter } from '../reporters';
 
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
@@ -128,13 +127,14 @@ export default class RunCommand extends Command {
 
   private async loadConfig() {
     try {
-      const configLoader = this.runArgs.config
-        ? getFilepathLoader(this.runArgs.config)
-        : getSearchLoader(this.runFlags.cwd);
-      const configService = await CheckupConfigService.load(configLoader);
+      this.checkupConfig = readConfig(this.runFlags.config || getConfigPath(this.runFlags.cwd));
+    } catch (error) {
+      this.error(
+        `Could not find a checkup configuration starting from the given path: ${this.runFlags.cwd}. See https://docs.checkupjs.com/quickstart/usage#1-generate-a-configuration-file for more info on how to setup a configuration.`
+      );
+    }
 
-      this.checkupConfig = configService.get();
-
+    try {
       let plugins = await loadPlugins(this.checkupConfig.plugins, this.runFlags.cwd);
 
       this.config.plugins.push(...plugins);
