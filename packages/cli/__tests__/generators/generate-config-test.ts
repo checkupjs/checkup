@@ -1,21 +1,24 @@
-import * as fs from 'fs';
 import * as helpers from 'yeoman-test';
-import * as path from 'path';
+
+import { createTmpDir, testRoot } from '@checkup/test-helpers';
 
 import ConfigGenerator from '../../src/generators/config';
-import { testRoot } from '@checkup/test-helpers';
+import { join } from 'path';
+import { writeFileSync } from 'fs';
 
 describe('config-init-generator', () => {
-  it('should write a config given default answers', async () => {
-    const directory = await helpers.run(ConfigGenerator);
+  it('should write a config', async () => {
+    let tmp = createTmpDir();
 
-    expect(testRoot(directory).file('.checkuprc').contents).toMatchSnapshot();
+    const dir = await helpers.run(ConfigGenerator).cd(tmp);
+
+    expect(testRoot(dir).file('.checkuprc').contents).toMatchSnapshot();
   });
 
   it('should error if a checkuprc file is already present', async () => {
     await expect(
       helpers.run(ConfigGenerator).inTmpDir(function (dir) {
-        fs.writeFileSync(path.join(dir, '.checkuprc'), JSON.stringify({}));
+        writeFileSync(join(dir, '.checkuprc'), JSON.stringify({}));
       })
     ).rejects.toThrow();
   });

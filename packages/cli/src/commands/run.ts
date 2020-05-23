@@ -126,11 +126,14 @@ export default class RunCommand extends Command {
   }
 
   private async loadConfig() {
+    let configPath;
+
     try {
-      this.checkupConfig = readConfig(this.runFlags.config || getConfigPath(this.runFlags.cwd));
+      configPath = this.runFlags.config || getConfigPath(this.runFlags.cwd);
+      this.checkupConfig = readConfig(configPath);
     } catch (error) {
       this.error(
-        `Could not find a checkup configuration starting from the given path: ${this.runFlags.cwd}. See https://docs.checkupjs.com/quickstart/usage#1-generate-a-configuration-file for more info on how to setup a configuration.`
+        `Could not find a checkup configuration starting from the given path: ${configPath}.\nSee https://docs.checkupjs.com/quickstart/usage#1-generate-a-configuration-file for more info on how to setup a configuration.`
       );
     }
 

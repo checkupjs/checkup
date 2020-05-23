@@ -19,10 +19,8 @@ export default class ConfigGenerator extends BaseGenerator {
   }
 
   async writing() {
-    let configPath = this.destinationPath('.checkuprc');
+    writeConfig(this.destinationRoot());
 
-    writeConfig(configPath);
-
-    this.log(`   ${chalk.green('create')} ${configPath}`);
+    this.log(`   ${chalk.green('create')} ${this.destinationPath('.checkuprc')}`);
   }
 }

@@ -11,8 +11,7 @@ export const DEFAULT_CONFIG: CheckupConfig = {
 };
 
 export function getConfigPath(path: string = '') {
-  path = path || process.cwd();
-  return join(path, '.checkuprc');
+  return join(resolve(path), '.checkuprc');
 }
 
 export function readConfig(configPath: string) {
@@ -35,15 +34,17 @@ export function mergeConfig(config: Partial<CheckupConfig>) {
   return { ...DEFAULT_CONFIG, ...config };
 }
 
-export function writeConfig(path: string = getConfigPath(), config: Partial<CheckupConfig> = {}) {
+export function writeConfig(dir: string, config: Partial<CheckupConfig> = {}) {
+  let path = getConfigPath(dir);
+
   if (existsSync(path)) {
-    throw new Error(`There is already an existing Checkup config in ${path}`);
+    throw new Error(`There is already an existing Checkup config in ${dir}`);
   }
 
   try {
     writeJsonSync(path, mergeConfig(config), { spaces: 2 });
   } catch (error) {
-    throw new Error(`Cannot write Checkup config to ${path}. ${error.message}`);
+    throw new Error(`Cannot write Checkup config to ${dir}. ${error.message}`);
   }
 
   return path;
