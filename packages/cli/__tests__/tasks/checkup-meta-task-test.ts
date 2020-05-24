@@ -1,16 +1,7 @@
 import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import CheckupMetaTask from '../../src/tasks/checkup-meta-task';
 import CheckupMetaTaskResult from '../../src/results/checkup-meta-task-result';
-import { CheckupConfig } from '@checkup/core';
-
-const DEFAULT_CONFIG = {
-  plugins: [],
-  tasks: {},
-};
-
-async function getConfig(config: Partial<CheckupConfig> = {}) {
-  return { ...config, ...DEFAULT_CONFIG };
-}
+import { mergeConfig } from '@checkup/core';
 
 describe('checkup-meta-task', () => {
   let project: CheckupProject;
@@ -30,7 +21,7 @@ describe('checkup-meta-task', () => {
     });
 
     it('can read checkup meta and output to console with default config', async () => {
-      let checkupConfig = await getConfig();
+      let checkupConfig = mergeConfig({});
 
       const result = await new CheckupMetaTask(
         'meta',
@@ -49,7 +40,7 @@ describe('checkup-meta-task', () => {
     });
 
     it('can read checkup meta as JSON with default config', async () => {
-      let checkupConfig = await getConfig();
+      let checkupConfig = mergeConfig({});
 
       const result = await new CheckupMetaTask(
         'meta',
@@ -68,7 +59,7 @@ describe('checkup-meta-task', () => {
     });
 
     it('can read checkup meta and output to console', async () => {
-      let checkupConfig = await getConfig({
+      let checkupConfig = mergeConfig({
         plugins: ['checkup-plugin-ember'],
         tasks: {},
       });
@@ -83,14 +74,14 @@ describe('checkup-meta-task', () => {
 
       expect(stdout()).toMatchInlineSnapshot(`
         "checkup v0.0.0
-        config ae3266e319bdfb51db83810a2f4dd161
+        config 705deefb6abf2b6d34f93cede7acba07
 
         "
       `);
     });
 
     it('can read checkup meta as JSON', async () => {
-      let checkupConfig = await getConfig({
+      let checkupConfig = mergeConfig({
         plugins: ['checkup-plugin-ember'],
         tasks: {},
       });
@@ -104,7 +95,7 @@ describe('checkup-meta-task', () => {
       expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
           "checkup": Object {
-            "configHash": "ae3266e319bdfb51db83810a2f4dd161",
+            "configHash": "705deefb6abf2b6d34f93cede7acba07",
             "version": "0.0.0",
           },
         }
