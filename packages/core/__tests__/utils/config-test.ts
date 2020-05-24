@@ -1,8 +1,8 @@
-import { readConfig, writeConfig } from '../../src/utils/config';
+import { CONFIG_DOCS_URL, getConfigPath, readConfig, writeConfig } from '../../src/config';
+import { readJsonSync, writeJsonSync } from 'fs-extra';
 
 import { DEFAULT_CONFIG } from '../../lib';
 import { createTmpDir } from '@checkup/test-helpers';
-import { readJsonSync } from 'fs-extra';
 
 describe('config', () => {
   let tmp: string;
@@ -15,7 +15,21 @@ describe('config', () => {
     it('throws if no checkup config found', () => {
       expect(() => {
         readConfig(tmp);
-      }).toThrow(`Could not locate a Checkup config in ${tmp}`);
+      }).toThrow(`Could not find a checkup config starting from the given path: ${tmp}.
+See ${CONFIG_DOCS_URL} for more info on how to setup a configuration.`);
+    });
+
+    it('throws if config format is invalid', () => {
+      let configPath = getConfigPath(tmp);
+      writeJsonSync(configPath, {
+        plugins: [],
+        task: {},
+      });
+
+      expect(() => {
+        readConfig(configPath);
+      }).toThrow(`Checkup config in ${configPath} is invalid.
+See ${CONFIG_DOCS_URL} to ensure the format is correct.`);
     });
 
     it('can load a config from an external directory', () => {

@@ -132,9 +132,7 @@ export default class RunCommand extends Command {
       configPath = this.runFlags.config || getConfigPath(this.runFlags.cwd);
       this.checkupConfig = readConfig(configPath);
     } catch (error) {
-      this.error(
-        `Could not find a checkup configuration starting from the given path: ${configPath}.\nSee https://docs.checkupjs.com/quickstart/usage#1-generate-a-configuration-file for more info on how to setup a configuration.`
-      );
+      this.error(error.message);
     }
 
     try {
@@ -142,7 +140,7 @@ export default class RunCommand extends Command {
 
       this.config.plugins.push(...plugins);
     } catch (error) {
-      this.error(error);
+      this.error(error.message);
     }
   }
 

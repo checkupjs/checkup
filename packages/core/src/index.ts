@@ -12,13 +12,7 @@ export { default as TableData } from './report-components/table-data';
 export { default as PieChartData } from './report-components/pie-chart-data';
 
 export { loadPlugins } from './loaders/plugin-loader';
-export {
-  readConfig,
-  writeConfig,
-  getConfigPath,
-  mergeConfig,
-  DEFAULT_CONFIG,
-} from './utils/config';
+export { readConfig, writeConfig, getConfigPath, mergeConfig, DEFAULT_CONFIG } from './config';
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { exec } from './utils/exec';

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "taskConfig": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "[^/]*/?[A-z]*"
+      }
+    }
+  },
+  "properties": {
+    "plugins": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "tasks": {
+      "$ref": "#/definitions/taskConfig"
+    }
+  },
+  "type": "object",
+  "required": ["plugins", "tasks"]
+}
