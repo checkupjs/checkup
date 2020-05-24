@@ -1,46 +1,31 @@
 import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import CheckupMetaTask from '../../src/tasks/checkup-meta-task';
 import CheckupMetaTaskResult from '../../src/results/checkup-meta-task-result';
-import { CheckupConfig, CheckupConfigFormat, CheckupConfigService } from '@checkup/core';
-
-const defaultConfig = {
-  plugins: [],
-  tasks: {},
-};
-
-async function getConfig(config: CheckupConfig = defaultConfig) {
-  const configService = await CheckupConfigService.load(async () => ({
-    filepath: '.',
-    config,
-    format: CheckupConfigFormat.JSON,
-  }));
-
-  return configService.get();
-}
+import { mergeConfig } from '@checkup/core';
 
 describe('checkup-meta-task', () => {
-  let checkupProject: CheckupProject;
+  let project: CheckupProject;
 
   describe('for Projects', () => {
     beforeEach(() => {
-      checkupProject = new CheckupProject('checkup-app', '0.0.0', (project) => {
+      project = new CheckupProject('checkup-app', '0.0.0', (project) => {
         project.addDependency('ember-cli', '^3.15.0');
       });
 
-      checkupProject.writeSync();
-      checkupProject.gitInit();
+      project.writeSync();
+      project.gitInit();
     });
 
     afterEach(() => {
-      checkupProject.dispose();
+      project.dispose();
     });
 
     it('can read checkup meta and output to console with default config', async () => {
-      let checkupConfig = await getConfig();
+      let checkupConfig = mergeConfig({});
 
       const result = await new CheckupMetaTask(
         'meta',
-        getTaskContext({}, { cwd: checkupProject.baseDir }, checkupConfig)
+        getTaskContext({}, { cwd: project.baseDir }, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
@@ -55,11 +40,11 @@ describe('checkup-meta-task', () => {
     });
 
     it('can read checkup meta as JSON with default config', async () => {
-      let checkupConfig = await getConfig();
+      let checkupConfig = mergeConfig({});
 
       const result = await new CheckupMetaTask(
         'meta',
-        getTaskContext({}, { cwd: checkupProject.baseDir }, checkupConfig)
+        getTaskContext({}, { cwd: project.baseDir }, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
@@ -74,14 +59,14 @@ describe('checkup-meta-task', () => {
     });
 
     it('can read checkup meta and output to console', async () => {
-      let checkupConfig = await getConfig({
+      let checkupConfig = mergeConfig({
         plugins: ['checkup-plugin-ember'],
         tasks: {},
       });
 
       const result = await new CheckupMetaTask(
         'meta',
-        getTaskContext({}, { cwd: checkupProject.baseDir }, checkupConfig)
+        getTaskContext({}, { cwd: project.baseDir }, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 
@@ -96,14 +81,14 @@ describe('checkup-meta-task', () => {
     });
 
     it('can read checkup meta as JSON', async () => {
-      let checkupConfig = await getConfig({
+      let checkupConfig = mergeConfig({
         plugins: ['checkup-plugin-ember'],
         tasks: {},
       });
 
       const result = await new CheckupMetaTask(
         'meta',
-        getTaskContext({}, { cwd: checkupProject.baseDir }, checkupConfig)
+        getTaskContext({}, { cwd: project.baseDir }, checkupConfig)
       ).run();
       const taskResult = <CheckupMetaTaskResult>result;
 

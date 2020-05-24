@@ -79,11 +79,11 @@ describe('@checkup/cli', () => {
     });
 
     it('should use the config at the config path if provided', async () => {
-      const anotherProject = new CheckupProject('another-project').addCheckupConfig({
-        plugins: [],
-        tasks: {},
-      });
+      const anotherProject = new CheckupProject('another-project');
+
+      anotherProject.addCheckupConfig();
       anotherProject.writeSync();
+
       await runCommand([
         'run',
         '--config',

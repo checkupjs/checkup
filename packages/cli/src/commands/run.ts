@@ -1,15 +1,14 @@
 import {
   CheckupConfig,
-  CheckupConfigService,
   OutputFormat,
   RunArgs,
   RunFlags,
   TaskContext,
   TaskResult,
-  getFilepathLoader,
+  getConfigPath,
   getRegisteredParsers,
-  getSearchLoader,
   loadPlugins,
+  readConfig,
   registerParser,
   ui,
 } from '@checkup/core';
@@ -22,8 +21,8 @@ import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import TodosTask from '../tasks/todos-task';
-import { getReporter } from '../reporters';
 import { getPackageJson } from '../helpers/get-package-json';
+import { getReporter } from '../reporters';
 
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
@@ -127,19 +126,21 @@ export default class RunCommand extends Command {
   }
 
   private async loadConfig() {
+    let configPath;
+
     try {
-      const configLoader = this.runArgs.config
-        ? getFilepathLoader(this.runArgs.config)
-        : getSearchLoader(this.runFlags.cwd);
-      const configService = await CheckupConfigService.load(configLoader);
+      configPath = this.runFlags.config || getConfigPath(this.runFlags.cwd);
+      this.checkupConfig = readConfig(configPath);
+    } catch (error) {
+      this.error(error.message);
+    }
 
-      this.checkupConfig = configService.get();
-
+    try {
       let plugins = await loadPlugins(this.checkupConfig.plugins, this.runFlags.cwd);
 
       this.config.plugins.push(...plugins);
     } catch (error) {
-      this.error(error);
+      this.error(error.message);
     }
   }
 

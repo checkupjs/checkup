@@ -1328,7 +1328,7 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-ajv@^6.10.0, ajv@^6.10.2, ajv@^6.5.5:
+ajv@^6.10.0, ajv@^6.10.2, ajv@^6.12.2, ajv@^6.5.5:
   version "6.12.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.2.tgz#c629c5eced17baf314437918d2da88c99d5958cd"
   integrity sha512-k+V+hzjm5q/Mr8ef/1Y9goCmlsK4I6Sm74teeyGvFk1XrOsbsKLjEdrvny42CZ+a8sXbk8KWpY/bDwS+FLL2UQ==
@@ -3951,11 +3951,6 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
-fp-ts@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.6.1.tgz#f2505a4b44a77a344a1e451c667383e42f3728de"
-  integrity sha512-ZYOgqEOvUuO59rvItjf1OniEG4k/ClY3rd+AiuRYbl3skY4X/s7Oig25/wvORjycjeOjjr5OO+VcpprLQQOpIQ==
-
 fragment-cache@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/fragment-cache/-/fragment-cache-0.2.1.tgz#4290fad27f13e89be7f33799c6bc5a0abfff0d19"
@@ -4859,11 +4854,6 @@ interpret@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
-
-io-ts@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.2.tgz#82b9ef96d95a3fb27a1abf5f29f59b07cc9b8cca"
-  integrity sha512-cXXIL4CR5/sWfKw/Ssc/cbZJGG13J4pJv9/RN6SlWJyh+foAPEUE0I9sWTX1kG24dvhiCM9fpO4F+2AsP+WzaQ==
 
 ip-regex@^2.1.0:
   version "2.1.0"

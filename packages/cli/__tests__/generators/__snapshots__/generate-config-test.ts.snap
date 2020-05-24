@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`config-init-generator should write a config given default answers 1`] = `
+exports[`config-init-generator should write a config 1`] = `
 "{
   \\"plugins\\": [],
   \\"tasks\\": {}
-}"
+}
+"
 `;

@@ -12,11 +12,7 @@ export { default as TableData } from './report-components/table-data';
 export { default as PieChartData } from './report-components/pie-chart-data';
 
 export { loadPlugins } from './loaders/plugin-loader';
-export { default as CheckupConfigService } from './configuration/checkup-config-service';
-export { default as getSearchLoader } from './configuration/loaders/get-search-loader';
-export { default as getFilepathLoader } from './configuration/loaders/get-filepath-loader';
-export { default as CosmiconfigService } from './configuration/cosmiconfig-service';
-export { default as getInitializationConfigLoader } from './configuration/loaders/get-initialization-loader';
+export { readConfig, writeConfig, getConfigPath, mergeConfig, DEFAULT_CONFIG } from './config';
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { exec } from './utils/exec';
@@ -26,5 +22,5 @@ export { toPairs, toTaskData, toTaskItemData, toPercent } from './utils/data-tra
 export * from './types/cli';
 export * from './types/parsers';
 export * from './types/tasks';
-export * from './types/configuration';
+export * from './types/config';
 export * from './types/ember-template-lint';
