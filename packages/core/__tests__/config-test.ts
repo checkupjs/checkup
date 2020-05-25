@@ -1,7 +1,7 @@
-import { CONFIG_DOCS_URL, getConfigPath, readConfig, writeConfig } from '../../src/config';
+import { getConfigPath, readConfig, writeConfig } from '../src/config';
 import { readJsonSync, writeJsonSync } from 'fs-extra';
 
-import { DEFAULT_CONFIG } from '../../lib';
+import { DEFAULT_CONFIG } from '../lib';
 import { createTmpDir } from '@checkup/test-helpers';
 
 describe('config', () => {
@@ -15,8 +15,7 @@ describe('config', () => {
     it('throws if no checkup config found', () => {
       expect(() => {
         readConfig(tmp);
-      }).toThrow(`Could not find a checkup config starting from the given path: ${tmp}.
-See ${CONFIG_DOCS_URL} for more info on how to setup a configuration.`);
+      }).toThrow(`Could not find a checkup config in the given path: ${tmp}.`);
     });
 
     it('throws if config format is invalid', () => {
@@ -28,8 +27,7 @@ See ${CONFIG_DOCS_URL} for more info on how to setup a configuration.`);
 
       expect(() => {
         readConfig(configPath);
-      }).toThrow(`Checkup config in ${configPath} is invalid.
-See ${CONFIG_DOCS_URL} to ensure the format is correct.`);
+      }).toThrow(`Config in ${configPath} is invalid.`);
     });
 
     it('can load a config from an external directory', () => {
@@ -50,7 +48,7 @@ See ${CONFIG_DOCS_URL} to ensure the format is correct.`);
 
       expect(() => {
         writeConfig(tmp);
-      }).toThrow(`There is already an existing Checkup config in ${tmp}`);
+      }).toThrow(`There is already an existing config in ${tmp}`);
     });
 
     it('writes default config if no config is passed', () => {

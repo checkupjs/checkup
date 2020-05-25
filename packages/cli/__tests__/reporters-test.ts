@@ -121,10 +121,11 @@ pluginTaskResults = [
 
 describe('_transformJsonResults', () => {
   it('transforms meta and plugin results into correct format', () => {
-    let transformed = _transformJsonResults(metaTaskResults, pluginTaskResults);
+    let transformed = _transformJsonResults(metaTaskResults, pluginTaskResults, []);
 
     expect(transformed).toMatchInlineSnapshot(`
       Object {
+        "errors": Array [],
         "meta": Object {
           "mock-meta-task-1": Object {
             "bar": "baz",

@@ -5,6 +5,7 @@ import {
   BaseTaskResult,
   Category,
   Task,
+  TaskError,
   TaskName,
   TaskResult,
   taskComparator,
@@ -19,6 +20,7 @@ import PriorityMap from './priority-map';
  */
 export default class TaskList {
   private _categories: Map<Category, PriorityMap>;
+  private _errors: TaskError[];
   debug: debug.Debugger;
 
   get categories() {
@@ -27,6 +29,7 @@ export default class TaskList {
 
   constructor() {
     this._categories = new Map<Category, PriorityMap>();
+    this._errors = [];
     this.debug = debug('checkup:task');
   }
 
@@ -71,14 +74,21 @@ export default class TaskList {
    * @returns {Promise<TaskResult>}
    * @memberof TaskList
    */
-  async runTask(taskName: TaskName): Promise<TaskResult> {
+  async runTask(taskName: TaskName): Promise<[TaskResult | undefined, TaskError[]]> {
+    let result: TaskResult | undefined;
     let task: Task | undefined = this.findTask(taskName);
 
     if (task === undefined) {
       throw new Error(`The ${taskName} task was not found`);
     }
 
-    return await task.run();
+    try {
+      result = await task.run();
+    } catch (error) {
+      this.addError(task.meta.taskName, error.message);
+    }
+
+    return [result, this._errors];
   }
 
   /**
@@ -88,11 +98,16 @@ export default class TaskList {
    * @returns {Promise<TaskResult[]>}
    * @memberof TaskList
    */
-  async runTasks(): Promise<TaskResult[]> {
+  async runTasks(): Promise<[TaskResult[], TaskError[]]> {
     let results = await this.eachTask(async (task: Task) => {
+      let result;
       this.debug('start %s run', task.constructor.name);
 
-      let result = await task.run();
+      try {
+        result = await task.run();
+      } catch (error) {
+        this.addError(task.meta.taskName, error.message);
+      }
 
       this.debug('%s run done', task.constructor.name);
       return result;
@@ -100,7 +115,7 @@ export default class TaskList {
 
     ((results as unknown) as BaseTaskResult[]).sort(taskComparator);
 
-    return results;
+    return [results.filter(Boolean) as TaskResult[], this._errors];
   }
 
   /**
@@ -126,7 +141,9 @@ export default class TaskList {
    * @param fn {Function} the function expressing the wrapped task to run
    * @returns {Promise<TaskResult[]>}
    */
-  private eachTask(fn: (task: Task) => Promise<TaskResult>): Promise<TaskResult[]> {
+  private eachTask(
+    fn: (task: Task) => Promise<TaskResult | undefined>
+  ): Promise<(TaskResult | undefined)[]> {
     return pMap(
       this.getTasks().filter((task) => task.enabled),
       fn
@@ -147,5 +164,9 @@ export default class TaskList {
     });
 
     return values;
+  }
+
+  private addError(taskName: TaskName, error: string) {
+    this._errors.push({ taskName, error });
   }
 }

@@ -4,12 +4,11 @@ import { existsSync, readJsonSync, writeJsonSync } from 'fs-extra';
 import { join, resolve } from 'path';
 
 import { CheckupConfig } from '../types/config';
+import CheckupError from '../errors/checkup-error';
+import { white } from 'chalk';
 
 const debug = require('debug')('checkup:config');
 const schema = require('./config-schema.json');
-
-const ajv = new Ajv();
-const validate = ajv.compile(schema);
 
 export const CONFIG_DOCS_URL =
   'https://docs.checkupjs.com/quickstart/usage#1-generate-a-configuration-file';
@@ -31,9 +30,9 @@ export function readConfig(configPath: string) {
   try {
     config = readJsonSync(resolve(configPath || getConfigPath()));
   } catch (error) {
-    throw new Error(
-      `Could not find a checkup config starting from the given path: ${configPath}.
-See ${CONFIG_DOCS_URL} for more info on how to setup a configuration.`
+    throw new CheckupError(
+      `Could not find a checkup config in the given path: ${configPath}.`,
+      `See ${CONFIG_DOCS_URL} for more info on how to setup a config.`
     );
   }
 
@@ -52,23 +51,30 @@ export function writeConfig(dir: string, config: Partial<CheckupConfig> = {}) {
   let path = getConfigPath(dir);
 
   if (existsSync(path)) {
-    throw new Error(`There is already an existing Checkup config in ${dir}`);
+    throw new Error(`There is already an existing config in ${dir}`);
   }
 
   try {
     writeJsonSync(path, mergeConfig(config), { spaces: 2 });
   } catch (error) {
-    throw new Error(`Cannot write Checkup config to ${dir}.`);
+    throw new Error(`Cannot write config to ${dir}.`);
   }
 
   return path;
 }
 
 export function validateConfig(config: CheckupConfig, configPath: string) {
+  const ajv = new Ajv();
+  const validate = ajv.compile(schema);
+
   if (!validate(config)) {
-    throw new Error(
-      `Checkup config in ${configPath} is invalid.
-See ${CONFIG_DOCS_URL} to ensure the format is correct.`
+    let error = `\n\n${white.bold('Details')}: ${
+      (validate.errors && validate.errors.length > 0 && ajv.errorsText(validate.errors)) || ''
+    }.`;
+
+    throw new CheckupError(
+      `Config in ${configPath} is invalid.${error}`,
+      `See ${CONFIG_DOCS_URL} for more information on correct config formats.`
     );
   }
 }

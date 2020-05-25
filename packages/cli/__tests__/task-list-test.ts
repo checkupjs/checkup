@@ -1,4 +1,5 @@
 import {
+  ErrorTask,
   InsightsTaskHigh,
   InsightsTaskLow,
   MigrationTaskHigh,
@@ -64,9 +65,10 @@ describe('TaskList', () => {
 
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
-    let result = await taskList.runTask('insights-task-high');
+    let [result, errors] = await taskList.runTask('insights-task-high');
 
-    expect(result.toJson()).toMatchSnapshot();
+    expect(result!.toJson()).toMatchSnapshot();
+    expect(errors).toHaveLength(0);
   });
 
   it('runTasks will run all registered tasks', async () => {
@@ -75,10 +77,11 @@ describe('TaskList', () => {
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
     taskList.registerTask(new InsightsTaskLow(getTaskContext()));
 
-    let result = await taskList.runTasks();
+    let [results, errors] = await taskList.runTasks();
 
-    expect(result[0].toJson()).toMatchSnapshot();
-    expect(result[1].toJson()).toMatchSnapshot();
+    expect(results[0].toJson()).toMatchSnapshot();
+    expect(results[1].toJson()).toMatchSnapshot();
+    expect(errors).toHaveLength(0);
   });
 
   it('runTasks will sort tasks in the correct order', async () => {
@@ -91,9 +94,9 @@ describe('TaskList', () => {
     taskList.registerTask(new RecommendationsTaskLow(getTaskContext()));
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
-    let result = await taskList.runTasks();
+    let [results, errors] = await taskList.runTasks();
 
-    expect(result).toMatchInlineSnapshot(`
+    expect(results).toMatchInlineSnapshot(`
       Array [
         MockTaskResult {
           "meta": Object {
@@ -163,5 +166,19 @@ describe('TaskList', () => {
         },
       ]
     `);
+    expect(errors).toHaveLength(0);
+  });
+
+  it('Correctly captures errors in tasks', async () => {
+    let taskList = new TaskList();
+
+    taskList.registerTask(new ErrorTask(getTaskContext()));
+
+    let [results, errors] = await taskList.runTasks();
+
+    expect(results).toHaveLength(0);
+    expect(errors).toHaveLength(1);
+    expect(errors[0].taskName).toEqual('error-task');
+    expect(errors[0].error).toEqual('Something went wrong in this task');
   });
 });

@@ -110,3 +110,21 @@ export class MigrationTaskLow extends BaseTask implements Task {
     return new MockTaskResult(this.meta, 'migration task low is being run');
   }
 }
+
+export class ErrorTask extends BaseTask implements Task {
+  meta = {
+    taskName: 'error-task',
+    friendlyTaskName: 'Error Task',
+    taskClassification: {
+      category: Category.Insights,
+      priority: Priority.High,
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<TaskResult> {
+    throw new Error('Something went wrong in this task');
+  }
+}
