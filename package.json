@@ -38,7 +38,7 @@
     "@types/tmp": "^0.2.0",
     "@types/yeoman-assert": "^3.1.1",
     "@types/yeoman-test": "^2.0.3",
-    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.33.0",
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
