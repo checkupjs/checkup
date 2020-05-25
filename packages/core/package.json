@@ -9,7 +9,7 @@
     "chalk": "^4.0.0",
     "cli-ux": "^5.4.4",
     "debug": "^4.1.1",
-    "ember-template-lint": "^2.6.0",
+    "ember-template-lint": "^2.8.0",
     "eslint": "^6.8.0",
     "fs-extra": "^9.0.0",
     "globby": "^11.0.0",
