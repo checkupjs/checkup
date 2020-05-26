@@ -28,7 +28,7 @@ describe('ember-in-repo-addons-engines-task', () => {
       getTaskContext({
         cliFlags: { cwd: emberProject.baseDir },
         pkg: emberProject.pkg,
-        paths: emberProject.getFilePaths(),
+        paths: emberProject.filePaths,
       })
     ).run();
     const taskResult = <EmberInRepoAddonEnginesTaskResult>result;
@@ -44,7 +44,7 @@ describe('ember-in-repo-addons-engines-task', () => {
       getTaskContext({
         pkg: emberProject.pkg,
         cliFlags: { cwd: emberProject.baseDir },
-        paths: emberProject.getFilePaths(),
+        paths: emberProject.filePaths,
       })
     ).run();
     const taskResult = <EmberInRepoAddonEnginesTaskResult>result;

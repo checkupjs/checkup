@@ -1,6 +1,6 @@
 import {
   TaskResult,
-  findStrings,
+  findInFiles,
   Task,
   Category,
   Priority,
@@ -20,7 +20,7 @@ export default class TodosTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let stringsFound = await findStrings(this.context.paths, [
+    let stringsFound = await findInFiles(this.context.paths, [
       { patternName: 'todo', patterns: ['TODO:'] },
     ]);
     return new TodosTaskResult(this.meta, stringsFound);

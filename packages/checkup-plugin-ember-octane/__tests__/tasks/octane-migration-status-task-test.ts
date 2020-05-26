@@ -38,7 +38,7 @@ describe('octane-migration-status-task', () => {
     project.writeSync();
     let task = new OctaneMigrationStatusTask(
       pluginName,
-      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.getFilePaths() })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     );
     let taskResult = await task.run();
     let { results, errorCount } = taskResult.esLintReport;

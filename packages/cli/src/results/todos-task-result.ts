@@ -1,10 +1,10 @@
-import { BaseTaskResult, TaskResult, ui, StringsFound, TaskMetaData } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, ResultData, TaskMetaData } from '@checkup/core';
 
 export default class TodosTaskResult extends BaseTaskResult implements TaskResult {
-  stringsFound!: StringsFound;
+  stringsFound!: ResultData;
   todosCount: number;
 
-  constructor(meta: TaskMetaData, stringsFound: StringsFound) {
+  constructor(meta: TaskMetaData, stringsFound: ResultData) {
     super(meta);
 
     this.stringsFound = stringsFound;

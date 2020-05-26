@@ -1,9 +1,4 @@
-import {
-  CheckupProject,
-  stdout,
-  getTaskContext,
-  filterTaskItemDataJson,
-} from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext, clearFilePaths } from '@checkup/test-helpers';
 
 import TodosTask from '../../src/tasks/todos-task';
 import TodosTaskResult from '../../src/results/todos-task-result';
@@ -26,7 +21,7 @@ describe('todos-task', () => {
     const result = await new TodosTask(
       'internal',
       getTaskContext({
-        paths: project.getFilePaths(),
+        paths: project.filePaths,
       })
     ).run();
     const typesTaskResult = <TodosTaskResult>result;
@@ -46,14 +41,13 @@ describe('todos-task', () => {
     const result = await new TodosTask(
       'internal',
       getTaskContext({
-        paths: project.getFilePaths(),
+        paths: project.filePaths,
       })
     ).run();
     const typesTaskResult = <TodosTaskResult>result;
 
     const json = typesTaskResult.toJson();
-    expect({ ...json, ...{ result: filterTaskItemDataJson(json.result.todos) } })
-      .toMatchInlineSnapshot(`
+    expect({ ...json, ...{ result: clearFilePaths(json.result.todos) } }).toMatchInlineSnapshot(`
       Object {
         "meta": Object {
           "friendlyTaskName": "Number of TODOs",

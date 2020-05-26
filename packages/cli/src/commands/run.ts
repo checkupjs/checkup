@@ -30,7 +30,7 @@ export default class RunCommand extends Command {
   // required for variable length command line arguments
   static strict = false;
 
-  static usage = '[run] PATH';
+  static usage = '[run] PATHS';
 
   static args = [
     {

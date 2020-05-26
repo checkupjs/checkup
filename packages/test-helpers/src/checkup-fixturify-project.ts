@@ -17,6 +17,12 @@ const walkSync = require('walk-sync');
  * mock checkup projects.
  */
 export default class CheckupFixturifyProject extends Project {
+  _hasWritten: boolean = false;
+
+  writeSync() {
+    super.writeSync(...arguments);
+    this._hasWritten = true;
+  }
   /**
    * Add a checkup config file to the project
    *
@@ -79,12 +85,11 @@ export default class CheckupFixturifyProject extends Project {
     this.pkg = packageJsonContent;
   }
 
-  getFilePaths(): string[] {
-    try {
-      this.readSync(this.root);
+  get filePaths(): string[] {
+    if (this._hasWritten) {
       let allFiles = walkSync(this.baseDir, { directories: false });
       return resolveFilePaths(allFiles, this.baseDir);
-    } catch (error) {
+    } else {
       throw new Error('You must call writeSync on your project before getting the file paths.');
     }
   }

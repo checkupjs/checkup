@@ -4852,11 +4852,6 @@ interpret@^1.0.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
-io-ts@^2.2.2:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.3.tgz#6680383d0b84e0e61fa9f121a512474a9aa325c5"
-  integrity sha512-qiaqhzYVGENWvMnf4Dto/j8IDEiEWexNf4Z3b8tFEyE1GLLojnACUvUqkV2QF7vLC0cv/QKtq6ZOgKGConPYEA==
-
 ip-regex@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-2.1.0.tgz#fa78bf5d2e6913c911ce9f819ee5146bb6d844e9"

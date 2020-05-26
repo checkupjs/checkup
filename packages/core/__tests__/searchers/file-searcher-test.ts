@@ -1,5 +1,5 @@
-import { findStrings } from '../../src/searchers/file-searcher';
-import { CheckupProject, filterTaskItemDataJson } from '@checkup/test-helpers';
+import { findInFiles } from '../../src/searchers/file-searcher';
+import { CheckupProject, clearFilePaths } from '@checkup/test-helpers';
 
 describe('file-searcher', () => {
   let project: CheckupProject;
@@ -54,11 +54,11 @@ describe('file-searcher', () => {
   });
 
   test('it should find strings in files', async () => {
-    let stringsFound = await findStrings(project.getFilePaths(), [
+    let stringsFound = await findInFiles(project.filePaths, [
       { patternName: 'test', patterns: ['TEST', 'test'] },
       { patternName: 'bite', patterns: ['bite'] },
     ]);
-    expect(filterTaskItemDataJson(stringsFound.results)).toMatchInlineSnapshot(`
+    expect(clearFilePaths(stringsFound.results)).toMatchInlineSnapshot(`
       Array [
         Object {
           "data": Array [],

@@ -1,12 +1,12 @@
-import { SearchPattern, StringsFound, SearchItem } from '../types/util';
+import { SearchPattern, ResultData, SearchItem } from '../types/util';
 import { toTaskItemData } from '../utils/data-transformers';
 
 const fs = require('fs');
 
-export async function findStrings(
+export async function findInFiles(
   files: string[],
   searchPatterns: SearchPattern[]
-): Promise<StringsFound> {
+): Promise<ResultData> {
   let errors: string[] = [];
   let searchItems: SearchItem[] = [];
 

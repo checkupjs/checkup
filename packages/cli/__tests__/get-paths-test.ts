@@ -25,12 +25,13 @@ describe('getFilePaths', function () {
   });
 
   afterEach(async function () {
-    await project.dispose();
+    project.dispose();
   });
 
   describe('basic', function () {
     it('returns all files when no patterns are provided', function () {
       let files = getFilePaths(project.baseDir);
+
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
         Array [
           "/bar/index.js",
@@ -55,6 +56,7 @@ describe('getFilePaths', function () {
   describe('glob', function () {
     it('resolves a glob pattern', function () {
       let files = getFilePaths(project.baseDir, ['**/*.hbs']);
+
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
         Array [
           "/foo/index.hbs",
@@ -64,6 +66,7 @@ describe('getFilePaths', function () {
 
     it('resolves a glob pattern when a base pattern other than "." is provided', function () {
       let files = getFilePaths(project.baseDir, ['*']);
+
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
         Array [
           "/index.js",
@@ -74,6 +77,7 @@ describe('getFilePaths', function () {
 
     it('respects a glob ignore option', function () {
       let files = getFilePaths(`${project.baseDir}/baz`, ['**']);
+
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
         Array [
           "/baz/index.js",

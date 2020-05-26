@@ -29,7 +29,7 @@ describe('dependencies-task', () => {
       getTaskContext({
         cliFlags: { cwd: emberProject.baseDir },
         pkg: emberProject.pkg,
-        paths: emberProject.getFilePaths(),
+        paths: emberProject.filePaths,
       })
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;
@@ -45,7 +45,7 @@ describe('dependencies-task', () => {
       getTaskContext({
         cliFlags: { cwd: emberProject.baseDir },
         pkg: emberProject.pkg,
-        paths: emberProject.getFilePaths(),
+        paths: emberProject.filePaths,
       })
     ).run();
     const dependencyTaskResult = <EmberDependenciesTaskResult>result;

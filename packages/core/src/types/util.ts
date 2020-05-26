@@ -1,6 +1,6 @@
 import { TaskItemData } from './tasks';
 
-export interface StringsFound {
+export interface ResultData {
   results: TaskItemData[];
   errors: string[];
 }
