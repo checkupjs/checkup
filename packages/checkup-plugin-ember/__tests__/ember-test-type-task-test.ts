@@ -79,7 +79,7 @@ describe('ember-test-types-task', () => {
 
     const result = await new EmberTestTypesTask(
       pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
     const testTypesTaskResult = <EmberTestTypesTaskResult>result;
@@ -115,7 +115,7 @@ describe('ember-test-types-task', () => {
 
     const result = await new EmberTestTypesTask(
       pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
     const testTypesTaskResult = <EmberTestTypesTaskResult>result;
@@ -139,7 +139,7 @@ describe('ember-test-types-task', () => {
     project.writeSync();
     const result = await new EmberTestTypesTask(
       pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
     const testTypesTaskResult = <EmberTestTypesTaskResult>result;
@@ -159,7 +159,7 @@ describe('ember-test-types-task', () => {
 
     const result = await new EmberTestTypesTask(
       pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
     const testTypesTaskResult = <EmberTestTypesTaskResult>result;

@@ -36,15 +36,14 @@ describe('octane-migration-status-task', () => {
     });
 
     project.writeSync();
-
     let task = new OctaneMigrationStatusTask(
       pluginName,
-      getTaskContext({}, { cwd: project.baseDir })
+      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     );
     let taskResult = await task.run();
     let { results, errorCount } = taskResult.esLintReport;
 
-    expect(results).toHaveLength(2);
+    expect(results).toHaveLength(3);
     expect(errorCount).toBe(0);
   });
 });

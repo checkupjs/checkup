@@ -22,7 +22,10 @@ describe('project-meta-task', () => {
     it('can read project info and output to console', async () => {
       const result = await new ProjectMetaTask(
         'meta',
-        getTaskContext({}, { cwd: checkupProject.baseDir }, {}, checkupProject.pkg)
+        getTaskContext({
+          cliFlags: { cwd: checkupProject.baseDir },
+          pkg: checkupProject.pkg,
+        })
       ).run();
       const taskResult = <ProjectMetaTaskResult>result;
 
@@ -41,7 +44,10 @@ describe('project-meta-task', () => {
     it('can read project info as JSON', async () => {
       const result = await new ProjectMetaTask(
         'meta',
-        getTaskContext({}, { cwd: checkupProject.baseDir }, {}, checkupProject.pkg)
+        getTaskContext({
+          cliFlags: { cwd: checkupProject.baseDir },
+          pkg: checkupProject.pkg,
+        })
       ).run();
       const taskResult = <ProjectMetaTaskResult>result;
 

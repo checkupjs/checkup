@@ -1,6 +1,6 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 import { JsonObject, PackageJson } from 'type-fest';
-import { RunArgs, RunFlags } from './cli';
+import { RunFlags } from './cli';
 
 import { CheckupConfig } from './config';
 import NumericalCardData from '../report-components/numerical-card-data';
@@ -24,11 +24,12 @@ export interface Task {
 }
 
 export interface TaskContext {
-  readonly cliArguments: RunArgs;
+  readonly cliArguments: string[];
   readonly cliFlags: RunFlags;
   readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
   readonly config: CheckupConfig;
   readonly pkg: PackageJson;
+  readonly paths: string[];
 }
 
 export interface TaskResult {

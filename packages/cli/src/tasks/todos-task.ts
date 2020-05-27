@@ -1,15 +1,15 @@
 import {
   TaskResult,
-  TaskContext,
+  findInFiles,
   Task,
   Category,
   Priority,
   TaskMetaData,
-  FileSearcherTask,
+  BaseTask,
 } from '@checkup/core';
 import TodosTaskResult from '../results/todos-task-result';
 
-export default class TodosTask extends FileSearcherTask implements Task {
+export default class TodosTask extends BaseTask implements Task {
   meta: TaskMetaData = {
     taskName: 'todos',
     friendlyTaskName: 'Number of TODOs',
@@ -19,14 +19,10 @@ export default class TodosTask extends FileSearcherTask implements Task {
     },
   };
 
-  constructor(pluginName: string, context: TaskContext) {
-    super(pluginName, context, { todo: ['TODO:'] });
-  }
-
   async run(): Promise<TaskResult> {
-    let result: TodosTaskResult = new TodosTaskResult(this.meta);
-    let stringsFound = await this.searcher.findStrings();
-    result.count = stringsFound.counts.todo;
-    return result;
+    let stringsFound = await findInFiles(this.context.paths, [
+      { patternName: 'todo', patterns: ['TODO:'] },
+    ]);
+    return new TodosTaskResult(this.meta, stringsFound);
   }
 }

@@ -1,17 +1,23 @@
-import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, ResultData, TaskMetaData } from '@checkup/core';
 
 export default class TodosTaskResult extends BaseTaskResult implements TaskResult {
-  count!: number;
+  stringsFound!: ResultData;
+  todosCount: number;
+
+  constructor(meta: TaskMetaData, stringsFound: ResultData) {
+    super(meta);
+
+    this.stringsFound = stringsFound;
+    this.todosCount = stringsFound?.results.find((type) => type.type === 'todo')?.total || 0;
+  }
 
   toConsole() {
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.log(`TODOs found: ${this.count}`);
+      ui.log(`TODOs found: ${this.todosCount}`);
     });
   }
 
   toJson() {
-    return {
-      todos: this.count,
-    };
+    return { meta: this.meta, result: { todos: this.stringsFound.results } };
   }
 }

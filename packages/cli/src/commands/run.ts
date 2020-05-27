@@ -1,7 +1,6 @@
 import {
   CheckupConfig,
   OutputFormat,
-  RunArgs,
   RunFlags,
   TaskContext,
   TaskResult,
@@ -23,11 +22,15 @@ import TaskList from '../task-list';
 import TodosTask from '../tasks/todos-task';
 import { getPackageJson } from '../helpers/get-package-json';
 import { getReporter } from '../reporters';
+import { getFilePaths } from '../helpers/get-paths';
 
 export default class RunCommand extends Command {
   static description = 'Provides health check information about your project';
 
-  static usage = '[run] PATH';
+  // required for variable length command line arguments
+  static strict = false;
+
+  static usage = '[run] PATHS';
 
   static args = [
     {
@@ -64,7 +67,7 @@ export default class RunCommand extends Command {
     }),
   };
 
-  runArgs!: RunArgs;
+  runArgs!: string[];
   runFlags!: RunFlags;
   defaultTasks: MetaTaskList = new MetaTaskList();
   metaTaskResults: MetaTaskResult[] = [];
@@ -73,9 +76,9 @@ export default class RunCommand extends Command {
   checkupConfig!: CheckupConfig;
 
   public async init() {
-    let { args, flags } = this.parse(RunCommand);
+    let { argv, flags } = this.parse(RunCommand);
 
-    this.runArgs = args;
+    this.runArgs = argv;
     this.runFlags = flags;
   }
 
@@ -157,6 +160,7 @@ export default class RunCommand extends Command {
       parsers: getRegisteredParsers(),
       config: this.checkupConfig,
       pkg: getPackageJson(this.runFlags.cwd),
+      paths: getFilePaths(this.runFlags.cwd, this.runArgs),
     });
 
     await this.registerDefaultTasks(taskContext);

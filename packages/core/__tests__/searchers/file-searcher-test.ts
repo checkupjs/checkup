@@ -1,12 +1,11 @@
-import FileSearcher from '../../src/searchers/file-searcher';
-
-import Project = require('fixturify-project');
+import { findInFiles } from '../../src/searchers/file-searcher';
+import { CheckupProject, clearFilePaths } from '@checkup/test-helpers';
 
 describe('file-searcher', () => {
-  let project: Project;
+  let project: CheckupProject;
 
   beforeEach(function () {
-    project = new Project('foo', '3.1.4');
+    project = new CheckupProject('foo', '3.1.4');
     project.files = {
       node_modules: {
         'lion.js': `
@@ -55,34 +54,23 @@ describe('file-searcher', () => {
   });
 
   test('it should find strings in files', async () => {
-    let fileSearcher = new FileSearcher(project.baseDir, {
-      test: ['TEST', 'test'],
-      bite: ['bite'],
-    });
-    let stringsFound = await fileSearcher.findStrings();
-    expect(stringsFound.counts).toMatchInlineSnapshot(`
-      Object {
-        "bite": 1,
-        "test": 7,
-      }
-    `);
-  });
-
-  test('it should find files', async () => {
-    let fileSearcher = new FileSearcher(project.baseDir, {
-      animals: ['**/pets*', '**/snakes*'],
-    });
-    let count = await fileSearcher.findFiles();
-    expect(count).toMatchInlineSnapshot(`
+    let stringsFound = await findInFiles(project.filePaths, [
+      { patternName: 'test', patterns: ['TEST', 'test'] },
+      { patternName: 'bite', patterns: ['bite'] },
+    ]);
+    expect(clearFilePaths(stringsFound.results)).toMatchInlineSnapshot(`
       Array [
         Object {
-          "data": Array [
-            "bar/spaz/pets.js",
-            "bar/baz/snakes.js",
-          ],
-          "displayName": "Animals",
-          "total": 2,
-          "type": "animals",
+          "data": Array [],
+          "displayName": "Test",
+          "total": 14,
+          "type": "test",
+        },
+        Object {
+          "data": Array [],
+          "displayName": "Bite",
+          "total": 1,
+          "type": "bite",
         },
       ]
     `);
