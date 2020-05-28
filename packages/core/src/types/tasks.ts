@@ -1,11 +1,8 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 import { JsonObject, PackageJson } from 'type-fest';
-import { RunFlags } from './cli';
 
 import { CheckupConfig } from './config';
-import NumericalCardData from '../report-components/numerical-card-data';
-import PieChartData from '../report-components/pie-chart-data';
-import TableData from '../report-components/table-data';
+import { RunFlags } from './cli';
 
 export type SearchPatterns = Record<string, string[]>;
 
@@ -67,38 +64,12 @@ export const enum Priority {
   Low = 'low',
 }
 
-export interface TableResult {
-  name: string;
-  value: string | number;
-  grade?: Grade;
-}
-
 export type JsonMetaTaskResult = JsonObject;
 
 export type JsonTaskResult = {
   meta: TaskMetaData;
   result: {};
 };
-
-export type ReportResultData = NumericalCardData | TableData | PieChartData;
-
-export type UIResultData = {
-  [key in Category]: {
-    [key in Priority]: ReportResultData[];
-  };
-};
-
-export type UIReportData = {
-  meta: JsonMetaTaskResult;
-  results: UIResultData;
-  requiresChart: boolean;
-};
-
-export const enum ReportComponentType {
-  NumericalCard = 'numerical-card',
-  Table = 'table',
-  PieChart = 'pie-chart',
-}
 
 export const enum Grade {
   A = 'A',
@@ -111,9 +82,4 @@ export const enum Grade {
 export enum OutputFormat {
   stdout = 'stdout',
   json = 'json',
-}
-
-export interface PieChartItem {
-  value: number;
-  description: string;
 }

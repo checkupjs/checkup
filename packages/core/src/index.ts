@@ -6,10 +6,6 @@ export { taskComparator } from './utils/task-result-comparator';
 export { getRegisteredParsers, registerParser } from './parsers/registered-parsers';
 export { createParser as createEslintParser } from './parsers/eslint-parser';
 
-export { default as NumericalCardData } from './report-components/numerical-card-data';
-export { default as TableData } from './report-components/table-data';
-export { default as PieChartData } from './report-components/pie-chart-data';
-
 export { loadPlugins } from './loaders/plugin-loader';
 export { readConfig, writeConfig, getConfigPath, mergeConfig, DEFAULT_CONFIG } from './config';
 
