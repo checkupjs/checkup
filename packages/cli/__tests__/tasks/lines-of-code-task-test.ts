@@ -41,11 +41,11 @@ describe('lines-of-code-task', () => {
     expect(stdout()).toMatchInlineSnapshot(`
       "=== Lines of Code ===
 
-      File type   Total LOC   Todos 
-      js          1           1     
-      hbs         1           1     
-      scss        10          0     
-      json        7           0     
+      File type   Total       TODO 
+      hbs         1           1    
+      js          1           1    
+      scss        10          0    
+      json        7           N/A  
 
       "
     `);
@@ -76,6 +76,23 @@ describe('lines-of-code-task', () => {
           "fileResults": Array [
             Object {
               "errors": Array [],
+              "fileExension": "hbs",
+              "results": Array [
+                Object {
+                  "block": 1,
+                  "blockEmpty": 0,
+                  "comment": 1,
+                  "empty": 0,
+                  "mixed": 0,
+                  "single": 0,
+                  "source": 0,
+                  "todo": 1,
+                  "total": 1,
+                },
+              ],
+            },
+            Object {
+              "errors": Array [],
               "fileExension": "js",
               "results": Array [
                 Object {
@@ -86,23 +103,6 @@ describe('lines-of-code-task', () => {
                   "mixed": 0,
                   "single": 1,
                   "source": 0,
-                  "todo": 1,
-                  "total": 1,
-                },
-              ],
-            },
-            Object {
-              "errors": Array [],
-              "fileExension": "hbs",
-              "results": Array [
-                Object {
-                  "block": 0,
-                  "blockEmpty": 0,
-                  "comment": 0,
-                  "empty": 0,
-                  "mixed": 0,
-                  "single": 0,
-                  "source": 1,
                   "todo": 1,
                   "total": 1,
                 },
@@ -130,14 +130,14 @@ describe('lines-of-code-task', () => {
               "fileExension": "json",
               "results": Array [
                 Object {
-                  "block": 0,
-                  "blockEmpty": 0,
-                  "comment": 0,
-                  "empty": 0,
-                  "mixed": 0,
-                  "single": 0,
-                  "source": 7,
-                  "todo": 0,
+                  "block": "N/A",
+                  "blockEmpty": "N/A",
+                  "comment": "N/A",
+                  "empty": "N/A",
+                  "mixed": "N/A",
+                  "single": "N/A",
+                  "source": "N/A",
+                  "todo": "N/A",
                   "total": 7,
                 },
               ],
