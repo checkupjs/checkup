@@ -6,7 +6,7 @@ import { red } from 'chalk';
 export default class CheckupError extends CLIError {
   constructor(
     error: string | Error,
-    public callToAction: string = '',
+    public callToAction: string,
     options: { code?: string; exit?: number | false } = {}
   ) {
     super(error, options);
