@@ -37,6 +37,11 @@ export interface TaskResult {
   toJson: () => JsonMetaTaskResult | JsonTaskResult;
 }
 
+export type TaskError = {
+  taskName: TaskName;
+  error: string;
+};
+
 export interface TaskMetaData {
   taskName: TaskName;
   friendlyTaskName: TaskName;

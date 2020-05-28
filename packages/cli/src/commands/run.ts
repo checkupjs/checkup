@@ -1,8 +1,10 @@
 import {
   CheckupConfig,
+  CheckupError,
   OutputFormat,
   RunFlags,
   TaskContext,
+  TaskError,
   TaskResult,
   getConfigPath,
   getRegisteredParsers,
@@ -11,8 +13,8 @@ import {
   registerParser,
   ui,
 } from '@checkup/core';
-import { Command, flags } from '@oclif/command';
 
+import { BaseCommand } from '../base-command';
 import CheckupMetaTask from '../tasks/checkup-meta-task';
 import MetaTaskList from '../meta-task-list';
 import { MetaTaskResult } from '../types';
@@ -20,11 +22,12 @@ import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
 import TodosTask from '../tasks/todos-task';
+import { flags } from '@oclif/command';
 import { getPackageJson } from '../helpers/get-package-json';
 import { getReporter } from '../reporters';
 import { getFilePaths } from '../helpers/get-paths';
 
-export default class RunCommand extends Command {
+export default class RunCommand extends BaseCommand {
   static description = 'Provides health check information about your project';
 
   // required for variable length command line arguments
@@ -71,8 +74,10 @@ export default class RunCommand extends Command {
   runFlags!: RunFlags;
   defaultTasks: MetaTaskList = new MetaTaskList();
   metaTaskResults: MetaTaskResult[] = [];
+  metaTaskErrors: TaskError[] = [];
   pluginTasks: TaskList = new TaskList();
   pluginTaskResults: TaskResult[] = [];
+  pluginTaskErrors: TaskError[] = [];
   checkupConfig!: CheckupConfig;
 
   public async init() {
@@ -107,24 +112,41 @@ export default class RunCommand extends Command {
 
   private async runTasks() {
     if (this.runFlags.task !== undefined) {
+      let metaTaskResult: MetaTaskResult | undefined;
+      let pluginTaskResult: TaskResult | undefined;
       let taskFound: boolean = false;
 
       if (this.defaultTasks.hasTask(this.runFlags.task)) {
         taskFound = true;
-        this.metaTaskResults = [await this.defaultTasks.runTask(this.runFlags.task)];
+        [metaTaskResult, this.metaTaskErrors] = await this.defaultTasks.runTask(this.runFlags.task);
+
+        if (metaTaskResult) {
+          this.metaTaskResults.push(metaTaskResult);
+        }
       }
 
       if (this.pluginTasks.hasTask(this.runFlags.task)) {
         taskFound = true;
-        this.pluginTaskResults = [await this.pluginTasks.runTask(this.runFlags.task)];
+        [pluginTaskResult, this.pluginTaskErrors] = await this.pluginTasks.runTask(
+          this.runFlags.task
+        );
+
+        if (pluginTaskResult) {
+          this.pluginTaskResults.push(pluginTaskResult);
+        }
       }
 
       if (!taskFound) {
-        this.error(`Cannot find the ${this.runFlags.task} task.`);
+        this.extendedError(
+          new CheckupError(
+            `Cannot find the ${this.runFlags.task} task.`,
+            "Make sure you've provided the correct task name."
+          )
+        );
       }
     } else {
-      this.metaTaskResults = await this.defaultTasks.runTasks();
-      this.pluginTaskResults = await this.pluginTasks.runTasks();
+      [this.metaTaskResults, this.metaTaskErrors] = await this.defaultTasks.runTasks();
+      [this.pluginTaskResults, this.pluginTaskErrors] = await this.pluginTasks.runTasks();
     }
   }
 
@@ -134,16 +156,12 @@ export default class RunCommand extends Command {
     try {
       configPath = this.runFlags.config || getConfigPath(this.runFlags.cwd);
       this.checkupConfig = readConfig(configPath);
-    } catch (error) {
-      this.error(error.message);
-    }
 
-    try {
       let plugins = await loadPlugins(this.checkupConfig.plugins, this.runFlags.cwd);
 
       this.config.plugins.push(...plugins);
     } catch (error) {
-      this.error(error.message);
+      this.extendedError(error);
     }
   }
 
@@ -172,7 +190,13 @@ export default class RunCommand extends Command {
   }
 
   private async report() {
-    let generateReport = getReporter(this.runFlags, this.metaTaskResults, this.pluginTaskResults);
+    let errors = [...this.metaTaskErrors, ...this.pluginTaskErrors];
+    let generateReport = getReporter(
+      this.runFlags,
+      this.metaTaskResults,
+      this.pluginTaskResults,
+      errors
+    );
 
     await generateReport();
   }

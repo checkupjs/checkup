@@ -4,7 +4,7 @@ import * as debug from 'debug';
 import { basename, join } from 'path';
 import { existsSync, readdirSync } from 'fs';
 
-import Command from '@oclif/command';
+import { BaseCommand } from '../base-command';
 import { IConfig } from '@oclif/config';
 import { createEnv } from 'yeoman-environment';
 import { flags } from '@oclif/command';
@@ -18,7 +18,7 @@ export interface Options {
   force?: boolean;
 }
 
-export default class GenerateCommand extends Command {
+export default class GenerateCommand extends BaseCommand {
   private _generators!: string[];
   private baseDir: string;
 

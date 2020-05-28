@@ -69,13 +69,14 @@ describe('MetaTaskList', () => {
 
     taskList.registerTask(new FakeMetaTask());
 
-    let result = await taskList.runTask('fake-meta-task');
+    let [result, errors] = await taskList.runTask('fake-meta-task');
 
-    expect(result.toJson()).toMatchInlineSnapshot(`
+    expect(result!.toJson()).toMatchInlineSnapshot(`
       Object {
         "fake-meta-task": "fake meta task is being run",
       }
     `);
+    expect(errors).toHaveLength(0);
   });
 
   it('runTasks will run all registered tasks', async () => {
@@ -84,9 +85,10 @@ describe('MetaTaskList', () => {
     taskList.registerTask(new FakeMetaTask());
     taskList.registerTask(new OtherFakeMetaTask());
 
-    let result = await taskList.runTasks();
+    let [results, errors] = await taskList.runTasks();
 
-    expect(result[0].toJson()).toMatchSnapshot();
-    expect(result[1].toJson()).toMatchSnapshot();
+    expect(results[0].toJson()).toMatchSnapshot();
+    expect(results[1].toJson()).toMatchSnapshot();
+    expect(errors).toHaveLength(0);
   });
 });

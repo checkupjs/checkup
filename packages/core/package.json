@@ -17,12 +17,15 @@
     "micromatch": "^4.0.2",
     "pkg-up": "^3.1.0",
     "resolve": "^1.17.0",
-    "startcase": "^1.0.0"
+    "startcase": "^1.0.0",
+    "strip-ansi": "^6.0.0",
+    "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",
     "@types/eslint": "^6.8.1",
     "@types/resolve": "^1.17.1",
+    "@types/wrap-ansi": "^3.0.0",
     "eslint-plugin-jest": "^23.13.1"
   },
   "engines": {
