@@ -17,3 +17,8 @@ export function stdout() {
 export function stderr() {
   return pse.output;
 }
+
+export function clearStdout() {
+  pso.stop();
+  pso.start();
+}
