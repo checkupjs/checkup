@@ -67,12 +67,12 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
     super(pluginName, context);
 
     // get all file exensions in the repo to group the files
-    const fileExensionsInRepo = new Set();
+    const fileExensionsInRepo = new Set<string>();
     this.context.paths.forEach((path) => {
       fileExensionsInRepo.add(path.split('.')[1]);
     });
 
-    this.filesGroupedByType = ([...fileExensionsInRepo] as string[]).map((ext) => {
+    this.filesGroupedByType = [...fileExensionsInRepo].map((ext) => {
       return {
         ext,
         paths: micromatch(this.context.paths, `**/*.${ext}`),

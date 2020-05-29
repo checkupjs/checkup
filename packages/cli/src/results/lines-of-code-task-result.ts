@@ -25,7 +25,7 @@ export default class LinesOfCodeTaskResult extends BaseTaskResult implements Tas
 
   toConsole() {
     let flattenedResults = this.fileResults.map((result) => {
-      return { ...result.results[0], ...result };
+      return { ...result.results, ...result };
     });
 
     ui.section(this.meta.friendlyTaskName, () => {
@@ -74,7 +74,7 @@ function transformResults(fileResults: FileResults[]) {
     );
 
     return {
-      results: [reducedResults],
+      results: reducedResults,
       fileExension: fileResult.fileExension,
       errors: fileResult.errors,
     };
