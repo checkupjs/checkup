@@ -1,12 +1,14 @@
 import { CreateParser, Parser } from '../types/parsers';
 
-import { CLIEngine } from 'eslint';
+import { CLIEngine, Rule } from 'eslint';
 
 class ESLintParser implements Parser<CLIEngine.LintReport> {
   engine: CLIEngine;
+  rules: Map<string, Rule.RuleModule>;
 
   constructor(config: CLIEngine.Options) {
     this.engine = new CLIEngine(config);
+    this.rules = this.engine.getRules();
   }
 
   async execute(paths: string[]): Promise<CLIEngine.LintReport> {

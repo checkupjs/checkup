@@ -31,6 +31,7 @@ export default class CheckupFixturifyProject extends Project {
    */
   addCheckupConfig(config: Partial<CheckupConfig> = {}) {
     this.files['.checkuprc'] = stringify(mergeConfig(config));
+    this.files['.eslintrc.js'] = '';
   }
 
   /**
