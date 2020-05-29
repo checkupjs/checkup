@@ -1,3 +1,42 @@
+## v0.0.14 (2020-05-29)
+
+#### :rocket: Enhancement
+* `cli`, `core`, `test-helpers`
+  * [#448](https://github.com/checkupjs/checkup/pull/448) Gracefully handle errors in the CLI ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember-octane`, `cli`
+  * [#404](https://github.com/checkupjs/checkup/pull/404) Changes `checkup run` to default to `checkup` (without `run`) ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `cli`, `core`
+  * [#449](https://github.com/checkupjs/checkup/pull/449) Deleting unused code related to deprecated PDF/HTML functionality ([@scalvert](https://github.com/scalvert))
+  * [#402](https://github.com/checkupjs/checkup/pull/402) Freezing task context to prevent mutation ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `cli`, `core`, `test-helpers`
+  * [#430](https://github.com/checkupjs/checkup/pull/430) Adding paths to TaskContext and updating all tasks to use it ([@carakessler](https://github.com/carakessler))
+* `cli`, `core`, `test-helpers`
+  * [#429](https://github.com/checkupjs/checkup/pull/429) Removing cosmiconfig in favor of simpler structure. ([@scalvert](https://github.com/scalvert))
+  * [#424](https://github.com/checkupjs/checkup/pull/424) Standardize flags ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `cli`, `core`, `test-helpers`
+  * [#428](https://github.com/checkupjs/checkup/pull/428) Adding pkg: PackageJson to the TaskContext and updating all tasks to use it ([@carakessler](https://github.com/carakessler))
+* `cli`
+  * [#403](https://github.com/checkupjs/checkup/pull/403) Add ability to specify location of output for meta tasks ([@scalvert](https://github.com/scalvert))
+
+#### :bar_chart: Checkup Task
+* `checkup-plugin-ember`, `cli`, `core`, `test-helpers`
+  * [#386](https://github.com/checkupjs/checkup/pull/386) [task] - Ember test types ([@carakessler](https://github.com/carakessler))
+  * [#387](https://github.com/checkupjs/checkup/pull/387) [task] - number of Ember engines and addons ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember`, `cli`, `core`
+  * [#379](https://github.com/checkupjs/checkup/pull/379) [task] TODOs ([@carakessler](https://github.com/carakessler))
+* `cli`, `core`
+  * [#401](https://github.com/checkupjs/checkup/pull/401) [task] Updates Outdated Dependency output to use barchart ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `cli`, `test-helpers`
+  * [#391](https://github.com/checkupjs/checkup/pull/391) [task] - Outdated Dependencies ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.0.13 (2020-05-07)
 
 #### :bug: Bug Fix
