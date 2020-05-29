@@ -8,6 +8,7 @@
   },
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
+    "@babel/parser": "^7.10.0",
     "@babel/traverse": "^7.9.6",
     "@babel/types": "7.9.6",
     "@checkup/core": "0.0.13",

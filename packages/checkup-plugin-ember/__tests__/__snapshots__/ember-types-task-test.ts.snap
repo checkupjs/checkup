@@ -3,61 +3,81 @@
 exports[`types-task returns all the types (including nested) found in the app and outputs to JSON 1`] = `
 Array [
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Components",
     "total": 2,
     "type": "components",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Controllers",
     "total": 2,
     "type": "controllers",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Helpers",
     "total": 2,
     "type": "helpers",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Initializers",
     "total": 2,
     "type": "initializers",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Instance Initializers",
     "total": 2,
     "type": "instance-initializers",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Mixins",
     "total": 2,
     "type": "mixins",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Models",
     "total": 2,
     "type": "models",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Routes",
     "total": 2,
     "type": "routes",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Services",
     "total": 2,
     "type": "services",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      2,
+    ],
     "displayName": "Templates",
     "total": 2,
     "type": "templates",
@@ -86,61 +106,81 @@ Templates             2
 exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
 Array [
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Components",
     "total": 1,
     "type": "components",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Controllers",
     "total": 1,
     "type": "controllers",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Helpers",
     "total": 1,
     "type": "helpers",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Initializers",
     "total": 1,
     "type": "initializers",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Instance Initializers",
     "total": 1,
     "type": "instance-initializers",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Mixins",
     "total": 1,
     "type": "mixins",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Models",
     "total": 1,
     "type": "models",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Routes",
     "total": 1,
     "type": "routes",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Services",
     "total": 1,
     "type": "services",
   },
   Object {
-    "data": Array [],
+    "data": Array [
+      1,
+    ],
     "displayName": "Templates",
     "total": 1,
     "type": "templates",

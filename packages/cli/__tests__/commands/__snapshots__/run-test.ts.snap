@@ -15,6 +15,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 TODOs found: 0
 
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
 === Lines of Code ===
 
 File type        Total       TODO 
@@ -112,6 +116,20 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
             \\"total\\": 0
           }
         ]
+      }
+    },
+    {
+      \\"meta\\": {
+        \\"taskName\\": \\"eslint-disables\\",
+        \\"friendlyTaskName\\": \\"Number of Eslint Overrides\\",
+        \\"taskClassification\\": {
+          \\"category\\": \\"insights\\",
+          \\"priority\\": \\"low\\"
+        }
+      },
+      \\"result\\": {
+        \\"eslintDisables\\": [],
+        \\"fileErrors\\": []
       }
     },
     {
@@ -218,6 +236,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 TODOs found: 2
 
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
 === Lines of Code ===
 
 File type   Total       TODO 
@@ -244,6 +266,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 === Number of TODOs ===
 
 TODOs found: 3
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
 
 === Lines of Code ===
 
@@ -273,6 +299,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 === Number of TODOs ===
 
 TODOs found: 0
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
 
 === Lines of Code ===
 

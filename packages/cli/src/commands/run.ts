@@ -15,18 +15,19 @@ import {
 } from '@checkup/core';
 
 import { BaseCommand } from '../base-command';
-import CheckupMetaTask from '../tasks/checkup-meta-task';
 import MetaTaskList from '../meta-task-list';
 import { MetaTaskResult } from '../types';
-import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';
-import ProjectMetaTask from '../tasks/project-meta-task';
 import TaskList from '../task-list';
-import TodosTask from '../tasks/todos-task';
 import { flags } from '@oclif/command';
 import { getPackageJson } from '../helpers/get-package-json';
 import { getReporter } from '../reporters';
 import { getFilePaths } from '../helpers/get-paths';
 import LinesOfCodeTask from '../tasks/lines-of-code-task';
+import EslintDisableTask from '../tasks/eslint-disable-task';
+import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';
+import TodosTask from '../tasks/todos-task';
+import ProjectMetaTask from '../tasks/project-meta-task';
+import CheckupMetaTask from '../tasks/checkup-meta-task';
 
 export default class RunCommand extends BaseCommand {
   static description = 'Provides health check information about your project';
@@ -108,6 +109,7 @@ export default class RunCommand extends BaseCommand {
 
     // TODO: figure out where to put this. Internal? External?
     this.pluginTasks.registerTask(new TodosTask(pluginName, context));
+    this.pluginTasks.registerTask(new EslintDisableTask(pluginName, context));
     this.pluginTasks.registerTask(new OutdatedDependenciesTask(pluginName, context));
     this.pluginTasks.registerTask(new LinesOfCodeTask(pluginName, context));
   }
