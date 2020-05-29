@@ -96,7 +96,7 @@ describe('@checkup/cli', () => {
       anotherProject.dispose();
     });
 
-    // how should we better test this? right now its relying on todo-task being run
+    // how should we better test this? right now its relying on lines-of-code-task being run
     it(
       'should run the tasks on the globs passed into checkup, if provided, instead of entire app',
       async () => {

@@ -11,10 +11,6 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
 ■ major (2)  ■ minor (0)  ■ patch (0)  
 
-=== Number of TODOs ===
-
-TODOs found: 0
-
 === Number of Eslint Overrides ===
 
 Eslint Overrides Found: 0
@@ -94,26 +90,6 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
             \\"easyUpgrade\\": false,
             \\"bump\\": \\"major\\",
             \\"unused\\": true
-          }
-        ]
-      }
-    },
-    {
-      \\"meta\\": {
-        \\"taskName\\": \\"todos\\",
-        \\"friendlyTaskName\\": \\"Number of TODOs\\",
-        \\"taskClassification\\": {
-          \\"category\\": \\"insights\\",
-          \\"priority\\": \\"low\\"
-        }
-      },
-      \\"result\\": {
-        \\"todos\\": [
-          {
-            \\"displayName\\": \\"Todo\\",
-            \\"type\\": \\"todo\\",
-            \\"data\\": [],
-            \\"total\\": 0
           }
         ]
       }
@@ -232,10 +208,6 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
  0
 ■ major (0)  ■ minor (0)  ■ patch (0)  
 
-=== Number of TODOs ===
-
-TODOs found: 2
-
 === Number of Eslint Overrides ===
 
 Eslint Overrides Found: 0
@@ -262,10 +234,6 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
  0
 ■ major (0)  ■ minor (0)  ■ patch (0)  
-
-=== Number of TODOs ===
-
-TODOs found: 3
 
 === Number of Eslint Overrides ===
 
@@ -295,10 +263,6 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
 ■ major (2)  ■ minor (0)  ■ patch (0)  
-
-=== Number of TODOs ===
-
-TODOs found: 0
 
 === Number of Eslint Overrides ===
 
