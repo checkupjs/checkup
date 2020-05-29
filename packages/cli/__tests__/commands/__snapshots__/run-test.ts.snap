@@ -15,6 +15,14 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 TODOs found: 0
 
+=== Lines of Code ===
+
+File type        Total       TODO 
+checkuprc        0           0    
+js               3           0    
+bin/loose-envify 0           0    
+json             175         N/A  
+
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
 
@@ -105,6 +113,80 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
           }
         ]
       }
+    },
+    {
+      \\"meta\\": {
+        \\"taskName\\": \\"lines-of-code\\",
+        \\"friendlyTaskName\\": \\"Lines of Code\\",
+        \\"taskClassification\\": {
+          \\"category\\": \\"insights\\",
+          \\"priority\\": \\"low\\"
+        }
+      },
+      \\"result\\": {
+        \\"fileResults\\": [
+          {
+            \\"results\\": {
+              \\"total\\": 0,
+              \\"todo\\": 0,
+              \\"block\\": 0,
+              \\"blockEmpty\\": 0,
+              \\"comment\\": 0,
+              \\"empty\\": 0,
+              \\"mixed\\": 0,
+              \\"single\\": 0,
+              \\"source\\": 0
+            },
+            \\"fileExension\\": \\"checkuprc\\",
+            \\"errors\\": []
+          },
+          {
+            \\"results\\": {
+              \\"total\\": 3,
+              \\"todo\\": 0,
+              \\"block\\": 0,
+              \\"blockEmpty\\": 0,
+              \\"comment\\": 0,
+              \\"empty\\": 1,
+              \\"mixed\\": 0,
+              \\"single\\": 0,
+              \\"source\\": 2
+            },
+            \\"fileExension\\": \\"js\\",
+            \\"errors\\": []
+          },
+          {
+            \\"results\\": {
+              \\"total\\": 0,
+              \\"todo\\": 0,
+              \\"block\\": 0,
+              \\"blockEmpty\\": 0,
+              \\"comment\\": 0,
+              \\"empty\\": 0,
+              \\"mixed\\": 0,
+              \\"single\\": 0,
+              \\"source\\": 0
+            },
+            \\"fileExension\\": \\"bin/loose-envify\\",
+            \\"errors\\": []
+          },
+          {
+            \\"results\\": {
+              \\"total\\": 175,
+              \\"todo\\": \\"N/A\\",
+              \\"block\\": \\"N/A\\",
+              \\"blockEmpty\\": \\"N/A\\",
+              \\"comment\\": \\"N/A\\",
+              \\"empty\\": \\"N/A\\",
+              \\"mixed\\": \\"N/A\\",
+              \\"single\\": \\"N/A\\",
+              \\"source\\": \\"N/A\\"
+            },
+            \\"fileExension\\": \\"json\\",
+            \\"errors\\": []
+          }
+        ]
+      }
     }
   ],
   \\"errors\\": []
@@ -136,6 +218,12 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 TODOs found: 2
 
+=== Lines of Code ===
+
+File type   Total       TODO 
+hbs         1           0    
+js          1           1    
+
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
 
@@ -157,6 +245,14 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 TODOs found: 3
 
+=== Lines of Code ===
+
+File type   Total       TODO 
+checkuprc   0           0    
+js          5           2    
+hbs         1           0    
+json        7           N/A  
+
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
 
@@ -177,6 +273,14 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 === Number of TODOs ===
 
 TODOs found: 0
+
+=== Lines of Code ===
+
+File type        Total       TODO 
+checkuprc        0           0    
+js               3           0    
+bin/loose-envify 0           0    
+json             175         N/A  
 
 checkup v0.0.0
 config ae3266e319bdfb51db83810a2f4dd161
