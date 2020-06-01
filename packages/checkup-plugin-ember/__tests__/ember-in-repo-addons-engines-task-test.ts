@@ -1,7 +1,7 @@
-import { stdout, getTaskContext, EmberProject } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
-import EmberInRepoAddonEnginesTask from '../src/tasks/ember-in-repo-addons-engines-task';
+import { EmberProject, getTaskContext, stdout } from '@checkup/test-helpers';
 import EmberInRepoAddonEnginesTaskResult from '../src/results/ember-in-repo-addons-engines-task-result';
+import EmberInRepoAddonEnginesTask from '../src/tasks/ember-in-repo-addons-engines-task';
 
 describe('ember-in-repo-addons-engines-task', () => {
   let emberProject: EmberProject;
@@ -48,6 +48,8 @@ describe('ember-in-repo-addons-engines-task', () => {
       })
     ).run();
     const taskResult = <EmberInRepoAddonEnginesTaskResult>result;
+    taskResult.inRepoAddons.sort();
+    taskResult.inRepoEngines.sort();
 
     expect(taskResult.toJson()).toMatchSnapshot();
   });
