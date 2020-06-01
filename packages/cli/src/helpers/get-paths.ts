@@ -23,9 +23,9 @@ const PATHS_TO_IGNORE = [
 export function getFilePaths(
   basePath: string,
   globs: string[] = [],
-  pathsToIgnore: string[] = []
+  excludePaths: string[] = []
 ): string[] {
-  let mergedPathsToIgnore = [...pathsToIgnore, ...PATHS_TO_IGNORE];
+  let mergedPathsToIgnore = [...excludePaths, ...PATHS_TO_IGNORE];
 
   if (globs.length > 0) {
     return expandFileGlobs(globs, basePath, mergedPathsToIgnore);
@@ -41,7 +41,7 @@ export function getFilePaths(
 function expandFileGlobs(
   filePatterns: string[],
   basePath: string,
-  pathsToIgnore: string[]
+  excludePaths: string[]
 ): string[] {
   return filePatterns.flatMap((pattern) => {
     let isLiteralPath = !isValidGlob(pattern) && existsSync(pattern);
@@ -58,7 +58,7 @@ function expandFileGlobs(
 
     let expandedGlobs = globby.sync(pattern, {
       cwd: basePath,
-      ignore: pathsToIgnore,
+      ignore: excludePaths,
       gitignore: true,
     }) as string[];
 

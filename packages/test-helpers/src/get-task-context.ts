@@ -14,6 +14,7 @@ const DEFAULT_FLAGS: RunFlags = {
   version: undefined,
   help: undefined,
   config: undefined,
+  excludePaths: undefined,
   cwd: '.',
   task: undefined,
   format: 'stdout',
@@ -21,7 +22,7 @@ const DEFAULT_FLAGS: RunFlags = {
 };
 
 const DEFAULT_CONFIG: CheckupConfig = {
-  pathsToIgnore: [],
+  excludePaths: [],
   plugins: [],
   tasks: {},
 };

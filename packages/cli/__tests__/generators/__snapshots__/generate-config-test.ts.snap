@@ -2,7 +2,7 @@
 
 exports[`config-init-generator should write a config 1`] = `
 "{
-  \\"pathsToIgnore\\": [],
+  \\"excludePaths\\": [],
   \\"plugins\\": [],
   \\"tasks\\": {}
 }

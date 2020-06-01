@@ -6,4 +6,5 @@ export type RunFlags = {
   task: string | undefined;
   format: string;
   outputFile: string;
+  excludePaths: string[] | undefined;
 };

@@ -47,6 +47,12 @@ export default class RunCommand extends BaseCommand {
   static flags = {
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
+    excludePaths: flags.string({
+      description:
+        'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
+      char: 'e',
+      multiple: true,
+    }),
     config: flags.string({
       char: 'c',
       description: 'Use this configuration, overriding .checkuprc.* if present',
@@ -173,13 +179,16 @@ export default class RunCommand extends BaseCommand {
       registerParser,
     });
 
+    // if excludePaths are provided both via the command line and config, the command line is prioritized
+    let excludePaths = this.runFlags.excludePaths || this.checkupConfig.excludePaths;
+
     taskContext = Object.freeze({
       cliArguments: this.runArgs,
       cliFlags: this.runFlags,
       parsers: getRegisteredParsers(),
       config: this.checkupConfig,
       pkg: getPackageJson(this.runFlags.cwd),
-      paths: getFilePaths(this.runFlags.cwd, this.runArgs, this.checkupConfig.pathsToIgnore),
+      paths: getFilePaths(this.runFlags.cwd, this.runArgs, excludePaths),
     });
 
     await this.registerDefaultTasks(taskContext);
