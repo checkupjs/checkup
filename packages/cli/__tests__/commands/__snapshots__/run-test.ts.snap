@@ -24,7 +24,7 @@ bin/loose-envify 0           0
 json             175         N/A  
 
 checkup v0.0.0
-config ae3266e319bdfb51db83810a2f4dd161
+config 0b20bb8047de17995c67e0994cd242aa
 
 "
 `;
@@ -43,7 +43,7 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
       }
     },
     \\"checkup\\": {
-      \\"configHash\\": \\"ae3266e319bdfb51db83810a2f4dd161\\",
+      \\"configHash\\": \\"0b20bb8047de17995c67e0994cd242aa\\",
       \\"version\\": \\"0.0.0\\"
     }
   },
@@ -219,7 +219,7 @@ hbs         1           0
 js          1           1    
 
 checkup v0.0.0
-config ae3266e319bdfb51db83810a2f4dd161
+config 0b20bb8047de17995c67e0994cd242aa
 
 "
 `;
@@ -248,7 +248,7 @@ hbs         1           0
 json        7           N/A  
 
 checkup v0.0.0
-config ae3266e319bdfb51db83810a2f4dd161
+config 0b20bb8047de17995c67e0994cd242aa
 
 "
 `;
@@ -277,7 +277,64 @@ bin/loose-envify 0           0
 json             175         N/A  
 
 checkup v0.0.0
-config ae3266e319bdfb51db83810a2f4dd161
+config 0b20bb8047de17995c67e0994cd242aa
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should use the pathsToIgnore provided by the config 1`] = `
+"
+Checkup report generated for another-project v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Outdated Dependencies ===
+
+ 0
+■ major (0)  ■ minor (0)  ■ patch (0)  
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
+=== Lines of Code ===
+
+File type   Total       TODO 
+checkuprc   0           0    
+js          3           0    
+json        7           N/A  
+
+checkup v0.0.0
+config 9bf9fe71133b8248b2905728f1c87eb1
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should use the pathsToIgnore provided by the config 2`] = `
+"
+Checkup report generated for another-project v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Outdated Dependencies ===
+
+ 0
+■ major (0)  ■ minor (0)  ■ patch (0)  
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
+=== Lines of Code ===
+
+File type   Total       TODO 
+checkuprc   0           0    
+hbs         1           0    
+js          3           0    
+json        7           N/A  
+
+checkup v0.0.0
+config 0b20bb8047de17995c67e0994cd242aa
 
 "
 `;

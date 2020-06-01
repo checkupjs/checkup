@@ -14,6 +14,7 @@ export const CONFIG_DOCS_URL =
   'https://docs.checkupjs.com/quickstart/usage#1-generate-a-configuration-file';
 
 export const DEFAULT_CONFIG: CheckupConfig = {
+  pathsToIgnore: [],
   plugins: [],
   tasks: {},
 };

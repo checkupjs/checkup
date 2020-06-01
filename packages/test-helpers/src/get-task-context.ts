@@ -21,6 +21,7 @@ const DEFAULT_FLAGS: RunFlags = {
 };
 
 const DEFAULT_CONFIG: CheckupConfig = {
+  pathsToIgnore: [],
   plugins: [],
   tasks: {},
 };

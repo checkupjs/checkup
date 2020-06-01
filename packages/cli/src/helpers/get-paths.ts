@@ -11,28 +11,38 @@ const PATHS_TO_IGNORE = [
   'bower_components/**',
   '**/tests/dummy/**',
   'concat-stats-for/**',
-  'dist',
-  'build',
-  'vendor',
-  '.git',
+  'dist/**',
+  'build/**',
+  'vendor/**',
+  '.git/**',
 ];
 
 /**
  * @param basePath
  */
-export function getFilePaths(basePath: string, globs: string[] = []): string[] {
+export function getFilePaths(
+  basePath: string,
+  globs: string[] = [],
+  pathsToIgnore: string[] = []
+): string[] {
+  let mergedPathsToIgnore = [...pathsToIgnore, ...PATHS_TO_IGNORE];
+
   if (globs.length > 0) {
-    return expandFileGlobs(globs, basePath);
+    return expandFileGlobs(globs, basePath, mergedPathsToIgnore);
   }
   const allFiles: string[] = walkSync(basePath, {
-    ignore: PATHS_TO_IGNORE,
+    ignore: mergedPathsToIgnore,
     directories: false,
   });
 
   return resolveFilePaths(allFiles, basePath);
 }
 
-function expandFileGlobs(filePatterns: string[], basePath: string): string[] {
+function expandFileGlobs(
+  filePatterns: string[],
+  basePath: string,
+  pathsToIgnore: string[]
+): string[] {
   return filePatterns.flatMap((pattern) => {
     let isLiteralPath = !isValidGlob(pattern) && existsSync(pattern);
 
@@ -48,7 +58,7 @@ function expandFileGlobs(filePatterns: string[], basePath: string): string[] {
 
     let expandedGlobs = globby.sync(pattern, {
       cwd: basePath,
-      ignore: PATHS_TO_IGNORE,
+      ignore: pathsToIgnore,
       gitignore: true,
     }) as string[];
 

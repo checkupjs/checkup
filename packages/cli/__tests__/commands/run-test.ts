@@ -131,5 +131,38 @@ describe('@checkup/cli', () => {
       },
       TEST_TIMEOUT
     );
+
+    it(
+      'should use the pathsToIgnore provided by the config',
+      async () => {
+        const anotherProject = new CheckupProject('another-project');
+        anotherProject.addCheckupConfig({ pathsToIgnore: ['**/*.hbs'] });
+        anotherProject.files = Object.assign(anotherProject.files, {
+          foo: {
+            'index.hbs': '{{!-- i should todo: write code --}}',
+          },
+        });
+
+        anotherProject.writeSync();
+
+        await runCommand(['run', '--cwd', anotherProject.baseDir]);
+        let filteredRun = stdout();
+        expect(filteredRun).toMatchSnapshot();
+
+        clearStdout();
+
+        anotherProject.addCheckupConfig({ pathsToIgnore: [] });
+        anotherProject.writeSync();
+
+        await runCommand(['run', '--cwd', anotherProject.baseDir]);
+        let unFilteredRun = stdout();
+        expect(unFilteredRun).toMatchSnapshot();
+
+        expect(filteredRun).not.toStrictEqual(unFilteredRun);
+
+        anotherProject.dispose();
+      },
+      TEST_TIMEOUT
+    );
   });
 });

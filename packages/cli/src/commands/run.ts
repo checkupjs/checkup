@@ -56,7 +56,6 @@ export default class RunCommand extends BaseCommand {
       char: 'd',
       description: 'The path referring to the root directory that Checkup will run in',
     }),
-
     task: flags.string({ char: 't' }),
     format: flags.string({
       char: 'f',
@@ -180,7 +179,7 @@ export default class RunCommand extends BaseCommand {
       parsers: getRegisteredParsers(),
       config: this.checkupConfig,
       pkg: getPackageJson(this.runFlags.cwd),
-      paths: getFilePaths(this.runFlags.cwd, this.runArgs),
+      paths: getFilePaths(this.runFlags.cwd, this.runArgs, this.checkupConfig.pathsToIgnore),
     });
 
     await this.registerDefaultTasks(taskContext);

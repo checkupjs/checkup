@@ -56,6 +56,7 @@ describe('config', () => {
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
         Object {
+          "pathsToIgnore": Array [],
           "plugins": Array [],
           "tasks": Object {},
         }
@@ -72,6 +73,7 @@ describe('config', () => {
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
         Object {
+          "pathsToIgnore": Array [],
           "plugins": Array [
             "ember",
           ],
