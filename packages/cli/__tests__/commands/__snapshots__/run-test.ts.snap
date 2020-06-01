@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`@checkup/cli normal cli output if excludePaths are provided by both the config and command line, use command line 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
+=== Lines of Code ===
+
+File type        Total       TODO 
+checkuprc        0           0    
+hbs              1           0    
+bin/loose-envify 0           0    
+json             175         N/A  
+
+checkup v0.0.0
+config da25c78e31bb71ef06c3641e8846f64e
+
+Taskname              Error                                
+outdated-dependencies Could not check project dependencies 
+"
+`;
+
+exports[`@checkup/cli normal cli output if excludePaths are provided by both the config and command line, use command line 2`] = `
+"
+Checkup report generated for checkup-app v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
+=== Lines of Code ===
+
+File type        Total       TODO 
+checkuprc        0           0    
+js               1           0    
+bin/loose-envify 0           0    
+json             175         N/A  
+
+checkup v0.0.0
+config da25c78e31bb71ef06c3641e8846f64e
+
+Taskname              Error                                
+outdated-dependencies Could not check project dependencies 
+"
+`;
+
 exports[`@checkup/cli normal cli output should output checkup result 1`] = `
 "
 Checkup report generated for checkup-app v0.0.0
@@ -19,12 +71,13 @@ Eslint Overrides Found: 0
 
 File type        Total       TODO 
 checkuprc        0           0    
-js               3           0    
+hbs              1           0    
+js               1           0    
 bin/loose-envify 0           0    
 json             175         N/A  
 
 checkup v0.0.0
-config ae3266e319bdfb51db83810a2f4dd161
+config 3720546166a5955def89f6bf69895976
 
 "
 `;
@@ -43,7 +96,7 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
       }
     },
     \\"checkup\\": {
-      \\"configHash\\": \\"ae3266e319bdfb51db83810a2f4dd161\\",
+      \\"configHash\\": \\"3720546166a5955def89f6bf69895976\\",
       \\"version\\": \\"0.0.0\\"
     }
   },
@@ -136,15 +189,30 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
           },
           {
             \\"results\\": {
-              \\"total\\": 3,
+              \\"total\\": 1,
               \\"todo\\": 0,
               \\"block\\": 0,
               \\"blockEmpty\\": 0,
               \\"comment\\": 0,
-              \\"empty\\": 1,
+              \\"empty\\": 0,
               \\"mixed\\": 0,
               \\"single\\": 0,
-              \\"source\\": 2
+              \\"source\\": 1
+            },
+            \\"fileExension\\": \\"hbs\\",
+            \\"errors\\": []
+          },
+          {
+            \\"results\\": {
+              \\"total\\": 1,
+              \\"todo\\": 0,
+              \\"block\\": 0,
+              \\"blockEmpty\\": 0,
+              \\"comment\\": 0,
+              \\"empty\\": 0,
+              \\"mixed\\": 0,
+              \\"single\\": 0,
+              \\"source\\": 1
             },
             \\"fileExension\\": \\"js\\",
             \\"errors\\": []
@@ -199,14 +267,9 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 exports[`@checkup/cli normal cli output should run the tasks on the globs passed into checkup, if provided, instead of entire app 1`] = `
 "
-Checkup report generated for another-project v0.0.0
+Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-=== Outdated Dependencies ===
-
- 0
-■ major (0)  ■ minor (0)  ■ patch (0)  
 
 === Number of Eslint Overrides ===
 
@@ -215,25 +278,22 @@ Eslint Overrides Found: 0
 === Lines of Code ===
 
 File type   Total       TODO 
-hbs         1           0    
+hbs         2           0    
 js          1           1    
 
 checkup v0.0.0
-config ae3266e319bdfb51db83810a2f4dd161
+config 3720546166a5955def89f6bf69895976
 
+Taskname              Error                                
+outdated-dependencies Could not check project dependencies 
 "
 `;
 
 exports[`@checkup/cli normal cli output should run the tasks on the globs passed into checkup, if provided, instead of entire app 2`] = `
 "
-Checkup report generated for another-project v0.0.0
+Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-=== Outdated Dependencies ===
-
- 0
-■ major (0)  ■ minor (0)  ■ patch (0)  
 
 === Number of Eslint Overrides ===
 
@@ -241,15 +301,18 @@ Eslint Overrides Found: 0
 
 === Lines of Code ===
 
-File type   Total       TODO 
-checkuprc   0           0    
-js          5           2    
-hbs         1           0    
-json        7           N/A  
+File type        Total       TODO 
+checkuprc        0           0    
+js               3           2    
+hbs              2           0    
+bin/loose-envify 0           0    
+json             175         N/A  
 
 checkup v0.0.0
-config ae3266e319bdfb51db83810a2f4dd161
+config 3720546166a5955def89f6bf69895976
 
+Taskname              Error                                
+outdated-dependencies Could not check project dependencies 
 "
 `;
 
@@ -272,12 +335,123 @@ Eslint Overrides Found: 0
 
 File type        Total       TODO 
 checkuprc        0           0    
-js               3           0    
+hbs              1           0    
+js               1           0    
 bin/loose-envify 0           0    
 json             175         N/A  
 
 checkup v0.0.0
-config ae3266e319bdfb51db83810a2f4dd161
+config 3720546166a5955def89f6bf69895976
 
+"
+`;
+
+exports[`@checkup/cli normal cli output should use the excludePaths provided by the command line 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Outdated Dependencies ===
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
+■ major (2)  ■ minor (0)  ■ patch (0)  
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
+=== Lines of Code ===
+
+File type        Total       TODO 
+checkuprc        0           0    
+bin/loose-envify 0           0    
+json             175         N/A  
+
+checkup v0.0.0
+config 3720546166a5955def89f6bf69895976
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should use the excludePaths provided by the command line 2`] = `
+"
+Checkup report generated for checkup-app v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Outdated Dependencies ===
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
+■ major (2)  ■ minor (0)  ■ patch (0)  
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
+=== Lines of Code ===
+
+File type        Total       TODO 
+checkuprc        0           0    
+js               1           0    
+bin/loose-envify 0           0    
+json             175         N/A  
+
+checkup v0.0.0
+config 3720546166a5955def89f6bf69895976
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should use the excludePaths provided by the config 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
+=== Lines of Code ===
+
+File type        Total       TODO 
+checkuprc        0           0    
+js               1           0    
+bin/loose-envify 0           0    
+json             175         N/A  
+
+checkup v0.0.0
+config da25c78e31bb71ef06c3641e8846f64e
+
+Taskname              Error                                
+outdated-dependencies Could not check project dependencies 
+"
+`;
+
+exports[`@checkup/cli normal cli output should use the excludePaths provided by the config 2`] = `
+"
+Checkup report generated for checkup-app v0.0.0
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+=== Number of Eslint Overrides ===
+
+Eslint Overrides Found: 0
+
+=== Lines of Code ===
+
+File type        Total       TODO 
+checkuprc        0           0    
+hbs              1           0    
+js               1           0    
+bin/loose-envify 0           0    
+json             175         N/A  
+
+checkup v0.0.0
+config 3720546166a5955def89f6bf69895976
+
+Taskname              Error                                
+outdated-dependencies Could not check project dependencies 
 "
 `;

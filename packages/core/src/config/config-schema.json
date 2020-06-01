@@ -17,6 +17,12 @@
     },
     "tasks": {
       "$ref": "#/definitions/taskConfig"
+    },
+    "excludePaths": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
     }
   },
   "type": "object",

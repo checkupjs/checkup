@@ -30,6 +30,19 @@ describe('config', () => {
       }).toThrow(`Config in ${configPath} is invalid.`);
     });
 
+    it('throws if invalid paths are passed in via config', () => {
+      let configPath = getConfigPath(tmp);
+      writeJsonSync(configPath, {
+        plugins: [],
+        tasks: {},
+        excludePaths: 'foo', // excludePaths should be an array
+      });
+
+      expect(() => {
+        readConfig(configPath);
+      }).toThrow(`Config in ${configPath} is invalid.`);
+    });
+
     it('can load a config from an external directory', () => {
       let configPath = writeConfig(tmp);
       let config = readConfig(configPath);
@@ -56,6 +69,7 @@ describe('config', () => {
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
         Object {
+          "excludePaths": Array [],
           "plugins": Array [],
           "tasks": Object {},
         }
@@ -72,6 +86,7 @@ describe('config', () => {
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
         Object {
+          "excludePaths": Array [],
           "plugins": Array [
             "ember",
           ],
