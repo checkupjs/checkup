@@ -8,6 +8,7 @@
     "@checkup/core": "0.0.14",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
+    "ember-template-recast": "^4.1.4",
     "tslib": "^2"
   },
   "devDependencies": {
