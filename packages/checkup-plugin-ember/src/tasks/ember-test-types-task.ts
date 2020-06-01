@@ -13,8 +13,6 @@ import { transformESLintReport } from '../utils/transformers';
 
 import EmberTestTypesTaskResult from '../results/ember-test-types-task-result';
 
-const micromatch = require('micromatch');
-
 export default class EmberTestTypesTask extends BaseTask implements Task {
   meta = {
     taskName: 'ember-test-types',
@@ -33,7 +31,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     let createEslintParser = this.context.parsers.get('eslint')!;
     this.eslintParser = createEslintParser(EMBER_TEST_TYPES);
 
-    this.testFiles = micromatch(this.context.paths, '**/*test.js');
+    this.testFiles = this.context.paths.filterByGlob('**/*test.js');
   }
 
   async run(): Promise<TaskResult> {

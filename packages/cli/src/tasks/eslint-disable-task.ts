@@ -10,7 +10,6 @@ import {
 import EslintDisableTaskResult from '../results/eslint-disable-task-result';
 
 const fs = require('fs');
-const micromatch = require('micromatch');
 const recast = require('recast');
 const babel = require('@babel/parser');
 
@@ -29,7 +28,7 @@ export default class EslintDisableTask extends BaseTask implements Task {
   async run(): Promise<TaskResult> {
     let result: EslintDisableTaskResult = new EslintDisableTaskResult(this.meta);
 
-    let jsPaths = micromatch(this.context.paths, '**/*.js');
+    let jsPaths = this.context.paths.filterByGlob('**/*.js');
     result.eslintDisables = await getEslintDisables(jsPaths);
 
     return result;

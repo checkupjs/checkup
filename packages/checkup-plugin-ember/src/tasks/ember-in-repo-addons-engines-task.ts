@@ -4,8 +4,6 @@ import EmberInRepoAddonEnginesTaskResult from '../results/ember-in-repo-addons-e
 import { PackageJson } from 'type-fest';
 import { readJsonSync } from 'fs-extra';
 
-const micromatch = require('micromatch');
-
 export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Task {
   meta: TaskMetaData = {
     taskName: 'ember-in-repo-addons-engines',
@@ -23,8 +21,7 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
 
     result.inRepoAddons = [];
     result.inRepoEngines = [];
-
-    let packageJsonPaths: string[] = micromatch(this.context.paths, ['**/*package.json']);
+    let packageJsonPaths: string[] = this.context.paths.filterByGlob('**/*package.json');
 
     packageJsonPaths.forEach((pathName: string) => {
       let packageJson: PackageJson = getPackageJson(pathName);

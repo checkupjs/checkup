@@ -11,7 +11,6 @@ import LinesOfCodeTaskResult from '../results/lines-of-code-task-result';
 
 const fs = require('fs');
 const sloc = require('sloc');
-const micromatch = require('micromatch');
 
 interface GroupedFiles {
   paths: string[];
@@ -75,7 +74,7 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
     this.filesGroupedByType = [...fileExensionsInRepo].map((ext) => {
       return {
         ext,
-        paths: micromatch(this.context.paths, `**/*.${ext}`),
+        paths: this.context.paths.filterByGlob(`**/*.${ext}`),
         // if sloc doesnt support the extension, the LOC will be correct, but the breakdowns (# comments, todos, etc) will be wrong
         exensionSupportedBySloc: FILE_EXTENSIONS_SUPPORTED.includes(ext),
       };

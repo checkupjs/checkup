@@ -2,8 +2,6 @@ import { Category, Priority, Task, TaskResult, BaseTask, toTaskItemData } from '
 
 import EmberTypesTaskResult from '../results/ember-types-task-result';
 
-const micromatch = require('micromatch');
-
 const SEARCH_PATTERNS = [
   { patternName: 'components', pattern: ['**/components/**/*.js'] },
   { patternName: 'controllers', pattern: ['**/controllers/**/*.js'] },
@@ -30,7 +28,7 @@ export default class EmberTypesTask extends BaseTask implements Task {
   async run(): Promise<TaskResult> {
     let result = new EmberTypesTaskResult(this.meta);
     result.types = SEARCH_PATTERNS.map((pattern) => {
-      return toTaskItemData(pattern.patternName, micromatch(this.context.paths, pattern.pattern));
+      return toTaskItemData(pattern.patternName, this.context.paths.filterByGlob(pattern.pattern));
     });
 
     return result;

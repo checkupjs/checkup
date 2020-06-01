@@ -1,6 +1,6 @@
 'use strict';
 
-import { CheckupConfig, mergeConfig } from '@checkup/core';
+import { CheckupConfig, mergeConfig, FilePathsArray } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import Plugin from './plugin';
@@ -85,10 +85,10 @@ export default class CheckupFixturifyProject extends Project {
     this.pkg = packageJsonContent;
   }
 
-  get filePaths(): string[] {
+  get filePaths(): FilePathsArray {
     if (this._hasWritten) {
       let allFiles = walkSync(this.baseDir, { directories: false });
-      return resolveFilePaths(allFiles, this.baseDir);
+      return new FilePathsArray(...resolveFilePaths(allFiles, this.baseDir));
     } else {
       throw new Error('You must call writeSync on your project before getting the file paths.');
     }
