@@ -45,7 +45,7 @@ function groupByVersionType(dependencies: OutdatedDependency[]) {
     try {
       // for catching when dependency version is 'exotic', which means yarn cannot detect for you whether the package has become outdated
       versionTypes.get(dependency.bump)?.push(dependency);
-    } catch (error) {
+    } catch {
       // do nothing
     }
   }

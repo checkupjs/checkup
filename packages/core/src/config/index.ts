@@ -30,7 +30,7 @@ export function readConfig(configPath: string) {
 
   try {
     config = readJsonSync(resolve(configPath || getConfigPath()));
-  } catch (error) {
+  } catch {
     throw new CheckupError(
       `Could not find a checkup config in the given path: ${configPath}.`,
       `See ${CONFIG_DOCS_URL} for more info on how to setup a config.`
@@ -57,7 +57,7 @@ export function writeConfig(dir: string, config: Partial<CheckupConfig> = {}) {
 
   try {
     writeJsonSync(path, mergeConfig(config), { spaces: 2 });
-  } catch (error) {
+  } catch {
     throw new Error(`Cannot write config to ${dir}.`);
   }
 
