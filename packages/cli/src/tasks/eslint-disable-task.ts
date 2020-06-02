@@ -18,7 +18,7 @@ const ESLINT_DISABLE_REGEX = /^eslint-disable(?:-next-line|-line)*/gi;
 export default class EslintDisableTask extends BaseTask implements Task {
   meta: TaskMetaData = {
     taskName: 'eslint-disables',
-    friendlyTaskName: 'Number of Eslint Overrides',
+    friendlyTaskName: 'Number of eslint-disable Usages',
     taskClassification: {
       category: Category.Insights,
       priority: Priority.Low,
