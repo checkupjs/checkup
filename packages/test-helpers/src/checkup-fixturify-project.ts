@@ -52,7 +52,7 @@ export default class CheckupFixturifyProject extends Project {
   gitInit() {
     try {
       execSync(`git init -q ${this.baseDir}`);
-    } catch (error) {
+    } catch {
       throw new Error("Couldn't initialize git repository.");
     }
   }
@@ -68,7 +68,7 @@ export default class CheckupFixturifyProject extends Project {
 
     try {
       execSync(cmd, { cwd: this.baseDir });
-    } catch (error) {
+    } catch {
       throw new Error(`Couldn't install dependencies using ${cmd}`);
     }
   }

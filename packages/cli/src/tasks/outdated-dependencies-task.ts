@@ -31,7 +31,7 @@ async function getOutdated(path: string): Promise<OutdatedDependency[]> {
 
   try {
     result = await npmCheck({ cwd: path });
-  } catch (error) {
+  } catch {
     throw new Error('Could not check project dependencies');
   }
 
