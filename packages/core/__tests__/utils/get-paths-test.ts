@@ -1,7 +1,7 @@
 'use strict';
 
 import { CheckupProject } from '@checkup/test-helpers';
-import { getFilePaths } from '../src/helpers/get-paths';
+import { getFilePaths } from '../../src/utils/get-paths';
 
 const APP_NAME = 'foo-app';
 
@@ -33,7 +33,7 @@ describe('getFilePaths', function () {
       let files = getFilePaths(project.baseDir);
 
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        Array [
+        FilePathsArray [
           "/bar/index.js",
           "/baz/index.js",
           "/foo/index.hbs",
@@ -46,8 +46,18 @@ describe('getFilePaths', function () {
     it('returns all files when no patterns are provided and a base path other than "." is provided', function () {
       let files = getFilePaths(`${project.baseDir}/baz`);
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        Array [
+        FilePathsArray [
           "/baz/index.js",
+        ]
+      `);
+    });
+
+    it('filterByGlob works', function () {
+      let files = getFilePaths(project.baseDir);
+
+      expect(filterFilePathResults(files.filterByGlob('**/*.hbs'))).toMatchInlineSnapshot(`
+        Array [
+          "/foo/index.hbs",
         ]
       `);
     });
@@ -58,7 +68,7 @@ describe('getFilePaths', function () {
       let files = getFilePaths(project.baseDir, ['**/*.hbs']);
 
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        Array [
+        FilePathsArray [
           "/foo/index.hbs",
         ]
       `);
@@ -68,7 +78,7 @@ describe('getFilePaths', function () {
       let files = getFilePaths(project.baseDir, ['*']);
 
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        Array [
+        FilePathsArray [
           "/index.js",
           "/package.json",
         ]
@@ -79,7 +89,7 @@ describe('getFilePaths', function () {
       let files = getFilePaths(`${project.baseDir}/baz`, ['**']);
 
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        Array [
+        FilePathsArray [
           "/baz/index.js",
         ]
       `);

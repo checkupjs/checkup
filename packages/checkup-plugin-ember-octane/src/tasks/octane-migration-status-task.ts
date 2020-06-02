@@ -13,8 +13,6 @@ import { OCTANE_ES_LINT_CONFIG, OCTANE_TEMPLATE_LINT_CONFIG } from '../utils/lin
 
 import OctaneMigrationStatusTaskResult from '../results/octane-migration-status-task-result';
 
-const micromatch = require('micromatch');
-
 export default class OctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {
     taskName: 'octane-migration-status',
@@ -58,13 +56,13 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   }
 
   private async runEsLint(): Promise<ESLintReport> {
-    let jsPaths = micromatch(this.context.paths, '**/*.js');
+    let jsPaths = this.context.paths.filterByGlob('**/*.js');
 
     return this.eslintParser.execute(jsPaths);
   }
 
   private async runTemplateLint(): Promise<TemplateLintReport> {
-    let hbsPaths = micromatch(this.context.paths, '**/*.hbs');
+    let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
 
     return this.templateLinter.execute(hbsPaths);
   }

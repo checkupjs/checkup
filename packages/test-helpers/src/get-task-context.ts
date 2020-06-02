@@ -1,4 +1,10 @@
-import { TaskContext, getRegisteredParsers, RunFlags, CheckupConfig } from '@checkup/core';
+import {
+  TaskContext,
+  getRegisteredParsers,
+  RunFlags,
+  CheckupConfig,
+  FilePathsArray,
+} from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 
@@ -7,7 +13,7 @@ type TaskContextArgs = {
   cliFlags: Partial<RunFlags>;
   config: Partial<CheckupConfig>;
   pkg: PackageJson;
-  paths: string[];
+  paths: FilePathsArray;
 };
 
 const DEFAULT_FLAGS: RunFlags = {
@@ -38,7 +44,7 @@ export function getTaskContext({
   cliFlags,
   config,
   pkg = DEFAULT_PACKAGE_JSON,
-  paths = [],
+  paths = new FilePathsArray(),
 }: Partial<TaskContextArgs> = {}): TaskContext {
   return {
     cliArguments,

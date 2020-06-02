@@ -12,6 +12,7 @@ import {
   readConfig,
   registerParser,
   ui,
+  getFilePaths,
 } from '@checkup/core';
 
 import { BaseCommand } from '../base-command';
@@ -21,7 +22,6 @@ import TaskList from '../task-list';
 import { flags } from '@oclif/command';
 import { getPackageJson } from '../helpers/get-package-json';
 import { getReporter } from '../reporters';
-import { getFilePaths } from '../helpers/get-paths';
 import LinesOfCodeTask from '../tasks/lines-of-code-task';
 import EslintDisableTask from '../tasks/eslint-disable-task';
 import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';

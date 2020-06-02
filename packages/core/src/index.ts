@@ -14,6 +14,8 @@ export { default as CheckupError } from './errors/checkup-error';
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { exec } from './utils/exec';
 export { ui } from './utils/ui';
+export { getFilePaths } from './utils/get-paths';
+export { FilePathsArray } from './utils/file-paths-array';
 export { toPairs, toTaskData, toTaskItemData, toPercent } from './utils/data-transformers';
 
 export * from './types/cli';

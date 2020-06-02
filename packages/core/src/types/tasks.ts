@@ -1,4 +1,5 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
+import { FilePathsArray } from '../utils/file-paths-array';
 import { JsonObject, PackageJson } from 'type-fest';
 
 import { CheckupConfig } from './config';
@@ -26,7 +27,7 @@ export interface TaskContext {
   readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
   readonly config: CheckupConfig;
   readonly pkg: PackageJson;
-  readonly paths: string[];
+  readonly paths: FilePathsArray;
 }
 
 export interface TaskResult {

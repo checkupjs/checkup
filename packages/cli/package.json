@@ -27,7 +27,6 @@
     "is-valid-glob": "^1.0.0",
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.15",
-    "micromatch": "^4.0.2",
     "npm-check": "^5.9.2",
     "p-map": "^4.0.0",
     "promise.hash.helper": "^1.0.7",

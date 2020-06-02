@@ -1,5 +1,6 @@
 import { join, resolve } from 'path';
 import { existsSync } from 'fs';
+import { FilePathsArray } from './file-paths-array';
 
 const micromatch = require('micromatch');
 const isValidGlob = require('is-valid-glob');
@@ -24,7 +25,7 @@ export function getFilePaths(
   basePath: string,
   globs: string[] = [],
   excludePaths: string[] = []
-): string[] {
+): FilePathsArray {
   let mergedPathsToIgnore = [...excludePaths, ...PATHS_TO_IGNORE];
 
   if (globs.length > 0) {
@@ -42,35 +43,38 @@ function expandFileGlobs(
   filePatterns: string[],
   basePath: string,
   excludePaths: string[]
-): string[] {
-  return filePatterns.flatMap((pattern) => {
-    let isLiteralPath = !isValidGlob(pattern) && existsSync(pattern);
+): FilePathsArray {
+  return new FilePathsArray(
+    ...filePatterns.flatMap((pattern) => {
+      let isLiteralPath = !isValidGlob(pattern) && existsSync(pattern);
 
-    if (isLiteralPath) {
-      let isIgnored = !micromatch.isMatch(pattern, PATHS_TO_IGNORE);
+      if (isLiteralPath) {
+        let isIgnored = !micromatch.isMatch(pattern, PATHS_TO_IGNORE);
 
-      if (!isIgnored) {
-        return pattern;
+        if (!isIgnored) {
+          return pattern;
+        }
+
+        return [];
       }
 
-      return [];
-    }
+      let expandedGlobs = globby.sync(pattern, {
+        cwd: basePath,
+        ignore: excludePaths,
+        gitignore: true,
+      }) as string[];
 
-    let expandedGlobs = globby.sync(pattern, {
-      cwd: basePath,
-      ignore: excludePaths,
-      gitignore: true,
-    }) as string[];
-
-    return resolveFilePaths(expandedGlobs, basePath);
-  });
+      return resolveFilePaths(expandedGlobs, basePath);
+    })
+  );
 }
 
-function resolveFilePaths(filePaths: string[], basePath: string): string[] {
+function resolveFilePaths(filePaths: string[], basePath: string): FilePathsArray {
   if (basePath !== '.') {
-    return filePaths.map((pathName: string) => {
+    let resolvedPaths = filePaths.map((pathName: string) => {
       return join(resolve(basePath), pathName);
     });
+    return new FilePathsArray(...resolvedPaths);
   }
-  return filePaths;
+  return new FilePathsArray(...filePaths);
 }
