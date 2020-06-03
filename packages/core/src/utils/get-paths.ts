@@ -2,12 +2,11 @@ import { join, resolve } from 'path';
 import { existsSync } from 'fs';
 import { FilePathsArray } from './file-paths-array';
 
-const micromatch = require('micromatch');
 const isValidGlob = require('is-valid-glob');
+const micromatch = require('micromatch');
 const walkSync = require('walk-sync');
-const globby = require('globby');
 
-const PATHS_TO_IGNORE = [
+const PATHS_TO_IGNORE: string[] = [
   '**/node_modules/**',
   'bower_components/**',
   '**/tests/dummy/**',
@@ -31,6 +30,7 @@ export function getFilePaths(
   if (globs.length > 0) {
     return expandFileGlobs(globs, basePath, mergedPathsToIgnore);
   }
+
   const allFiles: string[] = walkSync(basePath, {
     ignore: mergedPathsToIgnore,
     directories: false,
@@ -49,7 +49,7 @@ function expandFileGlobs(
       let isLiteralPath = !isValidGlob(pattern) && existsSync(pattern);
 
       if (isLiteralPath) {
-        let isIgnored = !micromatch.isMatch(pattern, PATHS_TO_IGNORE);
+        let isIgnored = !micromatch.isMatch(pattern, excludePaths);
 
         if (!isIgnored) {
           return pattern;
@@ -58,10 +58,10 @@ function expandFileGlobs(
         return [];
       }
 
-      let expandedGlobs = globby.sync(pattern, {
-        cwd: basePath,
+      let expandedGlobs = walkSync(basePath, {
+        globs: [pattern],
+        directories: false,
         ignore: excludePaths,
-        gitignore: true,
       }) as string[];
 
       return resolveFilePaths(expandedGlobs, basePath);

@@ -8,6 +8,7 @@ describe('lines-of-code-task', () => {
 
   beforeEach(function () {
     project = new CheckupProject('foo', '0.0.0');
+    project.files['index.whatever'] = 'whatever';
     project.files['index.js'] = '// TODO: write better code';
     project.files['index.hbs'] = '{{!-- i should TODO: write code --}}';
     project.files['index.scss'] = `
@@ -49,6 +50,9 @@ describe('lines-of-code-task', () => {
 
       "
     `);
+
+    // random file extensions not supported by SLOC or checkup are not included in results
+    expect(stdout()).not.toContain('whatever');
   });
 
   it('returns all the lines of code by type found in the app and outputs to json', async () => {
