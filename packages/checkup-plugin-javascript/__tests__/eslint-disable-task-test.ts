@@ -1,10 +1,12 @@
+import { getPluginName } from '@checkup/core';
 import { CheckupProject, stdout, getTaskContext, clearFilePaths } from '@checkup/test-helpers';
 
-import EslintDisableTask from '../../src/tasks/eslint-disable-task';
-import EslintDisableTaskResult from '../../src/results/eslint-disable-task-result';
+import EslintDisableTask from '../src/tasks/eslint-disable-task';
+import EslintDisableTaskResult from '../src/results/eslint-disable-task-result';
 
 describe('eslint-disable-task', () => {
   let project: CheckupProject;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(function () {
     project = new CheckupProject('foo', '0.0.0');
@@ -28,7 +30,7 @@ describe('eslint-disable-task', () => {
 
   it('returns all the types found in the app and outputs to the console', async () => {
     const result = await new EslintDisableTask(
-      'internal',
+      pluginName,
       getTaskContext({
         paths: project.filePaths,
       })
@@ -48,7 +50,7 @@ describe('eslint-disable-task', () => {
 
   it('returns all the types found in the app and outputs to json', async () => {
     const result = await new EslintDisableTask(
-      'internal',
+      pluginName,
       getTaskContext({
         paths: project.filePaths,
       })

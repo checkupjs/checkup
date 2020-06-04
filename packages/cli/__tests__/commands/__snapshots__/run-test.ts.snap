@@ -6,10 +6,6 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
-
 === Lines of Code ===
 
 File type        Total       TODO 
@@ -21,8 +17,6 @@ json             175         N/A
 checkup v0.0.0
 config da25c78e31bb71ef06c3641e8846f64e
 
-Taskname              Error                                
-outdated-dependencies Could not check project dependencies 
 "
 `;
 
@@ -31,10 +25,6 @@ exports[`@checkup/cli normal cli output if excludePaths are provided by both the
 Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -47,8 +37,6 @@ json             175         N/A
 checkup v0.0.0
 config da25c78e31bb71ef06c3641e8846f64e
 
-Taskname              Error                                
-outdated-dependencies Could not check project dependencies 
 "
 `;
 
@@ -57,15 +45,6 @@ exports[`@checkup/cli normal cli output should output checkup result 1`] = `
 Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-=== Outdated Dependencies ===
-
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
-■ major (2)  ■ minor (0)  ■ patch (0)  
-
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -101,66 +80,6 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
     }
   },
   \\"results\\": [
-    {
-      \\"meta\\": {
-        \\"taskName\\": \\"outdated-dependencies\\",
-        \\"friendlyTaskName\\": \\"Outdated Dependencies\\",
-        \\"taskClassification\\": {
-          \\"category\\": \\"insights\\",
-          \\"priority\\": \\"high\\"
-        }
-      },
-      \\"result\\": {
-        \\"dependencies\\": [
-          {
-            \\"moduleName\\": \\"react\\",
-            \\"homepage\\": \\"https://reactjs.org/\\",
-            \\"latest\\": \\"16.13.1\\",
-            \\"installed\\": \\"15.6.2\\",
-            \\"isInstalled\\": true,
-            \\"notInstalled\\": false,
-            \\"packageWanted\\": \\"15.6.2\\",
-            \\"packageJson\\": \\"^15.0.0\\",
-            \\"devDependency\\": false,
-            \\"mismatch\\": false,
-            \\"semverValid\\": \\"15.6.2\\",
-            \\"easyUpgrade\\": false,
-            \\"bump\\": \\"major\\",
-            \\"unused\\": true
-          },
-          {
-            \\"moduleName\\": \\"react-dom\\",
-            \\"homepage\\": \\"https://reactjs.org/\\",
-            \\"latest\\": \\"16.13.1\\",
-            \\"installed\\": \\"15.6.2\\",
-            \\"isInstalled\\": true,
-            \\"notInstalled\\": false,
-            \\"packageWanted\\": \\"15.6.2\\",
-            \\"packageJson\\": \\"^15.0.0\\",
-            \\"devDependency\\": false,
-            \\"mismatch\\": false,
-            \\"semverValid\\": \\"15.6.2\\",
-            \\"easyUpgrade\\": false,
-            \\"bump\\": \\"major\\",
-            \\"unused\\": true
-          }
-        ]
-      }
-    },
-    {
-      \\"meta\\": {
-        \\"taskName\\": \\"eslint-disables\\",
-        \\"friendlyTaskName\\": \\"Number of eslint-disable Usages\\",
-        \\"taskClassification\\": {
-          \\"category\\": \\"insights\\",
-          \\"priority\\": \\"low\\"
-        }
-      },
-      \\"result\\": {
-        \\"eslintDisables\\": [],
-        \\"fileErrors\\": []
-      }
-    },
     {
       \\"meta\\": {
         \\"taskName\\": \\"lines-of-code\\",
@@ -271,10 +190,6 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
-
 === Lines of Code ===
 
 File type   Total       TODO 
@@ -284,8 +199,6 @@ js          1           1
 checkup v0.0.0
 config 3720546166a5955def89f6bf69895976
 
-Taskname              Error                                
-outdated-dependencies Could not check project dependencies 
 "
 `;
 
@@ -294,10 +207,6 @@ exports[`@checkup/cli normal cli output should run the tasks on the globs passed
 Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -311,8 +220,6 @@ json             175         N/A
 checkup v0.0.0
 config 3720546166a5955def89f6bf69895976
 
-Taskname              Error                                
-outdated-dependencies Could not check project dependencies 
 "
 `;
 
@@ -321,15 +228,6 @@ exports[`@checkup/cli normal cli output should use the config at the config path
 Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-=== Outdated Dependencies ===
-
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
-■ major (2)  ■ minor (0)  ■ patch (0)  
-
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -352,15 +250,6 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Outdated Dependencies ===
-
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
-■ major (2)  ■ minor (0)  ■ patch (0)  
-
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
-
 === Lines of Code ===
 
 File type        Total       TODO 
@@ -379,15 +268,6 @@ exports[`@checkup/cli normal cli output should use the excludePaths provided by 
 Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-=== Outdated Dependencies ===
-
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
-■ major (2)  ■ minor (0)  ■ patch (0)  
-
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -409,10 +289,6 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
-
 === Lines of Code ===
 
 File type        Total       TODO 
@@ -424,8 +300,6 @@ json             175         N/A
 checkup v0.0.0
 config da25c78e31bb71ef06c3641e8846f64e
 
-Taskname              Error                                
-outdated-dependencies Could not check project dependencies 
 "
 `;
 
@@ -434,10 +308,6 @@ exports[`@checkup/cli normal cli output should use the excludePaths provided by 
 Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-=== Number of eslint-disable Usages ===
-
-eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -451,7 +321,5 @@ json             175         N/A
 checkup v0.0.0
 config 3720546166a5955def89f6bf69895976
 
-Taskname              Error                                
-outdated-dependencies Could not check project dependencies 
 "
 `;
