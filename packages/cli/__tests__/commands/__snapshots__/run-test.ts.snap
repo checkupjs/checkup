@@ -6,9 +6,9 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -32,9 +32,9 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -63,9 +63,9 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
 ■ major (2)  ■ minor (0)  ■ patch (0)  
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -150,7 +150,7 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
     {
       \\"meta\\": {
         \\"taskName\\": \\"eslint-disables\\",
-        \\"friendlyTaskName\\": \\"Number of Eslint Overrides\\",
+        \\"friendlyTaskName\\": \\"Number of eslint-disable Usages\\",
         \\"taskClassification\\": {
           \\"category\\": \\"insights\\",
           \\"priority\\": \\"low\\"
@@ -271,9 +271,9 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -295,9 +295,9 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -327,9 +327,9 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
 ■ major (2)  ■ minor (0)  ■ patch (0)  
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -357,9 +357,9 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
 ■ major (2)  ■ minor (0)  ■ patch (0)  
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -385,9 +385,9 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
 ■ major (2)  ■ minor (0)  ■ patch (0)  
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -409,9 +409,9 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
@@ -435,9 +435,9 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Number of Eslint Overrides ===
+=== Number of eslint-disable Usages ===
 
-Eslint Overrides Found: 0
+eslint-disable Usages Found: 0
 
 === Lines of Code ===
 

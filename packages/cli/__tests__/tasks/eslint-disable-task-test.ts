@@ -38,9 +38,9 @@ describe('eslint-disable-task', () => {
     eslintDisableTaskResult.toConsole();
 
     expect(stdout()).toMatchInlineSnapshot(`
-      "=== Number of Eslint Overrides ===
+      "=== Number of eslint-disable Usages ===
 
-      Eslint Overrides Found: 3
+      eslint-disable Usages Found: 3
 
       "
     `);
@@ -60,7 +60,7 @@ describe('eslint-disable-task', () => {
       .toMatchInlineSnapshot(`
       Object {
         "meta": Object {
-          "friendlyTaskName": "Number of Eslint Overrides",
+          "friendlyTaskName": "Number of eslint-disable Usages",
           "taskClassification": Object {
             "category": "insights",
             "priority": "low",
