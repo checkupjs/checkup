@@ -1,6 +1,6 @@
 # checkup-plugin-ember-octane
 
-A plugin for CheckupJS that tracks progress of Ember Octane migration tasks.
+A checkup plugin for Ember Octane project tasks.
 
 ![CI Build](https://github.com/checkupjs/checkup/workflows/CI%20Build/badge.svg)
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)

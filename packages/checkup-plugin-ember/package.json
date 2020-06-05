@@ -5,14 +5,14 @@
   "author": "Steve Calvert @scalvert",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
-    "@checkup/core": "0.0.14",
+    "@checkup/core": "^0.0.14",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "ember-template-recast": "^4.1.4",
     "tslib": "^2"
   },
   "devDependencies": {
-    "@checkup/test-helpers": "0.0.14",
+    "@checkup/test-helpers": "^0.0.14",
     "@oclif/dev-cli": "^1",
     "fixturify-project": "^2.1.0",
     "rimraf": "^3.0.2"
@@ -46,9 +46,9 @@
   "scripts": {
     "build": "tsc --build",
     "postpack": "rm -f oclif.manifest.json",
-    "prepack": "tsc --build && oclif-dev manifest && oclif-dev readme",
+    "prepack": "tsc --build && oclif-dev manifest",
     "test": "jest",
-    "version": "oclif-dev readme && git add README.md"
+    "version": "git add README.md"
   },
   "types": "lib/index.d.ts",
   "main": "lib/index.js"

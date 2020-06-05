@@ -1,34 +1,46 @@
-# plugin-javascript
+# checkup-plugin-javascript
 
-An oclif plugin for Javascipt project tasks
+A checkup plugin for Javascript project tasks
 
-<!-- toc -->
+![CI Build](https://github.com/checkupjs/checkup/workflows/CI%20Build/badge.svg)
+[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+[![Version](https://img.shields.io/npm/v/checkup-plugin-javascript.svg)](https://npmjs.org/package/checkup-plugin-javascript)
+[![Downloads/week](https://img.shields.io/npm/dw/checkup-plugin-javascript.svg)](https://npmjs.org/package/checkup-plugin-javascript)
+[![License](https://img.shields.io/npm/l/checkup-plugin-javascript.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
 
-- [plugin-javascript](#plugin-javascript)
 - [Usage](#usage)
-- [Commands](#commands)
-<!-- tocstop -->
 
 # Usage
 
-<!-- usage -->
+1. Install [@checkup/cli](https://github.com/checkupjs/checkup/blob/master/packages/cli/README.md) globally following the README.
 
-```sh-session
-$ npm install -g checkup-plugin-javascript
-$ checkup-plugin-javascript COMMAND
-running command...
-$ checkup-plugin-javascript (-v|--version|version)
-checkup-plugin-javascript/0.0.1 darwin-x64 node-v12.16.1
-$ checkup-plugin-javascript --help [COMMAND]
-USAGE
-  $ checkup-plugin-javascript COMMAND
-...
-```
+2. Install `checkup-plugin-javascript`
 
-<!-- usagestop -->
+   ```sh-session
+   $ npm install --save-dev checkup-plugin-javascript
 
-# Commands
+   # or
 
-<!-- commands -->
+   $ yarn add --dev checkup-plugin-javascript
+   ```
 
-<!-- commandsstop -->
+3. Add `checkup-plugin-javascript` as a plugin to your config.
+
+   ```json
+    {
+      "plugins": [
+        ...
+        "checkup-plugin-javascript"
+        ...
+      ],
+      "tasks": {
+        ...
+      }
+    }
+   ```
+
+4. Run checkup.
+
+   ```sh-session
+   $ checkup
+   ```

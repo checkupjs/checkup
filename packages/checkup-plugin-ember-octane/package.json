@@ -5,7 +5,7 @@
   "author": "Lewis Miller @lbdm44",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
-    "@checkup/core": "0.0.14",
+    "@checkup/core": "^0.0.14",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "babel-eslint": "^10.1.0",
@@ -47,10 +47,10 @@
   "scripts": {
     "build": "tsc --build",
     "postpack": "rm -f oclif.manifest.json",
-    "prepack": "tsc --build && oclif-dev manifest && oclif-dev readme",
+    "prepack": "tsc --build && oclif-dev manifest",
     "test": "jest --no-cache",
     "test:debug": "yarn clean && yarn build && node --inspect-brk=1337 node_modules/.bin/jest",
-    "version": "oclif-dev readme && git add README.md"
+    "version": "git add README.md"
   },
   "types": "lib/index.d.ts",
   "main": "lib/index.js"
