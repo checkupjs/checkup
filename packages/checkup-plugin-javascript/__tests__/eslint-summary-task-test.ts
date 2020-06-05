@@ -1,4 +1,5 @@
 import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { ESLintReport } from '@checkup/core';
 import {
   EslintSummaryTask,
   readEslintConfig,
@@ -6,7 +7,6 @@ import {
 } from '../src/tasks/eslint-summary-task';
 import EslintSummaryTaskResult from '../src/results/eslint-summary-task-result';
 import { PackageJson } from 'type-fest';
-import { CLIEngine } from 'eslint';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
@@ -127,7 +127,7 @@ describe('readEslintConfig', () => {
   });
 });
 
-function filterResultFilePath(report: CLIEngine.LintReport) {
+function filterResultFilePath(report: ESLintReport) {
   let filteredResults = report.results.map((result) => {
     result.filePath = '';
   });

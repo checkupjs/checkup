@@ -39,7 +39,7 @@ export class EslintSummaryTask extends BaseTask implements Task {
     },
   };
 
-  private eslintParser: Parser<ESLintReport>;
+  private _eslintParser: Parser<ESLintReport>;
   jsPaths: string[];
 
   constructor(pluginName: string, context: TaskContext) {
@@ -47,12 +47,12 @@ export class EslintSummaryTask extends BaseTask implements Task {
 
     let createEslintParser = this.context.parsers.get('eslint')!;
 
-    let eslintConfig = readEslintConfig(
+    let eslintConfig: ESLintOptions = readEslintConfig(
       this.context.paths,
       this.context.cliFlags.cwd,
       this.context.pkg
     );
-    this.eslintParser = createEslintParser(eslintConfig as ESLintOptions);
+    this._eslintParser = createEslintParser(eslintConfig);
     this.context.pkg;
     this.jsPaths = this.context.paths.filterByGlob('**/*.js');
   }
@@ -60,18 +60,23 @@ export class EslintSummaryTask extends BaseTask implements Task {
   async run(): Promise<TaskResult> {
     let result: EslintSummaryTaskResult = new EslintSummaryTaskResult(this.meta);
 
-    let esLintReport = await this.runEsLint();
+    let esLintReport = await this._runEsLint();
     this.debug('ESLint Report', esLintReport);
     result.esLintReport = esLintReport;
+
     return result;
   }
 
-  private async runEsLint(): Promise<ESLintReport> {
-    return this.eslintParser.execute(this.jsPaths);
+  private async _runEsLint(): Promise<ESLintReport> {
+    return this._eslintParser.execute(this.jsPaths);
   }
 }
 
-export function readEslintConfig(paths: string[], basePath: string, pkg: PackageJson) {
+export function readEslintConfig(
+  paths: string[],
+  basePath: string,
+  pkg: PackageJson
+): ESLintOptions {
   let eslintConfigFile: string = '';
 
   for (const acceptedConfigFile of ACCEPTED_ESLINT_CONFIG_FILES) {
@@ -84,9 +89,9 @@ export function readEslintConfig(paths: string[], basePath: string, pkg: Package
   }
 
   if (eslintConfigFile) {
-    return eslintConfigFile;
+    return eslintConfigFile as ESLintOptions;
   } else if (pkg.eslintConfig !== null) {
-    return pkg.eslintConfig as string;
+    return pkg.eslintConfig as ESLintOptions;
   } else {
     throw new Error(
       'No eslint config found in root (in the form of .eslintrc.* or as an eslintConfig field in package.json)'

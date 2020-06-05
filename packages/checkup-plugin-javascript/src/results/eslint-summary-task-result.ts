@@ -2,17 +2,17 @@ import { BaseTaskResult, TaskResult, ui, ESLintReport } from '@checkup/core';
 import { Linter } from 'eslint';
 import * as chalk from 'chalk';
 
-type EslintFailureCounts = {
+interface EslintFailureCounts {
   failureCount: number;
   fixableFailureCount: number;
-};
+}
 
-type EslintDataForConsole = {
+interface FormattedEslintReport {
   errorCount: number;
   warningCount: number;
   errorList: { rule: string; failures: string }[];
   warningList: { rule: string; failures: string }[];
-};
+}
 
 export default class EslintSummaryTaskResult extends BaseTaskResult implements TaskResult {
   esLintReport!: ESLintReport;
@@ -49,7 +49,7 @@ export default class EslintSummaryTaskResult extends BaseTaskResult implements T
   }
 }
 
-function transformEslintReport(esLintReport: ESLintReport): EslintDataForConsole {
+function transformEslintReport(esLintReport: ESLintReport): FormattedEslintReport {
   let errors: Record<string, EslintFailureCounts> = {};
   let warnings: Record<string, EslintFailureCounts> = {};
 
@@ -103,10 +103,15 @@ function createFailureList(record: Record<string, EslintFailureCounts>, failureT
   let chalkColor: Function = failureType === 'errors' ? chalk.red : chalk.yellow;
 
   return Object.entries(record).map((arr) => {
+    let ruleId = arr[0];
+    let eslintFailureCounts = arr[1];
+    let totalFailureCount =
+      eslintFailureCounts.failureCount + eslintFailureCounts.fixableFailureCount;
+
     return {
-      rule: arr[0],
-      failures: `${chalkColor(arr[1].failureCount + arr[1].fixableFailureCount)} ${failureType} (${
-        arr[1].fixableFailureCount
+      rule: ruleId,
+      failures: `${chalkColor(totalFailureCount)} ${failureType} (${
+        eslintFailureCounts.fixableFailureCount
       } fixable)`,
     };
   });
