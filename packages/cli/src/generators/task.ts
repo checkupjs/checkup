@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as t from '@babel/types';
 
-import { Category, Priority } from '@checkup/core';
+import { TaskType } from '@checkup/core';
 
 import { Answers } from 'inquirer';
 import AstTransformer from '../helpers/ast';
@@ -16,8 +16,7 @@ interface TaskOptions extends Options {
   taskClass: string;
   pascalCaseName: string;
   typescript: boolean;
-  category: string;
-  priority: string;
+  taskType: string;
 }
 
 export default class TaskGenerator extends BaseGenerator {
@@ -46,8 +45,7 @@ export default class TaskGenerator extends BaseGenerator {
 
     const defaults = {
       typescript: true,
-      category: Category.Insights,
-      priority: Priority.Low,
+      taskType: TaskType.Insights,
     };
 
     if (this.options.defaults) {
@@ -62,8 +60,8 @@ export default class TaskGenerator extends BaseGenerator {
         },
         {
           type: 'list',
-          name: 'category',
-          message: 'Select a task category',
+          name: 'taskType',
+          message: 'Select a task taskType',
           choices: [
             { name: 'insights', value: 'Insights' },
             { name: 'migrations', value: 'Migrations' },
@@ -89,8 +87,7 @@ export default class TaskGenerator extends BaseGenerator {
     this.options.taskClass = `${this.options.pascalCaseName}Task`;
     this.options.taskResultClass = `${this.options.taskClass}Result`;
     this.options.typescript = this.answers.typescript;
-    this.options.category = this.answers.category;
-    this.options.priority = this.answers.priority;
+    this.options.taskType = this.answers.taskType;
   }
 
   writing() {

@@ -1,4 +1,4 @@
-import { BaseTask, Category, Priority, Task, TaskMetaData, TaskResult } from '@checkup/core';
+import { BaseTask, TaskType, Task, TaskMetaData, TaskResult } from '@checkup/core';
 import <%- taskResultClass %> from '../results/<%- name %>-task-result';
 
 export default class <%- taskClass %> extends BaseTask implements Task {
@@ -6,8 +6,8 @@ export default class <%- taskClass %> extends BaseTask implements Task {
     taskName: '<%- name %>',
     friendlyTaskName: '<%- _.startCase(name.split('-').join(' ')) %>',
     taskClassification: {
-      category: Category.<%- _.upperFirst(category) %>,
-      priority: Priority.<%- _.upperFirst(priority) %>,
+      taskType: TaskType.<%- _.upperFirst(taskType) %>,
+      category: '' %>,
     },
   };
 

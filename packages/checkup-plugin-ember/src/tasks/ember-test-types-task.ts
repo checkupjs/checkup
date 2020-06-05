@@ -1,6 +1,5 @@
 import {
-  Category,
-  Priority,
+  TaskType,
   Task,
   TaskContext,
   TaskResult,
@@ -18,8 +17,8 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     taskName: 'ember-test-types',
     friendlyTaskName: 'Ember Test Types',
     taskClassification: {
-      category: Category.Insights,
-      priority: Priority.Medium,
+      taskType: TaskType.Insights,
+      category: 'testing',
     },
   };
   private eslintParser: Parser<ESLintReport>;

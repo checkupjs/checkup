@@ -14,8 +14,8 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Outdated Dependencies",
     "taskClassification": Object {
-      "category": "insights",
-      "priority": "high",
+      "category": "dependencies",
+      "taskType": "insights",
     },
     "taskName": "outdated-dependencies",
   },

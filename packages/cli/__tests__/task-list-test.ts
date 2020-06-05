@@ -8,7 +8,6 @@ import {
   RecommendationsTaskLow,
 } from './__utils__/mock-tasks';
 
-import { Category } from '@checkup/core';
 import TaskList from '../src/task-list';
 import { getTaskContext } from '@checkup/test-helpers';
 
@@ -25,7 +24,7 @@ describe('TaskList', () => {
 
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
-    expect(taskList.categories.get(Category.Insights)!.size).toEqual(1);
+    expect(taskList.categories.get('bar')!.size).toEqual(1);
   });
 
   it('hasTask returns false if no task exists with that name', () => {
@@ -100,21 +99,10 @@ describe('TaskList', () => {
       Array [
         MockTaskResult {
           "meta": Object {
-            "friendlyTaskName": "Insights Task High",
-            "taskClassification": Object {
-              "category": "insights",
-              "priority": "high",
-            },
-            "taskName": "insights-task-high",
-          },
-          "result": "insights task high is being run",
-        },
-        MockTaskResult {
-          "meta": Object {
             "friendlyTaskName": "Insights Task Low",
             "taskClassification": Object {
-              "category": "insights",
-              "priority": "low",
+              "category": "foo",
+              "taskType": "insights",
             },
             "taskName": "insights-task-low",
           },
@@ -124,8 +112,8 @@ describe('TaskList', () => {
           "meta": Object {
             "friendlyTaskName": "Migration Task High",
             "taskClassification": Object {
-              "category": "migrations",
-              "priority": "high",
+              "category": "foo",
+              "taskType": "migrations",
             },
             "taskName": "migration-task-high",
           },
@@ -133,21 +121,10 @@ describe('TaskList', () => {
         },
         MockTaskResult {
           "meta": Object {
-            "friendlyTaskName": "Migration Task Low",
-            "taskClassification": Object {
-              "category": "migrations",
-              "priority": "low",
-            },
-            "taskName": "migration-task-low",
-          },
-          "result": "migration task low is being run",
-        },
-        MockTaskResult {
-          "meta": Object {
             "friendlyTaskName": "Recommendations Task High",
             "taskClassification": Object {
-              "category": "recommendations",
-              "priority": "high",
+              "category": "baz",
+              "taskType": "recommendations",
             },
             "taskName": "recommendations-task-high",
           },
@@ -155,10 +132,32 @@ describe('TaskList', () => {
         },
         MockTaskResult {
           "meta": Object {
+            "friendlyTaskName": "Migration Task Low",
+            "taskClassification": Object {
+              "category": "baz",
+              "taskType": "migrations",
+            },
+            "taskName": "migration-task-low",
+          },
+          "result": "migration task low is being run",
+        },
+        MockTaskResult {
+          "meta": Object {
+            "friendlyTaskName": "Insights Task High",
+            "taskClassification": Object {
+              "category": "bar",
+              "taskType": "insights",
+            },
+            "taskName": "insights-task-high",
+          },
+          "result": "insights task high is being run",
+        },
+        MockTaskResult {
+          "meta": Object {
             "friendlyTaskName": "Recommendations Task Low",
             "taskClassification": Object {
-              "category": "recommendations",
-              "priority": "low",
+              "category": "bar",
+              "taskType": "recommendations",
             },
             "taskName": "recommendations-task-low",
           },

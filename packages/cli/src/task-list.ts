@@ -1,17 +1,9 @@
 import * as debug from 'debug';
 import * as pMap from 'p-map';
 
-import {
-  BaseTaskResult,
-  Category,
-  Task,
-  TaskError,
-  TaskName,
-  TaskResult,
-  taskComparator,
-} from '@checkup/core';
+import { Task, TaskError, TaskName, TaskResult } from '@checkup/core';
 
-import PriorityMap from './priority-map';
+import TaskTypeMap from './task-type-map';
 
 /**
  * @class TaskList
@@ -19,7 +11,7 @@ import PriorityMap from './priority-map';
  * Represents a collection of tasks to run.
  */
 export default class TaskList {
-  private _categories: Map<Category, PriorityMap>;
+  private _categories: Map<string, TaskTypeMap>;
   private _errors: TaskError[];
   debug: debug.Debugger;
 
@@ -28,7 +20,7 @@ export default class TaskList {
   }
 
   constructor() {
-    this._categories = new Map<Category, PriorityMap>();
+    this._categories = new Map<string, TaskTypeMap>();
     this._errors = [];
     this.debug = debug('checkup:task');
   }
@@ -42,8 +34,8 @@ export default class TaskList {
    * @param taskClassification
    */
   registerTask(task: Task) {
-    let priorityMap = this.getByCategory(task.meta.taskClassification.category);
-    priorityMap!.setTaskByPriority(task.meta.taskClassification.priority, task.meta.taskName, task);
+    let categoryMap = this.getByCategory(task.meta.taskClassification.category);
+    categoryMap!.setTaskByTaskType(task.meta.taskClassification.taskType, task.meta.taskName, task);
   }
 
   /**
@@ -113,21 +105,19 @@ export default class TaskList {
       return result;
     });
 
-    ((results as unknown) as BaseTaskResult[]).sort(taskComparator);
-
     return [results.filter(Boolean) as TaskResult[], this._errors];
   }
 
   /**
-   * Gets a priorityMap from the category map
+   * Gets a priorityMap from the taskType map
    *
    * @private
    * @method getByCategory
    * @param category
    */
-  private getByCategory(category: Category) {
+  private getByCategory(category: string): TaskTypeMap | undefined {
     if (!this._categories.has(category)) {
-      this._categories.set(category, new PriorityMap());
+      this._categories.set(category, new TaskTypeMap());
     }
 
     return this._categories.get(category);
@@ -159,8 +149,8 @@ export default class TaskList {
   private getTasks() {
     let values: Task[] = [];
 
-    this._categories.forEach((category) => {
-      values = [...values, ...category.values()];
+    this._categories.forEach((taskType) => {
+      values = [...values, ...taskType.values()];
     });
 
     return values;

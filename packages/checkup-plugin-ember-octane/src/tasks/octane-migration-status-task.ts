@@ -1,9 +1,8 @@
 import {
   BaseTask,
-  Category,
+  TaskType,
   ESLintReport,
   Parser,
-  Priority,
   Task,
   TaskContext,
   TemplateLintReport,
@@ -18,8 +17,8 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     taskName: 'octane-migration-status',
     friendlyTaskName: 'Ember Octane Migration Status',
     taskClassification: {
-      category: Category.Migrations,
-      priority: Priority.High,
+      taskType: TaskType.Migrations,
+      category: 'ember',
     },
   };
 
