@@ -4,7 +4,7 @@ exports[`outdated-dependencies-task detects outdated dependencies and output to 
 "Outdated Dependencies
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
-■ major (2)  ■ minor (0)  ■ patch (0)  
+■ major (1)  ■ minor (1)  ■ patch (0)  
 
 "
 `;
@@ -41,22 +41,22 @@ Object {
         "usedInScripts": undefined,
       },
       Object {
-        "bump": "major",
+        "bump": "minor",
         "devDependency": false,
         "easyUpgrade": false,
         "homepage": "https://reactjs.org/",
-        "installed": "15.6.2",
+        "installed": "16.0.0",
         "isInstalled": true,
         "latest": "16.13.1",
         "mismatch": false,
         "moduleName": "react-dom",
         "notInPackageJson": undefined,
         "notInstalled": false,
-        "packageJson": "^15.0.0",
-        "packageWanted": "15.6.2",
+        "packageJson": "16.0.0",
+        "packageWanted": "16.0.0",
         "pkgError": undefined,
         "regError": undefined,
-        "semverValid": "15.6.2",
+        "semverValid": "16.0.0",
         "unused": true,
         "usedInScripts": undefined,
       },

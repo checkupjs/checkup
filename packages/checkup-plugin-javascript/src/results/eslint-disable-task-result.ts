@@ -24,7 +24,7 @@ export default class EslintDisableTaskResult extends BaseTaskResult implements T
             return this.value > this.threshold;
           },
           get message() {
-            return `There should be no more than ${this.threshold} instances of 'eslint-disable', and you have ${this.value} instances.`;
+            return `There are ${this.value} instances of 'eslint-disable', there should be at most ${this.threshold}.`;
           },
         },
       ],

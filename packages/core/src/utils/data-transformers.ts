@@ -37,6 +37,10 @@ export function toTaskItemData(
   };
 }
 
-export function toPercent(numerator: number, denominator: number): string {
+export function fractionToPercent(numerator: number, denominator: number): string {
   return `${((numerator / denominator) * 100).toFixed()}%`;
+}
+
+export function decimalToPercent(decimal: number): string {
+  return `${(decimal * 100).toFixed()}%`;
 }

@@ -1,4 +1,10 @@
-import { CheckupProject, stdout, getTaskContext, clearFilePaths } from '@checkup/test-helpers';
+import {
+  CheckupProject,
+  stdout,
+  getTaskContext,
+  clearFilePaths,
+  isActionEnabled,
+} from '@checkup/test-helpers';
 
 import TemplateLintDisableTask from '../src/tasks/template-lint-disable-task';
 import TemplateLintDisableTaskResult from '../src/results/template-lint-disable-task-result';
@@ -86,6 +92,28 @@ describe('template-lint-disable-task', () => {
           },
         ],
       }
+    `);
+  });
+
+  it('returns action item if there are more than 2 instances of template-lint-disable', async () => {
+    const result = await new TemplateLintDisableTask(
+      'internal',
+      getTaskContext({
+        paths: project.filePaths,
+      })
+    ).run();
+    const templateLintDisableTaskResult = <TemplateLintDisableTaskResult>result;
+
+    expect(
+      isActionEnabled(
+        templateLintDisableTaskResult.actionList.enabledActions,
+        'numTemplateLintDisables'
+      )
+    ).toEqual(true);
+    expect(templateLintDisableTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`
+      Array [
+        "There are 3 instances of 'template-lint-disable', there should be at most 2.",
+      ]
     `);
   });
 });

@@ -1,22 +1,19 @@
-import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, ActionList, decimalToPercent } from '@checkup/core';
 
-import { OutdatedDependency } from '../tasks/outdated-dependencies-task';
+import { Dependency } from '../tasks/outdated-dependencies-task';
 
 export default class OutdatedDependenciesTaskResult extends BaseTaskResult implements TaskResult {
-  outdatedDependencies!: OutdatedDependency[];
-  totalDependencies!: number;
+  dependencies!: Dependency[];
 
   toConsole() {
-    let versionTypes = groupByVersionType(this.outdatedDependencies);
-
     ui.section(this.meta.friendlyTaskName, () => {
       ui.sectionedBar(
         [
-          { title: 'major', count: versionTypes.get('major')!.length, color: 'red' },
-          { title: 'minor', count: versionTypes.get('minor')!.length, color: 'orange' },
-          { title: 'patch', count: versionTypes.get('patch')!.length, color: 'yellow' },
+          { title: 'major', count: this.versionTypes.get('major')!.length, color: 'red' },
+          { title: 'minor', count: this.versionTypes.get('minor')!.length, color: 'orange' },
+          { title: 'patch', count: this.versionTypes.get('patch')!.length, color: 'yellow' },
         ],
-        this.totalDependencies
+        this.dependencies.length
       );
     });
   }
@@ -29,26 +26,81 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
       },
     };
   }
-}
 
-function groupByVersionType(dependencies: OutdatedDependency[]) {
-  let versionTypes: Map<string, Array<OutdatedDependency>> = new Map<
-    string,
-    Array<OutdatedDependency>
-  >([
-    ['major', []],
-    ['minor', []],
-    ['patch', []],
-  ]);
-
-  for (let dependency of dependencies) {
-    try {
-      // for catching when dependency version is 'exotic', which means yarn cannot detect for you whether the package has become outdated
-      versionTypes.get(dependency.bump)?.push(dependency);
-    } catch {
-      // do nothing
-    }
+  get outdatedDependencies(): Dependency[] {
+    // if a dependency is up to date, the `bump` field will be null
+    return this.dependencies.filter((dependency) => dependency.bump !== null);
   }
 
-  return versionTypes;
+  get versionTypes(): Map<string, Array<Dependency>> {
+    let versionTypes: Map<string, Array<Dependency>> = new Map<string, Array<Dependency>>([
+      ['major', []],
+      ['minor', []],
+      ['patch', []],
+    ]);
+
+    for (let dependency of this.outdatedDependencies) {
+      try {
+        // for catching when dependency version is 'exotic', which means yarn cannot detect for you whether the package has become outdated
+        versionTypes.get(dependency.bump)?.push(dependency);
+      } catch {
+        // do nothing
+      }
+    }
+
+    return versionTypes;
+  }
+
+  get actionList() {
+    return new ActionList(
+      [
+        {
+          name: 'percentageMajorOutdated',
+          threshold: 0.05,
+          value: this.versionTypes.get('major')!.length / this.dependencies.length,
+          get enabled() {
+            return this.value > this.threshold;
+          },
+          get message() {
+            return `${decimalToPercent(
+              this.value
+            )} of your dependencies are major versions behind, this should be at most ${decimalToPercent(
+              this.threshold
+            )}.`;
+          },
+        },
+        {
+          name: 'percentageMinorOutdated',
+          threshold: 0.05,
+          value: this.versionTypes.get('minor')!.length / this.dependencies.length,
+          get enabled() {
+            return this.value > this.threshold;
+          },
+          get message() {
+            return `${decimalToPercent(
+              this.value
+            )} of your dependencies are minor versions behind, this should be at most ${decimalToPercent(
+              this.threshold
+            )}.`;
+          },
+        },
+        {
+          name: 'percentageOutdated',
+          threshold: 0.2,
+          value: this.outdatedDependencies.length / this.dependencies.length,
+          get enabled() {
+            return this.value > this.threshold;
+          },
+          get message() {
+            return `${decimalToPercent(
+              this.value
+            )} of your dependencies are outdated, this should be at most ${decimalToPercent(
+              this.threshold
+            )}.`;
+          },
+        },
+      ],
+      this.config
+    );
+  }
 }

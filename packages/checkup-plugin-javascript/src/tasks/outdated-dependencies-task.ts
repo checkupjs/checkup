@@ -3,9 +3,8 @@ import * as npmCheck from 'npm-check';
 import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
 
 import OutdatedDependenciesTaskResult from '../results/outdated-dependencies-task-result';
-import { PackageJson } from 'type-fest';
 
-export type OutdatedDependency = {
+export type Dependency = {
   moduleName: string;
   homepage: string;
   regError: string | undefined;
@@ -25,7 +24,7 @@ export type OutdatedDependency = {
   unused: boolean;
 };
 
-async function getOutdated(path: string): Promise<OutdatedDependency[]> {
+async function getDependencies(path: string): Promise<Dependency[]> {
   let result;
   let packages;
 
@@ -38,13 +37,6 @@ async function getOutdated(path: string): Promise<OutdatedDependency[]> {
   packages = result.get('packages');
 
   return packages;
-}
-
-function getTotalDependencies(packageJson: PackageJson) {
-  return (
-    Object.keys(packageJson.dependencies ?? {}).length +
-    Object.keys(packageJson.devDependencies ?? {}).length
-  );
 }
 
 export default class OutdatedDependenciesTask extends BaseTask implements Task {
@@ -62,8 +54,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
       this.config
     );
 
-    result.outdatedDependencies = await getOutdated(this.context.cliFlags.cwd);
-    result.totalDependencies = getTotalDependencies(this.context.pkg);
+    result.dependencies = await getDependencies(this.context.cliFlags.cwd);
 
     return result;
   }

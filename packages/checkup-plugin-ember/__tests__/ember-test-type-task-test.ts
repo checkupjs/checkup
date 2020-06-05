@@ -1,4 +1,4 @@
-import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { EmberProject, stdout, getTaskContext, isActionEnabled } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 
 import EmberTestTypesTask from '../src/tasks/ember-test-types-task';
@@ -167,5 +167,47 @@ describe('ember-test-types-task', () => {
     let json = testTypesTaskResult.toJson();
 
     expect(json).toMatchSnapshot();
+  });
+
+  it('returns action item if more than 1% of your tests are skipped and if your ratio of application tests is not matching threshold', async () => {
+    project.files = Object.assign(project.files, {
+      'index.js': 'index js file',
+      addon: TESTS,
+    });
+
+    project.writeSync();
+
+    const result = await new EmberTestTypesTask(
+      pluginName,
+      getTaskContext({
+        cliFlags: { cwd: project.baseDir },
+        paths: project.filePaths,
+        config: {
+          tasks: {
+            'ember/ember-test-types': [
+              'on',
+              { actions: { ratioApplicationTests: { threshold: 3 } } },
+            ],
+          },
+        },
+      })
+    ).run();
+
+    const testTypesTaskResult = <EmberTestTypesTaskResult>result;
+
+    expect(
+      isActionEnabled(testTypesTaskResult.actionList.enabledActions, 'percentageSkippedTests')
+    ).toEqual(true);
+
+    expect(
+      isActionEnabled(testTypesTaskResult.actionList.enabledActions, 'ratioApplicationTests')
+    ).toEqual(true);
+
+    expect(testTypesTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`
+      Array [
+        "67% of your tests are skipped, this value should be below 1%",
+        "You have too many application tests. The number of unit tests and rendering tests combined should be at least 3x greater than the number of application tests.",
+      ]
+    `);
   });
 });
