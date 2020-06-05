@@ -88,7 +88,7 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
       })
     );
 
-    return new LinesOfCodeTaskResult(this.meta, linesOfCode);
+    return new LinesOfCodeTaskResult(this.meta, this.config, linesOfCode);
   }
 }
 

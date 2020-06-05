@@ -110,6 +110,7 @@ describe('TaskList', () => {
     expect(results).toMatchInlineSnapshot(`
       Array [
         MockTaskResult {
+          "config": Array [],
           "meta": Object {
             "friendlyTaskName": "Insights Task Low",
             "taskClassification": Object {
@@ -121,6 +122,7 @@ describe('TaskList', () => {
           "result": "insights task low is being run",
         },
         MockTaskResult {
+          "config": Array [],
           "meta": Object {
             "friendlyTaskName": "Migration Task High",
             "taskClassification": Object {
@@ -132,6 +134,7 @@ describe('TaskList', () => {
           "result": "migration task high is being run",
         },
         MockTaskResult {
+          "config": Array [],
           "meta": Object {
             "friendlyTaskName": "Recommendations Task High",
             "taskClassification": Object {
@@ -143,6 +146,7 @@ describe('TaskList', () => {
           "result": "recommendations task high is being run",
         },
         MockTaskResult {
+          "config": Array [],
           "meta": Object {
             "friendlyTaskName": "Migration Task Low",
             "taskClassification": Object {
@@ -154,6 +158,7 @@ describe('TaskList', () => {
           "result": "migration task low is being run",
         },
         MockTaskResult {
+          "config": Array [],
           "meta": Object {
             "friendlyTaskName": "Insights Task High",
             "taskClassification": Object {
@@ -165,6 +170,7 @@ describe('TaskList', () => {
           "result": "insights task high is being run",
         },
         MockTaskResult {
+          "config": Array [],
           "meta": Object {
             "friendlyTaskName": "Recommendations Task Low",
             "taskClassification": Object {

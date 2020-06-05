@@ -5,6 +5,7 @@ import {
   TaskResult,
   TemplateLintReport,
   ui,
+  ActionConfig,
 } from '@checkup/core';
 import {
   ESLINT_MIGRATION_TASK_CONFIGS,
@@ -19,10 +20,11 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
 
   constructor(
     meta: TaskMetaData,
+    config: ActionConfig[],
     public esLintReport: ESLintReport,
     public templateLintReport: TemplateLintReport
   ) {
-    super(meta);
+    super(meta, config);
     this.migrationResults = this.formattedMigrationResults;
     this.totalViolations = this.esLintReport.errorCount + this.templateLintReport.errorCount;
   }

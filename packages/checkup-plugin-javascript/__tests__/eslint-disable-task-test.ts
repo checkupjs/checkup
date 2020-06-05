@@ -86,4 +86,26 @@ describe('eslint-disable-task', () => {
       }
     `);
   });
+
+  it('returns action item if there are more than 2 instances of eslint-disable', async () => {
+    const result = await new EslintDisableTask(
+      pluginName,
+      getTaskContext({
+        paths: project.filePaths,
+        config: {
+          tasks: {
+            'javascript/eslint-disables': ['on', ['numEslintDisables']],
+          },
+        },
+      })
+    ).run();
+
+    const eslintDisableTaskResult = <EslintDisableTaskResult>result;
+    expect(eslintDisableTaskResult.actionList.isActionEnabled('numEslintDisables')).toEqual(true);
+    expect(eslintDisableTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`
+      Array [
+        "There should be no more than 2 instances of 'eslint-disable', and you have 3 instances.",
+      ]
+    `);
+  });
 });

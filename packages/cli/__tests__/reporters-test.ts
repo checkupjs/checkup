@@ -42,6 +42,7 @@ pluginTaskResults = [
         category: 'foo',
       },
     },
+    [],
     {
       foo: true,
       bar: 'baz',
@@ -56,6 +57,7 @@ pluginTaskResults = [
         category: 'foo',
       },
     },
+    [],
     {
       foo: true,
       bar: 'baz',
@@ -70,6 +72,7 @@ pluginTaskResults = [
         category: 'foo',
       },
     },
+    [],
     {
       foo: true,
       bar: 'baz',
@@ -84,6 +87,7 @@ pluginTaskResults = [
         category: 'bar',
       },
     },
+    [],
     {
       foo: true,
       bar: 'baz',
@@ -98,6 +102,7 @@ pluginTaskResults = [
         category: 'bar',
       },
     },
+    [],
     {
       foo: true,
       bar: 'baz',
@@ -112,6 +117,7 @@ pluginTaskResults = [
         category: 'bar',
       },
     },
+    [],
     {
       foo: true,
       bar: 'baz',
@@ -121,11 +127,24 @@ pluginTaskResults = [
 
 describe('_transformJsonResults', () => {
   it('transforms meta and plugin results into correct format', () => {
-    let transformed = _transformJsonResults(metaTaskResults, pluginTaskResults, []);
+    let transformed = _transformJsonResults(
+      metaTaskResults,
+      pluginTaskResults,
+      [{ error: 'Something is broken...', taskName: 'mock-meta-task-6' }],
+      ['Fix your stuff!']
+    );
 
     expect(transformed).toMatchInlineSnapshot(`
       Object {
-        "errors": Array [],
+        "actionItems": Array [
+          "Fix your stuff!",
+        ],
+        "errors": Array [
+          Object {
+            "error": "Something is broken...",
+            "taskName": "mock-meta-task-6",
+          },
+        ],
         "meta": Object {
           "mock-meta-task-1": Object {
             "bar": "baz",

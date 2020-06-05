@@ -57,7 +57,7 @@ export class EslintSummaryTask extends BaseTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    let result: EslintSummaryTaskResult = new EslintSummaryTaskResult(this.meta);
+    let result: EslintSummaryTaskResult = new EslintSummaryTaskResult(this.meta, this.config);
 
     let esLintReport = await this._runEsLint();
     this.debug('ESLint Report', esLintReport);

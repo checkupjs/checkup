@@ -17,7 +17,10 @@ export default class TemplateLintDisableTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: TemplateLintDisableTaskResult = new TemplateLintDisableTaskResult(this.meta);
+    let result: TemplateLintDisableTaskResult = new TemplateLintDisableTaskResult(
+      this.meta,
+      this.config
+    );
 
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     result.templateLintDisables = await getTemplateLintDisables(hbsPaths);

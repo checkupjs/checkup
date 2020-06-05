@@ -49,7 +49,12 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     this.debug('ESLint Report', esLintReport);
     this.debug('Ember Template Lint Report', templateLintReport);
 
-    let result = new OctaneMigrationStatusTaskResult(this.meta, esLintReport, templateLintReport);
+    let result = new OctaneMigrationStatusTaskResult(
+      this.meta,
+      this.config,
+      esLintReport,
+      templateLintReport
+    );
 
     return result;
   }

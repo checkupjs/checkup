@@ -2,7 +2,7 @@ import * as debug from 'debug';
 
 import { TaskContext, TaskIdentifier, TaskMetaData } from './types/tasks';
 
-import { TaskConfig } from './types/config';
+import { TaskConfig, ActionConfig } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
 
 export default abstract class BaseTask {
@@ -11,7 +11,7 @@ export default abstract class BaseTask {
   debug: debug.Debugger;
 
   #pluginName: string;
-  #config!: unknown;
+  #config!: ActionConfig[];
   #enabled!: string;
 
   constructor(pluginName: string, context: TaskContext) {
@@ -46,7 +46,6 @@ export default abstract class BaseTask {
 
     let config: TaskConfig | undefined = this.context.config.tasks[this.fullyQualifiedTaskName];
 
-    this.#config = {};
     this.#enabled = 'on';
 
     if (typeof config === 'string') {
