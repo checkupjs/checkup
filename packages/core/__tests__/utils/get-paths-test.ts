@@ -20,6 +20,12 @@ describe('getFilePaths', function () {
       baz: {
         'index.js': '// TODO: write better code',
       },
+      node_modules: {
+        '.bin': {
+          'foo.js': 'whatever',
+        },
+        'index.js': 'module.exports = {};',
+      },
     });
     project.writeSync();
   });
@@ -29,10 +35,10 @@ describe('getFilePaths', function () {
   });
 
   describe('basic', function () {
-    it('returns all files when no patterns are provided', function () {
-      let files = getFilePaths(project.baseDir);
+    it('returns all files except exclusions when no patterns are provided', function () {
+      let filteredFiles = filterFilePathResults(getFilePaths(project.baseDir));
 
-      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
+      expect(filteredFiles).toMatchInlineSnapshot(`
         FilePathsArray [
           "/bar/index.js",
           "/baz/index.js",
@@ -41,6 +47,8 @@ describe('getFilePaths', function () {
           "/package.json",
         ]
       `);
+
+      expect(filteredFiles).not.toContain('node_modules');
     });
 
     it('returns all files when no patterns are provided and a base path other than "." is provided', function () {

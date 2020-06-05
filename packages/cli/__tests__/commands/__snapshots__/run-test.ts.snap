@@ -12,11 +12,9 @@ eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
-File type        Total       TODO 
-checkuprc        0           0    
-hbs              1           0    
-bin/loose-envify 0           0    
-json             175         N/A  
+File type   Total       TODO 
+hbs         1           0    
+json        175         N/A  
 
 checkup v0.0.0
 config da25c78e31bb71ef06c3641e8846f64e
@@ -38,11 +36,9 @@ eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
-File type        Total       TODO 
-checkuprc        0           0    
-js               1           0    
-bin/loose-envify 0           0    
-json             175         N/A  
+File type   Total       TODO 
+js          1           0    
+json        175         N/A  
 
 checkup v0.0.0
 config da25c78e31bb71ef06c3641e8846f64e
@@ -69,12 +65,10 @@ eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
-File type        Total       TODO 
-checkuprc        0           0    
-hbs              1           0    
-js               1           0    
-bin/loose-envify 0           0    
-json             175         N/A  
+File type   Total       TODO 
+hbs         1           0    
+js          1           0    
+json        175         N/A  
 
 checkup v0.0.0
 config 3720546166a5955def89f6bf69895976
@@ -174,21 +168,6 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
         \\"fileResults\\": [
           {
             \\"results\\": {
-              \\"total\\": 0,
-              \\"todo\\": 0,
-              \\"block\\": 0,
-              \\"blockEmpty\\": 0,
-              \\"comment\\": 0,
-              \\"empty\\": 0,
-              \\"mixed\\": 0,
-              \\"single\\": 0,
-              \\"source\\": 0
-            },
-            \\"fileExension\\": \\"checkuprc\\",
-            \\"errors\\": []
-          },
-          {
-            \\"results\\": {
               \\"total\\": 1,
               \\"todo\\": 0,
               \\"block\\": 0,
@@ -215,21 +194,6 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
               \\"source\\": 1
             },
             \\"fileExension\\": \\"js\\",
-            \\"errors\\": []
-          },
-          {
-            \\"results\\": {
-              \\"total\\": 0,
-              \\"todo\\": 0,
-              \\"block\\": 0,
-              \\"blockEmpty\\": 0,
-              \\"comment\\": 0,
-              \\"empty\\": 0,
-              \\"mixed\\": 0,
-              \\"single\\": 0,
-              \\"source\\": 0
-            },
-            \\"fileExension\\": \\"bin/loose-envify\\",
             \\"errors\\": []
           },
           {
@@ -301,12 +265,10 @@ eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
-File type        Total       TODO 
-checkuprc        0           0    
-js               3           2    
-hbs              2           0    
-bin/loose-envify 0           0    
-json             175         N/A  
+File type   Total       TODO 
+js          3           2    
+hbs         2           0    
+json        175         N/A  
 
 checkup v0.0.0
 config 3720546166a5955def89f6bf69895976
@@ -333,12 +295,10 @@ eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
-File type        Total       TODO 
-checkuprc        0           0    
-hbs              1           0    
-js               1           0    
-bin/loose-envify 0           0    
-json             175         N/A  
+File type   Total       TODO 
+hbs         1           0    
+js          1           0    
+json        175         N/A  
 
 checkup v0.0.0
 config 3720546166a5955def89f6bf69895976
@@ -363,10 +323,8 @@ eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
-File type        Total       TODO 
-checkuprc        0           0    
-bin/loose-envify 0           0    
-json             175         N/A  
+File type   Total       TODO 
+json        175         N/A  
 
 checkup v0.0.0
 config 3720546166a5955def89f6bf69895976
@@ -391,11 +349,9 @@ eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
-File type        Total       TODO 
-checkuprc        0           0    
-js               1           0    
-bin/loose-envify 0           0    
-json             175         N/A  
+File type   Total       TODO 
+js          1           0    
+json        175         N/A  
 
 checkup v0.0.0
 config 3720546166a5955def89f6bf69895976
@@ -415,11 +371,9 @@ eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
-File type        Total       TODO 
-checkuprc        0           0    
-js               1           0    
-bin/loose-envify 0           0    
-json             175         N/A  
+File type   Total       TODO 
+js          1           0    
+json        175         N/A  
 
 checkup v0.0.0
 config da25c78e31bb71ef06c3641e8846f64e
@@ -441,12 +395,10 @@ eslint-disable Usages Found: 0
 
 === Lines of Code ===
 
-File type        Total       TODO 
-checkuprc        0           0    
-hbs              1           0    
-js               1           0    
-bin/loose-envify 0           0    
-json             175         N/A  
+File type   Total       TODO 
+hbs         1           0    
+js          1           0    
+json        175         N/A  
 
 checkup v0.0.0
 config 3720546166a5955def89f6bf69895976

@@ -48,7 +48,8 @@ export interface FileResults {
  * note: these extensions must be supported here https://github.com/flosse/sloc/blob/731fbea00799a45a6068c4aaa1d6b7f67500615e/src/sloc.coffee#L264
  * for the analysis on comments/empty lines/etc to be correct
  */
-const FILE_EXTENSIONS_SUPPORTED = sloc.extensions;
+const FILE_EXTENSIONS_SUPPORTED_BY_SLOC = new Set(sloc.extensions);
+const FILE_EXTENSIONS_NOT_SUPPORTED_BY_SLOC = new Set(['md', 'json']);
 
 export default class LinesOfCodeTask extends BaseTask implements Task {
   filesGroupedByType: GroupedFiles[];
@@ -67,16 +68,22 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
 
     // get all file exensions in the repo to group the files
     const fileExensionsInRepo = new Set<string>();
+
     this.context.paths.forEach((path) => {
       fileExensionsInRepo.add(path.split('.')[1]);
     });
 
-    this.filesGroupedByType = [...fileExensionsInRepo].map((ext) => {
+    const fileExtensionsToLookFor = [...fileExensionsInRepo].filter(
+      (ext) =>
+        FILE_EXTENSIONS_NOT_SUPPORTED_BY_SLOC.has(ext) || FILE_EXTENSIONS_SUPPORTED_BY_SLOC.has(ext)
+    );
+
+    this.filesGroupedByType = fileExtensionsToLookFor.map((ext) => {
       return {
         ext,
         paths: this.context.paths.filterByGlob(`**/*.${ext}`),
         // if sloc doesnt support the extension, the LOC will be correct, but the breakdowns (# comments, todos, etc) will be wrong
-        exensionSupportedBySloc: FILE_EXTENSIONS_SUPPORTED.includes(ext),
+        exensionSupportedBySloc: FILE_EXTENSIONS_SUPPORTED_BY_SLOC.has(ext),
       };
     });
   }
