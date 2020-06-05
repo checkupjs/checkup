@@ -4,6 +4,7 @@
     { "path": "./packages/cli" },
     { "path": "./packages/core" },
     { "path": "./packages/checkup-plugin-ember" },
+    { "path": "./packages/checkup-plugin-javascript" },
     { "path": "./packages/checkup-plugin-ember-octane" },
     { "path": "./packages/test-helpers" }
   ]

@@ -23,8 +23,6 @@ import { flags } from '@oclif/command';
 import { getPackageJson } from '../helpers/get-package-json';
 import { getReporter } from '../reporters';
 import LinesOfCodeTask from '../tasks/lines-of-code-task';
-import EslintDisableTask from '../tasks/eslint-disable-task';
-import OutdatedDependenciesTask from '../tasks/outdated-dependencies-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import CheckupMetaTask from '../tasks/checkup-meta-task';
 
@@ -112,8 +110,6 @@ export default class RunCommand extends BaseCommand {
     this.defaultTasks.registerTask(new CheckupMetaTask(pluginName, context));
 
     // TODO: figure out where to put this. Internal? External?
-    this.pluginTasks.registerTask(new EslintDisableTask(pluginName, context));
-    this.pluginTasks.registerTask(new OutdatedDependenciesTask(pluginName, context));
     this.pluginTasks.registerTask(new LinesOfCodeTask(pluginName, context));
   }
 

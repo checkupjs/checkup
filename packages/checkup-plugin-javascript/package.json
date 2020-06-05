@@ -1,19 +1,18 @@
 {
-  "name": "checkup-plugin-ember-octane",
-  "description": "An oclif plugin for Ember Octane migration tasks",
+  "name": "checkup-plugin-javascript",
+  "description": "An oclif plugin for Javascript project tasks",
   "version": "0.0.14",
-  "author": "Lewis Miller @lbdm44",
+  "author": "Cara Kessler @carakessler",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@checkup/core": "^0.0.14",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
-    "babel-eslint": "^10.1.0",
-    "debug": "^4.1.1",
-    "eslint-plugin-ember": "^8.5.2",
+    "ember-template-recast": "^4.1.4",
     "tslib": "^2"
   },
   "devDependencies": {
+    "@checkup/test-helpers": "^0.0.14",
     "@oclif/dev-cli": "^1",
     "fixturify-project": "^2.1.0",
     "rimraf": "^3.0.2"
@@ -48,8 +47,7 @@
     "build": "tsc --build",
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "tsc --build && oclif-dev manifest",
-    "test": "jest --no-cache",
-    "test:debug": "yarn clean && yarn build && node --inspect-brk=1337 node_modules/.bin/jest",
+    "test": "jest",
     "version": "git add README.md"
   },
   "types": "lib/index.d.ts",

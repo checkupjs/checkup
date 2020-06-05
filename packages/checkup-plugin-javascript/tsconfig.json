@@ -3,20 +3,11 @@
   "compilerOptions": {
     "outDir": "lib",
     "rootDir": "src",
-    "types": ["chai", "fs-extra", "jest", "node"]
+    "types": ["jest", "node"]
   },
   "references": [
     {
       "path": "../core"
-    },
-    {
-      "path": "../checkup-plugin-ember"
-    },
-    {
-      "path": "../checkup-plugin-javascript"
-    },
-    {
-      "path": "../checkup-plugin-ember-octane"
     },
     {
       "path": "../test-helpers"

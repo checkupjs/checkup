@@ -1,38 +1,47 @@
-# plugin-ember
+# checkup-plugin-ember
 
-An oclif plugin for Ember project tasks
+A checkup plugin for Ember project tasks
 
+![CI Build](https://github.com/checkupjs/checkup/workflows/CI%20Build/badge.svg)
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/plugin-ember.svg)](https://npmjs.org/package/plugin-ember)
-[![Downloads/week](https://img.shields.io/npm/dw/plugin-ember.svg)](https://npmjs.org/package/plugin-ember)
-[![License](https://img.shields.io/npm/l/plugin-ember.svg)](https://github.com/https://github.com/checkupjs/checkup/https://github.com/checkupjs/checkup/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/checkup-plugin-ember.svg)](https://npmjs.org/package/checkup-plugin-ember)
+[![Downloads/week](https://img.shields.io/npm/dw/checkup-plugin-ember.svg)](https://npmjs.org/package/checkup-plugin-ember)
+[![License](https://img.shields.io/npm/l/checkup-plugin-ember.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
 
-<!-- toc -->
-
+- [checkup-plugin-ember](#checkup-plugin-ember)
 - [Usage](#usage)
-- [Commands](#commands)
-<!-- tocstop -->
 
 # Usage
 
-<!-- usage -->
+1. Install [@checkup/cli](https://github.com/checkupjs/checkup/blob/master/packages/cli/README.md) globally following the README.
 
-```sh-session
-$ npm install -g checkup-plugin-ember
-$ checkup-plugin-ember COMMAND
-running command...
-$ checkup-plugin-ember (-v|--version|version)
-checkup-plugin-ember/0.0.1 darwin-x64 node-v12.16.1
-$ checkup-plugin-ember --help [COMMAND]
-USAGE
-  $ checkup-plugin-ember COMMAND
-...
-```
+2. Install `checkup-plugin-ember`
 
-<!-- usagestop -->
+   ```sh-session
+   $ npm install --save-dev checkup-plugin-ember
 
-# Commands
+  or
 
-<!-- commands -->
+   $ yarn add --dev checkup-plugin-ember
+   ```
 
-<!-- commandsstop -->
+3. Add `checkup-plugin-ember` as a plugin to your config.
+
+   ```json
+    {
+      "plugins": [
+        ...
+        "checkup-plugin-ember"
+        ...
+      ],
+      "tasks": {
+        ...
+      }
+    }
+   ```
+
+4. Run checkup.
+
+   ```sh-session
+   $ checkup
+   ```

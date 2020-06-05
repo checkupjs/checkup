@@ -1,9 +1,11 @@
 import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
-import OutdatedDependenciesTask from '../../src/tasks/outdated-dependencies-task';
-import OutdatedDependenciesTaskResult from '../../src/results/outdated-dependencies-task-result';
+import { getPluginName } from '@checkup/core';
+import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task';
+import OutdatedDependenciesTaskResult from '../src/results/outdated-dependencies-task-result';
 
 describe('outdated-dependencies-task', () => {
   let project: CheckupProject;
+  let pluginName = getPluginName(__dirname);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', (project) => {
@@ -22,7 +24,7 @@ describe('outdated-dependencies-task', () => {
 
   it('detects outdated dependencies and output to console', async () => {
     const result = await new OutdatedDependenciesTask(
-      'meta',
+      pluginName,
       getTaskContext({
         cliFlags: { cwd: project.baseDir },
         pkg: project.pkg,
@@ -37,7 +39,7 @@ describe('outdated-dependencies-task', () => {
 
   it('detects outdated dependencies as JSON', async () => {
     const result = await new OutdatedDependenciesTask(
-      'meta',
+      pluginName,
       getTaskContext({
         cliFlags: { cwd: project.baseDir },
         pkg: project.pkg,
