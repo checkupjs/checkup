@@ -1,12 +1,4 @@
-import {
-  TaskResult,
-  Task,
-  Category,
-  Priority,
-  TaskMetaData,
-  BaseTask,
-  TaskContext,
-} from '@checkup/core';
+import { TaskResult, Task, TaskType, TaskMetaData, BaseTask, TaskContext } from '@checkup/core';
 import LinesOfCodeTaskResult from '../results/lines-of-code-task-result';
 
 const fs = require('fs');
@@ -58,8 +50,8 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
     taskName: 'lines-of-code',
     friendlyTaskName: 'Lines of Code',
     taskClassification: {
-      category: Category.Insights,
-      priority: Priority.Low,
+      type: TaskType.Insights,
+      category: 'meta', // TODO: change this to a meta task
     },
   };
 

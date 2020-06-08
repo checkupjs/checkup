@@ -1,4 +1,4 @@
-import { BaseTask, Category, Priority, Task, TaskContext, TaskResult } from '@checkup/core';
+import { BaseTask, TaskType, Task, TaskContext, TaskResult } from '@checkup/core';
 
 import MockTaskResult from './mock-task-result';
 
@@ -7,8 +7,8 @@ export class InsightsTaskHigh extends BaseTask implements Task {
     taskName: 'insights-task-high',
     friendlyTaskName: 'Insights Task High',
     taskClassification: {
-      category: Category.Insights,
-      priority: Priority.High,
+      type: TaskType.Insights,
+      category: 'bar',
     },
   };
 
@@ -26,8 +26,8 @@ export class InsightsTaskLow extends BaseTask implements Task {
     taskName: 'insights-task-low',
     friendlyTaskName: 'Insights Task Low',
     taskClassification: {
-      category: Category.Insights,
-      priority: Priority.Low,
+      type: TaskType.Insights,
+      category: 'foo',
     },
   };
 
@@ -44,8 +44,8 @@ export class RecommendationsTaskHigh extends BaseTask implements Task {
     taskName: 'recommendations-task-high',
     friendlyTaskName: 'Recommendations Task High',
     taskClassification: {
-      category: Category.Recommendations,
-      priority: Priority.High,
+      type: TaskType.Recommendations,
+      category: 'baz',
     },
   };
 
@@ -62,8 +62,8 @@ export class RecommendationsTaskLow extends BaseTask implements Task {
     taskName: 'recommendations-task-low',
     friendlyTaskName: 'Recommendations Task Low',
     taskClassification: {
-      category: Category.Recommendations,
-      priority: Priority.Low,
+      type: TaskType.Recommendations,
+      category: 'bar',
     },
   };
 
@@ -80,8 +80,8 @@ export class MigrationTaskHigh extends BaseTask implements Task {
     taskName: 'migration-task-high',
     friendlyTaskName: 'Migration Task High',
     taskClassification: {
-      category: Category.Migrations,
-      priority: Priority.High,
+      type: TaskType.Migrations,
+      category: 'foo',
     },
   };
 
@@ -98,8 +98,8 @@ export class MigrationTaskLow extends BaseTask implements Task {
     taskName: 'migration-task-low',
     friendlyTaskName: 'Migration Task Low',
     taskClassification: {
-      category: Category.Migrations,
-      priority: Priority.Low,
+      type: TaskType.Migrations,
+      category: 'baz',
     },
   };
 
@@ -116,8 +116,8 @@ export class ErrorTask extends BaseTask implements Task {
     taskName: 'error-task',
     friendlyTaskName: 'Error Task',
     taskClassification: {
-      category: Category.Insights,
-      priority: Priority.High,
+      type: TaskType.Insights,
+      category: 'bar',
     },
   };
 
@@ -126,5 +126,24 @@ export class ErrorTask extends BaseTask implements Task {
   }
   async run(): Promise<TaskResult> {
     throw new Error('Something went wrong in this task');
+  }
+}
+
+export class TaskWithoutCategory extends BaseTask implements Task {
+  meta = {
+    taskName: 'task-without-category',
+    friendlyTaskName: 'Task Without Category',
+    taskClassification: {
+      type: TaskType.Insights,
+      category: '',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+
+  async run(): Promise<TaskResult> {
+    return new MockTaskResult(this.meta, 'task without category is being run');
   }
 }

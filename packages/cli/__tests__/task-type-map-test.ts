@@ -1,20 +1,20 @@
 import { InsightsTaskHigh } from './__utils__/mock-tasks';
-import { Priority } from '@checkup/core';
-import PriorityMap from '../src/priority-map';
+import { TaskType } from '@checkup/core';
+import TaskTypeMap from '../src/task-type-map';
 import { getTaskContext } from '@checkup/test-helpers';
 
-describe('PriorityMap', () => {
-  it('can create an instance of a PriorityMap', () => {
-    let map = new PriorityMap();
+describe('TaskTypeMap', () => {
+  it('can create an instance of a TaskTypeMap', () => {
+    let map = new TaskTypeMap();
 
-    expect(map).toBeInstanceOf(PriorityMap);
+    expect(map).toBeInstanceOf(TaskTypeMap);
   });
 
   it('will return entries', () => {
-    let map = new PriorityMap();
+    let map = new TaskTypeMap();
 
-    map.setTaskByPriority(
-      Priority.High,
+    map.setTaskByTaskType(
+      TaskType.Insights,
       'insights-task-high',
       new InsightsTaskHigh(getTaskContext())
     );
@@ -23,10 +23,10 @@ describe('PriorityMap', () => {
   });
 
   it('will return values', () => {
-    let map = new PriorityMap();
+    let map = new TaskTypeMap();
 
-    map.setTaskByPriority(
-      Priority.High,
+    map.setTaskByTaskType(
+      TaskType.Insights,
       'insights-task-high',
       new InsightsTaskHigh(getTaskContext())
     );
@@ -35,10 +35,10 @@ describe('PriorityMap', () => {
   });
 
   it('will return a task via getTask', () => {
-    let map = new PriorityMap();
+    let map = new TaskTypeMap();
 
-    map.setTaskByPriority(
-      Priority.Low,
+    map.setTaskByTaskType(
+      TaskType.Insights,
       'insights-task-high',
       new InsightsTaskHigh(getTaskContext())
     );
@@ -46,34 +46,34 @@ describe('PriorityMap', () => {
     expect(map.getTask('insights-task-high')).toBeInstanceOf(InsightsTaskHigh);
   });
 
-  it('will return a task via getTaskByPriority', () => {
-    let map = new PriorityMap();
+  it('will return a task via getTaskByCategory', () => {
+    let map = new TaskTypeMap();
 
-    map.setTaskByPriority(
-      Priority.High,
+    map.setTaskByTaskType(
+      TaskType.Insights,
       'insights-task-high',
       new InsightsTaskHigh(getTaskContext())
     );
 
-    expect(map.getTaskByPriority(Priority.High, 'insights-task-high')).toBeInstanceOf(
+    expect(map.getTaskByTaskType(TaskType.Insights, 'insights-task-high')).toBeInstanceOf(
       InsightsTaskHigh
     );
   });
 
   it('size will return the correct total size across maps', () => {
-    let map = new PriorityMap();
-    map.setTaskByPriority(
-      Priority.High,
+    let map = new TaskTypeMap();
+    map.setTaskByTaskType(
+      TaskType.Insights,
       'insights-task-high',
       new InsightsTaskHigh(getTaskContext())
     );
-    map.setTaskByPriority(
-      Priority.Medium,
+    map.setTaskByTaskType(
+      TaskType.Migrations,
       'insights-task-high',
       new InsightsTaskHigh(getTaskContext())
     );
-    map.setTaskByPriority(
-      Priority.Low,
+    map.setTaskByTaskType(
+      TaskType.Recommendations,
       'insights-task-high',
       new InsightsTaskHigh(getTaskContext())
     );

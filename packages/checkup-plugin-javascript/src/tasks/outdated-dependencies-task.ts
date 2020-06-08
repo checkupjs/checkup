@@ -1,6 +1,6 @@
 import * as npmCheck from 'npm-check';
 
-import { BaseTask, Category, Priority, Task, TaskMetaData, TaskResult } from '@checkup/core';
+import { BaseTask, TaskType, Task, TaskMetaData, TaskResult } from '@checkup/core';
 
 import OutdatedDependenciesTaskResult from '../results/outdated-dependencies-task-result';
 import { PackageJson } from 'type-fest';
@@ -52,8 +52,8 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
     taskName: 'outdated-dependencies',
     friendlyTaskName: 'Outdated Dependencies',
     taskClassification: {
-      category: Category.Insights,
-      priority: Priority.High,
+      type: TaskType.Insights,
+      category: 'dependencies',
     },
   };
 

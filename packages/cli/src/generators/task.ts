@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as t from '@babel/types';
 
-import { Category, Priority } from '@checkup/core';
+import { TaskType } from '@checkup/core';
 
 import { Answers } from 'inquirer';
 import AstTransformer from '../helpers/ast';
@@ -16,8 +16,8 @@ interface TaskOptions extends Options {
   taskClass: string;
   pascalCaseName: string;
   typescript: boolean;
+  type: string;
   category: string;
-  priority: string;
 }
 
 export default class TaskGenerator extends BaseGenerator {
@@ -46,8 +46,7 @@ export default class TaskGenerator extends BaseGenerator {
 
     const defaults = {
       typescript: true,
-      category: Category.Insights,
-      priority: Priority.Low,
+      type: TaskType.Insights,
     };
 
     if (this.options.defaults) {
@@ -62,8 +61,8 @@ export default class TaskGenerator extends BaseGenerator {
         },
         {
           type: 'list',
-          name: 'category',
-          message: 'Select a task category',
+          name: 'type',
+          message: 'Select a task type',
           choices: [
             { name: 'insights', value: 'Insights' },
             { name: 'migrations', value: 'Migrations' },
@@ -72,15 +71,9 @@ export default class TaskGenerator extends BaseGenerator {
           default: 'Insights',
         },
         {
-          type: 'list',
-          name: 'priority',
-          message: 'Select a task priority',
-          choices: [
-            { name: 'high', value: 'High' },
-            { name: 'medium', value: 'Medium' },
-            { name: 'low', value: 'Low' },
-          ],
-          default: 'Low',
+          type: 'input',
+          name: 'category',
+          message: 'Enter a task category',
         },
       ]);
     }
@@ -89,8 +82,8 @@ export default class TaskGenerator extends BaseGenerator {
     this.options.taskClass = `${this.options.pascalCaseName}Task`;
     this.options.taskResultClass = `${this.options.taskClass}Result`;
     this.options.typescript = this.answers.typescript;
+    this.options.type = this.answers.type;
     this.options.category = this.answers.category;
-    this.options.priority = this.answers.priority;
   }
 
   writing() {

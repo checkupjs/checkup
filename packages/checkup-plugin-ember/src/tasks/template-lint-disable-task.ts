@@ -1,12 +1,4 @@
-import {
-  TaskResult,
-  Task,
-  Category,
-  Priority,
-  TaskMetaData,
-  BaseTask,
-  TaskItemData,
-} from '@checkup/core';
+import { TaskResult, Task, TaskType, TaskMetaData, BaseTask, TaskItemData } from '@checkup/core';
 import TemplateLintDisableTaskResult from '../results/template-lint-disable-task-result';
 
 const fs = require('fs');
@@ -19,8 +11,8 @@ export default class TemplateLintDisableTask extends BaseTask implements Task {
     taskName: 'template-lint-disables',
     friendlyTaskName: 'Number of template-lint-disable Usages',
     taskClassification: {
-      category: Category.Insights,
-      priority: Priority.Low,
+      type: TaskType.Insights,
+      category: 'linting',
     },
   };
 

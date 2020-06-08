@@ -14,8 +14,8 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Ember In-Repo Addons / Engines",
     "taskClassification": Object {
-      "category": "insights",
-      "priority": "low",
+      "category": "ember",
+      "type": "insights",
     },
     "taskName": "ember-in-repo-addons-engines",
   },

@@ -10,8 +10,8 @@ export type SearchPatterns = Record<string, string[]>;
 export type TaskName = string;
 export type TaskIdentifier = { taskName: string; friendlyTaskName: string };
 export type TaskClassification = {
-  category: Category;
-  priority: Priority;
+  type: TaskType;
+  category: string;
 };
 
 export interface Task {
@@ -53,16 +53,10 @@ export interface TaskItemData {
   total: number;
 }
 
-export const enum Category {
+export const enum TaskType {
   Insights = 'insights',
   Migrations = 'migrations',
   Recommendations = 'recommendations',
-}
-
-export const enum Priority {
-  High = 'high',
-  Medium = 'medium',
-  Low = 'low',
 }
 
 export type JsonMetaTaskResult = JsonObject;

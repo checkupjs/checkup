@@ -79,8 +79,8 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
         \\"taskName\\": \\"lines-of-code\\",
         \\"friendlyTaskName\\": \\"Lines of Code\\",
         \\"taskClassification\\": {
-          \\"category\\": \\"insights\\",
-          \\"priority\\": \\"low\\"
+          \\"type\\": \\"insights\\",
+          \\"category\\": \\"meta\\"
         }
       },
       \\"result\\": {

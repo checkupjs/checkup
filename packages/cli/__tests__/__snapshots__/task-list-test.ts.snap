@@ -5,8 +5,8 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Insights Task High",
     "taskClassification": Object {
-      "category": "insights",
-      "priority": "high",
+      "category": "bar",
+      "type": "insights",
     },
     "taskName": "insights-task-high",
   },
@@ -19,8 +19,8 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Insights Task High",
     "taskClassification": Object {
-      "category": "insights",
-      "priority": "high",
+      "category": "bar",
+      "type": "insights",
     },
     "taskName": "insights-task-high",
   },
@@ -33,8 +33,8 @@ Object {
   "meta": Object {
     "friendlyTaskName": "Insights Task Low",
     "taskClassification": Object {
-      "category": "insights",
-      "priority": "low",
+      "category": "foo",
+      "type": "insights",
     },
     "taskName": "insights-task-low",
   },

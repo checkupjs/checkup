@@ -130,6 +130,7 @@ export default class RunCommand extends BaseCommand {
 
       if (this.pluginTasks.hasTask(this.runFlags.task)) {
         taskFound = true;
+
         [pluginTaskResult, this.pluginTaskErrors] = await this.pluginTasks.runTask(
           this.runFlags.task
         );
