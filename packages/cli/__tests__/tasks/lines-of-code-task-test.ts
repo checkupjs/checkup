@@ -40,7 +40,7 @@ describe('lines-of-code-task', () => {
     linesOfCodeResult.toConsole();
 
     expect(stdout()).toMatchInlineSnapshot(`
-      "=== Lines of Code ===
+      "Lines of Code
 
       File type   Total       TODO 
       hbs         1           1    

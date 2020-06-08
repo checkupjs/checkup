@@ -1,5 +1,10 @@
 import { TaskType, TaskResult } from '@checkup/core';
-import { DEFAULT_OUTPUT_FILENAME, _transformJsonResults, getOutputPath } from '../src/reporters';
+import {
+  DEFAULT_OUTPUT_FILENAME,
+  _transformJsonResults,
+  getOutputPath,
+  _toSentenceCase,
+} from '../src/reporters';
 
 import { MetaTaskResult } from '../src/types';
 import MockMetaTaskResult from './__utils__/mock-meta-task-result';
@@ -248,5 +253,15 @@ describe('getOutputPath', () => {
     expect(getOutputPath(`{default}.json`, __dirname)).toEqual(
       join(__dirname, `${DEFAULT_OUTPUT_FILENAME}.json`)
     );
+  });
+});
+
+describe('_toSentenceCase', () => {
+  it('transforms lowercase text to sentence case', () => {
+    expect(_toSentenceCase('cara kessler')).toEqual('Cara Kessler');
+  });
+
+  it('leaves sentence case text as sentence case', () => {
+    expect(_toSentenceCase('Cara Kessler')).toEqual('Cara Kessler');
   });
 });

@@ -4,9 +4,7 @@ export default class EslintDisableTaskResult extends BaseTaskResult implements T
   eslintDisables!: ResultData;
 
   toConsole() {
-    ui.section(this.meta.friendlyTaskName, () => {
-      ui.log(`eslint-disable Usages Found: ${this.eslintDisables.results.length}`);
-    });
+    ui.log(`eslint-disable Usages Found: ${this.eslintDisables.results.length}`);
   }
 
   toJson() {

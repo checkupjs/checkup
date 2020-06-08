@@ -31,6 +31,7 @@ export interface TaskContext {
 }
 
 export interface TaskResult {
+  meta: TaskMetaData;
   toConsole: () => void;
   toJson: () => JsonMetaTaskResult | JsonTaskResult;
 }

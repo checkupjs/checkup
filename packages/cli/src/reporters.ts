@@ -53,7 +53,20 @@ export function getReporter(
           .filter((taskResult) => taskResult.outputPosition === OutputPosition.Header)
           .forEach((taskResult) => taskResult.toConsole());
 
-        pluginTaskResults.forEach((taskResult) => taskResult.toConsole());
+        let currentCategory = '';
+
+        pluginTaskResults.forEach((taskResult) => {
+          let taskCategory = taskResult.meta.taskClassification.category;
+
+          if (taskCategory !== currentCategory) {
+            ui.categoryHeader(_toSentenceCase(taskCategory));
+            currentCategory = taskCategory;
+          }
+
+          taskResult.toConsole();
+        });
+
+        ui.blankLine();
 
         metaTaskResults
           .filter((taskResult) => taskResult.outputPosition === OutputPosition.Footer)
@@ -80,4 +93,10 @@ export function getReporter(
     default:
       return async () => {};
   }
+}
+
+export function _toSentenceCase(str: string) {
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase();
+  });
 }

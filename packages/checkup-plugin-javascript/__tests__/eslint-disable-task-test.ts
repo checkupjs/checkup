@@ -40,10 +40,7 @@ describe('eslint-disable-task', () => {
     eslintDisableTaskResult.toConsole();
 
     expect(stdout()).toMatchInlineSnapshot(`
-      "=== Number of eslint-disable Usages ===
-
-      eslint-disable Usages Found: 3
-
+      "eslint-disable Usages Found: 3
       "
     `);
   });
