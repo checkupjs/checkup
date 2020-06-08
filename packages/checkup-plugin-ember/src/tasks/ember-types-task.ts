@@ -20,7 +20,7 @@ export default class EmberTypesTask extends BaseTask implements Task {
     taskName: 'ember-types',
     friendlyTaskName: 'Ember Types',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'ember',
     },
   };

@@ -72,7 +72,7 @@ describe('lines-of-code-task', () => {
           "friendlyTaskName": "Lines of Code",
           "taskClassification": Object {
             "category": "meta",
-            "taskType": "insights",
+            "type": "insights",
           },
           "taskName": "lines-of-code",
         },

@@ -52,7 +52,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
     taskName: 'outdated-dependencies',
     friendlyTaskName: 'Outdated Dependencies',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'dependencies',
     },
   };

@@ -8,7 +8,7 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
     taskName: 'ember-dependencies',
     friendlyTaskName: 'Ember Dependencies',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'dependencies',
     },
   };

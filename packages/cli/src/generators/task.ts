@@ -16,7 +16,8 @@ interface TaskOptions extends Options {
   taskClass: string;
   pascalCaseName: string;
   typescript: boolean;
-  taskType: string;
+  type: string;
+  category: string;
 }
 
 export default class TaskGenerator extends BaseGenerator {
@@ -45,7 +46,7 @@ export default class TaskGenerator extends BaseGenerator {
 
     const defaults = {
       typescript: true,
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
     };
 
     if (this.options.defaults) {
@@ -60,8 +61,8 @@ export default class TaskGenerator extends BaseGenerator {
         },
         {
           type: 'list',
-          name: 'taskType',
-          message: 'Select a task taskType',
+          name: 'type',
+          message: 'Select a task type',
           choices: [
             { name: 'insights', value: 'Insights' },
             { name: 'migrations', value: 'Migrations' },
@@ -70,15 +71,9 @@ export default class TaskGenerator extends BaseGenerator {
           default: 'Insights',
         },
         {
-          type: 'list',
-          name: 'priority',
-          message: 'Select a task priority',
-          choices: [
-            { name: 'high', value: 'High' },
-            { name: 'medium', value: 'Medium' },
-            { name: 'low', value: 'Low' },
-          ],
-          default: 'Low',
+          type: 'input',
+          name: 'category',
+          message: 'Enter a task category',
         },
       ]);
     }
@@ -87,7 +82,8 @@ export default class TaskGenerator extends BaseGenerator {
     this.options.taskClass = `${this.options.pascalCaseName}Task`;
     this.options.taskResultClass = `${this.options.taskClass}Result`;
     this.options.typescript = this.answers.typescript;
-    this.options.taskType = this.answers.taskType;
+    this.options.type = this.answers.type;
+    this.options.category = this.answers.category;
   }
 
   writing() {

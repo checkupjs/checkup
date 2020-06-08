@@ -23,20 +23,20 @@ export default class TaskTypeMap {
     return task;
   }
 
-  getTaskByTaskType(taskType: TaskType, taskName: TaskName): Task | undefined {
-    let map = this.maps.get(taskType);
+  getTaskByTaskType(type: TaskType, taskName: TaskName): Task | undefined {
+    let map = this.maps.get(type);
 
     return map!.get(taskName);
   }
 
-  setTaskByTaskType(taskType: TaskType, taskName: TaskName, task: Task): void {
-    let map = this.maps.get(taskType);
+  setTaskByTaskType(type: TaskType, taskName: TaskName, task: Task): void {
+    let map = this.maps.get(type);
 
     map!.set(taskName, task);
   }
 
-  getTasks(taskType: TaskType): Map<TaskName, Task> {
-    return this.maps.get(taskType)!;
+  getTasks(type: TaskType): Map<TaskName, Task> {
+    return this.maps.get(type)!;
   }
 
   [Symbol.iterator](): Generator<[TaskName, Task]> {

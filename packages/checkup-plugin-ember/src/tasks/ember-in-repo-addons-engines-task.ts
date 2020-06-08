@@ -9,7 +9,7 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
     taskName: 'ember-in-repo-addons-engines',
     friendlyTaskName: 'Ember In-Repo Addons / Engines',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'ember',
     },
   };

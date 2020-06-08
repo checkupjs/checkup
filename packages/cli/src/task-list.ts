@@ -34,8 +34,13 @@ export default class TaskList {
    * @param taskClassification
    */
   registerTask(task: Task) {
+    if (task.meta.taskClassification.category === '') {
+      throw new Error(
+        `Task category can not be empty. Please add a category to ${task.meta.taskName}-task.`
+      );
+    }
     let categoryMap = this.getByCategory(task.meta.taskClassification.category);
-    categoryMap!.setTaskByTaskType(task.meta.taskClassification.taskType, task.meta.taskName, task);
+    categoryMap!.setTaskByTaskType(task.meta.taskClassification.type, task.meta.taskName, task);
   }
 
   /**
@@ -109,7 +114,7 @@ export default class TaskList {
   }
 
   /**
-   * Gets a priorityMap from the taskType map
+   * Gets a taskTypeMap from the type map
    *
    * @private
    * @method getByCategory
@@ -141,7 +146,7 @@ export default class TaskList {
   }
 
   /**
-   * Gets all tasks from all priorityMaps
+   * Gets all tasks from all taskTypeMaps
    *
    * @private
    * @method getTasks
@@ -149,8 +154,8 @@ export default class TaskList {
   private getTasks() {
     let values: Task[] = [];
 
-    this._categories.forEach((taskType) => {
-      values = [...values, ...taskType.values()];
+    this._categories.forEach((type) => {
+      values = [...values, ...type.values()];
     });
 
     return values;

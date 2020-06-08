@@ -50,7 +50,7 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
     taskName: 'lines-of-code',
     friendlyTaskName: 'Lines of Code',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'meta', // TODO: change this to a meta task
     },
   };

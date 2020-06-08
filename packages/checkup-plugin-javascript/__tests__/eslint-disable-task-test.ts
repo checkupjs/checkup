@@ -65,7 +65,7 @@ describe('eslint-disable-task', () => {
           "friendlyTaskName": "Number of eslint-disable Usages",
           "taskClassification": Object {
             "category": "linting",
-            "taskType": "insights",
+            "type": "insights",
           },
           "taskName": "eslint-disables",
         },

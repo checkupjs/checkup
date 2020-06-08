@@ -10,7 +10,7 @@ export type SearchPatterns = Record<string, string[]>;
 export type TaskName = string;
 export type TaskIdentifier = { taskName: string; friendlyTaskName: string };
 export type TaskClassification = {
-  taskType: TaskType;
+  type: TaskType;
   category: string;
 };
 

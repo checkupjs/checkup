@@ -6,6 +6,7 @@ import {
   MigrationTaskLow,
   RecommendationsTaskHigh,
   RecommendationsTaskLow,
+  TaskWithoutCategory,
 } from './__utils__/mock-tasks';
 
 import TaskList from '../src/task-list';
@@ -25,6 +26,17 @@ describe('TaskList', () => {
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
     expect(taskList.categories.get('bar')!.size).toEqual(1);
+  });
+
+  it('registerTask fails if a task doesnt have a category set', () => {
+    let taskList = new TaskList();
+    let taskWithoutCategory = new TaskWithoutCategory(getTaskContext());
+
+    expect(() => {
+      taskList.registerTask(taskWithoutCategory);
+    }).toThrow(
+      `Task category can not be empty. Please add a category to ${taskWithoutCategory.meta.taskName}-task.`
+    );
   });
 
   it('hasTask returns false if no task exists with that name', () => {
@@ -102,7 +114,7 @@ describe('TaskList', () => {
             "friendlyTaskName": "Insights Task Low",
             "taskClassification": Object {
               "category": "foo",
-              "taskType": "insights",
+              "type": "insights",
             },
             "taskName": "insights-task-low",
           },
@@ -113,7 +125,7 @@ describe('TaskList', () => {
             "friendlyTaskName": "Migration Task High",
             "taskClassification": Object {
               "category": "foo",
-              "taskType": "migrations",
+              "type": "migrations",
             },
             "taskName": "migration-task-high",
           },
@@ -124,7 +136,7 @@ describe('TaskList', () => {
             "friendlyTaskName": "Recommendations Task High",
             "taskClassification": Object {
               "category": "baz",
-              "taskType": "recommendations",
+              "type": "recommendations",
             },
             "taskName": "recommendations-task-high",
           },
@@ -135,7 +147,7 @@ describe('TaskList', () => {
             "friendlyTaskName": "Migration Task Low",
             "taskClassification": Object {
               "category": "baz",
-              "taskType": "migrations",
+              "type": "migrations",
             },
             "taskName": "migration-task-low",
           },
@@ -146,7 +158,7 @@ describe('TaskList', () => {
             "friendlyTaskName": "Insights Task High",
             "taskClassification": Object {
               "category": "bar",
-              "taskType": "insights",
+              "type": "insights",
             },
             "taskName": "insights-task-high",
           },
@@ -157,7 +169,7 @@ describe('TaskList', () => {
             "friendlyTaskName": "Recommendations Task Low",
             "taskClassification": Object {
               "category": "bar",
-              "taskType": "recommendations",
+              "type": "recommendations",
             },
             "taskName": "recommendations-task-low",
           },

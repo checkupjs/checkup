@@ -17,7 +17,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     taskName: 'ember-test-types',
     friendlyTaskName: 'Ember Test Types',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'testing',
     },
   };

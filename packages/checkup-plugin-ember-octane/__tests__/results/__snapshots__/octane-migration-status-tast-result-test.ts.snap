@@ -6,7 +6,7 @@ Object {
     "friendlyTaskName": "Ember Octane Migration Status",
     "taskClassification": Object {
       "category": "ember",
-      "taskType": "migrations",
+      "type": "migrations",
     },
     "taskName": "octane-migration-status",
   },

@@ -8,7 +8,7 @@ class FakeTask extends BaseTask {
     taskName: 'my-fake',
     friendlyTaskName: 'Fake',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'foo',
     },
   };

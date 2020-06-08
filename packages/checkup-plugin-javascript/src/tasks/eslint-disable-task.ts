@@ -12,7 +12,7 @@ export default class EslintDisableTask extends BaseTask implements Task {
     taskName: 'eslint-disables',
     friendlyTaskName: 'Number of eslint-disable Usages',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'linting',
     },
   };

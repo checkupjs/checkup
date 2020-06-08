@@ -66,7 +66,7 @@ describe('template-lint-disable-task', () => {
           "friendlyTaskName": "Number of template-lint-disable Usages",
           "taskClassification": Object {
             "category": "linting",
-            "taskType": "insights",
+            "type": "insights",
           },
           "taskName": "template-lint-disables",
         },

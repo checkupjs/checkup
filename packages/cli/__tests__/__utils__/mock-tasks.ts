@@ -7,7 +7,7 @@ export class InsightsTaskHigh extends BaseTask implements Task {
     taskName: 'insights-task-high',
     friendlyTaskName: 'Insights Task High',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'bar',
     },
   };
@@ -26,7 +26,7 @@ export class InsightsTaskLow extends BaseTask implements Task {
     taskName: 'insights-task-low',
     friendlyTaskName: 'Insights Task Low',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'foo',
     },
   };
@@ -44,7 +44,7 @@ export class RecommendationsTaskHigh extends BaseTask implements Task {
     taskName: 'recommendations-task-high',
     friendlyTaskName: 'Recommendations Task High',
     taskClassification: {
-      taskType: TaskType.Recommendations,
+      type: TaskType.Recommendations,
       category: 'baz',
     },
   };
@@ -62,7 +62,7 @@ export class RecommendationsTaskLow extends BaseTask implements Task {
     taskName: 'recommendations-task-low',
     friendlyTaskName: 'Recommendations Task Low',
     taskClassification: {
-      taskType: TaskType.Recommendations,
+      type: TaskType.Recommendations,
       category: 'bar',
     },
   };
@@ -80,7 +80,7 @@ export class MigrationTaskHigh extends BaseTask implements Task {
     taskName: 'migration-task-high',
     friendlyTaskName: 'Migration Task High',
     taskClassification: {
-      taskType: TaskType.Migrations,
+      type: TaskType.Migrations,
       category: 'foo',
     },
   };
@@ -98,7 +98,7 @@ export class MigrationTaskLow extends BaseTask implements Task {
     taskName: 'migration-task-low',
     friendlyTaskName: 'Migration Task Low',
     taskClassification: {
-      taskType: TaskType.Migrations,
+      type: TaskType.Migrations,
       category: 'baz',
     },
   };
@@ -116,7 +116,7 @@ export class ErrorTask extends BaseTask implements Task {
     taskName: 'error-task',
     friendlyTaskName: 'Error Task',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'bar',
     },
   };
@@ -126,5 +126,24 @@ export class ErrorTask extends BaseTask implements Task {
   }
   async run(): Promise<TaskResult> {
     throw new Error('Something went wrong in this task');
+  }
+}
+
+export class TaskWithoutCategory extends BaseTask implements Task {
+  meta = {
+    taskName: 'task-without-category',
+    friendlyTaskName: 'Task Without Category',
+    taskClassification: {
+      type: TaskType.Insights,
+      category: '',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+
+  async run(): Promise<TaskResult> {
+    return new MockTaskResult(this.meta, 'task without category is being run');
   }
 }

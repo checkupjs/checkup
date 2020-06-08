@@ -9,8 +9,8 @@ export default class MyFooTask extends BaseTask {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      taskType: TaskType.Insights,
-      category: '' ,
+      type: TaskType.Insights,
+      category: '',
     },
   };
 
@@ -104,8 +104,8 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      taskType: TaskType.Insights,
-      category: '' ,
+      type: TaskType.Insights,
+      category: '',
     },
   };
 
@@ -192,7 +192,7 @@ export default hook;
 "
 `;
 
-exports[`task generator generates correct files with priority 1`] = `
+exports[`task generator generates correct files with category 1`] = `
 "import { BaseTask, TaskType, Task, TaskMetaData, TaskResult } from '@checkup/core';
 import MyFooTaskResult from '../results/my-foo-task-result';
 
@@ -201,8 +201,8 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      taskType: TaskType.Insights,
-      category: '' ,
+      type: TaskType.Insights,
+      category: 'foo',
     },
   };
 
@@ -215,7 +215,7 @@ export default class MyFooTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates correct files with priority 2`] = `
+exports[`task generator generates correct files with category 2`] = `
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
@@ -233,7 +233,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 "
 `;
 
-exports[`task generator generates correct files with priority 3`] = `
+exports[`task generator generates correct files with category 3`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
@@ -275,7 +275,7 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates correct files with priority 4`] = `
+exports[`task generator generates correct files with category 4`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
 import { getPluginName } from '@checkup/core';
@@ -289,7 +289,7 @@ export default hook;
 "
 `;
 
-exports[`task generator generates correct files with taskType 1`] = `
+exports[`task generator generates correct files with type 1`] = `
 "import { BaseTask, TaskType, Task, TaskMetaData, TaskResult } from '@checkup/core';
 import MyFooTaskResult from '../results/my-foo-task-result';
 
@@ -298,8 +298,8 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      taskType: TaskType.Insights,
-      category: '' ,
+      type: TaskType.Insights,
+      category: '',
     },
   };
 
@@ -312,7 +312,7 @@ export default class MyFooTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates correct files with taskType 2`] = `
+exports[`task generator generates correct files with type 2`] = `
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
@@ -330,7 +330,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 "
 `;
 
-exports[`task generator generates correct files with taskType 3`] = `
+exports[`task generator generates correct files with type 3`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
@@ -372,7 +372,7 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates correct files with taskType 4`] = `
+exports[`task generator generates correct files with type 4`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
 import { getPluginName } from '@checkup/core';
@@ -395,8 +395,8 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      taskType: TaskType.Insights,
-      category: '' ,
+      type: TaskType.Insights,
+      category: '',
     },
   };
 
@@ -478,8 +478,8 @@ export default class MyBarTask extends BaseTask implements Task {
     taskName: 'my-bar',
     friendlyTaskName: 'My Bar',
     taskClassification: {
-      taskType: TaskType.Insights,
-      category: '' ,
+      type: TaskType.Insights,
+      category: '',
     },
   };
 

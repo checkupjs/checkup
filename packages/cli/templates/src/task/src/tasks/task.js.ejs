@@ -6,8 +6,8 @@ export default class <%- taskClass %> extends BaseTask {
     taskName: '<%- name %>',
     friendlyTaskName: '<%- _.startCase(name.split('-').join(' ')) %>',
     taskClassification: {
-      taskType: TaskType.<%- _.upperFirst(taskType) %>,
-      category: '' %>,
+      type: TaskType.<%- _.upperFirst(type) %>,
+      category: '<%- category %>',
     },
   };
 

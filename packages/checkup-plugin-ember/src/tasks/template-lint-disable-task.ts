@@ -11,7 +11,7 @@ export default class TemplateLintDisableTask extends BaseTask implements Task {
     taskName: 'template-lint-disables',
     friendlyTaskName: 'Number of template-lint-disable Usages',
     taskClassification: {
-      taskType: TaskType.Insights,
+      type: TaskType.Insights,
       category: 'linting',
     },
   };

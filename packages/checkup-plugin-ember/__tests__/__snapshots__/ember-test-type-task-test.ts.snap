@@ -38,7 +38,7 @@ Object {
     "friendlyTaskName": "Ember Test Types",
     "taskClassification": Object {
       "category": "testing",
-      "taskType": "insights",
+      "type": "insights",
     },
     "taskName": "ember-test-types",
   },
