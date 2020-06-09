@@ -4,7 +4,7 @@ import * as path from 'path';
 import { CheckupProject, createTmpDir, stdout, clearStdout } from '@checkup/test-helpers';
 
 import { join } from 'path';
-import { runCommand } from '../__utils__/run-command';
+import { runCommand } from '../../src/run-command';
 
 const TEST_TIMEOUT = 100000;
 

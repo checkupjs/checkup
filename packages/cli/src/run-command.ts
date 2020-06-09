@@ -5,7 +5,7 @@ const castArray = <T>(input?: T | T[]): T[] => {
   return Array.isArray(input) ? input : [input];
 };
 
-let root = require.resolve('../../src');
+let root = require.resolve('.');
 
 export async function runCommand(args: string[] | string, opts: loadConfig.Options = {}) {
   let config = await Config.load(opts.root || root);
