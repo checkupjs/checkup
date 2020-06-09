@@ -21,3 +21,5 @@ export function run() {
 
   return oclifRun(args);
 }
+
+export { runCommand } from './run-command';

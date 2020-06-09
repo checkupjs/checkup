@@ -1,7 +1,7 @@
 import * as stringify from 'json-stable-stringify';
 
 import { CheckupProject } from '@checkup/test-helpers';
-import { runCommand } from '../__utils__/run-command';
+import { runCommand } from '../../src/run-command';
 import { white } from 'chalk';
 
 describe('@checkup/cli', () => {
