@@ -2,6 +2,7 @@ import { MetaTaskResult, OutputPosition } from './types';
 import { OutputFormat, RunFlags, TaskError, TaskResult, ui } from '@checkup/core';
 import { dirname, isAbsolute, resolve } from 'path';
 import { existsSync, mkdirpSync, writeJsonSync } from 'fs-extra';
+import { startCase } from 'lodash';
 
 const date = require('date-and-time');
 
@@ -59,7 +60,7 @@ export function getReporter(
           let taskCategory = taskResult.meta.taskClassification.category;
 
           if (taskCategory !== currentCategory) {
-            ui.categoryHeader(_toSentenceCase(taskCategory));
+            ui.categoryHeader(startCase(taskCategory));
             currentCategory = taskCategory;
           }
 
