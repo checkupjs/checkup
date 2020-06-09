@@ -1,20 +1,19 @@
 import {
   BaseTask,
-  TaskMetaData,
-  TaskResult,
-  Task,
-  Category,
-  Priority,
+  ESLintOptions,
   ESLintReport,
   Parser,
+  Task,
   TaskContext,
-  ESLintOptions,
+  TaskMetaData,
+  TaskResult,
+  TaskType,
 } from '@checkup/core';
-import EslintSummaryTaskResult from '../results/eslint-summary-task-result';
+import { join, resolve } from 'path';
 
-import { readFileSync } from 'fs';
+import EslintSummaryTaskResult from '../results/eslint-summary-task-result';
 import { PackageJson } from 'type-fest';
-import { resolve, join } from 'path';
+import { readFileSync } from 'fs';
 
 /**
  * @export
@@ -34,8 +33,8 @@ export class EslintSummaryTask extends BaseTask implements Task {
     taskName: 'eslint-summary',
     friendlyTaskName: 'Eslint Summary',
     taskClassification: {
-      category: Category.Insights,
-      priority: Priority.Medium,
+      type: TaskType.Insights,
+      category: 'linting',
     },
   };
 
