@@ -2,6 +2,7 @@ import { MetaTaskResult, OutputPosition } from './types';
 import { OutputFormat, RunFlags, TaskError, TaskResult, ui } from '@checkup/core';
 import { dirname, isAbsolute, resolve } from 'path';
 import { existsSync, mkdirpSync, writeJsonSync } from 'fs-extra';
+
 import { startCase } from 'lodash';
 
 const date = require('date-and-time');
@@ -94,10 +95,4 @@ export function getReporter(
     default:
       return async () => {};
   }
-}
-
-export function _toSentenceCase(str: string) {
-  return str.replace(/\w\S*/g, function (txt) {
-    return txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase();
-  });
 }
