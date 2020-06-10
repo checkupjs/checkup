@@ -1,3 +1,41 @@
+## v0.1.0 (2020-06-10)
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#486](https://github.com/checkupjs/checkup/pull/486) Render the task category in stdout ([@carakessler](https://github.com/carakessler))
+* `cli`
+  * [#487](https://github.com/checkupjs/checkup/pull/487) Externalizing programmatic invocation of checkup ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`
+  * [#472](https://github.com/checkupjs/checkup/pull/472) Creating checkup-plugin-javascript, and moving the eslint-disable and outdated-deps task into it ([@carakessler](https://github.com/carakessler))
+* `cli`, `core`, `test-helpers`
+  * [#466](https://github.com/checkupjs/checkup/pull/466) Adding field excludePaths to config, so consumers of checkup can add globs to be ignored ([@carakessler](https://github.com/carakessler))
+
+#### :bug: Bug Fix
+* `cli`, `core`
+  * [#474](https://github.com/checkupjs/checkup/pull/474) (bug fix) Restricting file types for LOC class ([@carakessler](https://github.com/carakessler))
+* `cli`
+  * [#470](https://github.com/checkupjs/checkup/pull/470) Changing wording on eslint disable task results ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember`
+  * [#465](https://github.com/checkupjs/checkup/pull/465) Sorting JSON results for ember-in-repo-addons-engines-task-test ([@carakessler](https://github.com/carakessler))
+
+#### :house: Internal
+* `cli`, `core`, `test-helpers`
+  * [#471](https://github.com/checkupjs/checkup/pull/471) Bumping eslint-plugin-unicorn ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `cli`, `core`, `test-helpers`
+  * [#467](https://github.com/checkupjs/checkup/pull/467) Creating FilePathsArray class that extends array and offers filtering functionality ([@carakessler](https://github.com/carakessler))
+
+#### :bar_chart: Checkup Task
+* `checkup-plugin-javascript`, `core`, `test-helpers`
+  * [#453](https://github.com/checkupjs/checkup/pull/453) Adding task that runs eslint as configured in the app checkup is being run on ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember`
+  * [#469](https://github.com/checkupjs/checkup/pull/469) Adding task that checks how many times ember template-lint is disabled ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.0.14 (2020-05-29)
 
 #### :rocket: Enhancement
