@@ -3,6 +3,8 @@ import { OutputFormat, RunFlags, TaskError, TaskResult, ui } from '@checkup/core
 import { dirname, isAbsolute, resolve } from 'path';
 import { existsSync, mkdirpSync, writeJsonSync } from 'fs-extra';
 
+import { startCase } from 'lodash';
+
 const date = require('date-and-time');
 
 export const TODAY = date.format(new Date(), 'YYYY-MM-DD-HH_mm_ss');
@@ -53,7 +55,20 @@ export function getReporter(
           .filter((taskResult) => taskResult.outputPosition === OutputPosition.Header)
           .forEach((taskResult) => taskResult.toConsole());
 
-        pluginTaskResults.forEach((taskResult) => taskResult.toConsole());
+        let currentCategory = '';
+
+        pluginTaskResults.forEach((taskResult) => {
+          let taskCategory = taskResult.meta.taskClassification.category;
+
+          if (taskCategory !== currentCategory) {
+            ui.categoryHeader(startCase(taskCategory));
+            currentCategory = taskCategory;
+          }
+
+          taskResult.toConsole();
+        });
+
+        ui.blankLine();
 
         metaTaskResults
           .filter((taskResult) => taskResult.outputPosition === OutputPosition.Footer)

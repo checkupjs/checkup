@@ -39,10 +39,7 @@ describe('template-lint-disable-task', () => {
     templateLintDisableTaskResult.toConsole();
 
     expect(stdout()).toMatchInlineSnapshot(`
-      "=== Number of template-lint-disable Usages ===
-
-      template-lint-disable Usages Found: 3
-
+      "template-lint-disable Usages Found: 3
       "
     `);
   });

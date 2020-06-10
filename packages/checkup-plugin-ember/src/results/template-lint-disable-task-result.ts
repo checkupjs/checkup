@@ -4,9 +4,7 @@ export default class TemplateLintDisableTaskResult extends BaseTaskResult implem
   templateLintDisables!: ResultData;
 
   toConsole() {
-    ui.section(this.meta.friendlyTaskName, () => {
-      ui.log(`template-lint-disable Usages Found: ${this.templateLintDisables.results.length}`);
-    });
+    ui.log(`template-lint-disable Usages Found: ${this.templateLintDisables.results.length}`);
   }
 
   toJson() {

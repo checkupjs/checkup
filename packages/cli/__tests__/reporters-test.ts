@@ -1,5 +1,5 @@
-import { TaskType, TaskResult } from '@checkup/core';
 import { DEFAULT_OUTPUT_FILENAME, _transformJsonResults, getOutputPath } from '../src/reporters';
+import { TaskResult, TaskType } from '@checkup/core';
 
 import { MetaTaskResult } from '../src/types';
 import MockMetaTaskResult from './__utils__/mock-meta-task-result';

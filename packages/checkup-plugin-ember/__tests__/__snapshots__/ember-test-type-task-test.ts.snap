@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ember-test-types-task only renders todos/only test types if they a value > 0 1`] = `
-"=== Ember Test Types ===
+"Ember Test Types
 
 Type           test    only    todo    
 unit           0       0       0       
 rendering      1       1       1       
 application    0       0       0       
 
-=== Test Type Breakdown
+Test Type Breakdown
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 tests
 ■ unit (0)  ■ rendering (3)  ■ application (0)  
@@ -17,14 +17,14 @@ application    0       0       0
 `;
 
 exports[`ember-test-types-task returns all the test types (including nested) found in the app and outputs to the console 1`] = `
-"=== Ember Test Types ===
+"Ember Test Types
 
 Type           test    skip    
 unit           2       4 (67%) 
 rendering      2       4 (67%) 
 application    4       8 (67%) 
 
-=== Test Type Breakdown
+Test Type Breakdown
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 24 tests
 ■ unit (6)  ■ rendering (6)  ■ application (12)  
@@ -74,14 +74,14 @@ Object {
 `;
 
 exports[`ember-test-types-task returns all the test types found in the app and outputs to the console 1`] = `
-"=== Ember Test Types ===
+"Ember Test Types
 
 Type           test    skip    
 unit           1       2 (67%) 
 rendering      1       2 (67%) 
 application    2       4 (67%) 
 
-=== Test Type Breakdown
+Test Type Breakdown
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 tests
 ■ unit (3)  ■ rendering (3)  ■ application (6)  

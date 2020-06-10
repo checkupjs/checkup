@@ -2014,7 +2014,7 @@ Object {
 `;
 
 exports[`octane-migration-status-task-result console output simple console output 1`] = `
-"=== Ember Octane Migration Status ===
+"Ember Octane Migration Status
 
 Octane Violations: 35
 

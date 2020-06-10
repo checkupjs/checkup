@@ -15,10 +15,13 @@ export const ui = Object.assign(ux, {
     process.stdout.write('\u001B[0f');
   },
 
+  categoryHeader(header: string) {
+    ui.styledHeader(header);
+    ui.blankLine();
+  },
+
   sectionHeader(header: string) {
-    process.stdout.write(
-      `${chalk.dim('===')} ${chalk.bold(chalk.white(header))} ${chalk.dim('===')}\n`
-    );
+    process.stdout.write(this.emphasize(`${chalk.underline(chalk.white(header))}\n`));
     ui.blankLine();
   },
 
@@ -29,7 +32,7 @@ export const ui = Object.assign(ux, {
   },
 
   subHeader(header: string) {
-    ui.styledHeader(header);
+    process.stdout.write(`${chalk.underline(chalk.white(header))}\n`);
     ui.blankLine();
   },
 

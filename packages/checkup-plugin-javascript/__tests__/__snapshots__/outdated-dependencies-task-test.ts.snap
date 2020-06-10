@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`outdated-dependencies-task detects outdated dependencies and output to console 1`] = `
-"=== Outdated Dependencies ===
+"Outdated Dependencies
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
 ■ major (2)  ■ minor (0)  ■ patch (0)  
