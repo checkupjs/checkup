@@ -40,6 +40,7 @@ describe('template-lint-disable-task', () => {
 
     expect(stdout()).toMatchInlineSnapshot(`
       "template-lint-disable Usages Found: 3
+
       "
     `);
   });
