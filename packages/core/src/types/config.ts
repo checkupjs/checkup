@@ -1,7 +1,7 @@
-export type ActionConfig = string | { [key: string]: number } | { [key: string]: 'on' | 'off' };
-export type TaskConfig = 'on' | 'off' | ['on', ActionConfig[]];
+export type ActionConfig = { [key: string]: number | 'off' };
+export type TaskConfig = { actions?: ActionConfig[]; [key: string]: any } | [];
 export type CheckupConfig = {
   excludePaths: string[];
   plugins: string[];
-  tasks: Record<string, TaskConfig>;
+  tasks: Record<string, 'on' | 'off' | ['on' | 'off', TaskConfig]>;
 };

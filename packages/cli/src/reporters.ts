@@ -6,8 +6,6 @@ import { existsSync, mkdirpSync, writeJsonSync } from 'fs-extra';
 import { startCase } from 'lodash';
 
 const chalk = require('chalk');
-const wrap = require('wrap-ansi');
-const boxen = require('boxen');
 
 const date = require('date-and-time');
 
@@ -98,20 +96,9 @@ function getActionItems(pluginTaskResults: TaskResult[]): string[] {
 
 function renderActionItems(actionItems: string[]): void {
   if (actionItems.length > 0) {
-    ui.log(
-      boxen(
-        wrap(
-          `${chalk.bold(chalk.underline('Action Items:'))} \n \n * ${actionItems.join('\n\n * ')}`,
-          80,
-          { trim: false, hard: true }
-        ),
-        {
-          padding: 1,
-          borderStyle: 'double',
-        }
-      )
+    ui.box(
+      `${chalk.bold(chalk.underline('Action Items:'))} \n \n * ${actionItems.join('\n\n * ')}`
     );
-    ui.blankLine();
   }
 }
 

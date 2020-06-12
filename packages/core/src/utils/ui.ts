@@ -2,7 +2,20 @@ import * as chalk from 'chalk';
 
 import { ux } from 'cli-ux';
 
+const wrap = require('wrap-ansi');
+const boxen = require('boxen');
+
 export const ui = Object.assign(ux, {
+  box(content: string) {
+    process.stdout.write(
+      boxen(wrap(content, 80, { trim: false, hard: true }), {
+        padding: 1,
+        borderStyle: 'double',
+      })
+    );
+    ui.blankLine();
+  },
+
   blankLine() {
     process.stdout.write('\n');
   },

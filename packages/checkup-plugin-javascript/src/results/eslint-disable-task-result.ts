@@ -5,28 +5,27 @@ import {
   TaskResult,
   TaskMetaData,
   ActionList,
-  ActionConfig,
+  TaskConfig,
 } from '@checkup/core';
 
 export default class EslintDisableTaskResult extends BaseTaskResult implements TaskResult {
   actionList: ActionList;
 
-  constructor(meta: TaskMetaData, config: ActionConfig[], public eslintDisables: ResultData) {
+  constructor(meta: TaskMetaData, config: TaskConfig, public eslintDisables: ResultData) {
     super(meta, config);
 
     this.actionList = new ActionList(
       [
         {
-          key: 'numEslintDisables',
-          isEnabled: function () {
-            return this.value > this.threshold;
-          },
+          name: 'numEslintDisables',
           threshold: 2,
           value: eslintDisables.results.length,
-          message: function () {
+          get enabled() {
+            return this.value > this.threshold;
+          },
+          get message() {
             return `There should be no more than ${this.threshold} instances of 'eslint-disable', and you have ${this.value} instances.`;
           },
-          enabledByDefault: false,
         },
       ],
       config

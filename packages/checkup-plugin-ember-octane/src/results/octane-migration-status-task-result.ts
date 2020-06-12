@@ -5,7 +5,7 @@ import {
   TaskResult,
   TemplateLintReport,
   ui,
-  ActionConfig,
+  TaskConfig,
 } from '@checkup/core';
 import {
   ESLINT_MIGRATION_TASK_CONFIGS,
@@ -20,7 +20,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
 
   constructor(
     meta: TaskMetaData,
-    config: ActionConfig[],
+    config: TaskConfig,
     public esLintReport: ESLintReport,
     public templateLintReport: TemplateLintReport
   ) {

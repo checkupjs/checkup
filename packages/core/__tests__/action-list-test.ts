@@ -1,31 +1,30 @@
-import { Action, ActionConfig } from '../lib';
+import { Action, ActionConfig } from '../src';
 import ActionList from '../src/action-list';
+import { isActionEnabled } from '@checkup/test-helpers';
 
 describe('ActionList', () => {
   let actions: Action[] = [
     {
-      key: 'notEnabledAction',
-      isEnabled: function () {
-        return this.value > this.threshold;
-      },
-      threshold: 20,
-      value: 30,
-      message: function () {
-        return `There should be no more than ${this.threshold} instances of 'foo', and you have ${this.value} instances.`;
-      },
-      enabledByDefault: false,
-    },
-    {
-      key: 'enabledAction',
-      isEnabled: function () {
-        return this.threshold > this.value;
-      },
+      name: 'valueGreaterThanThreshold',
       threshold: 20,
       value: 10,
-      message: function () {
+      get enabled() {
+        return this.value > this.threshold;
+      },
+      get message() {
+        return `There should be no more than ${this.threshold} instances of 'foo', and you have ${this.value} instances.`;
+      },
+    },
+    {
+      name: 'valueLessThanThreshold',
+      threshold: 20,
+      value: 10,
+      get enabled() {
+        return this.threshold > this.value;
+      },
+      get message() {
         return `You need at least ${this.threshold} instances of 'whatever', and you have ${this.value} instances.`;
       },
-      enabledByDefault: true,
     },
   ];
   let actionConfig: ActionConfig[] = [];
@@ -35,18 +34,6 @@ describe('ActionList', () => {
 
     expect(actionList).toBeInstanceOf(ActionList);
     expect(actionList.isActionable).toEqual(true);
-  });
-
-  it('isActionEnabled returns false if that action is not enabled', () => {
-    const actionList = new ActionList(actions, actionConfig);
-
-    expect(actionList.isActionEnabled('notEnabledAction')).toEqual(false);
-  });
-
-  it('isActionAvailable returns false if action does not exists with that name', () => {
-    const actionList = new ActionList(actions, actionConfig);
-
-    expect(actionList.isActionAvailable('meowmeow')).toEqual(false);
   });
 
   it('you can get actionMessages', () => {
@@ -65,10 +52,9 @@ describe('ActionList', () => {
     expect(actionList.enabledActions).toMatchInlineSnapshot(`
       Array [
         Object {
-          "enabledByDefault": true,
-          "isEnabled": [Function],
-          "key": "enabledAction",
-          "message": [Function],
+          "enabled": true,
+          "message": "You need at least 20 instances of 'whatever', and you have 10 instances.",
+          "name": "valueLessThanThreshold",
           "threshold": 20,
           "value": 10,
         },
@@ -76,41 +62,34 @@ describe('ActionList', () => {
     `);
   });
 
-  it('you can get enabledActions with a config that turns on actions (as a string)', async () => {
-    const actionList = new ActionList(actions, ['notEnabledAction']);
-
-    expect(actionList.isActionEnabled('notEnabledAction')).toEqual(true);
-    expect(actionList.enabledActions).toHaveLength(2);
-  });
-
-  it('you can get enabledActions with a config that turns on actions (as a tuple with string)', async () => {
-    const actionList = new ActionList(actions, [{ notEnabledAction: 'on' }]);
-
-    expect(actionList.isActionEnabled('notEnabledAction')).toEqual(true);
-
-    expect(actionList.enabledActions).toHaveLength(2);
-  });
-
   it('you can get enabledActions with a config that turns off actions', async () => {
-    const actionList = new ActionList(actions, [{ enabledAction: 'off' }]);
+    const actionList = new ActionList(actions, { actions: [{ valueLessThanThreshold: 'off' }] });
 
-    expect(actionList.isActionEnabled('enabledAction')).toEqual(false);
     expect(actionList.enabledActions).toHaveLength(0);
+    expect(isActionEnabled(actionList.enabledActions, 'valueLessThanThreshold')).toEqual(false);
   });
 
   it('you can get enabledActions with a config has a custom threshold', async () => {
-    const actionList = new ActionList(actions, [{ enabledAction: 5 }]);
+    const actionList = new ActionList(actions, { actions: [{ valueGreaterThanThreshold: 5 }] });
 
-    expect(actionList.isActionEnabled('enabledAction')).toEqual(false);
-    expect(actionList.getAvailableAction('enabledAction')?.threshold).toEqual(5);
-    expect(actionList.enabledActions).toHaveLength(0);
+    let valueGreaterThanThreshold = actionList.enabledActions
+      .filter(
+        (valueGreaterThanThreshold) =>
+          valueGreaterThanThreshold.name === 'valueGreaterThanThreshold'
+      )
+      .pop();
+
+    expect(valueGreaterThanThreshold).toBeDefined();
+    expect(valueGreaterThanThreshold?.threshold).toEqual(5);
+    expect(isActionEnabled(actionList.enabledActions, 'valueGreaterThanThreshold')).toEqual(true);
   });
 
   it('you can get enabledActions with a config has multiple configurations', async () => {
-    const actionList = new ActionList(actions, [{ enabledAction: 5 }, { notEnabledAction: 'on' }]);
+    const actionList = new ActionList(actions, {
+      actions: [{ valueLessThanThreshold: 5 }, { valueGreaterThanThreshold: 'off' }],
+    });
 
-    expect(actionList.isActionEnabled('enabledAction')).toEqual(false);
-    expect(actionList.isActionEnabled('notEnabledAction')).toEqual(true);
-    expect(actionList.enabledActions).toHaveLength(1);
+    expect(isActionEnabled(actionList.enabledActions, 'valueLessThanThreshold')).toEqual(false);
+    expect(isActionEnabled(actionList.enabledActions, 'valueGreaterThanThreshold')).toEqual(false);
   });
 });

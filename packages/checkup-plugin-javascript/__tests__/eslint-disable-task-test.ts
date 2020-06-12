@@ -1,5 +1,11 @@
 import { getPluginName } from '@checkup/core';
-import { CheckupProject, stdout, getTaskContext, clearFilePaths } from '@checkup/test-helpers';
+import {
+  CheckupProject,
+  stdout,
+  getTaskContext,
+  clearFilePaths,
+  isActionEnabled,
+} from '@checkup/test-helpers';
 
 import EslintDisableTask from '../src/tasks/eslint-disable-task';
 import EslintDisableTaskResult from '../src/results/eslint-disable-task-result';
@@ -101,7 +107,9 @@ describe('eslint-disable-task', () => {
     ).run();
 
     const eslintDisableTaskResult = <EslintDisableTaskResult>result;
-    expect(eslintDisableTaskResult.actionList.isActionEnabled('numEslintDisables')).toEqual(true);
+    expect(
+      isActionEnabled(eslintDisableTaskResult.actionList.enabledActions, 'numEslintDisables')
+    ).toEqual(true);
     expect(eslintDisableTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`
       Array [
         "There should be no more than 2 instances of 'eslint-disable', and you have 3 instances.",

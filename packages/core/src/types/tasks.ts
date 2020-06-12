@@ -23,12 +23,11 @@ export interface Task {
 }
 
 export interface Action {
-  key: string;
-  isEnabled: () => boolean;
-  threshold: number;
+  name: string;
   value: number;
-  message: () => string;
-  enabledByDefault: boolean;
+  threshold: number;
+  readonly enabled: boolean;
+  readonly message: string;
 }
 export interface TaskResult {
   meta: TaskMetaData;

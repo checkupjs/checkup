@@ -1,4 +1,4 @@
-import { ActionConfig } from './types/config';
+import { ActionConfig, TaskConfig } from './types/config';
 import { Action } from './types/tasks';
 
 /**
@@ -8,38 +8,22 @@ import { Action } from './types/tasks';
  */
 export default class ActionList {
   _availableActions: Action[];
-  _config: ActionConfig[];
+  _actionConfig: ActionConfig[] | [];
 
-  constructor(availableActions: Action[], config: ActionConfig[]) {
+  constructor(availableActions: Action[], config: TaskConfig | undefined) {
     this._availableActions = availableActions;
-    this._config = config;
-  }
-
-  getAvailableAction(key: string): Action | undefined {
-    return this._availableActions.filter((availableAction) => availableAction.key === key).pop();
-  }
-
-  getEnabledAction(key: string): Action | undefined {
-    return this.enabledActions.filter((enabledAction) => enabledAction.key === key).pop();
-  }
-
-  isActionEnabled(key: string): Boolean {
-    return this.enabledActions.some((enabledAction) => {
-      return enabledAction.key === key;
-    });
-  }
-
-  isActionAvailable(key: string): Boolean {
-    return this._availableActions.some((availableAction) => {
-      return availableAction.key === key;
-    });
+    if (Array.isArray(config)) {
+      this._actionConfig = [];
+    } else {
+      this._actionConfig = config?.actions || [];
+    }
   }
 
   get actionMessages() {
     let actionMessages: string[] = [];
     this.enabledActions.forEach((action) => {
-      if (action.isEnabled()) {
-        actionMessages.push(action.message());
+      if (action.enabled) {
+        actionMessages.push(action.message);
       }
     });
 
@@ -47,11 +31,7 @@ export default class ActionList {
   }
 
   get isActionable() {
-    if (this.actionMessages.length > 0) {
-      return true;
-    }
-
-    return false;
+    return this.actionMessages.length > 0;
   }
 
   get enabledActions() {
@@ -61,10 +41,10 @@ export default class ActionList {
 
         if (configForAction) {
           let configuredAction = this.applyConfigForAction(action, configForAction);
-          return configuredAction?.isEnabled() ? configuredAction : undefined;
+          return configuredAction?.enabled ? configuredAction : undefined;
         }
 
-        if (action.enabledByDefault && action.isEnabled()) {
+        if (action.enabled) {
           return action;
         }
       })
@@ -72,28 +52,19 @@ export default class ActionList {
   }
 
   private findConfigForAction(action: Action): ActionConfig | undefined {
-    return this._config.find((conf) => {
-      if (typeof conf === 'string' && conf === action.key) {
-        return conf;
-      }
-      return Object.keys(conf)[0] === action.key;
-    });
+    return this._actionConfig?.find((conf) => Object.keys(conf)[0] === action.name);
   }
 
   private applyConfigForAction(action: Action, actionConfig: ActionConfig): Action | undefined {
-    if (typeof actionConfig === 'string') {
+    let configValue = Object.values(actionConfig)[0];
+
+    if (typeof configValue === 'number') {
+      action.threshold = configValue;
       return action;
     }
 
-    if (typeof actionConfig === 'object') {
-      let configValue = Object.values(actionConfig)[0];
-
-      if (typeof configValue === 'number') {
-        action.threshold = configValue;
-        return action;
-      }
-
-      return configValue === 'on' ? action : undefined;
+    if (configValue === 'off') {
+      return;
     }
   }
 }
