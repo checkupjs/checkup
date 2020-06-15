@@ -1,4 +1,4 @@
-import { ActionConfig, TaskConfig } from './types/config';
+import { ActionConfig, TaskConfig, ActionConfigValue } from './types/config';
 import { Action } from './types/tasks';
 
 /**
@@ -7,16 +7,12 @@ import { Action } from './types/tasks';
  * Represents a collection of actions related to a task
  */
 export default class ActionList {
-  _availableActions: Action[];
-  _actionConfig: ActionConfig[] | [];
+  _defaultActions: Action[];
+  _actionConfig: ActionConfig;
 
-  constructor(availableActions: Action[], config: TaskConfig | undefined) {
-    this._availableActions = availableActions;
-    if (Array.isArray(config)) {
-      this._actionConfig = [];
-    } else {
-      this._actionConfig = config?.actions || [];
-    }
+  constructor(defaultActions: Action[], config: TaskConfig | undefined) {
+    this._defaultActions = defaultActions;
+    this._actionConfig = config?.actions || {};
   }
 
   get actionMessages() {
@@ -35,12 +31,13 @@ export default class ActionList {
   }
 
   get enabledActions() {
-    return this._availableActions
+    return this._defaultActions
       .map((action: Action) => {
-        let configForAction = this.findConfigForAction(action);
-
-        if (configForAction) {
-          let configuredAction = this.applyConfigForAction(action, configForAction);
+        if (this._actionConfig[action.name]) {
+          let configuredAction = this._applyConfigForAction(
+            action,
+            this._actionConfig[action.name]
+          );
           return configuredAction?.enabled ? configuredAction : undefined;
         }
 
@@ -51,20 +48,20 @@ export default class ActionList {
       .filter(Boolean) as Action[];
   }
 
-  private findConfigForAction(action: Action): ActionConfig | undefined {
-    return this._actionConfig?.find((conf) => Object.keys(conf)[0] === action.name);
-  }
-
-  private applyConfigForAction(action: Action, actionConfig: ActionConfig): Action | undefined {
-    let configValue = Object.values(actionConfig)[0];
-
-    if (typeof configValue === 'number') {
-      action.threshold = configValue;
-      return action;
-    }
-
-    if (configValue === 'off') {
+  private _applyConfigForAction(
+    action: Action,
+    actionConfig: ActionConfigValue
+  ): Action | undefined {
+    if (actionConfig === 'off') {
       return;
+    } else if (Array.isArray(actionConfig)) {
+      let [enabled] = actionConfig;
+      if (enabled === 'off') {
+        return;
+      }
+    } else {
+      action.threshold = actionConfig.threshold;
+      return action;
     }
   }
 }

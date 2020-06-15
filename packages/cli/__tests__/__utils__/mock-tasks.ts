@@ -17,7 +17,7 @@ export class InsightsTaskHigh extends BaseTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, [], 'insights task high is being run');
+    return new MockTaskResult(this.meta, this.config, 'insights task high is being run');
   }
 }
 
@@ -35,7 +35,7 @@ export class InsightsTaskLow extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, [], 'insights task low is being run');
+    return new MockTaskResult(this.meta, this.config, 'insights task low is being run');
   }
 }
 
@@ -53,7 +53,7 @@ export class RecommendationsTaskHigh extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, [], 'recommendations task high is being run');
+    return new MockTaskResult(this.meta, this.config, 'recommendations task high is being run');
   }
 }
 
@@ -71,7 +71,7 @@ export class RecommendationsTaskLow extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, [], 'recommendations task low is being run');
+    return new MockTaskResult(this.meta, this.config, 'recommendations task low is being run');
   }
 }
 
@@ -89,7 +89,7 @@ export class MigrationTaskHigh extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, [], 'migration task high is being run');
+    return new MockTaskResult(this.meta, this.config, 'migration task high is being run');
   }
 }
 
@@ -107,7 +107,7 @@ export class MigrationTaskLow extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, [], 'migration task low is being run');
+    return new MockTaskResult(this.meta, this.config, 'migration task low is being run');
   }
 }
 
@@ -144,6 +144,6 @@ export class TaskWithoutCategory extends BaseTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    return new MockTaskResult(this.meta, [], 'task without category is being run');
+    return new MockTaskResult(this.meta, this.config, 'task without category is being run');
   }
 }

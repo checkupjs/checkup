@@ -44,7 +44,9 @@ export default abstract class BaseTask {
       return;
     }
 
-    let config = this.context.config.tasks[this.fullyQualifiedTaskName];
+    let config: 'on' | 'off' | ['on' | 'off', TaskConfig] | undefined = this.context.config.tasks[
+      this.fullyQualifiedTaskName
+    ];
 
     this.#enabled = 'on';
 

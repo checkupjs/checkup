@@ -63,14 +63,16 @@ describe('ActionList', () => {
   });
 
   it('you can get enabledActions with a config that turns off actions', async () => {
-    const actionList = new ActionList(actions, { actions: [{ valueLessThanThreshold: 'off' }] });
+    const actionList = new ActionList(actions, { actions: { valueLessThanThreshold: 'off' } });
 
     expect(actionList.enabledActions).toHaveLength(0);
     expect(isActionEnabled(actionList.enabledActions, 'valueLessThanThreshold')).toEqual(false);
   });
 
   it('you can get enabledActions with a config has a custom threshold', async () => {
-    const actionList = new ActionList(actions, { actions: [{ valueGreaterThanThreshold: 5 }] });
+    const actionList = new ActionList(actions, {
+      actions: { valueGreaterThanThreshold: { threshold: 5 } },
+    });
 
     let valueGreaterThanThreshold = actionList.enabledActions
       .filter(
@@ -86,7 +88,10 @@ describe('ActionList', () => {
 
   it('you can get enabledActions with a config has multiple configurations', async () => {
     const actionList = new ActionList(actions, {
-      actions: [{ valueLessThanThreshold: 5 }, { valueGreaterThanThreshold: 'off' }],
+      actions: {
+        valueLessThanThreshold: { threshold: 5 },
+        valueGreaterThanThreshold: ['off', { threshold: 22 }],
+      },
     });
 
     expect(isActionEnabled(actionList.enabledActions, 'valueLessThanThreshold')).toEqual(false);

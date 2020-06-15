@@ -98,11 +98,6 @@ describe('eslint-disable-task', () => {
       pluginName,
       getTaskContext({
         paths: project.filePaths,
-        config: {
-          tasks: {
-            'javascript/eslint-disables': ['on', ['numEslintDisables']],
-          },
-        },
       })
     ).run();
 

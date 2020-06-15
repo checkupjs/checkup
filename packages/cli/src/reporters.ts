@@ -89,7 +89,7 @@ export function getReporter(
 
 function getActionItems(pluginTaskResults: TaskResult[]): string[] {
   return pluginTaskResults
-    .filter((taskResult) => taskResult.actionList?.isActionable === true)
+    .filter((taskResult) => taskResult.actionList?.isActionable)
     .flatMap((actionableTask) => actionableTask.actionList?.actionMessages)
     .filter(Boolean) as string[];
 }
