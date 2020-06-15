@@ -17,7 +17,7 @@
     "@oclif/errors": "^1.2.2",
     "@oclif/plugin-help": "^3",
     "@types/sloc": "^0.2.0",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.0",
     "checkup-plugin-ember": "^0.1.0",
     "checkup-plugin-javascript": "^0.1.0",
     "checkup-plugin-ember-octane": "^0.1.0",
