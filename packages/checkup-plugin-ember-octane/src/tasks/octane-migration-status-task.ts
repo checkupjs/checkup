@@ -1,6 +1,5 @@
 import {
   BaseTask,
-  TaskType,
   ESLintReport,
   Parser,
   Task,
@@ -17,8 +16,8 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     taskName: 'octane-migration-status',
     friendlyTaskName: 'Ember Octane Migration Status',
     taskClassification: {
-      type: TaskType.Migrations,
-      category: 'ember',
+      category: 'migrations',
+      group: 'ember',
     },
   };
 

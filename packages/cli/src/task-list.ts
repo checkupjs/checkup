@@ -3,15 +3,13 @@ import * as pMap from 'p-map';
 
 import { Task, TaskError, TaskName, TaskResult } from '@checkup/core';
 
-import TaskTypeMap from './task-type-map';
-
 /**
  * @class TaskList
  *
  * Represents a collection of tasks to run.
  */
 export default class TaskList {
-  private _categories: Map<string, TaskTypeMap>;
+  private _categories: Map<string, Map<TaskName, Task>>;
   private _errors: TaskError[];
   debug: debug.Debugger;
 
@@ -20,7 +18,7 @@ export default class TaskList {
   }
 
   constructor() {
-    this._categories = new Map<string, TaskTypeMap>();
+    this._categories = new Map<string, Map<TaskName, Task>>();
     this._errors = [];
     this.debug = debug('checkup:task');
   }
@@ -40,7 +38,7 @@ export default class TaskList {
       );
     }
     let categoryMap = this.getByCategory(task.meta.taskClassification.category);
-    categoryMap!.setTaskByTaskType(task.meta.taskClassification.type, task.meta.taskName, task);
+    categoryMap!.set(task.meta.taskName, task);
   }
 
   /**
@@ -120,9 +118,9 @@ export default class TaskList {
    * @method getByCategory
    * @param category
    */
-  private getByCategory(category: string): TaskTypeMap | undefined {
+  private getByCategory(category: string): Map<TaskName, Task> | undefined {
     if (!this._categories.has(category)) {
-      this._categories.set(category, new TaskTypeMap());
+      this._categories.set(category, new Map<TaskName, Task>());
     }
 
     return this._categories.get(category);

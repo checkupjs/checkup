@@ -3,8 +3,6 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as t from '@babel/types';
 
-import { TaskType } from '@checkup/core';
-
 import { Answers } from 'inquirer';
 import AstTransformer from '../helpers/ast';
 import BaseGenerator from './base-generator';
@@ -46,7 +44,6 @@ export default class TaskGenerator extends BaseGenerator {
 
     const defaults = {
       typescript: true,
-      type: TaskType.Insights,
     };
 
     if (this.options.defaults) {
@@ -60,17 +57,6 @@ export default class TaskGenerator extends BaseGenerator {
           default: () => true,
         },
         {
-          type: 'list',
-          name: 'type',
-          message: 'Select a task type',
-          choices: [
-            { name: 'insights', value: 'Insights' },
-            { name: 'migrations', value: 'Migrations' },
-            { name: 'recommendations', value: 'Recommendations' },
-          ],
-          default: 'Insights',
-        },
-        {
           type: 'input',
           name: 'category',
           message: 'Enter a task category',
@@ -82,7 +68,6 @@ export default class TaskGenerator extends BaseGenerator {
     this.options.taskClass = `${this.options.pascalCaseName}Task`;
     this.options.taskResultClass = `${this.options.taskClass}Result`;
     this.options.typescript = this.answers.typescript;
-    this.options.type = this.answers.type;
     this.options.category = this.answers.category;
   }
 

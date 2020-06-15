@@ -1,4 +1,4 @@
-import { BaseTask, TaskType, Task, TaskResult, toTaskData } from '@checkup/core';
+import { BaseTask, Task, TaskResult, toTaskData } from '@checkup/core';
 
 import EmberDependenciesTaskResult from '../results/ember-dependencies-task-result';
 import { PackageJson } from 'type-fest';
@@ -8,8 +8,8 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
     taskName: 'ember-dependencies',
     friendlyTaskName: 'Ember Dependencies',
     taskClassification: {
-      type: TaskType.Insights,
       category: 'dependencies',
+      group: 'ember',
     },
   };
 

@@ -1,4 +1,4 @@
-import { BaseTask, TaskType, Task, TaskContext, TaskResult } from '@checkup/core';
+import { BaseTask, Task, TaskContext, TaskResult } from '@checkup/core';
 
 import MockTaskResult from './mock-task-result';
 
@@ -7,7 +7,6 @@ export class InsightsTaskHigh extends BaseTask implements Task {
     taskName: 'insights-task-high',
     friendlyTaskName: 'Insights Task High',
     taskClassification: {
-      type: TaskType.Insights,
       category: 'bar',
     },
   };
@@ -26,7 +25,6 @@ export class InsightsTaskLow extends BaseTask implements Task {
     taskName: 'insights-task-low',
     friendlyTaskName: 'Insights Task Low',
     taskClassification: {
-      type: TaskType.Insights,
       category: 'foo',
     },
   };
@@ -44,7 +42,6 @@ export class RecommendationsTaskHigh extends BaseTask implements Task {
     taskName: 'recommendations-task-high',
     friendlyTaskName: 'Recommendations Task High',
     taskClassification: {
-      type: TaskType.Recommendations,
       category: 'baz',
     },
   };
@@ -62,7 +59,6 @@ export class RecommendationsTaskLow extends BaseTask implements Task {
     taskName: 'recommendations-task-low',
     friendlyTaskName: 'Recommendations Task Low',
     taskClassification: {
-      type: TaskType.Recommendations,
       category: 'bar',
     },
   };
@@ -80,7 +76,6 @@ export class MigrationTaskHigh extends BaseTask implements Task {
     taskName: 'migration-task-high',
     friendlyTaskName: 'Migration Task High',
     taskClassification: {
-      type: TaskType.Migrations,
       category: 'foo',
     },
   };
@@ -98,7 +93,6 @@ export class MigrationTaskLow extends BaseTask implements Task {
     taskName: 'migration-task-low',
     friendlyTaskName: 'Migration Task Low',
     taskClassification: {
-      type: TaskType.Migrations,
       category: 'baz',
     },
   };
@@ -116,7 +110,6 @@ export class ErrorTask extends BaseTask implements Task {
     taskName: 'error-task',
     friendlyTaskName: 'Error Task',
     taskClassification: {
-      type: TaskType.Insights,
       category: 'bar',
     },
   };
@@ -134,7 +127,6 @@ export class TaskWithoutCategory extends BaseTask implements Task {
     taskName: 'task-without-category',
     friendlyTaskName: 'Task Without Category',
     taskClassification: {
-      type: TaskType.Insights,
       category: '',
     },
   };

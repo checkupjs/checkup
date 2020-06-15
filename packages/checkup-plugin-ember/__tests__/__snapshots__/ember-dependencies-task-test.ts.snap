@@ -19,7 +19,7 @@ Object {
     "friendlyTaskName": "Ember Dependencies",
     "taskClassification": Object {
       "category": "dependencies",
-      "type": "insights",
+      "group": "ember",
     },
     "taskName": "ember-dependencies",
   },

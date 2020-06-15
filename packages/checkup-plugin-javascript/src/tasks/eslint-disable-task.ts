@@ -1,4 +1,4 @@
-import { TaskResult, TaskType, TaskMetaData, Task, TaskItemData, BaseTask } from '@checkup/core';
+import { TaskResult, Task, TaskMetaData, BaseTask, TaskItemData } from '@checkup/core';
 import EslintDisableTaskResult from '../results/eslint-disable-task-result';
 
 const fs = require('fs');
@@ -12,7 +12,6 @@ export default class EslintDisableTask extends BaseTask implements Task {
     taskName: 'eslint-disables',
     friendlyTaskName: 'Number of eslint-disable Usages',
     taskClassification: {
-      type: TaskType.Insights,
       category: 'linting',
     },
   };

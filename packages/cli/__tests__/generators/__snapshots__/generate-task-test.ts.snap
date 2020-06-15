@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`task generator generates correct files with JavaScript 1`] = `
-"import { BaseTask, TaskType } from '@checkup/core';
+"import { BaseTask } from '@checkup/core';
 import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask {
@@ -9,7 +9,6 @@ export default class MyFooTask extends BaseTask {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      type: TaskType.Insights,
       category: '',
     },
   };
@@ -96,7 +95,7 @@ export default hook;
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults 1`] = `
-"import { BaseTask, TaskType, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
 import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -104,7 +103,6 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      type: TaskType.Insights,
       category: '',
     },
   };
@@ -193,7 +191,7 @@ export default hook;
 `;
 
 exports[`task generator generates correct files with category 1`] = `
-"import { BaseTask, TaskType, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
 import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -201,7 +199,6 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      type: TaskType.Insights,
       category: 'foo',
     },
   };
@@ -290,7 +287,7 @@ export default hook;
 `;
 
 exports[`task generator generates correct files with type 1`] = `
-"import { BaseTask, TaskType, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
 import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -298,7 +295,6 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      type: TaskType.Insights,
       category: '',
     },
   };
@@ -387,7 +383,7 @@ export default hook;
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 1`] = `
-"import { BaseTask, TaskType, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
 import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -395,7 +391,6 @@ export default class MyFooTask extends BaseTask implements Task {
     taskName: 'my-foo',
     friendlyTaskName: 'My Foo',
     taskClassification: {
-      type: TaskType.Insights,
       category: '',
     },
   };
@@ -470,7 +465,7 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 4`] = `
-"import { BaseTask, TaskType, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
 import MyBarTaskResult from '../results/my-bar-task-result';
 
 export default class MyBarTask extends BaseTask implements Task {
@@ -478,7 +473,6 @@ export default class MyBarTask extends BaseTask implements Task {
     taskName: 'my-bar',
     friendlyTaskName: 'My Bar',
     taskClassification: {
-      type: TaskType.Insights,
       category: '',
     },
   };

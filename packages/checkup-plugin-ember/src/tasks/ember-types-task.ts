@@ -1,4 +1,4 @@
-import { TaskType, Task, TaskResult, BaseTask, toTaskItemData } from '@checkup/core';
+import { Task, TaskResult, BaseTask, toTaskItemData } from '@checkup/core';
 
 import EmberTypesTaskResult from '../results/ember-types-task-result';
 
@@ -20,8 +20,8 @@ export default class EmberTypesTask extends BaseTask implements Task {
     taskName: 'ember-types',
     friendlyTaskName: 'Ember Types',
     taskClassification: {
-      type: TaskType.Insights,
-      category: 'ember',
+      category: 'metrics',
+      group: 'ember',
     },
   };
 
