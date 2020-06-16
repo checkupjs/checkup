@@ -14,8 +14,8 @@ interface TaskOptions extends Options {
   taskClass: string;
   pascalCaseName: string;
   typescript: boolean;
-  type: string;
   category: string;
+  group: string;
 }
 
 export default class TaskGenerator extends BaseGenerator {
@@ -59,7 +59,13 @@ export default class TaskGenerator extends BaseGenerator {
         {
           type: 'input',
           name: 'category',
-          message: 'Enter a task category',
+          message: `Enter a task category. (Categories are used to group similar tasks together to help organize the results. eg: 'best practices', 'testing', etc.)`,
+        },
+        {
+          type: 'input',
+          name: 'group',
+          message: `(optional) Enter a task group. (Groups allow you to further group like tasks under categories)`,
+          optional: true,
         },
       ]);
     }
@@ -69,6 +75,7 @@ export default class TaskGenerator extends BaseGenerator {
     this.options.taskResultClass = `${this.options.taskClass}Result`;
     this.options.typescript = this.answers.typescript;
     this.options.category = this.answers.category;
+    this.options.group = this.answers.group;
   }
 
   writing() {
