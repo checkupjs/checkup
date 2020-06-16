@@ -21,7 +21,7 @@ describe('BaseTask', () => {
     let fakeTask = new FakeTask('fake', context);
 
     expect(fakeTask.context).toEqual(context);
-    expect(fakeTask.config).toEqual({});
+    expect(fakeTask.config).toBeUndefined();
     expect(fakeTask.enabled).toEqual(true);
   });
 
@@ -45,7 +45,7 @@ describe('BaseTask', () => {
       config: {
         plugins: [],
         tasks: {
-          'fake/my-fake': ['on', { 'my-fake-option': true }],
+          'fake/my-fake': ['on', [{ 'my-fake-option': 20 }]],
         },
       },
     });
@@ -53,6 +53,6 @@ describe('BaseTask', () => {
     let fakeTask = new FakeTask('fake', context);
 
     expect(fakeTask.enabled).toEqual(true);
-    expect(fakeTask.config).toEqual({ 'my-fake-option': true });
+    expect(fakeTask.config).toEqual([{ 'my-fake-option': 20 }]);
   });
 });

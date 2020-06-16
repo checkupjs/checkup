@@ -4,6 +4,7 @@ import { JsonObject, PackageJson } from 'type-fest';
 
 import { CheckupConfig } from './config';
 import { RunFlags } from './cli';
+import ActionList from '../action-list';
 
 export type SearchPatterns = Record<string, string[]>;
 
@@ -21,17 +22,16 @@ export interface Task {
   run: () => Promise<TaskResult>;
 }
 
-export interface TaskContext {
-  readonly cliArguments: string[];
-  readonly cliFlags: RunFlags;
-  readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
-  readonly config: CheckupConfig;
-  readonly pkg: PackageJson;
-  readonly paths: FilePathsArray;
+export interface Action {
+  name: string;
+  value: number;
+  threshold: number;
+  readonly enabled: boolean;
+  readonly message: string;
 }
-
 export interface TaskResult {
   meta: TaskMetaData;
+  actionList?: ActionList;
   toConsole: () => void;
   toJson: () => JsonMetaTaskResult | JsonTaskResult;
 }
@@ -40,6 +40,15 @@ export type TaskError = {
   taskName: TaskName;
   error: string;
 };
+
+export interface TaskContext {
+  readonly cliArguments: string[];
+  readonly cliFlags: RunFlags;
+  readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
+  readonly config: CheckupConfig;
+  readonly pkg: PackageJson;
+  readonly paths: FilePathsArray;
+}
 
 export interface TaskMetaData {
   taskName: TaskName;

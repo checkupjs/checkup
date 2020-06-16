@@ -1,4 +1,4 @@
-import { TaskResult, Task, TaskType, TaskMetaData, BaseTask, TaskItemData } from '@checkup/core';
+import { TaskResult, TaskType, TaskMetaData, Task, TaskItemData, BaseTask } from '@checkup/core';
 import EslintDisableTaskResult from '../results/eslint-disable-task-result';
 
 const fs = require('fs');
@@ -18,12 +18,10 @@ export default class EslintDisableTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: EslintDisableTaskResult = new EslintDisableTaskResult(this.meta);
-
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
-    result.eslintDisables = await getEslintDisables(jsPaths);
+    let eslintDisables = await getEslintDisables(jsPaths);
 
-    return result;
+    return new EslintDisableTaskResult(this.meta, this.config, eslintDisables);
   }
 }
 

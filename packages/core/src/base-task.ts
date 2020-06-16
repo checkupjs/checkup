@@ -11,7 +11,7 @@ export default abstract class BaseTask {
   debug: debug.Debugger;
 
   #pluginName: string;
-  #config!: unknown;
+  #config!: TaskConfig;
   #enabled!: string;
 
   constructor(pluginName: string, context: TaskContext) {
@@ -44,9 +44,10 @@ export default abstract class BaseTask {
       return;
     }
 
-    let config: TaskConfig | undefined = this.context.config.tasks[this.fullyQualifiedTaskName];
+    let config: 'on' | 'off' | ['on' | 'off', TaskConfig] | undefined = this.context.config.tasks[
+      this.fullyQualifiedTaskName
+    ];
 
-    this.#config = {};
     this.#enabled = 'on';
 
     if (typeof config === 'string') {

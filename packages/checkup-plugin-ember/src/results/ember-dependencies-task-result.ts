@@ -1,10 +1,17 @@
-import { BaseTaskResult, TaskItemData, TaskMetaData, TaskResult, ui } from '@checkup/core';
+import {
+  BaseTaskResult,
+  TaskItemData,
+  TaskMetaData,
+  TaskResult,
+  ui,
+  TaskConfig,
+} from '@checkup/core';
 
 export default class EmberDependenciesTaskResult extends BaseTaskResult implements TaskResult {
   dependencies: TaskItemData[];
 
-  constructor(meta: TaskMetaData) {
-    super(meta);
+  constructor(meta: TaskMetaData, config: TaskConfig) {
+    super(meta, config);
 
     this.dependencies = [];
   }

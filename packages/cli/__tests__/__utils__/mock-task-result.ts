@@ -1,8 +1,8 @@
-import { BaseTaskResult, TaskMetaData, TaskResult } from '@checkup/core';
+import { BaseTaskResult, TaskMetaData, TaskResult, TaskConfig } from '@checkup/core';
 
 export default class MockTaskResult extends BaseTaskResult implements TaskResult {
-  constructor(meta: TaskMetaData, public result: any) {
-    super(meta);
+  constructor(meta: TaskMetaData, config: TaskConfig, public result: any) {
+    super(meta, config);
   }
 
   toConsole() {

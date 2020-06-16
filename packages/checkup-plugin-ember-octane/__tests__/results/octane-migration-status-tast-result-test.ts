@@ -19,6 +19,7 @@ describe('octane-migration-status-task-result', () => {
       let task = new OctaneMigrationStatusTask(pluginName, getTaskContext());
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
+        task.config,
         sampleESLintReport,
         sampleTemplateLintReport
       );
@@ -34,6 +35,7 @@ describe('octane-migration-status-task-result', () => {
       let task = new OctaneMigrationStatusTask(pluginName, getTaskContext());
       let taskResult = new OctaneMigrationStatusTaskResult(
         task.meta,
+        task.config,
         sampleESLintReport,
         sampleTemplateLintReport
       );

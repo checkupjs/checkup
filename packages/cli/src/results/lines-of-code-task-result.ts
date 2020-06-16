@@ -1,4 +1,4 @@
-import { BaseTaskResult, TaskResult, ui, TaskMetaData } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, TaskMetaData, TaskConfig } from '@checkup/core';
 import {
   FileResults,
   SupportedResults,
@@ -17,8 +17,8 @@ const FILE_EXTENSIONS_SUPPORTED = sloc.extensions;
 export default class LinesOfCodeTaskResult extends BaseTaskResult implements TaskResult {
   fileResults: FileResults[];
 
-  constructor(meta: TaskMetaData, fileResults: FileResults[]) {
-    super(meta);
+  constructor(meta: TaskMetaData, config: TaskConfig, fileResults: FileResults[]) {
+    super(meta, config);
 
     this.fileResults = transformResults(fileResults);
   }

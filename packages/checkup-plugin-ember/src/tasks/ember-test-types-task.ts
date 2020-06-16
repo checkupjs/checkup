@@ -34,7 +34,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    let result = new EmberTestTypesTaskResult(this.meta);
+    let result = new EmberTestTypesTaskResult(this.meta, this.config);
 
     let esLintReport = await this.runEsLint();
 

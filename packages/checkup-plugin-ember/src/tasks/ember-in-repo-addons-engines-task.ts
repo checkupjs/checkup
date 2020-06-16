@@ -16,7 +16,8 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
 
   async run(): Promise<TaskResult> {
     let result: EmberInRepoAddonEnginesTaskResult = new EmberInRepoAddonEnginesTaskResult(
-      this.meta
+      this.meta,
+      this.config
     );
 
     result.inRepoAddons = [];
