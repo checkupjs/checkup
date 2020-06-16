@@ -1,4 +1,4 @@
-import { TaskType, Task, TaskMetaData, TaskResult, BaseTask } from '@checkup/core';
+import { Task, TaskMetaData, TaskResult, BaseTask } from '@checkup/core';
 import EmberInRepoAddonEnginesTaskResult from '../results/ember-in-repo-addons-engines-task-result';
 
 import { PackageJson } from 'type-fest';
@@ -9,8 +9,8 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
     taskName: 'ember-in-repo-addons-engines',
     friendlyTaskName: 'Ember In-Repo Addons / Engines',
     taskClassification: {
-      type: TaskType.Insights,
-      category: 'ember',
+      category: 'metrics',
+      group: 'ember',
     },
   };
 

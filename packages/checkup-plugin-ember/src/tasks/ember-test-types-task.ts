@@ -1,12 +1,4 @@
-import {
-  TaskType,
-  Task,
-  TaskContext,
-  TaskResult,
-  ESLintReport,
-  Parser,
-  BaseTask,
-} from '@checkup/core';
+import { Task, TaskContext, TaskResult, ESLintReport, Parser, BaseTask } from '@checkup/core';
 import { EMBER_TEST_TYPES } from '../utils/lint-configs';
 import { transformESLintReport } from '../utils/transformers';
 
@@ -17,8 +9,8 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     taskName: 'ember-test-types',
     friendlyTaskName: 'Ember Test Types',
     taskClassification: {
-      type: TaskType.Insights,
       category: 'testing',
+      group: 'ember',
     },
   };
   private eslintParser: Parser<ESLintReport>;

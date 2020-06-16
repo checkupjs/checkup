@@ -6,7 +6,6 @@ Object {
     "friendlyTaskName": "Insights Task High",
     "taskClassification": Object {
       "category": "bar",
-      "type": "insights",
     },
     "taskName": "insights-task-high",
   },
@@ -20,7 +19,6 @@ Object {
     "friendlyTaskName": "Insights Task High",
     "taskClassification": Object {
       "category": "bar",
-      "type": "insights",
     },
     "taskName": "insights-task-high",
   },
@@ -34,7 +32,6 @@ Object {
     "friendlyTaskName": "Insights Task Low",
     "taskClassification": Object {
       "category": "foo",
-      "type": "insights",
     },
     "taskName": "insights-task-low",
   },

@@ -115,7 +115,6 @@ describe('TaskList', () => {
             "friendlyTaskName": "Insights Task Low",
             "taskClassification": Object {
               "category": "foo",
-              "type": "insights",
             },
             "taskName": "insights-task-low",
           },
@@ -127,7 +126,6 @@ describe('TaskList', () => {
             "friendlyTaskName": "Migration Task High",
             "taskClassification": Object {
               "category": "foo",
-              "type": "migrations",
             },
             "taskName": "migration-task-high",
           },
@@ -139,7 +137,6 @@ describe('TaskList', () => {
             "friendlyTaskName": "Recommendations Task High",
             "taskClassification": Object {
               "category": "baz",
-              "type": "recommendations",
             },
             "taskName": "recommendations-task-high",
           },
@@ -151,7 +148,6 @@ describe('TaskList', () => {
             "friendlyTaskName": "Migration Task Low",
             "taskClassification": Object {
               "category": "baz",
-              "type": "migrations",
             },
             "taskName": "migration-task-low",
           },
@@ -160,26 +156,24 @@ describe('TaskList', () => {
         MockTaskResult {
           "config": undefined,
           "meta": Object {
-            "friendlyTaskName": "Insights Task High",
-            "taskClassification": Object {
-              "category": "bar",
-              "type": "insights",
-            },
-            "taskName": "insights-task-high",
-          },
-          "result": "insights task high is being run",
-        },
-        MockTaskResult {
-          "config": undefined,
-          "meta": Object {
             "friendlyTaskName": "Recommendations Task Low",
             "taskClassification": Object {
               "category": "bar",
-              "type": "recommendations",
             },
             "taskName": "recommendations-task-low",
           },
           "result": "recommendations task low is being run",
+        },
+        MockTaskResult {
+          "config": undefined,
+          "meta": Object {
+            "friendlyTaskName": "Insights Task High",
+            "taskClassification": Object {
+              "category": "bar",
+            },
+            "taskName": "insights-task-high",
+          },
+          "result": "insights task high is being run",
         },
       ]
     `);

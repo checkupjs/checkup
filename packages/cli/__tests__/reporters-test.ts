@@ -1,5 +1,5 @@
 import { DEFAULT_OUTPUT_FILENAME, _transformJsonResults, getOutputPath } from '../src/reporters';
-import { TaskResult, TaskType } from '@checkup/core';
+import { TaskResult } from '@checkup/core';
 
 import { MetaTaskResult } from '../src/types';
 import MockMetaTaskResult from './__utils__/mock-meta-task-result';
@@ -38,7 +38,6 @@ pluginTaskResults = [
       taskName: 'mock-meta-task-6',
       friendlyTaskName: 'Mock Meta Task 6',
       taskClassification: {
-        type: TaskType.Insights,
         category: 'foo',
       },
     },
@@ -53,7 +52,6 @@ pluginTaskResults = [
       taskName: 'mock-meta-task-7',
       friendlyTaskName: 'Mock Meta Task 7',
       taskClassification: {
-        type: TaskType.Migrations,
         category: 'foo',
       },
     },
@@ -68,7 +66,6 @@ pluginTaskResults = [
       taskName: 'mock-meta-task-3',
       friendlyTaskName: 'Mock Meta Task 3',
       taskClassification: {
-        type: TaskType.Insights,
         category: 'foo',
       },
     },
@@ -83,7 +80,6 @@ pluginTaskResults = [
       taskName: 'mock-meta-task-5',
       friendlyTaskName: 'Mock Meta Task 5',
       taskClassification: {
-        type: TaskType.Insights,
         category: 'bar',
       },
     },
@@ -98,7 +94,6 @@ pluginTaskResults = [
       taskName: 'mock-meta-task-8',
       friendlyTaskName: 'Mock Meta Task 8',
       taskClassification: {
-        type: TaskType.Migrations,
         category: 'bar',
       },
     },
@@ -113,7 +108,6 @@ pluginTaskResults = [
       taskName: 'mock-meta-task-4',
       friendlyTaskName: 'Mock Meta Task 4',
       taskClassification: {
-        type: TaskType.Insights,
         category: 'bar',
       },
     },
@@ -163,7 +157,6 @@ describe('_transformJsonResults', () => {
               "friendlyTaskName": "Mock Meta Task 6",
               "taskClassification": Object {
                 "category": "foo",
-                "type": "insights",
               },
               "taskName": "mock-meta-task-6",
             },
@@ -177,7 +170,6 @@ describe('_transformJsonResults', () => {
               "friendlyTaskName": "Mock Meta Task 7",
               "taskClassification": Object {
                 "category": "foo",
-                "type": "migrations",
               },
               "taskName": "mock-meta-task-7",
             },
@@ -191,7 +183,6 @@ describe('_transformJsonResults', () => {
               "friendlyTaskName": "Mock Meta Task 3",
               "taskClassification": Object {
                 "category": "foo",
-                "type": "insights",
               },
               "taskName": "mock-meta-task-3",
             },
@@ -205,7 +196,6 @@ describe('_transformJsonResults', () => {
               "friendlyTaskName": "Mock Meta Task 5",
               "taskClassification": Object {
                 "category": "bar",
-                "type": "insights",
               },
               "taskName": "mock-meta-task-5",
             },
@@ -219,7 +209,6 @@ describe('_transformJsonResults', () => {
               "friendlyTaskName": "Mock Meta Task 8",
               "taskClassification": Object {
                 "category": "bar",
-                "type": "migrations",
               },
               "taskName": "mock-meta-task-8",
             },
@@ -233,7 +222,6 @@ describe('_transformJsonResults', () => {
               "friendlyTaskName": "Mock Meta Task 4",
               "taskClassification": Object {
                 "category": "bar",
-                "type": "insights",
               },
               "taskName": "mock-meta-task-4",
             },

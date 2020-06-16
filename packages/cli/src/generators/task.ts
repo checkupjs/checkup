@@ -3,8 +3,6 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as t from '@babel/types';
 
-import { TaskType } from '@checkup/core';
-
 import { Answers } from 'inquirer';
 import AstTransformer from '../helpers/ast';
 import BaseGenerator from './base-generator';
@@ -16,8 +14,8 @@ interface TaskOptions extends Options {
   taskClass: string;
   pascalCaseName: string;
   typescript: boolean;
-  type: string;
   category: string;
+  group: string;
 }
 
 export default class TaskGenerator extends BaseGenerator {
@@ -46,7 +44,6 @@ export default class TaskGenerator extends BaseGenerator {
 
     const defaults = {
       typescript: true,
-      type: TaskType.Insights,
     };
 
     if (this.options.defaults) {
@@ -60,20 +57,15 @@ export default class TaskGenerator extends BaseGenerator {
           default: () => true,
         },
         {
-          type: 'list',
-          name: 'type',
-          message: 'Select a task type',
-          choices: [
-            { name: 'insights', value: 'Insights' },
-            { name: 'migrations', value: 'Migrations' },
-            { name: 'recommendations', value: 'Recommendations' },
-          ],
-          default: 'Insights',
+          type: 'input',
+          name: 'category',
+          message: `Enter a task category. (Categories are used to group similar tasks together to help organize the results. eg: 'best practices', 'testing', etc.)`,
         },
         {
           type: 'input',
-          name: 'category',
-          message: 'Enter a task category',
+          name: 'group',
+          message: `(optional) Enter a task group. (Groups allow you to further group like tasks under categories)`,
+          optional: true,
         },
       ]);
     }
@@ -82,8 +74,8 @@ export default class TaskGenerator extends BaseGenerator {
     this.options.taskClass = `${this.options.pascalCaseName}Task`;
     this.options.taskResultClass = `${this.options.taskClass}Result`;
     this.options.typescript = this.answers.typescript;
-    this.options.type = this.answers.type;
     this.options.category = this.answers.category;
+    this.options.group = this.answers.group;
   }
 
   writing() {

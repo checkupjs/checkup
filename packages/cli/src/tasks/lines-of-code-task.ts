@@ -1,4 +1,4 @@
-import { BaseTask, Task, TaskContext, TaskMetaData, TaskResult, TaskType } from '@checkup/core';
+import { BaseTask, Task, TaskContext, TaskMetaData, TaskResult } from '@checkup/core';
 
 import LinesOfCodeTaskResult from '../results/lines-of-code-task-result';
 
@@ -51,8 +51,7 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
     taskName: 'lines-of-code',
     friendlyTaskName: 'Lines of Code',
     taskClassification: {
-      type: TaskType.Insights,
-      category: 'project info', // TODO: change this to a meta task
+      category: 'metrics', // TODO: change this to a meta task
     },
   };
 

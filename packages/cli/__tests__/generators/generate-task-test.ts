@@ -105,4 +105,21 @@ describe('task generator', () => {
     assertTaskFiles('my-foo', dir);
     assertPluginFiles(dir);
   });
+
+  it('generates correct files with group', async () => {
+    let baseDir = await generatePlugin();
+    let dir = await helpers
+      .run(TaskGenerator, { namespace: 'checkup:task' })
+      .cd(baseDir)
+      .withOptions({
+        name: 'my-foo',
+      })
+      .withPrompts({
+        category: 'foo',
+        group: 'bar',
+      });
+
+    assertTaskFiles('my-foo', dir);
+    assertPluginFiles(dir);
+  });
 });

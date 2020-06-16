@@ -7,7 +7,6 @@ import {
   TaskContext,
   TaskMetaData,
   TaskResult,
-  TaskType,
 } from '@checkup/core';
 import { join, resolve } from 'path';
 
@@ -33,7 +32,6 @@ export class EslintSummaryTask extends BaseTask implements Task {
     taskName: 'eslint-summary',
     friendlyTaskName: 'Eslint Summary',
     taskClassification: {
-      type: TaskType.Insights,
       category: 'linting',
     },
   };

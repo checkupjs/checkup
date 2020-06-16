@@ -71,8 +71,7 @@ describe('lines-of-code-task', () => {
         "meta": Object {
           "friendlyTaskName": "Lines of Code",
           "taskClassification": Object {
-            "category": "project info",
-            "type": "insights",
+            "category": "metrics",
           },
           "taskName": "lines-of-code",
         },

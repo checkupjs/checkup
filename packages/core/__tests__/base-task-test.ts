@@ -1,4 +1,4 @@
-import { TaskType, TaskContext } from '../src/types/tasks';
+import { TaskContext } from '../src/types/tasks';
 import { getTaskContext } from '@checkup/test-helpers';
 
 import BaseTask from '../src/base-task';
@@ -8,7 +8,6 @@ class FakeTask extends BaseTask {
     taskName: 'my-fake',
     friendlyTaskName: 'Fake',
     taskClassification: {
-      type: TaskType.Insights,
       category: 'foo',
     },
   };

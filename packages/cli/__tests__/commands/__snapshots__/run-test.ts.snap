@@ -6,7 +6,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
@@ -27,7 +27,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
@@ -48,7 +48,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
@@ -88,8 +88,7 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
         \\"taskName\\": \\"lines-of-code\\",
         \\"friendlyTaskName\\": \\"Lines of Code\\",
         \\"taskClassification\\": {
-          \\"type\\": \\"insights\\",
-          \\"category\\": \\"project info\\"
+          \\"category\\": \\"metrics\\"
         }
       },
       \\"result\\": {
@@ -165,7 +164,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
@@ -186,7 +185,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
@@ -208,7 +207,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
@@ -230,7 +229,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
@@ -250,7 +249,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
@@ -271,7 +270,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
@@ -292,7 +291,7 @@ Checkup report generated for checkup-app v0.0.0
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-=== Project Info
+=== Metrics
 
 Lines of Code
 
