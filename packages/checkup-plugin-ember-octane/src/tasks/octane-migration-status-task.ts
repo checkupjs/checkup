@@ -41,13 +41,12 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
   }
 
   async run(): Promise<OctaneMigrationStatusTaskResult> {
+    this.debugTask('Running ESLint and template-lint...');
     let [esLintReport, templateLintReport] = await Promise.all([
       this.runEsLint(),
       this.runTemplateLint(),
     ]);
-
-    this.debug('ESLint Report', esLintReport);
-    this.debug('Ember Template Lint Report', templateLintReport);
+    this.debugTask('ESLint and template-lint complete!');
 
     let result = new OctaneMigrationStatusTaskResult(
       this.meta,

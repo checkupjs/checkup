@@ -25,12 +25,14 @@ export type OutdatedDependency = {
   unused: boolean;
 };
 
-async function getOutdated(path: string): Promise<OutdatedDependency[]> {
+async function getOutdated(path: string, debug: debug.Debugger): Promise<OutdatedDependency[]> {
   let result;
   let packages;
 
   try {
+    debug('Running npmCheck...');
     result = await npmCheck({ cwd: path });
+    debug('npmCheck complete!');
   } catch {
     throw new Error('Could not check project dependencies');
   }
@@ -63,7 +65,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
       this.config
     );
 
-    result.outdatedDependencies = await getOutdated(this.context.cliFlags.cwd);
+    result.outdatedDependencies = await getOutdated(this.context.cliFlags.cwd, this.debugTask);
     result.totalDependencies = getTotalDependencies(this.context.pkg);
 
     return result;

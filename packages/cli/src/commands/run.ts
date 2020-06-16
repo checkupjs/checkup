@@ -1,3 +1,5 @@
+import * as debug from 'debug';
+
 import {
   CheckupConfig,
   CheckupError,
@@ -92,13 +94,22 @@ export default class RunCommand extends BaseCommand {
   }
 
   public async run() {
+    let debugTaskRuns = debug('checkup:task-runs');
+    let debugTaskReporter = debug('checkup:task-reporter');
+
     ui.action.start('Checking up on your project');
 
     await this.loadConfig();
 
     await this.registerTasks();
+
+    debugTaskRuns('Starting to run tasks...');
     await this.runTasks();
+    debugTaskRuns('Task runs complete!');
+
+    debugTaskReporter('Generating report...');
     await this.report();
+    debugTaskRuns('Report generation complete!');
 
     ui.action.stop();
   }

@@ -5,6 +5,7 @@ import { FilePathsArray } from './file-paths-array';
 const isValidGlob = require('is-valid-glob');
 const micromatch = require('micromatch');
 const walkSync = require('walk-sync');
+const debug = require('debug')('checkup:get-paths');
 
 const PATHS_TO_IGNORE: string[] = [
   '**/node_modules/**',
@@ -28,15 +29,23 @@ export function getFilePaths(
   let mergedPathsToIgnore = [...excludePaths, ...PATHS_TO_IGNORE];
 
   if (globs.length > 0) {
-    return expandFileGlobs(globs, basePath, mergedPathsToIgnore);
+    debug('Expanding file globs...');
+    let expandedGlobs = expandFileGlobs(globs, basePath, mergedPathsToIgnore);
+    debug(`${expandedGlobs.length} file paths fetched!`);
+
+    return expandedGlobs;
   }
 
+  debug('Fetching all file paths via walkSync...');
   const allFiles: string[] = walkSync(basePath, {
     ignore: mergedPathsToIgnore,
     directories: false,
   });
 
-  return resolveFilePaths(allFiles, basePath);
+  let resolvedPaths = resolveFilePaths(allFiles, basePath);
+  debug(`${resolvedPaths.length} file paths fetched!`);
+
+  return resolvedPaths;
 }
 
 function expandFileGlobs(
@@ -58,6 +67,7 @@ function expandFileGlobs(
         return [];
       }
 
+      debug(`Fetching file paths associated with ${pattern} via walkSync...`);
       let expandedGlobs = walkSync(basePath, {
         globs: [pattern],
         directories: false,

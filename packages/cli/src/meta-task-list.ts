@@ -12,7 +12,7 @@ export default class MetaTaskList {
   constructor() {
     this._entries = new Map<TaskName, MetaTask>();
     this._errors = [];
-    this.debug = debug('checkup:meta-task');
+    this.debug = debug('checkup:meta-task-runs');
   }
 
   registerTask(task: MetaTask) {
@@ -47,7 +47,7 @@ export default class MetaTaskList {
   async runTasks(): Promise<[MetaTaskResult[], TaskError[]]> {
     let results = await this.eachTask(async (task: MetaTask) => {
       let result;
-      this.debug('start %s run', task.constructor.name);
+      this.debug(`Start ${task.meta.taskName}-task run`);
 
       try {
         result = await task.run();
@@ -55,7 +55,7 @@ export default class MetaTaskList {
         this.addError(task.meta.taskName, error.message);
       }
 
-      this.debug('%s run done', task.constructor.name);
+      this.debug(`Run ${task.meta.taskName}-task done`);
       return result;
     });
 

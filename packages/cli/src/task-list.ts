@@ -13,7 +13,7 @@ import TaskTypeMap from './task-type-map';
 export default class TaskList {
   private _categories: Map<string, TaskTypeMap>;
   private _errors: TaskError[];
-  debug: debug.Debugger;
+  debugTaskRuns: debug.Debugger;
 
   get categories() {
     return this._categories;
@@ -22,7 +22,7 @@ export default class TaskList {
   constructor() {
     this._categories = new Map<string, TaskTypeMap>();
     this._errors = [];
-    this.debug = debug('checkup:task');
+    this.debugTaskRuns = debug('checkup:task-runs');
   }
 
   /**
@@ -98,7 +98,7 @@ export default class TaskList {
   async runTasks(): Promise<[TaskResult[], TaskError[]]> {
     let results = await this.eachTask(async (task: Task) => {
       let result;
-      this.debug('start %s run', task.constructor.name);
+      this.debugTaskRuns(`${task.meta.taskName}-task starting...`);
 
       try {
         result = await task.run();
@@ -106,7 +106,7 @@ export default class TaskList {
         this.addError(task.meta.taskName, error.message);
       }
 
-      this.debug('%s run done', task.constructor.name);
+      this.debugTaskRuns(`${task.meta.taskName}-task done!`);
       return result;
     });
 

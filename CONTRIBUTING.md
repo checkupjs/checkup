@@ -103,6 +103,12 @@ Checkup using the debug package to provide useful information for debugging. You
 DEBUG='*' checkup
 ```
 
+To filter the output of debug to show information coming from checkup, you can run: 
+```shell
+DEBUG='checkup*' checkup
+```
+
+
 ## Debugging tests
 
 cd into the specific package you want to debug, then run:

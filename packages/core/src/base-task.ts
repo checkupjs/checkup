@@ -8,7 +8,6 @@ import { getShorthandName } from './utils/plugin-name';
 export default abstract class BaseTask {
   context: TaskContext;
   meta!: TaskMetaData | TaskIdentifier;
-  debug: debug.Debugger;
 
   #pluginName: string;
   #config!: TaskConfig;
@@ -17,16 +16,16 @@ export default abstract class BaseTask {
   constructor(pluginName: string, context: TaskContext) {
     this.#pluginName = getShorthandName(pluginName);
     this.context = context;
-
-    this.debug = debug('checkup:task');
-
-    this.debug('%s created', this.constructor.name);
   }
 
   get config() {
     this._parseConfig();
 
     return this.#config;
+  }
+
+  get debugTask() {
+    return debug(`checkup:task:${this.meta?.taskName}-task`);
   }
 
   get enabled() {
@@ -59,7 +58,6 @@ export default abstract class BaseTask {
       this.#config = taskConfig;
     }
 
-    this.debug('%s enabled: %s', this.constructor.name, this.#enabled);
-    this.debug('%s task config: %o', this.constructor.name, this.#config);
+    this.debugTask(`Task enabled: ${this.#enabled}, task config: ${this.#config}`);
   }
 }
