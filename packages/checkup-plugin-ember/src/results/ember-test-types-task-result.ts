@@ -95,7 +95,7 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
       return total;
     }, 0);
     let totalApplication =
-      this.testTypes.filter((testType) => testType.type === TestType.Application).pop()?.total || 0;
+      this.testTypes.find((testType) => testType.type === TestType.Application).total || 0;
 
     return new ActionList(
       [
