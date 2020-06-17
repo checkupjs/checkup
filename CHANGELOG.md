@@ -1,3 +1,27 @@
+## v0.1.1 (2020-06-17)
+
+#### :boom: Breaking Change
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#498](https://github.com/checkupjs/checkup/pull/498) Removing TaskType in favor of group ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `core`
+  * [#499](https://github.com/checkupjs/checkup/pull/499) Adding actions for ember-test-types, template-lint, and outdated dependencies ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#488](https://github.com/checkupjs/checkup/pull/488) Adding Actions to checkup ([@carakessler](https://github.com/carakessler))
+
+#### :house: Internal
+* `core`
+  * [#500](https://github.com/checkupjs/checkup/pull/500) Removing 'on' option from task config because tasks are always on by default ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember`, `core`
+  * [#502](https://github.com/checkupjs/checkup/pull/502) Removing startcase library from checkup ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.1.0 (2020-06-10)
 
 #### :rocket: Enhancement
