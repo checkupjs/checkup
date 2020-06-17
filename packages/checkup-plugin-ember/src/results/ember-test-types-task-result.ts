@@ -2,11 +2,11 @@ import {
   ActionList,
   BaseTaskResult,
   TaskResult,
-  fractionToPercent,
   decimalToPercent,
+  fractionToPercent,
   ui,
 } from '@checkup/core';
-import { TestTypeInfo, TestType } from '../types';
+import { TestType, TestTypeInfo } from '../types';
 
 export default class EmberTestTypesTaskResult extends BaseTaskResult implements TaskResult {
   testTypes!: TestTypeInfo[];
@@ -89,10 +89,12 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
     let totalSkips = this.totalSkips;
 
     let totalRenderingUnit = this.testTypes.reduce((total, item: TestTypeInfo) => {
-      return (item.type === TestType.Rendering || item.type === TestType.Unit) ? total + item.total: total;
+      return item.type === TestType.Rendering || item.type === TestType.Unit
+        ? total + item.total
+        : total;
     }, 0);
     let totalApplication =
-      this.testTypes.find((testType) => testType.type === TestType.Application).total || 0;
+      this.testTypes.find((testType) => testType.type === TestType.Application)?.total || 0;
 
     return new ActionList(
       [
