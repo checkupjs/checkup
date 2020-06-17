@@ -89,10 +89,7 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
     let totalSkips = this.totalSkips;
 
     let totalRenderingUnit = this.testTypes.reduce((total, item: TestTypeInfo) => {
-      if (item.type === TestType.Rendering || item.type === TestType.Unit) {
-        return total + item.total;
-      }
-      return total;
+      return (item.type === TestType.Rendering || item.type === TestType.Unit) ? total + item.total: total;
     }, 0);
     let totalApplication =
       this.testTypes.find((testType) => testType.type === TestType.Application).total || 0;
