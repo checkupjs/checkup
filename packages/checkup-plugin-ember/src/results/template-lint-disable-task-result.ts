@@ -1,4 +1,4 @@
-import { BaseTaskResult, ResultData, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, ResultData, TaskResult, ui, ActionList } from '@checkup/core';
 
 export default class TemplateLintDisableTaskResult extends BaseTaskResult implements TaskResult {
   templateLintDisables!: ResultData;
@@ -16,5 +16,24 @@ export default class TemplateLintDisableTaskResult extends BaseTaskResult implem
         fileErrors: this.templateLintDisables.errors,
       },
     };
+  }
+
+  get actionList() {
+    return new ActionList(
+      [
+        {
+          name: 'num-template-lint-disables',
+          threshold: 2,
+          value: this.templateLintDisables.results.length,
+          get enabled() {
+            return this.value > this.threshold;
+          },
+          get message() {
+            return `There are ${this.value} instances of 'template-lint-disable', there should be at most ${this.threshold}.`;
+          },
+        },
+      ],
+      this.config
+    );
   }
 }

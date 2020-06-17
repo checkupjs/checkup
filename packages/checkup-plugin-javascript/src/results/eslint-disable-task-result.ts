@@ -17,14 +17,14 @@ export default class EslintDisableTaskResult extends BaseTaskResult implements T
     this.actionList = new ActionList(
       [
         {
-          name: 'numEslintDisables',
+          name: 'num-eslint-disables',
           threshold: 2,
           value: eslintDisables.results.length,
           get enabled() {
             return this.value > this.threshold;
           },
           get message() {
-            return `There should be no more than ${this.threshold} instances of 'eslint-disable', and you have ${this.value} instances.`;
+            return `There are ${this.value} instances of 'eslint-disable', there should be at most ${this.threshold}.`;
           },
         },
       ],

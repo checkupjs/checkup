@@ -102,11 +102,11 @@ describe('eslint-disable-task', () => {
 
     const eslintDisableTaskResult = <EslintDisableTaskResult>result;
     expect(
-      isActionEnabled(eslintDisableTaskResult.actionList.enabledActions, 'numEslintDisables')
+      isActionEnabled(eslintDisableTaskResult.actionList.enabledActions, 'num-eslint-disables')
     ).toEqual(true);
     expect(eslintDisableTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`
       Array [
-        "There should be no more than 2 instances of 'eslint-disable', and you have 3 instances.",
+        "There are 3 instances of 'eslint-disable', there should be at most 2.",
       ]
     `);
   });

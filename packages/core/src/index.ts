@@ -16,8 +16,8 @@ export { exec } from './utils/exec';
 export { ui } from './utils/ui';
 export { getFilePaths } from './utils/get-paths';
 export { FilePathsArray } from './utils/file-paths-array';
-export { toPairs, toTaskData, toTaskItemData, toPercent } from './utils/data-transformers';
 
+export * from './utils/data-transformers';
 export * from './types/cli';
 export * from './types/util';
 export * from './types/parsers';
