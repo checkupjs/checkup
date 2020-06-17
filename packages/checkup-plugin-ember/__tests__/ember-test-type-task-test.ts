@@ -186,7 +186,7 @@ describe('ember-test-types-task', () => {
           tasks: {
             'ember/ember-test-types': [
               'on',
-              { actions: { ratioApplicationTests: { threshold: 3 } } },
+              { actions: { 'ratio-application-tests': { threshold: 3 } } },
             ],
           },
         },
@@ -196,11 +196,11 @@ describe('ember-test-types-task', () => {
     const testTypesTaskResult = <EmberTestTypesTaskResult>result;
 
     expect(
-      isActionEnabled(testTypesTaskResult.actionList.enabledActions, 'percentageSkippedTests')
+      isActionEnabled(testTypesTaskResult.actionList.enabledActions, 'percentage-skipped-tests')
     ).toEqual(true);
 
     expect(
-      isActionEnabled(testTypesTaskResult.actionList.enabledActions, 'ratioApplicationTests')
+      isActionEnabled(testTypesTaskResult.actionList.enabledActions, 'ratio-application-tests')
     ).toEqual(true);
 
     expect(testTypesTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`

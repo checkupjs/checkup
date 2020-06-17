@@ -55,7 +55,7 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
     return new ActionList(
       [
         {
-          name: 'percentageMajorOutdated',
+          name: 'percentage-major-outdated',
           threshold: 0.05,
           value: this.versionTypes.get('major')!.length / this.dependencies.length,
           get enabled() {
@@ -70,7 +70,7 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
           },
         },
         {
-          name: 'percentageMinorOutdated',
+          name: 'percentage-minor-outdated',
           threshold: 0.05,
           value: this.versionTypes.get('minor')!.length / this.dependencies.length,
           get enabled() {
@@ -85,7 +85,7 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
           },
         },
         {
-          name: 'percentageOutdated',
+          name: 'percentage-outdated',
           threshold: 0.2,
           value: this.outdatedDependencies.length / this.dependencies.length,
           get enabled() {

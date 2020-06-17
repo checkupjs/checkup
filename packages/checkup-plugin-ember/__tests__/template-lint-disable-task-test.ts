@@ -107,7 +107,7 @@ describe('template-lint-disable-task', () => {
     expect(
       isActionEnabled(
         templateLintDisableTaskResult.actionList.enabledActions,
-        'numTemplateLintDisables'
+        'num-template-lint-disables'
       )
     ).toEqual(true);
     expect(templateLintDisableTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`

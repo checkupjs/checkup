@@ -100,7 +100,7 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
     return new ActionList(
       [
         {
-          name: 'percentageSkippedTests',
+          name: 'percentage-skipped-tests',
           threshold: 0.01,
           value: this.totalSkips / totalTests,
           get enabled() {
@@ -116,7 +116,7 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
           },
         },
         {
-          name: 'ratioApplicationTests',
+          name: 'ratio-application-tests',
           threshold: 1,
           value: totalRenderingUnit / totalApplication,
           get enabled() {

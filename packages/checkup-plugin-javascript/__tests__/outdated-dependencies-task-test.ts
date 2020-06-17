@@ -45,12 +45,12 @@ describe('outdated-dependencies-task', () => {
 
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
     expect(
-      isActionEnabled(taskResult.actionList.enabledActions, 'percentageMajorOutdated')
+      isActionEnabled(taskResult.actionList.enabledActions, 'percentage-major-outdated')
     ).toEqual(true);
     expect(
-      isActionEnabled(taskResult.actionList.enabledActions, 'percentageMinorOutdated')
+      isActionEnabled(taskResult.actionList.enabledActions, 'percentage-minor-outdated')
     ).toEqual(true);
-    expect(isActionEnabled(taskResult.actionList.enabledActions, 'percentageOutdated')).toEqual(
+    expect(isActionEnabled(taskResult.actionList.enabledActions, 'percentage-outdated')).toEqual(
       true
     );
 

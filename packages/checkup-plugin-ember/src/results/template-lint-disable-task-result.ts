@@ -22,7 +22,7 @@ export default class TemplateLintDisableTaskResult extends BaseTaskResult implem
     return new ActionList(
       [
         {
-          name: 'numTemplateLintDisables',
+          name: 'num-template-lint-disables',
           threshold: 2,
           value: this.templateLintDisables.results.length,
           get enabled() {

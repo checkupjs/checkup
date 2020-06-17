@@ -102,7 +102,7 @@ describe('eslint-disable-task', () => {
 
     const eslintDisableTaskResult = <EslintDisableTaskResult>result;
     expect(
-      isActionEnabled(eslintDisableTaskResult.actionList.enabledActions, 'numEslintDisables')
+      isActionEnabled(eslintDisableTaskResult.actionList.enabledActions, 'num-eslint-disables')
     ).toEqual(true);
     expect(eslintDisableTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`
       Array [

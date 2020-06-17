@@ -17,7 +17,7 @@ export default class EslintDisableTaskResult extends BaseTaskResult implements T
     this.actionList = new ActionList(
       [
         {
-          name: 'numEslintDisables',
+          name: 'num-eslint-disables',
           threshold: 2,
           value: eslintDisables.results.length,
           get enabled() {
