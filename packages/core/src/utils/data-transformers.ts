@@ -1,4 +1,4 @@
-import * as startCase from 'startcase';
+import { startCase } from 'lodash';
 
 import { TaskItemData } from '../types/tasks';
 
