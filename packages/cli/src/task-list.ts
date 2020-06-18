@@ -2,6 +2,7 @@ import * as debug from 'debug';
 import * as pMap from 'p-map';
 
 import { Task, TaskError, TaskName, TaskResult } from '@checkup/core';
+import { taskResultComparator } from './task-result-comparator';
 
 /**
  * @class TaskList
@@ -108,7 +109,7 @@ export default class TaskList {
       return result;
     });
 
-    return [results.filter(Boolean) as TaskResult[], this._errors];
+    return [(results.filter(Boolean) as TaskResult[]).sort(taskResultComparator), this._errors];
   }
 
   /**
@@ -152,8 +153,8 @@ export default class TaskList {
   private getTasks() {
     let values: Task[] = [];
 
-    this._categories.forEach((type) => {
-      values = [...values, ...type.values()];
+    this._categories.forEach((category) => {
+      values = [...values, ...category.values()];
     });
 
     return values;
