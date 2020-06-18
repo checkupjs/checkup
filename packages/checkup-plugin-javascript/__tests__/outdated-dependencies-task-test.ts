@@ -9,7 +9,7 @@ describe('outdated-dependencies-task', () => {
   let pluginName = getPluginName(__dirname);
   let taskResult: OutdatedDependenciesTaskResult;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     project = new CheckupProject('checkup-app', '0.0.0', (project) => {
       project.addDependency('react', '^15.0.0');
       project.addDependency('react-dom', '16.0.0');
@@ -29,7 +29,7 @@ describe('outdated-dependencies-task', () => {
     taskResult = <OutdatedDependenciesTaskResult>result;
   });
 
-  afterEach(() => {
+  afterAll(() => {
     project.dispose();
   });
 

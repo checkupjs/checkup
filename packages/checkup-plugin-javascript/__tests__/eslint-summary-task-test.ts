@@ -1,4 +1,4 @@
-import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext, isActionEnabled } from '@checkup/test-helpers';
 import { ESLintReport } from '@checkup/core';
 import {
   EslintSummaryTask,
@@ -7,11 +7,14 @@ import {
 } from '../src/tasks/eslint-summary-task';
 import EslintSummaryTaskResult from '../src/results/eslint-summary-task-result';
 import { PackageJson } from 'type-fest';
+import { getPluginName, getShorthandName } from '@checkup/core';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
+  let pluginName = getPluginName(__dirname);
+  let taskResult: EslintSummaryTaskResult;
 
-  beforeEach(() => {
+  beforeAll(async () => {
     project = new CheckupProject('checkup-app', '0.0.0');
     project.files['foo.js'] = `function foo() {
         var whatever = 'ESLint'
@@ -28,23 +31,33 @@ describe('eslint-summary-task', () => {
     project.writeSync();
     project.gitInit();
     project.install();
-  });
 
-  afterEach(() => {
-    project.dispose();
-  });
-
-  it('it summarizes eslint and outputs to console', async () => {
-    const result = await new EslintSummaryTask(
-      'meta',
+    let result = await new EslintSummaryTask(
+      pluginName,
       getTaskContext({
         cliFlags: { cwd: project.baseDir },
         pkg: project.pkg,
         paths: project.filePaths,
+        config: {
+          tasks: {
+            [`${getShorthandName(pluginName)}/eslint-summary`]: {
+              actions: {
+                'num-eslint-errors': { threshold: 0 },
+                'num-eslint-warnings': { threshold: 0 },
+              },
+            },
+          },
+        },
       })
     ).run();
-    const taskResult = <EslintSummaryTaskResult>result;
+    taskResult = <EslintSummaryTaskResult>result;
+  });
 
+  afterAll(() => {
+    project.dispose();
+  });
+
+  it('it summarizes eslint and outputs to console', async () => {
     taskResult.toConsole();
 
     expect(stdout()).toMatchInlineSnapshot(`
@@ -68,17 +81,23 @@ describe('eslint-summary-task', () => {
   });
 
   it('it summarizes eslint and outputs to JSON', async () => {
-    const result = await new EslintSummaryTask(
-      'meta',
-      getTaskContext({
-        cliFlags: { cwd: project.baseDir },
-        pkg: project.pkg,
-        paths: project.filePaths,
-      })
-    ).run();
-    const taskResult = <EslintSummaryTaskResult>result;
-
     expect(filterResultFilePath(taskResult.toJson().result.esLintReport)).toMatchSnapshot();
+  });
+
+  it('returns correct action items if there are too many warnings or errors', async () => {
+    expect(isActionEnabled(taskResult.actionList.enabledActions, 'num-eslint-errors')).toEqual(
+      true
+    );
+    expect(isActionEnabled(taskResult.actionList.enabledActions, 'num-eslint-warnings')).toEqual(
+      true
+    );
+
+    expect(taskResult.actionList.actionMessages).toMatchInlineSnapshot(`
+      Array [
+        "There are 1 eslint errors, there should be at most 0.",
+        "There are 1 eslint warnings, there should be at most 0.",
+      ]
+    `);
   });
 });
 
