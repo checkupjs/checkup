@@ -11,14 +11,21 @@
 
 Checkup aims to provide you with insights into your codebase. You can track the progress of your codebase for things such as:
 
-1. **Insights**
-   - types of code constructs used (types, etc)
-   - dependency health
+1. **Metrics**
+   - repository meta data
+   - lines of code breakdown
+   - types breakdown
+1. **Best practices**
+   - suggested areas of improvement
+1. **Dependencies**
+   - listing outdated dependencies
+1. **Linting**
+   - summarized lint runs
+   - linting overrides
+1. **Testing**
    - test type breakdown (unit, integration, functional, visual, etc)
 1. **Migrations**
-   - chart the progress of active code migrations to help you get a sense of progress
-1. **Recommendations**
-   - suggested areas of improvement
+   - active code migration progress
 
 This allows you to have a more full, high level view of your codebase at any one point in time. Checkup can help you with making resourcing decisions, planning and prioritizing the general health of your codebase.
 
