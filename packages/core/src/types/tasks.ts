@@ -1,10 +1,10 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
-import { FilePathsArray } from '../utils/file-paths-array';
 import { JsonObject, PackageJson } from 'type-fest';
 
-import { CheckupConfig } from './config';
-import { RunFlags } from './cli';
 import ActionList from '../action-list';
+import { CheckupConfig } from './config';
+import { FilePathsArray } from '../utils/file-paths-array';
+import { RunFlags } from './cli';
 
 export type SearchPatterns = Record<string, string[]>;
 
@@ -29,6 +29,7 @@ export interface Action {
   readonly enabled: boolean;
   readonly message: string;
 }
+
 export interface TaskResult {
   meta: TaskMetaData;
   actionList?: ActionList;
