@@ -50,7 +50,7 @@
     "eslint-plugin-unicorn": "^20.1.0",
     "husky": "^4.2.5",
     "jest": "^25.5.4",
-    "lint-staged": "^10.2.10",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "release-it": "^13.6.3",
     "release-it-lerna-changelog": "^2.3.0",
