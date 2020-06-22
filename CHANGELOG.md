@@ -1,3 +1,14 @@
+## v0.1.2 (2020-06-22)
+
+#### :bug: Bug Fix
+* `cli`
+  * [#513](https://github.com/checkupjs/checkup/pull/513) Output correct generators list on missing generator ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.1.1 (2020-06-17)
 
 #### :boom: Breaking Change
