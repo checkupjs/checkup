@@ -27,5 +27,7 @@ export async function generatePlugin(
     .withOptions(mergedOptions)
     .withPrompts(mergedPrompts);
 
-  return join(dir, `checkup-plugin-${mergedOptions.name}`);
+  return options.path
+    ? join(dir, options.path, `checkup-plugin-${mergedOptions.name}`)
+    : join(dir, `checkup-plugin-${mergedOptions.name}`);
 }

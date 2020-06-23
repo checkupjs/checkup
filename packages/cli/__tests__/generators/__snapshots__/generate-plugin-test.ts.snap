@@ -604,6 +604,165 @@ Array [
 ]
 `;
 
+exports[`plugin generator generates plugin with defaults in custom path 1`] = `
+"{
+  \\"name\\": \\"checkup-plugin-my-plugin\\",
+  \\"description\\": \\"Checkup plugin\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"author\\": \\"\\",
+  \\"dependencies\\": {
+    \\"@checkup/core\\": \\"^0.0.1\\",
+    \\"@oclif/command\\": \\"^1\\",
+    \\"@oclif/config\\": \\"^1\\",
+    \\"tslib\\": \\"^1\\"
+  },
+  \\"devDependencies\\": {
+    \\"@checkup/test-helpers\\": \\"^0.0.1\\",
+    \\"@oclif/dev-cli\\": \\"^1\\",
+    \\"@types/jest\\": \\"^25.1.3\\",
+    \\"@types/node\\": \\"^13\\",
+    \\"jest\\": \\"^25.1.0\\",
+    \\"ts-jest\\": \\"^25.2.1\\",
+    \\"ts-node\\": \\"^8\\",
+    \\"typescript\\": \\"^3.8\\"
+  },
+  \\"engines\\": {
+    \\"node\\": \\">= 12.*\\"
+  },
+  \\"files\\": [
+    \\"/lib\\",
+    \\"/oclif.manifest.json\\"
+  ],
+  \\"keywords\\": [
+    \\"checkup-plugin\\",
+    \\"oclif-plugin\\"
+  ],
+  \\"license\\": \\"MIT\\",
+  \\"oclif\\": {
+    \\"devPlugins\\": [
+      \\"@oclif/plugin-help\\"
+    ],
+    \\"hooks\\": {
+      \\"register-tasks\\": \\"./lib/hooks/register-tasks\\"
+    }
+  },
+  \\"repository\\": \\"\\",
+  \\"scripts\\": {
+    \\"build\\": \\"yarn clean && tsc\\",
+    \\"build:watch\\": \\"yarn build -w\\",
+    \\"clean\\": \\"rm -rf lib\\",
+    \\"postpack\\": \\"rm -f oclif.manifest.json\\",
+    \\"prepack\\": \\"rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme\\",
+    \\"test\\": \\"jest --no-cache\\",
+    \\"version\\": \\"oclif-dev readme && git add README.md\\"
+  },
+  \\"types\\": \\"lib/index.d.ts\\",
+  \\"main\\": \\"lib/index.js\\"
+}
+"
+`;
+
+exports[`plugin generator generates plugin with defaults in custom path 2`] = `
+"# checkup-plugin-my-plugin
+
+Checkup plugin
+
+[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
+[![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
+[![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
+[![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
+
+<!-- toc -->
+
+# Usage
+
+<!-- usage -->
+
+# Commands
+
+<!-- commands -->
+"
+`;
+
+exports[`plugin generator generates plugin with defaults in custom path 3`] = `
+"module.exports = {
+  testEnvironment: 'node',
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  transform: { '\\\\\\\\.ts$': 'ts-jest' },
+  coverageReporters: ['lcov', 'text-summary'],
+  collectCoverageFrom: ['src/**/*.ts'],
+  coveragePathIgnorePatterns: ['/templates/'],
+  coverageThreshold: {
+    global: {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
+    },
+  },
+  testPathIgnorePatterns: ['__fixtures__'],
+};
+"
+`;
+
+exports[`plugin generator generates plugin with defaults in custom path 4`] = `
+"{
+  \\"compilerOptions\\": {
+    \\"declaration\\": true,
+    \\"importHelpers\\": true,
+    \\"module\\": \\"commonjs\\",
+    \\"strict\\": true,
+    \\"target\\": \\"es2017\\",
+    \\"allowSyntheticDefaultImports\\": true,
+    \\"sourceMap\\": true,
+    \\"outDir\\": \\"lib\\",
+    \\"rootDir\\": \\"src\\",
+    \\"types\\": [\\"jest\\", \\"node\\"]
+  },
+  \\"include\\": [\\"src/**/*\\"]
+}
+"
+`;
+
+exports[`plugin generator generates plugin with defaults in custom path 5`] = `
+"export default {};
+
+export * from './types';
+"
+`;
+
+exports[`plugin generator generates plugin with defaults in custom path 6`] = `
+"import { Hook } from '@oclif/config';
+import { getPluginName } from '@checkup/core';
+
+const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+  let pluginName = getPluginName(__dirname);
+};
+
+export default hook;
+"
+`;
+
+exports[`plugin generator generates plugin with defaults in custom path 7`] = `""`;
+
+exports[`plugin generator generates plugin with defaults in custom path 8`] = `
+Array [
+  ".gitkeep",
+]
+`;
+
+exports[`plugin generator generates plugin with defaults in custom path 9`] = `
+Array [
+  ".gitkeep",
+]
+`;
+
+exports[`plugin generator generates plugin with defaults in custom path 10`] = `
+Array [
+  ".gitkeep",
+]
+`;
+
 exports[`plugin generator generates plugin with unmodified name with defaults 1`] = `
 "{
   \\"name\\": \\"checkup-plugin-foo\\",

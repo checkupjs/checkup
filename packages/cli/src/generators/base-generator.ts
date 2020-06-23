@@ -18,7 +18,7 @@ export default class GeneratorBase extends Generator {
         mkdirSync(resolvedPath);
       }
 
-      this.destinationRoot(options.path);
+      this.destinationRoot(resolvedPath);
     }
   }
 
