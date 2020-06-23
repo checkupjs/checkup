@@ -1,5 +1,4 @@
 type Severity = 0 | 1 | 2;
-type RuleName = string;
 type RuleLevel = Severity | 'off' | 'warn' | 'error';
 type RuleLevelAndOptions<Options extends any[] = any[]> = Prepend<Partial<Options>, RuleLevel>;
 type TemplateLintRuleDefinition = RuleLevel | RuleLevelAndOptions;
@@ -26,7 +25,7 @@ interface TemplateLintOverride {
 
 interface TemplateLintPendingWithExclusions {
   moduleId: string;
-  only: RuleName[];
+  only: string[];
 }
 
 export interface TemplateLintMessage {
