@@ -27,7 +27,12 @@ export interface TemplateLintReport {
 }
 
 export interface TemplateLintConfig {
+  extends?: string[];
   rules?: {
     [name: string]: RuleLevel | RuleLevelAndOptions;
   };
+  pending?: string[];
+  ignore?: string[];
+  plugins?: string[];
+  overrides?: string[];
 }
