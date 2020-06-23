@@ -38,7 +38,7 @@ describe('task generator', () => {
 
   it('generates correct files with TypeScript for defaults in custom path', async () => {
     let baseDir = await generatePlugin({ path: './lib' });
-    let dir = await helpers
+    await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
       .cd(resolve(baseDir, '../..'))
       .withOptions({
@@ -47,8 +47,8 @@ describe('task generator', () => {
         path: './lib/checkup-plugin-my-plugin',
       });
 
-    assertTaskFiles('my-foo', dir);
-    assertPluginFiles(dir);
+    assertTaskFiles('my-foo', baseDir);
+    assertPluginFiles(baseDir);
   });
 
   it('generates multiple correct files with TypeScript for defaults', async () => {
