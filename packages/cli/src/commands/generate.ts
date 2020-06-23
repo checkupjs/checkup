@@ -28,6 +28,11 @@ export default class GenerateCommand extends BaseCommand {
     defaults: flags.boolean({ description: 'use defaults for every setting' }),
     options: flags.string({ description: '(typescript)' }),
     force: flags.boolean({ description: 'overwrite existing files' }),
+    path: flags.string({
+      default: '.',
+      char: 'p',
+      description: 'The path referring to the directory that the generator will run in',
+    }),
   };
 
   static args = [
@@ -39,11 +44,7 @@ export default class GenerateCommand extends BaseCommand {
     {
       name: 'name',
       description: 'name of the entity (kebab-case)',
-    },
-    {
-      name: 'path',
-      description: 'The path referring to the directory that the generator will run in',
-      default: '.',
+      optional: true,
     },
   ];
 
@@ -69,13 +70,13 @@ export default class GenerateCommand extends BaseCommand {
 
     await this.generate(args.type, {
       name: args.name,
-      path: args.path,
+      path: flags.path,
       defaults: flags.defaults,
       force: flags.force,
     } as Options);
   }
 
-  async generate(type: string, generatorOptions: object = {}) {
+  async generate(type: string, generatorOptions: Options) {
     this.debug('generatorOptions', generatorOptions);
 
     const env = createEnv();
