@@ -1,8 +1,32 @@
 type Severity = 0 | 1 | 2;
-
 type RuleLevel = Severity | 'off' | 'warn' | 'error';
-
 type RuleLevelAndOptions<Options extends any[] = any[]> = Prepend<Partial<Options>, RuleLevel>;
+type TemplateLintRuleDefinition = RuleLevel | RuleLevelAndOptions;
+type TemplateLintPending = string | TemplateLintPendingWithExclusions;
+type TemplateLintPlugin = string | TemplateLintPluginObject;
+
+interface TemplateLintPluginObject {
+  name: string;
+  plugins: TemplateLintPlugin[];
+  rules: {
+    [ruleName: string]: TemplateLintRuleDefinition;
+  };
+  configurations: {
+    [configuration: string]: TemplateLintConfig;
+  };
+}
+
+interface TemplateLintOverride {
+  files: string[];
+  rule: {
+    [ruleName: string]: RuleLevel | RuleLevelAndOptions;
+  };
+}
+
+interface TemplateLintPendingWithExclusions {
+  moduleId: string;
+  only: string[];
+}
 
 export interface TemplateLintMessage {
   rule: string;
@@ -27,7 +51,12 @@ export interface TemplateLintReport {
 }
 
 export interface TemplateLintConfig {
+  extends?: string | string[];
   rules?: {
-    [name: string]: RuleLevel | RuleLevelAndOptions;
+    [ruleName: string]: TemplateLintRuleDefinition;
   };
+  pending?: TemplateLintPending[];
+  ignore?: string[];
+  plugins?: TemplateLintPlugin[];
+  overrides?: TemplateLintOverride[];
 }
