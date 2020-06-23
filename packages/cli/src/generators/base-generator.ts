@@ -11,7 +11,7 @@ export default class GeneratorBase extends Generator {
   constructor(args: string | string[], options: Options) {
     super(args, options);
 
-    if (options.path !== '.') {
+    if (options.path && options.path !== '.') {
       let resolvedPath = resolve(options.path);
 
       if (!existsSync(resolvedPath)) {
