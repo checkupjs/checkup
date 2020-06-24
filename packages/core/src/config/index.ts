@@ -6,6 +6,7 @@ import { join, resolve } from 'path';
 import { CheckupConfig } from '../types/config';
 import CheckupError from '../errors/checkup-error';
 import { white } from 'chalk';
+import { normalizePackageName } from '../utils/plugin-name';
 
 const debug = require('debug')('checkup:config');
 const schema = require('./config-schema.json');
@@ -38,6 +39,10 @@ export function readConfig(configPath: string) {
   }
 
   debug(`Found config %o`, config);
+
+  config.plugins.forEach((pluginName, index, arr) => {
+    arr[index] = normalizePackageName(pluginName);
+  });
 
   validateConfig(config, configPath);
 

@@ -8,6 +8,7 @@ import { BaseCommand } from '../base-command';
 import { IConfig } from '@oclif/config';
 import { createEnv } from 'yeoman-environment';
 import { flags } from '@oclif/command';
+import { CheckupError } from '@checkup/core';
 
 const VALID_GENERATORS = ['config', 'plugin', 'task'];
 
@@ -60,10 +61,11 @@ export default class GenerateCommand extends BaseCommand {
     this.debug('available generators', VALID_GENERATORS);
 
     if (!VALID_GENERATORS.includes(args.type)) {
-      this.error(
-        `No valid generator found for ${chalk.bold.white(
-          args.type
-        )}. Valid generators are ${chalk.bold.white(VALID_GENERATORS.join(', '))}`
+      this.extendedError(
+        new CheckupError(
+          `No valid generator found for ${chalk.bold.white(args.type)}`,
+          `Valid generators are ${chalk.bold.white(VALID_GENERATORS.join(', '))}`
+        )
       );
     }
 
@@ -101,7 +103,11 @@ export default class GenerateCommand extends BaseCommand {
         });
       });
     } catch (error) {
-      this.error(error);
+      if (!(error instanceof CheckupError)) {
+        // eslint-disable-next-line no-ex-assign
+        error = new CheckupError(`Could not run the ${type} generator.`, error.message);
+      }
+      this.extendedError(error);
     }
   }
 }
