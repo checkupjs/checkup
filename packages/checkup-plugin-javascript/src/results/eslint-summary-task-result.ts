@@ -1,4 +1,12 @@
-import { BaseTaskResult, TaskResult, ui, ESLintReport } from '@checkup/core';
+import {
+  BaseTaskResult,
+  TaskResult,
+  ui,
+  ESLintReport,
+  ActionList,
+  TaskMetaData,
+  TaskConfig,
+} from '@checkup/core';
 import { Linter } from 'eslint';
 import * as chalk from 'chalk';
 
@@ -15,28 +23,59 @@ interface FormattedEslintReport {
 }
 
 export default class EslintSummaryTaskResult extends BaseTaskResult implements TaskResult {
-  esLintReport!: ESLintReport;
+  sortedEslintReport: FormattedEslintReport;
+
+  constructor(meta: TaskMetaData, config: TaskConfig, public esLintReport: ESLintReport) {
+    super(meta, config);
+
+    this.sortedEslintReport = transformEslintReport(esLintReport);
+    this.actionList = new ActionList(
+      [
+        {
+          name: 'num-eslint-errors',
+          threshold: 20,
+          value: this.sortedEslintReport.errorCount,
+          get enabled() {
+            return this.value > this.threshold;
+          },
+          get message() {
+            return `There are ${this.value} eslint errors, there should be at most ${this.threshold}.`;
+          },
+        },
+        {
+          name: 'num-eslint-warnings',
+          threshold: 20,
+          value: this.sortedEslintReport.warningCount,
+          get enabled() {
+            return this.value > this.threshold;
+          },
+          get message() {
+            return `There are ${this.value} eslint warnings, there should be at most ${this.threshold}.`;
+          },
+        },
+      ],
+      config
+    );
+  }
 
   toConsole() {
-    let sortedEslintReport = transformEslintReport(this.esLintReport);
-
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.log(`Error count: ${chalk.red(sortedEslintReport.errorCount)}`);
-      ui.log(`Warning count: ${chalk.yellow(sortedEslintReport.warningCount)}`);
+      ui.log(`Error count: ${chalk.red(this.sortedEslintReport.errorCount)}`);
+      ui.log(`Warning count: ${chalk.yellow(this.sortedEslintReport.warningCount)}`);
 
-      if (sortedEslintReport.errorList.length > 0) {
+      if (this.sortedEslintReport.errorList.length > 0) {
         ui.blankLine();
         ui.subHeader('Errors');
-        ui.table(sortedEslintReport.errorList, {
+        ui.table(this.sortedEslintReport.errorList, {
           rule: { header: 'Rule name' },
           failures: {},
         });
       }
 
-      if (sortedEslintReport.warningList.length > 0) {
+      if (this.sortedEslintReport.warningList.length > 0) {
         ui.blankLine();
         ui.subHeader('Warnings');
-        ui.table(sortedEslintReport.warningList, {
+        ui.table(this.sortedEslintReport.warningList, {
           rule: { header: 'Rule name' },
           failures: {},
         });
