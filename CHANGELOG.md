@@ -1,3 +1,24 @@
+## v0.1.3 (2020-06-24)
+
+#### :rocket: Enhancement
+* `core`
+  * [#516](https://github.com/checkupjs/checkup/pull/516) Extending ember-template-lint config type definition ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `cli`
+  * [#515](https://github.com/checkupjs/checkup/pull/515) Ensuring generators can generate into a specific path ([@scalvert](https://github.com/scalvert))
+* `cli`, `core`
+  * [#517](https://github.com/checkupjs/checkup/pull/517) Bumping walksync and using new API to Closes [#473](https://github.com/checkupjs/checkup/issues/473) ([@carakessler](https://github.com/carakessler))
+
+#### :bar_chart: Checkup Task
+* `checkup-plugin-ember`, `checkup-plugin-javascript`
+  * [#505](https://github.com/checkupjs/checkup/pull/505) Adding actions for eslint-summary task ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v0.1.2 (2020-06-22)
 
 #### :bug: Bug Fix
