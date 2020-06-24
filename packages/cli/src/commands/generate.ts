@@ -44,7 +44,6 @@ export default class GenerateCommand extends BaseCommand {
     {
       name: 'name',
       description: 'name of the entity (kebab-case)',
-      optional: true,
     },
   ];
 
