@@ -1,6 +1,7 @@
 /* eslint-disable jest/expect-expect */
 
 import * as helpers from 'yeoman-test';
+import { resolve } from 'path';
 
 import TaskGenerator from '../../src/generators/task';
 import { generatePlugin } from '../__utils__/generate-plugin';
@@ -33,6 +34,21 @@ describe('task generator', () => {
 
     assertTaskFiles('my-foo', dir);
     assertPluginFiles(dir);
+  });
+
+  it('generates correct files with TypeScript for defaults in custom path', async () => {
+    let baseDir = await generatePlugin({ path: './lib' });
+    await helpers
+      .run(TaskGenerator, { namespace: 'checkup:task' })
+      .cd(resolve(baseDir, '../..'))
+      .withOptions({
+        name: 'my-foo',
+        defaults: true,
+        path: './lib/checkup-plugin-my-plugin',
+      });
+
+    assertTaskFiles('my-foo', baseDir);
+    assertPluginFiles(baseDir);
   });
 
   it('generates multiple correct files with TypeScript for defaults', async () => {

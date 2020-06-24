@@ -8,3 +8,12 @@ exports[`config-init-generator should write a config 1`] = `
 }
 "
 `;
+
+exports[`config-init-generator should write a config in custom path 1`] = `
+"{
+  \\"excludePaths\\": [],
+  \\"plugins\\": [],
+  \\"tasks\\": {}
+}
+"
+`;

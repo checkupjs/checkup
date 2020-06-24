@@ -27,6 +27,23 @@ describe('plugin generator', () => {
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
   });
 
+  it('generates plugin with defaults in custom path', async () => {
+    let dir = await generatePlugin({ path: './lib' });
+
+    let root = testRoot(dir);
+
+    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('README.md').contents).toMatchSnapshot();
+    expect(root.file('jest.config.js').contents).toMatchSnapshot();
+    expect(root.file('tsconfig.json').contents).toMatchSnapshot();
+    expect(root.file('src/index.ts').contents).toMatchSnapshot();
+    expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
+    expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
+    expect(root.directory('__tests__').contents).toMatchSnapshot();
+    expect(root.directory('src/results').contents).toMatchSnapshot();
+    expect(root.directory('src/tasks').contents).toMatchSnapshot();
+  });
+
   it('generates plugin with JavaScript defaults', async () => {
     let dir = await generatePlugin({ defaults: false }, { typescript: false });
 

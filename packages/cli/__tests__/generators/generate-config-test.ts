@@ -15,6 +15,14 @@ describe('config-init-generator', () => {
     expect(testRoot(dir).file('.checkuprc').contents).toMatchSnapshot();
   });
 
+  it('should write a config in custom path', async () => {
+    let tmp = createTmpDir();
+
+    const dir = await helpers.run(ConfigGenerator).cd(tmp).withOptions({ path: './lib' });
+
+    expect(testRoot(join(dir, 'lib')).file('.checkuprc').contents).toMatchSnapshot();
+  });
+
   it('should error if a checkuprc file is already present', async () => {
     await expect(
       helpers.run(ConfigGenerator).inTmpDir(function (dir) {
