@@ -34,6 +34,7 @@ export function getFilePaths(
   const allFiles: string[] = walkSync(basePath, {
     ignore: mergedPathsToIgnore,
     directories: false,
+    globOptions: { dot: true },
   });
 
   return resolveFilePaths(allFiles, basePath);

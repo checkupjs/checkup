@@ -19,6 +19,7 @@
     "pkg-up": "^3.1.0",
     "resolve": "^1.17.0",
     "strip-ansi": "^6.0.0",
+    "walk-sync": "^2.2.0",
     "wrap-ansi": "^7.0.0"
   },
   "devDependencies": {
