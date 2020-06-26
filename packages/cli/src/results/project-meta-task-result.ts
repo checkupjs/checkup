@@ -8,7 +8,7 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
   name!: string;
   version!: string;
   repository!: RepositoryInfo;
-  filesForCheckup!: string[];
+  analyzedFiles!: string[];
 
   toConsole() {
     let filesForCheckupString =
