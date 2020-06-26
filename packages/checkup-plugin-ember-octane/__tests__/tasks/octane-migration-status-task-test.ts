@@ -41,7 +41,7 @@ describe('octane-migration-status-task', () => {
       getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     );
     let taskResult = await task.run();
-    let { results, errorCount } = taskResult.esLintReport;
+    let { results, errorCount } = taskResult.data.esLintReport;
 
     expect(results).toHaveLength(3);
     expect(errorCount).toBe(0);

@@ -1,23 +1,20 @@
-import {
-  BaseTaskResult,
-  TaskItemData,
-  TaskMetaData,
-  TaskResult,
-  ui,
-  TaskConfig,
-} from '@checkup/core';
+import { BaseTaskResult, TaskItemData, TaskResult, ui, toTaskItemData } from '@checkup/core';
 
 export default class EmberDependenciesTaskResult extends BaseTaskResult implements TaskResult {
-  dependencies: TaskItemData[];
+  data!: {
+    dependencies: TaskItemData[];
+  };
 
-  constructor(meta: TaskMetaData, config: TaskConfig) {
-    super(meta, config);
-
-    this.dependencies = [];
+  process(data: { dependencyResults: [string, Record<string, string>][] }) {
+    this.data = {
+      dependencies: data.dependencyResults.map(([type, data]) => {
+        return toTaskItemData(type, data);
+      }),
+    };
   }
 
   get hasDependencies() {
-    return this.dependencies.some((dependency) => dependency.total > 0);
+    return this.data.dependencies.some((dependency) => dependency.total > 0);
   }
 
   toConsole() {
@@ -26,7 +23,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     }
 
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.table(this.dependencies, {
+      ui.table(this.data.dependencies, {
         displayName: { header: 'Dependency Types' },
         total: { header: 'Total' },
       });
@@ -36,7 +33,7 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
   toJson() {
     return {
       meta: this.meta,
-      result: this.dependencies,
+      result: this.data.dependencies,
     };
   }
 }

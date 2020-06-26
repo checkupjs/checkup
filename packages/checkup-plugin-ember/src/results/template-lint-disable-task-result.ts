@@ -1,10 +1,16 @@
 import { BaseTaskResult, ResultData, TaskResult, ui, ActionList } from '@checkup/core';
 
 export default class TemplateLintDisableTaskResult extends BaseTaskResult implements TaskResult {
-  templateLintDisables!: ResultData;
+  data!: {
+    templateLintDisables: ResultData;
+  };
+
+  process(data: { templateLintDisables: ResultData }) {
+    this.data = data;
+  }
 
   toConsole() {
-    ui.log(`template-lint-disable Usages Found: ${this.templateLintDisables.results.length}`);
+    ui.log(`template-lint-disable Usages Found: ${this.data.templateLintDisables.results.length}`);
     ui.blankLine();
   }
 
@@ -12,8 +18,8 @@ export default class TemplateLintDisableTaskResult extends BaseTaskResult implem
     return {
       meta: this.meta,
       result: {
-        templateLintDisables: this.templateLintDisables.results,
-        fileErrors: this.templateLintDisables.errors,
+        templateLintDisables: this.data.templateLintDisables.results,
+        fileErrors: this.data.templateLintDisables.errors,
       },
     };
   }
@@ -24,7 +30,7 @@ export default class TemplateLintDisableTaskResult extends BaseTaskResult implem
         {
           name: 'num-template-lint-disables',
           threshold: 2,
-          value: this.templateLintDisables.results.length,
+          value: this.data.templateLintDisables.results.length,
           get enabled() {
             return this.value > this.threshold;
           },

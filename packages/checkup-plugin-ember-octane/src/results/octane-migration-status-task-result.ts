@@ -1,12 +1,4 @@
-import {
-  BaseTaskResult,
-  ESLintReport,
-  TaskMetaData,
-  TaskResult,
-  TemplateLintReport,
-  ui,
-  TaskConfig,
-} from '@checkup/core';
+import { BaseTaskResult, ESLintReport, TaskResult, TemplateLintReport, ui } from '@checkup/core';
 import {
   ESLINT_MIGRATION_TASK_CONFIGS,
   TEMPLATE_LINT_MIGRATION_TASK_CONFIGS,
@@ -15,25 +7,27 @@ import { ESLintMigrationType, MigrationInfo, TemplateLintMigrationType } from '.
 import { transformESLintReport, transformTemplateLintReport } from '../utils/transformers';
 
 export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
-  migrationResults: MigrationInfo[];
-  totalViolations: number;
+  data!: {
+    migrationResults: MigrationInfo[];
+    totalViolations: number;
+    esLintReport: ESLintReport;
+    templateLintReport: TemplateLintReport;
+  };
 
-  constructor(
-    meta: TaskMetaData,
-    config: TaskConfig,
-    public esLintReport: ESLintReport,
-    public templateLintReport: TemplateLintReport
-  ) {
-    super(meta, config);
-    this.migrationResults = this.formattedMigrationResults;
-    this.totalViolations = this.esLintReport.errorCount + this.templateLintReport.errorCount;
+  process(data: { esLintReport: ESLintReport; templateLintReport: TemplateLintReport }) {
+    this.data = { ...{ migrationResults: [], totalViolations: 0 }, ...data };
+
+    this.formatMigrationResults();
+
+    this.data.totalViolations =
+      this.data.esLintReport.errorCount + this.data.templateLintReport.errorCount;
   }
 
   toConsole() {
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.log(`${ui.emphasize('Octane Violations')}: ${this.totalViolations}`);
+      ui.log(`${ui.emphasize('Octane Violations')}: ${this.data.totalViolations}`);
       ui.blankLine();
-      this.migrationResults.forEach((migrationResult) => {
+      this.data.migrationResults.forEach((migrationResult) => {
         ui.bar(
           migrationResult.name,
           Number.parseInt(migrationResult.completionInfo.percentage),
@@ -48,13 +42,14 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     return {
       meta: this.meta,
       result: {
-        totalViolations: this.esLintReport.errorCount + this.templateLintReport.errorCount,
-        migrationTaskResults: this.migrationResults,
+        totalViolations:
+          this.data.esLintReport.errorCount + this.data.templateLintReport.errorCount,
+        migrationTaskResults: this.data.migrationResults,
       },
     };
   }
 
-  get formattedMigrationResults() {
+  formatMigrationResults() {
     let eslintMigrationTasks: ESLintMigrationType[] = [
       ESLintMigrationType.NativeClasses,
       ESLintMigrationType.TaglessComponents,
@@ -70,15 +65,18 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
     ];
 
     let eslintMigrationResults = eslintMigrationTasks.map((eslintMigrationTask) =>
-      transformESLintReport(ESLINT_MIGRATION_TASK_CONFIGS[eslintMigrationTask], this.esLintReport)
+      transformESLintReport(
+        ESLINT_MIGRATION_TASK_CONFIGS[eslintMigrationTask],
+        this.data.esLintReport
+      )
     );
 
     let templateLintMigrationResults = templateLintMigrationTasks.map((templateMigrationTask) =>
       transformTemplateLintReport(
         TEMPLATE_LINT_MIGRATION_TASK_CONFIGS[templateMigrationTask],
-        this.templateLintReport
+        this.data.templateLintReport
       )
     );
-    return [...eslintMigrationResults, ...templateLintMigrationResults];
+    this.data.migrationResults = [...eslintMigrationResults, ...templateLintMigrationResults];
   }
 }

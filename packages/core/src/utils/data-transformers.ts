@@ -19,12 +19,6 @@ export function toPairs(
   return result;
 }
 
-export function toTaskData(results: [string, string[] | Record<string, string>][]): TaskItemData[] {
-  return results.map(([type, data]) => {
-    return toTaskItemData(type, data);
-  });
-}
-
 export function toTaskItemData(
   type: string,
   data: string[] | Record<string, string>
