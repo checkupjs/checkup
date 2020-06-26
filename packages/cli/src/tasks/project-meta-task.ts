@@ -18,7 +18,7 @@ export default class ProjectMetaTask extends BaseTask implements MetaTask {
     result.name = package_.name || '';
     result.version = package_.version || '';
     result.repository = repositoryInfo;
-    result.filesForCheckup = this.context.paths;
+    result.analyzedFiles = this.context.paths;
 
     return result;
   }
