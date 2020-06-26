@@ -3,7 +3,7 @@ import { TaskResult } from '@checkup/core';
 
 import { MetaTaskResult } from '../src/types';
 import MockMetaTaskResult from './__utils__/mock-meta-task-result';
-import MockTaskResult from './__utils__/mock-task-result';
+import { getMockTaskResult } from './__utils__/mock-task-result';
 import { join } from 'path';
 
 let metaTaskResults: MetaTaskResult[];
@@ -33,7 +33,7 @@ metaTaskResults = [
 ];
 
 pluginTaskResults = [
-  new MockTaskResult(
+  getMockTaskResult(
     {
       taskName: 'mock-meta-task-6',
       friendlyTaskName: 'Mock Meta Task 6',
@@ -47,7 +47,7 @@ pluginTaskResults = [
       bar: 'baz',
     }
   ),
-  new MockTaskResult(
+  getMockTaskResult(
     {
       taskName: 'mock-meta-task-7',
       friendlyTaskName: 'Mock Meta Task 7',
@@ -61,7 +61,7 @@ pluginTaskResults = [
       bar: 'baz',
     }
   ),
-  new MockTaskResult(
+  getMockTaskResult(
     {
       taskName: 'mock-meta-task-3',
       friendlyTaskName: 'Mock Meta Task 3',
@@ -75,7 +75,7 @@ pluginTaskResults = [
       bar: 'baz',
     }
   ),
-  new MockTaskResult(
+  getMockTaskResult(
     {
       taskName: 'mock-meta-task-5',
       friendlyTaskName: 'Mock Meta Task 5',
@@ -89,7 +89,7 @@ pluginTaskResults = [
       bar: 'baz',
     }
   ),
-  new MockTaskResult(
+  getMockTaskResult(
     {
       taskName: 'mock-meta-task-8',
       friendlyTaskName: 'Mock Meta Task 8',
@@ -103,7 +103,7 @@ pluginTaskResults = [
       bar: 'baz',
     }
   ),
-  new MockTaskResult(
+  getMockTaskResult(
     {
       taskName: 'mock-meta-task-4',
       friendlyTaskName: 'Mock Meta Task 4',

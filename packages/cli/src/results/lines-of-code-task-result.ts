@@ -1,4 +1,4 @@
-import { BaseTaskResult, TaskResult, ui, TaskMetaData, TaskConfig } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 import {
   FileResults,
   SupportedResults,
@@ -15,16 +15,18 @@ const sloc = require('sloc');
 const FILE_EXTENSIONS_SUPPORTED = sloc.extensions;
 
 export default class LinesOfCodeTaskResult extends BaseTaskResult implements TaskResult {
-  fileResults: FileResults[];
+  data!: {
+    fileResults: FileResults[];
+  };
 
-  constructor(meta: TaskMetaData, config: TaskConfig, fileResults: FileResults[]) {
-    super(meta, config);
-
-    this.fileResults = transformResults(fileResults);
+  process(data: { linesOfCode: FileResults[] }) {
+    this.data = {
+      fileResults: transformResults(data.linesOfCode),
+    };
   }
 
   toConsole() {
-    let flattenedResults = this.fileResults.map((result) => {
+    let flattenedResults = this.data.fileResults.map((result) => {
       return { ...result.results, ...result };
     });
 
@@ -40,7 +42,7 @@ export default class LinesOfCodeTaskResult extends BaseTaskResult implements Tas
   toJson() {
     return {
       meta: this.meta,
-      result: { fileResults: this.fileResults },
+      result: { fileResults: this.data.fileResults },
     };
   }
 }

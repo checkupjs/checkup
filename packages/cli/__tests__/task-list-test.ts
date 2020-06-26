@@ -1,16 +1,145 @@
-import {
-  ErrorTask,
-  InsightsTaskHigh,
-  InsightsTaskLow,
-  MigrationTaskHigh,
-  MigrationTaskLow,
-  RecommendationsTaskHigh,
-  RecommendationsTaskLow,
-  TaskWithoutCategory,
-} from './__utils__/mock-tasks';
-
 import TaskList from '../src/task-list';
 import { getTaskContext } from '@checkup/test-helpers';
+import { BaseTask, Task, TaskContext, TaskResult } from '@checkup/core';
+import { getMockTaskResult } from './__utils__/mock-task-result';
+
+class InsightsTaskHigh extends BaseTask implements Task {
+  meta = {
+    taskName: 'insights-task-high',
+    friendlyTaskName: 'Insights Task High',
+    taskClassification: {
+      category: 'bar',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+
+  async run(): Promise<TaskResult> {
+    return getMockTaskResult(this.meta, this.config, 'insights task high is being run');
+  }
+}
+
+class InsightsTaskLow extends BaseTask implements Task {
+  meta = {
+    taskName: 'insights-task-low',
+    friendlyTaskName: 'Insights Task Low',
+    taskClassification: {
+      category: 'foo',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<TaskResult> {
+    return getMockTaskResult(this.meta, this.config, 'insights task low is being run');
+  }
+}
+
+class RecommendationsTaskHigh extends BaseTask implements Task {
+  meta = {
+    taskName: 'recommendations-task-high',
+    friendlyTaskName: 'Recommendations Task High',
+    taskClassification: {
+      category: 'baz',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<TaskResult> {
+    return getMockTaskResult(this.meta, this.config, 'recommendations task high is being run');
+  }
+}
+
+class RecommendationsTaskLow extends BaseTask implements Task {
+  meta = {
+    taskName: 'recommendations-task-low',
+    friendlyTaskName: 'Recommendations Task Low',
+    taskClassification: {
+      category: 'bar',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<TaskResult> {
+    return getMockTaskResult(this.meta, this.config, 'recommendations task low is being run');
+  }
+}
+
+class MigrationTaskHigh extends BaseTask implements Task {
+  meta = {
+    taskName: 'migration-task-high',
+    friendlyTaskName: 'Migration Task High',
+    taskClassification: {
+      category: 'foo',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<TaskResult> {
+    return getMockTaskResult(this.meta, this.config, 'migration task high is being run');
+  }
+}
+
+class MigrationTaskLow extends BaseTask implements Task {
+  meta = {
+    taskName: 'migration-task-low',
+    friendlyTaskName: 'Migration Task Low',
+    taskClassification: {
+      category: 'baz',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<TaskResult> {
+    return getMockTaskResult(this.meta, this.config, 'migration task low is being run');
+  }
+}
+
+class ErrorTask extends BaseTask implements Task {
+  meta = {
+    taskName: 'error-task',
+    friendlyTaskName: 'Error Task',
+    taskClassification: {
+      category: 'bar',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<TaskResult> {
+    throw new Error('Something went wrong in this task');
+  }
+}
+
+class TaskWithoutCategory extends BaseTask implements Task {
+  meta = {
+    taskName: 'task-without-category',
+    friendlyTaskName: 'Task Without Category',
+    taskClassification: {
+      category: '',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+
+  async run(): Promise<TaskResult> {
+    return getMockTaskResult(this.meta, this.config, 'task without category is being run');
+  }
+}
 
 describe('TaskList', () => {
   it('can create an instance of a TaskList', () => {
@@ -110,7 +239,10 @@ describe('TaskList', () => {
     expect(results).toMatchInlineSnapshot(`
       Array [
         MockTaskResult {
-          "config": undefined,
+          "config": Object {},
+          "data": Object {
+            "result": "insights task low is being run",
+          },
           "meta": Object {
             "friendlyTaskName": "Insights Task Low",
             "taskClassification": Object {
@@ -118,10 +250,12 @@ describe('TaskList', () => {
             },
             "taskName": "insights-task-low",
           },
-          "result": "insights task low is being run",
         },
         MockTaskResult {
-          "config": undefined,
+          "config": Object {},
+          "data": Object {
+            "result": "migration task high is being run",
+          },
           "meta": Object {
             "friendlyTaskName": "Migration Task High",
             "taskClassification": Object {
@@ -129,10 +263,12 @@ describe('TaskList', () => {
             },
             "taskName": "migration-task-high",
           },
-          "result": "migration task high is being run",
         },
         MockTaskResult {
-          "config": undefined,
+          "config": Object {},
+          "data": Object {
+            "result": "recommendations task high is being run",
+          },
           "meta": Object {
             "friendlyTaskName": "Recommendations Task High",
             "taskClassification": Object {
@@ -140,10 +276,12 @@ describe('TaskList', () => {
             },
             "taskName": "recommendations-task-high",
           },
-          "result": "recommendations task high is being run",
         },
         MockTaskResult {
-          "config": undefined,
+          "config": Object {},
+          "data": Object {
+            "result": "migration task low is being run",
+          },
           "meta": Object {
             "friendlyTaskName": "Migration Task Low",
             "taskClassification": Object {
@@ -151,10 +289,12 @@ describe('TaskList', () => {
             },
             "taskName": "migration-task-low",
           },
-          "result": "migration task low is being run",
         },
         MockTaskResult {
-          "config": undefined,
+          "config": Object {},
+          "data": Object {
+            "result": "recommendations task low is being run",
+          },
           "meta": Object {
             "friendlyTaskName": "Recommendations Task Low",
             "taskClassification": Object {
@@ -162,10 +302,12 @@ describe('TaskList', () => {
             },
             "taskName": "recommendations-task-low",
           },
-          "result": "recommendations task low is being run",
         },
         MockTaskResult {
-          "config": undefined,
+          "config": Object {},
+          "data": Object {
+            "result": "insights task high is being run",
+          },
           "meta": Object {
             "friendlyTaskName": "Insights Task High",
             "taskClassification": Object {
@@ -173,7 +315,6 @@ describe('TaskList', () => {
             },
             "taskName": "insights-task-high",
           },
-          "result": "insights task high is being run",
         },
       ]
     `);
