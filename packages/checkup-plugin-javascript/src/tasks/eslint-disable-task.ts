@@ -18,9 +18,12 @@ export default class EslintDisableTask extends BaseTask implements Task {
 
   async run(): Promise<TaskResult> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
-    let eslintDisables = await getEslintDisables(jsPaths);
 
-    return new EslintDisableTaskResult(this.meta, this.config, eslintDisables);
+    let result = new EslintDisableTaskResult(this.meta, this.config);
+
+    result.process({ esLintDisables: await getEslintDisables(jsPaths) });
+
+    return result;
   }
 }
 

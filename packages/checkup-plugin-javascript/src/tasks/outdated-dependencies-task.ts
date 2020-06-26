@@ -54,7 +54,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
       this.config
     );
 
-    result.dependencies = await getDependencies(this.context.cliFlags.cwd);
+    result.process({ dependencies: await getDependencies(this.context.cliFlags.cwd) });
 
     return result;
   }
