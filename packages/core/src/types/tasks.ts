@@ -31,6 +31,18 @@ export interface Task {
   run: () => Promise<TaskResult>;
 }
 
+export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
+
+export interface Action2 {
+  name: string;
+  summary: string;
+  details: string;
+  defaultThreshold: number;
+
+  items: ActionItem[];
+  input: number;
+}
+
 export interface Action {
   name: string;
   value: number;
@@ -42,6 +54,7 @@ export interface Action {
 export interface TaskResult {
   meta: TaskMetaData;
   data: Record<string, any>;
+  actions?: Action2[];
   actionList?: ActionList;
 
   process(data: Record<string, any>): void;

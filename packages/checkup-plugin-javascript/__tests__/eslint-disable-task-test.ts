@@ -1,11 +1,5 @@
 import { getPluginName } from '@checkup/core';
-import {
-  CheckupProject,
-  stdout,
-  getTaskContext,
-  clearFilePaths,
-  isActionEnabled,
-} from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext, clearFilePaths } from '@checkup/test-helpers';
 
 import EslintDisableTask from '../src/tasks/eslint-disable-task';
 import EslintDisableTaskResult from '../src/results/eslint-disable-task-result';
@@ -92,7 +86,7 @@ describe('eslint-disable-task', () => {
     `);
   });
 
-  it('returns action item if there are more than 2 instances of eslint-disable', async () => {
+  it('returns actions if there are more than 2 instances of eslint-disable', async () => {
     const result = await new EslintDisableTask(
       pluginName,
       getTaskContext({
@@ -101,13 +95,18 @@ describe('eslint-disable-task', () => {
     ).run();
 
     const eslintDisableTaskResult = <EslintDisableTaskResult>result;
-    expect(
-      isActionEnabled(eslintDisableTaskResult.actionList.enabledActions, 'num-eslint-disables')
-    ).toEqual(true);
-    expect(eslintDisableTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`
-      Array [
-        "There are 3 instances of 'eslint-disable', there should be at most 2.",
-      ]
+    expect(eslintDisableTaskResult.actions).toHaveLength(1);
+    expect(eslintDisableTaskResult.actions[0]).toMatchInlineSnapshot(`
+      Object {
+        "defaultThreshold": 2,
+        "details": "3 usages of template-lint-disable",
+        "input": 3,
+        "items": Array [
+          "Total eslint-disable usages: 3",
+        ],
+        "name": "reduce-eslint-disable-usages",
+        "summary": "Reduce number of eslint-disable usages",
+      }
     `);
   });
 });

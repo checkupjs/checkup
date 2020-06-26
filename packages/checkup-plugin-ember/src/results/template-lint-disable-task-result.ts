@@ -1,12 +1,35 @@
-import { BaseTaskResult, ResultData, TaskResult, ui, ActionList } from '@checkup/core';
+import {
+  BaseTaskResult,
+  ResultData,
+  TaskResult,
+  ui,
+  ActionsEvaluator,
+  Action2,
+} from '@checkup/core';
 
 export default class TemplateLintDisableTaskResult extends BaseTaskResult implements TaskResult {
+  actions: Action2[] = [];
+
   data!: {
     templateLintDisables: ResultData;
   };
 
   process(data: { templateLintDisables: ResultData }) {
     this.data = data;
+
+    let actionsEvaluator = new ActionsEvaluator();
+    let templateLintDisableUsages = this.data.templateLintDisables.results.length;
+
+    actionsEvaluator.add({
+      name: 'reduce-template-lint-disable-usages',
+      summary: 'Reduce number of template-lint-disable usages',
+      details: `${templateLintDisableUsages} usages of template-lint-disable`,
+      defaultThreshold: 2,
+      items: [`Total template-lint-disable usages: ${templateLintDisableUsages}`],
+      input: templateLintDisableUsages,
+    });
+
+    this.actions = actionsEvaluator.evaluate(this.config);
   }
 
   toConsole() {
@@ -22,24 +45,5 @@ export default class TemplateLintDisableTaskResult extends BaseTaskResult implem
         fileErrors: this.data.templateLintDisables.errors,
       },
     };
-  }
-
-  get actionList() {
-    return new ActionList(
-      [
-        {
-          name: 'num-template-lint-disables',
-          threshold: 2,
-          value: this.data.templateLintDisables.results.length,
-          get enabled() {
-            return this.value > this.threshold;
-          },
-          get message() {
-            return `There are ${this.value} instances of 'template-lint-disable', there should be at most ${this.threshold}.`;
-          },
-        },
-      ],
-      this.config
-    );
   }
 }

@@ -1,4 +1,4 @@
-import { BaseTaskResult, TaskResult, ui, ActionList, decimalToPercent } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, ActionList, toPercent } from '@checkup/core';
 
 import { Dependency } from '../tasks/outdated-dependencies-task';
 
@@ -21,9 +21,9 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
             return this.value > this.threshold;
           },
           get message() {
-            return `${decimalToPercent(
+            return `${toPercent(
               this.value
-            )} of your dependencies are major versions behind, this should be at most ${decimalToPercent(
+            )} of your dependencies are major versions behind, this should be at most ${toPercent(
               this.threshold
             )}.`;
           },
@@ -36,9 +36,9 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
             return this.value > this.threshold;
           },
           get message() {
-            return `${decimalToPercent(
+            return `${toPercent(
               this.value
-            )} of your dependencies are minor versions behind, this should be at most ${decimalToPercent(
+            )} of your dependencies are minor versions behind, this should be at most ${toPercent(
               this.threshold
             )}.`;
           },
@@ -51,9 +51,9 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
             return this.value > this.threshold;
           },
           get message() {
-            return `${decimalToPercent(
+            return `${toPercent(
               this.value
-            )} of your dependencies are outdated, this should be at most ${decimalToPercent(
+            )} of your dependencies are outdated, this should be at most ${toPercent(
               this.threshold
             )}.`;
           },

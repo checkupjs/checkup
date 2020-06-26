@@ -1,17 +1,18 @@
 import {
-  ActionList,
   BaseTaskResult,
   TaskResult,
-  decimalToPercent,
-  fractionToPercent,
   ui,
   ESLintReport,
+  ActionsEvaluator,
+  Action2,
+  toPercent,
 } from '@checkup/core';
-import { TestType, TestTypeInfo } from '../types';
+import { TestTypeInfo } from '../types';
 import { transformESLintReport } from '../utils/transformers';
 
 export default class EmberTestTypesTaskResult extends BaseTaskResult implements TaskResult {
-  actionList!: ActionList;
+  actions: Action2[] = [];
+
   data!: {
     testTypes: TestTypeInfo[];
   };
@@ -21,7 +22,21 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
       testTypes: transformESLintReport(data.esLintReport),
     };
 
-    this.actionList = this.getActions();
+    let actionsEvaluator = new ActionsEvaluator();
+    let totalSkippedTests = this.sumByType('skip');
+    let totalTests = this.sumByType('total');
+
+    actionsEvaluator.add({
+      name: 'reduce-skipped-tests',
+      summary: 'Reduce number of skipped tests',
+      details: `${toPercent(totalSkippedTests, totalTests)} of tests are skipped`,
+      defaultThreshold: 0.01,
+
+      items: [`Total skipped tests: ${totalSkippedTests}`],
+      input: totalSkippedTests / totalTests,
+    });
+
+    this.actions = actionsEvaluator.evaluate(this.config);
   }
 
   toConsole() {
@@ -35,10 +50,7 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
             ...{
               skipInfo: `${testTypeInfo.skip} ${
                 testTypeInfo.skip > 0
-                  ? `(${fractionToPercent(
-                      testTypeInfo.skip,
-                      testTypeInfo.test + testTypeInfo.skip
-                    )})`
+                  ? `(${toPercent(testTypeInfo.skip, testTypeInfo.test + testTypeInfo.skip)})`
                   : ''
               }`,
             },
@@ -53,9 +65,13 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
 
       ui.sectionedBar(
         this.data.testTypes.map((testType, index) => {
-          return { title: testType.type, count: testType.total, color: barColors[index] };
+          return {
+            title: testType.type,
+            count: testType.total,
+            color: barColors[index],
+          };
         }),
-        getTotalOfType(this.data.testTypes, 'total'),
+        this.sumByType('total'),
         ' tests'
       );
     });
@@ -65,89 +81,29 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
     return { meta: this.meta, result: { types: this.data.testTypes } };
   }
 
-  get totalSkips() {
-    return getTotalOfType(this.data.testTypes, 'skip');
-  }
-
-  get totalOnlys() {
-    return getTotalOfType(this.data.testTypes, 'only');
-  }
-
-  get totalTodos() {
-    return getTotalOfType(this.data.testTypes, 'todo');
-  }
-
   get tableColumns() {
     let columns = {
       type: { minWidth: 15 },
       test: { minWidth: 8, header: 'test' },
     };
 
-    if (this.totalOnlys > 0) {
+    if (this.sumByType('only') > 0) {
       columns = { ...columns, ...{ only: { minWidth: 8, header: 'only' } } };
     }
-    if (this.totalTodos > 0) {
+    if (this.sumByType('todo') > 0) {
       columns = { ...columns, ...{ todo: { minWidth: 8, header: 'todo' } } };
     }
 
-    if (this.totalSkips > 0) {
+    if (this.sumByType('skip') > 0) {
       columns = { ...columns, ...{ skipInfo: { header: 'skip' } } };
     }
 
     return columns;
   }
 
-  getActions() {
-    let totalTests = getTotalOfType(this.data.testTypes, 'total');
-    let totalSkips = this.totalSkips;
-
-    let totalRenderingUnit = this.data.testTypes.reduce((total, item: TestTypeInfo) => {
-      return item.type === TestType.Rendering || item.type === TestType.Unit
-        ? total + item.total
-        : total;
+  private sumByType(prop: keyof Omit<TestTypeInfo, 'type'>): number {
+    return this.data.testTypes.reduce((total, item) => {
+      return total + item[prop];
     }, 0);
-    let totalApplication =
-      this.data.testTypes.find((testType) => testType.type === TestType.Application)?.total || 0;
-
-    return new ActionList(
-      [
-        {
-          name: 'percentage-skipped-tests',
-          threshold: 0.01,
-          value: this.totalSkips / totalTests,
-          get enabled() {
-            return this.value > this.threshold;
-          },
-          get message() {
-            return `${fractionToPercent(
-              totalSkips,
-              totalTests
-            )} of your tests are skipped, this value should be below ${decimalToPercent(
-              this.threshold
-            )}`;
-          },
-        },
-        {
-          name: 'ratio-application-tests',
-          threshold: 1,
-          value: totalRenderingUnit / totalApplication,
-          get enabled() {
-            return this.threshold > this.value;
-          },
-          get message() {
-            return `You have too many application tests. The number of unit tests and rendering tests combined should be at least ${
-              this.threshold > 1 ? `${this.threshold}x ` : ''
-            }greater than the number of application tests.`;
-          },
-        },
-      ],
-      this.config
-    );
   }
-}
-
-function getTotalOfType(array: any[], type: keyof any): number {
-  return array.reduce((total, item) => {
-    return total + item[type as keyof any];
-  }, 0);
 }
