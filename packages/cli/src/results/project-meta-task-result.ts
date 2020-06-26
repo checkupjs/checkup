@@ -39,7 +39,7 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
         name: this.name,
         version: this.version,
         repository: this.repository,
-        filesAnalyzed: this.filesForCheckup.length,
+        analyzedFilesCount: this.analyzedFiles.length,
       },
     };
   }
