@@ -1,7 +1,10 @@
-import * as path from 'path';
+import * as chalk from 'chalk';
 
 import { Answers } from 'inquirer';
 import BaseGenerator from './base-generator';
+import { join } from 'path';
+import { readdirSync, existsSync } from 'fs';
+import { CheckupError } from '@checkup/core';
 
 const PLUGIN_DIR_PATTERN = /checkup-plugin-.*/;
 
@@ -19,11 +22,18 @@ export default class PluginGenerator extends BaseGenerator {
       return cwd;
     }
 
-    return path.join(cwd, this.options.name);
+    return join(cwd, this.options.name);
   }
 
   async prompting() {
     this._normalizeName();
+
+    if (existsSync(this._destinationPath) && readdirSync(this._destinationPath).length > 0) {
+      throw new CheckupError(
+        `Plugin destination ${chalk.bold.white(this._destinationPath)} is not empty`,
+        'Run the plugin generator in an empty directory'
+      );
+    }
 
     this.headline(this.options.name);
 
@@ -72,7 +82,7 @@ export default class PluginGenerator extends BaseGenerator {
   }
 
   writing() {
-    this.sourceRoot(path.join(__dirname, '../../templates/src/plugin'));
+    this.sourceRoot(join(__dirname, '../../templates/src/plugin'));
     this.destinationRoot(this._destinationPath);
 
     this.fs.copyTpl(

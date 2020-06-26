@@ -1,13 +1,14 @@
-import * as Errors from '@oclif/errors';
 import * as _ from 'lodash';
 import * as path from 'path';
 import * as t from '@babel/types';
+import * as chalk from 'chalk';
 
 import { Answers } from 'inquirer';
 import AstTransformer from '../helpers/ast';
 import BaseGenerator from './base-generator';
 import { Options } from '../commands/generate';
 import { PackageJson } from 'type-fest';
+import { CheckupError } from '@checkup/core';
 
 interface TaskOptions extends Options {
   taskResultClass: string;
@@ -37,7 +38,14 @@ export default class TaskGenerator extends BaseGenerator {
       !this.packageJson ||
       !(this.packageJson.keywords && this.packageJson.keywords.includes('oclif-plugin'))
     ) {
-      Errors.error('You must be in a Checkup plugin directory in order to run the task generator');
+      throw new CheckupError(
+        'Can only generate tasks in Checkup plugin directory',
+        `Run ${chalk.bold.white(
+          'checkup generate task'
+        )} from the root of a Checkup plugin or use the ${chalk.bold.white(
+          '--path'
+        )} option to specify the path to a Checkup plugin`
+      );
     }
 
     this.headline(`${this.options.name}-task`);
