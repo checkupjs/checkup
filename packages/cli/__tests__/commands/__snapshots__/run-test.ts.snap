@@ -76,7 +76,7 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
         \\"age\\": \\"0 days\\",
         \\"activeDays\\": \\"0 days\\"
       },
-      \\"filesAnalyzed\\": 6
+      \\"analyzedFilesCount\\": 6
     },
     \\"checkup\\": {
       \\"configHash\\": \\"3720546166a5955def89f6bf69895976\\",

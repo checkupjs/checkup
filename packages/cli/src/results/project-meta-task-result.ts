@@ -20,7 +20,7 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
     ui.log(
       `Checkup report generated for ${ui.emphasize(
         `${this.name} v${this.version}`
-      )}${filesForCheckupString}`
+      )}${analyzedFilesMessage}`
     );
     ui.blankLine();
     ui.log(
