@@ -12,8 +12,8 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
 
   toConsole() {
     let filesForCheckupString =
-      this.repository.totalFiles !== this.filesForCheckup.length
-        ? ` (${ui.emphasize(`${this.filesForCheckup.length.toString()} files`)} analyzed)`
+      this.repository.totalFiles !== this.analyzedFiles.length
+        ? ` (${ui.emphasize(`${this.analyzedFiles.length.toString()} files`)} analyzed)`
         : '';
 
     ui.blankLine();
