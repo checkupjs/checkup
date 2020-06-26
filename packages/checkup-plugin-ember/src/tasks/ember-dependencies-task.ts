@@ -1,4 +1,4 @@
-import { BaseTask, Task, TaskResult, toTaskData } from '@checkup/core';
+import { BaseTask, Task, TaskResult } from '@checkup/core';
 
 import EmberDependenciesTaskResult from '../results/ember-dependencies-task-result';
 import { PackageJson } from 'type-fest';
@@ -33,7 +33,7 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
       emberCliAddonFilter
     );
 
-    let results: [string, Record<string, string>][] = [
+    let dependencyResults: [string, Record<string, string>][] = [
       ['ember core libraries', coreLibraries],
       ['ember addon dependencies', emberDependencies],
       ['ember addon devDependencies', emberDevDependencies],
@@ -41,7 +41,7 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
       ['ember-cli addon devDependencies', emberCliDevDependencies],
     ];
 
-    result.dependencies = toTaskData(results);
+    result.process({ dependencyResults });
 
     return result;
   }

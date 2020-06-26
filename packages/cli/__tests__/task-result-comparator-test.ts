@@ -21,18 +21,21 @@ function getTaskMetaData(taskName: string, category: string, group: string = '')
 describe('taskResultComparator', () => {
   it('should sort task results by category with no group', () => {
     let results = [
-      new MockTaskResult(getTaskMetaData('foo', 'linting'), {}, {}),
-      new MockTaskResult(getTaskMetaData('fod', 'migrations'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bar', 'testing'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bag', 'best practices'), {}, {}),
-      new MockTaskResult(getTaskMetaData('baz', 'metrics'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bad', 'dependencies'), {}, {}),
+      new MockTaskResult(getTaskMetaData('foo', 'linting')),
+      new MockTaskResult(getTaskMetaData('fod', 'migrations')),
+      new MockTaskResult(getTaskMetaData('bar', 'testing')),
+      new MockTaskResult(getTaskMetaData('bag', 'best practices')),
+      new MockTaskResult(getTaskMetaData('baz', 'metrics')),
+      new MockTaskResult(getTaskMetaData('bad', 'dependencies')),
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
       Array [
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "baz",
             "taskClassification": Object {
@@ -40,10 +43,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "baz",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bag",
             "taskClassification": Object {
@@ -51,10 +56,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bag",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bad",
             "taskClassification": Object {
@@ -62,10 +69,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bad",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "foo",
             "taskClassification": Object {
@@ -73,10 +82,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "foo",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bar",
             "taskClassification": Object {
@@ -84,10 +95,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bar",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "fod",
             "taskClassification": Object {
@@ -95,7 +108,6 @@ describe('taskResultComparator', () => {
             },
             "taskName": "fod",
           },
-          "result": Object {},
         },
       ]
     `);
@@ -103,19 +115,22 @@ describe('taskResultComparator', () => {
 
   it('should sort task results with custom category by category with no group', () => {
     let results = [
-      new MockTaskResult(getTaskMetaData('foo', 'linting'), {}, {}),
-      new MockTaskResult(getTaskMetaData('fod', 'testing'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bar', 'custom category2'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bar', 'custom category'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bag', 'best practices'), {}, {}),
-      new MockTaskResult(getTaskMetaData('baz', 'metrics'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bad', 'dependencies'), {}, {}),
+      new MockTaskResult(getTaskMetaData('foo', 'linting')),
+      new MockTaskResult(getTaskMetaData('fod', 'testing')),
+      new MockTaskResult(getTaskMetaData('bar', 'custom category2')),
+      new MockTaskResult(getTaskMetaData('bar', 'custom category')),
+      new MockTaskResult(getTaskMetaData('bag', 'best practices')),
+      new MockTaskResult(getTaskMetaData('baz', 'metrics')),
+      new MockTaskResult(getTaskMetaData('bad', 'dependencies')),
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
       Array [
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "baz",
             "taskClassification": Object {
@@ -123,10 +138,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "baz",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bag",
             "taskClassification": Object {
@@ -134,10 +151,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bag",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bad",
             "taskClassification": Object {
@@ -145,10 +164,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bad",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "foo",
             "taskClassification": Object {
@@ -156,10 +177,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "foo",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "fod",
             "taskClassification": Object {
@@ -167,10 +190,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "fod",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bar",
             "taskClassification": Object {
@@ -178,10 +203,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bar",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bar",
             "taskClassification": Object {
@@ -189,7 +216,6 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bar",
           },
-          "result": Object {},
         },
       ]
     `);
@@ -197,18 +223,21 @@ describe('taskResultComparator', () => {
 
   it('should sort task results by category with group', () => {
     let results = [
-      new MockTaskResult(getTaskMetaData('foo', 'linting'), {}, {}),
-      new MockTaskResult(getTaskMetaData('fod', 'best practices', 'lint'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bar', 'best practices'), {}, {}),
-      new MockTaskResult(getTaskMetaData('baz', 'metrics'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bag', 'dependencies'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bad', 'best practices', 'lint'), {}, {}),
+      new MockTaskResult(getTaskMetaData('foo', 'linting')),
+      new MockTaskResult(getTaskMetaData('fod', 'best practices', 'lint')),
+      new MockTaskResult(getTaskMetaData('bar', 'best practices')),
+      new MockTaskResult(getTaskMetaData('baz', 'metrics')),
+      new MockTaskResult(getTaskMetaData('bag', 'dependencies')),
+      new MockTaskResult(getTaskMetaData('bad', 'best practices', 'lint')),
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
       Array [
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "baz",
             "taskClassification": Object {
@@ -216,10 +245,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "baz",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "fod",
             "taskClassification": Object {
@@ -228,10 +259,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "fod",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bad",
             "taskClassification": Object {
@@ -240,10 +273,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bad",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bar",
             "taskClassification": Object {
@@ -251,10 +286,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bar",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bag",
             "taskClassification": Object {
@@ -262,10 +299,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bag",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "foo",
             "taskClassification": Object {
@@ -273,7 +312,6 @@ describe('taskResultComparator', () => {
             },
             "taskName": "foo",
           },
-          "result": Object {},
         },
       ]
     `);
@@ -281,18 +319,21 @@ describe('taskResultComparator', () => {
 
   it('should sort task results with custom category by category with group', () => {
     let results = [
-      new MockTaskResult(getTaskMetaData('foo', 'linting'), {}, {}),
-      new MockTaskResult(getTaskMetaData('fod', 'grouped linting', 'lint'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bar', 'best practices'), {}, {}),
-      new MockTaskResult(getTaskMetaData('baz', 'metrics'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bad', 'dependencies'), {}, {}),
-      new MockTaskResult(getTaskMetaData('bag', 'grouped linting2', 'lint'), {}, {}),
+      new MockTaskResult(getTaskMetaData('foo', 'linting')),
+      new MockTaskResult(getTaskMetaData('fod', 'grouped linting', 'lint')),
+      new MockTaskResult(getTaskMetaData('bar', 'best practices')),
+      new MockTaskResult(getTaskMetaData('baz', 'metrics')),
+      new MockTaskResult(getTaskMetaData('bad', 'dependencies')),
+      new MockTaskResult(getTaskMetaData('bag', 'grouped linting2', 'lint')),
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
       Array [
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "baz",
             "taskClassification": Object {
@@ -300,10 +341,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "baz",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bar",
             "taskClassification": Object {
@@ -311,10 +354,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bar",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bad",
             "taskClassification": Object {
@@ -322,10 +367,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bad",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "foo",
             "taskClassification": Object {
@@ -333,10 +380,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "foo",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "fod",
             "taskClassification": Object {
@@ -345,10 +394,12 @@ describe('taskResultComparator', () => {
             },
             "taskName": "fod",
           },
-          "result": Object {},
         },
         MockTaskResult {
           "config": Object {},
+          "data": Object {
+            "result": Object {},
+          },
           "meta": Object {
             "friendlyTaskName": "bag",
             "taskClassification": Object {
@@ -357,7 +408,6 @@ describe('taskResultComparator', () => {
             },
             "taskName": "bag",
           },
-          "result": Object {},
         },
       ]
     `);

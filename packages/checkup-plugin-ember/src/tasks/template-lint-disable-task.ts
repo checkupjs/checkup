@@ -23,7 +23,8 @@ export default class TemplateLintDisableTask extends BaseTask implements Task {
     );
 
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
-    result.templateLintDisables = await getTemplateLintDisables(hbsPaths);
+
+    result.process({ templateLintDisables: await getTemplateLintDisables(hbsPaths) });
 
     return result;
   }

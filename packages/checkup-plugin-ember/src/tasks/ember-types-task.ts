@@ -27,9 +27,11 @@ export default class EmberTypesTask extends BaseTask implements Task {
 
   async run(): Promise<TaskResult> {
     let result = new EmberTypesTaskResult(this.meta, this.config);
-    result.types = SEARCH_PATTERNS.map((pattern) => {
+    let types = SEARCH_PATTERNS.map((pattern) => {
       return toTaskItemData(pattern.patternName, this.context.paths.filterByGlob(pattern.pattern));
     });
+
+    result.process({ types });
 
     return result;
   }

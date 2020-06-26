@@ -1,25 +1,21 @@
-import {
-  BaseTaskResult,
-  ui,
-  ResultData,
-  TaskResult,
-  TaskMetaData,
-  ActionList,
-  TaskConfig,
-} from '@checkup/core';
+import { BaseTaskResult, ui, ResultData, TaskResult, ActionList } from '@checkup/core';
 
 export default class EslintDisableTaskResult extends BaseTaskResult implements TaskResult {
-  actionList: ActionList;
+  actionList!: ActionList;
 
-  constructor(meta: TaskMetaData, config: TaskConfig, public eslintDisables: ResultData) {
-    super(meta, config);
+  data!: {
+    esLintDisables: ResultData;
+  };
+
+  process(data: { esLintDisables: ResultData }) {
+    this.data = data;
 
     this.actionList = new ActionList(
       [
         {
           name: 'num-eslint-disables',
           threshold: 2,
-          value: eslintDisables.results.length,
+          value: this.data.esLintDisables.results.length,
           get enabled() {
             return this.value > this.threshold;
           },
@@ -28,20 +24,20 @@ export default class EslintDisableTaskResult extends BaseTaskResult implements T
           },
         },
       ],
-      config
+      this.config
     );
   }
 
   toConsole() {
-    ui.log(`eslint-disable Usages Found: ${this.eslintDisables.results.length}`);
+    ui.log(`eslint-disable Usages Found: ${this.data.esLintDisables.results.length}`);
   }
 
   toJson() {
     return {
       meta: this.meta,
       result: {
-        eslintDisables: this.eslintDisables.results,
-        fileErrors: this.eslintDisables.errors,
+        eslintDisables: this.data.esLintDisables.results,
+        fileErrors: this.data.esLintDisables.errors,
       },
     };
   }

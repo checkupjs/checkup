@@ -5,18 +5,31 @@ import {
   decimalToPercent,
   fractionToPercent,
   ui,
+  ESLintReport,
 } from '@checkup/core';
 import { TestType, TestTypeInfo } from '../types';
+import { transformESLintReport } from '../utils/transformers';
 
 export default class EmberTestTypesTaskResult extends BaseTaskResult implements TaskResult {
-  testTypes!: TestTypeInfo[];
+  actionList!: ActionList;
+  data!: {
+    testTypes: TestTypeInfo[];
+  };
+
+  process(data: { esLintReport: ESLintReport }) {
+    this.data = {
+      testTypes: transformESLintReport(data.esLintReport),
+    };
+
+    this.actionList = this.getActions();
+  }
 
   toConsole() {
     let barColors = ['blue', 'cyan', 'green'];
 
     ui.section(this.meta.friendlyTaskName, () => {
       ui.table(
-        this.testTypes.map((testTypeInfo) => {
+        this.data.testTypes.map((testTypeInfo) => {
           return {
             ...testTypeInfo,
             ...{
@@ -39,29 +52,29 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
       ui.subHeader('Test Type Breakdown');
 
       ui.sectionedBar(
-        this.testTypes.map((testType, index) => {
+        this.data.testTypes.map((testType, index) => {
           return { title: testType.type, count: testType.total, color: barColors[index] };
         }),
-        getTotalOfType(this.testTypes, 'total'),
+        getTotalOfType(this.data.testTypes, 'total'),
         ' tests'
       );
     });
   }
 
   toJson() {
-    return { meta: this.meta, result: { types: this.testTypes } };
+    return { meta: this.meta, result: { types: this.data.testTypes } };
   }
 
   get totalSkips() {
-    return getTotalOfType(this.testTypes, 'skip');
+    return getTotalOfType(this.data.testTypes, 'skip');
   }
 
   get totalOnlys() {
-    return getTotalOfType(this.testTypes, 'only');
+    return getTotalOfType(this.data.testTypes, 'only');
   }
 
   get totalTodos() {
-    return getTotalOfType(this.testTypes, 'todo');
+    return getTotalOfType(this.data.testTypes, 'todo');
   }
 
   get tableColumns() {
@@ -84,17 +97,17 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
     return columns;
   }
 
-  get actionList() {
-    let totalTests = getTotalOfType(this.testTypes, 'total');
+  getActions() {
+    let totalTests = getTotalOfType(this.data.testTypes, 'total');
     let totalSkips = this.totalSkips;
 
-    let totalRenderingUnit = this.testTypes.reduce((total, item: TestTypeInfo) => {
+    let totalRenderingUnit = this.data.testTypes.reduce((total, item: TestTypeInfo) => {
       return item.type === TestType.Rendering || item.type === TestType.Unit
         ? total + item.total
         : total;
     }, 0);
     let totalApplication =
-      this.testTypes.find((testType) => testType.type === TestType.Application)?.total || 0;
+      this.data.testTypes.find((testType) => testType.type === TestType.Application)?.total || 0;
 
     return new ActionList(
       [

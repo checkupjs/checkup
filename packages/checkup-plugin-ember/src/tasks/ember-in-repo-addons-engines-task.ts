@@ -20,19 +20,23 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
       this.config
     );
 
-    result.inRepoAddons = [];
-    result.inRepoEngines = [];
+    let inRepoAddons: string[] = [];
+    let inRepoEngines: string[] = [];
+
     let packageJsonPaths: string[] = this.context.paths.filterByGlob('**/*package.json');
 
     packageJsonPaths.forEach((pathName: string) => {
       let packageJson: PackageJson = getPackageJson(pathName);
 
       if (packageJson.keywords?.includes('ember-engine') && packageJson.name) {
-        result.inRepoEngines.push(packageJson.name);
+        inRepoEngines.push(packageJson.name);
       } else if (packageJson.keywords?.includes('ember-addon') && packageJson.name) {
-        result.inRepoAddons.push(packageJson.name);
+        inRepoAddons.push(packageJson.name);
       }
     });
+
+    result.process({ inRepoEngines, inRepoAddons });
+
     return result;
   }
 }

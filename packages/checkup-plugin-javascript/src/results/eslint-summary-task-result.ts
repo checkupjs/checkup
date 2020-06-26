@@ -1,12 +1,4 @@
-import {
-  BaseTaskResult,
-  TaskResult,
-  ui,
-  ESLintReport,
-  ActionList,
-  TaskMetaData,
-  TaskConfig,
-} from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, ESLintReport, ActionList } from '@checkup/core';
 import { Linter } from 'eslint';
 import * as chalk from 'chalk';
 
@@ -15,7 +7,7 @@ interface EslintFailureCounts {
   fixableFailureCount: number;
 }
 
-interface FormattedEslintReport {
+interface FormattedESLintReport {
   errorCount: number;
   warningCount: number;
   errorList: { rule: string; failures: string }[];
@@ -23,18 +15,24 @@ interface FormattedEslintReport {
 }
 
 export default class EslintSummaryTaskResult extends BaseTaskResult implements TaskResult {
-  sortedEslintReport: FormattedEslintReport;
+  actionList!: ActionList;
+  data!: {
+    esLintReport: ESLintReport;
+    sortedESLintReport: FormattedESLintReport;
+  };
 
-  constructor(meta: TaskMetaData, config: TaskConfig, public esLintReport: ESLintReport) {
-    super(meta, config);
+  process(data: { esLintReport: ESLintReport }) {
+    this.data = {
+      ...{ sortedESLintReport: transformEslintReport(data.esLintReport) },
+      ...data,
+    };
 
-    this.sortedEslintReport = transformEslintReport(esLintReport);
     this.actionList = new ActionList(
       [
         {
           name: 'num-eslint-errors',
           threshold: 20,
-          value: this.sortedEslintReport.errorCount,
+          value: this.data.sortedESLintReport.errorCount,
           get enabled() {
             return this.value > this.threshold;
           },
@@ -45,7 +43,7 @@ export default class EslintSummaryTaskResult extends BaseTaskResult implements T
         {
           name: 'num-eslint-warnings',
           threshold: 20,
-          value: this.sortedEslintReport.warningCount,
+          value: this.data.sortedESLintReport.warningCount,
           get enabled() {
             return this.value > this.threshold;
           },
@@ -54,28 +52,28 @@ export default class EslintSummaryTaskResult extends BaseTaskResult implements T
           },
         },
       ],
-      config
+      this.config
     );
   }
 
   toConsole() {
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.log(`Error count: ${chalk.red(this.sortedEslintReport.errorCount)}`);
-      ui.log(`Warning count: ${chalk.yellow(this.sortedEslintReport.warningCount)}`);
+      ui.log(`Error count: ${chalk.red(this.data.sortedESLintReport.errorCount)}`);
+      ui.log(`Warning count: ${chalk.yellow(this.data.sortedESLintReport.warningCount)}`);
 
-      if (this.sortedEslintReport.errorList.length > 0) {
+      if (this.data.sortedESLintReport.errorList.length > 0) {
         ui.blankLine();
         ui.subHeader('Errors');
-        ui.table(this.sortedEslintReport.errorList, {
+        ui.table(this.data.sortedESLintReport.errorList, {
           rule: { header: 'Rule name' },
           failures: {},
         });
       }
 
-      if (this.sortedEslintReport.warningList.length > 0) {
+      if (this.data.sortedESLintReport.warningList.length > 0) {
         ui.blankLine();
         ui.subHeader('Warnings');
-        ui.table(this.sortedEslintReport.warningList, {
+        ui.table(this.data.sortedESLintReport.warningList, {
           rule: { header: 'Rule name' },
           failures: {},
         });
@@ -84,11 +82,11 @@ export default class EslintSummaryTaskResult extends BaseTaskResult implements T
   }
 
   toJson() {
-    return { meta: this.meta, result: { esLintReport: this.esLintReport } };
+    return { meta: this.meta, result: { esLintReport: this.data.esLintReport } };
   }
 }
 
-function transformEslintReport(esLintReport: ESLintReport): FormattedEslintReport {
+function transformEslintReport(esLintReport: ESLintReport): FormattedESLintReport {
   let errors: Record<string, EslintFailureCounts> = {};
   let warnings: Record<string, EslintFailureCounts> = {};
 

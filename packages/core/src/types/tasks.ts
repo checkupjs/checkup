@@ -32,7 +32,10 @@ export interface Action {
 
 export interface TaskResult {
   meta: TaskMetaData;
+  data: Record<string, any>;
   actionList?: ActionList;
+
+  process(data: Record<string, any>): void;
   toConsole: () => void;
   toJson: () => JsonMetaTaskResult | JsonTaskResult;
 }
