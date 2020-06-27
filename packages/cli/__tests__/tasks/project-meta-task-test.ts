@@ -54,6 +54,7 @@ describe('project-meta-task', () => {
       expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
           "project": Object {
+            "analyzedFilesCount": 0,
             "name": "checkup-app",
             "repository": Object {
               "activeDays": "0 days",

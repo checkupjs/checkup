@@ -15,6 +15,8 @@ const PATHS_TO_IGNORE: string[] = [
   'build/**',
   'vendor/**',
   '.git/**',
+  '**/*.log',
+  '*.log',
 ];
 
 /**

@@ -8,10 +8,20 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
   name!: string;
   version!: string;
   repository!: RepositoryInfo;
+  analyzedFiles!: string[];
 
   toConsole() {
+    let analyzedFilesMessage =
+      this.repository.totalFiles !== this.analyzedFiles.length
+        ? ` (${ui.emphasize(`${this.analyzedFiles.length.toString()} files`)} analyzed)`
+        : '';
+
     ui.blankLine();
-    ui.log(`Checkup report generated for ${ui.emphasize(`${this.name} v${this.version}`)}`);
+    ui.log(
+      `Checkup report generated for ${ui.emphasize(
+        `${this.name} v${this.version}`
+      )}${analyzedFilesMessage}`
+    );
     ui.blankLine();
     ui.log(
       `This project is ${ui.emphasize(`${this.repository.age} old`)}, with ${ui.emphasize(
@@ -29,6 +39,7 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
         name: this.name,
         version: this.version,
         repository: this.repository,
+        analyzedFilesCount: this.analyzedFiles.length,
       },
     };
   }
