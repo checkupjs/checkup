@@ -1,3 +1,36 @@
+## v0.2.0 (2020-06-28)
+
+#### :boom: Breaking Change
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#521](https://github.com/checkupjs/checkup/pull/521) Adding strong types for register hooks arguments ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#520](https://github.com/checkupjs/checkup/pull/520) Refactors tasks to have correct isolation between Task and TaskResult classes ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `cli`, `core`
+  * [#519](https://github.com/checkupjs/checkup/pull/519) Adding count of files checkup operated on to the project-meta task ([@carakessler](https://github.com/carakessler))
+
+#### :bug: Bug Fix
+* `cli`, `core`
+  * [#518](https://github.com/checkupjs/checkup/pull/518) Fixes generator error handling. Fix bug with short plugin names ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#520](https://github.com/checkupjs/checkup/pull/520) Refactors tasks to have correct isolation between Task and TaskResult classes ([@scalvert](https://github.com/scalvert))
+
+#### :bar_chart: Checkup Task
+* `cli`, `core`
+  * [#519](https://github.com/checkupjs/checkup/pull/519) Adding count of files checkup operated on to the project-meta task ([@carakessler](https://github.com/carakessler))
+
+#### :recycle: Generators
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#521](https://github.com/checkupjs/checkup/pull/521) Adding strong types for register hooks arguments ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v0.1.3 (2020-06-24)
 
 #### :rocket: Enhancement
