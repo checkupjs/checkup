@@ -1,8 +1,9 @@
 import { Hook } from '@oclif/config';
-import OctaneMigrationStatusTask from '../tasks/octane-migration-status-task';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function ({ context, tasks }: any) {
+import OctaneMigrationStatusTask from '../tasks/octane-migration-status-task';
+
+const hook: Hook<RegisterTaskArgs> = async function ({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
 
   tasks.registerTask(new OctaneMigrationStatusTask(pluginName, context));

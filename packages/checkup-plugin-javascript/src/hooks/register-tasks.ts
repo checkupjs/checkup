@@ -1,11 +1,11 @@
+import { Hook } from '@oclif/config';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+
 import EslintDisableTask from '../tasks/eslint-disable-task';
 import OutdatedDependencyTask from '../tasks/outdated-dependencies-task';
 import { EslintSummaryTask } from '../tasks/eslint-summary-task';
 
-import { Hook } from '@oclif/config';
-import { getPluginName } from '@checkup/core';
-
-const hook: Hook<'register-tasks'> = async function ({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function ({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
 
   tasks.registerTask(new EslintSummaryTask(pluginName, context));

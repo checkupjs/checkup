@@ -3,7 +3,6 @@
 import { CheckupConfig, mergeConfig, FilePathsArray } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
-import Plugin from './plugin';
 import Project from 'fixturify-project';
 import { execSync } from 'child_process';
 import { existsSync } from 'fs-extra';
@@ -32,17 +31,6 @@ export default class CheckupFixturifyProject extends Project {
   addCheckupConfig(config: Partial<CheckupConfig> = {}) {
     this.files['.checkuprc'] = stringify(mergeConfig(config));
     this.files['.eslintrc.js'] = '';
-  }
-
-  /**
-   * Add a plugin to the checkup project
-   *
-   * @memberof CheckupFixturifyProject
-   * @param plugin - a {@link Plugin} to add as a dependency to the project
-   */
-  addPlugin(plugin: Plugin) {
-    this.addDevDependency(plugin.toProject());
-    return this;
   }
 
   /**
