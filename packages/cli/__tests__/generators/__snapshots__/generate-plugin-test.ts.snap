@@ -129,9 +129,9 @@ export * from './types';
 
 exports[`plugin generator generates plugin into existing directory with defaults 6`] = `
 "import { Hook } from '@oclif/config';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
 };
 
@@ -415,9 +415,9 @@ export * from './types';
 
 exports[`plugin generator generates plugin with custom options 6`] = `
 "import { Hook } from '@oclif/config';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
 };
 
@@ -574,9 +574,9 @@ export * from './types';
 
 exports[`plugin generator generates plugin with defaults 6`] = `
 "import { Hook } from '@oclif/config';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
 };
 
@@ -733,9 +733,9 @@ export * from './types';
 
 exports[`plugin generator generates plugin with defaults in custom path 6`] = `
 "import { Hook } from '@oclif/config';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
 };
 
@@ -892,9 +892,9 @@ export * from './types';
 
 exports[`plugin generator generates plugin with unmodified name with defaults 6`] = `
 "import { Hook } from '@oclif/config';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
 };
 

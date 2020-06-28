@@ -179,9 +179,9 @@ describe('my-foo-task', () => {
 exports[`task generator generates correct files with TypeScript for defaults 4`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
@@ -275,9 +275,9 @@ describe('my-foo-task', () => {
 exports[`task generator generates correct files with TypeScript for defaults in custom path 4`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
@@ -371,9 +371,9 @@ describe('my-foo-task', () => {
 exports[`task generator generates correct files with category 4`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
@@ -468,9 +468,9 @@ describe('my-foo-task', () => {
 exports[`task generator generates correct files with group 4`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
@@ -564,9 +564,9 @@ describe('my-foo-task', () => {
 exports[`task generator generates correct files with type 4`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
@@ -743,9 +743,9 @@ exports[`task generator generates multiple correct files with TypeScript for def
 "import { Hook } from '@oclif/config';
 import MyBarTask from '../tasks/my-bar-task';
 import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<'register-tasks'> = async function({ context, tasks }: any) {
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
   tasks.registerTask(new MyBarTask(pluginName, context));
