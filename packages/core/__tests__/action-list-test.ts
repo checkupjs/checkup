@@ -71,7 +71,7 @@ describe('ActionList', () => {
 
   it('you can get enabledActions with a config has a custom threshold', async () => {
     const actionList = new ActionList(actions, {
-      actions: { valueGreaterThanThreshold: { threshold: 5 } },
+      actions: { valueGreaterThanThreshold: ['on', { threshold: 5 }] },
     });
 
     let valueGreaterThanThreshold = actionList.enabledActions
@@ -89,7 +89,7 @@ describe('ActionList', () => {
   it('you can get enabledActions with a config has multiple configurations', async () => {
     const actionList = new ActionList(actions, {
       actions: {
-        valueLessThanThreshold: { threshold: 5 },
+        valueLessThanThreshold: ['off', { threshold: 5 }],
         valueGreaterThanThreshold: ['off', { threshold: 22 }],
       },
     });

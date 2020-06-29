@@ -3,7 +3,7 @@ import * as Ajv from 'ajv';
 import { existsSync, readJsonSync, writeJsonSync } from 'fs-extra';
 import { join, resolve } from 'path';
 
-import { CheckupConfig } from '../types/config';
+import { CheckupConfig, ConfigValue } from '../types/config';
 import CheckupError from '../errors/checkup-error';
 import { white } from 'chalk';
 import { normalizePackageName } from '../utils/plugin-name';
@@ -83,4 +83,19 @@ export function validateConfig(config: CheckupConfig, configPath: string) {
       `See ${CONFIG_DOCS_URL} for more information on correct config formats.`
     );
   }
+}
+
+export function getConfigTuple<T extends {}>(configValue: ConfigValue<T>): [boolean, T] {
+  let enabled: boolean = true;
+  let value: T = {} as T;
+
+  if (typeof configValue === 'string') {
+    enabled = configValue === 'on';
+  } else if (Array.isArray(configValue)) {
+    let [enabledStr, val] = configValue;
+    enabled = enabledStr === 'on';
+    value = val;
+  }
+
+  return [enabled, value];
 }

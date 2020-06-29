@@ -184,7 +184,19 @@ describe('ember-test-types-task', () => {
         paths: project.filePaths,
         config: {
           tasks: {
-            'ember/ember-test-types': { actions: { 'ratio-application-tests': { threshold: 3 } } },
+            'ember/ember-test-types': [
+              'on',
+              {
+                actions: {
+                  'ratio-application-tests': [
+                    'on',
+                    {
+                      threshold: 3,
+                    },
+                  ],
+                },
+              },
+            ],
           },
         },
       })
