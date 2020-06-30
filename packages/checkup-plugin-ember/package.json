@@ -47,7 +47,7 @@
     "build": "tsc --build",
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "tsc --build && oclif-dev manifest",
-    "test": "jest",
+    "test": "jest --no-cache",
     "version": "git add README.md"
   },
   "types": "lib/index.d.ts",

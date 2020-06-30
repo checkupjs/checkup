@@ -5,6 +5,36 @@ import { ux } from 'cli-ux';
 const wrap = require('wrap-ansi');
 const boxen = require('boxen');
 
+export function calculateSectionBar(
+  segments: { title: string; count: number; color: string }[],
+  total: number,
+  width: number
+) {
+  // We want to normalize the amount provided by the proper ratios.
+  // If the total is less than the width we want to multiply the ratio.
+  // If the total is greater than the width we want to divide the amount vs the ratio
+  const normalizeSegement = function (amount: number) {
+    return Math.ceil(total < width ? amount * (width / total) : amount / (total / width));
+  };
+
+  const completedSegments = segments.map((segment) => {
+    return Object.assign({}, segment, {
+      completed: normalizeSegement(segment.count),
+    });
+  });
+
+  // remove  the segments counts from the total number and then normalize it by the barSegment ratio
+  const incompleteSegments: number = normalizeSegement(
+    total - completedSegments.reduce((prev, curr) => prev + curr.count, 0)
+  );
+
+  // if incompleteSegments is a negative number resulting from overflow we return 0
+  return {
+    completedSegments,
+    incompleteSegments: incompleteSegments > 0 ? incompleteSegments : 0,
+  };
+}
+
 export const ui = Object.assign(ux, {
   box(content: string) {
     process.stdout.write(
@@ -81,21 +111,24 @@ export const ui = Object.assign(ux, {
     segments: { title: string; count: number; color: string }[],
     total: number,
     unit: string = '',
-    maximum: number = 50
+    width: number = 50
   ) {
     const barTick = '■';
-    const barSegment = Math.ceil(total / maximum);
-    const completedSegments = segments.map((segment) => {
-      return Object.assign({}, segment, {
-        completed: Math.ceil(segment.count / barSegment),
-      });
-    });
 
-    const incompleteSegments =
-      maximum - completedSegments.reduce((prev, curr) => prev + curr.completed, 0);
+    const { completedSegments, incompleteSegments } = calculateSectionBar(segments, total, width);
+
     const bar = `${completedSegments
       .map((segment) => chalk.keyword(segment.color)(barTick.repeat(segment.completed)))
       .join('')}${chalk.grey(barTick.repeat(Math.max(0, incompleteSegments)))}`;
+
+    if (incompleteSegments > 0) {
+      completedSegments.push({
+        title: 'unknown',
+        completed: incompleteSegments,
+        count: incompleteSegments,
+        color: 'grey',
+      });
+    }
 
     ui.log(`${bar} ${total}${unit}`);
     ui.log(
