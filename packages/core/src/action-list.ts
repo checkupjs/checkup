@@ -1,5 +1,6 @@
-import { ActionConfig, TaskConfig, ActionConfigValue } from './types/config';
+import { ActionConfig, TaskConfig, ConfigValue } from './types/config';
 import { Action } from './types/tasks';
+import { parseConfigTuple } from './config';
 
 /**
  * @class ActionList
@@ -34,11 +35,11 @@ export default class ActionList {
     return this._defaultActions
       .map((action: Action) => {
         if (this._actionConfig[action.name]) {
-          let configuredAction = this._applyConfigForAction(
+          let [enabled, configuredAction] = this._applyConfigForAction(
             action,
             this._actionConfig[action.name]
           );
-          return configuredAction?.enabled ? configuredAction : undefined;
+          return enabled ? configuredAction : undefined;
         }
 
         if (action.enabled) {
@@ -50,18 +51,14 @@ export default class ActionList {
 
   private _applyConfigForAction(
     action: Action,
-    actionConfig: ActionConfigValue
-  ): Action | undefined {
-    if (actionConfig === 'off') {
-      return;
-    } else if (Array.isArray(actionConfig)) {
-      let [enabled] = actionConfig;
-      if (enabled === 'off') {
-        return;
-      }
-    } else {
-      action.threshold = actionConfig.threshold;
-      return action;
+    actionConfig: ConfigValue<{ threshold: number }>
+  ): [boolean, Action] {
+    let [enabled, value] = parseConfigTuple<{ threshold: number }>(actionConfig);
+
+    if (typeof value.threshold === 'number') {
+      action.threshold = value.threshold;
     }
+
+    return [enabled, action];
   }
 }

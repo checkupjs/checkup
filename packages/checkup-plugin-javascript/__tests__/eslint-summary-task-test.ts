@@ -7,7 +7,7 @@ import {
 } from '../src/tasks/eslint-summary-task';
 import EslintSummaryTaskResult from '../src/results/eslint-summary-task-result';
 import { PackageJson } from 'type-fest';
-import { getPluginName, getShorthandName } from '@checkup/core';
+import { getPluginName } from '@checkup/core';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
@@ -40,12 +40,15 @@ describe('eslint-summary-task', () => {
         paths: project.filePaths,
         config: {
           tasks: {
-            [`${getShorthandName(pluginName)}/eslint-summary`]: {
-              actions: {
-                'num-eslint-errors': { threshold: 0 },
-                'num-eslint-warnings': { threshold: 0 },
+            [`javascript/eslint-summary`]: [
+              'on',
+              {
+                actions: {
+                  'num-eslint-errors': ['on', { threshold: 0 }],
+                  'num-eslint-warnings': ['on', { threshold: 0 }],
+                },
               },
-            },
+            ],
           },
         },
       })

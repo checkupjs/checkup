@@ -2,8 +2,9 @@ import * as debug from 'debug';
 
 import { TaskContext, TaskIdentifier, TaskMetaData } from './types/tasks';
 
-import { TaskConfig } from './types/config';
+import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
+import { parseConfigTuple } from './config';
 
 export default abstract class BaseTask {
   context: TaskContext;
@@ -12,7 +13,7 @@ export default abstract class BaseTask {
 
   #pluginName: string;
   #config!: TaskConfig;
-  #enabled!: string;
+  #enabled!: boolean;
 
   constructor(pluginName: string, context: TaskContext) {
     this.#pluginName = getShorthandName(pluginName);
@@ -32,7 +33,7 @@ export default abstract class BaseTask {
   get enabled() {
     this._parseConfig();
 
-    return this.#enabled === 'on';
+    return this.#enabled;
   }
 
   private get fullyQualifiedTaskName() {
@@ -44,22 +45,14 @@ export default abstract class BaseTask {
       return;
     }
 
-    let config: 'off' | ['off', TaskConfig] | TaskConfig | undefined = this.context.config.tasks[
+    let config: ConfigValue<TaskConfig> | undefined = this.context.config.tasks[
       this.fullyQualifiedTaskName
     ];
 
-    this.#enabled = 'on';
+    let [enabled, taskConfig] = parseConfigTuple<TaskConfig>(config);
 
-    if (typeof config === 'string') {
-      this.#enabled = config;
-    } else if (Array.isArray(config)) {
-      let [enabled, taskConfig] = config;
-
-      this.#enabled = enabled;
-      this.#config = taskConfig;
-    } else {
-      this.#config = config;
-    }
+    this.#enabled = enabled;
+    this.#config = taskConfig;
 
     this.debug('%s enabled: %s', this.constructor.name, this.#enabled);
     this.debug('%s task config: %o', this.constructor.name, this.#config);

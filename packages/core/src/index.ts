@@ -7,7 +7,14 @@ export { getRegisteredParsers, registerParser } from './parsers/registered-parse
 export { createParser as createEslintParser } from './parsers/eslint-parser';
 
 export { loadPlugins } from './loaders/plugin-loader';
-export { readConfig, writeConfig, getConfigPath, mergeConfig, DEFAULT_CONFIG } from './config';
+export {
+  readConfig,
+  writeConfig,
+  getConfigPath,
+  mergeConfig,
+  parseConfigTuple,
+  DEFAULT_CONFIG,
+} from './config';
 
 export { default as CheckupError } from './errors/checkup-error';
 
