@@ -1,3 +1,18 @@
+## v0.2.1 (2020-06-30)
+
+#### :boom: Breaking Change
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `core`
+  * [#526](https://github.com/checkupjs/checkup/pull/526) Adds a specific type for a config value ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember`, `core`
+  * [#524](https://github.com/checkupjs/checkup/pull/524) [tests] add tests and fixes sectionedBar calculations ([@gabrielcsapo](https://github.com/gabrielcsapo))
+
+#### Committers: 2
+- Gabriel Csapo ([@gabrielcsapo](https://github.com/gabrielcsapo))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.2.0 (2020-06-28)
 
 #### :boom: Breaking Change
