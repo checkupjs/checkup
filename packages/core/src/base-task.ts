@@ -4,7 +4,7 @@ import { TaskContext, TaskIdentifier, TaskMetaData } from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
-import { getConfigTuple } from './config';
+import { parseConfigTuple } from './config';
 
 export default abstract class BaseTask {
   context: TaskContext;
@@ -49,7 +49,7 @@ export default abstract class BaseTask {
       this.fullyQualifiedTaskName
     ];
 
-    let [enabled, taskConfig] = getConfigTuple<TaskConfig>(config);
+    let [enabled, taskConfig] = parseConfigTuple<TaskConfig>(config);
 
     this.#enabled = enabled;
     this.#config = taskConfig;

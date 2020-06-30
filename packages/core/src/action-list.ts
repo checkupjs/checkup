@@ -1,6 +1,6 @@
 import { ActionConfig, TaskConfig, ConfigValue } from './types/config';
 import { Action } from './types/tasks';
-import { getConfigTuple } from './config';
+import { parseConfigTuple } from './config';
 
 /**
  * @class ActionList
@@ -53,7 +53,7 @@ export default class ActionList {
     action: Action,
     actionConfig: ConfigValue<{ threshold: number }>
   ): [boolean, Action] {
-    let [enabled, value] = getConfigTuple<{ threshold: number }>(actionConfig);
+    let [enabled, value] = parseConfigTuple<{ threshold: number }>(actionConfig);
 
     if (typeof value.threshold === 'number') {
       action.threshold = value.threshold;
