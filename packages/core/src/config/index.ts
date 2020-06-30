@@ -85,7 +85,7 @@ export function validateConfig(config: CheckupConfig, configPath: string) {
   }
 }
 
-export function getConfigTuple<T extends {}>(configValue: ConfigValue<T>): [boolean, T] {
+export function getConfigTuple<T>(configValue: ConfigValue<T> | undefined): [boolean, T] {
   let enabled: boolean = true;
   let value: T = {} as T;
 

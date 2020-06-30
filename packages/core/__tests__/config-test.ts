@@ -1,4 +1,4 @@
-import { getConfigPath, readConfig, writeConfig } from '../src/config';
+import { getConfigPath, readConfig, writeConfig, getConfigTuple } from '../src/config';
 import { readJsonSync, writeJsonSync } from 'fs-extra';
 
 import { DEFAULT_CONFIG } from '../lib';
@@ -95,6 +95,44 @@ describe('config', () => {
           },
         }
       `);
+    });
+  });
+
+  describe('getConfigTuple', () => {
+    it('returns correct defaults when undefined', () => {
+      let config;
+      let [enabled, value] = getConfigTuple(config);
+
+      expect(enabled).toEqual(true);
+      expect(value).toEqual({});
+    });
+
+    it('returns correct defaults when "on"', () => {
+      let [enabled, value] = getConfigTuple('on');
+
+      expect(enabled).toEqual(true);
+      expect(value).toEqual({});
+    });
+
+    it('returns correct defaults when "off"', () => {
+      let [enabled, value] = getConfigTuple('off');
+
+      expect(enabled).toEqual(false);
+      expect(value).toEqual({});
+    });
+
+    it('returns correct defaults when a tuple and "on"', () => {
+      let [enabled, value] = getConfigTuple(['on', { foo: true }]);
+
+      expect(enabled).toEqual(true);
+      expect(value).toEqual({ foo: true });
+    });
+
+    it('returns correct defaults when a tuple and "off"', () => {
+      let [enabled, value] = getConfigTuple(['off', { foo: true }]);
+
+      expect(enabled).toEqual(false);
+      expect(value).toEqual({ foo: true });
     });
   });
 });
