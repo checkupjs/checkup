@@ -1,4 +1,4 @@
-import { CheckupProject, stdout, getTaskContext, isActionEnabled } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task';
 import OutdatedDependenciesTaskResult from '../src/results/outdated-dependencies-task-result';
@@ -44,21 +44,33 @@ describe('outdated-dependencies-task', () => {
   });
 
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
-    expect(
-      isActionEnabled(taskResult.actionList.enabledActions, 'percentage-major-outdated')
-    ).toEqual(true);
-    expect(
-      isActionEnabled(taskResult.actionList.enabledActions, 'percentage-minor-outdated')
-    ).toEqual(true);
-    expect(isActionEnabled(taskResult.actionList.enabledActions, 'percentage-outdated')).toEqual(
-      true
-    );
-
-    expect(taskResult.actionList.actionMessages).toMatchInlineSnapshot(`
+    expect(taskResult.actions).toHaveLength(3);
+    expect(taskResult.actions).toMatchInlineSnapshot(`
       Array [
-        "50% of your dependencies are major versions behind, this should be at most 5%.",
-        "50% of your dependencies are minor versions behind, this should be at most 5%.",
-        "100% of your dependencies are outdated, this should be at most 20%.",
+        Object {
+          "defaultThreshold": 0.05,
+          "details": "1 major versions outdated",
+          "input": 0.5,
+          "items": Array [],
+          "name": "reduce-outdated-major-dependencies",
+          "summary": "Update outdated major versions",
+        },
+        Object {
+          "defaultThreshold": 0.05,
+          "details": "1 minor versions outdated",
+          "input": 0.5,
+          "items": Array [],
+          "name": "reduce-outdated-minor-dependencies",
+          "summary": "Update outdated minor versions",
+        },
+        Object {
+          "defaultThreshold": 0.2,
+          "details": "100% of versions outdated",
+          "input": 1,
+          "items": Array [],
+          "name": "reduce-outdated-dependencies",
+          "summary": "Update outdated versions",
+        },
       ]
     `);
   });

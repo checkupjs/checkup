@@ -1,7 +1,6 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 import { JsonObject, PackageJson } from 'type-fest';
 
-import ActionList from '../action-list';
 import { CheckupConfig } from './config';
 import { FilePathsArray } from '../utils/file-paths-array';
 import { RunFlags } from './cli';
@@ -31,18 +30,22 @@ export interface Task {
   run: () => Promise<TaskResult>;
 }
 
+export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
+
 export interface Action {
   name: string;
-  value: number;
-  threshold: number;
-  readonly enabled: boolean;
-  readonly message: string;
+  summary: string;
+  details: string;
+  defaultThreshold: number;
+
+  items: ActionItem[];
+  input: number;
 }
 
 export interface TaskResult {
   meta: TaskMetaData;
   data: Record<string, any>;
-  actionList?: ActionList;
+  actions?: Action[];
 
   process(data: Record<string, any>): void;
   toConsole: () => void;

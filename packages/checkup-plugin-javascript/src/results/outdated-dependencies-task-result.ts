@@ -1,9 +1,9 @@
-import { BaseTaskResult, TaskResult, ui, ActionList, decimalToPercent } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, toPercent, ActionsEvaluator, Action } from '@checkup/core';
 
 import { Dependency } from '../tasks/outdated-dependencies-task';
 
 export default class OutdatedDependenciesTaskResult extends BaseTaskResult implements TaskResult {
-  actionList!: ActionList;
+  actions: Action[] = [];
   data!: {
     dependencies: Dependency[];
   };
@@ -11,56 +11,36 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
   process(data: { dependencies: Dependency[] }) {
     this.data = data;
 
-    this.actionList = new ActionList(
-      [
-        {
-          name: 'percentage-major-outdated',
-          threshold: 0.05,
-          value: this.versionTypes.get('major')!.length / this.data.dependencies.length,
-          get enabled() {
-            return this.value > this.threshold;
-          },
-          get message() {
-            return `${decimalToPercent(
-              this.value
-            )} of your dependencies are major versions behind, this should be at most ${decimalToPercent(
-              this.threshold
-            )}.`;
-          },
-        },
-        {
-          name: 'percentage-minor-outdated',
-          threshold: 0.05,
-          value: this.versionTypes.get('minor')!.length / this.data.dependencies.length,
-          get enabled() {
-            return this.value > this.threshold;
-          },
-          get message() {
-            return `${decimalToPercent(
-              this.value
-            )} of your dependencies are minor versions behind, this should be at most ${decimalToPercent(
-              this.threshold
-            )}.`;
-          },
-        },
-        {
-          name: 'percentage-outdated',
-          threshold: 0.2,
-          value: this.outdatedDependencies.length / this.data.dependencies.length,
-          get enabled() {
-            return this.value > this.threshold;
-          },
-          get message() {
-            return `${decimalToPercent(
-              this.value
-            )} of your dependencies are outdated, this should be at most ${decimalToPercent(
-              this.threshold
-            )}.`;
-          },
-        },
-      ],
-      this.config
-    );
+    let actionsEvaluator = new ActionsEvaluator();
+
+    actionsEvaluator.add({
+      name: 'reduce-outdated-major-dependencies',
+      summary: 'Update outdated major versions',
+      details: `${this.versionTypes.get('major')!.length} major versions outdated`,
+      defaultThreshold: 0.05,
+      items: [],
+      input: this.versionTypes.get('major')!.length / this.data.dependencies.length,
+    });
+    actionsEvaluator.add({
+      name: 'reduce-outdated-minor-dependencies',
+      summary: 'Update outdated minor versions',
+      details: `${this.versionTypes.get('minor')!.length} minor versions outdated`,
+      defaultThreshold: 0.05,
+      items: [],
+      input: this.versionTypes.get('minor')!.length / this.data.dependencies.length,
+    });
+    actionsEvaluator.add({
+      name: 'reduce-outdated-dependencies',
+      summary: 'Update outdated versions',
+      details: `${toPercent(
+        this.outdatedDependencies.length / this.data.dependencies.length
+      )} of versions outdated`,
+      defaultThreshold: 0.2,
+      items: [],
+      input: this.outdatedDependencies.length / this.data.dependencies.length,
+    });
+
+    this.actions = actionsEvaluator.evaluate(this.config);
   }
 
   toConsole() {

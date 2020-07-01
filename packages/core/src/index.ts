@@ -1,10 +1,10 @@
 export { default as BaseTask } from './base-task';
 export { default as BaseTaskResult } from './base-task-result';
-export { default as ActionList } from './action-list';
 export { findInFiles } from './searchers/file-searcher';
 
 export { getRegisteredParsers, registerParser } from './parsers/registered-parsers';
 export { createParser as createEslintParser } from './parsers/eslint-parser';
+export { default as ActionsEvaluator } from './actions-evaluator';
 
 export { loadPlugins } from './loaders/plugin-loader';
 export {

@@ -1,7 +1,14 @@
-import { BaseTaskResult, ui, ResultData, TaskResult, ActionList } from '@checkup/core';
+import {
+  BaseTaskResult,
+  ui,
+  ResultData,
+  TaskResult,
+  ActionsEvaluator,
+  Action,
+} from '@checkup/core';
 
 export default class EslintDisableTaskResult extends BaseTaskResult implements TaskResult {
-  actionList!: ActionList;
+  actions: Action[] = [];
 
   data!: {
     esLintDisables: ResultData;
@@ -10,22 +17,19 @@ export default class EslintDisableTaskResult extends BaseTaskResult implements T
   process(data: { esLintDisables: ResultData }) {
     this.data = data;
 
-    this.actionList = new ActionList(
-      [
-        {
-          name: 'num-eslint-disables',
-          threshold: 2,
-          value: this.data.esLintDisables.results.length,
-          get enabled() {
-            return this.value > this.threshold;
-          },
-          get message() {
-            return `There are ${this.value} instances of 'eslint-disable', there should be at most ${this.threshold}.`;
-          },
-        },
-      ],
-      this.config
-    );
+    let actionsEvaluator = new ActionsEvaluator();
+    let eslintDisableUsages = this.data.esLintDisables.results.length;
+
+    actionsEvaluator.add({
+      name: 'reduce-eslint-disable-usages',
+      summary: 'Reduce number of eslint-disable usages',
+      details: `${eslintDisableUsages} usages of template-lint-disable`,
+      defaultThreshold: 2,
+      items: [`Total eslint-disable usages: ${eslintDisableUsages}`],
+      input: eslintDisableUsages,
+    });
+
+    this.actions = actionsEvaluator.evaluate(this.config);
   }
 
   toConsole() {

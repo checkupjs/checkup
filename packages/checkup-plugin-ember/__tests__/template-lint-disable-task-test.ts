@@ -1,10 +1,4 @@
-import {
-  CheckupProject,
-  stdout,
-  getTaskContext,
-  clearFilePaths,
-  isActionEnabled,
-} from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext, clearFilePaths } from '@checkup/test-helpers';
 
 import TemplateLintDisableTask from '../src/tasks/template-lint-disable-task';
 import TemplateLintDisableTaskResult from '../src/results/template-lint-disable-task-result';
@@ -104,15 +98,19 @@ describe('template-lint-disable-task', () => {
     ).run();
     const templateLintDisableTaskResult = <TemplateLintDisableTaskResult>result;
 
-    expect(
-      isActionEnabled(
-        templateLintDisableTaskResult.actionList.enabledActions,
-        'num-template-lint-disables'
-      )
-    ).toEqual(true);
-    expect(templateLintDisableTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`
+    expect(templateLintDisableTaskResult.actions).toHaveLength(1);
+    expect(templateLintDisableTaskResult.actions).toMatchInlineSnapshot(`
       Array [
-        "There are 3 instances of 'template-lint-disable', there should be at most 2.",
+        Object {
+          "defaultThreshold": 2,
+          "details": "3 usages of template-lint-disable",
+          "input": 3,
+          "items": Array [
+            "Total template-lint-disable usages: 3",
+          ],
+          "name": "reduce-template-lint-disable-usages",
+          "summary": "Reduce number of template-lint-disable usages",
+        },
       ]
     `);
   });

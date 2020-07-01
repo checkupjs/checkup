@@ -1,4 +1,11 @@
-import { BaseTaskResult, TaskResult, ui, ESLintReport, ActionList } from '@checkup/core';
+import {
+  BaseTaskResult,
+  TaskResult,
+  ui,
+  ESLintReport,
+  ActionsEvaluator,
+  Action,
+} from '@checkup/core';
 import { Linter } from 'eslint';
 import * as chalk from 'chalk';
 
@@ -15,7 +22,8 @@ interface FormattedESLintReport {
 }
 
 export default class EslintSummaryTaskResult extends BaseTaskResult implements TaskResult {
-  actionList!: ActionList;
+  actions: Action[] = [];
+
   data!: {
     esLintReport: ESLintReport;
     sortedESLintReport: FormattedESLintReport;
@@ -27,33 +35,29 @@ export default class EslintSummaryTaskResult extends BaseTaskResult implements T
       ...data,
     };
 
-    this.actionList = new ActionList(
-      [
-        {
-          name: 'num-eslint-errors',
-          threshold: 20,
-          value: this.data.sortedESLintReport.errorCount,
-          get enabled() {
-            return this.value > this.threshold;
-          },
-          get message() {
-            return `There are ${this.value} eslint errors, there should be at most ${this.threshold}.`;
-          },
-        },
-        {
-          name: 'num-eslint-warnings',
-          threshold: 20,
-          value: this.data.sortedESLintReport.warningCount,
-          get enabled() {
-            return this.value > this.threshold;
-          },
-          get message() {
-            return `There are ${this.value} eslint warnings, there should be at most ${this.threshold}.`;
-          },
-        },
-      ],
-      this.config
-    );
+    let actionsEvaluator = new ActionsEvaluator();
+    let errorCount = this.data.sortedESLintReport.errorCount;
+    let warningCount = this.data.sortedESLintReport.warningCount;
+
+    actionsEvaluator.add({
+      name: 'reduce-eslint-errors',
+      summary: 'Reduce number of eslint errors',
+      details: `${errorCount} total errors`,
+      defaultThreshold: 20,
+      items: [`Total eslint errors: ${errorCount}`],
+      input: errorCount,
+    });
+
+    actionsEvaluator.add({
+      name: 'reduce-eslint-warnings',
+      summary: 'Reduce number of eslint warnings',
+      details: `${warningCount} total warnings`,
+      defaultThreshold: 20,
+      items: [`Total eslint warnings: ${warningCount}`],
+      input: warningCount,
+    });
+
+    this.actions = actionsEvaluator.evaluate(this.config);
   }
 
   toConsole() {

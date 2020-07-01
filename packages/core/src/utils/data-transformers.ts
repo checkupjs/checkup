@@ -31,10 +31,9 @@ export function toTaskItemData(
   };
 }
 
-export function fractionToPercent(numerator: number, denominator: number): string {
-  return `${((numerator / denominator) * 100).toFixed()}%`;
-}
+export function toPercent(numeratorOrValue: number, denominator?: number): string {
+  let value: number =
+    typeof denominator === 'number' ? numeratorOrValue / denominator : numeratorOrValue;
 
-export function decimalToPercent(decimal: number): string {
-  return `${(decimal * 100).toFixed()}%`;
+  return `${(value * 100).toFixed()}%`;
 }

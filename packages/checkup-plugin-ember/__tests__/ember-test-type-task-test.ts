@@ -1,4 +1,4 @@
-import { EmberProject, stdout, getTaskContext, isActionEnabled } from '@checkup/test-helpers';
+import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 
 import EmberTestTypesTask from '../src/tasks/ember-test-types-task';
@@ -204,18 +204,19 @@ describe('ember-test-types-task', () => {
 
     const testTypesTaskResult = <EmberTestTypesTaskResult>result;
 
-    expect(
-      isActionEnabled(testTypesTaskResult.actionList.enabledActions, 'percentage-skipped-tests')
-    ).toEqual(true);
-
-    expect(
-      isActionEnabled(testTypesTaskResult.actionList.enabledActions, 'ratio-application-tests')
-    ).toEqual(true);
-
-    expect(testTypesTaskResult.actionList.actionMessages).toMatchInlineSnapshot(`
+    expect(testTypesTaskResult.actions).toHaveLength(1);
+    expect(testTypesTaskResult.actions).toMatchInlineSnapshot(`
       Array [
-        "67% of your tests are skipped, this value should be below 1%",
-        "You have too many application tests. The number of unit tests and rendering tests combined should be at least 3x greater than the number of application tests.",
+        Object {
+          "defaultThreshold": 0.01,
+          "details": "67% of tests are skipped",
+          "input": 0.6666666666666666,
+          "items": Array [
+            "Total skipped tests: 8",
+          ],
+          "name": "reduce-skipped-tests",
+          "summary": "Reduce number of skipped tests",
+        },
       ]
     `);
   });
