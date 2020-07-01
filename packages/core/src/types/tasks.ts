@@ -1,7 +1,6 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 import { JsonObject, PackageJson } from 'type-fest';
 
-import ActionList from '../action-list';
 import { CheckupConfig } from './config';
 import { FilePathsArray } from '../utils/file-paths-array';
 import { RunFlags } from './cli';
@@ -55,7 +54,6 @@ export interface TaskResult {
   meta: TaskMetaData;
   data: Record<string, any>;
   actions?: Action2[];
-  actionList?: ActionList;
 
   process(data: Record<string, any>): void;
   toConsole: () => void;

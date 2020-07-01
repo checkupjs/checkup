@@ -1,11 +1,9 @@
 import { MetaTaskResult, OutputPosition } from './types';
-import { OutputFormat, RunFlags, TaskError, TaskResult, ui } from '@checkup/core';
+import { OutputFormat, RunFlags, TaskError, TaskResult, ui, Action2 } from '@checkup/core';
 import { dirname, isAbsolute, resolve } from 'path';
 import { existsSync, mkdirpSync, writeJsonSync } from 'fs-extra';
 
 import { startCase } from 'lodash';
-
-const chalk = require('chalk');
 
 const date = require('date-and-time');
 
@@ -16,13 +14,13 @@ export function _transformJsonResults(
   metaTaskResults: MetaTaskResult[],
   pluginTaskResults: TaskResult[],
   errors: TaskError[],
-  actionItems: string[]
+  actions: Action2[]
 ) {
   let transformedResult = {
     meta: Object.assign({}, ...metaTaskResults.map((result) => result.toJson())),
     results: pluginTaskResults.map((result) => result.toJson()),
     errors,
-    actionItems,
+    actions,
   };
 
   return transformedResult;
@@ -52,25 +50,22 @@ export function getReporter(
   pluginTaskResults: TaskResult[],
   errors: TaskError[]
 ) {
-  let actionItems: string[] = getActionItems(pluginTaskResults);
+  let actions = pluginTaskResults
+    .filter((taskResult) => taskResult.actions)
+    .flatMap((taskResult) => taskResult.actions) as Action2[];
 
   switch (flags.format) {
     case OutputFormat.stdout:
       return async () => {
         renderMetaTaskResults(metaTaskResults, OutputPosition.Header);
         renderPluginTaskResults(pluginTaskResults);
-        renderActionItems(actionItems);
+        renderActionItems(actions);
         renderMetaTaskResults(metaTaskResults, OutputPosition.Footer);
         renderErrors(errors);
       };
     case OutputFormat.json:
       return async () => {
-        let resultJson = _transformJsonResults(
-          metaTaskResults,
-          pluginTaskResults,
-          errors,
-          actionItems
-        );
+        let resultJson = _transformJsonResults(metaTaskResults, pluginTaskResults, errors, actions);
 
         if (flags.outputFile) {
           let outputPath = getOutputPath(flags.outputFile, flags.cwd);
@@ -87,18 +82,18 @@ export function getReporter(
   }
 }
 
-function getActionItems(pluginTaskResults: TaskResult[]): string[] {
-  return pluginTaskResults
-    .filter((taskResult) => taskResult.actionList?.isActionable)
-    .flatMap((actionableTask) => actionableTask.actionList?.actionMessages)
-    .filter(Boolean) as string[];
-}
+function renderActionItems(actions: Action2[]): void {
+  if (actions.length > 0) {
+    let tabularActions = actions.map((action) => {
+      return {
+        summary: action.summary,
+        details: action.details,
+      };
+    });
 
-function renderActionItems(actionItems: string[]): void {
-  if (actionItems.length > 0) {
-    ui.box(
-      `${chalk.bold(chalk.underline('Action Items:'))} \n \n * ${actionItems.join('\n\n * ')}`
-    );
+    ui.categoryHeader('Actions');
+    ui.table(tabularActions, { summary: { header: 'Summary' }, details: { header: 'Details' } });
+    ui.blankLine();
   }
 }
 

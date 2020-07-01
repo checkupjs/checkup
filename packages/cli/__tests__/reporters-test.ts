@@ -125,13 +125,31 @@ describe('_transformJsonResults', () => {
       metaTaskResults,
       pluginTaskResults,
       [{ error: 'Something is broken...', taskName: 'mock-meta-task-6' }],
-      ['Fix your stuff!']
+      [
+        {
+          defaultThreshold: 20,
+          details: '1 total errors',
+          input: 1,
+          items: ['Total eslint errors: 1'],
+          name: 'reduce-eslint-errors',
+          summary: 'Reduce number of eslint errors',
+        },
+      ]
     );
 
     expect(transformed).toMatchInlineSnapshot(`
       Object {
-        "actionItems": Array [
-          "Fix your stuff!",
+        "actions": Array [
+          Object {
+            "defaultThreshold": 20,
+            "details": "1 total errors",
+            "input": 1,
+            "items": Array [
+              "Total eslint errors: 1",
+            ],
+            "name": "reduce-eslint-errors",
+            "summary": "Reduce number of eslint errors",
+          },
         ],
         "errors": Array [
           Object {

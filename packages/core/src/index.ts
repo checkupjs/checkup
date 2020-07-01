@@ -1,6 +1,5 @@
 export { default as BaseTask } from './base-task';
 export { default as BaseTaskResult } from './base-task-result';
-export { default as ActionList } from './action-list';
 export { findInFiles } from './searchers/file-searcher';
 
 export { getRegisteredParsers, registerParser } from './parsers/registered-parsers';
