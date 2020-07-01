@@ -47,9 +47,30 @@ describe('outdated-dependencies-task', () => {
     expect(taskResult.actions).toHaveLength(3);
     expect(taskResult.actions).toMatchInlineSnapshot(`
       Array [
-        "50% of your dependencies are major versions behind, this should be at most 5%.",
-        "50% of your dependencies are minor versions behind, this should be at most 5%.",
-        "100% of your dependencies are outdated, this should be at most 20%.",
+        Object {
+          "defaultThreshold": 0.05,
+          "details": "1 major versions outdated",
+          "input": 0.5,
+          "items": Array [],
+          "name": "reduce-outdated-major-dependencies",
+          "summary": "Update outdated major versions",
+        },
+        Object {
+          "defaultThreshold": 0.05,
+          "details": "1 minor versions outdated",
+          "input": 0.5,
+          "items": Array [],
+          "name": "reduce-outdated-minor-dependencies",
+          "summary": "Update outdated minor versions",
+        },
+        Object {
+          "defaultThreshold": 0.2,
+          "details": "100% of versions outdated",
+          "input": 1,
+          "items": Array [],
+          "name": "reduce-outdated-dependencies",
+          "summary": "Update outdated versions",
+        },
       ]
     `);
   });

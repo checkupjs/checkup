@@ -29,7 +29,9 @@ describe('actions-evaluator', () => {
     });
 
     let evaluatedActions = actionsEvaluator.evaluate({
-      foo: 'off',
+      actions: {
+        foo: 'off',
+      },
     });
 
     expect(evaluatedActions).toHaveLength(0);
@@ -48,7 +50,9 @@ describe('actions-evaluator', () => {
     });
 
     let evaluatedActions = actionsEvaluator.evaluate({
-      foo: ['off', { threshold: 10 }],
+      actions: {
+        foo: ['off', { threshold: 10 }],
+      },
     });
 
     expect(evaluatedActions).toHaveLength(0);
@@ -67,7 +71,9 @@ describe('actions-evaluator', () => {
     });
 
     let evaluatedActions = actionsEvaluator.evaluate({
-      foo: ['on', { threshold: 10 }],
+      actions: {
+        foo: ['on', { threshold: 10 }],
+      },
     });
 
     expect(evaluatedActions).toHaveLength(0);
@@ -86,7 +92,9 @@ describe('actions-evaluator', () => {
     });
 
     let evaluatedActions = actionsEvaluator.evaluate({
-      foo: 'on',
+      actions: {
+        foo: 'on',
+      },
     });
 
     expect(evaluatedActions).toHaveLength(1);
@@ -105,7 +113,9 @@ describe('actions-evaluator', () => {
     });
 
     let evaluatedActions = actionsEvaluator.evaluate({
-      foo: ['on', { threshold: 10 }],
+      actions: {
+        foo: ['on', { threshold: 10 }],
+      },
     });
 
     expect(evaluatedActions).toHaveLength(1);
