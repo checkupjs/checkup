@@ -1,4 +1,4 @@
-import { TaskConfig } from './types/config';
+import { TaskConfig, ActionConfig } from './types/config';
 import { parseConfigTuple } from './config';
 import { Action2 } from './types/tasks';
 
@@ -10,8 +10,10 @@ export default class ActionsEvaluator {
   }
 
   evaluate(config: TaskConfig): Action2[] {
+    let actionConfig: ActionConfig = config.actions ?? {};
+
     return this.actions.filter((action: Action2) => {
-      let [enabled, value] = parseConfigTuple<{ threshold: number }>(config[action.name]);
+      let [enabled, value] = parseConfigTuple<{ threshold: number }>(actionConfig[action.name]);
       let threshold =
         value && typeof value.threshold === 'number' ? value.threshold : action.defaultThreshold;
 

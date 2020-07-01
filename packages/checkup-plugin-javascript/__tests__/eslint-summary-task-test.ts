@@ -1,4 +1,4 @@
-import { CheckupProject, stdout, getTaskContext, isActionEnabled } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { ESLintReport } from '@checkup/core';
 import {
   EslintSummaryTask,
@@ -40,12 +40,12 @@ describe('eslint-summary-task', () => {
         paths: project.filePaths,
         config: {
           tasks: {
-            [`javascript/eslint-summary`]: [
+            'javascript/eslint-summary': [
               'on',
               {
                 actions: {
-                  'num-eslint-errors': ['on', { threshold: 0 }],
-                  'num-eslint-warnings': ['on', { threshold: 0 }],
+                  'reduce-eslint-errors': ['on', { threshold: 0 }],
+                  'reduce-eslint-warnings': ['on', { threshold: 0 }],
                 },
               },
             ],
@@ -88,17 +88,29 @@ describe('eslint-summary-task', () => {
   });
 
   it('returns correct action items if there are too many warnings or errors', async () => {
-    expect(isActionEnabled(taskResult.actionList.enabledActions, 'num-eslint-errors')).toEqual(
-      true
-    );
-    expect(isActionEnabled(taskResult.actionList.enabledActions, 'num-eslint-warnings')).toEqual(
-      true
-    );
-
-    expect(taskResult.actionList.actionMessages).toMatchInlineSnapshot(`
+    expect(taskResult.actions).toHaveLength(2);
+    expect(taskResult.actions).toMatchInlineSnapshot(`
       Array [
-        "There are 1 eslint errors, there should be at most 0.",
-        "There are 1 eslint warnings, there should be at most 0.",
+        Object {
+          "defaultThreshold": 20,
+          "details": "1 total errors",
+          "input": 1,
+          "items": Array [
+            "Total eslint errors: 1",
+          ],
+          "name": "reduce-eslint-errors",
+          "summary": "Reduce number of eslint errors",
+        },
+        Object {
+          "defaultThreshold": 20,
+          "details": "1 total warnings",
+          "input": 1,
+          "items": Array [
+            "Total eslint warnings: 1",
+          ],
+          "name": "reduce-eslint-warnings",
+          "summary": "Reduce number of eslint warnings",
+        },
       ]
     `);
   });

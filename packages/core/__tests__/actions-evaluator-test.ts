@@ -25,13 +25,11 @@ describe('actions-evaluator', () => {
       details: '`${count} foos too many`',
       defaultThreshold: 10,
       items: [],
-      input: [].length,
+      input: 11,
     });
 
     let evaluatedActions = actionsEvaluator.evaluate({
-      actions: {
-        foo: 'off',
-      },
+      foo: 'off',
     });
 
     expect(evaluatedActions).toHaveLength(0);

@@ -1,4 +1,4 @@
-import { CheckupProject, stdout, getTaskContext, isActionEnabled } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task';
 import OutdatedDependenciesTaskResult from '../src/results/outdated-dependencies-task-result';
@@ -44,17 +44,8 @@ describe('outdated-dependencies-task', () => {
   });
 
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
-    expect(
-      isActionEnabled(taskResult.actionList.enabledActions, 'percentage-major-outdated')
-    ).toEqual(true);
-    expect(
-      isActionEnabled(taskResult.actionList.enabledActions, 'percentage-minor-outdated')
-    ).toEqual(true);
-    expect(isActionEnabled(taskResult.actionList.enabledActions, 'percentage-outdated')).toEqual(
-      true
-    );
-
-    expect(taskResult.actionList.actionMessages).toMatchInlineSnapshot(`
+    expect(taskResult.actions).toHaveLength(3);
+    expect(taskResult.actions).toMatchInlineSnapshot(`
       Array [
         "50% of your dependencies are major versions behind, this should be at most 5%.",
         "50% of your dependencies are minor versions behind, this should be at most 5%.",
