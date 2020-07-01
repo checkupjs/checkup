@@ -1,5 +1,5 @@
 import { MetaTaskResult, OutputPosition } from './types';
-import { OutputFormat, RunFlags, TaskError, TaskResult, ui, Action2 } from '@checkup/core';
+import { OutputFormat, RunFlags, TaskError, TaskResult, ui, Action } from '@checkup/core';
 import { dirname, isAbsolute, resolve } from 'path';
 import { existsSync, mkdirpSync, writeJsonSync } from 'fs-extra';
 
@@ -14,7 +14,7 @@ export function _transformJsonResults(
   metaTaskResults: MetaTaskResult[],
   pluginTaskResults: TaskResult[],
   errors: TaskError[],
-  actions: Action2[]
+  actions: Action[]
 ) {
   let transformedResult = {
     meta: Object.assign({}, ...metaTaskResults.map((result) => result.toJson())),
@@ -52,7 +52,7 @@ export function getReporter(
 ) {
   let actions = pluginTaskResults
     .filter((taskResult) => taskResult.actions)
-    .flatMap((taskResult) => taskResult.actions) as Action2[];
+    .flatMap((taskResult) => taskResult.actions) as Action[];
 
   switch (flags.format) {
     case OutputFormat.stdout:
@@ -82,7 +82,7 @@ export function getReporter(
   }
 }
 
-function renderActionItems(actions: Action2[]): void {
+function renderActionItems(actions: Action[]): void {
   if (actions.length > 0) {
     let tabularActions = actions.map((action) => {
       return {

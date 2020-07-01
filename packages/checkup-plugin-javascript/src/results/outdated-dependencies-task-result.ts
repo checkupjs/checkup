@@ -1,16 +1,9 @@
-import {
-  BaseTaskResult,
-  TaskResult,
-  ui,
-  toPercent,
-  ActionsEvaluator,
-  Action2,
-} from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, toPercent, ActionsEvaluator, Action } from '@checkup/core';
 
 import { Dependency } from '../tasks/outdated-dependencies-task';
 
 export default class OutdatedDependenciesTaskResult extends BaseTaskResult implements TaskResult {
-  actions: Action2[] = [];
+  actions: Action[] = [];
   data!: {
     dependencies: Dependency[];
   };

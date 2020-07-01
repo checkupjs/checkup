@@ -4,11 +4,11 @@ import {
   TaskResult,
   ui,
   ActionsEvaluator,
-  Action2,
+  Action,
 } from '@checkup/core';
 
 export default class TemplateLintDisableTaskResult extends BaseTaskResult implements TaskResult {
-  actions: Action2[] = [];
+  actions: Action[] = [];
 
   data!: {
     templateLintDisables: ResultData;

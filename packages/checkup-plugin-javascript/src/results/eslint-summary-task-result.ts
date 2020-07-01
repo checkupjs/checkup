@@ -4,7 +4,7 @@ import {
   ui,
   ESLintReport,
   ActionsEvaluator,
-  Action2,
+  Action,
 } from '@checkup/core';
 import { Linter } from 'eslint';
 import * as chalk from 'chalk';
@@ -22,7 +22,7 @@ interface FormattedESLintReport {
 }
 
 export default class EslintSummaryTaskResult extends BaseTaskResult implements TaskResult {
-  actions: Action2[] = [];
+  actions: Action[] = [];
 
   data!: {
     esLintReport: ESLintReport;

@@ -4,14 +4,14 @@ import {
   ui,
   ESLintReport,
   ActionsEvaluator,
-  Action2,
+  Action,
   toPercent,
 } from '@checkup/core';
 import { TestTypeInfo } from '../types';
 import { transformESLintReport } from '../utils/transformers';
 
 export default class EmberTestTypesTaskResult extends BaseTaskResult implements TaskResult {
-  actions: Action2[] = [];
+  actions: Action[] = [];
 
   data!: {
     testTypes: TestTypeInfo[];

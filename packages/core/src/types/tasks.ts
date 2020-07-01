@@ -32,7 +32,7 @@ export interface Task {
 
 export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
 
-export interface Action2 {
+export interface Action {
   name: string;
   summary: string;
   details: string;
@@ -42,18 +42,10 @@ export interface Action2 {
   input: number;
 }
 
-export interface Action {
-  name: string;
-  value: number;
-  threshold: number;
-  readonly enabled: boolean;
-  readonly message: string;
-}
-
 export interface TaskResult {
   meta: TaskMetaData;
   data: Record<string, any>;
-  actions?: Action2[];
+  actions?: Action[];
 
   process(data: Record<string, any>): void;
   toConsole: () => void;

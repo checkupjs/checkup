@@ -4,11 +4,11 @@ import {
   ResultData,
   TaskResult,
   ActionsEvaluator,
-  Action2,
+  Action,
 } from '@checkup/core';
 
 export default class EslintDisableTaskResult extends BaseTaskResult implements TaskResult {
-  actions: Action2[] = [];
+  actions: Action[] = [];
 
   data!: {
     esLintDisables: ResultData;
