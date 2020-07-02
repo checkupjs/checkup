@@ -1,3 +1,18 @@
+## v0.2.2 (2020-07-02)
+
+#### :rocket: Enhancement
+* `core`
+  * [#532](https://github.com/checkupjs/checkup/pull/532) [enhancement] use Number.prototype.toLocaleString() for bar and sectionedBar ([@gabrielcsapo](https://github.com/gabrielcsapo))
+
+#### :house: Internal
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#529](https://github.com/checkupjs/checkup/pull/529) Simplifying actions into a more declarative API ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Gabriel Csapo ([@gabrielcsapo](https://github.com/gabrielcsapo))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.2.1 (2020-06-30)
 
 #### :boom: Breaking Change
