@@ -103,7 +103,7 @@ export const ui = Object.assign(ux, {
     )}`;
 
     ui.log(title);
-    ui.log(`${bar} ${complete}${unit}`);
+    ui.log(`${bar} ${complete.toLocaleString()}${unit}`);
     ui.blankLine();
   },
 
@@ -130,12 +130,14 @@ export const ui = Object.assign(ux, {
       });
     }
 
-    ui.log(`${bar} ${total}${unit}`);
+    ui.log(`${bar} ${total.toLocaleString()}${unit}`);
     ui.log(
       `${completedSegments
         .map(
           (segment) =>
-            `${chalk.keyword(segment.color)(barTick)} ${segment.title} (${segment.count})  `
+            `${chalk.keyword(segment.color)(barTick)} ${
+              segment.title
+            } (${segment.count.toLocaleString()})  `
         )
         .join('')}`
     );
