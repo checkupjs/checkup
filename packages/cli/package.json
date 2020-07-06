@@ -10,7 +10,7 @@
   "dependencies": {
     "@babel/parser": "^7.10.2",
     "@babel/traverse": "^7.10.4",
-    "@babel/types": "7.10.3",
+    "@babel/types": "7.10.4",
     "@checkup/core": "0.2.2",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
