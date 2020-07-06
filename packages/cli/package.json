@@ -36,7 +36,7 @@
     "tslib": "^2",
     "wrap-ansi": "^7.0.0",
     "yeoman-environment": "^2.10.3",
-    "yeoman-generator": "^4.10.1"
+    "yeoman-generator": "^4.11.0"
   },
   "devDependencies": {
     "@checkup/test-helpers": "0.2.2",
