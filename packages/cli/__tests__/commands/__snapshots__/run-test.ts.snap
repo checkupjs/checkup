@@ -16,7 +16,7 @@ json        175         N/A
 
 
 checkup v0.0.0
-config da25c78e31bb71ef06c3641e8846f64e
+config 988dab0635e80290c915a8729decff96
 
 "
 `;
@@ -37,7 +37,7 @@ json        175         N/A
 
 
 checkup v0.0.0
-config da25c78e31bb71ef06c3641e8846f64e
+config 988dab0635e80290c915a8729decff96
 
 "
 `;
@@ -59,7 +59,7 @@ json        175         N/A
 
 
 checkup v0.0.0
-config 3720546166a5955def89f6bf69895976
+config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -79,7 +79,7 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
       \\"analyzedFilesCount\\": 6
     },
     \\"checkup\\": {
-      \\"configHash\\": \\"3720546166a5955def89f6bf69895976\\",
+      \\"configHash\\": \\"395b15f7dea0dee193db593e1c6cfb5b\\",
       \\"version\\": \\"0.0.0\\"
     }
   },
@@ -175,7 +175,7 @@ js          1           1
 
 
 checkup v0.0.0
-config 3720546166a5955def89f6bf69895976
+config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -197,7 +197,7 @@ json        175         N/A
 
 
 checkup v0.0.0
-config 3720546166a5955def89f6bf69895976
+config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -219,7 +219,7 @@ json        175         N/A
 
 
 checkup v0.0.0
-config 3720546166a5955def89f6bf69895976
+config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -239,7 +239,7 @@ json        175         N/A
 
 
 checkup v0.0.0
-config 3720546166a5955def89f6bf69895976
+config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -260,7 +260,7 @@ json        175         N/A
 
 
 checkup v0.0.0
-config 3720546166a5955def89f6bf69895976
+config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -281,7 +281,7 @@ json        175         N/A
 
 
 checkup v0.0.0
-config da25c78e31bb71ef06c3641e8846f64e
+config 988dab0635e80290c915a8729decff96
 
 "
 `;
@@ -303,7 +303,7 @@ json        175         N/A
 
 
 checkup v0.0.0
-config 3720546166a5955def89f6bf69895976
+config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;

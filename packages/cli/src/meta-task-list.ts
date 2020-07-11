@@ -35,11 +35,15 @@ export default class MetaTaskList {
       throw new Error(`The ${taskName} task was not found`);
     }
 
+    this.debug('start %s run', task.meta.taskName);
+
     try {
       result = await task.run();
     } catch (error) {
       this.addError(task.meta.taskName, error.message);
     }
+
+    this.debug('%s run done', task.meta.taskName);
 
     return [result, this._errors];
   }
@@ -47,7 +51,7 @@ export default class MetaTaskList {
   async runTasks(): Promise<[MetaTaskResult[], TaskError[]]> {
     let results = await this.eachTask(async (task: MetaTask) => {
       let result;
-      this.debug('start %s run', task.constructor.name);
+      this.debug('start %s run', task.meta.taskName);
 
       try {
         result = await task.run();
@@ -55,7 +59,7 @@ export default class MetaTaskList {
         this.addError(task.meta.taskName, error.message);
       }
 
-      this.debug('%s run done', task.constructor.name);
+      this.debug('%s run done', task.meta.taskName);
       return result;
     });
 

@@ -78,11 +78,15 @@ export default class TaskList {
       throw new Error(`The ${taskName} task was not found`);
     }
 
+    this.debug('start %s run', task.fullyQualifiedTaskName);
+
     try {
       result = await task.run();
     } catch (error) {
       this.addError(task.meta.taskName, error.message);
     }
+
+    this.debug('%s run done', task.fullyQualifiedTaskName);
 
     return [result, this._errors];
   }
@@ -97,7 +101,7 @@ export default class TaskList {
   async runTasks(): Promise<[TaskResult[], TaskError[]]> {
     let results = await this.eachTask(async (task: Task) => {
       let result;
-      this.debug('start %s run', task.constructor.name);
+      this.debug('start %s run', task.fullyQualifiedTaskName);
 
       try {
         result = await task.run();
@@ -105,7 +109,7 @@ export default class TaskList {
         this.addError(task.meta.taskName, error.message);
       }
 
-      this.debug('%s run done', task.constructor.name);
+      this.debug('%s run done', task.fullyQualifiedTaskName);
       return result;
     });
 

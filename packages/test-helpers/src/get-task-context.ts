@@ -28,6 +28,8 @@ const DEFAULT_FLAGS: RunFlags = {
 };
 
 const DEFAULT_CONFIG: CheckupConfig = {
+  $schema:
+    'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json',
   excludePaths: [],
   plugins: [],
   tasks: {},

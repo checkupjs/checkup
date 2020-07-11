@@ -33,7 +33,7 @@ describe('checkup-meta-task', () => {
 
       expect(stdout()).toMatchInlineSnapshot(`
         "checkup v0.0.0
-        config 3720546166a5955def89f6bf69895976
+        config 395b15f7dea0dee193db593e1c6cfb5b
 
         "
       `);
@@ -51,7 +51,7 @@ describe('checkup-meta-task', () => {
       expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
           "checkup": Object {
-            "configHash": "3720546166a5955def89f6bf69895976",
+            "configHash": "395b15f7dea0dee193db593e1c6cfb5b",
             "version": "0.0.0",
           },
         }
@@ -74,7 +74,7 @@ describe('checkup-meta-task', () => {
 
       expect(stdout()).toMatchInlineSnapshot(`
         "checkup v0.0.0
-        config 808e6414226ddef62caa9eba3755c3aa
+        config 1ba2bd62ba89147967dc57decae6b129
 
         "
       `);
@@ -95,7 +95,7 @@ describe('checkup-meta-task', () => {
       expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
           "checkup": Object {
-            "configHash": "808e6414226ddef62caa9eba3755c3aa",
+            "configHash": "1ba2bd62ba89147967dc57decae6b129",
             "version": "0.0.0",
           },
         }
