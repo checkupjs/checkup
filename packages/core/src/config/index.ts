@@ -15,6 +15,8 @@ export const CONFIG_DOCS_URL =
   'https://docs.checkupjs.com/quickstart/usage#1-generate-a-configuration-file';
 
 export const DEFAULT_CONFIG: CheckupConfig = {
+  $schema:
+    'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json',
   excludePaths: [],
   plugins: [],
   tasks: {},
@@ -38,7 +40,7 @@ export function readConfig(configPath: string) {
     );
   }
 
-  debug(`Found config %o`, config);
+  debug(`Found config %O`, config);
 
   config.plugins.forEach((pluginName, index, arr) => {
     arr[index] = normalizePackageName(pluginName);

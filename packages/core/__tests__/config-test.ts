@@ -49,6 +49,95 @@ describe('config', () => {
 
       expect(config).toEqual(DEFAULT_CONFIG);
     });
+
+    it('throws if config with invalid task config string value set invalid string', () => {
+      let configPath = writeConfig(tmp, {
+        plugins: ['ember'],
+        tasks: {
+          //@ts-ignore
+          'foo/bar': 'blarg',
+        },
+      });
+
+      expect(() => {
+        readConfig(configPath);
+      }).toThrow(`Config in ${configPath} is invalid.`);
+    });
+
+    it('can read a valid config with valid task config string value set to "on"', () => {
+      let configPath = writeConfig(tmp, {
+        plugins: ['ember'],
+        tasks: {
+          'foo/bar': 'on',
+        },
+      });
+
+      let config = readConfig(configPath);
+
+      expect(config).toMatchInlineSnapshot(`
+        Object {
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+          "excludePaths": Array [],
+          "plugins": Array [
+            "checkup-plugin-ember",
+          ],
+          "tasks": Object {
+            "foo/bar": "on",
+          },
+        }
+      `);
+    });
+
+    it('can read a valid config with valid task config string value set to "off"', () => {
+      let configPath = writeConfig(tmp, {
+        plugins: ['ember'],
+        tasks: {
+          'foo/bar': 'off',
+        },
+      });
+
+      let config = readConfig(configPath);
+
+      expect(config).toMatchInlineSnapshot(`
+        Object {
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+          "excludePaths": Array [],
+          "plugins": Array [
+            "checkup-plugin-ember",
+          ],
+          "tasks": Object {
+            "foo/bar": "off",
+          },
+        }
+      `);
+    });
+
+    it('can read a valid config with valid task config tuple value set to ["on", {}]', () => {
+      let configPath = writeConfig(tmp, {
+        plugins: ['ember'],
+        tasks: {
+          'foo/bar': ['on', {}],
+        },
+      });
+
+      let config = readConfig(configPath);
+
+      expect(config).toMatchInlineSnapshot(`
+        Object {
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+          "excludePaths": Array [],
+          "plugins": Array [
+            "checkup-plugin-ember",
+          ],
+          "tasks": Object {
+            "foo/bar": Array [
+              "on",
+              Object {},
+            ],
+          },
+        }
+      `);
+    });
   });
 
   describe('writeConfig', () => {
@@ -69,6 +158,7 @@ describe('config', () => {
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
         Object {
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
           "excludePaths": Array [],
           "plugins": Array [],
           "tasks": Object {},
@@ -86,6 +176,7 @@ describe('config', () => {
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
         Object {
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
           "excludePaths": Array [],
           "plugins": Array [
             "ember",

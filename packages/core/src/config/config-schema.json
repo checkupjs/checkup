@@ -3,12 +3,20 @@
   "definitions": {
     "taskConfig": {
       "type": "object",
-      "propertyNames": {
-        "pattern": "[^/]*/?[A-z]*"
+      "patternProperties": {
+        "^[a-zA-Z0-9-_]*/?[a-zA-Z0-9-_]*$": {
+          "oneOf": [{ "type": "string", "enum": ["on", "off"] }, { "type": "array" }]
+        }
       }
     }
   },
   "properties": {
+    "excludePaths": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
     "plugins": {
       "items": {
         "type": "string"
@@ -17,12 +25,6 @@
     },
     "tasks": {
       "$ref": "#/definitions/taskConfig"
-    },
-    "excludePaths": {
-      "items": {
-        "type": "string"
-      },
-      "type": "array"
     }
   },
   "type": "object",

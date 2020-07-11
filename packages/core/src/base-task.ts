@@ -20,8 +20,6 @@ export default abstract class BaseTask {
     this.context = context;
 
     this.debug = debug('checkup:task');
-
-    this.debug('%s created', this.constructor.name);
   }
 
   get config() {
@@ -36,7 +34,7 @@ export default abstract class BaseTask {
     return this.#enabled;
   }
 
-  private get fullyQualifiedTaskName() {
+  get fullyQualifiedTaskName() {
     return `${this.#pluginName}/${this.meta.taskName}`;
   }
 
@@ -54,7 +52,7 @@ export default abstract class BaseTask {
     this.#enabled = enabled;
     this.#config = taskConfig;
 
-    this.debug('%s enabled: %s', this.constructor.name, this.#enabled);
-    this.debug('%s task config: %o', this.constructor.name, this.#config);
+    this.debug('%s enabled: %s', this.fullyQualifiedTaskName, this.#enabled);
+    this.debug('%s task config: %O', this.fullyQualifiedTaskName, this.#config);
   }
 }

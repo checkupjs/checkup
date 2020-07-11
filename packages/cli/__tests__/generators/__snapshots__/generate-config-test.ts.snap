@@ -2,6 +2,7 @@
 
 exports[`config-init-generator should write a config 1`] = `
 "{
+  \\"$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json\\",
   \\"excludePaths\\": [],
   \\"plugins\\": [],
   \\"tasks\\": {}
@@ -11,6 +12,7 @@ exports[`config-init-generator should write a config 1`] = `
 
 exports[`config-init-generator should write a config in custom path 1`] = `
 "{
+  \\"$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json\\",
   \\"excludePaths\\": [],
   \\"plugins\\": [],
   \\"tasks\\": {}
