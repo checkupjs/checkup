@@ -9,6 +9,7 @@
             { "type": "string", "enum": ["on", "off"] },
             {
               "type": "array",
+              "minItems": 2,
               "items": [
                 {
                   "type": "string",
@@ -17,7 +18,8 @@
                 {
                   "type": "object"
                 }
-              ]
+              ],
+              "additionalItems": false
             }
           ]
         }
