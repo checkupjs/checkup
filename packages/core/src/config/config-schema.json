@@ -9,8 +9,6 @@
             { "type": "string", "enum": ["on", "off"] },
             {
               "type": "array",
-              "minItems": 2,
-              "maxItems": 2,
               "items": [
                 {
                   "type": "string",
