@@ -1,3 +1,13 @@
+## v0.2.3 (2020-07-16)
+
+#### :rocket: Enhancement
+* `cli`, `core`, `test-helpers`
+  * [#551](https://github.com/checkupjs/checkup/pull/551) Enhances config schema to correctly enforce task config ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.2.2 (2020-07-02)
 
 #### :rocket: Enhancement
