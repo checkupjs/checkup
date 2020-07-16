@@ -6,5 +6,5 @@
     "types": ["chai", "jest", "node"],
     "resolveJsonModule": true
   },
-  "include": ["./src", "./src/config/config-schema.json"]
+  "include": ["./src", "./src/schemas/config-schema.json"]
 }

@@ -7,6 +7,7 @@ import {
 } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
+import { CONFIG_SCHEMA_URL } from '@checkup/core';
 
 type TaskContextArgs = {
   cliArguments: string[];
@@ -28,8 +29,7 @@ const DEFAULT_FLAGS: RunFlags = {
 };
 
 const DEFAULT_CONFIG: CheckupConfig = {
-  $schema:
-    'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json',
+  $schema: CONFIG_SCHEMA_URL,
   excludePaths: [],
   plugins: [],
   tasks: {},

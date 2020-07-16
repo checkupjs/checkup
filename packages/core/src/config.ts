@@ -3,20 +3,22 @@ import * as Ajv from 'ajv';
 import { existsSync, readJsonSync, writeJsonSync } from 'fs-extra';
 import { join, resolve } from 'path';
 
-import { CheckupConfig, ConfigValue } from '../types/config';
-import CheckupError from '../errors/checkup-error';
+import { CheckupConfig, ConfigValue } from './types/config';
+import CheckupError from './errors/checkup-error';
 import { white } from 'chalk';
-import { normalizePackageName } from '../utils/plugin-name';
+import { normalizePackageName } from './utils/plugin-name';
 
 const debug = require('debug')('checkup:config');
-const schema = require('./config-schema.json');
+const schema = require('./schemas/config-schema.json');
 
 export const CONFIG_DOCS_URL =
   'https://docs.checkupjs.com/quickstart/usage#1-generate-a-configuration-file';
 
+export const CONFIG_SCHEMA_URL =
+  'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json';
+
 export const DEFAULT_CONFIG: CheckupConfig = {
-  $schema:
-    'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json',
+  $schema: CONFIG_SCHEMA_URL,
   excludePaths: [],
   plugins: [],
   tasks: {},

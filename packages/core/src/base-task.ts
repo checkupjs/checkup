@@ -11,12 +11,12 @@ export default abstract class BaseTask {
   meta!: TaskMetaData | TaskIdentifier;
   debug: debug.Debugger;
 
-  #pluginName: string;
-  #config!: TaskConfig;
-  #enabled!: boolean;
+  _pluginName: string;
+  _config!: TaskConfig;
+  _enabled!: boolean;
 
   constructor(pluginName: string, context: TaskContext) {
-    this.#pluginName = getShorthandName(pluginName);
+    this._pluginName = getShorthandName(pluginName);
     this.context = context;
 
     this.debug = debug('checkup:task');
@@ -25,21 +25,21 @@ export default abstract class BaseTask {
   get config() {
     this._parseConfig();
 
-    return this.#config;
+    return this._config;
   }
 
   get enabled() {
     this._parseConfig();
 
-    return this.#enabled;
+    return this._enabled;
   }
 
   get fullyQualifiedTaskName() {
-    return `${this.#pluginName}/${this.meta.taskName}`;
+    return `${this._pluginName}/${this.meta.taskName}`;
   }
 
   private _parseConfig() {
-    if (this.#config) {
+    if (this._config) {
       return;
     }
 
@@ -49,10 +49,10 @@ export default abstract class BaseTask {
 
     let [enabled, taskConfig] = parseConfigTuple<TaskConfig>(config);
 
-    this.#enabled = enabled;
-    this.#config = taskConfig;
+    this._enabled = enabled;
+    this._config = taskConfig;
 
-    this.debug('%s enabled: %s', this.fullyQualifiedTaskName, this.#enabled);
-    this.debug('%s task config: %O', this.fullyQualifiedTaskName, this.#config);
+    this.debug('%s enabled: %s', this.fullyQualifiedTaskName, this._enabled);
+    this.debug('%s task config: %O', this.fullyQualifiedTaskName, this._config);
   }
 }

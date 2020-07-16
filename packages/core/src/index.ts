@@ -14,6 +14,7 @@ export {
   mergeConfig,
   parseConfigTuple,
   DEFAULT_CONFIG,
+  CONFIG_SCHEMA_URL,
 } from './config';
 
 export { default as CheckupError } from './errors/checkup-error';
