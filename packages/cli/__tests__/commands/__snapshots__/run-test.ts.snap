@@ -83,12 +83,12 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
       \\"schema\\": 1
     },
     \\"analyzedFilesCount\\": [
-      \\"/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/0/checkup-app/.checkuprc\\",
-      \\"/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/0/checkup-app/.eslintrc.js\\",
-      \\"/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/0/checkup-app/index.hbs\\",
-      \\"/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/0/checkup-app/index.js\\",
-      \\"/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/0/checkup-app/package-lock.json\\",
-      \\"/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/0/checkup-app/package.json\\"
+      /checkup-app/.checkuprc\\",
+      /checkup-app/.eslintrc.js\\",
+      /checkup-app/index.hbs\\",
+      /checkup-app/index.js\\",
+      /checkup-app/package-lock.json\\",
+      /checkup-app/package.json\\"
     ]
   },
   \\"results\\": [
@@ -157,13 +157,14 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
 `;
 
 exports[`@checkup/cli normal cli output should run a single task if the task option is specified 1`] = `
-"
-Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+"=== Metrics
 
-This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+Lines of Code
 
-checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+File type   Total       TODO 
+hbs         1           0    
+js          1           0    
+json        175         N/A  
 
 
 "

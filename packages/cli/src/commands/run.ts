@@ -113,18 +113,8 @@ export default class RunCommand extends BaseCommand {
 
   private async runTasks() {
     if (this.runFlags.task !== undefined) {
-      let metaTaskResult: MetaTaskResult | undefined;
       let pluginTaskResult: TaskResult | undefined;
       let taskFound: boolean = false;
-
-      if (this.defaultTasks.hasTask(this.runFlags.task)) {
-        taskFound = true;
-        [metaTaskResult, this.metaTaskErrors] = await this.defaultTasks.runTask(this.runFlags.task);
-
-        if (metaTaskResult) {
-          this.metaTaskResults.push(metaTaskResult);
-        }
-      }
 
       if (this.pluginTasks.hasTask(this.runFlags.task)) {
         taskFound = true;

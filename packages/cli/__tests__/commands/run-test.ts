@@ -48,7 +48,7 @@ describe('@checkup/cli', () => {
 
       let output = stdout()
         .trim()
-        .replace(/tmp-[\dA-Za-z]*/g, '0'); // remove the dynamic part of the tmp directory for test
+        .replace(/(\S*)(\/checkup-app\/.*)$/gm, '$2'); // remove the dynamic part of the tmp directory for test
 
       expect(output).toMatchSnapshot();
     });
@@ -79,7 +79,7 @@ describe('@checkup/cli', () => {
     );
 
     it('should run a single task if the task option is specified', async () => {
-      await runCommand(['run', '--task', 'project', '--cwd', project.baseDir]);
+      await runCommand(['run', '--task', 'lines-of-code', '--cwd', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });
