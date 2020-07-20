@@ -46,7 +46,11 @@ describe('@checkup/cli', () => {
     it('should output checkup result in JSON', async () => {
       await runCommand(['run', '--format', 'json', '--cwd', project.baseDir]);
 
-      expect(stdout()).toMatchSnapshot();
+      let output = stdout()
+        .trim()
+        .replace(/tmp-[\dA-Za-z]*/g, '0'); // remove the dynamic part of the tmp directory for test
+
+      expect(output).toMatchSnapshot();
     });
 
     it(

@@ -5,42 +5,53 @@ import { ui } from '@checkup/core';
 
 export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements MetaTaskResult {
   outputPosition: OutputPosition = OutputPosition.Header;
-  name!: string;
-  version!: string;
-  repository!: RepositoryInfo;
-  analyzedFiles!: string[];
+
+  data!: {
+    project: {
+      name: string;
+      version: string;
+      repository: RepositoryInfo;
+    };
+
+    cli: {
+      configHash: string;
+      version: string;
+      schema: number;
+    };
+
+    analyzedFilesCount: string[];
+  };
 
   toConsole() {
+    let { analyzedFilesCount } = this.data;
+    let { name, version, repository } = this.data.project;
+    let { version: cliVersion, configHash } = this.data.cli;
+
     let analyzedFilesMessage =
-      this.repository.totalFiles !== this.analyzedFiles.length
-        ? ` (${ui.emphasize(`${this.analyzedFiles.length.toString()} files`)} analyzed)`
+      repository.totalFiles !== analyzedFilesCount.length
+        ? ` (${ui.emphasize(`${analyzedFilesCount.length.toString()} files`)} analyzed)`
         : '';
 
     ui.blankLine();
     ui.log(
-      `Checkup report generated for ${ui.emphasize(
-        `${this.name} v${this.version}`
-      )}${analyzedFilesMessage}`
+      `Checkup report generated for ${ui.emphasize(`${name} v${version}`)}${analyzedFilesMessage}`
     );
     ui.blankLine();
     ui.log(
-      `This project is ${ui.emphasize(`${this.repository.age} old`)}, with ${ui.emphasize(
-        `${this.repository.activeDays} active days`
-      )}, ${ui.emphasize(`${this.repository.totalCommits} commits`)} and ${ui.emphasize(
-        `${this.repository.totalFiles} files`
+      `This project is ${ui.emphasize(`${repository.age} old`)}, with ${ui.emphasize(
+        `${repository.activeDays} active days`
+      )}, ${ui.emphasize(`${repository.totalCommits} commits`)} and ${ui.emphasize(
+        `${repository.totalFiles} files`
       )}.`
     );
+    ui.blankLine();
+
+    ui.dimmed(`checkup v${cliVersion}`);
+    ui.dimmed(`config ${configHash}`);
     ui.blankLine();
   }
 
   toJson() {
-    return {
-      project: {
-        name: this.name,
-        version: this.version,
-        repository: this.repository,
-        analyzedFilesCount: this.analyzedFiles.length,
-      },
-    };
+    return this.data;
   }
 }
