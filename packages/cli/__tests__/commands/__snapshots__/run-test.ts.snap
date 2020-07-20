@@ -6,6 +6,9 @@ Checkup report generated for checkup-app v0.0.0 (4 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
+checkup v0.0.0
+config 988dab0635e80290c915a8729decff96
+
 === Metrics
 
 Lines of Code
@@ -14,9 +17,6 @@ File type   Total       TODO
 hbs         1           0    
 json        175         N/A  
 
-
-checkup v0.0.0
-config 988dab0635e80290c915a8729decff96
 
 "
 `;
@@ -27,6 +27,9 @@ Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
+checkup v0.0.0
+config 988dab0635e80290c915a8729decff96
+
 === Metrics
 
 Lines of Code
@@ -35,9 +38,6 @@ File type   Total       TODO
 js          1           0    
 json        175         N/A  
 
-
-checkup v0.0.0
-config 988dab0635e80290c915a8729decff96
 
 "
 `;
@@ -48,6 +48,9 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
+checkup v0.0.0
+config 395b15f7dea0dee193db593e1c6cfb5b
+
 === Metrics
 
 Lines of Code
@@ -57,9 +60,6 @@ hbs         1           0
 js          1           0    
 json        175         N/A  
 
-
-checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -75,13 +75,21 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
         \\"totalFiles\\": 0,
         \\"age\\": \\"0 days\\",
         \\"activeDays\\": \\"0 days\\"
-      },
-      \\"analyzedFilesCount\\": 6
+      }
     },
-    \\"checkup\\": {
+    \\"cli\\": {
       \\"configHash\\": \\"395b15f7dea0dee193db593e1c6cfb5b\\",
-      \\"version\\": \\"0.0.0\\"
-    }
+      \\"version\\": \\"0.0.0\\",
+      \\"schema\\": 1
+    },
+    \\"analyzedFilesCount\\": [
+      /checkup-app/.checkuprc\\",
+      /checkup-app/.eslintrc.js\\",
+      /checkup-app/index.hbs\\",
+      /checkup-app/index.js\\",
+      /checkup-app/package-lock.json\\",
+      /checkup-app/package.json\\"
+    ]
   },
   \\"results\\": [
     {
@@ -145,15 +153,18 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
   ],
   \\"errors\\": [],
   \\"actions\\": []
-}
-"
+}"
 `;
 
 exports[`@checkup/cli normal cli output should run a single task if the task option is specified 1`] = `
-"
-Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+"=== Metrics
 
-This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+Lines of Code
+
+File type   Total       TODO 
+hbs         1           0    
+js          1           0    
+json        175         N/A  
 
 
 "
@@ -165,6 +176,9 @@ Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
+checkup v0.0.0
+config 395b15f7dea0dee193db593e1c6cfb5b
+
 === Metrics
 
 Lines of Code
@@ -174,9 +188,6 @@ hbs         2           0
 js          1           1    
 
 
-checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
-
 "
 `;
 
@@ -185,6 +196,9 @@ exports[`@checkup/cli normal cli output should run the tasks on the globs passed
 Checkup report generated for checkup-app v0.0.0 (9 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+checkup v0.0.0
+config 395b15f7dea0dee193db593e1c6cfb5b
 
 === Metrics
 
@@ -196,9 +210,6 @@ hbs         2           0
 json        175         N/A  
 
 
-checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
-
 "
 `;
 
@@ -207,6 +218,9 @@ exports[`@checkup/cli normal cli output should use the config at the config path
 Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+checkup v0.0.0
+config 395b15f7dea0dee193db593e1c6cfb5b
 
 === Metrics
 
@@ -217,9 +231,6 @@ hbs         1           0
 js          1           0    
 json        175         N/A  
 
-
-checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -230,6 +241,9 @@ Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
+checkup v0.0.0
+config 395b15f7dea0dee193db593e1c6cfb5b
+
 === Metrics
 
 Lines of Code
@@ -237,9 +251,6 @@ Lines of Code
 File type   Total       TODO 
 json        175         N/A  
 
-
-checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -250,6 +261,9 @@ Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
+checkup v0.0.0
+config 395b15f7dea0dee193db593e1c6cfb5b
+
 === Metrics
 
 Lines of Code
@@ -258,9 +272,6 @@ File type   Total       TODO
 js          1           0    
 json        175         N/A  
 
-
-checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;
@@ -271,6 +282,9 @@ Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
+checkup v0.0.0
+config 988dab0635e80290c915a8729decff96
+
 === Metrics
 
 Lines of Code
@@ -279,9 +293,6 @@ File type   Total       TODO
 js          1           0    
 json        175         N/A  
 
-
-checkup v0.0.0
-config 988dab0635e80290c915a8729decff96
 
 "
 `;
@@ -292,6 +303,9 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
+checkup v0.0.0
+config 395b15f7dea0dee193db593e1c6cfb5b
+
 === Metrics
 
 Lines of Code
@@ -301,9 +315,6 @@ hbs         1           0
 js          1           0    
 json        175         N/A  
 
-
-checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
 
 "
 `;

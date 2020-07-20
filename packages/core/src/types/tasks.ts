@@ -87,14 +87,6 @@ export type JsonTaskResult = {
   result: {};
 };
 
-export const enum Grade {
-  A = 'A',
-  B = 'B',
-  C = 'C',
-  D = 'D',
-  F = 'F',
-}
-
 export enum OutputFormat {
   stdout = 'stdout',
   json = 'json',

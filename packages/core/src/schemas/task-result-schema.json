@@ -1,0 +1,211 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "info": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "repository": {
+              "type": "object",
+              "properties": {
+                "totalCommits": {
+                  "type": "integer"
+                },
+                "totalFiles": {
+                  "type": "integer"
+                },
+                "age": {
+                  "type": "string"
+                },
+                "activeDays": {
+                  "type": "string"
+                }
+              },
+              "required": ["totalCommits", "totalFiles", "age", "activeDays"]
+            },
+            "analyzedFilesCount": {
+              "type": "integer"
+            }
+          },
+          "required": ["name", "version", "repository", "analyzedFilesCount"]
+        },
+        "checkup": {
+          "type": "object",
+          "properties": {
+            "schema": {
+              "type": "integer"
+            },
+            "configHash": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "required": ["schema", "configHash", "version"]
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "info": {
+              "type": "object",
+              "properties": {
+                "taskName": {
+                  "type": "string"
+                },
+                "friendlyTaskName": {
+                  "type": "string"
+                },
+                "taskClassification": {
+                  "type": "object",
+                  "properties": {
+                    "category": {
+                      "type": "string"
+                    },
+                    "group": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["category"]
+                }
+              },
+              "required": ["taskName", "friendlyTaskName", "taskClassification"]
+            },
+            "result": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "percent": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "values": {
+                              "type": "object",
+                              "properties": {
+                                "completed": {
+                                  "type": "integer"
+                                },
+                                "total": {
+                                  "type": "integer"
+                                }
+                              },
+                              "required": ["completed", "total"]
+                            },
+                            "calculatedPercent": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": ["values", "calculcatedPercent"]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "values": {
+                              "type": "object",
+                              "patternProperties": {
+                                ".*": {
+                                  "type": "integer"
+                                }
+                              }
+                            },
+                            "calculatedPercent": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": ["values", "calculcatedPercent"]
+                        }
+                      ]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "object"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": ["key", "count", "data"]
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "taskName": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": ["taskName", "error"]
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "summary": {
+              "type": "string"
+            },
+            "details": {
+              "type": "string"
+            },
+            "defaultThreshold": {
+              "type": "number"
+            },
+            "items": {
+              "type": "array",
+              "items": {}
+            },
+            "input": {
+              "type": "number"
+            }
+          },
+          "required": ["name", "summary", "details", "defaultThreshold", "items", "input"]
+        }
+      ]
+    }
+  },
+  "required": ["info", "results", "errors", "actions"]
+}

@@ -46,7 +46,11 @@ describe('@checkup/cli', () => {
     it('should output checkup result in JSON', async () => {
       await runCommand(['run', '--format', 'json', '--cwd', project.baseDir]);
 
-      expect(stdout()).toMatchSnapshot();
+      let output = stdout()
+        .trim()
+        .replace(/(\S*)(\/checkup-app\/.*)$/gm, '$2'); // remove the dynamic part of the tmp directory for test
+
+      expect(output).toMatchSnapshot();
     });
 
     it(
@@ -75,7 +79,7 @@ describe('@checkup/cli', () => {
     );
 
     it('should run a single task if the task option is specified', async () => {
-      await runCommand(['run', '--task', 'project', '--cwd', project.baseDir]);
+      await runCommand(['run', '--task', 'lines-of-code', '--cwd', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
     });
