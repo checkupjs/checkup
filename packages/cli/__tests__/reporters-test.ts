@@ -171,7 +171,7 @@ describe('_transformJsonResults', () => {
         },
         "results": Array [
           Object {
-            "meta": Object {
+            "info": Object {
               "friendlyTaskName": "Mock Meta Task 6",
               "taskClassification": Object {
                 "category": "foo",
@@ -184,7 +184,7 @@ describe('_transformJsonResults', () => {
             },
           },
           Object {
-            "meta": Object {
+            "info": Object {
               "friendlyTaskName": "Mock Meta Task 7",
               "taskClassification": Object {
                 "category": "foo",
@@ -197,7 +197,7 @@ describe('_transformJsonResults', () => {
             },
           },
           Object {
-            "meta": Object {
+            "info": Object {
               "friendlyTaskName": "Mock Meta Task 3",
               "taskClassification": Object {
                 "category": "foo",
@@ -210,7 +210,7 @@ describe('_transformJsonResults', () => {
             },
           },
           Object {
-            "meta": Object {
+            "info": Object {
               "friendlyTaskName": "Mock Meta Task 5",
               "taskClassification": Object {
                 "category": "bar",
@@ -223,7 +223,7 @@ describe('_transformJsonResults', () => {
             },
           },
           Object {
-            "meta": Object {
+            "info": Object {
               "friendlyTaskName": "Mock Meta Task 8",
               "taskClassification": Object {
                 "category": "bar",
@@ -236,7 +236,7 @@ describe('_transformJsonResults', () => {
             },
           },
           Object {
-            "meta": Object {
+            "info": Object {
               "friendlyTaskName": "Mock Meta Task 4",
               "taskClassification": Object {
                 "category": "bar",

@@ -38,7 +38,7 @@ export default class EslintDisableTaskResult extends BaseTaskResult implements T
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {
         eslintDisables: this.data.esLintDisables.results,
         fileErrors: this.data.esLintDisables.errors,

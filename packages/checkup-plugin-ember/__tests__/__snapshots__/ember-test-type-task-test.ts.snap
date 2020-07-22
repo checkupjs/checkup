@@ -34,7 +34,7 @@ Test Type Breakdown
 
 exports[`ember-test-types-task returns all the test types found in the app and outputs to json 1`] = `
 Object {
-  "meta": Object {
+  "info": Object {
     "friendlyTaskName": "Ember Test Types",
     "taskClassification": Object {
       "category": "testing",

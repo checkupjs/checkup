@@ -60,7 +60,7 @@ describe('template-lint-disable-task', () => {
       ...{ result: clearFilePaths(json.result.templateLintDisables) },
     }).toMatchInlineSnapshot(`
       Object {
-        "meta": Object {
+        "info": Object {
           "friendlyTaskName": "Number of template-lint-disable Usages",
           "taskClassification": Object {
             "category": "linting",

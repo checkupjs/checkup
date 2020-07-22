@@ -24,7 +24,7 @@ export default class EmberInRepoAddonEnginesTaskResult extends BaseTaskResult
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {
         inRepoAddons: this.data.inRepoAddons,
         inRepoEngines: this.data.inRepoEngines,

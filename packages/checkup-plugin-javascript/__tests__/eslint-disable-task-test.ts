@@ -58,7 +58,7 @@ describe('eslint-disable-task', () => {
     expect({ ...json, ...{ result: clearFilePaths(json.result.eslintDisables) } })
       .toMatchInlineSnapshot(`
       Object {
-        "meta": Object {
+        "info": Object {
           "friendlyTaskName": "Number of eslint-disable Usages",
           "taskClassification": Object {
             "category": "linting",

@@ -86,7 +86,7 @@ export default class EslintSummaryTaskResult extends BaseTaskResult implements T
   }
 
   toJson() {
-    return { meta: this.meta, result: { esLintReport: this.data.esLintReport } };
+    return { info: this.meta, result: { esLintReport: this.data.esLintReport } };
   }
 }
 

@@ -2,7 +2,7 @@
 
 exports[`octane-migration-status-task-result JSON output it should have basic JSON results 1`] = `
 Object {
-  "meta": Object {
+  "info": Object {
     "friendlyTaskName": "Ember Octane Migration Status",
     "taskClassification": Object {
       "category": "migrations",

@@ -40,7 +40,7 @@ export default class OctaneMigrationStatusTaskResult extends BaseTaskResult impl
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {
         totalViolations:
           this.data.esLintReport.errorCount + this.data.templateLintReport.errorCount,

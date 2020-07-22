@@ -11,7 +11,7 @@ exports[`outdated-dependencies-task detects outdated dependencies and output to 
 
 exports[`outdated-dependencies-task detects outdated dependencies as JSON 1`] = `
 Object {
-  "meta": Object {
+  "info": Object {
     "friendlyTaskName": "Outdated Dependencies",
     "taskClassification": Object {
       "category": "dependencies",

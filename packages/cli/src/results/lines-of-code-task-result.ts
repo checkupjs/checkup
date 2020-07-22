@@ -41,7 +41,7 @@ export default class LinesOfCodeTaskResult extends BaseTaskResult implements Tas
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: { fileResults: this.data.fileResults },
     };
   }

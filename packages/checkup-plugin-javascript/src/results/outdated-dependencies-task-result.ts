@@ -58,7 +58,7 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {
         dependencies: this.outdatedDependencies,
       },

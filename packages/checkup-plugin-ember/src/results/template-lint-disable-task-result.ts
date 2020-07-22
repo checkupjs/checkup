@@ -39,7 +39,7 @@ export default class TemplateLintDisableTaskResult extends BaseTaskResult implem
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {
         templateLintDisables: this.data.templateLintDisables.results,
         fileErrors: this.data.templateLintDisables.errors,

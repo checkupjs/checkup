@@ -15,7 +15,7 @@ Ember Cli Addon Dev Dependencies 1
 
 exports[`dependencies-task detects Ember dependencies as JSON 1`] = `
 Object {
-  "meta": Object {
+  "info": Object {
     "friendlyTaskName": "Ember Dependencies",
     "taskClassification": Object {
       "category": "dependencies",
