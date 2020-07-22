@@ -32,7 +32,7 @@ export default class MyFooTaskResult extends BaseTaskResult {
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {},
     };
   }
@@ -126,7 +126,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {},
     };
   }
@@ -222,7 +222,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {},
     };
   }
@@ -318,7 +318,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {},
     };
   }
@@ -415,7 +415,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {},
     };
   }
@@ -511,7 +511,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {},
     };
   }
@@ -607,7 +607,7 @@ export default class MyFooTaskResult extends BaseTaskResult implements TaskResul
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {},
     };
   }
@@ -689,7 +689,7 @@ export default class MyBarTaskResult extends BaseTaskResult implements TaskResul
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: {},
     };
   }

@@ -157,7 +157,7 @@ describe('_transformJsonResults', () => {
             "taskName": "mock-meta-task-6",
           },
         ],
-        "meta": Object {
+        "info": Object {
           "mock-meta-task-1": Object {
             "bar": "baz",
             "foo": true,

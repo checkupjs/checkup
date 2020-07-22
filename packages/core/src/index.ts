@@ -31,4 +31,5 @@ export * from './types/util';
 export * from './types/parsers';
 export * from './types/tasks';
 export * from './types/config';
+export * from './types/checkup-result';
 export * from './types/ember-template-lint';

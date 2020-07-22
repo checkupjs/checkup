@@ -1,20 +1,14 @@
-import { BaseTaskResult, TaskItemData, TaskResult, ui, toTaskItemData } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, SummaryData } from '@checkup/core';
 
 export default class EmberDependenciesTaskResult extends BaseTaskResult implements TaskResult {
-  data!: {
-    dependencies: TaskItemData[];
-  };
+  data!: SummaryData[];
 
-  process(data: { dependencyResults: [string, Record<string, string>][] }) {
-    this.data = {
-      dependencies: data.dependencyResults.map(([type, data]) => {
-        return toTaskItemData(type, data);
-      }),
-    };
+  process(data: { dependencyResults: SummaryData[] }) {
+    this.data = data.dependencyResults;
   }
 
   get hasDependencies() {
-    return this.data.dependencies.some((dependency) => dependency.total > 0);
+    return this.data.some((dependency) => dependency.count > 0);
   }
 
   toConsole() {
@@ -23,17 +17,25 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
     }
 
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.table(this.data.dependencies, {
-        displayName: { header: 'Dependency Types' },
-        total: { header: 'Total' },
-      });
+      ui.table(
+        this.data.map((dependencyGroup) => {
+          return {
+            key: dependencyGroup.key,
+            count: dependencyGroup.count,
+          };
+        }),
+        {
+          key: { header: 'Dependency Groups' },
+          count: { header: 'Count' },
+        }
+      );
     });
   }
 
   toJson() {
     return {
       info: this.meta,
-      result: this.data.dependencies,
+      result: this.data,
     };
   }
 }

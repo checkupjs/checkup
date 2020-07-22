@@ -17,7 +17,7 @@ export function _transformJsonResults(
   actions: Action[]
 ) {
   let transformedResult = {
-    meta: Object.assign({}, ...metaTaskResults.map((result) => result.toJson())),
+    info: Object.assign({}, ...metaTaskResults.map((result) => result.toJson())),
     results: pluginTaskResults.map((result) => result.toJson()),
     errors,
     actions,
