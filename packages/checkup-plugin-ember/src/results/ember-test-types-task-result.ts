@@ -78,7 +78,7 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
   }
 
   toJson() {
-    return { meta: this.meta, result: { types: this.data.testTypes } };
+    return { info: this.meta, result: { types: this.data.testTypes } };
   }
 
   get tableColumns() {

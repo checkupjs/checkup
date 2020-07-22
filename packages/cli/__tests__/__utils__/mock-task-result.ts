@@ -19,7 +19,7 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
 
   toJson() {
     return {
-      meta: this.meta,
+      info: this.meta,
       result: this.data.result,
     };
   }

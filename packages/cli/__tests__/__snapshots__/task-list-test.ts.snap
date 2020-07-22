@@ -2,7 +2,7 @@
 
 exports[`TaskList runTask will run a task by taskName 1`] = `
 Object {
-  "meta": Object {
+  "info": Object {
     "friendlyTaskName": "Insights Task High",
     "taskClassification": Object {
       "category": "bar",
@@ -15,7 +15,7 @@ Object {
 
 exports[`TaskList runTasks will run all registered tasks 1`] = `
 Object {
-  "meta": Object {
+  "info": Object {
     "friendlyTaskName": "Insights Task High",
     "taskClassification": Object {
       "category": "bar",
@@ -28,7 +28,7 @@ Object {
 
 exports[`TaskList runTasks will run all registered tasks 2`] = `
 Object {
-  "meta": Object {
+  "info": Object {
     "friendlyTaskName": "Insights Task Low",
     "taskClassification": Object {
       "category": "foo",

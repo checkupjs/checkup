@@ -1,7 +1,13 @@
-import { BaseTask, Task, TaskResult } from '@checkup/core';
+import { BaseTask, Task, TaskResult, SummaryData } from '@checkup/core';
+import { formatSummary } from '@checkup/core';
 
 import EmberDependenciesTaskResult from '../results/ember-dependencies-task-result';
 import { PackageJson } from 'type-fest';
+
+type Dependency = {
+  packageName: string;
+  version: string;
+};
 
 export default class EmberDependenciesTask extends BaseTask implements Task {
   meta = {
@@ -20,82 +26,82 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
     );
     let packageJson = this.context.pkg;
 
-    let coreLibraries: Record<string, string> = {
-      'ember-source': findDependency(packageJson, 'ember-source'),
-      'ember-cli': findDependency(packageJson, 'ember-cli'),
-      'ember-data': findDependency(packageJson, 'ember-data'),
-    };
-    let emberDependencies = findDependencies(packageJson.dependencies, emberAddonFilter);
-    let emberDevDependencies = findDependencies(packageJson.devDependencies, emberAddonFilter);
-    let emberCliDependencies = findDependencies(packageJson.dependencies, emberCliAddonFilter);
-    let emberCliDevDependencies = findDependencies(
-      packageJson.devDependencies,
-      emberCliAddonFilter
+    let coreLibraries: SummaryData = formatSummary('ember core libraries', [
+      findDependency(packageJson, 'ember-source'),
+      findDependency(packageJson, 'ember-cli'),
+      findDependency(packageJson, 'ember-data'),
+    ]);
+    let emberDependencies = formatSummary(
+      'ember addon dependencies',
+      findDependencies(packageJson.dependencies, emberAddonFilter)
+    );
+    let emberDevDependencies = formatSummary(
+      'ember addon devDependencies',
+      findDependencies(packageJson.devDependencies, emberAddonFilter)
+    );
+    let emberCliDependencies = formatSummary(
+      'ember-cli addon dependencies',
+      findDependencies(packageJson.dependencies, emberCliAddonFilter)
+    );
+    let emberCliDevDependencies = formatSummary(
+      'ember-cli addon devDependencies',
+      findDependencies(packageJson.devDependencies, emberCliAddonFilter)
     );
 
-    let dependencyResults: [string, Record<string, string>][] = [
-      ['ember core libraries', coreLibraries],
-      ['ember addon dependencies', emberDependencies],
-      ['ember addon devDependencies', emberDevDependencies],
-      ['ember-cli addon dependencies', emberCliDependencies],
-      ['ember-cli addon devDependencies', emberCliDevDependencies],
-    ];
-
-    result.process({ dependencyResults });
+    result.process({
+      dependencyResults: [
+        coreLibraries,
+        emberDependencies,
+        emberDevDependencies,
+        emberCliDependencies,
+        emberCliDevDependencies,
+      ],
+    });
 
     return result;
   }
 }
 
-/**
- * @param packageJson
- * @param key
- * @returns {string}
- */
-function findDependency(packageJson: PackageJson, key: string): string {
-  return (
+function findDependency(packageJson: PackageJson, key: string): Dependency {
+  let versionRange =
     (packageJson.dependencies && packageJson.dependencies[key]) ||
     (packageJson.devDependencies && packageJson.devDependencies[key]) ||
-    'Not found'
-  );
+    'Not found';
+
+  return {
+    packageName: key,
+    version: versionRange,
+  };
 }
 
-/**
- * @param dependencies
- * @param filter
- * @returns Record<string, string>
- */
 function findDependencies(
   dependencies: PackageJson.Dependency | undefined,
   filter: (dependency: string) => boolean
 ) {
   if (typeof dependencies === 'undefined') {
-    return {};
+    return [];
   }
 
-  return Object.entries(dependencies).reduce((orig: Record<string, string>, pair) => {
-    let [key, value] = pair;
+  return Object.entries(dependencies)
+    .map((pair) => {
+      let [key, value] = pair;
 
-    if (filter(key)) {
-      orig[key] = value;
-    }
+      if (filter(key)) {
+        return {
+          packageName: key,
+          version: value,
+        };
+      }
 
-    return orig;
-  }, {});
+      return false;
+    })
+    .filter(Boolean) as Dependency[];
 }
 
-/**
- * @param dependency
- * @returns {boolean}
- */
 function emberAddonFilter(dependency: string) {
   return dependency.startsWith('ember-') && !dependency.startsWith('ember-cli');
 }
 
-/**
- * @param dependency
- * @returns {boolean}
- */
 function emberCliAddonFilter(dependency: string) {
   return dependency.startsWith('ember-cli');
 }

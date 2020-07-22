@@ -1,17 +1,34 @@
 import { Action, TaskError, TaskMetaData } from './tasks';
 
-export interface MigrationCompletion {
-  values: {
-    completed: number;
-  };
-  total: number;
-  calculatedPercent?: number;
+interface TaskData {
+  key: string;
+  type: string;
+  data: Array<string | object>;
 }
 
-export interface MultiStepCompletion {
-  values: Record<string, number>;
-  total: 100;
-  calculatedPercent?: number;
+export interface SummaryData extends TaskData {
+  type: 'summary';
+  count: number;
+}
+
+export interface MigrationData extends TaskData {
+  type: 'migration percent';
+  percent: {
+    values: {
+      completed: number;
+    };
+    total: number;
+    calculatedPercent?: number;
+  };
+}
+
+export interface MultiStepData extends TaskData {
+  type: 'multi-step percent';
+  percent: {
+    values: Record<string, number>;
+    total: 100;
+    calculatedPercent?: number;
+  };
 }
 
 export interface CheckupResult {
@@ -33,19 +50,10 @@ export interface CheckupResult {
     };
     analyzedFilesCount: number;
   };
-  results: [
-    {
-      info: TaskMetaData;
-      result: [
-        {
-          key: string;
-          count?: number;
-          percent?: MigrationCompletion | MultiStepCompletion;
-          data: Array<string | object>;
-        }
-      ];
-    }
-  ];
+  results: Array<{
+    info: TaskMetaData;
+    result: Array<SummaryData | MigrationData | MultiStepData>;
+  }>;
   errors: TaskError[];
   actions: Action[];
 }

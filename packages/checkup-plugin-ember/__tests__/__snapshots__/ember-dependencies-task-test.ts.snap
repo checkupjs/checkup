@@ -3,19 +3,19 @@
 exports[`dependencies-task detects Ember dependencies 1`] = `
 "Ember Dependencies
 
-Dependency Types                 Total 
-Ember Core Libraries             3     
-Ember Addon Dependencies         1     
-Ember Addon Dev Dependencies     0     
-Ember Cli Addon Dependencies     2     
-Ember Cli Addon Dev Dependencies 1     
+Dependency Groups               Count 
+ember core libraries            3     
+ember addon dependencies        1     
+ember addon devDependencies     0     
+ember-cli addon dependencies    2     
+ember-cli addon devDependencies 1     
 
 "
 `;
 
 exports[`dependencies-task detects Ember dependencies as JSON 1`] = `
 Object {
-  "meta": Object {
+  "info": Object {
     "friendlyTaskName": "Ember Dependencies",
     "taskClassification": Object {
       "category": "dependencies",
@@ -25,45 +25,66 @@ Object {
   },
   "result": Array [
     Object {
-      "data": Object {
-        "ember-cli": "^3.15.0",
-        "ember-data": "Not found",
-        "ember-source": "^3.15.0",
-      },
-      "displayName": "Ember Core Libraries",
-      "total": 3,
-      "type": "ember core libraries",
+      "count": 3,
+      "data": Array [
+        Object {
+          "packageName": "ember-source",
+          "version": "^3.15.0",
+        },
+        Object {
+          "packageName": "ember-cli",
+          "version": "^3.15.0",
+        },
+        Object {
+          "packageName": "ember-data",
+          "version": "Not found",
+        },
+      ],
+      "key": "ember core libraries",
+      "type": "summary",
     },
     Object {
-      "data": Object {
-        "ember-source": "^3.15.0",
-      },
-      "displayName": "Ember Addon Dependencies",
-      "total": 1,
-      "type": "ember addon dependencies",
+      "count": 1,
+      "data": Array [
+        Object {
+          "packageName": "ember-source",
+          "version": "^3.15.0",
+        },
+      ],
+      "key": "ember addon dependencies",
+      "type": "summary",
     },
     Object {
-      "data": Object {},
-      "displayName": "Ember Addon Dev Dependencies",
-      "total": 0,
-      "type": "ember addon devDependencies",
+      "count": 0,
+      "data": Array [],
+      "key": "ember addon devDependencies",
+      "type": "summary",
     },
     Object {
-      "data": Object {
-        "ember-cli": "^3.15.0",
-        "ember-cli-blueprint-test-helpers": "latest",
-      },
-      "displayName": "Ember Cli Addon Dependencies",
-      "total": 2,
-      "type": "ember-cli addon dependencies",
+      "count": 2,
+      "data": Array [
+        Object {
+          "packageName": "ember-cli",
+          "version": "^3.15.0",
+        },
+        Object {
+          "packageName": "ember-cli-blueprint-test-helpers",
+          "version": "latest",
+        },
+      ],
+      "key": "ember-cli addon dependencies",
+      "type": "summary",
     },
     Object {
-      "data": Object {
-        "ember-cli-string-utils": "latest",
-      },
-      "displayName": "Ember Cli Addon Dev Dependencies",
-      "total": 1,
-      "type": "ember-cli addon devDependencies",
+      "count": 1,
+      "data": Array [
+        Object {
+          "packageName": "ember-cli-string-utils",
+          "version": "latest",
+        },
+      ],
+      "key": "ember-cli addon devDependencies",
+      "type": "summary",
     },
   ],
 }

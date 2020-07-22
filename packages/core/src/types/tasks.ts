@@ -83,7 +83,7 @@ export interface TaskItemData {
 export type JsonMetaTaskResult = JsonObject;
 
 export type JsonTaskResult = {
-  meta: TaskMetaData;
+  info: TaskMetaData;
   result: {};
 };
 

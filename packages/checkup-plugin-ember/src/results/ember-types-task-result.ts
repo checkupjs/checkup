@@ -20,6 +20,6 @@ export default class EmberTypesTaskResult extends BaseTaskResult implements Task
   }
 
   toJson() {
-    return { meta: this.meta, result: { types: this.data.types } };
+    return { info: this.meta, result: { types: this.data.types } };
   }
 }
