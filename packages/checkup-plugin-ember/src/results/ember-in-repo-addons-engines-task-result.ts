@@ -1,34 +1,29 @@
-import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, SummaryData } from '@checkup/core';
 
 export default class EmberInRepoAddonEnginesTaskResult extends BaseTaskResult
   implements TaskResult {
-  data: {
-    inRepoAddons: string[];
-    inRepoEngines: string[];
-  } = { inRepoAddons: [], inRepoEngines: [] };
+  data!: SummaryData[];
 
-  process(data: { inRepoEngines: string[]; inRepoAddons: string[] }) {
+  process(data: SummaryData[]) {
     this.data = data;
   }
 
   toConsole() {
-    if (this.data.inRepoAddons.length === 0 && this.data.inRepoEngines.length === 0) {
+    if (this.data.every((summaryItem) => summaryItem.count === 0)) {
       return;
     }
 
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.log(`In-Repo Addons: ${this.data.inRepoAddons.length}`);
-      ui.log(`In-Repo Engines: ${this.data.inRepoEngines.length}`);
+      this.data.forEach((summaryItem) => {
+        ui.log(`${summaryItem.key}: ${summaryItem.count}`);
+      });
     });
   }
 
   toJson() {
     return {
       info: this.meta,
-      result: {
-        inRepoAddons: this.data.inRepoAddons,
-        inRepoEngines: this.data.inRepoEngines,
-      },
+      result: this.data,
     };
   }
 }
