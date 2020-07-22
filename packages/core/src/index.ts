@@ -25,6 +25,8 @@ export { ui } from './utils/ui';
 export { getFilePaths } from './utils/get-paths';
 export { FilePathsArray } from './utils/file-paths-array';
 
+export { format as formatSummary } from './formatters/summary-data-formatter';
+
 export * from './utils/data-transformers';
 export * from './types/cli';
 export * from './types/util';
