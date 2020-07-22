@@ -62,11 +62,6 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
   }
 }
 
-/**
- * @param packageJson
- * @param key
- * @returns {string}
- */
 function findDependency(packageJson: PackageJson, key: string): Dependency {
   let versionRange =
     (packageJson.dependencies && packageJson.dependencies[key]) ||
@@ -79,11 +74,6 @@ function findDependency(packageJson: PackageJson, key: string): Dependency {
   };
 }
 
-/**
- * @param dependencies
- * @param filter
- * @returns Record<string, string>
- */
 function findDependencies(
   dependencies: PackageJson.Dependency | undefined,
   filter: (dependency: string) => boolean
@@ -108,18 +98,10 @@ function findDependencies(
     .filter(Boolean) as Dependency[];
 }
 
-/**
- * @param dependency
- * @returns {boolean}
- */
 function emberAddonFilter(dependency: string) {
   return dependency.startsWith('ember-') && !dependency.startsWith('ember-cli');
 }
 
-/**
- * @param dependency
- * @returns {boolean}
- */
 function emberCliAddonFilter(dependency: string) {
   return dependency.startsWith('ember-cli');
 }
