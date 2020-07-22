@@ -3,8 +3,8 @@ import { BaseTaskResult, TaskResult, ui, SummaryData } from '@checkup/core';
 export default class EmberDependenciesTaskResult extends BaseTaskResult implements TaskResult {
   data!: SummaryData[];
 
-  process(data: { dependencyResults: SummaryData[] }) {
-    this.data = data.dependencyResults;
+  process(data: SummaryData[]) {
+    this.data = data;
   }
 
   get hasDependencies() {

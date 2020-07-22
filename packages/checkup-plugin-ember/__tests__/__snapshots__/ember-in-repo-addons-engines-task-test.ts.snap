@@ -3,8 +3,8 @@
 exports[`ember-in-repo-addons-engines-task can read task and output to console 1`] = `
 "Ember In-Repo Addons / Engines
 
-In-Repo Addons: 2
-In-Repo Engines: 2
+in-repo engines: 2
+in-repo addons: 2
 
 "
 `;
@@ -19,15 +19,25 @@ Object {
     },
     "taskName": "ember-in-repo-addons-engines",
   },
-  "result": Object {
-    "inRepoAddons": Array [
-      "admin",
-      "shopping-cart",
-    ],
-    "inRepoEngines": Array [
-      "foo-engine",
-      "shmoo-engine",
-    ],
-  },
+  "result": Array [
+    Object {
+      "count": 2,
+      "data": Array [
+        "foo-engine",
+        "shmoo-engine",
+      ],
+      "key": "in-repo engines",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "admin",
+        "shopping-cart",
+      ],
+      "key": "in-repo addons",
+      "type": "summary",
+    },
+  ],
 }
 `;

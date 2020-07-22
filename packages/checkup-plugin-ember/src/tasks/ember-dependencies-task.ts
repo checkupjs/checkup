@@ -48,15 +48,13 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
       findDependencies(packageJson.devDependencies, emberCliAddonFilter)
     );
 
-    result.process({
-      dependencyResults: [
-        coreLibraries,
-        emberDependencies,
-        emberDevDependencies,
-        emberCliDependencies,
-        emberCliDevDependencies,
-      ],
-    });
+    result.process([
+      coreLibraries,
+      emberDependencies,
+      emberDevDependencies,
+      emberCliDependencies,
+      emberCliDevDependencies,
+    ]);
 
     return result;
   }

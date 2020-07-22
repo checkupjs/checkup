@@ -48,8 +48,6 @@ describe('ember-in-repo-addons-engines-task', () => {
       })
     ).run();
     const taskResult = <EmberInRepoAddonEnginesTaskResult>result;
-    taskResult.data.inRepoAddons.sort();
-    taskResult.data.inRepoEngines.sort();
 
     expect(taskResult.toJson()).toMatchSnapshot();
   });
