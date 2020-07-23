@@ -1,9 +1,9 @@
-import { BaseTaskResult, TaskResult, ui, SummaryData } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, SummaryResult } from '@checkup/core';
 
 export default class EmberTypesTaskResult extends BaseTaskResult implements TaskResult {
-  data!: SummaryData[];
+  data!: SummaryResult[];
 
-  process(data: SummaryData[]) {
+  process(data: SummaryResult[]) {
     this.data = data;
   }
 

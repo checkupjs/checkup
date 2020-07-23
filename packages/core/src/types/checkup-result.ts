@@ -1,35 +1,31 @@
 import { Action, TaskError, TaskMetaData } from './tasks';
+import { CheckupConfig } from './config';
 
-interface TaskData {
+interface TaskResult {
+  info: TaskMetaData;
+  results: Result[];
+}
+
+interface BaseResult {
   key: string;
   type: string;
   data: Array<string | object>;
 }
 
-export interface SummaryData extends TaskData {
+export interface SummaryResult extends BaseResult {
   type: 'summary';
   count: number;
 }
 
-export interface MigrationData extends TaskData {
-  type: 'migration percent';
+export interface MultiStepResult extends BaseResult {
+  type: 'multi-step';
   percent: {
-    values: {
-      completed: number;
-    };
+    values: Record<string, number>;
     total: number;
-    calculatedPercent?: number;
   };
 }
 
-export interface MultiStepData extends TaskData {
-  type: 'multi-step percent';
-  percent: {
-    values: Record<string, number>;
-    total: 100;
-    calculatedPercent?: number;
-  };
-}
+type Result = SummaryResult | MultiStepResult;
 
 export interface CheckupResult {
   info: {
@@ -46,14 +42,15 @@ export interface CheckupResult {
     cli: {
       schema: number;
       configHash: string;
+      config: CheckupConfig;
       version: string;
+      flags: {
+        paths: [];
+      };
     };
     analyzedFilesCount: number;
   };
-  results: Array<{
-    info: TaskMetaData;
-    result: Array<SummaryData | MigrationData | MultiStepData>;
-  }>;
+  results: TaskResult[];
   errors: TaskError[];
   actions: Action[];
 }
