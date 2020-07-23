@@ -1,25 +1,30 @@
-import { BaseTaskResult, TaskItemData, TaskResult, ui } from '@checkup/core';
+import { BaseTaskResult, TaskResult, ui, SummaryData } from '@checkup/core';
 
 export default class EmberTypesTaskResult extends BaseTaskResult implements TaskResult {
-  data!: {
-    types: TaskItemData[];
-  };
+  data!: SummaryData[];
 
-  process(data: { types: TaskItemData[] }) {
+  process(data: SummaryData[]) {
     this.data = data;
-  }
-
-  findByType(typeName: string): TaskItemData | undefined {
-    return this.data.types.find((type) => type.type === typeName);
   }
 
   toConsole() {
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.table(this.data.types, { displayName: { header: 'Types' }, total: { header: 'Total' } });
+      ui.table(
+        this.data.map((type) => {
+          return {
+            key: type.key,
+            count: type.count,
+          };
+        }),
+        {
+          key: { header: 'Types' },
+          count: { header: 'Count' },
+        }
+      );
     });
   }
 
   toJson() {
-    return { info: this.meta, result: { types: this.data.types } };
+    return { info: this.meta, result: this.data };
   }
 }

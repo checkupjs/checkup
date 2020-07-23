@@ -1,4 +1,4 @@
-import { CheckupProject, stdout, getTaskContext, clearFilePaths } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext, clearFilePathsTmp } from '@checkup/test-helpers';
 
 import TemplateLintDisableTask from '../src/tasks/template-lint-disable-task';
 import TemplateLintDisableTaskResult from '../src/results/template-lint-disable-task-result';
@@ -57,7 +57,7 @@ describe('template-lint-disable-task', () => {
     const json = templateLintDisableTaskResult.toJson();
     expect({
       ...json,
-      ...{ result: clearFilePaths(json.result.templateLintDisables) },
+      ...{ result: clearFilePathsTmp(json.result.templateLintDisables) },
     }).toMatchInlineSnapshot(`
       Object {
         "info": Object {

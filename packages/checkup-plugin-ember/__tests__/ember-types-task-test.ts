@@ -105,7 +105,7 @@ describe('types-task', () => {
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(clearFilePaths(typesTaskResult.toJson().result.types)).toMatchSnapshot();
+    expect(clearFilePaths(typesTaskResult.toJson().result)).toMatchSnapshot();
   });
 
   it('returns all the types (including nested) found in the app and outputs to JSON', async () => {
@@ -126,6 +126,6 @@ describe('types-task', () => {
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(clearFilePaths(typesTaskResult.toJson().result.types)).toMatchSnapshot();
+    expect(clearFilePaths(typesTaskResult.toJson().result)).toMatchSnapshot();
   });
 });

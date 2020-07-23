@@ -1,5 +1,5 @@
 import { findInFiles } from '../../src/searchers/file-searcher';
-import { CheckupProject, clearFilePaths } from '@checkup/test-helpers';
+import { CheckupProject, clearFilePathsTmp } from '@checkup/test-helpers';
 
 describe('file-searcher', () => {
   let project: CheckupProject;
@@ -58,7 +58,7 @@ describe('file-searcher', () => {
       { patternName: 'test', patterns: ['TEST', 'test'] },
       { patternName: 'bite', patterns: ['bite'] },
     ]);
-    expect(clearFilePaths(stringsFound.results)).toMatchInlineSnapshot(`
+    expect(clearFilePathsTmp(stringsFound.results)).toMatchInlineSnapshot(`
       Array [
         Object {
           "data": Array [
