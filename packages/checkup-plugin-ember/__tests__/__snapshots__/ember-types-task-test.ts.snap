@@ -3,84 +3,84 @@
 exports[`types-task returns all the types (including nested) found in the app and outputs to JSON 1`] = `
 Array [
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Components",
-    "total": 2,
-    "type": "components",
+    "key": "components",
+    "type": "summary",
   },
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Controllers",
-    "total": 2,
-    "type": "controllers",
+    "key": "controllers",
+    "type": "summary",
   },
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Helpers",
-    "total": 2,
-    "type": "helpers",
+    "key": "helpers",
+    "type": "summary",
   },
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Initializers",
-    "total": 2,
-    "type": "initializers",
+    "key": "initializers",
+    "type": "summary",
   },
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Instance Initializers",
-    "total": 2,
-    "type": "instance-initializers",
+    "key": "instance-initializers",
+    "type": "summary",
   },
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Mixins",
-    "total": 2,
-    "type": "mixins",
+    "key": "mixins",
+    "type": "summary",
   },
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Models",
-    "total": 2,
-    "type": "models",
+    "key": "models",
+    "type": "summary",
   },
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Routes",
-    "total": 2,
-    "type": "routes",
+    "key": "routes",
+    "type": "summary",
   },
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Services",
-    "total": 2,
-    "type": "services",
+    "key": "services",
+    "type": "summary",
   },
   Object {
+    "count": 2,
     "data": Array [
-      2,
+      "2",
     ],
-    "displayName": "Templates",
-    "total": 2,
-    "type": "templates",
+    "key": "templates",
+    "type": "summary",
   },
 ]
 `;
@@ -88,17 +88,17 @@ Array [
 exports[`types-task returns all the types (including nested) found in the app and outputs to the console 1`] = `
 "Ember Types
 
-Types                 Total 
-Components            2     
-Controllers           2     
-Helpers               2     
-Initializers          2     
-Instance Initializers 2     
-Mixins                2     
-Models                2     
-Routes                2     
-Services              2     
-Templates             2     
+Types                 Count 
+components            2     
+controllers           2     
+helpers               2     
+initializers          2     
+instance-initializers 2     
+mixins                2     
+models                2     
+routes                2     
+services              2     
+templates             2     
 
 "
 `;
@@ -106,84 +106,84 @@ Templates             2
 exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
 Array [
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Components",
-    "total": 1,
-    "type": "components",
+    "key": "components",
+    "type": "summary",
   },
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Controllers",
-    "total": 1,
-    "type": "controllers",
+    "key": "controllers",
+    "type": "summary",
   },
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Helpers",
-    "total": 1,
-    "type": "helpers",
+    "key": "helpers",
+    "type": "summary",
   },
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Initializers",
-    "total": 1,
-    "type": "initializers",
+    "key": "initializers",
+    "type": "summary",
   },
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Instance Initializers",
-    "total": 1,
-    "type": "instance-initializers",
+    "key": "instance-initializers",
+    "type": "summary",
   },
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Mixins",
-    "total": 1,
-    "type": "mixins",
+    "key": "mixins",
+    "type": "summary",
   },
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Models",
-    "total": 1,
-    "type": "models",
+    "key": "models",
+    "type": "summary",
   },
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Routes",
-    "total": 1,
-    "type": "routes",
+    "key": "routes",
+    "type": "summary",
   },
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Services",
-    "total": 1,
-    "type": "services",
+    "key": "services",
+    "type": "summary",
   },
   Object {
+    "count": 1,
     "data": Array [
-      1,
+      "1",
     ],
-    "displayName": "Templates",
-    "total": 1,
-    "type": "templates",
+    "key": "templates",
+    "type": "summary",
   },
 ]
 `;
@@ -191,17 +191,17 @@ Array [
 exports[`types-task returns all the types found in the app and outputs to the console 1`] = `
 "Ember Types
 
-Types                 Total 
-Components            1     
-Controllers           1     
-Helpers               1     
-Initializers          1     
-Instance Initializers 1     
-Mixins                1     
-Models                1     
-Routes                1     
-Services              1     
-Templates             1     
+Types                 Count 
+components            1     
+controllers           1     
+helpers               1     
+initializers          1     
+instance-initializers 1     
+mixins                1     
+models                1     
+routes                1     
+services              1     
+templates             1     
 
 "
 `;

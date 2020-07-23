@@ -1,4 +1,4 @@
-import { Task, TaskResult, BaseTask, toTaskItemData } from '@checkup/core';
+import { Task, TaskResult, BaseTask, formatSummary } from '@checkup/core';
 
 import EmberTypesTaskResult from '../results/ember-types-task-result';
 
@@ -28,10 +28,10 @@ export default class EmberTypesTask extends BaseTask implements Task {
   async run(): Promise<TaskResult> {
     let result = new EmberTypesTaskResult(this.meta, this.config);
     let types = SEARCH_PATTERNS.map((pattern) => {
-      return toTaskItemData(pattern.patternName, this.context.paths.filterByGlob(pattern.pattern));
+      return formatSummary(pattern.patternName, this.context.paths.filterByGlob(pattern.pattern));
     });
 
-    result.process({ types });
+    result.process(types);
 
     return result;
   }

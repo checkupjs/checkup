@@ -1,5 +1,5 @@
 import { getPluginName } from '@checkup/core';
-import { CheckupProject, stdout, getTaskContext, clearFilePaths } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext, clearFilePathsTmp } from '@checkup/test-helpers';
 
 import EslintDisableTask from '../src/tasks/eslint-disable-task';
 import EslintDisableTaskResult from '../src/results/eslint-disable-task-result';
@@ -55,7 +55,7 @@ describe('eslint-disable-task', () => {
     const eslintDisableTaskResult = <EslintDisableTaskResult>result;
 
     const json = eslintDisableTaskResult.toJson();
-    expect({ ...json, ...{ result: clearFilePaths(json.result.eslintDisables) } })
+    expect({ ...json, ...{ result: clearFilePathsTmp(json.result.eslintDisables) } })
       .toMatchInlineSnapshot(`
       Object {
         "info": Object {
