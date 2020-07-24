@@ -1,14 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ember-test-types-task only renders todos/only test types if they a value > 0 1`] = `
-"Ember Test Types
+"Test Types
 
-Type           test    only    todo    
-unit           0       0       0       
-rendering      1       1       1       
-application    0       0       0       
+Unit
 
-Test Type Breakdown
+Method Count 
+test   0     
+skip   0     
+only   0     
+todo   0     
+
+Rendering
+
+Method Count 
+test   1     
+skip   0     
+only   1     
+todo   1     
+
+Application
+
+Method Count 
+test   0     
+skip   0     
+only   0     
+todo   0     
+
+Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 tests
 ■ unit (0)  ■ rendering (3)  ■ application (0)  
@@ -17,14 +36,33 @@ Test Type Breakdown
 `;
 
 exports[`ember-test-types-task returns all the test types (including nested) found in the app and outputs to the console 1`] = `
-"Ember Test Types
+"Test Types
 
-Type           test    skip    
-unit           2       4 (67%) 
-rendering      2       4 (67%) 
-application    4       8 (67%) 
+Unit
 
-Test Type Breakdown
+Method Count 
+test   2     
+skip   4     
+only   0     
+todo   0     
+
+Rendering
+
+Method Count 
+test   2     
+skip   4     
+only   0     
+todo   0     
+
+Application
+
+Method Count 
+test   4     
+skip   8     
+only   0     
+todo   0     
+
+Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 24 tests
 ■ unit (6)  ■ rendering (6)  ■ application (12)  
@@ -35,53 +73,190 @@ Test Type Breakdown
 exports[`ember-test-types-task returns all the test types found in the app and outputs to json 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Ember Test Types",
+    "friendlyTaskName": "Test Types",
     "taskClassification": Object {
       "category": "testing",
       "group": "ember",
     },
     "taskName": "ember-test-types",
   },
-  "result": Object {
-    "types": Array [
-      Object {
-        "only": 0,
-        "skip": 2,
-        "test": 1,
-        "todo": 0,
+  "result": Array [
+    Object {
+      "data": Array [
+        Object {
+          "column": 9,
+          "filePath": "/addon/unit/tests/my-component-test.js",
+          "line": 5,
+          "message": "unit|test",
+          "method": "test",
+          "ruleId": "test-types",
+        },
+        Object {
+          "column": 9,
+          "filePath": "/addon/unit/tests/my-component-test.js",
+          "line": 6,
+          "message": "unit|skip",
+          "method": "skip",
+          "ruleId": "test-types",
+        },
+        Object {
+          "column": 9,
+          "filePath": "/addon/unit/tests/my-component-test.js",
+          "line": 7,
+          "message": "unit|skip",
+          "method": "skip",
+          "ruleId": "test-types",
+        },
+      ],
+      "key": "unit",
+      "percent": Object {
+        "dataKey": "method",
         "total": 3,
-        "type": "unit",
+        "values": Object {
+          "only": 0,
+          "skip": 2,
+          "test": 1,
+          "todo": 0,
+        },
       },
-      Object {
-        "only": 0,
-        "skip": 2,
-        "test": 1,
-        "todo": 0,
+      "type": "multi-value",
+    },
+    Object {
+      "data": Array [
+        Object {
+          "column": 9,
+          "filePath": "/addon/rendering/tests/my-component-test.js",
+          "line": 5,
+          "message": "rendering|test",
+          "method": "test",
+          "ruleId": "test-types",
+        },
+        Object {
+          "column": 9,
+          "filePath": "/addon/rendering/tests/my-component-test.js",
+          "line": 6,
+          "message": "rendering|skip",
+          "method": "skip",
+          "ruleId": "test-types",
+        },
+        Object {
+          "column": 9,
+          "filePath": "/addon/rendering/tests/my-component-test.js",
+          "line": 7,
+          "message": "rendering|skip",
+          "method": "skip",
+          "ruleId": "test-types",
+        },
+      ],
+      "key": "rendering",
+      "percent": Object {
+        "dataKey": "method",
         "total": 3,
-        "type": "rendering",
+        "values": Object {
+          "only": 0,
+          "skip": 2,
+          "test": 1,
+          "todo": 0,
+        },
       },
-      Object {
-        "only": 0,
-        "skip": 4,
-        "test": 2,
-        "todo": 0,
+      "type": "multi-value",
+    },
+    Object {
+      "data": Array [
+        Object {
+          "column": 9,
+          "filePath": "/addon/application/someFolder/my-component-test.js",
+          "line": 5,
+          "message": "application|test",
+          "method": "test",
+          "ruleId": "test-types",
+        },
+        Object {
+          "column": 9,
+          "filePath": "/addon/application/someFolder/my-component-test.js",
+          "line": 6,
+          "message": "application|skip",
+          "method": "skip",
+          "ruleId": "test-types",
+        },
+        Object {
+          "column": 9,
+          "filePath": "/addon/application/someFolder/my-component-test.js",
+          "line": 7,
+          "message": "application|skip",
+          "method": "skip",
+          "ruleId": "test-types",
+        },
+        Object {
+          "column": 9,
+          "filePath": "/addon/application/tests/my-component-test.js",
+          "line": 5,
+          "message": "application|test",
+          "method": "test",
+          "ruleId": "test-types",
+        },
+        Object {
+          "column": 9,
+          "filePath": "/addon/application/tests/my-component-test.js",
+          "line": 6,
+          "message": "application|skip",
+          "method": "skip",
+          "ruleId": "test-types",
+        },
+        Object {
+          "column": 9,
+          "filePath": "/addon/application/tests/my-component-test.js",
+          "line": 7,
+          "message": "application|skip",
+          "method": "skip",
+          "ruleId": "test-types",
+        },
+      ],
+      "key": "application",
+      "percent": Object {
+        "dataKey": "method",
         "total": 6,
-        "type": "application",
+        "values": Object {
+          "only": 0,
+          "skip": 4,
+          "test": 2,
+          "todo": 0,
+        },
       },
-    ],
-  },
+      "type": "multi-value",
+    },
+  ],
 }
 `;
 
 exports[`ember-test-types-task returns all the test types found in the app and outputs to the console 1`] = `
-"Ember Test Types
+"Test Types
 
-Type           test    skip    
-unit           1       2 (67%) 
-rendering      1       2 (67%) 
-application    2       4 (67%) 
+Unit
 
-Test Type Breakdown
+Method Count 
+test   1     
+skip   2     
+only   0     
+todo   0     
+
+Rendering
+
+Method Count 
+test   1     
+skip   2     
+only   0     
+todo   0     
+
+Application
+
+Method Count 
+test   2     
+skip   4     
+only   0     
+todo   0     
+
+Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 tests
 ■ unit (3)  ■ rendering (3)  ■ application (6)  

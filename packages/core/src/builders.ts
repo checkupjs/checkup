@@ -45,7 +45,7 @@ function buildSummaryResult(key: string, data: Array<string | IndexableObject>):
  *   },
  * ];
  *
- * let multiValueResult = buildMultiValueResult('foo', data, 'baz', { bar: 0 });
+ * let multiValueResult = buildMultiValueResult('foo', data, 'baz', ['bar']);
  *
  * @param key {string} An identifier used to help identify the result
  * @param data {Array<IndexableObject>} The raw data used to derive the result's values
@@ -55,7 +55,7 @@ function buildSummaryResult(key: string, data: Array<string | IndexableObject>):
  */
 function buildMultiValueResult(
   key: string,
-  data: Array<IndexableObject>,
+  data: Array<object>,
   dataKey: string,
   valueKeys: string[],
   total?: number
@@ -63,12 +63,12 @@ function buildMultiValueResult(
   return {
     key,
     type: 'multi-value',
-    data,
     percent: {
       values: buildMultiValues(data, dataKey, valueKeys),
       dataKey,
       total: total || data.length,
     },
+    data,
   };
 }
 
@@ -128,12 +128,12 @@ function buildDerivedValueResult(
   return {
     key,
     type: 'derived-value',
-    data,
     percent: {
       values: buildDerivedValues(data, dataKey),
       dataKey,
       total: total || data.length,
     },
+    data,
   };
 }
 

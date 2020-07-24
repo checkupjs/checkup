@@ -26,6 +26,7 @@ export { getFilePaths } from './utils/get-paths';
 export { FilePathsArray } from './utils/file-paths-array';
 
 export { buildSummaryResult, buildMultiValueResult, buildDerivedValueResult } from './builders';
+export { adaptResult } from './schemas/schema-utils';
 
 export * from './utils/data-transformers';
 export * from './types/cli';

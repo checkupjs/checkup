@@ -11,7 +11,7 @@ config 988dab0635e80290c915a8729decff96
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 hbs         1           0    
@@ -32,7 +32,7 @@ config 988dab0635e80290c915a8729decff96
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 js          1           0    
@@ -53,7 +53,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 hbs         1           0    
@@ -159,7 +159,7 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
 exports[`@checkup/cli normal cli output should run a single task if the task option is specified 1`] = `
 "=== Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 hbs         1           0    
@@ -181,7 +181,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 hbs         2           0    
@@ -202,7 +202,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 js          3           2    
@@ -224,7 +224,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 hbs         1           0    
@@ -246,7 +246,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 json        175         N/A  
@@ -266,7 +266,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 js          1           0    
@@ -287,7 +287,7 @@ config 988dab0635e80290c915a8729decff96
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 js          1           0    
@@ -308,7 +308,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 === Metrics
 
-Lines of Code
+Lines Of Code
 
 File type   Total       TODO 
 hbs         1           0    

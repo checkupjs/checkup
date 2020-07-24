@@ -1,4 +1,4 @@
-const rule = require('../rules/test-types'),
+const rule = require('../../src/eslint/rules/test-types'),
   RuleTester = require('eslint').RuleTester;
 
 const ruleTester = new RuleTester();
@@ -26,10 +26,10 @@ ruleTester.run('test-type-counts', rule, {
           });
         `,
       errors: [
-        { message: 'testApplication' },
-        { message: 'skipApplication' },
-        { message: 'todoApplication' },
-        { message: 'onlyApplication' },
+        { message: 'application|test' },
+        { message: 'application|skip' },
+        { message: 'application|todo' },
+        { message: 'application|only' },
       ],
     },
     // correctly identifies rendering tests / skips / only / todo
@@ -47,12 +47,12 @@ ruleTester.run('test-type-counts', rule, {
               });
             `,
       errors: [
-        { message: 'testRendering' },
-        { message: 'testRendering' },
-        { message: 'skipRendering' },
-        { message: 'todoRendering' },
-        { message: 'todoRendering' },
-        { message: 'onlyRendering' },
+        { message: 'rendering|test' },
+        { message: 'rendering|test' },
+        { message: 'rendering|skip' },
+        { message: 'rendering|todo' },
+        { message: 'rendering|todo' },
+        { message: 'rendering|only' },
       ],
     },
 
@@ -71,12 +71,12 @@ ruleTester.run('test-type-counts', rule, {
           });
         `,
       errors: [
-        { message: 'testUnit' },
-        { message: 'skipUnit' },
-        { message: 'skipUnit' },
-        { message: 'todoUnit' },
-        { message: 'onlyUnit' },
-        { message: 'onlyUnit' },
+        { message: 'unit|test' },
+        { message: 'unit|skip' },
+        { message: 'unit|skip' },
+        { message: 'unit|todo' },
+        { message: 'unit|only' },
+        { message: 'unit|only' },
       ],
     },
   ],

@@ -1,4 +1,4 @@
-import { CLIEngine } from 'eslint';
+import { CLIEngine, Linter } from 'eslint';
 
 const TemplateLinter = require('ember-template-lint');
 
@@ -18,3 +18,4 @@ export type TemplateLinter = typeof TemplateLinter;
 export type ESLintOptions = CLIEngine.Options;
 export type ESLintReport = CLIEngine.LintReport;
 export type ESLintResult = CLIEngine.LintResult;
+export type ESLintMessage = Linter.LintMessage;

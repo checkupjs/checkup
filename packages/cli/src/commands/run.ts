@@ -55,7 +55,7 @@ export default class RunCommand extends BaseCommand {
       description: 'Use this configuration, overriding .checkuprc.* if present',
     }),
     cwd: flags.string({
-      default: '.',
+      default: () => process.cwd(),
       char: 'd',
       description: 'The path referring to the root directory that Checkup will run in',
     }),
