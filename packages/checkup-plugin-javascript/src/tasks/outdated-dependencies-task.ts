@@ -1,6 +1,6 @@
 import * as npmCheck from 'npm-check';
 
-import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
+import { BaseTask, Task, TaskMetaData, TaskResult, buildMultiValueResult } from '@checkup/core';
 
 import OutdatedDependenciesTaskResult from '../results/outdated-dependencies-task-result';
 
@@ -24,7 +24,17 @@ export type Dependency = {
   unused: boolean;
 };
 
-async function getDependencies(path: string): Promise<Dependency[]> {
+interface OutdatedDependency {
+  packageName: string;
+  packageJsonVersion: string;
+  homepage: string;
+  latest: string;
+  installed: string;
+  wanted: string;
+  semverBump: string;
+}
+
+async function getDependencies(path: string): Promise<OutdatedDependency[]> {
   let result;
   let packages;
 
@@ -34,7 +44,17 @@ async function getDependencies(path: string): Promise<Dependency[]> {
     throw new Error('Could not check project dependencies');
   }
 
-  packages = result.get('packages');
+  packages = result.get('packages').map((pkg: Dependency) => {
+    return {
+      packageName: pkg.moduleName,
+      packageJsonVersion: pkg.packageJson,
+      homepage: pkg.homepage,
+      latest: pkg.latest,
+      installed: pkg.installed,
+      wanted: pkg.packageWanted,
+      semverBump: pkg.bump,
+    };
+  });
 
   return packages;
 }
@@ -54,7 +74,15 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
       this.config
     );
 
-    result.process({ dependencies: await getDependencies(this.context.cliFlags.cwd) });
+    let outdatedDependencies = await getDependencies(this.context.cliFlags.cwd);
+
+    let multiValue = buildMultiValueResult('dependencies', outdatedDependencies, 'semverBump', [
+      'major',
+      'minor',
+      'patch',
+    ]);
+
+    result.process([multiValue]);
 
     return result;
   }

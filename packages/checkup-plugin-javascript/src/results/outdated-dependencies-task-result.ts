@@ -1,57 +1,65 @@
-import { BaseTaskResult, TaskResult, ui, toPercent, ActionsEvaluator, Action } from '@checkup/core';
-
-import { Dependency } from '../tasks/outdated-dependencies-task';
+import {
+  BaseTaskResult,
+  TaskResult,
+  toPercent,
+  ActionsEvaluator,
+  Action,
+  MultiValueResult,
+  ui,
+} from '@checkup/core';
 
 export default class OutdatedDependenciesTaskResult extends BaseTaskResult implements TaskResult {
   actions: Action[] = [];
-  data!: {
-    dependencies: Dependency[];
-  };
+  data: MultiValueResult[] = [];
 
-  process(data: { dependencies: Dependency[] }) {
+  process(data: MultiValueResult[]) {
     this.data = data;
 
+    let dependenciesResult = this.data[0];
+    let { values: dependenciesCount, total: totalDependencies } = dependenciesResult.percent;
+    let outdatedCount = Object.values(dependenciesCount).reduce((total, count) => total + count, 0);
     let actionsEvaluator = new ActionsEvaluator();
 
     actionsEvaluator.add({
       name: 'reduce-outdated-major-dependencies',
       summary: 'Update outdated major versions',
-      details: `${this.versionTypes.get('major')!.length} major versions outdated`,
+      details: `${dependenciesCount.major} major versions outdated`,
       defaultThreshold: 0.05,
       items: [],
-      input: this.versionTypes.get('major')!.length / this.data.dependencies.length,
+      input: dependenciesCount.major / totalDependencies,
     });
     actionsEvaluator.add({
       name: 'reduce-outdated-minor-dependencies',
       summary: 'Update outdated minor versions',
-      details: `${this.versionTypes.get('minor')!.length} minor versions outdated`,
+      details: `${dependenciesCount.minor} minor versions outdated`,
       defaultThreshold: 0.05,
       items: [],
-      input: this.versionTypes.get('minor')!.length / this.data.dependencies.length,
+      input: dependenciesCount.minor / totalDependencies,
     });
     actionsEvaluator.add({
       name: 'reduce-outdated-dependencies',
       summary: 'Update outdated versions',
-      details: `${toPercent(
-        this.outdatedDependencies.length / this.data.dependencies.length
-      )} of versions outdated`,
+      details: `${toPercent(outdatedCount / totalDependencies)} of versions outdated`,
       defaultThreshold: 0.2,
       items: [],
-      input: this.outdatedDependencies.length / this.data.dependencies.length,
+      input: outdatedCount / totalDependencies,
     });
 
     this.actions = actionsEvaluator.evaluate(this.config);
   }
 
   toConsole() {
+    let dependenciesResult = this.data[0];
+    let { values: dependenciesCount, total: totalDependencies } = dependenciesResult.percent;
+
     ui.section(this.meta.friendlyTaskName, () => {
       ui.sectionedBar(
         [
-          { title: 'major', count: this.versionTypes.get('major')!.length, color: 'red' },
-          { title: 'minor', count: this.versionTypes.get('minor')!.length, color: 'orange' },
-          { title: 'patch', count: this.versionTypes.get('patch')!.length, color: 'yellow' },
+          { title: 'major', count: dependenciesCount.major, color: 'red' },
+          { title: 'minor', count: dependenciesCount.minor, color: 'orange' },
+          { title: 'patch', count: dependenciesCount.patch, color: 'yellow' },
         ],
-        this.data.dependencies.length
+        totalDependencies
       );
     });
   }
@@ -59,33 +67,7 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
   toJson() {
     return {
       info: this.meta,
-      result: {
-        dependencies: this.outdatedDependencies,
-      },
+      result: this.data,
     };
-  }
-
-  get outdatedDependencies(): Dependency[] {
-    // if a dependency is up to date, the `bump` field will be null
-    return this.data.dependencies.filter((dependency) => dependency.bump !== null);
-  }
-
-  get versionTypes(): Map<string, Array<Dependency>> {
-    let versionTypes: Map<string, Array<Dependency>> = new Map<string, Array<Dependency>>([
-      ['major', []],
-      ['minor', []],
-      ['patch', []],
-    ]);
-
-    for (let dependency of this.outdatedDependencies) {
-      try {
-        // for catching when dependency version is 'exotic', which means yarn cannot detect for you whether the package has become outdated
-        versionTypes.get(dependency.bump)?.push(dependency);
-      } catch {
-        // do nothing
-      }
-    }
-
-    return versionTypes;
   }
 }

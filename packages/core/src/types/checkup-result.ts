@@ -1,6 +1,8 @@
 import { Action, TaskError, TaskMetaData } from './tasks';
 import { CheckupConfig } from './config';
 
+export type IndexableObject = { [key: string]: any };
+
 interface TaskResult {
   info: TaskMetaData;
   results: Result[];
@@ -9,7 +11,7 @@ interface TaskResult {
 interface BaseResult {
   key: string;
   type: string;
-  data: Array<string | object>;
+  data: Array<string | IndexableObject>;
 }
 
 export interface SummaryResult extends BaseResult {
@@ -17,15 +19,25 @@ export interface SummaryResult extends BaseResult {
   count: number;
 }
 
-export interface MultiStepResult extends BaseResult {
-  type: 'multi-step';
+export interface MultiValueResult extends BaseResult {
+  type: 'multi-value';
   percent: {
     values: Record<string, number>;
+    dataKey: string;
     total: number;
   };
 }
 
-type Result = SummaryResult | MultiStepResult;
+export interface DerivedValueResult extends BaseResult {
+  type: 'derived-value';
+  percent: {
+    values: Record<string, number>;
+    dataKey: string;
+    total: number;
+  };
+}
+
+type Result = SummaryResult | MultiValueResult | DerivedValueResult;
 
 export interface CheckupResult {
   info: {
