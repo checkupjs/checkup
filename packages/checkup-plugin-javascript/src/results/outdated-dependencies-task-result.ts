@@ -15,8 +15,7 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
   process(data: MultiValueResult[]) {
     this.data = data;
 
-    let dependenciesResult = this.data[0];
-    let { values: dependenciesCount, total: totalDependencies } = dependenciesResult.percent;
+    let { values: dependenciesCount, total: totalDependencies } = this.data[0].percent;
     let outdatedCount = Object.values(dependenciesCount).reduce((total, count) => total + count, 0);
     let actionsEvaluator = new ActionsEvaluator();
 
@@ -49,8 +48,7 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
   }
 
   toConsole() {
-    let dependenciesResult = this.data[0];
-    let { values: dependenciesCount, total: totalDependencies } = dependenciesResult.percent;
+    let { values: dependenciesCount, total: totalDependencies } = this.data[0].percent;
 
     ui.section(this.meta.friendlyTaskName, () => {
       ui.sectionedBar(
