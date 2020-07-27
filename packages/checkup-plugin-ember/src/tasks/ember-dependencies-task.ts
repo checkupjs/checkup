@@ -1,5 +1,5 @@
 import { BaseTask, Task, TaskResult, SummaryResult } from '@checkup/core';
-import { buildSummary } from '@checkup/core';
+import { buildSummaryResult } from '@checkup/core';
 
 import EmberDependenciesTaskResult from '../results/ember-dependencies-task-result';
 import { PackageJson } from 'type-fest';
@@ -26,24 +26,24 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
     );
     let packageJson = this.context.pkg;
 
-    let coreLibraries: SummaryResult = buildSummary('ember core libraries', [
+    let coreLibraries: SummaryResult = buildSummaryResult('ember core libraries', [
       findDependency(packageJson, 'ember-source'),
       findDependency(packageJson, 'ember-cli'),
       findDependency(packageJson, 'ember-data'),
     ]);
-    let emberDependencies = buildSummary(
+    let emberDependencies = buildSummaryResult(
       'ember addon dependencies',
       findDependencies(packageJson.dependencies, emberAddonFilter)
     );
-    let emberDevDependencies = buildSummary(
+    let emberDevDependencies = buildSummaryResult(
       'ember addon devDependencies',
       findDependencies(packageJson.devDependencies, emberAddonFilter)
     );
-    let emberCliDependencies = buildSummary(
+    let emberCliDependencies = buildSummaryResult(
       'ember-cli addon dependencies',
       findDependencies(packageJson.dependencies, emberCliAddonFilter)
     );
-    let emberCliDevDependencies = buildSummary(
+    let emberCliDevDependencies = buildSummaryResult(
       'ember-cli addon devDependencies',
       findDependencies(packageJson.devDependencies, emberCliAddonFilter)
     );

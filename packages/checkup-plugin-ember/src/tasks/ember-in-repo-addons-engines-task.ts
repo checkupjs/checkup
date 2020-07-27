@@ -1,6 +1,6 @@
 import { Task, TaskMetaData, TaskResult, BaseTask } from '@checkup/core';
 import EmberInRepoAddonEnginesTaskResult from '../results/ember-in-repo-addons-engines-task-result';
-import { buildSummary } from '@checkup/core';
+import { buildSummaryResult } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { readJsonSync } from 'fs-extra';
@@ -37,8 +37,8 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
     });
 
     result.process([
-      buildSummary('in-repo engines', inRepoEngines.sort()),
-      buildSummary('in-repo addons', inRepoAddons.sort()),
+      buildSummaryResult('in-repo engines', inRepoEngines.sort()),
+      buildSummaryResult('in-repo addons', inRepoAddons.sort()),
     ]);
 
     return result;

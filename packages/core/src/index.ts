@@ -25,7 +25,7 @@ export { ui } from './utils/ui';
 export { getFilePaths } from './utils/get-paths';
 export { FilePathsArray } from './utils/file-paths-array';
 
-export { buildSummary, buildMultiStep } from './builders';
+export { buildSummaryResult, buildMultiValueResult, buildDerivedValueResult } from './builders';
 
 export * from './utils/data-transformers';
 export * from './types/cli';
