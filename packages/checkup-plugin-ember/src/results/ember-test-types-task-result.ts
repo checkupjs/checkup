@@ -1,30 +1,39 @@
 import {
   BaseTaskResult,
   TaskResult,
-  ui,
   ESLintReport,
   ActionsEvaluator,
   Action,
   toPercent,
+  MultiValueResult,
+  ui,
+  TaskMetaData,
+  TaskConfig,
 } from '@checkup/core';
-import { TestTypeInfo } from '../types';
-import { transformESLintReport } from '../utils/transformers';
+import { buildTestResult } from '../utils/transformers';
 
 export default class EmberTestTypesTaskResult extends BaseTaskResult implements TaskResult {
   actions: Action[] = [];
+  data: MultiValueResult[] = [];
+  rawData: [] = [];
+  cwd: string;
 
-  data!: {
-    testTypes: TestTypeInfo[];
-  };
+  constructor(meta: TaskMetaData, config: TaskConfig, cwd: string) {
+    super(meta, config);
+
+    this.cwd = cwd;
+  }
 
   process(data: { esLintReport: ESLintReport }) {
-    this.data = {
-      testTypes: transformESLintReport(data.esLintReport),
-    };
+    this.data = buildTestResult(data.esLintReport, this.cwd);
+    this.rawData = this.data.flatMap((datum) => datum.data) as [];
 
     let actionsEvaluator = new ActionsEvaluator();
-    let totalSkippedTests = this.sumByType('skip');
-    let totalTests = this.sumByType('total');
+    let totalSkippedTests = this.data.reduce(
+      (total, result) => total + result.percent.values.skip,
+      0
+    );
+    let totalTests = this.data.reduce((total, result) => total + result.percent.total, 0);
 
     actionsEvaluator.add({
       name: 'reduce-skipped-tests',
@@ -43,67 +52,36 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
     let barColors = ['blue', 'cyan', 'green'];
 
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.table(
-        this.data.testTypes.map((testTypeInfo) => {
-          return {
-            ...testTypeInfo,
-            ...{
-              skipInfo: `${testTypeInfo.skip} ${
-                testTypeInfo.skip > 0
-                  ? `(${toPercent(testTypeInfo.skip, testTypeInfo.test + testTypeInfo.skip)})`
-                  : ''
-              }`,
-            },
-          };
-        }),
-        this.tableColumns
-      );
+      this.data.forEach((testTypeInfo) => {
+        ui.subHeader(testTypeInfo.key);
+        ui.table(
+          Object.entries(testTypeInfo.percent.values).map(([key, count]) => {
+            return { [testTypeInfo.percent.dataKey]: key, count };
+          }),
+          {
+            [testTypeInfo.percent.dataKey]: {},
+            count: {},
+          }
+        );
+        ui.blankLine();
+      });
 
-      ui.blankLine();
-
-      ui.subHeader('Test Type Breakdown');
-
+      ui.subHeader('tests by type');
       ui.sectionedBar(
-        this.data.testTypes.map((testType, index) => {
+        this.data.map((testType, index) => {
           return {
-            title: testType.type,
-            count: testType.total,
+            title: testType.key,
+            count: testType.percent.total,
             color: barColors[index],
           };
         }),
-        this.sumByType('total'),
+        this.data.reduce((total, result) => total + result.percent.total, 0),
         ' tests'
       );
     });
   }
 
   toJson() {
-    return { info: this.meta, result: { types: this.data.testTypes } };
-  }
-
-  get tableColumns() {
-    let columns = {
-      type: { minWidth: 15 },
-      test: { minWidth: 8, header: 'test' },
-    };
-
-    if (this.sumByType('only') > 0) {
-      columns = { ...columns, ...{ only: { minWidth: 8, header: 'only' } } };
-    }
-    if (this.sumByType('todo') > 0) {
-      columns = { ...columns, ...{ todo: { minWidth: 8, header: 'todo' } } };
-    }
-
-    if (this.sumByType('skip') > 0) {
-      columns = { ...columns, ...{ skipInfo: { header: 'skip' } } };
-    }
-
-    return columns;
-  }
-
-  private sumByType(prop: keyof Omit<TestTypeInfo, 'type'>): number {
-    return this.data.testTypes.reduce((total, item) => {
-      return total + item[prop];
-    }, 0);
+    return { info: this.meta, result: this.data };
   }
 }

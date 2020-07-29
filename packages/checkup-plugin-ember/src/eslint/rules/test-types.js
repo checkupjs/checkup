@@ -1,35 +1,41 @@
 module.exports = {
   create: function (context) {
-    let testType = 'Unit';
+    let testType = 'unit';
+
     return {
-      'CallExpression > Identifier[name=setupRenderingTest]'(node) {
-        testType = 'Rendering';
+      'CallExpression > Identifier[name=setupRenderingTest]'() {
+        testType = 'rendering';
       },
-      'CallExpression > Identifier[name=setupApplicationTest]'(node) {
-        testType = 'Application';
+
+      'CallExpression > Identifier[name=setupApplicationTest]'() {
+        testType = 'application';
       },
+
       'CallExpression > Identifier[name=test]'(node) {
         context.report({
           node,
-          message: `test${testType}`,
+          message: `${testType}|test`,
         });
       },
+
       'CallExpression > Identifier[name=skip]'(node) {
         context.report({
           node,
-          message: `skip${testType}`,
+          message: `${testType}|skip`,
         });
       },
+
       'CallExpression > Identifier[name=only]'(node) {
         context.report({
           node,
-          message: `only${testType}`,
+          message: `${testType}|only`,
         });
       },
+
       'CallExpression > Identifier[name=todo]'(node) {
         context.report({
           node,
-          message: `todo${testType}`,
+          message: `${testType}|todo`,
         });
       },
     };

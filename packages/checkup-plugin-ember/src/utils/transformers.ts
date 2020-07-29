@@ -1,88 +1,38 @@
-import { TestType, TestTypeInfo } from '../types';
+import { ESLintReport, buildMultiValueResult, IndexableObject, adaptResult } from '@checkup/core';
 
-import { ESLintReport } from '@checkup/core';
+export function buildTestResult(report: ESLintReport, cwd: string) {
+  let transformedResults = report.results.reduce(
+    (testTypes, lintResult) => {
+      let testType: string = '';
+      let method: string;
 
-enum TestCategories {
-  skipUnit = 'skipUnit',
-  todoUnit = 'todoUnit',
-  onlyUnit = 'onlyUnit',
-  testUnit = 'testUnit',
-  skipRendering = 'skipRendering',
-  todoRendering = 'todoRendering',
-  onlyRendering = 'onlyRendering',
-  testRendering = 'testRendering',
-  skipApplication = 'skipApplication',
-  todoApplication = 'todoApplication',
-  onlyApplication = 'onlyApplication',
-  testApplication = 'testApplication',
-}
+      if (lintResult.messages.length === 0) {
+        return testTypes;
+      }
 
-type TestCategoriesCounts = {
-  [key in TestCategories]: number;
-};
+      let messages = lintResult.messages.map((lintMessage) => {
+        [testType, method] = lintMessage.message.split('|');
 
-export function transformESLintReport(report: ESLintReport): TestTypeInfo[] {
-  const eslintMessages = report.results.flatMap((report) =>
-    report.messages.flatMap((message) => message.message)
-  ) as TestCategories[];
+        return adaptResult(cwd, lintResult.filePath, lintMessage, { method });
+      });
 
-  const formattedCounts = eslintMessages.reduce(
-    (acc: TestCategoriesCounts, item: TestCategories) => {
-      acc[item]++;
-      return acc;
+      testTypes[testType].push(...messages);
+
+      return testTypes;
     },
     {
-      skipUnit: 0,
-      todoUnit: 0,
-      onlyUnit: 0,
-      testUnit: 0,
-      skipRendering: 0,
-      todoRendering: 0,
-      onlyRendering: 0,
-      testRendering: 0,
-      skipApplication: 0,
-      todoApplication: 0,
-      onlyApplication: 0,
-      testApplication: 0,
-    } as TestCategoriesCounts
+      unit: [],
+      rendering: [],
+      application: [],
+    } as IndexableObject
   );
 
-  return [
-    {
-      type: TestType.Unit,
-      total:
-        formattedCounts.onlyUnit +
-        formattedCounts.todoUnit +
-        formattedCounts.skipUnit +
-        formattedCounts.testUnit,
-      only: formattedCounts.onlyUnit,
-      todo: formattedCounts.todoUnit,
-      skip: formattedCounts.skipUnit,
-      test: formattedCounts.testUnit,
-    },
-    {
-      type: TestType.Rendering,
-      total:
-        formattedCounts.onlyRendering +
-        formattedCounts.todoRendering +
-        formattedCounts.skipRendering +
-        formattedCounts.testRendering,
-      only: formattedCounts.onlyRendering,
-      todo: formattedCounts.todoRendering,
-      skip: formattedCounts.skipRendering,
-      test: formattedCounts.testRendering,
-    },
-    {
-      type: TestType.Application,
-      total:
-        formattedCounts.onlyApplication +
-        formattedCounts.todoApplication +
-        formattedCounts.skipApplication +
-        formattedCounts.testApplication,
-      only: formattedCounts.onlyApplication,
-      todo: formattedCounts.todoApplication,
-      skip: formattedCounts.skipApplication,
-      test: formattedCounts.testApplication,
-    },
-  ];
+  return Object.keys(transformedResults).map((key) => {
+    return buildMultiValueResult(key, transformedResults[key], 'method', [
+      'test',
+      'skip',
+      'only',
+      'todo',
+    ]);
+  });
 }

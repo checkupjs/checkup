@@ -6,7 +6,7 @@ import EmberTestTypesTaskResult from '../results/ember-test-types-task-result';
 export default class EmberTestTypesTask extends BaseTask implements Task {
   meta = {
     taskName: 'ember-test-types',
-    friendlyTaskName: 'Ember Test Types',
+    friendlyTaskName: 'Test Types',
     taskClassification: {
       category: 'testing',
       group: 'ember',
@@ -25,8 +25,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    let result = new EmberTestTypesTaskResult(this.meta, this.config);
-
+    let result = new EmberTestTypesTaskResult(this.meta, this.config, this.context.cliFlags.cwd);
     let esLintReport = await this.runEsLint();
 
     this.debug('ESLint Report', esLintReport);

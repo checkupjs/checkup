@@ -2,23 +2,6 @@ import { startCase } from 'lodash';
 
 import { TaskItemData } from '../types/tasks';
 
-/**
- * @param data
- * @param schema
- */
-export function toPairs(
-  data: Record<string, string>,
-  schema: { keyName: string; valueName: string }
-): object[] {
-  let result = [];
-
-  for (let key in data) {
-    result.push({ [schema.keyName]: key, [schema.valueName]: data[key] });
-  }
-
-  return result;
-}
-
 export function toTaskItemData(
   type: string,
   data: string[] | Record<string, string>

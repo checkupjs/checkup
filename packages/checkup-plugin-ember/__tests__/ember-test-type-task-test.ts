@@ -87,8 +87,6 @@ describe('ember-test-types-task', () => {
     testTypesTaskResult.toConsole();
 
     expect(stdout()).toMatchSnapshot();
-    expect(stdout()).not.toContain('todo');
-    expect(stdout()).not.toContain('only');
   });
 
   it('only renders todos/only test types if they a value > 0', async () => {
@@ -123,8 +121,6 @@ describe('ember-test-types-task', () => {
     testTypesTaskResult.toConsole();
 
     expect(stdout()).toMatchSnapshot();
-    expect(stdout()).toContain('todo');
-    expect(stdout()).toContain('only');
   });
 
   it('returns all the test types (including nested) found in the app and outputs to the console', async () => {

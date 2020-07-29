@@ -1,6 +1,7 @@
 import * as chalk from 'chalk';
 
 import { ux } from 'cli-ux';
+import { startCase } from 'lodash';
 
 const wrap = require('wrap-ansi');
 const boxen = require('boxen');
@@ -64,7 +65,7 @@ export const ui = Object.assign(ux, {
   },
 
   sectionHeader(header: string) {
-    process.stdout.write(this.emphasize(`${chalk.underline(chalk.white(header))}\n`));
+    process.stdout.write(this.emphasize(`${chalk.underline(chalk.white(startCase(header)))}\n`));
     ui.blankLine();
   },
 
@@ -75,7 +76,7 @@ export const ui = Object.assign(ux, {
   },
 
   subHeader(header: string) {
-    process.stdout.write(`${chalk.underline(chalk.white(header))}\n`);
+    process.stdout.write(`${chalk.underline(chalk.white(startCase(header)))}\n`);
     ui.blankLine();
   },
 

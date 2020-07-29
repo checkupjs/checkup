@@ -1,7 +1,7 @@
 import { getConfigPath, readConfig, writeConfig, parseConfigTuple } from '../src/config';
 import { readJsonSync, writeJsonSync } from 'fs-extra';
 
-import { DEFAULT_CONFIG } from '../lib';
+import { DEFAULT_CONFIG } from '../src';
 import { createTmpDir } from '@checkup/test-helpers';
 
 describe('config', () => {
