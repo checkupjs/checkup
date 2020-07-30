@@ -19,7 +19,7 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
       config: CheckupConfig;
       version: string;
       schema: number;
-      flags: RunFlags;
+      flags: Partial<RunFlags>;
     };
 
     analyzedFilesCount: string[];
