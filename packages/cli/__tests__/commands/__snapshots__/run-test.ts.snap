@@ -13,7 +13,7 @@ config 988dab0635e80290c915a8729decff96
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 1 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 1 lines
 ■ hbs (1)
 
 
@@ -33,7 +33,7 @@ config 988dab0635e80290c915a8729decff96
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines
 ■ js (2)
 
 
@@ -53,7 +53,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines
 ■ js (2)
 ■ hbs (1)
 
@@ -86,7 +86,6 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
       \\"schema\\": 1,
       \\"flags\\": {
         \\"format\\": \\"json\\",
-        \\"cwd\\": \\"/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-65173mpbcbDHM7k91/checkup-app\\",
         \\"outputFile\\": \\"\\"
       }
     },
@@ -152,7 +151,7 @@ exports[`@checkup/cli normal cli output should run a single task if the task opt
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines
 ■ js (2)
 ■ hbs (1)
 
@@ -173,7 +172,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines
 ■ hbs (2)
 ■ js (1)
 
@@ -194,7 +193,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 6 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 6 lines
 ■ js (4)
 ■ hbs (2)
 
@@ -215,7 +214,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines
 ■ js (2)
 ■ hbs (1)
 
@@ -236,7 +235,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
- 0 files
+ 0 lines
 
 
 "
@@ -255,7 +254,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines
 ■ js (2)
 
 
@@ -275,7 +274,7 @@ config 988dab0635e80290c915a8729decff96
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines
 ■ js (2)
 
 
@@ -295,7 +294,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 files
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines
 ■ js (2)
 ■ hbs (1)
 

@@ -42,10 +42,10 @@ describe('lines-of-code-task', () => {
     expect(stdout()).toMatchInlineSnapshot(`
       "Lines Of Code
 
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 files
+      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 lines
       ■ scss (10)
-      ■ hbs (1)
       ■ js (1)
+      ■ hbs (1)
 
       "
     `);
@@ -78,19 +78,19 @@ describe('lines-of-code-task', () => {
           Object {
             "data": Array [
               Object {
+                "extension": "hbs",
+                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-70773xfMe9mbLi8zp/foo/indexhbs",
+                "lines": 1,
+              },
+              Object {
                 "extension": "js",
-                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-65173jaUr0NzM4kda/foo/indexjs",
+                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-70773xfMe9mbLi8zp/foo/indexjs",
                 "lines": 1,
               },
               Object {
                 "extension": "scss",
-                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-65173jaUr0NzM4kda/foo/indexscss",
+                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-70773xfMe9mbLi8zp/foo/indexscss",
                 "lines": 10,
-              },
-              Object {
-                "extension": "hbs",
-                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-65173jaUr0NzM4kda/foo/indexhbs",
-                "lines": 1,
               },
             ],
             "dataSummary": Object {
