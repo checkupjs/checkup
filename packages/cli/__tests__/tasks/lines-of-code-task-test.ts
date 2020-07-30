@@ -42,11 +42,10 @@ describe('lines-of-code-task', () => {
     expect(stdout()).toMatchInlineSnapshot(`
       "Lines Of Code
 
-      File type   Total       TODO 
-      hbs         1           1    
-      js          1           1    
-      scss        10          0    
-      json        7           N/A  
+      Extension Lines 
+      hbs       1     
+      js        1     
+      scss      10    
 
       "
     `);
@@ -75,70 +74,39 @@ describe('lines-of-code-task', () => {
           },
           "taskName": "lines-of-code",
         },
-        "result": Object {
-          "fileResults": Array [
-            Object {
-              "errors": Array [],
-              "fileExension": "hbs",
-              "results": Object {
-                "block": 1,
-                "blockEmpty": 0,
-                "comment": 1,
-                "empty": 0,
-                "mixed": 0,
-                "single": 0,
-                "source": 0,
-                "todo": 1,
-                "total": 1,
+        "result": Array [
+          Object {
+            "data": Array [
+              Object {
+                "extension": "hbs",
+                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-20356gFL6eQhvuztF/foo/index.hbs",
+                "lines": 1,
+              },
+              Object {
+                "extension": "js",
+                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-20356gFL6eQhvuztF/foo/index.js",
+                "lines": 1,
+              },
+              Object {
+                "extension": "scss",
+                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-20356gFL6eQhvuztF/foo/index.scss",
+                "lines": 10,
+              },
+            ],
+            "dataSummary": Object {
+              "dataKey": "extension",
+              "total": 3,
+              "valueKey": "lines",
+              "values": Object {
+                "hbs": 1,
+                "js": 1,
+                "scss": 10,
               },
             },
-            Object {
-              "errors": Array [],
-              "fileExension": "js",
-              "results": Object {
-                "block": 0,
-                "blockEmpty": 0,
-                "comment": 1,
-                "empty": 0,
-                "mixed": 0,
-                "single": 1,
-                "source": 0,
-                "todo": 1,
-                "total": 1,
-              },
-            },
-            Object {
-              "errors": Array [],
-              "fileExension": "scss",
-              "results": Object {
-                "block": 0,
-                "blockEmpty": 0,
-                "comment": 0,
-                "empty": 2,
-                "mixed": 0,
-                "single": 0,
-                "source": 8,
-                "todo": 0,
-                "total": 10,
-              },
-            },
-            Object {
-              "errors": Array [],
-              "fileExension": "json",
-              "results": Object {
-                "block": "N/A",
-                "blockEmpty": "N/A",
-                "comment": "N/A",
-                "empty": "N/A",
-                "mixed": "N/A",
-                "single": "N/A",
-                "source": "N/A",
-                "todo": "N/A",
-                "total": 7,
-              },
-            },
-          ],
-        },
+            "key": "lines of code",
+            "type": "lookup-value",
+          },
+        ],
       }
     `);
   });

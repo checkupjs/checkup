@@ -1,10 +1,10 @@
 'use strict';
 
-import { FilePathsArray } from '../../src/utils/file-paths-array';
+import { FilePathArray } from '../../src/utils/file-path-array';
 
 describe('FilePathsArray', function () {
   it('returns all files when no patterns are provided', function () {
-    let files = new FilePathsArray(...['foo.js', 'blue.hbs', 'goo.hbs']);
+    let files = new FilePathArray(...['foo.js', 'blue.hbs', 'goo.hbs']);
 
     expect(files.filterByGlob('**.js')).toMatchInlineSnapshot(`
       Array [

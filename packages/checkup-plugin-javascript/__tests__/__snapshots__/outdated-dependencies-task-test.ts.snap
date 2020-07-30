@@ -40,8 +40,7 @@ Object {
           "wanted": "16.0.0",
         },
       ],
-      "key": "dependencies",
-      "percent": Object {
+      "dataSummary": Object {
         "dataKey": "semverBump",
         "total": 2,
         "values": Object {
@@ -50,6 +49,7 @@ Object {
           "patch": 0,
         },
       },
+      "key": "dependencies",
       "type": "multi-value",
     },
   ],

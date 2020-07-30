@@ -94,7 +94,7 @@ describe('project-meta-task', () => {
 
       expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
-          "analyzedFilesCount": FilePathsArray [],
+          "analyzedFilesCount": FilePathArray [],
           "cli": Object {
             "configHash": "395b15f7dea0dee193db593e1c6cfb5b",
             "schema": 1,
@@ -132,7 +132,7 @@ describe('project-meta-task', () => {
 
       expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
-          "analyzedFilesCount": FilePathsArray [],
+          "analyzedFilesCount": FilePathArray [],
           "cli": Object {
             "configHash": "1ba2bd62ba89147967dc57decae6b129",
             "schema": 1,

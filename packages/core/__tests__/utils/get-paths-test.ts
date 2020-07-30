@@ -39,7 +39,7 @@ describe('getFilePaths', function () {
       let filteredFiles = filterFilePathResults(getFilePaths(project.baseDir));
 
       expect(filteredFiles).toMatchInlineSnapshot(`
-        FilePathsArray [
+        FilePathArray [
           "/bar/index.js",
           "/baz/index.js",
           "/foo/index.hbs",
@@ -54,7 +54,7 @@ describe('getFilePaths', function () {
     it('returns all files when no patterns are provided and a base path other than "." is provided', function () {
       let files = getFilePaths(`${project.baseDir}/baz`);
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathsArray [
+        FilePathArray [
           "/baz/index.js",
         ]
       `);
@@ -76,7 +76,7 @@ describe('getFilePaths', function () {
       let files = getFilePaths(project.baseDir, ['**/*.hbs']);
 
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathsArray [
+        FilePathArray [
           "/foo/index.hbs",
         ]
       `);
@@ -86,7 +86,7 @@ describe('getFilePaths', function () {
       let files = getFilePaths(project.baseDir, ['*']);
 
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathsArray [
+        FilePathArray [
           "/index.js",
           "/package.json",
         ]
@@ -97,7 +97,7 @@ describe('getFilePaths', function () {
       let files = getFilePaths(`${project.baseDir}/baz`, ['**']);
 
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathsArray [
+        FilePathArray [
           "/baz/index.js",
         ]
       `);

@@ -2,7 +2,7 @@ import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from '.
 import { JsonObject, PackageJson } from 'type-fest';
 
 import { CheckupConfig } from './config';
-import { FilePathsArray } from '../utils/file-paths-array';
+import { FilePathArray } from '../utils/file-path-array';
 import { RunFlags } from './cli';
 
 export type SearchPatterns = Record<string, string[]>;
@@ -64,7 +64,7 @@ export interface TaskContext {
   readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
   readonly config: CheckupConfig;
   readonly pkg: PackageJson;
-  readonly paths: FilePathsArray;
+  readonly paths: FilePathArray;
 }
 
 export interface TaskMetaData {

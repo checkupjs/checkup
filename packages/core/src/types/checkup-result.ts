@@ -21,7 +21,7 @@ export interface SummaryResult extends BaseResult {
 
 export interface MultiValueResult extends BaseResult {
   type: 'multi-value';
-  percent: {
+  dataSummary: {
     values: Record<string, number>;
     dataKey: string;
     total: number;
@@ -30,14 +30,24 @@ export interface MultiValueResult extends BaseResult {
 
 export interface DerivedValueResult extends BaseResult {
   type: 'derived-value';
-  percent: {
+  dataSummary: {
     values: Record<string, number>;
     dataKey: string;
     total: number;
   };
 }
 
-type Result = SummaryResult | MultiValueResult | DerivedValueResult;
+export interface LookupValueResult extends BaseResult {
+  type: 'lookup-value';
+  dataSummary: {
+    values: Record<string, number>;
+    dataKey: string;
+    valueKey: string;
+    total: number;
+  };
+}
+
+type Result = SummaryResult | MultiValueResult | DerivedValueResult | LookupValueResult;
 
 export interface CheckupResult {
   info: {

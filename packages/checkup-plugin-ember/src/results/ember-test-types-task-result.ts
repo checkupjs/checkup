@@ -1,39 +1,28 @@
 import {
   BaseTaskResult,
   TaskResult,
-  ESLintReport,
   ActionsEvaluator,
   Action,
   toPercent,
   MultiValueResult,
   ui,
-  TaskMetaData,
-  TaskConfig,
 } from '@checkup/core';
-import { buildTestResult } from '../utils/transformers';
 
 export default class EmberTestTypesTaskResult extends BaseTaskResult implements TaskResult {
   actions: Action[] = [];
   data: MultiValueResult[] = [];
   rawData: [] = [];
-  cwd: string;
 
-  constructor(meta: TaskMetaData, config: TaskConfig, cwd: string) {
-    super(meta, config);
-
-    this.cwd = cwd;
-  }
-
-  process(data: { esLintReport: ESLintReport }) {
-    this.data = buildTestResult(data.esLintReport, this.cwd);
+  process(data: MultiValueResult[]) {
+    this.data = data;
     this.rawData = this.data.flatMap((datum) => datum.data) as [];
 
     let actionsEvaluator = new ActionsEvaluator();
     let totalSkippedTests = this.data.reduce(
-      (total, result) => total + result.percent.values.skip,
+      (total, result) => total + result.dataSummary.values.skip,
       0
     );
-    let totalTests = this.data.reduce((total, result) => total + result.percent.total, 0);
+    let totalTests = this.data.reduce((total, result) => total + result.dataSummary.total, 0);
 
     actionsEvaluator.add({
       name: 'reduce-skipped-tests',
@@ -55,11 +44,11 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
       this.data.forEach((testTypeInfo) => {
         ui.subHeader(testTypeInfo.key);
         ui.table(
-          Object.entries(testTypeInfo.percent.values).map(([key, count]) => {
-            return { [testTypeInfo.percent.dataKey]: key, count };
+          Object.entries(testTypeInfo.dataSummary.values).map(([key, count]) => {
+            return { [testTypeInfo.dataSummary.dataKey]: key, count };
           }),
           {
-            [testTypeInfo.percent.dataKey]: {},
+            [testTypeInfo.dataSummary.dataKey]: {},
             count: {},
           }
         );
@@ -71,11 +60,11 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
         this.data.map((testType, index) => {
           return {
             title: testType.key,
-            count: testType.percent.total,
+            count: testType.dataSummary.total,
             color: barColors[index],
           };
         }),
-        this.data.reduce((total, result) => total + result.percent.total, 0),
+        this.data.reduce((total, result) => total + result.dataSummary.total, 0),
         ' tests'
       );
     });

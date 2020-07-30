@@ -2,6 +2,7 @@ import {
   SummaryResult,
   MultiValueResult,
   DerivedValueResult,
+  LookupValueResult,
   IndexableObject,
 } from './types/checkup-result';
 
@@ -23,7 +24,7 @@ function buildSummaryResult(key: string, data: Array<string | IndexableObject>):
 /**
  * Builds a {MultiValueResult}.
  *
- * Use this type if you want your result's `percent.values` to contain
+ * Use this type if you want your result's `dataSummary.values` to contain
  * specific values that may or may not be included in the values found
  * in `data`.
  *
@@ -63,7 +64,7 @@ function buildMultiValueResult(
   return {
     key,
     type: 'multi-value',
-    percent: {
+    dataSummary: {
       values: buildMultiValues(data, dataKey, valueKeys),
       dataKey,
       total: total || data.length,
@@ -89,7 +90,7 @@ function buildMultiValues(data: Array<IndexableObject>, dataKey: string, valueKe
 /**
  * Builds a {DerivedValueResult}.
  *
- * Use this type if you want your result's `percent.values` to be derived
+ * Use this type if you want your result's `dataSummary.values` to be derived
  * from the unique values of the specified `dataKey` in `data`, and you
  * want the values object to contain _all_ the unique values found in `data`.
  *
@@ -128,7 +129,7 @@ function buildDerivedValueResult(
   return {
     key,
     type: 'derived-value',
-    percent: {
+    dataSummary: {
       values: buildDerivedValues(data, dataKey),
       dataKey,
       total: total || data.length,
@@ -149,4 +150,89 @@ function buildDerivedValues(data: Array<IndexableObject>, dataKey: string) {
   return uniqueValues;
 }
 
-export { buildSummaryResult, buildMultiValueResult, buildDerivedValueResult };
+/**
+ * Builds a {LookupValueResult}.
+ *
+ * Use this type if you want your result's `dataSummary.values` to be derived
+ * from the unique values of the specified `dataKey` in `data`, you
+ * want the values object to contain _all_ the unique values found in `data`, and
+ * you would the associated counts of these keys to be derived from the value looked
+ * up in `valueKey`.
+ *
+ * The below example allows us build our values keys from the list of values present
+ * in the `dataKey`, or value of, 'baz'. Each unique value found
+ * in the 'baz' `dataKey` will have an associated value of the accumulated counts derived
+ * from `valueKey` `total`.
+ *
+ * @example
+ *
+ * let data = [
+ *   {
+ *     foo: true,
+ *     baz: 'bar',
+ *     total: 0,
+ *   },
+ *   {
+ *     foo: true,
+ *     baz: 'bork',
+ *     total: 2,
+ *   },
+ * ];
+ *
+ * let derivedValueResult = buildDerivedValueResult('foo', data, 'baz', 'total');
+ *
+ * @param key {string} An identifier used to help identify the result
+ * @param data {Array<IndexableObject>} The raw data used to derive the result's summary values
+ * @param dataKey {string} Used to reference a property in the data who's value is then used to calculate summary counts. The
+ *                         values of the data looked up via the dataKey are used to create the list of values in the returned result.
+ * @param valueKey {string} Used to reference a property in the data who's value is used as the number value used for summary counts.
+ *                         The values of the data looked up via the valueKey are used to aggregate the counts for the returned result.
+ * @param total {number} The total value (usually the data length), often acting as the denominator in a percentage calculation
+ */
+function buildLookupValueResult(
+  key: string,
+  data: Array<IndexableObject>,
+  dataKey: string,
+  valueKey: string,
+  total?: number
+): LookupValueResult {
+  let [values, calculatedTotal] = buildLookupValues(data, dataKey, valueKey);
+
+  return {
+    key,
+    type: 'lookup-value',
+    dataSummary: {
+      values,
+      dataKey,
+      valueKey,
+      total: total || calculatedTotal,
+    },
+    data,
+  };
+}
+
+function buildLookupValues(
+  data: Array<IndexableObject>,
+  dataKey: string,
+  valueKey: string
+): [{ [key: string]: number }, number] {
+  let lookupValues: { [key: string]: number } = {};
+  let total: number = 0;
+
+  data.forEach((datum: IndexableObject) => {
+    let dataValueCount = lookupValues[datum[dataKey]] || 0;
+    let value = dataValueCount + datum[valueKey];
+
+    lookupValues[datum[dataKey]] = value;
+    total += value;
+  });
+
+  return [lookupValues, total];
+}
+
+export {
+  buildSummaryResult,
+  buildMultiValueResult,
+  buildDerivedValueResult,
+  buildLookupValueResult,
+};

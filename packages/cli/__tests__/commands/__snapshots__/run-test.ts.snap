@@ -13,9 +13,8 @@ config 988dab0635e80290c915a8729decff96
 
 Lines Of Code
 
-File type   Total       TODO 
-hbs         1           0    
-json        175         N/A  
+Extension Lines 
+hbs       1     
 
 
 "
@@ -34,9 +33,8 @@ config 988dab0635e80290c915a8729decff96
 
 Lines Of Code
 
-File type   Total       TODO 
-js          1           0    
-json        175         N/A  
+Extension Lines 
+js        2     
 
 
 "
@@ -55,10 +53,9 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-File type   Total       TODO 
-hbs         1           0    
-js          1           0    
-json        175         N/A  
+Extension Lines 
+js        2     
+hbs       1     
 
 
 "
@@ -100,55 +97,38 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
           \\"category\\": \\"metrics\\"
         }
       },
-      \\"result\\": {
-        \\"fileResults\\": [
-          {
-            \\"results\\": {
-              \\"total\\": 1,
-              \\"todo\\": 0,
-              \\"block\\": 0,
-              \\"blockEmpty\\": 0,
-              \\"comment\\": 0,
-              \\"empty\\": 0,
-              \\"mixed\\": 0,
-              \\"single\\": 0,
-              \\"source\\": 1
+      \\"result\\": [
+        {
+          \\"key\\": \\"lines of code\\",
+          \\"type\\": \\"lookup-value\\",
+          \\"dataSummary\\": {
+            \\"values\\": {
+              \\"js\\": 2,
+              \\"hbs\\": 1
             },
-            \\"fileExension\\": \\"hbs\\",
-            \\"errors\\": []
+            \\"dataKey\\": \\"extension\\",
+            \\"valueKey\\": \\"lines\\",
+            \\"total\\": 3
           },
-          {
-            \\"results\\": {
-              \\"total\\": 1,
-              \\"todo\\": 0,
-              \\"block\\": 0,
-              \\"blockEmpty\\": 0,
-              \\"comment\\": 0,
-              \\"empty\\": 0,
-              \\"mixed\\": 0,
-              \\"single\\": 0,
-              \\"source\\": 1
+          \\"data\\": [
+            {
+              \\"filePath\\": /checkup-app/.eslintrc.js\\",
+              \\"extension\\": \\"js\\",
+              \\"lines\\": 1
             },
-            \\"fileExension\\": \\"js\\",
-            \\"errors\\": []
-          },
-          {
-            \\"results\\": {
-              \\"total\\": 175,
-              \\"todo\\": \\"N/A\\",
-              \\"block\\": \\"N/A\\",
-              \\"blockEmpty\\": \\"N/A\\",
-              \\"comment\\": \\"N/A\\",
-              \\"empty\\": \\"N/A\\",
-              \\"mixed\\": \\"N/A\\",
-              \\"single\\": \\"N/A\\",
-              \\"source\\": \\"N/A\\"
+            {
+              \\"filePath\\": /checkup-app/index.js\\",
+              \\"extension\\": \\"js\\",
+              \\"lines\\": 1
             },
-            \\"fileExension\\": \\"json\\",
-            \\"errors\\": []
-          }
-        ]
-      }
+            {
+              \\"filePath\\": /checkup-app/index.hbs\\",
+              \\"extension\\": \\"hbs\\",
+              \\"lines\\": 1
+            }
+          ]
+        }
+      ]
     }
   ],
   \\"errors\\": [],
@@ -161,10 +141,9 @@ exports[`@checkup/cli normal cli output should run a single task if the task opt
 
 Lines Of Code
 
-File type   Total       TODO 
-hbs         1           0    
-js          1           0    
-json        175         N/A  
+Extension Lines 
+js        2     
+hbs       1     
 
 
 "
@@ -183,9 +162,9 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-File type   Total       TODO 
-hbs         2           0    
-js          1           1    
+Extension Lines 
+hbs       2     
+js        1     
 
 
 "
@@ -204,10 +183,9 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-File type   Total       TODO 
-js          3           2    
-hbs         2           0    
-json        175         N/A  
+Extension Lines 
+js        4     
+hbs       2     
 
 
 "
@@ -226,10 +204,9 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-File type   Total       TODO 
-hbs         1           0    
-js          1           0    
-json        175         N/A  
+Extension Lines 
+js        2     
+hbs       1     
 
 
 "
@@ -248,8 +225,7 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-File type   Total       TODO 
-json        175         N/A  
+Extension Lines 
 
 
 "
@@ -268,9 +244,8 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-File type   Total       TODO 
-js          1           0    
-json        175         N/A  
+Extension Lines 
+js        2     
 
 
 "
@@ -289,9 +264,8 @@ config 988dab0635e80290c915a8729decff96
 
 Lines Of Code
 
-File type   Total       TODO 
-js          1           0    
-json        175         N/A  
+Extension Lines 
+js        2     
 
 
 "
@@ -310,10 +284,9 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 
 Lines Of Code
 
-File type   Total       TODO 
-hbs         1           0    
-js          1           0    
-json        175         N/A  
+Extension Lines 
+js        2     
+hbs       1     
 
 
 "

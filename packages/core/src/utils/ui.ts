@@ -14,18 +14,18 @@ export function calculateSectionBar(
   // We want to normalize the amount provided by the proper ratios.
   // If the total is less than the width we want to multiply the ratio.
   // If the total is greater than the width we want to divide the amount vs the ratio
-  const normalizeSegement = function (amount: number) {
+  const normalizeSegment = function (amount: number) {
     return Math.ceil(total < width ? amount * (width / total) : amount / (total / width));
   };
 
   const completedSegments = segments.map((segment) => {
     return Object.assign({}, segment, {
-      completed: normalizeSegement(segment.count),
+      completed: normalizeSegment(segment.count),
     });
   });
 
   // remove  the segments counts from the total number and then normalize it by the barSegment ratio
-  const incompleteSegments: number = normalizeSegement(
+  const incompleteSegments: number = normalizeSegment(
     total - completedSegments.reduce((prev, curr) => prev + curr.count, 0)
   );
 
@@ -132,15 +132,12 @@ export const ui = Object.assign(ux, {
     }
 
     ui.log(`${bar} ${total.toLocaleString()}${unit}`);
-    ui.log(
-      `${completedSegments
-        .map(
-          (segment) =>
-            `${chalk.keyword(segment.color)(barTick)} ${
-              segment.title
-            } (${segment.count.toLocaleString()})  `
-        )
-        .join('')}`
+    completedSegments.map((segment) =>
+      ui.log(
+        `${chalk.keyword(segment.color)(barTick)} ${
+          segment.title
+        } (${segment.count.toLocaleString()})`
+      )
     );
   },
 });

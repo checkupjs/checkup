@@ -108,8 +108,7 @@ Object {
           "ruleId": "test-types",
         },
       ],
-      "key": "unit",
-      "percent": Object {
+      "dataSummary": Object {
         "dataKey": "method",
         "total": 3,
         "values": Object {
@@ -119,6 +118,7 @@ Object {
           "todo": 0,
         },
       },
+      "key": "unit",
       "type": "multi-value",
     },
     Object {
@@ -148,8 +148,7 @@ Object {
           "ruleId": "test-types",
         },
       ],
-      "key": "rendering",
-      "percent": Object {
+      "dataSummary": Object {
         "dataKey": "method",
         "total": 3,
         "values": Object {
@@ -159,6 +158,7 @@ Object {
           "todo": 0,
         },
       },
+      "key": "rendering",
       "type": "multi-value",
     },
     Object {
@@ -212,8 +212,7 @@ Object {
           "ruleId": "test-types",
         },
       ],
-      "key": "application",
-      "percent": Object {
+      "dataSummary": Object {
         "dataKey": "method",
         "total": 6,
         "values": Object {
@@ -223,6 +222,7 @@ Object {
           "todo": 0,
         },
       },
+      "key": "application",
       "type": "multi-value",
     },
   ],
