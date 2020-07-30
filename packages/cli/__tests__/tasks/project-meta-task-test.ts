@@ -96,7 +96,23 @@ describe('project-meta-task', () => {
         Object {
           "analyzedFilesCount": FilePathArray [],
           "cli": Object {
+            "config": Object {
+              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+              "excludePaths": Array [],
+              "plugins": Array [],
+              "tasks": Object {},
+            },
             "configHash": "395b15f7dea0dee193db593e1c6cfb5b",
+            "flags": Object {
+              "config": undefined,
+              "cwd": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-65173r6WeS6Pvk3qq/checkup-app",
+              "excludePaths": undefined,
+              "format": "stdout",
+              "help": undefined,
+              "outputFile": "",
+              "task": undefined,
+              "version": undefined,
+            },
             "schema": 1,
             "version": "0.0.0",
           },
@@ -134,7 +150,25 @@ describe('project-meta-task', () => {
         Object {
           "analyzedFilesCount": FilePathArray [],
           "cli": Object {
+            "config": Object {
+              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+              "excludePaths": Array [],
+              "plugins": Array [
+                "checkup-plugin-ember",
+              ],
+              "tasks": Object {},
+            },
             "configHash": "1ba2bd62ba89147967dc57decae6b129",
+            "flags": Object {
+              "config": undefined,
+              "cwd": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-65173aOOcp74Tub4Y/checkup-app",
+              "excludePaths": undefined,
+              "format": "stdout",
+              "help": undefined,
+              "outputFile": "",
+              "task": undefined,
+              "version": undefined,
+            },
             "schema": 1,
             "version": "0.0.0",
           },

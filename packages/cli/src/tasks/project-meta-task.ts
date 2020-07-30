@@ -33,8 +33,10 @@ export default class ProjectMetaTask extends BaseTask implements MetaTask {
 
       cli: {
         configHash: getConfigHash(this.context.config),
+        config: this.context.config,
         version: getVersion(),
         schema: 1,
+        flags: this.context.cliFlags,
       },
 
       analyzedFilesCount: this.context.paths,

@@ -46,16 +46,16 @@ describe('ui', function () {
         Object {
           "completedSegments": Array [
             Object {
-              "color": "blue",
-              "completed": 13,
-              "count": 5,
-              "title": "foo",
-            },
-            Object {
               "color": "green",
               "completed": 25,
               "count": 10,
               "title": "bar",
+            },
+            Object {
+              "color": "blue",
+              "completed": 13,
+              "count": 5,
+              "title": "foo",
             },
           ],
           "incompleteSegments": 13,

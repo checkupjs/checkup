@@ -224,8 +224,9 @@ function buildLookupValues(
     let value = dataValueCount + datum[valueKey];
 
     lookupValues[datum[dataKey]] = value;
-    total += value;
   });
+
+  total = Object.values(lookupValues).reduce((total, value) => total + value, 0);
 
   return [lookupValues, total];
 }

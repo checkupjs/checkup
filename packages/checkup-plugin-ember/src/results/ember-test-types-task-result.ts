@@ -65,7 +65,7 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
           };
         }),
         this.data.reduce((total, result) => total + result.dataSummary.total, 0),
-        ' tests'
+        'tests'
       );
     });
   }

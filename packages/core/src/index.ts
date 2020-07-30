@@ -23,7 +23,7 @@ export { getPluginName, normalizePackageName, getShorthandName } from './utils/p
 export { exec } from './utils/exec';
 export { ui } from './utils/ui';
 export { getFilePaths } from './utils/get-paths';
-export { FilePathArray as FilePathsArray } from './utils/file-path-array';
+export { FilePathArray } from './utils/file-path-array';
 
 export {
   buildSummaryResult,

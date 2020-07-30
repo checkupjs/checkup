@@ -30,7 +30,9 @@ todo   0
 Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 tests
-■ unit (0)  ■ rendering (3)  ■ application (0)  
+■ rendering (3)
+■ unit (0)
+■ application (0)
 
 "
 `;
@@ -65,7 +67,9 @@ todo   0
 Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 24 tests
-■ unit (6)  ■ rendering (6)  ■ application (12)  
+■ application (12)
+■ unit (6)
+■ rendering (6)
 
 "
 `;
@@ -259,7 +263,9 @@ todo   0
 Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 tests
-■ unit (3)  ■ rendering (3)  ■ application (6)  
+■ application (6)
+■ unit (3)
+■ rendering (3)
 
 "
 `;

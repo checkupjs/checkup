@@ -18,11 +18,13 @@ export function calculateSectionBar(
     return Math.ceil(total < width ? amount * (width / total) : amount / (total / width));
   };
 
-  const completedSegments = segments.map((segment) => {
-    return Object.assign({}, segment, {
-      completed: normalizeSegment(segment.count),
-    });
-  });
+  const completedSegments = segments
+    .map((segment) => {
+      return Object.assign({}, segment, {
+        completed: normalizeSegment(segment.count),
+      });
+    })
+    .sort(({ count: a }, { count: b }) => b - a);
 
   // remove  the segments counts from the total number and then normalize it by the barSegment ratio
   const incompleteSegments: number = normalizeSegment(
@@ -131,7 +133,7 @@ export const ui = Object.assign(ux, {
       });
     }
 
-    ui.log(`${bar} ${total.toLocaleString()}${unit}`);
+    ui.log(`${bar} ${total.toLocaleString()} ${unit}`);
     completedSegments.map((segment) =>
       ui.log(
         `${chalk.keyword(segment.color)(barTick)} ${
@@ -139,5 +141,10 @@ export const ui = Object.assign(ux, {
         } (${segment.count.toLocaleString()})`
       )
     );
+  },
+
+  randomColor() {
+    const colors = ['red', 'green', 'blue', 'magenta', 'cyan', 'gray'];
+    return colors[Math.floor(Math.random() * colors.length)];
   },
 });

@@ -235,7 +235,7 @@ describe('builders', () => {
           ],
           "dataSummary": Object {
             "dataKey": "baz",
-            "total": 3,
+            "total": 44,
             "valueKey": "total",
             "values": Object {
               "bar": 42,

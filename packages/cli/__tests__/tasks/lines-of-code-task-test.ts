@@ -42,10 +42,10 @@ describe('lines-of-code-task', () => {
     expect(stdout()).toMatchInlineSnapshot(`
       "Lines Of Code
 
-      Extension Lines 
-      hbs       1     
-      js        1     
-      scss      10    
+      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 files
+      ■ scss (10)
+      ■ hbs (1)
+      ■ js (1)
 
       "
     `);
@@ -78,24 +78,24 @@ describe('lines-of-code-task', () => {
           Object {
             "data": Array [
               Object {
-                "extension": "hbs",
-                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-20356gFL6eQhvuztF/foo/index.hbs",
-                "lines": 1,
-              },
-              Object {
                 "extension": "js",
-                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-20356gFL6eQhvuztF/foo/index.js",
+                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-65173jaUr0NzM4kda/foo/indexjs",
                 "lines": 1,
               },
               Object {
                 "extension": "scss",
-                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-20356gFL6eQhvuztF/foo/index.scss",
+                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-65173jaUr0NzM4kda/foo/indexscss",
                 "lines": 10,
+              },
+              Object {
+                "extension": "hbs",
+                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-65173jaUr0NzM4kda/foo/indexhbs",
+                "lines": 1,
               },
             ],
             "dataSummary": Object {
               "dataKey": "extension",
-              "total": 3,
+              "total": 12,
               "valueKey": "lines",
               "values": Object {
                 "hbs": 1,
