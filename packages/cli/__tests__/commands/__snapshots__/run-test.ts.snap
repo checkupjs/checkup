@@ -90,12 +90,12 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
       }
     },
     \\"analyzedFilesCount\\": [
-      /checkup-app/.checkuprc\\",
-      /checkup-app/.eslintrc.js\\",
-      /checkup-app/index.hbs\\",
-      /checkup-app/index.js\\",
-      /checkup-app/package-lock.json\\",
-      /checkup-app/package.json\\"
+      \\"/.checkuprc\\",
+      \\"/.eslintrc.js\\",
+      \\"/index.hbs\\",
+      \\"/index.js\\",
+      \\"/package-lock.json\\",
+      \\"/package.json\\"
     ]
   },
   \\"results\\": [

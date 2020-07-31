@@ -12,7 +12,7 @@ export default class LinesOfCodeTaskResult extends BaseTaskResult implements Tas
     ui.section(this.meta.friendlyTaskName, () => {
       ui.sectionedBar(
         Object.entries(dataSummary.values).map(([key, count]) => {
-          return { title: key, count, color: ui.randomColor() };
+          return { title: key, count };
         }),
         dataSummary.total,
         'lines'

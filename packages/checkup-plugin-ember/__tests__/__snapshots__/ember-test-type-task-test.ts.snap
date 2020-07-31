@@ -31,8 +31,8 @@ Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 tests
 ■ rendering (3)
-■ unit (0)
 ■ application (0)
+■ unit (0)
 
 "
 `;
@@ -68,8 +68,8 @@ Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 24 tests
 ■ application (12)
-■ unit (6)
 ■ rendering (6)
+■ unit (6)
 
 "
 `;
@@ -264,8 +264,8 @@ Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 tests
 ■ application (6)
-■ unit (3)
 ■ rendering (3)
+■ unit (3)
 
 "
 `;

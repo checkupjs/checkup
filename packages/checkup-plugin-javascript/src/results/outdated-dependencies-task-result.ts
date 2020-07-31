@@ -53,9 +53,9 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
     ui.section(this.meta.friendlyTaskName, () => {
       ui.sectionedBar(
         [
-          { title: 'major', count: dependenciesCount.major, color: 'red' },
-          { title: 'minor', count: dependenciesCount.minor, color: 'orange' },
-          { title: 'patch', count: dependenciesCount.patch, color: 'yellow' },
+          { title: 'major', count: dependenciesCount.major },
+          { title: 'minor', count: dependenciesCount.minor },
+          { title: 'patch', count: dependenciesCount.patch },
         ],
         totalDependencies
       );

@@ -4,13 +4,11 @@ exports[`ui sectionedBar should calculateSectionBar segments correctly 1`] = `
 Object {
   "completedSegments": Array [
     Object {
-      "color": "green",
       "completed": 50,
       "count": 495,
       "title": "bar",
     },
     Object {
-      "color": "blue",
       "completed": 1,
       "count": 5,
       "title": "foo",
@@ -24,16 +22,14 @@ exports[`ui sectionedBar should calculateSectionBar segments correctly 3`] = `
 Object {
   "completedSegments": Array [
     Object {
-      "color": "blue",
-      "completed": 25,
-      "count": 10,
-      "title": "foo",
-    },
-    Object {
-      "color": "green",
       "completed": 25,
       "count": 10,
       "title": "bar",
+    },
+    Object {
+      "completed": 25,
+      "count": 10,
+      "title": "foo",
     },
   ],
   "incompleteSegments": 0,
@@ -44,22 +40,19 @@ exports[`ui sectionedBar should calculateSectionBar segments correctly 4`] = `
 Object {
   "completedSegments": Array [
     Object {
-      "color": "blue",
+      "completed": 17,
+      "count": 10,
+      "title": "bar",
+    },
+    Object {
       "completed": 17,
       "count": 10,
       "title": "foo",
     },
     Object {
-      "color": "orange",
       "completed": 17,
       "count": 10,
       "title": "moo",
-    },
-    Object {
-      "color": "green",
-      "completed": 17,
-      "count": 10,
-      "title": "bar",
     },
   ],
   "incompleteSegments": 0,
@@ -70,22 +63,19 @@ exports[`ui sectionedBar should calculateSectionBar segments correctly 5`] = `
 Object {
   "completedSegments": Array [
     Object {
-      "color": "blue",
-      "completed": 17,
-      "count": 50,
-      "title": "foo",
-    },
-    Object {
-      "color": "orange",
-      "completed": 17,
-      "count": 50,
-      "title": "foo",
-    },
-    Object {
-      "color": "green",
       "completed": 17,
       "count": 50,
       "title": "bar",
+    },
+    Object {
+      "completed": 17,
+      "count": 50,
+      "title": "foo",
+    },
+    Object {
+      "completed": 17,
+      "count": 50,
+      "title": "foo",
     },
   ],
   "incompleteSegments": 0,
@@ -96,19 +86,16 @@ exports[`ui sectionedBar should calculateSectionBar segments correctly 6`] = `
 Object {
   "completedSegments": Array [
     Object {
-      "color": "blue",
       "completed": 17,
       "count": 50,
       "title": "foo",
     },
     Object {
-      "color": "orange",
       "completed": 17,
       "count": 50,
       "title": "foo",
     },
     Object {
-      "color": "green",
       "completed": 7,
       "count": 20,
       "title": "bar",

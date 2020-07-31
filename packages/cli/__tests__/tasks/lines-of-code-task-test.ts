@@ -1,4 +1,4 @@
-import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext, stableJson } from '@checkup/test-helpers';
 
 import LinesOfCodeTask from '../../src/tasks/lines-of-code-task';
 import LinesOfCodeTaskResult from '../../src/results/lines-of-code-task-result';
@@ -32,6 +32,7 @@ describe('lines-of-code-task', () => {
     const result = await new LinesOfCodeTask(
       'internal',
       getTaskContext({
+        cliFlags: { cwd: project.baseDir },
         paths: project.filePaths,
       })
     ).run();
@@ -44,8 +45,8 @@ describe('lines-of-code-task', () => {
 
       ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 lines
       ■ scss (10)
-      ■ js (1)
       ■ hbs (1)
+      ■ js (1)
 
       "
     `);
@@ -58,56 +59,57 @@ describe('lines-of-code-task', () => {
     const result = await new LinesOfCodeTask(
       'internal',
       getTaskContext({
+        cliFlags: { cwd: project.baseDir },
         paths: project.filePaths,
       })
     ).run();
     const linesOfCodeResult = <LinesOfCodeTaskResult>result;
 
-    const json = linesOfCodeResult.toJson();
+    const json = stableJson(linesOfCodeResult.toJson());
 
     expect(json).toMatchInlineSnapshot(`
-      Object {
-        "info": Object {
-          "friendlyTaskName": "Lines of Code",
-          "taskClassification": Object {
-            "category": "metrics",
+      "{
+        \\"info\\": {
+          \\"friendlyTaskName\\": \\"Lines of Code\\",
+          \\"taskClassification\\": {
+            \\"category\\": \\"metrics\\"
           },
-          "taskName": "lines-of-code",
+          \\"taskName\\": \\"lines-of-code\\"
         },
-        "result": Array [
-          Object {
-            "data": Array [
-              Object {
-                "extension": "hbs",
-                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-70773xfMe9mbLi8zp/foo/indexhbs",
-                "lines": 1,
+        \\"result\\": [
+          {
+            \\"data\\": [
+              {
+                \\"extension\\": \\"hbs\\",
+                \\"filePath\\": \\"/index.hbs\\",
+                \\"lines\\": 1
               },
-              Object {
-                "extension": "js",
-                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-70773xfMe9mbLi8zp/foo/indexjs",
-                "lines": 1,
+              {
+                \\"extension\\": \\"js\\",
+                \\"filePath\\": \\"/index.js\\",
+                \\"lines\\": 1
               },
-              Object {
-                "extension": "scss",
-                "filePath": "/private/var/folders/3q/5x6gzths7b97lq08vx_cb0g4000gyd/T/tmp-70773xfMe9mbLi8zp/foo/indexscss",
-                "lines": 10,
-              },
+              {
+                \\"extension\\": \\"scss\\",
+                \\"filePath\\": \\"/index.scss\\",
+                \\"lines\\": 10
+              }
             ],
-            "dataSummary": Object {
-              "dataKey": "extension",
-              "total": 12,
-              "valueKey": "lines",
-              "values": Object {
-                "hbs": 1,
-                "js": 1,
-                "scss": 10,
-              },
+            \\"dataSummary\\": {
+              \\"dataKey\\": \\"extension\\",
+              \\"total\\": 12,
+              \\"valueKey\\": \\"lines\\",
+              \\"values\\": {
+                \\"hbs\\": 1,
+                \\"js\\": 1,
+                \\"scss\\": 10
+              }
             },
-            "key": "lines of code",
-            "type": "lookup-value",
-          },
-        ],
-      }
+            \\"key\\": \\"lines of code\\",
+            \\"type\\": \\"lookup-value\\"
+          }
+        ]
+      }"
     `);
   });
 });

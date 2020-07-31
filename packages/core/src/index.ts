@@ -31,7 +31,7 @@ export {
   buildDerivedValueResult,
   buildLookupValueResult,
 } from './builders';
-export { adaptResult } from './schemas/schema-utils';
+export { adaptResult, normalizePath, normalizePaths } from './schemas/schema-utils';
 
 export * from './utils/data-transformers';
 export * from './types/cli';

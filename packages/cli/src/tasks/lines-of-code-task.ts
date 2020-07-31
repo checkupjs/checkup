@@ -9,6 +9,7 @@ import {
 } from '@checkup/core';
 
 import LinesOfCodeTaskResult from '../results/lines-of-code-task-result';
+import { sortBy } from 'lodash';
 
 const fs = require('fs');
 const sloc = require('sloc');
@@ -74,7 +75,7 @@ async function getLinesOfCode(context: TaskContext) {
       })
   );
 
-  return fileInfos;
+  return sortBy(fileInfos, 'filePath');
 }
 
 function getExtension(filePath: string) {

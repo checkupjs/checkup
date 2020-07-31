@@ -1,4 +1,4 @@
-import { BaseTask, CheckupConfig, TaskIdentifier } from '@checkup/core';
+import { BaseTask, CheckupConfig, TaskIdentifier, normalizePaths } from '@checkup/core';
 import * as crypto from 'crypto';
 import * as stringify from 'json-stable-stringify';
 import { MetaTask, MetaTaskResult } from '../types';
@@ -47,7 +47,7 @@ export default class ProjectMetaTask extends BaseTask implements MetaTask {
         },
       },
 
-      analyzedFilesCount: this.context.paths,
+      analyzedFilesCount: normalizePaths(this.context.paths, this.context.cliFlags.cwd),
     };
 
     return result;

@@ -38,8 +38,6 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
   }
 
   toConsole() {
-    let barColors = ['blue', 'cyan', 'green'];
-
     ui.section(this.meta.friendlyTaskName, () => {
       this.data.forEach((testTypeInfo) => {
         ui.subHeader(testTypeInfo.key);
@@ -57,11 +55,10 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
 
       ui.subHeader('tests by type');
       ui.sectionedBar(
-        this.data.map((testType, index) => {
+        this.data.map((testType) => {
           return {
             title: testType.key,
             count: testType.dataSummary.total,
-            color: barColors[index],
           };
         }),
         this.data.reduce((total, result) => total + result.dataSummary.total, 0),

@@ -1,9 +1,7 @@
 import * as fs from 'fs';
-import * as path from 'path';
-
-import { CheckupProject, createTmpDir, stdout, clearStdout } from '@checkup/test-helpers';
-
 import { join } from 'path';
+import { normalizePath } from '@checkup/core';
+import { CheckupProject, createTmpDir, stdout, clearStdout } from '@checkup/test-helpers';
 import { runCommand } from '../../src/run-command';
 
 const TEST_TIMEOUT = 100000;
@@ -46,9 +44,7 @@ describe('@checkup/cli', () => {
     it('should output checkup result in JSON', async () => {
       await runCommand(['run', '--format', 'json', '--cwd', project.baseDir]);
 
-      let output = stdout()
-        .trim()
-        .replace(/(\S*)(\/checkup-app\/.*)$/gm, '$2'); // remove the dynamic part of the tmp directory for test
+      let output = normalizePath(stdout().trim(), project.baseDir);
 
       expect(output).toMatchSnapshot();
     });
@@ -93,7 +89,7 @@ describe('@checkup/cli', () => {
       await runCommand([
         'run',
         '--config',
-        path.join(anotherProject.baseDir, '.checkuprc'),
+        join(anotherProject.baseDir, '.checkuprc'),
         '--cwd',
         project.baseDir,
       ]);
