@@ -3,7 +3,7 @@ import {
   getRegisteredParsers,
   RunFlags,
   CheckupConfig,
-  FilePathsArray,
+  FilePathArray,
 } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
@@ -14,7 +14,7 @@ type TaskContextArgs = {
   cliFlags: Partial<RunFlags>;
   config: Partial<CheckupConfig>;
   pkg: PackageJson;
-  paths: FilePathsArray;
+  paths: FilePathArray;
 };
 
 const DEFAULT_FLAGS: RunFlags = {
@@ -22,7 +22,7 @@ const DEFAULT_FLAGS: RunFlags = {
   help: undefined,
   config: undefined,
   excludePaths: undefined,
-  cwd: '.',
+  cwd: process.cwd(),
   task: undefined,
   format: 'stdout',
   outputFile: '',
@@ -46,7 +46,7 @@ export function getTaskContext({
   cliFlags,
   config,
   pkg = DEFAULT_PACKAGE_JSON,
-  paths = new FilePathsArray(),
+  paths = new FilePathArray(),
 }: Partial<TaskContextArgs> = {}): TaskContext {
   return {
     cliArguments,

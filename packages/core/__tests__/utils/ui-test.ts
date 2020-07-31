@@ -11,12 +11,10 @@ describe('ui', function () {
             {
               title: 'foo',
               count: 5,
-              color: 'blue',
             },
             {
               title: 'bar',
               count: 495,
-              color: 'green',
             },
           ],
           500,
@@ -29,12 +27,10 @@ describe('ui', function () {
             {
               title: 'foo',
               count: 5,
-              color: 'blue',
             },
             {
               title: 'bar',
               count: 10,
-              color: 'green',
             },
           ],
           20,
@@ -46,16 +42,14 @@ describe('ui', function () {
         Object {
           "completedSegments": Array [
             Object {
-              "color": "blue",
-              "completed": 13,
-              "count": 5,
-              "title": "foo",
-            },
-            Object {
-              "color": "green",
               "completed": 25,
               "count": 10,
               "title": "bar",
+            },
+            Object {
+              "completed": 13,
+              "count": 5,
+              "title": "foo",
             },
           ],
           "incompleteSegments": 13,
@@ -68,12 +62,10 @@ describe('ui', function () {
             {
               title: 'foo',
               count: 10,
-              color: 'blue',
             },
             {
               title: 'bar',
               count: 10,
-              color: 'green',
             },
           ],
           20,
@@ -86,17 +78,14 @@ describe('ui', function () {
             {
               title: 'foo',
               count: 10,
-              color: 'blue',
             },
             {
               title: 'moo',
               count: 10,
-              color: 'orange',
             },
             {
               title: 'bar',
               count: 10,
-              color: 'green',
             },
           ],
           30,
@@ -109,17 +98,14 @@ describe('ui', function () {
             {
               title: 'foo',
               count: 50,
-              color: 'blue',
             },
             {
               title: 'foo',
               count: 50,
-              color: 'orange',
             },
             {
               title: 'bar',
               count: 50,
-              color: 'green',
             },
           ],
           150,
@@ -132,17 +118,14 @@ describe('ui', function () {
             {
               title: 'foo',
               count: 50,
-              color: 'blue',
             },
             {
               title: 'foo',
               count: 50,
-              color: 'orange',
             },
             {
               title: 'bar',
               count: 20,
-              color: 'green',
             },
           ],
           150,

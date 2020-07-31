@@ -97,7 +97,7 @@
                     "count": {
                       "type": "integer"
                     },
-                    "percent": {
+                    "dataSummary": {
                       "oneOf": [
                         {
                           "type": "object",

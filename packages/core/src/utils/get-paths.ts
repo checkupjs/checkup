@@ -1,6 +1,6 @@
 import { join, resolve } from 'path';
 import { existsSync } from 'fs';
-import { FilePathsArray } from './file-paths-array';
+import { FilePathArray } from './file-path-array';
 
 const isValidGlob = require('is-valid-glob');
 const micromatch = require('micromatch');
@@ -26,7 +26,7 @@ export function getFilePaths(
   basePath: string,
   globs: string[] = [],
   excludePaths: string[] = []
-): FilePathsArray {
+): FilePathArray {
   let mergedPathsToIgnore = [...excludePaths, ...PATHS_TO_IGNORE];
 
   if (globs.length > 0) {
@@ -46,8 +46,8 @@ function expandFileGlobs(
   filePatterns: string[],
   basePath: string,
   excludePaths: string[]
-): FilePathsArray {
-  return new FilePathsArray(
+): FilePathArray {
+  return new FilePathArray(
     ...filePatterns.flatMap((pattern) => {
       let isLiteralPath = !isValidGlob(pattern) && existsSync(pattern);
 
@@ -72,12 +72,12 @@ function expandFileGlobs(
   );
 }
 
-function resolveFilePaths(filePaths: string[], basePath: string): FilePathsArray {
+function resolveFilePaths(filePaths: string[], basePath: string): FilePathArray {
   if (basePath !== '.') {
     let resolvedPaths = filePaths.map((pathName: string) => {
       return join(resolve(basePath), pathName);
     });
-    return new FilePathsArray(...resolvedPaths);
+    return new FilePathArray(...resolvedPaths);
   }
-  return new FilePathsArray(...filePaths);
+  return new FilePathArray(...filePaths);
 }

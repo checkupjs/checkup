@@ -6,26 +6,35 @@ import { startCase } from 'lodash';
 const wrap = require('wrap-ansi');
 const boxen = require('boxen');
 
+type Segment = { title: string; count: number; color?: chalk.Chalk };
+
 export function calculateSectionBar(
-  segments: { title: string; count: number; color: string }[],
+  segments: { title: string; count: number; color?: chalk.Chalk }[],
   total: number,
   width: number
 ) {
   // We want to normalize the amount provided by the proper ratios.
   // If the total is less than the width we want to multiply the ratio.
   // If the total is greater than the width we want to divide the amount vs the ratio
-  const normalizeSegement = function (amount: number) {
+  const normalizeSegment = function (amount: number) {
     return Math.ceil(total < width ? amount * (width / total) : amount / (total / width));
   };
 
-  const completedSegments = segments.map((segment) => {
-    return Object.assign({}, segment, {
-      completed: normalizeSegement(segment.count),
+  const completedSegments = segments
+    .map((segment) => {
+      return Object.assign({}, segment, {
+        completed: normalizeSegment(segment.count),
+      });
+    })
+    .sort((a: Segment, b: Segment) => {
+      if (a.count === b.count) {
+        return a.title > b.title ? 1 : -1;
+      }
+      return b.count - a.count;
     });
-  });
 
   // remove  the segments counts from the total number and then normalize it by the barSegment ratio
-  const incompleteSegments: number = normalizeSegement(
+  const incompleteSegments: number = normalizeSegment(
     total - completedSegments.reduce((prev, curr) => prev + curr.count, 0)
   );
 
@@ -99,7 +108,7 @@ export const ui = Object.assign(ux, {
     const barSegment = Math.ceil(total / maximum);
     const completedSegments = Math.ceil(complete / barSegment);
     const incompleteSegments = maximum - completedSegments;
-    const bar = `${chalk.green(barTick.repeat(completedSegments))}${chalk.grey(
+    const bar = `${ui.randomColor()(barTick.repeat(completedSegments))}${chalk.grey(
       barTick.repeat(Math.max(0, incompleteSegments))
     )}`;
 
@@ -108,18 +117,18 @@ export const ui = Object.assign(ux, {
     ui.blankLine();
   },
 
-  sectionedBar(
-    segments: { title: string; count: number; color: string }[],
-    total: number,
-    unit: string = '',
-    width: number = 50
-  ) {
+  sectionedBar(segments: Segment[], total: number, unit: string = '', width: number = 50) {
     const barTick = '■';
+    const colors = this.colors();
+
+    segments.forEach((segment, i) => {
+      segment.color = colors[i];
+    });
 
     const { completedSegments, incompleteSegments } = calculateSectionBar(segments, total, width);
 
     const bar = `${completedSegments
-      .map((segment) => chalk.keyword(segment.color)(barTick.repeat(segment.completed)))
+      .map((segment) => segment.color!(barTick.repeat(segment.completed)))
       .join('')}${chalk.grey(barTick.repeat(Math.max(0, incompleteSegments)))}`;
 
     if (incompleteSegments > 0) {
@@ -127,20 +136,32 @@ export const ui = Object.assign(ux, {
         title: 'unknown',
         completed: incompleteSegments,
         count: incompleteSegments,
-        color: 'grey',
+        color: chalk.grey,
       });
     }
 
-    ui.log(`${bar} ${total.toLocaleString()}${unit}`);
-    ui.log(
-      `${completedSegments
-        .map(
-          (segment) =>
-            `${chalk.keyword(segment.color)(barTick)} ${
-              segment.title
-            } (${segment.count.toLocaleString()})  `
-        )
-        .join('')}`
+    ui.log(`${bar} ${total.toLocaleString()} ${unit}`);
+    completedSegments.map((segment) =>
+      ui.log(`${segment.color!(barTick)} ${segment.title} (${segment.count.toLocaleString()})`)
     );
+  },
+
+  randomColor() {
+    const colors = this.colors();
+    return colors[Math.floor(Math.random() * colors.length)];
+  },
+
+  colors(range: number = 50) {
+    const ANSI_CODE_START = 33;
+
+    // eslint-disable-next-line unicorn/no-useless-undefined
+    return new Array(range).fill(undefined).map((_, i) => chalk.ansi256(i + ANSI_CODE_START));
+  },
+
+  getColor(color: string | chalk.Chalk) {
+    if (typeof color === 'string') {
+      return chalk.keyword(color);
+    }
+    return color;
   },
 });

@@ -2,6 +2,7 @@ import {
   buildSummaryResult,
   buildMultiValueResult,
   buildDerivedValueResult,
+  buildLookupValueResult,
 } from '../src/builders';
 
 describe('builders', () => {
@@ -80,14 +81,14 @@ describe('builders', () => {
               "foo": true,
             },
           ],
-          "key": "foo",
-          "percent": Object {
+          "dataSummary": Object {
             "dataKey": "baz",
             "total": 2,
             "values": Object {
               "bar": 2,
             },
           },
+          "key": "foo",
           "type": "multi-value",
         }
       `);
@@ -122,14 +123,14 @@ describe('builders', () => {
               "foo": true,
             },
           ],
-          "key": "foo",
-          "percent": Object {
+          "dataSummary": Object {
             "dataKey": "baz",
             "total": 2,
             "values": Object {
               "bar": 0,
             },
           },
+          "key": "foo",
           "type": "multi-value",
         }
       `);
@@ -137,8 +138,8 @@ describe('builders', () => {
   });
 
   describe('buildDerivedValueResult', () => {
-    it('correctly builds MultiValueResult with data', () => {
-      let multiValueResult = buildDerivedValueResult(
+    it('correctly builds DerivedValueResult with data', () => {
+      let derivedValueResult = buildDerivedValueResult(
         'foo',
         [
           {
@@ -157,7 +158,7 @@ describe('builders', () => {
         'baz'
       );
 
-      expect(multiValueResult).toMatchInlineSnapshot(`
+      expect(derivedValueResult).toMatchInlineSnapshot(`
         Object {
           "data": Array [
             Object {
@@ -173,8 +174,7 @@ describe('builders', () => {
               "foo": true,
             },
           ],
-          "key": "foo",
-          "percent": Object {
+          "dataSummary": Object {
             "dataKey": "baz",
             "total": 3,
             "values": Object {
@@ -182,7 +182,68 @@ describe('builders', () => {
               "blech": 1,
             },
           },
+          "key": "foo",
           "type": "derived-value",
+        }
+      `);
+    });
+  });
+
+  describe('buildLookupValueResult', () => {
+    it('correctly builds LookupValueResult with data', () => {
+      let lookupValueResult = buildLookupValueResult(
+        'foo',
+        [
+          {
+            foo: true,
+            baz: 'bar',
+            total: 0,
+          },
+          {
+            foo: true,
+            baz: 'blech',
+            total: 2,
+          },
+          {
+            foo: true,
+            baz: 'bar',
+            total: 42,
+          },
+        ],
+        'baz',
+        'total'
+      );
+
+      expect(lookupValueResult).toMatchInlineSnapshot(`
+        Object {
+          "data": Array [
+            Object {
+              "baz": "bar",
+              "foo": true,
+              "total": 0,
+            },
+            Object {
+              "baz": "blech",
+              "foo": true,
+              "total": 2,
+            },
+            Object {
+              "baz": "bar",
+              "foo": true,
+              "total": 42,
+            },
+          ],
+          "dataSummary": Object {
+            "dataKey": "baz",
+            "total": 44,
+            "valueKey": "total",
+            "values": Object {
+              "bar": 42,
+              "blech": 2,
+            },
+          },
+          "key": "foo",
+          "type": "lookup-value",
         }
       `);
     });

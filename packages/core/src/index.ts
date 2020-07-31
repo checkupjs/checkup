@@ -23,10 +23,15 @@ export { getPluginName, normalizePackageName, getShorthandName } from './utils/p
 export { exec } from './utils/exec';
 export { ui } from './utils/ui';
 export { getFilePaths } from './utils/get-paths';
-export { FilePathsArray } from './utils/file-paths-array';
+export { FilePathArray } from './utils/file-path-array';
 
-export { buildSummaryResult, buildMultiValueResult, buildDerivedValueResult } from './builders';
-export { adaptResult } from './schemas/schema-utils';
+export {
+  buildSummaryResult,
+  buildMultiValueResult,
+  buildDerivedValueResult,
+  buildLookupValueResult,
+} from './builders';
+export { adaptResult, normalizePath, normalizePaths } from './schemas/schema-utils';
 
 export * from './utils/data-transformers';
 export * from './types/cli';

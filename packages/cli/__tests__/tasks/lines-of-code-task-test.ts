@@ -1,4 +1,4 @@
-import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext, stableJson } from '@checkup/test-helpers';
 
 import LinesOfCodeTask from '../../src/tasks/lines-of-code-task';
 import LinesOfCodeTaskResult from '../../src/results/lines-of-code-task-result';
@@ -32,6 +32,7 @@ describe('lines-of-code-task', () => {
     const result = await new LinesOfCodeTask(
       'internal',
       getTaskContext({
+        cliFlags: { cwd: project.baseDir },
         paths: project.filePaths,
       })
     ).run();
@@ -42,11 +43,10 @@ describe('lines-of-code-task', () => {
     expect(stdout()).toMatchInlineSnapshot(`
       "Lines Of Code
 
-      File type   Total       TODO 
-      hbs         1           1    
-      js          1           1    
-      scss        10          0    
-      json        7           N/A  
+      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 lines
+      ■ scss (10)
+      ■ hbs (1)
+      ■ js (1)
 
       "
     `);
@@ -59,87 +59,57 @@ describe('lines-of-code-task', () => {
     const result = await new LinesOfCodeTask(
       'internal',
       getTaskContext({
+        cliFlags: { cwd: project.baseDir },
         paths: project.filePaths,
       })
     ).run();
     const linesOfCodeResult = <LinesOfCodeTaskResult>result;
 
-    const json = linesOfCodeResult.toJson();
+    const json = stableJson(linesOfCodeResult.toJson());
 
     expect(json).toMatchInlineSnapshot(`
-      Object {
-        "info": Object {
-          "friendlyTaskName": "Lines of Code",
-          "taskClassification": Object {
-            "category": "metrics",
+      "{
+        \\"info\\": {
+          \\"friendlyTaskName\\": \\"Lines of Code\\",
+          \\"taskClassification\\": {
+            \\"category\\": \\"metrics\\"
           },
-          "taskName": "lines-of-code",
+          \\"taskName\\": \\"lines-of-code\\"
         },
-        "result": Object {
-          "fileResults": Array [
-            Object {
-              "errors": Array [],
-              "fileExension": "hbs",
-              "results": Object {
-                "block": 1,
-                "blockEmpty": 0,
-                "comment": 1,
-                "empty": 0,
-                "mixed": 0,
-                "single": 0,
-                "source": 0,
-                "todo": 1,
-                "total": 1,
+        \\"result\\": [
+          {
+            \\"data\\": [
+              {
+                \\"extension\\": \\"hbs\\",
+                \\"filePath\\": \\"/index.hbs\\",
+                \\"lines\\": 1
               },
-            },
-            Object {
-              "errors": Array [],
-              "fileExension": "js",
-              "results": Object {
-                "block": 0,
-                "blockEmpty": 0,
-                "comment": 1,
-                "empty": 0,
-                "mixed": 0,
-                "single": 1,
-                "source": 0,
-                "todo": 1,
-                "total": 1,
+              {
+                \\"extension\\": \\"js\\",
+                \\"filePath\\": \\"/index.js\\",
+                \\"lines\\": 1
               },
+              {
+                \\"extension\\": \\"scss\\",
+                \\"filePath\\": \\"/index.scss\\",
+                \\"lines\\": 10
+              }
+            ],
+            \\"dataSummary\\": {
+              \\"dataKey\\": \\"extension\\",
+              \\"total\\": 12,
+              \\"valueKey\\": \\"lines\\",
+              \\"values\\": {
+                \\"hbs\\": 1,
+                \\"js\\": 1,
+                \\"scss\\": 10
+              }
             },
-            Object {
-              "errors": Array [],
-              "fileExension": "scss",
-              "results": Object {
-                "block": 0,
-                "blockEmpty": 0,
-                "comment": 0,
-                "empty": 2,
-                "mixed": 0,
-                "single": 0,
-                "source": 8,
-                "todo": 0,
-                "total": 10,
-              },
-            },
-            Object {
-              "errors": Array [],
-              "fileExension": "json",
-              "results": Object {
-                "block": "N/A",
-                "blockEmpty": "N/A",
-                "comment": "N/A",
-                "empty": "N/A",
-                "mixed": "N/A",
-                "single": "N/A",
-                "source": "N/A",
-                "todo": "N/A",
-                "total": 7,
-              },
-            },
-          ],
-        },
-      }
+            \\"key\\": \\"lines of code\\",
+            \\"type\\": \\"lookup-value\\"
+          }
+        ]
+      }"
     `);
   });
 });

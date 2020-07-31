@@ -30,7 +30,9 @@ todo   0
 Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 tests
-■ unit (0)  ■ rendering (3)  ■ application (0)  
+■ rendering (3)
+■ application (0)
+■ unit (0)
 
 "
 `;
@@ -65,7 +67,9 @@ todo   0
 Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 24 tests
-■ unit (6)  ■ rendering (6)  ■ application (12)  
+■ application (12)
+■ rendering (6)
+■ unit (6)
 
 "
 `;
@@ -108,8 +112,7 @@ Object {
           "ruleId": "test-types",
         },
       ],
-      "key": "unit",
-      "percent": Object {
+      "dataSummary": Object {
         "dataKey": "method",
         "total": 3,
         "values": Object {
@@ -119,6 +122,7 @@ Object {
           "todo": 0,
         },
       },
+      "key": "unit",
       "type": "multi-value",
     },
     Object {
@@ -148,8 +152,7 @@ Object {
           "ruleId": "test-types",
         },
       ],
-      "key": "rendering",
-      "percent": Object {
+      "dataSummary": Object {
         "dataKey": "method",
         "total": 3,
         "values": Object {
@@ -159,6 +162,7 @@ Object {
           "todo": 0,
         },
       },
+      "key": "rendering",
       "type": "multi-value",
     },
     Object {
@@ -212,8 +216,7 @@ Object {
           "ruleId": "test-types",
         },
       ],
-      "key": "application",
-      "percent": Object {
+      "dataSummary": Object {
         "dataKey": "method",
         "total": 6,
         "values": Object {
@@ -223,6 +226,7 @@ Object {
           "todo": 0,
         },
       },
+      "key": "application",
       "type": "multi-value",
     },
   ],
@@ -259,7 +263,9 @@ todo   0
 Tests By Type
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 tests
-■ unit (3)  ■ rendering (3)  ■ application (6)  
+■ application (6)
+■ rendering (3)
+■ unit (3)
 
 "
 `;

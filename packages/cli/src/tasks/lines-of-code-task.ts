@@ -1,52 +1,26 @@
-import { BaseTask, Task, TaskContext, TaskMetaData, TaskResult } from '@checkup/core';
+import { extname } from 'path';
+import {
+  BaseTask,
+  Task,
+  TaskMetaData,
+  TaskResult,
+  buildLookupValueResult,
+  TaskContext,
+} from '@checkup/core';
 
 import LinesOfCodeTaskResult from '../results/lines-of-code-task-result';
+import { sortBy } from 'lodash';
 
 const fs = require('fs');
 const sloc = require('sloc');
-
-interface GroupedFiles {
-  paths: string[];
-  ext: string;
-  exensionSupportedBySloc: boolean;
-}
-
-export enum ConditionallySupportedResults {
-  Block = 'block',
-  BlockEmpty = 'blockEmpty',
-  Comment = 'comment',
-  Empty = 'empty',
-  Mixed = 'mixed',
-  Single = 'single',
-  Source = 'source',
-  Todo = 'todo',
-}
-
-export enum SupportedResults {
-  Total = 'total',
-}
-
-export type FileStats = {
-  [key in ConditionallySupportedResults | SupportedResults]: number;
-};
-
-export interface FileResults {
-  errors: string[];
-  results: FileStats[];
-  fileExension: string;
-  exensionSupportedBySloc?: boolean;
-}
 
 /*
  * note: these extensions must be supported here https://github.com/flosse/sloc/blob/731fbea00799a45a6068c4aaa1d6b7f67500615e/src/sloc.coffee#L264
  * for the analysis on comments/empty lines/etc to be correct
  */
-const FILE_EXTENSIONS_SUPPORTED_BY_SLOC = new Set(sloc.extensions);
-const FILE_EXTENSIONS_NOT_SUPPORTED_BY_SLOC = new Set(['md', 'json']);
+const FILE_EXTENSIONS_SUPPORTED = new Set(sloc.extensions);
 
 export default class LinesOfCodeTask extends BaseTask implements Task {
-  filesGroupedByType: GroupedFiles[];
-
   meta: TaskMetaData = {
     taskName: 'lines-of-code',
     friendlyTaskName: 'Lines of Code',
@@ -55,68 +29,55 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
     },
   };
 
-  constructor(pluginName: string, context: TaskContext) {
-    super(pluginName, context);
-
-    // get all file exensions in the repo to group the files
-    const fileExensionsInRepo = new Set<string>();
-
-    this.context.paths.forEach((path) => {
-      fileExensionsInRepo.add(path.split('.')[1]);
-    });
-
-    const fileExtensionsToLookFor = [...fileExensionsInRepo].filter(
-      (ext) =>
-        FILE_EXTENSIONS_NOT_SUPPORTED_BY_SLOC.has(ext) || FILE_EXTENSIONS_SUPPORTED_BY_SLOC.has(ext)
-    );
-
-    this.filesGroupedByType = fileExtensionsToLookFor.map((ext) => {
-      return {
-        ext,
-        paths: this.context.paths.filterByGlob(`**/*.${ext}`),
-        // if sloc doesnt support the extension, the LOC will be correct, but the breakdowns (# comments, todos, etc) will be wrong
-        exensionSupportedBySloc: FILE_EXTENSIONS_SUPPORTED_BY_SLOC.has(ext),
-      };
-    });
-  }
-
   async run(): Promise<TaskResult> {
-    let linesOfCode: FileResults[] = await Promise.all(
-      this.filesGroupedByType.map((group) => {
-        return getLinesOfCode(group);
-      })
+    let linesOfCode = await getLinesOfCode(this.context);
+
+    let lookupValueResult = buildLookupValueResult(
+      'lines of code',
+      linesOfCode,
+      'extension',
+      'lines'
     );
 
     let result = new LinesOfCodeTaskResult(this.meta, this.config);
 
-    result.process({ linesOfCode });
+    result.process([lookupValueResult]);
 
     return result;
   }
 }
 
-async function getLinesOfCode(filePaths: GroupedFiles): Promise<FileResults> {
-  let fileResults = {
-    errors: [] as string[],
-    results: [] as FileStats[],
-    fileExension: filePaths.ext,
-    exensionSupportedBySloc: filePaths.exensionSupportedBySloc,
-  };
+async function getLinesOfCode(context: TaskContext) {
+  let fileInfos: Array<{
+    filePath: string;
+    extension: string;
+    lines: number;
+  }> = [];
 
   await Promise.all(
-    filePaths.paths.map((file) => {
-      return fs.promises
-        .readFile(file, 'utf8')
-        .then((fileString: string) => {
-          let exensionToProvideToSloc = filePaths.exensionSupportedBySloc ? filePaths.ext : 'js';
-          let slocResults: FileStats = sloc(fileString, exensionToProvideToSloc);
+    context.paths
+      .filter((filePath) => {
+        let extension = getExtension(filePath);
 
-          fileResults.results.push(slocResults);
-        })
-        .catch((error: string) => {
-          fileResults.errors.push(error);
+        return FILE_EXTENSIONS_SUPPORTED.has(extension);
+      })
+      .map((filePath) => {
+        return fs.promises.readFile(filePath, 'utf8').then((contents: string) => {
+          let extension = getExtension(filePath);
+          let { total } = sloc(contents, extension);
+
+          fileInfos.push({
+            filePath: filePath.replace(context.cliFlags.cwd, ''),
+            extension,
+            lines: total,
+          });
         });
-    })
+      })
   );
-  return fileResults;
+
+  return sortBy(fileInfos, 'filePath');
+}
+
+function getExtension(filePath: string) {
+  return extname(filePath).replace('.', '');
 }

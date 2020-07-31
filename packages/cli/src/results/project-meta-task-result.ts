@@ -1,7 +1,8 @@
 import { MetaTaskResult, OutputPosition, RepositoryInfo } from '../types';
 
 import BaseMetaTaskResult from '../base-meta-task-result';
-import { ui } from '@checkup/core';
+import { ui, CheckupConfig, RunFlags } from '@checkup/core';
+import { JsonObject } from 'type-fest';
 
 export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements MetaTaskResult {
   outputPosition: OutputPosition = OutputPosition.Header;
@@ -15,8 +16,10 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
 
     cli: {
       configHash: string;
+      config: CheckupConfig;
       version: string;
       schema: number;
+      flags: Partial<RunFlags>;
     };
 
     analyzedFilesCount: string[];
@@ -52,6 +55,6 @@ export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements
   }
 
   toJson() {
-    return this.data;
+    return this.data as JsonObject;
   }
 }

@@ -94,9 +94,22 @@ describe('project-meta-task', () => {
 
       expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
-          "analyzedFilesCount": FilePathsArray [],
+          "analyzedFilesCount": FilePathArray [],
           "cli": Object {
+            "config": Object {
+              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+              "excludePaths": Array [],
+              "plugins": Array [],
+              "tasks": Object {},
+            },
             "configHash": "395b15f7dea0dee193db593e1c6cfb5b",
+            "flags": Object {
+              "config": undefined,
+              "excludePaths": undefined,
+              "format": "stdout",
+              "outputFile": "",
+              "task": undefined,
+            },
             "schema": 1,
             "version": "0.0.0",
           },
@@ -132,9 +145,24 @@ describe('project-meta-task', () => {
 
       expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
-          "analyzedFilesCount": FilePathsArray [],
+          "analyzedFilesCount": FilePathArray [],
           "cli": Object {
+            "config": Object {
+              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+              "excludePaths": Array [],
+              "plugins": Array [
+                "checkup-plugin-ember",
+              ],
+              "tasks": Object {},
+            },
             "configHash": "1ba2bd62ba89147967dc57decae6b129",
+            "flags": Object {
+              "config": undefined,
+              "excludePaths": undefined,
+              "format": "stdout",
+              "outputFile": "",
+              "task": undefined,
+            },
             "schema": 1,
             "version": "0.0.0",
           },

@@ -3,8 +3,10 @@
 exports[`outdated-dependencies-task detects outdated dependencies and output to console 1`] = `
 "Outdated Dependencies
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2
-■ major (1)  ■ minor (1)  ■ patch (0)  
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 
+■ major (1)
+■ minor (1)
+■ patch (0)
 
 "
 `;
@@ -40,8 +42,7 @@ Object {
           "wanted": "16.0.0",
         },
       ],
-      "key": "dependencies",
-      "percent": Object {
+      "dataSummary": Object {
         "dataKey": "semverBump",
         "total": 2,
         "values": Object {
@@ -50,6 +51,7 @@ Object {
           "patch": 0,
         },
       },
+      "key": "dependencies",
       "type": "multi-value",
     },
   ],
