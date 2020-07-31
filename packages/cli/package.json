@@ -41,7 +41,6 @@
   "devDependencies": {
     "@checkup/test-helpers": "0.2.3",
     "@oclif/dev-cli": "^1",
-    "@oclif/test": "^1",
     "@types/yeoman-environment": "^2.3.3",
     "@types/yeoman-generator": "^3.1.4",
     "yeoman-test": "^2.7.0"
