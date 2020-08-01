@@ -1,10 +1,18 @@
-import { TaskResult, Task, TaskMetaData, BaseTask, TaskItemData } from '@checkup/core';
+import {
+  TaskResult,
+  Task,
+  TaskMetaData,
+  BaseTask,
+  LintResultData,
+  buildSummaryResult,
+  normalizePath,
+} from '@checkup/core';
 import TemplateLintDisableTaskResult from '../results/template-lint-disable-task-result';
 
 const fs = require('fs');
 const { parse, traverse } = require('ember-template-recast');
 
-const TEMPLATE_LINT_DISABLE_REGEX = /^template-lint-disable*/gi;
+const TEMPLATE_LINT_DISABLE = 'template-lint-disable';
 
 export default class TemplateLintDisableTask extends BaseTask implements Task {
   meta: TaskMetaData = {
@@ -23,44 +31,45 @@ export default class TemplateLintDisableTask extends BaseTask implements Task {
     );
 
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
+    let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.cliFlags.cwd);
 
-    result.process({ templateLintDisables: await getTemplateLintDisables(hbsPaths) });
+    result.process([buildSummaryResult('ember-template-lint-disable', templateLintDisables)]);
 
     return result;
   }
 }
 
-async function getTemplateLintDisables(filePaths: string[]) {
-  let fileResults = {
-    errors: [] as string[],
-    results: [] as TaskItemData[],
+async function getTemplateLintDisables(filePaths: string[], cwd: string) {
+  let data: LintResultData[] = [];
+  let addDisable = (filePath: string, node: any) => {
+    data.push({
+      filePath: normalizePath(filePath, cwd),
+      ruleId: 'no-ember-template-lint-disable',
+      message: 'ember-template-lint-disable is not allowed',
+      line: node.loc.start.line,
+      column: node.loc.start.column,
+    });
   };
 
   await Promise.all(
-    filePaths.map((file) => {
-      return fs.promises
-        .readFile(file, 'utf8')
-        .then((fileString: string) => {
-          let numMatches = 0;
+    filePaths.map((filePath) => {
+      return fs.promises.readFile(filePath, 'utf8').then((fileString: string) => {
+        let ast = parse(fileString);
 
-          let ast = parse(fileString);
-
-          traverse(ast, {
-            MustacheCommentStatement(node: any) {
-              numMatches += (node.value.trim().match(TEMPLATE_LINT_DISABLE_REGEX) || []).length;
-            },
-            CommentStatement(node: any) {
-              numMatches += (node.value.trim().match(TEMPLATE_LINT_DISABLE_REGEX) || []).length;
-            },
-          });
-          if (numMatches) {
-            fileResults.results.push(...new Array(numMatches).fill({ data: file }));
-          }
-        })
-        .catch((error: string) => {
-          fileResults.errors.push(error);
+        traverse(ast, {
+          MustacheCommentStatement(node: any) {
+            if (node.value.toLowerCase().includes(TEMPLATE_LINT_DISABLE)) {
+              addDisable(filePath, node);
+            }
+          },
+          CommentStatement(node: any) {
+            if (node.value.toLowerCase().includes(TEMPLATE_LINT_DISABLE)) {
+              addDisable(filePath, node);
+            }
+          },
         });
+      });
     })
   );
-  return fileResults;
+  return data;
 }

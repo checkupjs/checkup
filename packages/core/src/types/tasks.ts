@@ -91,3 +91,13 @@ export enum OutputFormat {
   stdout = 'stdout',
   json = 'json',
 }
+
+export interface LintResultData {
+  filePath: string;
+  ruleId: string | null;
+  message: string;
+  line: number;
+  column: number;
+
+  [key: string]: any;
+}

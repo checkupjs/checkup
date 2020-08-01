@@ -5,6 +5,8 @@ import {
   LookupValueResult,
   IndexableObject,
 } from './types/checkup-result';
+import { ESLintMessage } from './types/parsers';
+import { LintResultData } from './types/tasks';
 
 /**
  * Builds a {SummaryResult}.
@@ -231,9 +233,36 @@ function buildLookupValues(
   return [lookupValues, total];
 }
 
+function buildResultDataItem(
+  message: ESLintMessage,
+  cwd: string,
+  filePath: string,
+  additionalData: object = {}
+): LintResultData {
+  return {
+    filePath: normalizePath(filePath, cwd),
+    ruleId: message.ruleId,
+    message: message.message,
+    line: message.line,
+    column: message.column,
+    ...additionalData,
+  };
+}
+
+function normalizePath(path: string, cwd: string) {
+  return path.replace(cwd, '');
+}
+
+function normalizePaths(paths: string[], cwd: string) {
+  return paths.map((path) => normalizePath(path, cwd));
+}
+
 export {
   buildSummaryResult,
   buildMultiValueResult,
   buildDerivedValueResult,
   buildLookupValueResult,
+  buildResultDataItem,
+  normalizePath,
+  normalizePaths,
 };

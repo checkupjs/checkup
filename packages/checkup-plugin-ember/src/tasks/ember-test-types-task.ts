@@ -5,7 +5,7 @@ import {
   ESLintReport,
   Parser,
   BaseTask,
-  adaptResult,
+  buildResultDataItem,
   IndexableObject,
   buildMultiValueResult,
 } from '@checkup/core';
@@ -51,7 +51,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
 }
 
 function buildTestResult(report: ESLintReport, cwd: string) {
-  let transformedResults = report.results.reduce(
+  let resultData = report.results.reduce(
     (testTypes, lintResult) => {
       let testType: string = '';
       let method: string;
@@ -63,7 +63,7 @@ function buildTestResult(report: ESLintReport, cwd: string) {
       let messages = lintResult.messages.map((lintMessage) => {
         [testType, method] = lintMessage.message.split('|');
 
-        return adaptResult(cwd, lintResult.filePath, lintMessage, { method });
+        return buildResultDataItem(lintMessage, cwd, lintResult.filePath, { method });
       });
 
       testTypes[testType].push(...messages);
@@ -77,12 +77,7 @@ function buildTestResult(report: ESLintReport, cwd: string) {
     } as IndexableObject
   );
 
-  return Object.keys(transformedResults).map((key) => {
-    return buildMultiValueResult(key, transformedResults[key], 'method', [
-      'test',
-      'skip',
-      'only',
-      'todo',
-    ]);
+  return Object.keys(resultData).map((key) => {
+    return buildMultiValueResult(key, resultData[key], 'method', ['test', 'skip', 'only', 'todo']);
   });
 }
