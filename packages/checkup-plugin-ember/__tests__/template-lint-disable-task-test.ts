@@ -1,4 +1,4 @@
-import { CheckupProject, stdout, getTaskContext, clearFilePathsTmp } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 
 import TemplateLintDisableTask from '../src/tasks/template-lint-disable-task';
 import TemplateLintDisableTaskResult from '../src/results/template-lint-disable-task-result';
@@ -32,6 +32,7 @@ describe('template-lint-disable-task', () => {
       'internal',
       getTaskContext({
         paths: project.filePaths,
+        cliFlags: { cwd: project.baseDir },
       })
     ).run();
     const templateLintDisableTaskResult = <TemplateLintDisableTaskResult>result;
@@ -50,15 +51,12 @@ describe('template-lint-disable-task', () => {
       'internal',
       getTaskContext({
         paths: project.filePaths,
+        cliFlags: { cwd: project.baseDir },
       })
     ).run();
     const templateLintDisableTaskResult = <TemplateLintDisableTaskResult>result;
 
-    const json = templateLintDisableTaskResult.toJson();
-    expect({
-      ...json,
-      ...{ result: clearFilePathsTmp(json.result.templateLintDisables) },
-    }).toMatchInlineSnapshot(`
+    expect(templateLintDisableTaskResult.toJson()).toMatchInlineSnapshot(`
       Object {
         "info": Object {
           "friendlyTaskName": "Number of template-lint-disable Usages",
@@ -70,19 +68,32 @@ describe('template-lint-disable-task', () => {
         },
         "result": Array [
           Object {
+            "count": 3,
             "data": Array [
-              1,
+              Object {
+                "column": 4,
+                "filePath": "/index.hbs",
+                "line": 2,
+                "message": "ember-template-lint-disable is not allowed",
+                "ruleId": "no-ember-template-lint-disable",
+              },
+              Object {
+                "column": 6,
+                "filePath": "/index.hbs",
+                "line": 5,
+                "message": "ember-template-lint-disable is not allowed",
+                "ruleId": "no-ember-template-lint-disable",
+              },
+              Object {
+                "column": 4,
+                "filePath": "/index.hbs",
+                "line": 9,
+                "message": "ember-template-lint-disable is not allowed",
+                "ruleId": "no-ember-template-lint-disable",
+              },
             ],
-          },
-          Object {
-            "data": Array [
-              1,
-            ],
-          },
-          Object {
-            "data": Array [
-              1,
-            ],
+            "key": "ember-template-lint-disable",
+            "type": "summary",
           },
         ],
       }
@@ -94,6 +105,7 @@ describe('template-lint-disable-task', () => {
       'internal',
       getTaskContext({
         paths: project.filePaths,
+        cliFlags: { cwd: project.baseDir },
       })
     ).run();
     const templateLintDisableTaskResult = <TemplateLintDisableTaskResult>result;

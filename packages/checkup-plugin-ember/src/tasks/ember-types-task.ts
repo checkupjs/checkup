@@ -1,4 +1,4 @@
-import { Task, TaskResult, BaseTask, buildSummaryResult } from '@checkup/core';
+import { Task, TaskResult, BaseTask, buildSummaryResult, normalizePaths } from '@checkup/core';
 
 import EmberTypesTaskResult from '../results/ember-types-task-result';
 
@@ -28,9 +28,10 @@ export default class EmberTypesTask extends BaseTask implements Task {
   async run(): Promise<TaskResult> {
     let result = new EmberTypesTaskResult(this.meta, this.config);
     let types = SEARCH_PATTERNS.map((pattern) => {
+      let files = this.context.paths.filterByGlob(pattern.pattern);
       return buildSummaryResult(
         pattern.patternName,
-        this.context.paths.filterByGlob(pattern.pattern)
+        normalizePaths(files, this.context.cliFlags.cwd)
       );
     });
 

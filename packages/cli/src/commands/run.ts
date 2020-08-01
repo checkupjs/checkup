@@ -112,6 +112,8 @@ export default class RunCommand extends BaseCommand {
   }
 
   private async runTasks() {
+    [this.metaTaskResults, this.metaTaskErrors] = await this.defaultTasks.runTasks();
+
     if (this.runFlags.task !== undefined) {
       let pluginTaskResult: TaskResult | undefined;
       let taskFound: boolean = false;
@@ -137,7 +139,6 @@ export default class RunCommand extends BaseCommand {
         );
       }
     } else {
-      [this.metaTaskResults, this.metaTaskErrors] = await this.defaultTasks.runTasks();
       [this.pluginTaskResults, this.pluginTaskErrors] = await this.pluginTasks.runTasks();
     }
   }

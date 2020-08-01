@@ -30,8 +30,10 @@ export {
   buildMultiValueResult,
   buildDerivedValueResult,
   buildLookupValueResult,
+  buildResultDataItem,
+  normalizePath,
+  normalizePaths,
 } from './builders';
-export { adaptResult, normalizePath, normalizePaths } from './schemas/schema-utils';
 
 export * from './utils/data-transformers';
 export * from './types/cli';

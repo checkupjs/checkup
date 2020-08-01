@@ -147,7 +147,15 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
 `;
 
 exports[`@checkup/cli normal cli output should run a single task if the task option is specified 1`] = `
-"=== Metrics
+"
+Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+checkup v0.0.0
+config 395b15f7dea0dee193db593e1c6cfb5b
+
+=== Metrics
 
 Lines Of Code
 
