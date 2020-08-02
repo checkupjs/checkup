@@ -1,4 +1,4 @@
-import { EmberProject, stdout, getTaskContext, clearFilePaths } from '@checkup/test-helpers';
+import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
 
 import EmberTypesTask from '../src/tasks/ember-types-task';
 import EmberTypesTaskResult from '../src/results/ember-types-task-result';
@@ -105,7 +105,7 @@ describe('types-task', () => {
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(clearFilePaths(typesTaskResult.toJson().result)).toMatchSnapshot();
+    expect(typesTaskResult.toJson()).toMatchSnapshot();
   });
 
   it('returns all the types (including nested) found in the app and outputs to JSON', async () => {
@@ -126,6 +126,6 @@ describe('types-task', () => {
     ).run();
     const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(clearFilePaths(typesTaskResult.toJson().result)).toMatchSnapshot();
+    expect(typesTaskResult.toJson()).toMatchSnapshot();
   });
 });

@@ -1,7 +1,11 @@
 import * as recast from 'recast';
 import * as t from '@babel/types';
-
 import traverse, { TraverseOptions } from '@babel/traverse';
+
+import AstTraverser from './ast-traverser';
+
+type RecastParse = typeof recast.parse;
+type BabelTraverse = typeof traverse;
 
 /**
  * @class AstTransformer
@@ -12,18 +16,12 @@ import traverse, { TraverseOptions } from '@babel/traverse';
  *              .traverse(visitors)
  *              .generate();
  */
-export default class AstTransformer {
-  ast!: t.File;
-  constructor(public source: string) {
-    this.ast = this._parse(source);
-  }
-  private _parse(source: string): t.File {
-    return recast.parse(source, { parser: require('recast/parsers/typescript') });
-  }
-  traverse(visitors: TraverseOptions): AstTransformer {
-    traverse(this.ast, visitors);
-    return this;
-  }
+export default class AstTransformer extends AstTraverser<
+  t.File,
+  TraverseOptions,
+  RecastParse,
+  BabelTraverse
+> {
   generate(): string {
     return recast.print(this.ast, { quote: 'single', wrapColumn: 100 }).code;
   }

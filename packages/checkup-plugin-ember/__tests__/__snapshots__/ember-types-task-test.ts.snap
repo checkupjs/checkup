@@ -1,88 +1,108 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`types-task returns all the types (including nested) found in the app and outputs to JSON 1`] = `
-Array [
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "components",
-    "type": "summary",
+Object {
+  "info": Object {
+    "friendlyTaskName": "Ember Types",
+    "taskClassification": Object {
+      "category": "metrics",
+      "group": "ember",
+    },
+    "taskName": "ember-types",
   },
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "controllers",
-    "type": "summary",
-  },
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "helpers",
-    "type": "summary",
-  },
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "initializers",
-    "type": "summary",
-  },
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "instance-initializers",
-    "type": "summary",
-  },
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "mixins",
-    "type": "summary",
-  },
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "models",
-    "type": "summary",
-  },
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "routes",
-    "type": "summary",
-  },
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "services",
-    "type": "summary",
-  },
-  Object {
-    "count": 2,
-    "data": Array [
-      "2",
-    ],
-    "key": "templates",
-    "type": "summary",
-  },
-]
+  "result": Array [
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/components/my-component.js",
+        "/lib/ember-super-button/addon/components/my-component.js",
+      ],
+      "key": "components",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/controllers/my-controller.js",
+        "/lib/ember-super-button/addon/controllers/my-controller.js",
+      ],
+      "key": "controllers",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/helpers/my-helper.js",
+        "/lib/ember-super-button/addon/helpers/my-helper.js",
+      ],
+      "key": "helpers",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/initializers/my-initializer.js",
+        "/lib/ember-super-button/addon/initializers/my-initializer.js",
+      ],
+      "key": "initializers",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/instance-initializers/my-helper.js",
+        "/lib/ember-super-button/addon/instance-initializers/my-helper.js",
+      ],
+      "key": "instance-initializers",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/mixins/my-mixin.js",
+        "/lib/ember-super-button/addon/mixins/my-mixin.js",
+      ],
+      "key": "mixins",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/models/my-model.js",
+        "/lib/ember-super-button/addon/models/my-model.js",
+      ],
+      "key": "models",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/routes/my-route.js",
+        "/lib/ember-super-button/addon/routes/my-route.js",
+      ],
+      "key": "routes",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/services/my-service.js",
+        "/lib/ember-super-button/addon/services/my-service.js",
+      ],
+      "key": "services",
+      "type": "summary",
+    },
+    Object {
+      "count": 2,
+      "data": Array [
+        "/addon/templates/my-component.hbs",
+        "/lib/ember-super-button/addon/templates/my-component.hbs",
+      ],
+      "key": "templates",
+      "type": "summary",
+    },
+  ],
+}
 `;
 
 exports[`types-task returns all the types (including nested) found in the app and outputs to the console 1`] = `
@@ -104,88 +124,98 @@ templates             2
 `;
 
 exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
-Array [
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "components",
-    "type": "summary",
+Object {
+  "info": Object {
+    "friendlyTaskName": "Ember Types",
+    "taskClassification": Object {
+      "category": "metrics",
+      "group": "ember",
+    },
+    "taskName": "ember-types",
   },
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "controllers",
-    "type": "summary",
-  },
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "helpers",
-    "type": "summary",
-  },
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "initializers",
-    "type": "summary",
-  },
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "instance-initializers",
-    "type": "summary",
-  },
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "mixins",
-    "type": "summary",
-  },
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "models",
-    "type": "summary",
-  },
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "routes",
-    "type": "summary",
-  },
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "services",
-    "type": "summary",
-  },
-  Object {
-    "count": 1,
-    "data": Array [
-      "1",
-    ],
-    "key": "templates",
-    "type": "summary",
-  },
-]
+  "result": Array [
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/components/my-component.js",
+      ],
+      "key": "components",
+      "type": "summary",
+    },
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/controllers/my-controller.js",
+      ],
+      "key": "controllers",
+      "type": "summary",
+    },
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/helpers/my-helper.js",
+      ],
+      "key": "helpers",
+      "type": "summary",
+    },
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/initializers/my-initializer.js",
+      ],
+      "key": "initializers",
+      "type": "summary",
+    },
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/instance-initializers/my-helper.js",
+      ],
+      "key": "instance-initializers",
+      "type": "summary",
+    },
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/mixins/my-mixin.js",
+      ],
+      "key": "mixins",
+      "type": "summary",
+    },
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/models/my-model.js",
+      ],
+      "key": "models",
+      "type": "summary",
+    },
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/routes/my-route.js",
+      ],
+      "key": "routes",
+      "type": "summary",
+    },
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/services/my-service.js",
+      ],
+      "key": "services",
+      "type": "summary",
+    },
+    Object {
+      "count": 1,
+      "data": Array [
+        "/addon/templates/my-component.hbs",
+      ],
+      "key": "templates",
+      "type": "summary",
+    },
+  ],
+}
 `;
 
 exports[`types-task returns all the types found in the app and outputs to the console 1`] = `

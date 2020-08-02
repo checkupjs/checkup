@@ -1,6 +1,5 @@
 export { default as BaseTask } from './base-task';
 export { default as BaseTaskResult } from './base-task-result';
-export { findInFiles } from './searchers/file-searcher';
 
 export { getRegisteredParsers, registerParser } from './parsers/registered-parsers';
 export { createParser as createEslintParser } from './parsers/eslint-parser';
@@ -18,6 +17,9 @@ export {
 } from './config';
 
 export { default as CheckupError } from './errors/checkup-error';
+
+export { default as AstTraverser } from './ast/ast-traverser';
+export { default as AstTransformer } from './ast/ast-transformer';
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { exec } from './utils/exec';

@@ -1,24 +1,22 @@
 import {
   BaseTaskResult,
   ui,
-  ResultData,
   TaskResult,
   ActionsEvaluator,
   Action,
+  SummaryResult,
 } from '@checkup/core';
 
 export default class EslintDisableTaskResult extends BaseTaskResult implements TaskResult {
   actions: Action[] = [];
+  data: SummaryResult[] = [];
 
-  data!: {
-    esLintDisables: ResultData;
-  };
-
-  process(data: { esLintDisables: ResultData }) {
+  process(data: SummaryResult[]) {
     this.data = data;
 
     let actionsEvaluator = new ActionsEvaluator();
-    let eslintDisableUsages = this.data.esLintDisables.results.length;
+    let summaryResult = this.data[0];
+    let eslintDisableUsages = summaryResult.count;
 
     actionsEvaluator.add({
       name: 'reduce-eslint-disable-usages',
@@ -33,16 +31,13 @@ export default class EslintDisableTaskResult extends BaseTaskResult implements T
   }
 
   toConsole() {
-    ui.log(`eslint-disable Usages Found: ${this.data.esLintDisables.results.length}`);
+    ui.log(`eslint-disable Usages Found: ${this.data[0].count}`);
   }
 
   toJson() {
     return {
       info: this.meta,
-      result: {
-        eslintDisables: this.data.esLintDisables.results,
-        fileErrors: this.data.esLintDisables.errors,
-      },
+      result: this.data,
     };
   }
 }
