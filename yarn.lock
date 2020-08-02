@@ -878,10 +878,10 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
-"@types/date-and-time@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@types/date-and-time/-/date-and-time-0.6.0.tgz#3e7fa319dd5e07affc96a9247d40aab31f62a6c5"
-  integrity sha512-gCNLSTK8SnHqNQo1MIy4fwhsufZU5zFXsJzmTdjvRsp6Xpb28G2ODFNSoZNSsf2kB9J0hPSzHCEaQqYusIwUqQ==
+"@types/date-and-time@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@types/date-and-time/-/date-and-time-0.13.0.tgz#8252c1a8d166a8baf4e9631321a85e6e5ce59457"
+  integrity sha512-kHEncapIgrqaY8r2tyb19EvdKyhNjwheLl5cYTorsWJtURoI+oGm5ehW8CLAaq4dvu8x9z56FcXqAT4Mm5Nvzw==
 
 "@types/debug@^4.1.5":
   version "4.1.5"
