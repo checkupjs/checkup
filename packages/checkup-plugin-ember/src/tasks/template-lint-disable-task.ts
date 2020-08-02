@@ -6,6 +6,7 @@ import {
   LintResultData,
   buildSummaryResult,
   normalizePath,
+  AstTraverser,
 } from '@checkup/core';
 import TemplateLintDisableTaskResult from '../results/template-lint-disable-task-result';
 
@@ -41,33 +42,46 @@ export default class TemplateLintDisableTask extends BaseTask implements Task {
 
 async function getTemplateLintDisables(filePaths: string[], cwd: string) {
   let data: LintResultData[] = [];
-  let addDisable = (filePath: string, node: any) => {
-    data.push({
-      filePath: normalizePath(filePath, cwd),
-      ruleId: 'no-ember-template-lint-disable',
-      message: 'ember-template-lint-disable is not allowed',
-      line: node.loc.start.line,
-      column: node.loc.start.column,
-    });
-  };
+
+  class TemplateLintDisableAccumulator {
+    data: LintResultData[] = [];
+
+    constructor(private filePath: string) {}
+
+    get visitors() {
+      let add = (node: any) => {
+        this.data.push({
+          filePath: normalizePath(this.filePath, cwd),
+          ruleId: 'no-ember-template-lint-disable',
+          message: 'ember-template-lint-disable is not allowed',
+          line: node.loc.start.line,
+          column: node.loc.start.column,
+        });
+      };
+
+      return {
+        MustacheCommentStatement(node: any) {
+          if (node.value.toLowerCase().includes(TEMPLATE_LINT_DISABLE)) {
+            add(node);
+          }
+        },
+        CommentStatement(node: any) {
+          if (node.value.toLowerCase().includes(TEMPLATE_LINT_DISABLE)) {
+            add(node);
+          }
+        },
+      };
+    }
+  }
 
   await Promise.all(
     filePaths.map((filePath) => {
-      return fs.promises.readFile(filePath, 'utf8').then((fileString: string) => {
-        let ast = parse(fileString);
+      return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
+        let accumulator = new TemplateLintDisableAccumulator(filePath);
+        let astTraverser = new AstTraverser(fileContents, parse, traverse);
 
-        traverse(ast, {
-          MustacheCommentStatement(node: any) {
-            if (node.value.toLowerCase().includes(TEMPLATE_LINT_DISABLE)) {
-              addDisable(filePath, node);
-            }
-          },
-          CommentStatement(node: any) {
-            if (node.value.toLowerCase().includes(TEMPLATE_LINT_DISABLE)) {
-              addDisable(filePath, node);
-            }
-          },
-        });
+        astTraverser.traverse(accumulator.visitors);
+        data.push(...accumulator.data);
       });
     })
   );

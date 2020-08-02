@@ -1,5 +1,5 @@
 import { getPluginName } from '@checkup/core';
-import { CheckupProject, stdout, getTaskContext, clearFilePathsTmp } from '@checkup/test-helpers';
+import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 
 import EslintDisableTask from '../src/tasks/eslint-disable-task';
 import EslintDisableTaskResult from '../src/results/eslint-disable-task-result';
@@ -33,6 +33,7 @@ describe('eslint-disable-task', () => {
       pluginName,
       getTaskContext({
         paths: project.filePaths,
+        cliFlags: { cwd: project.baseDir },
       })
     ).run();
     const eslintDisableTaskResult = <EslintDisableTaskResult>result;
@@ -50,13 +51,12 @@ describe('eslint-disable-task', () => {
       pluginName,
       getTaskContext({
         paths: project.filePaths,
+        cliFlags: { cwd: project.baseDir },
       })
     ).run();
     const eslintDisableTaskResult = <EslintDisableTaskResult>result;
 
-    const json = eslintDisableTaskResult.toJson();
-    expect({ ...json, ...{ result: clearFilePathsTmp(json.result.eslintDisables) } })
-      .toMatchInlineSnapshot(`
+    expect(eslintDisableTaskResult.toJson()).toMatchInlineSnapshot(`
       Object {
         "info": Object {
           "friendlyTaskName": "Number of eslint-disable Usages",
@@ -67,19 +67,32 @@ describe('eslint-disable-task', () => {
         },
         "result": Array [
           Object {
+            "count": 3,
             "data": Array [
-              1,
+              Object {
+                "column": 4,
+                "filePath": "/index.js",
+                "line": 2,
+                "message": "eslint-disable is not allowed",
+                "ruleId": "no-eslint-disable",
+              },
+              Object {
+                "column": 4,
+                "filePath": "/index.js",
+                "line": 3,
+                "message": "eslint-disable is not allowed",
+                "ruleId": "no-eslint-disable",
+              },
+              Object {
+                "column": 19,
+                "filePath": "/index.js",
+                "line": 6,
+                "message": "eslint-disable is not allowed",
+                "ruleId": "no-eslint-disable",
+              },
             ],
-          },
-          Object {
-            "data": Array [
-              1,
-            ],
-          },
-          Object {
-            "data": Array [
-              1,
-            ],
+            "key": "eslint-disable",
+            "type": "summary",
           },
         ],
       }
@@ -91,6 +104,7 @@ describe('eslint-disable-task', () => {
       pluginName,
       getTaskContext({
         paths: project.filePaths,
+        cliFlags: { cwd: project.baseDir },
       })
     ).run();
 

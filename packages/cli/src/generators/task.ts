@@ -2,13 +2,14 @@ import * as _ from 'lodash';
 import * as path from 'path';
 import * as t from '@babel/types';
 import * as chalk from 'chalk';
+import * as recast from 'recast';
 
+import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import AstTransformer from '../helpers/ast';
 import BaseGenerator from './base-generator';
 import { Options } from '../commands/generate';
 import { PackageJson } from 'type-fest';
-import { CheckupError } from '@checkup/core';
+import { AstTransformer, CheckupError } from '@checkup/core';
 
 interface TaskOptions extends Options {
   taskResultClass: string;
@@ -131,7 +132,9 @@ export default class TaskGenerator extends BaseGenerator {
       t.stringLiteral(`../tasks/${this.options.name}-task`)
     );
 
-    let code = new AstTransformer(registerTasksSource)
+    let code = new AstTransformer(registerTasksSource, recast.parse, traverse, {
+      parser: require('recast/parsers/typescript'),
+    })
       .traverse({
         Program(path) {
           path.node.body.splice(1, 0, tasksImportDeclaration);

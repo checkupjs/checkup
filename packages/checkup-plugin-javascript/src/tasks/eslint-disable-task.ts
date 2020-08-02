@@ -1,9 +1,20 @@
-import { TaskResult, Task, TaskMetaData, BaseTask, TaskItemData } from '@checkup/core';
+import {
+  TaskResult,
+  Task,
+  TaskMetaData,
+  BaseTask,
+  normalizePath,
+  LintResultData,
+  AstTraverser,
+  buildSummaryResult,
+} from '@checkup/core';
 import EslintDisableTaskResult from '../results/eslint-disable-task-result';
 
+import * as t from '@babel/types';
+import { parse } from '@babel/parser';
+import traverse, { TraverseOptions } from '@babel/traverse';
+
 const fs = require('fs');
-const recast = require('recast');
-const babel = require('@babel/parser');
 
 const ESLINT_DISABLE_REGEX = /^eslint-disable(?:-next-line|-line)*/gi;
 
@@ -20,46 +31,63 @@ export default class EslintDisableTask extends BaseTask implements Task {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
 
     let result = new EslintDisableTaskResult(this.meta, this.config);
+    let eslintDisables = await getEslintDisables(jsPaths, this.context.cliFlags.cwd);
 
-    result.process({ esLintDisables: await getEslintDisables(jsPaths) });
+    result.process([buildSummaryResult('eslint-disable', eslintDisables)]);
 
     return result;
   }
 }
 
-async function getEslintDisables(filePaths: string[]) {
-  let fileResults = {
-    errors: [] as string[],
-    results: [] as TaskItemData[],
-  };
+async function getEslintDisables(filePaths: string[], cwd: string) {
+  let data: LintResultData[] = [];
+
+  class ESLintDisableAccumulator {
+    data: LintResultData[] = [];
+
+    constructor(private filePath: string) {}
+
+    get visitors(): TraverseOptions {
+      let add = (node: any) => {
+        this.data.push({
+          filePath: normalizePath(this.filePath, cwd),
+          ruleId: 'no-eslint-disable',
+          message: 'eslint-disable is not allowed',
+          line: node.loc.start.line,
+          column: node.loc.start.column,
+        });
+      };
+
+      return {
+        Program: function (node: any) {
+          node.container.comments.forEach((comment: t.Comment) => {
+            if (comment.value.trim().match(ESLINT_DISABLE_REGEX)) {
+              add(comment);
+            }
+          });
+        },
+      };
+    }
+  }
 
   await Promise.all(
-    filePaths.map((file) => {
-      return fs.promises
-        .readFile(file, 'utf8')
-        .then((fileString: string) => {
-          let numMatches = 0;
-
-          let ast = recast.parse(fileString, {
-            parser: {
-              parse: babel.parse,
-            },
-          });
-          recast.visit(ast, {
-            visitComment: function (path: any) {
-              numMatches += (path.value.value.trim().match(ESLINT_DISABLE_REGEX) || []).length;
-
-              this.traverse(path);
-            },
-          });
-          if (numMatches) {
-            fileResults.results.push(...new Array(numMatches).fill({ data: file }));
+    filePaths.map((filePath) => {
+      return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
+        let accumulator = new ESLintDisableAccumulator(filePath);
+        let astTraverser = new AstTraverser<t.File, TraverseOptions, typeof parse, typeof traverse>(
+          fileContents,
+          parse,
+          traverse,
+          {
+            sourceType: 'module',
           }
-        })
-        .catch((error: string) => {
-          fileResults.errors.push(error);
-        });
+        );
+
+        astTraverser.traverse(accumulator.visitors);
+        data.push(...accumulator.data);
+      });
     })
   );
-  return fileResults;
+
+  return data;
 }
