@@ -4,8 +4,8 @@ import * as stringify from 'json-stable-stringify';
 import { MetaTask, MetaTaskResult } from '../types';
 
 import ProjectMetaTaskResult from '../results/project-meta-task-result';
-import { getRepositoryInfo } from '../helpers/repository';
-import { getVersion } from '../helpers/get-version';
+import { getRepositoryInfo } from '../utils/repository';
+import { getVersion } from '../utils/get-version';
 
 function getConfigHash(checkupConfig: CheckupConfig) {
   let configAsJson = stringify(checkupConfig);

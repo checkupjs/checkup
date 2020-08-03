@@ -5,7 +5,7 @@ import {
   ESLintReport,
   Parser,
   BaseTask,
-  buildResultDataItem,
+  buildLintResultDataItem,
   IndexableObject,
   buildMultiValueResult,
 } from '@checkup/core';
@@ -63,7 +63,7 @@ function buildTestResult(report: ESLintReport, cwd: string) {
       let messages = lintResult.messages.map((lintMessage) => {
         [testType, method] = lintMessage.message.split('|');
 
-        return buildResultDataItem(lintMessage, cwd, lintResult.filePath, { method });
+        return buildLintResultDataItem(lintMessage, cwd, lintResult.filePath, { method });
       });
 
       testTypes[testType].push(...messages);

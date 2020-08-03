@@ -3,7 +3,7 @@ import * as chalk from 'chalk';
 
 import { Options } from '../commands/generate';
 
-import { getVersion } from '../helpers/get-version';
+import { getVersion } from '../utils/get-version';
 import { resolve } from 'path';
 import { existsSync, mkdirSync } from 'fs';
 

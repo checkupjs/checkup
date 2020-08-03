@@ -5,7 +5,7 @@ import {
   LookupValueResult,
   IndexableObject,
 } from './types/checkup-result';
-import { ESLintMessage } from './types/parsers';
+import { ESLintMessage, ESLintReport } from './types/parsers';
 import { LintResultData } from './types/tasks';
 
 /**
@@ -233,7 +233,19 @@ function buildLookupValues(
   return [lookupValues, total];
 }
 
-function buildResultDataItem(
+function buildLintResultData(report: ESLintReport, cwd: string) {
+  return report.results.reduce((transformed, lintResult) => {
+    let messages = lintResult.messages.map((lintMessage) => {
+      return buildLintResultDataItem(lintMessage, cwd, lintResult.filePath);
+    });
+
+    transformed.push(...messages);
+
+    return transformed;
+  }, [] as LintResultData[]);
+}
+
+function buildLintResultDataItem(
   message: ESLintMessage,
   cwd: string,
   filePath: string,
@@ -243,6 +255,7 @@ function buildResultDataItem(
     filePath: normalizePath(filePath, cwd),
     ruleId: message.ruleId,
     message: message.message,
+    severity: message.severity,
     line: message.line,
     column: message.column,
     ...additionalData,
@@ -262,7 +275,8 @@ export {
   buildMultiValueResult,
   buildDerivedValueResult,
   buildLookupValueResult,
-  buildResultDataItem,
+  buildLintResultData,
+  buildLintResultDataItem,
   normalizePath,
   normalizePaths,
 };

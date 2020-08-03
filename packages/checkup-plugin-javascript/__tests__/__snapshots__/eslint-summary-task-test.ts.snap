@@ -2,69 +2,56 @@
 
 exports[`eslint-summary-task it summarizes eslint and outputs to JSON 1`] = `
 Object {
-  "errorCount": 1,
-  "fixableErrorCount": 1,
-  "fixableWarningCount": 1,
-  "results": Array [
+  "info": Object {
+    "friendlyTaskName": "Eslint Summary",
+    "taskClassification": Object {
+      "category": "linting",
+    },
+    "taskName": "eslint-summary",
+  },
+  "result": Array [
     Object {
-      "errorCount": 1,
-      "filePath": "",
-      "fixableErrorCount": 1,
-      "fixableWarningCount": 1,
-      "messages": Array [
-        Object {
-          "column": 9,
-          "endColumn": 32,
-          "endLine": 2,
-          "fix": Object {
-            "range": Array [
-              25,
-              28,
-            ],
-            "text": "let",
-          },
-          "line": 2,
-          "message": "Unexpected var, use let or const instead.",
-          "nodeType": "VariableDeclaration",
-          "ruleId": "no-var",
-          "severity": 1,
-        },
+      "data": Array [
         Object {
           "column": 32,
-          "endColumn": 1,
-          "endLine": 3,
-          "fix": Object {
-            "range": Array [
-              48,
-              48,
-            ],
-            "text": ";",
-          },
+          "filePath": "/foo.js",
           "line": 2,
           "message": "Missing semicolon.",
-          "nodeType": "VariableDeclaration",
           "ruleId": "semi",
           "severity": 2,
         },
       ],
-      "source": "function foo() {
-        var whatever = 'ESLint'
-        return {
-          name: whatever
-        };
-      }",
-      "warningCount": 1,
+      "dataSummary": Object {
+        "dataKey": "ruleId",
+        "total": 1,
+        "values": Object {
+          "semi": 1,
+        },
+      },
+      "key": "eslint-errors",
+      "type": "derived-value",
     },
     Object {
-      "errorCount": 0,
-      "filePath": "",
-      "fixableErrorCount": 0,
-      "fixableWarningCount": 0,
-      "messages": Array [],
-      "warningCount": 0,
+      "data": Array [
+        Object {
+          "column": 9,
+          "filePath": "/foo.js",
+          "line": 2,
+          "message": "Unexpected var, use let or const instead.",
+          "ruleId": "no-var",
+          "severity": 1,
+        },
+      ],
+      "dataSummary": Object {
+        "dataKey": "ruleId",
+        "total": 1,
+        "values": Object {
+          "no-var": 1,
+        },
+      },
+      "key": "eslint-warnings",
+      "type": "derived-value",
     },
   ],
-  "usedDeprecatedRules": Array [],
-  "warningCount": 1,
 }
 `;

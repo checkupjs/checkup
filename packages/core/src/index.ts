@@ -26,13 +26,15 @@ export { exec } from './utils/exec';
 export { ui } from './utils/ui';
 export { getFilePaths } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
+export { byRuleId, bySeverity } from './utils/lint-result-filter';
 
 export {
   buildSummaryResult,
   buildMultiValueResult,
   buildDerivedValueResult,
   buildLookupValueResult,
-  buildResultDataItem,
+  buildLintResultData,
+  buildLintResultDataItem,
   normalizePath,
   normalizePaths,
 } from './builders';
