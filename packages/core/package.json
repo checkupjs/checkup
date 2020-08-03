@@ -27,7 +27,7 @@
     "@types/eslint": "^7.2.0",
     "@types/resolve": "^1.17.1",
     "@types/wrap-ansi": "^3.0.0",
-    "eslint-plugin-jest": "^23.18.2"
+    "eslint-plugin-jest": "^23.20.0"
   },
   "engines": {
     "node": ">= 12.*"
