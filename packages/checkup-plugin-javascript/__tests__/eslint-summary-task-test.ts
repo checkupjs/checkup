@@ -1,5 +1,4 @@
 import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
-import { ESLintReport } from '@checkup/core';
 import {
   EslintSummaryTask,
   readEslintConfig,
@@ -71,20 +70,20 @@ describe('eslint-summary-task', () => {
 
       Errors
 
-      Rule name Failures             
-      semi      1 errors (1 fixable) 
+      Rule name Errors
+      semi      1
 
       Warnings
 
-      Rule name Failures               
-      no-var    1 warnings (1 fixable) 
+      Rule name Errors
+      no-var    1
 
       "
     `);
   });
 
   it('it summarizes eslint and outputs to JSON', async () => {
-    expect(filterResultFilePath(taskResult.toJson().result.esLintReport)).toMatchSnapshot();
+    expect(taskResult.toJson()).toMatchSnapshot();
   });
 
   it('returns correct action items if there are too many warnings or errors', async () => {
@@ -160,10 +159,3 @@ describe('readEslintConfig', () => {
     project.dispose();
   });
 });
-
-function filterResultFilePath(report: ESLintReport) {
-  let filteredResults = report.results.map((result) => {
-    result.filePath = '';
-  });
-  return { ...{ results: filteredResults }, ...report };
-}

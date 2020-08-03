@@ -7,6 +7,9 @@ import {
   TaskContext,
   TaskMetaData,
   TaskResult,
+  buildDerivedValueResult,
+  buildLintResultData,
+  bySeverity,
 } from '@checkup/core';
 import { join, resolve } from 'path';
 
@@ -37,7 +40,6 @@ export class EslintSummaryTask extends BaseTask implements Task {
   };
 
   private _eslintParser: Parser<ESLintReport>;
-  jsPaths: string[];
 
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
@@ -50,23 +52,27 @@ export class EslintSummaryTask extends BaseTask implements Task {
       this.context.pkg
     );
     this._eslintParser = createEslintParser(eslintConfig);
-    this.context.pkg;
-    this.jsPaths = this.context.paths.filterByGlob('**/*.js');
   }
 
   async run(): Promise<TaskResult> {
-    let esLintReport = await this._runEsLint();
-    this.debug('ESLint Report', esLintReport);
-
     let result = new EslintSummaryTaskResult(this.meta, this.config);
+    let report = await this._eslintParser.execute([this.context.cliFlags.cwd]);
+    let transformedData = buildLintResultData(report, this.context.cliFlags.cwd);
 
-    result.process({ esLintReport });
+    let errorsResult = buildDerivedValueResult(
+      'eslint-errors',
+      bySeverity(transformedData, 2),
+      'ruleId'
+    );
+    let warningsResult = buildDerivedValueResult(
+      'eslint-warnings',
+      bySeverity(transformedData, 1),
+      'ruleId'
+    );
+
+    result.process([errorsResult, warningsResult]);
 
     return result;
-  }
-
-  private async _runEsLint(): Promise<ESLintReport> {
-    return this._eslintParser.execute(this.jsPaths);
   }
 }
 
