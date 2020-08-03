@@ -70,13 +70,13 @@ describe('eslint-summary-task', () => {
 
       Errors
 
-      Rule name Errors
-      semi      1
+      Rule name Errors 
+      semi      1      
 
       Warnings
 
-      Rule name Errors
-      no-var    1
+      Rule name Errors 
+      no-var    1      
 
       "
     `);
