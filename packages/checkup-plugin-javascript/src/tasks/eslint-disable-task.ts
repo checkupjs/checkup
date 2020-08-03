@@ -4,7 +4,7 @@ import {
   TaskMetaData,
   BaseTask,
   normalizePath,
-  LintResultData,
+  LintResult,
   AstTraverser,
   buildSummaryResult,
 } from '@checkup/core';
@@ -40,10 +40,10 @@ export default class EslintDisableTask extends BaseTask implements Task {
 }
 
 async function getEslintDisables(filePaths: string[], cwd: string) {
-  let data: LintResultData[] = [];
+  let data: LintResult[] = [];
 
   class ESLintDisableAccumulator {
-    data: LintResultData[] = [];
+    data: LintResult[] = [];
 
     constructor(private filePath: string) {}
 

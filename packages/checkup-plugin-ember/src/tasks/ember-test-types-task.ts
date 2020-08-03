@@ -38,7 +38,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     let result = new EmberTestTypesTaskResult(this.meta, this.config);
     let esLintReport = await this.runEsLint();
 
-    let multiValueResult = buildTestResult(esLintReport, this.context.cliFlags.cwd);
+    let multiValueResult = buildResult(esLintReport, this.context.cliFlags.cwd);
 
     result.process(multiValueResult);
 
@@ -50,7 +50,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   }
 }
 
-function buildTestResult(report: ESLintReport, cwd: string) {
+function buildResult(report: ESLintReport, cwd: string) {
   let resultData = report.results.reduce(
     (testTypes, lintResult) => {
       let testType: string = '';

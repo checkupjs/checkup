@@ -3,9 +3,6 @@ import * as chalk from 'chalk';
 import { ux } from 'cli-ux';
 import { startCase } from 'lodash';
 
-const wrap = require('wrap-ansi');
-const boxen = require('boxen');
-
 type Segment = { title: string; count: number; color?: chalk.Chalk };
 
 export function calculateSectionBar(
@@ -46,16 +43,6 @@ export function calculateSectionBar(
 }
 
 export const ui = Object.assign(ux, {
-  box(content: string) {
-    process.stdout.write(
-      boxen(wrap(content, 80, { trim: false, hard: true }), {
-        padding: 1,
-        borderStyle: 'double',
-      })
-    );
-    ui.blankLine();
-  },
-
   blankLine() {
     process.stdout.write('\n');
   },
@@ -144,6 +131,12 @@ export const ui = Object.assign(ux, {
     completedSegments.map((segment) =>
       ui.log(`${segment.color!(barTick)} ${segment.title} (${segment.count.toLocaleString()})`)
     );
+  },
+
+  valuesList(values: { title: string; count: number }[], unit: string) {
+    values.forEach((value) => {
+      ui.log(`${ui.randomColor()('■')} ${value.title} (${value.count.toLocaleString()} ${unit})`);
+    });
   },
 
   randomColor() {

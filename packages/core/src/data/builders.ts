@@ -4,9 +4,10 @@ import {
   DerivedValueResult,
   LookupValueResult,
   IndexableObject,
-} from './types/checkup-result';
-import { ESLintMessage, ESLintReport } from './types/parsers';
-import { LintResultData } from './types/tasks';
+} from '../types/checkup-result';
+import { ESLintMessage, ESLintReport } from '../types/parsers';
+import { LintResult } from '../types/tasks';
+import { TemplateLintMessage } from '../types/ember-template-lint';
 
 /**
  * Builds a {SummaryResult}.
@@ -242,24 +243,33 @@ function buildLintResultData(report: ESLintReport, cwd: string) {
     transformed.push(...messages);
 
     return transformed;
-  }, [] as LintResultData[]);
+  }, [] as LintResult[]);
 }
 
 function buildLintResultDataItem(
-  message: ESLintMessage,
+  message: ESLintMessage | TemplateLintMessage,
   cwd: string,
   filePath: string,
   additionalData: object = {}
-): LintResultData {
+): LintResult {
   return {
     filePath: normalizePath(filePath, cwd),
-    ruleId: message.ruleId,
+    ruleId: getRuleId(message),
     message: message.message,
     severity: message.severity,
     line: message.line,
     column: message.column,
     ...additionalData,
   };
+}
+
+function getRuleId(message: any) {
+  if (typeof message.ruleId !== 'undefined') {
+    return message.ruleId;
+  } else if (typeof message.rule !== 'undefined') {
+    return message.rule;
+  }
+  return '';
 }
 
 function normalizePath(path: string, cwd: string) {

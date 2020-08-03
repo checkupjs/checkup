@@ -3,7 +3,7 @@ import {
   Task,
   TaskMetaData,
   BaseTask,
-  LintResultData,
+  LintResult,
   buildSummaryResult,
   normalizePath,
   AstTraverser,
@@ -41,10 +41,10 @@ export default class TemplateLintDisableTask extends BaseTask implements Task {
 }
 
 async function getTemplateLintDisables(filePaths: string[], cwd: string) {
-  let data: LintResultData[] = [];
+  let data: LintResult[] = [];
 
   class TemplateLintDisableAccumulator {
-    data: LintResultData[] = [];
+    data: LintResult[] = [];
 
     constructor(private filePath: string) {}
 
