@@ -20,7 +20,7 @@ import MetaTaskList from '../meta-task-list';
 import { MetaTaskResult } from '../types';
 import TaskList from '../task-list';
 import { flags } from '@oclif/command';
-import { getPackageJson } from '../helpers/get-package-json';
+import { getPackageJson } from '../utils/get-package-json';
 import { getReporter } from '../reporters';
 import LinesOfCodeTask from '../tasks/lines-of-code-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
