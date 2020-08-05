@@ -1,6 +1,6 @@
 import { EmberProject, getTaskContext, stdout } from '@checkup/test-helpers';
 
-import OctaneMigrationStatusTask from '../../src/tasks/octane-migration-status-task';
+import EmberOctaneMigrationStatusTask from '../../src/tasks/ember-octane-migration-status-task';
 import { getPluginName } from '@checkup/core';
 
 describe('octane-migration-status-task', () => {
@@ -34,7 +34,7 @@ describe('octane-migration-status-task', () => {
       test(`detects octane migration status for ${testConfig.variant} ${type} and outputs to console`, async () => {
         testConfig.setup(project, type);
 
-        const result = await new OctaneMigrationStatusTask(
+        const result = await new EmberOctaneMigrationStatusTask(
           pluginName,
           getTaskContext({
             cliFlags: { cwd: project.baseDir },
@@ -50,7 +50,7 @@ describe('octane-migration-status-task', () => {
       test(`detects octane migration status for ${testConfig.variant} ${type} and outputs to json`, async () => {
         testConfig.setup(project, type);
 
-        const result = await new OctaneMigrationStatusTask(
+        const result = await new EmberOctaneMigrationStatusTask(
           pluginName,
           getTaskContext({
             cliFlags: { cwd: project.baseDir },

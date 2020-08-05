@@ -19,7 +19,7 @@ import {
   TemplateLintMessage,
 } from '@checkup/core';
 
-import OctaneMigrationStatusTaskResult from '../results/octane-migration-status-task-result';
+import EmberOctaneMigrationStatusTaskResult from '../results/ember-octane-migration-status-task-result';
 
 const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
   parser: 'babel-eslint',
@@ -79,7 +79,7 @@ const NAMED_ARGUMENTS_RULES = ['no-args-paths'];
 const OWN_PROPERTIES_RULES = ['no-implicit-this'];
 const USE_MODIFIERS_RULES = ['no-action'];
 
-export default class OctaneMigrationStatusTask extends BaseTask implements Task {
+export default class EmberOctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {
     taskName: 'octane-migration-status',
     friendlyTaskName: 'Ember Octane Migration Status',
@@ -102,13 +102,13 @@ export default class OctaneMigrationStatusTask extends BaseTask implements Task 
     this.templateLinter = createEmberTemplateLintParser(OCTANE_TEMPLATE_LINT_CONFIG);
   }
 
-  async run(): Promise<OctaneMigrationStatusTaskResult> {
+  async run(): Promise<EmberOctaneMigrationStatusTaskResult> {
     let [esLintReport, templateLintReport] = await Promise.all([
       this.runEsLint(),
       this.runTemplateLint(),
     ]);
 
-    let result = new OctaneMigrationStatusTaskResult(this.meta, this.config);
+    let result = new EmberOctaneMigrationStatusTaskResult(this.meta, this.config);
 
     let octaneResults = buildResult(
       [...esLintReport.results, ...templateLintReport.results],
