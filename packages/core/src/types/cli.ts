@@ -4,6 +4,7 @@ export type RunFlags = {
   config: string | undefined;
   cwd: string;
   task: string | undefined;
+  listTasks: boolean;
   format: string;
   outputFile: string;
   excludePaths: string[] | undefined;
