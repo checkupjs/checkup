@@ -2,7 +2,6 @@ import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 
 import EmberTestTypesTask from '../src/tasks/ember-test-types-task';
-import EmberTestTypesTaskResult from '../src/results/ember-test-types-task-result';
 
 const TESTS = {
   application: {
@@ -69,26 +68,6 @@ describe('ember-test-types-task', () => {
     project.dispose();
   });
 
-  it('returns all the test types found in the app and outputs to the console', async () => {
-    project.files = Object.assign(project.files, {
-      'index.js': 'index js file',
-      addon: TESTS,
-    });
-
-    project.writeSync();
-
-    const result = await new EmberTestTypesTask(
-      pluginName,
-      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
-    ).run();
-
-    const testTypesTaskResult = <EmberTestTypesTaskResult>result;
-
-    testTypesTaskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
-  });
-
   it('only renders todos/only test types if they a value > 0', async () => {
     project.files = Object.assign(project.files, {
       'index.js': 'index js file',
@@ -116,31 +95,7 @@ describe('ember-test-types-task', () => {
       getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    const testTypesTaskResult = <EmberTestTypesTaskResult>result;
-
-    testTypesTaskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
-  });
-
-  it('returns all the test types (including nested) found in the app and outputs to the console', async () => {
-    project.files = Object.assign(project.files, {
-      'index.js': 'index js file',
-      addon: TESTS,
-    });
-    project.addInRepoAddon('ember-super-button', 'latest');
-
-    (project.files.lib as any)['ember-super-button'].addon = TESTS;
-
-    project.writeSync();
-    const result = await new EmberTestTypesTask(
-      pluginName,
-      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
-    ).run();
-
-    const testTypesTaskResult = <EmberTestTypesTaskResult>result;
-
-    testTypesTaskResult.toConsole();
+    result.toJson();
 
     expect(stdout()).toMatchSnapshot();
   });
@@ -158,11 +113,7 @@ describe('ember-test-types-task', () => {
       getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    const testTypesTaskResult = <EmberTestTypesTaskResult>result;
-
-    let json = testTypesTaskResult.toJson();
-
-    expect(json).toMatchSnapshot();
+    expect(result.toJson()).toMatchSnapshot();
   });
 
   it('returns action item if more than 1% of your tests are skipped and if your ratio of application tests is not matching threshold', async () => {
@@ -198,10 +149,8 @@ describe('ember-test-types-task', () => {
       })
     ).run();
 
-    const testTypesTaskResult = <EmberTestTypesTaskResult>result;
-
-    expect(testTypesTaskResult.actions).toHaveLength(1);
-    expect(testTypesTaskResult.actions).toMatchInlineSnapshot(`
+    expect(result.actions).toHaveLength(1);
+    expect(result.actions).toMatchInlineSnapshot(`
       Array [
         Object {
           "defaultThreshold": 0.01,

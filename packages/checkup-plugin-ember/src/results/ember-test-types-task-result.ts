@@ -5,7 +5,6 @@ import {
   Action,
   toPercent,
   MultiValueResult,
-  ui,
 } from '@checkup/core';
 
 export default class EmberTestTypesTaskResult extends BaseTaskResult implements TaskResult {
@@ -35,36 +34,6 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
     });
 
     this.actions = actionsEvaluator.evaluate(this.config);
-  }
-
-  toConsole() {
-    ui.section(this.meta.friendlyTaskName, () => {
-      this.data.forEach((testTypeInfo) => {
-        ui.subHeader(testTypeInfo.key);
-        ui.table(
-          Object.entries(testTypeInfo.dataSummary.values).map(([key, count]) => {
-            return { [testTypeInfo.dataSummary.dataKey]: key, count };
-          }),
-          {
-            [testTypeInfo.dataSummary.dataKey]: {},
-            count: {},
-          }
-        );
-        ui.blankLine();
-      });
-
-      ui.subHeader('tests by type');
-      ui.sectionedBar(
-        this.data.map((testType) => {
-          return {
-            title: testType.key,
-            count: testType.dataSummary.total,
-          };
-        }),
-        this.data.reduce((total, result) => total + result.dataSummary.total, 0),
-        'tests'
-      );
-    });
   }
 
   toJson() {

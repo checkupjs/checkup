@@ -1,11 +1,4 @@
-import {
-  BaseTaskResult,
-  ui,
-  TaskResult,
-  ActionsEvaluator,
-  Action,
-  SummaryResult,
-} from '@checkup/core';
+import { BaseTaskResult, TaskResult, ActionsEvaluator, Action, SummaryResult } from '@checkup/core';
 
 export default class EslintDisableTaskResult extends BaseTaskResult implements TaskResult {
   actions: Action[] = [];
@@ -28,10 +21,6 @@ export default class EslintDisableTaskResult extends BaseTaskResult implements T
     });
 
     this.actions = actionsEvaluator.evaluate(this.config);
-  }
-
-  toConsole() {
-    ui.log(`eslint-disable Usages Found: ${this.data[0].count}`);
   }
 
   toJson() {

@@ -1,4 +1,4 @@
-import { EmberProject, getTaskContext, stdout } from '@checkup/test-helpers';
+import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 
 import EmberOctaneMigrationStatusTask from '../../src/tasks/ember-octane-migration-status-task';
 import { getPluginName } from '@checkup/core';
@@ -31,22 +31,6 @@ describe('ember-octane-migration-status-task', () => {
     },
   ].forEach((testConfig) => {
     ['app', 'addon'].forEach((type: string) => {
-      test(`detects octane migration status for ${testConfig.variant} ${type} and outputs to console`, async () => {
-        testConfig.setup(project, type);
-
-        const result = await new EmberOctaneMigrationStatusTask(
-          pluginName,
-          getTaskContext({
-            cliFlags: { cwd: project.baseDir },
-            paths: project.filePaths,
-          })
-        ).run();
-
-        result.toConsole();
-
-        expect(stdout()).toMatchSnapshot();
-      });
-
       test(`detects octane migration status for ${testConfig.variant} ${type} and outputs to json`, async () => {
         testConfig.setup(project, type);
 

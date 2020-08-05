@@ -105,24 +105,6 @@ Object {
 }
 `;
 
-exports[`types-task returns all the types (including nested) found in the app and outputs to the console 1`] = `
-"Ember Types
-
-Types                 Count 
-components            2     
-controllers           2     
-helpers               2     
-initializers          2     
-instance-initializers 2     
-mixins                2     
-models                2     
-routes                2     
-services              2     
-templates             2     
-
-"
-`;
-
 exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
 Object {
   "info": Object {
@@ -216,22 +198,4 @@ Object {
     },
   ],
 }
-`;
-
-exports[`types-task returns all the types found in the app and outputs to the console 1`] = `
-"Ember Types
-
-Types                 Count 
-components            1     
-controllers           1     
-helpers               1     
-initializers          1     
-instance-initializers 1     
-mixins                1     
-models                1     
-routes                1     
-services              1     
-templates             1     
-
-"
 `;

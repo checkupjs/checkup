@@ -21,7 +21,7 @@ import { MetaTaskResult } from '../types';
 import TaskList from '../task-list';
 import { flags } from '@oclif/command';
 import { getPackageJson } from '../utils/get-package-json';
-import { getReporter } from '../reporters';
+import { getReporter } from '../reporters/get-reporter';
 import LinesOfCodeTask from '../tasks/lines-of-code-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import * as chalk from 'chalk';
@@ -109,7 +109,7 @@ export default class RunCommand extends BaseCommand {
     } else {
       ui.action.start('Checking up on your project');
       await this.runTasks();
-      await this.report();
+      this.report();
       ui.action.stop();
     }
   }
@@ -197,16 +197,15 @@ export default class RunCommand extends BaseCommand {
     });
   }
 
-  private async report() {
+  private report() {
     let errors = [...this.metaTaskErrors, ...this.pluginTaskErrors];
-    let generateReport = getReporter(
-      this.runFlags,
-      this.metaTaskResults,
-      this.pluginTaskResults,
-      errors
-    );
-
-    await generateReport();
+    let generateReport = getReporter(this.runFlags.format as OutputFormat);
+    generateReport({
+      flags: this.runFlags,
+      info: this.metaTaskResults,
+      results: this.pluginTaskResults,
+      errors,
+    });
   }
 
   private printAvailableTasks() {

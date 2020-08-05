@@ -1,6 +1,13 @@
-import { JsonMetaTaskResult, TaskIdentifier } from '@checkup/core';
+import { JsonMetaTaskResult, TaskIdentifier, RunFlags, TaskResult, TaskError } from '@checkup/core';
 
 export default {};
+
+export interface ReporterArguments {
+  flags?: RunFlags;
+  info: MetaTaskResult[];
+  results: TaskResult[];
+  errors: TaskError[];
+}
 
 export interface MetaTask {
   meta: TaskIdentifier;
@@ -9,14 +16,8 @@ export interface MetaTask {
 }
 
 export interface MetaTaskResult {
-  outputPosition: OutputPosition;
-  toConsole: () => void;
+  meta: TaskIdentifier;
   toJson: () => JsonMetaTaskResult;
-}
-
-export const enum OutputPosition {
-  Header,
-  Footer,
 }
 
 export type RepositoryInfo = {

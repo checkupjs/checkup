@@ -1,10 +1,6 @@
 import { BaseTaskResult, ui } from '@checkup/core';
 
 export default class <%- taskResultClass %> extends BaseTaskResult {
-  toConsole() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-  }
-
   toJson() {
     return {
       info: this.meta,

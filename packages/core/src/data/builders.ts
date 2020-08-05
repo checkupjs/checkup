@@ -1,7 +1,6 @@
 import {
   SummaryResult,
   MultiValueResult,
-  DerivedValueResult,
   LookupValueResult,
   IndexableObject,
 } from '../types/checkup-result';
@@ -128,10 +127,10 @@ function buildDerivedValueResult(
   data: Array<IndexableObject>,
   dataKey: string,
   total?: number
-): DerivedValueResult {
+): MultiValueResult {
   return {
     key,
-    type: 'derived-value',
+    type: 'multi-value',
     dataSummary: {
       values: buildDerivedValues(data, dataKey),
       dataKey,

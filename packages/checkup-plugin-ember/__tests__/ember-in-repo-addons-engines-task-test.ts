@@ -1,6 +1,5 @@
 import { getPluginName } from '@checkup/core';
-import { EmberProject, getTaskContext, stdout } from '@checkup/test-helpers';
-import EmberInRepoAddonEnginesTaskResult from '../src/results/ember-in-repo-addons-engines-task-result';
+import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 import EmberInRepoAddonEnginesTask from '../src/tasks/ember-in-repo-addons-engines-task';
 
 describe('ember-in-repo-addons-engines-task', () => {
@@ -22,22 +21,6 @@ describe('ember-in-repo-addons-engines-task', () => {
     emberProject.dispose();
   });
 
-  it('can read task and output to console', async () => {
-    const result = await new EmberInRepoAddonEnginesTask(
-      pluginName,
-      getTaskContext({
-        cliFlags: { cwd: emberProject.baseDir },
-        pkg: emberProject.pkg,
-        paths: emberProject.filePaths,
-      })
-    ).run();
-    const taskResult = <EmberInRepoAddonEnginesTaskResult>result;
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
-  });
-
   it('can read task as JSON', async () => {
     const result = await new EmberInRepoAddonEnginesTask(
       pluginName,
@@ -47,8 +30,7 @@ describe('ember-in-repo-addons-engines-task', () => {
         paths: emberProject.filePaths,
       })
     ).run();
-    const taskResult = <EmberInRepoAddonEnginesTaskResult>result;
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result.toJson()).toMatchSnapshot();
   });
 });

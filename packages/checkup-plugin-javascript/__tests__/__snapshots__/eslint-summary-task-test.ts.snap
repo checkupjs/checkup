@@ -29,7 +29,7 @@ Object {
         },
       },
       "key": "eslint-errors",
-      "type": "derived-value",
+      "type": "multi-value",
     },
     Object {
       "data": Array [
@@ -50,7 +50,7 @@ Object {
         },
       },
       "key": "eslint-warnings",
-      "type": "derived-value",
+      "type": "multi-value",
     },
   ],
 }

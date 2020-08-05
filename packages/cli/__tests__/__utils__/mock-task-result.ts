@@ -13,10 +13,6 @@ export default class MockTaskResult extends BaseTaskResult implements TaskResult
     this.data = data;
   }
 
-  toConsole() {
-    process.stdout.write(`Result for ${this.meta.taskName}`);
-  }
-
   toJson() {
     return {
       info: this.meta,

@@ -26,10 +26,6 @@ exports[`task generator generates correct files with JavaScript 2`] = `
 "import { BaseTaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult {
-  toConsole() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-  }
-
   toJson() {
     return {
       info: this.meta,
@@ -61,14 +57,6 @@ describe('my-foo-task', () => {
 
   afterEach(() => {
     project.dispose();
-  });
-
-  it('can read task and output to console', async () => {
-    const taskResult = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
   });
 
   it('can read task as JSON', async () => {
@@ -120,10 +108,6 @@ exports[`task generator generates correct files with TypeScript for defaults 2`]
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toConsole() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-  }
-
   toJson() {
     return {
       info: this.meta,
@@ -155,15 +139,6 @@ describe('my-foo-task', () => {
 
   afterEach(() => {
     project.dispose();
-  });
-
-  it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
   });
 
   it('can read task as JSON', async () => {
@@ -216,10 +191,6 @@ exports[`task generator generates correct files with TypeScript for defaults in 
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toConsole() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-  }
-
   toJson() {
     return {
       info: this.meta,
@@ -251,15 +222,6 @@ describe('my-foo-task', () => {
 
   afterEach(() => {
     project.dispose();
-  });
-
-  it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
   });
 
   it('can read task as JSON', async () => {
@@ -312,10 +274,6 @@ exports[`task generator generates correct files with category 2`] = `
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toConsole() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-  }
-
   toJson() {
     return {
       info: this.meta,
@@ -347,15 +305,6 @@ describe('my-foo-task', () => {
 
   afterEach(() => {
     project.dispose();
-  });
-
-  it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
   });
 
   it('can read task as JSON', async () => {
@@ -409,10 +358,6 @@ exports[`task generator generates correct files with group 2`] = `
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toConsole() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-  }
-
   toJson() {
     return {
       info: this.meta,
@@ -444,15 +389,6 @@ describe('my-foo-task', () => {
 
   afterEach(() => {
     project.dispose();
-  });
-
-  it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
   });
 
   it('can read task as JSON', async () => {
@@ -505,10 +441,6 @@ exports[`task generator generates correct files with type 2`] = `
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toConsole() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-  }
-
   toJson() {
     return {
       info: this.meta,
@@ -540,15 +472,6 @@ describe('my-foo-task', () => {
 
   afterEach(() => {
     project.dispose();
-  });
-
-  it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
   });
 
   it('can read task as JSON', async () => {
@@ -601,10 +524,6 @@ exports[`task generator generates multiple correct files with TypeScript for def
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toConsole() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-  }
-
   toJson() {
     return {
       info: this.meta,
@@ -636,15 +555,6 @@ describe('my-foo-task', () => {
 
   afterEach(() => {
     project.dispose();
-  });
-
-  it('can read task and output to console', async () => {
-    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
   });
 
   it('can read task as JSON', async () => {
@@ -683,10 +593,6 @@ exports[`task generator generates multiple correct files with TypeScript for def
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyBarTaskResult extends BaseTaskResult implements TaskResult {
-  toConsole() {
-    ui.styledHeader(this.meta.friendlyTaskName);
-  }
-
   toJson() {
     return {
       info: this.meta,
@@ -718,15 +624,6 @@ describe('my-bar-task', () => {
 
   afterEach(() => {
     project.dispose();
-  });
-
-  it('can read task and output to console', async () => {
-    const result = await new MyBarTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyBarTaskResult>result;
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
   });
 
   it('can read task as JSON', async () => {
