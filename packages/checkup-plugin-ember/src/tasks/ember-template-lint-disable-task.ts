@@ -8,14 +8,14 @@ import {
   normalizePath,
   AstTraverser,
 } from '@checkup/core';
-import TemplateLintDisableTaskResult from '../results/template-lint-disable-task-result';
+import EmberTemplateLintDisableTaskResult from '../results/ember-template-lint-disable-task-result';
 
 const fs = require('fs');
 const { parse, traverse } = require('ember-template-recast');
 
 const TEMPLATE_LINT_DISABLE = 'template-lint-disable';
 
-export default class TemplateLintDisableTask extends BaseTask implements Task {
+export default class EmberTemplateLintDisableTask extends BaseTask implements Task {
   meta: TaskMetaData = {
     taskName: 'template-lint-disables',
     friendlyTaskName: 'Number of template-lint-disable Usages',
@@ -26,7 +26,7 @@ export default class TemplateLintDisableTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: TemplateLintDisableTaskResult = new TemplateLintDisableTaskResult(
+    let result: EmberTemplateLintDisableTaskResult = new EmberTemplateLintDisableTaskResult(
       this.meta,
       this.config
     );

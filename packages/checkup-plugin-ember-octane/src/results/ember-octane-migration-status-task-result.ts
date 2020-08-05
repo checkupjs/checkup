@@ -1,6 +1,7 @@
 import { BaseTaskResult, TaskResult, ui, MultiValueResult } from '@checkup/core';
 
-export default class OctaneMigrationStatusTaskResult extends BaseTaskResult implements TaskResult {
+export default class EmberOctaneMigrationStatusTaskResult extends BaseTaskResult
+  implements TaskResult {
   data: MultiValueResult[] = [];
 
   process(data: MultiValueResult[]) {

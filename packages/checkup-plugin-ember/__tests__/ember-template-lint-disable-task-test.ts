@@ -1,7 +1,7 @@
 import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 
-import TemplateLintDisableTask from '../src/tasks/template-lint-disable-task';
-import TemplateLintDisableTaskResult from '../src/results/template-lint-disable-task-result';
+import TemplateLintDisableTask from '../src/tasks/ember-template-lint-disable-task';
+import TemplateLintDisableTaskResult from '../src/results/ember-template-lint-disable-task-result';
 
 describe('template-lint-disable-task', () => {
   let project: CheckupProject;

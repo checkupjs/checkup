@@ -7,7 +7,8 @@ import {
   SummaryResult,
 } from '@checkup/core';
 
-export default class TemplateLintDisableTaskResult extends BaseTaskResult implements TaskResult {
+export default class EmberTemplateLintDisableTaskResult extends BaseTaskResult
+  implements TaskResult {
   actions: Action[] = [];
 
   data: SummaryResult[] = [];
