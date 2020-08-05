@@ -133,9 +133,13 @@ export const ui = Object.assign(ux, {
     );
   },
 
-  valuesList(values: { title: string; count: number }[], unit: string) {
+  valuesList(values: { title: string; count: number }[], unit: string = '') {
     values.forEach((value) => {
-      ui.log(`${ui.randomColor()('■')} ${value.title} (${value.count.toLocaleString()} ${unit})`);
+      ui.log(
+        `${ui.randomColor()('■')} ${value.title} (${value.count.toLocaleString()}${
+          unit ? ' ' + unit : ''
+        })`
+      );
     });
   },
 
