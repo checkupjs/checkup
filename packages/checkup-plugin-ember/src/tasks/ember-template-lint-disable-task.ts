@@ -17,7 +17,7 @@ const TEMPLATE_LINT_DISABLE = 'template-lint-disable';
 
 export default class EmberTemplateLintDisableTask extends BaseTask implements Task {
   meta: TaskMetaData = {
-    taskName: 'template-lint-disables',
+    taskName: 'ember-template-lint-disables',
     friendlyTaskName: 'Number of template-lint-disable Usages',
     taskClassification: {
       category: 'linting',

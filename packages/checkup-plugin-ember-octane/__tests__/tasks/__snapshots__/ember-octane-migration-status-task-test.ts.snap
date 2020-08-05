@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`octane-migration-status-task detects octane migration status for non-octane addon and outputs to console 1`] = `
+exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to console 1`] = `
 "Ember Octane Migration Status
 
 Octane Violations: 22
@@ -45,7 +45,7 @@ Modifiers
 "
 `;
 
-exports[`octane-migration-status-task detects octane migration status for non-octane addon and outputs to json 1`] = `
+exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to json 1`] = `
 Object {
   "info": Object {
     "friendlyTaskName": "Ember Octane Migration Status",
@@ -53,7 +53,7 @@ Object {
       "category": "migrations",
       "group": "ember",
     },
-    "taskName": "octane-migration-status",
+    "taskName": "ember-octane-migration-status",
   },
   "result": Array [
     Object {
@@ -342,7 +342,7 @@ Object {
 }
 `;
 
-exports[`octane-migration-status-task detects octane migration status for non-octane app and outputs to console 1`] = `
+exports[`ember-octane-migration-status-task detects octane migration status for non-octane app and outputs to console 1`] = `
 "Ember Octane Migration Status
 
 Octane Violations: 22
@@ -387,7 +387,7 @@ Modifiers
 "
 `;
 
-exports[`octane-migration-status-task detects octane migration status for non-octane app and outputs to json 1`] = `
+exports[`ember-octane-migration-status-task detects octane migration status for non-octane app and outputs to json 1`] = `
 Object {
   "info": Object {
     "friendlyTaskName": "Ember Octane Migration Status",
@@ -395,7 +395,7 @@ Object {
       "category": "migrations",
       "group": "ember",
     },
-    "taskName": "octane-migration-status",
+    "taskName": "ember-octane-migration-status",
   },
   "result": Array [
     Object {
@@ -684,7 +684,7 @@ Object {
 }
 `;
 
-exports[`octane-migration-status-task detects octane migration status for octane addon and outputs to console 1`] = `
+exports[`ember-octane-migration-status-task detects octane migration status for octane addon and outputs to console 1`] = `
 "Ember Octane Migration Status
 
 Octane Violations: 0
@@ -729,7 +729,7 @@ Modifiers
 "
 `;
 
-exports[`octane-migration-status-task detects octane migration status for octane addon and outputs to json 1`] = `
+exports[`ember-octane-migration-status-task detects octane migration status for octane addon and outputs to json 1`] = `
 Object {
   "info": Object {
     "friendlyTaskName": "Ember Octane Migration Status",
@@ -737,7 +737,7 @@ Object {
       "category": "migrations",
       "group": "ember",
     },
-    "taskName": "octane-migration-status",
+    "taskName": "ember-octane-migration-status",
   },
   "result": Array [
     Object {
@@ -844,7 +844,7 @@ Object {
 }
 `;
 
-exports[`octane-migration-status-task detects octane migration status for octane app and outputs to console 1`] = `
+exports[`ember-octane-migration-status-task detects octane migration status for octane app and outputs to console 1`] = `
 "Ember Octane Migration Status
 
 Octane Violations: 0
@@ -889,7 +889,7 @@ Modifiers
 "
 `;
 
-exports[`octane-migration-status-task detects octane migration status for octane app and outputs to json 1`] = `
+exports[`ember-octane-migration-status-task detects octane migration status for octane app and outputs to json 1`] = `
 Object {
   "info": Object {
     "friendlyTaskName": "Ember Octane Migration Status",
@@ -897,7 +897,7 @@ Object {
       "category": "migrations",
       "group": "ember",
     },
-    "taskName": "octane-migration-status",
+    "taskName": "ember-octane-migration-status",
   },
   "result": Array [
     Object {

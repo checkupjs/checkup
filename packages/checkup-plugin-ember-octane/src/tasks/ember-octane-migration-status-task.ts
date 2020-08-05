@@ -81,7 +81,7 @@ const USE_MODIFIERS_RULES = ['no-action'];
 
 export default class EmberOctaneMigrationStatusTask extends BaseTask implements Task {
   meta = {
-    taskName: 'octane-migration-status',
+    taskName: 'ember-octane-migration-status',
     friendlyTaskName: 'Ember Octane Migration Status',
     taskClassification: {
       category: 'migrations',
