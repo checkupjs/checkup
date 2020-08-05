@@ -2,25 +2,10 @@ import {
   BaseTaskResult,
   TaskResult,
   ui,
-  // ESLintReport,
   ActionsEvaluator,
   Action,
   DerivedValueResult,
 } from '@checkup/core';
-// import { Linter } from 'eslint';
-import * as chalk from 'chalk';
-
-// interface EslintFailureCounts {
-//   failureCount: number;
-//   fixableFailureCount: number;
-// }
-
-// interface FormattedESLintReport {
-//   errorCount: number;
-//   warningCount: number;
-//   errorList: { rule: string; failures: string }[];
-//   warningList: { rule: string; failures: string }[];
-// }
 
 export default class EslintSummaryTaskResult extends BaseTaskResult implements TaskResult {
   actions: Action[] = [];
@@ -65,34 +50,23 @@ export default class EslintSummaryTaskResult extends BaseTaskResult implements T
     let warningsCount = this.warnings.dataSummary.total;
 
     ui.section(this.meta.friendlyTaskName, () => {
-      ui.log(`Error count: ${chalk.red(errorsCount)}`);
-      ui.log(`Warning count: ${chalk.yellow(warningsCount)}`);
-
       if (errorsCount) {
         ui.blankLine();
-        ui.subHeader('Errors');
-        ui.table(
+        ui.subHeader(`Errors (${errorsCount})`);
+        ui.valuesList(
           Object.entries(this.errors.dataSummary.values).map(([key, count]) => {
-            return { ruleId: key, count };
-          }),
-          {
-            ruleId: { header: 'Rule name' },
-            count: { header: 'Errors' },
-          }
+            return { title: key, count };
+          })
         );
       }
 
       if (warningsCount) {
         ui.blankLine();
-        ui.subHeader('Warnings');
-        ui.table(
+        ui.subHeader(`Errors (${warningsCount})`);
+        ui.valuesList(
           Object.entries(this.warnings.dataSummary.values).map(([key, count]) => {
-            return { ruleId: key, count };
-          }),
-          {
-            ruleId: { header: 'Rule name' },
-            count: { header: 'Errors' },
-          }
+            return { title: key, count };
+          })
         );
       }
     });

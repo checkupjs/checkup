@@ -65,18 +65,14 @@ describe('eslint-summary-task', () => {
     expect(stdout()).toMatchInlineSnapshot(`
       "Eslint Summary
 
-      Error count: 1
-      Warning count: 1
 
-      Errors
+      Errors 1
 
-      Rule name Errors 
-      semi      1      
+      ■ semi (1)
 
-      Warnings
+      Errors 1
 
-      Rule name Errors 
-      no-var    1      
+      ■ no-var (1)
 
       "
     `);
