@@ -3,7 +3,7 @@ import {
   buildMultiValueResult,
   buildDerivedValueResult,
   buildLookupValueResult,
-} from '../src/builders';
+} from '../src/data/builders';
 
 describe('builders', () => {
   describe('buildSummaryResult', () => {

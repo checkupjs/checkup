@@ -76,7 +76,7 @@ export default class CheckupFixturifyProject extends Project {
 
   get filePaths(): FilePathArray {
     if (this._hasWritten) {
-      let allFiles = walkSync(this.baseDir, { directories: false });
+      let allFiles = walkSync(this.baseDir, { directories: false, ignore: ['node_modules'] });
       return new FilePathArray(...resolveFilePaths(allFiles, this.baseDir));
     } else {
       throw new Error('You must call writeSync on your project before getting the file paths.');

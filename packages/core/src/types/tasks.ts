@@ -5,8 +5,6 @@ import { CheckupConfig } from './config';
 import { FilePathArray } from '../utils/file-path-array';
 import { RunFlags } from './cli';
 
-export type SearchPatterns = Record<string, string[]>;
-
 export type RegisterTaskArgs = {
   context: TaskContext;
   tasks: TaskList;
@@ -73,13 +71,6 @@ export interface TaskMetaData {
   taskClassification: TaskClassification;
 }
 
-export interface TaskItemData {
-  displayName: string;
-  type: string;
-  data: string[] | Record<string, string>;
-  total: number;
-}
-
 export type JsonMetaTaskResult = JsonObject;
 
 export type JsonTaskResult = {
@@ -92,7 +83,7 @@ export enum OutputFormat {
   json = 'json',
 }
 
-export interface LintResultData {
+export interface LintResult {
   filePath: string;
   ruleId: string | null;
   message: string;

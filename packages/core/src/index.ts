@@ -26,8 +26,9 @@ export { exec } from './utils/exec';
 export { ui } from './utils/ui';
 export { getFilePaths } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
-export { byRuleId, bySeverity } from './utils/lint-result-filter';
 
+export { byRuleId, byRuleIds, bySeverity } from './data/filters';
+export { toPercent } from './data/formatters';
 export {
   buildSummaryResult,
   buildMultiValueResult,
@@ -37,11 +38,9 @@ export {
   buildLintResultDataItem,
   normalizePath,
   normalizePaths,
-} from './builders';
+} from './data/builders';
 
-export * from './utils/data-transformers';
 export * from './types/cli';
-export * from './types/util';
 export * from './types/parsers';
 export * from './types/tasks';
 export * from './types/config';
