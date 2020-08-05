@@ -3,7 +3,7 @@ import { EmberProject, getTaskContext, stdout } from '@checkup/test-helpers';
 import EmberOctaneMigrationStatusTask from '../../src/tasks/ember-octane-migration-status-task';
 import { getPluginName } from '@checkup/core';
 
-describe('octane-migration-status-task', () => {
+describe('ember-octane-migration-status-task', () => {
   let project: EmberProject;
   let pluginName = getPluginName(__dirname);
 

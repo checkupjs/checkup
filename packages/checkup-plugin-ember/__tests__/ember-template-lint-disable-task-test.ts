@@ -3,7 +3,7 @@ import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import TemplateLintDisableTask from '../src/tasks/ember-template-lint-disable-task';
 import TemplateLintDisableTaskResult from '../src/results/ember-template-lint-disable-task-result';
 
-describe('template-lint-disable-task', () => {
+describe('ember-template-lint-disable-task', () => {
   let project: CheckupProject;
 
   beforeEach(function () {
@@ -64,7 +64,7 @@ describe('template-lint-disable-task', () => {
             "category": "linting",
             "group": "ember",
           },
-          "taskName": "template-lint-disables",
+          "taskName": "ember-template-lint-disables",
         },
         "result": Array [
           Object {
