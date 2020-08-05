@@ -24,6 +24,7 @@ import { getPackageJson } from '../utils/get-package-json';
 import { getReporter } from '../reporters';
 import LinesOfCodeTask from '../tasks/lines-of-code-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
+import * as chalk from 'chalk';
 
 export default class RunCommand extends BaseCommand {
   static description = 'Provides health check information about your project';
@@ -59,7 +60,11 @@ export default class RunCommand extends BaseCommand {
       char: 'd',
       description: 'The path referring to the root directory that Checkup will run in',
     }),
-    task: flags.string({ char: 't' }),
+    task: flags.string({
+      char: 't',
+      description:
+        'Runs a single task specified by the fully qualified task name in the format pluginName/taskName',
+    }),
     format: flags.string({
       char: 'f',
       options: [...Object.values(OutputFormat)],
@@ -70,6 +75,10 @@ export default class RunCommand extends BaseCommand {
       char: 'o',
       default: '',
       description: 'Specify file to write report to',
+    }),
+    listTasks: flags.boolean({
+      char: 'l',
+      description: 'List all available tasks to run',
     }),
   };
 
@@ -91,15 +100,18 @@ export default class RunCommand extends BaseCommand {
   }
 
   public async run() {
-    ui.action.start('Checking up on your project');
-
     await this.loadConfig();
 
     await this.registerTasks();
-    await this.runTasks();
-    await this.report();
 
-    ui.action.stop();
+    if (this.runFlags.listTasks) {
+      this.printAvailableTasks();
+    } else {
+      ui.action.start('Checking up on your project');
+      await this.runTasks();
+      await this.report();
+      ui.action.stop();
+    }
   }
 
   private async registerDefaultTasks(context: TaskContext) {
@@ -195,5 +207,15 @@ export default class RunCommand extends BaseCommand {
     );
 
     await generateReport();
+  }
+
+  private printAvailableTasks() {
+    ui.blankLine();
+    ui.log(chalk.bold.white('AVAILABLE TASKS'));
+    ui.blankLine();
+    this.pluginTasks.fullyQualifiedTaskNames.forEach((taskName) => {
+      ui.log(`  ${taskName}`);
+    });
+    ui.blankLine();
   }
 }

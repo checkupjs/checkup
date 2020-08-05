@@ -18,6 +18,15 @@ export default class TaskList {
     return this._categories;
   }
 
+  /**
+   * @returns {string[]} The list of fully qualified task names.
+   */
+  get fullyQualifiedTaskNames() {
+    return this.getTasks()
+      .map((task) => task.fullyQualifiedTaskName)
+      .sort();
+  }
+
   constructor() {
     this._categories = new Map<string, Map<TaskName, Task>>();
     this._errors = [];
