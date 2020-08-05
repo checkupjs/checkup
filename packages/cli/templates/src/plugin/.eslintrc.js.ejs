@@ -1,0 +1,38 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "plugins": ["jest", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:jest/recommended",
+    "plugin:jest/style"
+  ],
+  "env": {
+    "browser": false,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "off",
+    "no-global-assign": [
+      "error",
+      {
+        "exceptions": ["console"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["__tests__/**/*.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}

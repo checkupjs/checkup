@@ -1,0 +1,40 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "jest", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "plugin:jest/recommended",
+    "plugin:jest/style"
+  ],
+  "env": {
+    "browser": false,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "no-global-assign": [
+      "error",
+      {
+        "exceptions": ["console"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["__tests__/**/*.ts"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}

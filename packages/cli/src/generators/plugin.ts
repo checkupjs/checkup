@@ -126,6 +126,14 @@ export default class PluginGenerator extends BaseGenerator {
       this.fs.copy(this.templatePath('tsconfig.json.ejs'), this.destinationPath('tsconfig.json'));
     }
 
+    this.fs.copy(this.templatePath('.eslintignore.ejs'), this.destinationPath('.eslintignore'));
+    this.fs.copy(
+      this.templatePath(`.eslintrc.${this._ext}.ejs`),
+      this.destinationPath('.eslintrc')
+    );
+    this.fs.copy(this.templatePath('.gitignore.ejs'), this.destinationPath('.gitignore'));
+    this.fs.copy(this.templatePath('.prettierrc.js.ejs'), this.destinationPath('.prettierrc.js'));
+
     this.fs.copyTpl(
       this.templatePath(`package.json.${this._ext}.ejs`),
       this.destinationPath('package.json'),
