@@ -16,6 +16,10 @@ describe('plugin generator', () => {
     let root = testRoot(dir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('.eslintignore').contents).toMatchSnapshot();
+    expect(root.file('.eslintrc').contents).toMatchSnapshot();
+    expect(root.file('.gitignore').contents).toMatchSnapshot();
+    expect(root.file('.prettierrc.js').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
@@ -33,6 +37,10 @@ describe('plugin generator', () => {
     let root = testRoot(dir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('.eslintignore').contents).toMatchSnapshot();
+    expect(root.file('.eslintrc').contents).toMatchSnapshot();
+    expect(root.file('.gitignore').contents).toMatchSnapshot();
+    expect(root.file('.prettierrc.js').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
@@ -50,6 +58,10 @@ describe('plugin generator', () => {
     let root = testRoot(dir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('.eslintignore').contents).toMatchSnapshot();
+    expect(root.file('.eslintrc').contents).toMatchSnapshot();
+    expect(root.file('.gitignore').contents).toMatchSnapshot();
+    expect(root.file('.prettierrc.js').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('src/index.js').contents).toMatchSnapshot();
@@ -66,6 +78,10 @@ describe('plugin generator', () => {
     let root = testRoot(dir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('.eslintignore').contents).toMatchSnapshot();
+    expect(root.file('.eslintrc').contents).toMatchSnapshot();
+    expect(root.file('.gitignore').contents).toMatchSnapshot();
+    expect(root.file('.prettierrc.js').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
@@ -85,6 +101,10 @@ describe('plugin generator', () => {
     let root = testRoot(existingDir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('.eslintignore').contents).toMatchSnapshot();
+    expect(root.file('.eslintrc').contents).toMatchSnapshot();
+    expect(root.file('.gitignore').contents).toMatchSnapshot();
+    expect(root.file('.prettierrc.js').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
@@ -112,6 +132,10 @@ describe('plugin generator', () => {
     let root = testRoot(dir);
 
     expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(root.file('.eslintignore').contents).toMatchSnapshot();
+    expect(root.file('.eslintrc').contents).toMatchSnapshot();
+    expect(root.file('.gitignore').contents).toMatchSnapshot();
+    expect(root.file('.prettierrc.js').contents).toMatchSnapshot();
     expect(root.file('README.md').contents).toMatchSnapshot();
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
