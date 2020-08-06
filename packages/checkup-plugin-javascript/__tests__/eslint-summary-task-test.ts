@@ -4,6 +4,7 @@ import {
   readEslintConfig,
   ACCEPTED_ESLINT_CONFIG_FILES,
 } from '../src/tasks/eslint-summary-task';
+import { evaluateActions } from '../src/actions/eslint-summary-actions';
 import { PackageJson } from 'type-fest';
 import { getPluginName, TaskResult } from '@checkup/core';
 
@@ -62,8 +63,10 @@ describe('eslint-summary-task', () => {
   });
 
   it('returns correct action items if there are too many warnings or errors', async () => {
-    expect(result.actions).toHaveLength(2);
-    expect(result.actions).toMatchInlineSnapshot(`
+    let actions = evaluateActions(result);
+
+    expect(actions).toHaveLength(2);
+    expect(actions).toMatchInlineSnapshot(`
       Array [
         Object {
           "defaultThreshold": 20,

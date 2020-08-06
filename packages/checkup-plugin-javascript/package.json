@@ -36,7 +36,8 @@
       "@oclif/plugin-help"
     ],
     "hooks": {
-      "register-tasks": "./lib/hooks/register-tasks"
+      "register-tasks": "./lib/hooks/register-tasks",
+      "register-actions": "./lib/hooks/register-actions"
     }
   },
   "publishConfig": {

@@ -1,4 +1,11 @@
-import { JsonMetaTaskResult, TaskIdentifier, RunFlags, TaskResult, TaskError } from '@checkup/core';
+import {
+  JsonMetaTaskResult,
+  TaskIdentifier,
+  RunFlags,
+  TaskResult,
+  TaskError,
+  Action,
+} from '@checkup/core';
 
 export default {};
 
@@ -7,6 +14,7 @@ export interface ReporterArguments {
   info: MetaTaskResult[];
   results: TaskResult[];
   errors: TaskError[];
+  actions: Action[];
 }
 
 export interface MetaTask {

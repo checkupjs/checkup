@@ -2,7 +2,6 @@ import { ReporterArguments } from '../types';
 import { ui } from '@checkup/core';
 import { dirname, isAbsolute, resolve } from 'path';
 import { existsSync, mkdirpSync, writeJsonSync } from 'fs-extra';
-import { getActions } from './get-actions';
 
 const date = require('date-and-time');
 
@@ -14,7 +13,7 @@ export function report(args: ReporterArguments) {
     info: Object.assign({}, ...args.info.map((result) => result.toJson())),
     results: args.results.map((result) => result.toJson()),
     errors: args.errors,
-    actions: getActions(args.results),
+    actions: args.actions,
   };
   let { outputFile, cwd } = args.flags!;
 

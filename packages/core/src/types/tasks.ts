@@ -1,7 +1,7 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 import { JsonObject, PackageJson } from 'type-fest';
 
-import { CheckupConfig } from './config';
+import { CheckupConfig, TaskConfig } from './config';
 import { FilePathArray } from '../utils/file-path-array';
 import { RunFlags } from './cli';
 
@@ -9,6 +9,12 @@ export type RegisterTaskArgs = {
   context: TaskContext;
   tasks: TaskList;
 };
+
+export type RegisterActionsArgs = {
+  registerActions: (taskName: TaskName, evaluate: ActionsEvaluationResult) => void;
+};
+
+export type ActionsEvaluationResult = (taskResult: TaskResult) => Action[];
 
 interface TaskList {
   registerTask(task: Task): void;
@@ -43,11 +49,16 @@ export interface Action {
 
 export interface TaskResult {
   meta: TaskMetaData;
+  config: TaskConfig;
   data: Record<string, any>;
-  actions?: Action[];
 
   process(data: Record<string, any>): void;
   toJson: () => JsonMetaTaskResult | JsonTaskResult;
+}
+
+export interface NewTaskResult {
+  info: TaskMetaData | TaskIdentifier;
+  result: Record<string, any>;
 }
 
 export type TaskError = {

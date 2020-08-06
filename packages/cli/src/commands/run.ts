@@ -11,8 +11,11 @@ import {
   loadPlugins,
   readConfig,
   registerParser,
+  registerActions,
   ui,
   getFilePaths,
+  Action,
+  getRegisteredActions,
   Task,
 } from '@checkup/core';
 
@@ -101,6 +104,7 @@ export default class RunCommand extends BaseCommand {
   pluginTasks: TaskList = new TaskList();
   pluginTaskResults: TaskResult[] = [];
   pluginTaskErrors: TaskError[] = [];
+  actions: Action[] = [];
   checkupConfig!: CheckupConfig;
 
   public async init() {
@@ -113,13 +117,14 @@ export default class RunCommand extends BaseCommand {
   public async run() {
     await this.loadConfig();
 
-    await this.registerTasks();
+    await this.register();
 
     if (this.runFlags.listTasks) {
       this.printAvailableTasks();
     } else {
       ui.action.start('Checking up on your project');
       await this.runTasks();
+      await this.runActions();
       this.report();
       ui.action.stop();
     }
@@ -161,6 +166,18 @@ export default class RunCommand extends BaseCommand {
     }
   }
 
+  private runActions() {
+    let evaluators = getRegisteredActions();
+
+    for (let [taskName, evaluator] of evaluators) {
+      let taskResult = this.pluginTaskResults.find((result) => taskName === result.meta.taskName);
+
+      if (taskResult) {
+        this.actions.push(...evaluator(taskResult));
+      }
+    }
+  }
+
   private async loadConfig() {
     let configPath;
 
@@ -176,11 +193,15 @@ export default class RunCommand extends BaseCommand {
     }
   }
 
-  private async registerTasks() {
+  private async register() {
     let taskContext: TaskContext;
 
     await this.config.runHook('register-parsers', {
       registerParser,
+    });
+
+    await this.config.runHook('register-actions', {
+      registerActions,
     });
 
     // if excludePaths are provided both via the command line and config, the command line is prioritized
@@ -215,6 +236,7 @@ export default class RunCommand extends BaseCommand {
       info: this.metaTaskResults,
       results: this.pluginTaskResults,
       errors,
+      actions: this.actions,
     });
   }
 

@@ -9,7 +9,6 @@ import {
 } from '@checkup/core';
 import { MetaTaskResult, ReporterArguments } from '../types';
 import { startCase } from 'lodash';
-import { getActions } from './get-actions';
 import ProjectMetaTaskResult from '../results/project-meta-task-result';
 
 let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
@@ -193,7 +192,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
 export function report(args: ReporterArguments) {
   renderMetaTaskResults(args.info);
   renderPluginTaskResults(args.results);
-  renderActionItems(getActions(args.results));
+  renderActionItems(args.actions);
   renderErrors(args.errors);
 }
 
