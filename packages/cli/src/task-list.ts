@@ -77,7 +77,7 @@ export default class TaskList {
    * @method findTasks
    * @param taskNames The name of the task to find
    */
-  findTasks(taskNames: TaskName[]): { tasksFound: Task[]; tasksNotFound: TaskName[] } {
+  findTasks(...taskNames: TaskName[]): { tasksFound: Task[]; tasksNotFound: TaskName[] } {
     let tasksFound: Task[] = [];
     let tasksNotFound: TaskName[] = [];
     let availableTasks = this.getTasks();
