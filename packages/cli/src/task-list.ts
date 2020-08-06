@@ -72,6 +72,36 @@ export default class TaskList {
   }
 
   /**
+   * Finds tasks by task name
+   *
+   * @method findTasks
+   * @param taskNames The name of the task to find
+   */
+  findTasks(taskNames: TaskName[]): { tasksFound: Task[]; tasksNotFound: TaskName[] } {
+    let tasksFound: Task[] = [];
+    let tasksNotFound: TaskName[] = [];
+    let availableTasks = this.getTasks();
+
+    taskNames.forEach((taskName) => {
+      let taskFound = false;
+
+      for (let availableTask of availableTasks) {
+        if (availableTask.meta.taskName === taskName) {
+          taskFound = true;
+          tasksFound.push(availableTask);
+          break;
+        }
+      }
+
+      if (taskFound === false) {
+        tasksNotFound.push(taskName);
+      }
+    });
+
+    return { tasksFound, tasksNotFound };
+  }
+
+  /**
    * Runs the task specified by the taskName parameter.
    *
    * @method runTask
@@ -107,7 +137,7 @@ export default class TaskList {
    * @returns {Promise<TaskResult[]>}
    * @memberof TaskList
    */
-  async runTasks(): Promise<[TaskResult[], TaskError[]]> {
+  async runTasks(tasks?: Task[]): Promise<[TaskResult[], TaskError[]]> {
     let results = await this.eachTask(async (task: Task) => {
       let result;
       this.debug('start %s run', task.fullyQualifiedTaskName);
@@ -120,7 +150,7 @@ export default class TaskList {
 
       this.debug('%s run done', task.fullyQualifiedTaskName);
       return result;
-    });
+    }, tasks);
 
     return [(results.filter(Boolean) as TaskResult[]).sort(taskResultComparator), this._errors];
   }
@@ -149,10 +179,12 @@ export default class TaskList {
    * @returns {Promise<TaskResult[]>}
    */
   private eachTask(
-    fn: (task: Task) => Promise<TaskResult | undefined>
+    fn: (task: Task) => Promise<TaskResult | undefined>,
+    tasksToRun?: Task[]
   ): Promise<(TaskResult | undefined)[]> {
+    let availableTasks = tasksToRun || this.getTasks();
     return pMap(
-      this.getTasks().filter((task) => task.enabled),
+      availableTasks.filter((task) => task.enabled),
       fn
     );
   }

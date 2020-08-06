@@ -1,10 +1,52 @@
+import { BaseTask, normalizePath, Task, TaskContext, TaskResult } from '@checkup/core';
+import {
+  CheckupProject,
+  clearStdout,
+  createTmpDir,
+  getTaskContext,
+  stdout,
+} from '@checkup/test-helpers';
 import * as fs from 'fs';
 import { join } from 'path';
-import { normalizePath } from '@checkup/core';
-import { CheckupProject, createTmpDir, stdout, clearStdout } from '@checkup/test-helpers';
+import { _registerTaskForTesting, _resetTasksForTesting } from '../../src/commands/run';
 import { runCommand } from '../../src/run-command';
+import { getMockTaskResult } from '../__utils__/mock-task-result';
 
 const TEST_TIMEOUT = 100000;
+
+class FooTask extends BaseTask implements Task {
+  meta = {
+    taskName: 'foo',
+    friendlyTaskName: 'Foo Task',
+    taskClassification: {
+      category: 'fake',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<TaskResult> {
+    return getMockTaskResult(this.meta, this.config, 'foo is being run');
+  }
+}
+
+class FileCountTask extends BaseTask implements Task {
+  meta = {
+    taskName: 'file-count',
+    friendlyTaskName: 'File Count Task',
+    taskClassification: {
+      category: 'fake',
+    },
+  };
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<TaskResult> {
+    return getMockTaskResult(this.meta, this.config, this.context.paths.length);
+  }
+}
 
 describe('@checkup/cli', () => {
   describe('normal cli output', () => {
@@ -74,10 +116,23 @@ describe('@checkup/cli', () => {
       TEST_TIMEOUT
     );
 
-    it('should run a single task if the task option is specified', async () => {
-      await runCommand(['run', '--task', 'lines-of-code', '--cwd', project.baseDir]);
+    it('should run a single task if the tasks option is specified with a single task', async () => {
+      _registerTaskForTesting(new FileCountTask(getTaskContext()));
+
+      await runCommand(['run', '--tasks', 'file-count', '--cwd', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
+      _resetTasksForTesting();
+    });
+
+    it('should run multiple tasks if the tasks option is specified with multiple tasks', async () => {
+      _registerTaskForTesting(new FileCountTask(getTaskContext()));
+      _registerTaskForTesting(new FooTask(getTaskContext()));
+
+      await runCommand(['run', '--tasks', 'file-count', 'foo', '--cwd', project.baseDir]);
+
+      expect(stdout()).toMatchSnapshot();
+      _resetTasksForTesting();
     });
 
     it('should use the config at the config path if provided', async () => {
@@ -98,10 +153,11 @@ describe('@checkup/cli', () => {
       anotherProject.dispose();
     });
 
-    // how should we better test this? right now its relying on lines-of-code-task being run
     it(
       'should run the tasks on the globs passed into checkup, if provided, instead of entire app',
       async () => {
+        _registerTaskForTesting(new FileCountTask(getTaskContext()));
+
         project.files = Object.assign(project.files, {
           foo: {
             'index.hbs': '{{!-- i should todo: write code --}}',
@@ -115,7 +171,15 @@ describe('@checkup/cli', () => {
         });
 
         project.writeSync();
-        await runCommand(['run', '**/*.hbs', '**baz/**', '--cwd', project.baseDir]);
+        await runCommand([
+          'run',
+          '**/*.hbs',
+          '**baz/**',
+          '--tasks',
+          'file-count',
+          '--cwd',
+          project.baseDir,
+        ]);
         let filteredRun = stdout();
         expect(filteredRun).toMatchSnapshot();
 
@@ -126,6 +190,7 @@ describe('@checkup/cli', () => {
         expect(unFilteredRun).toMatchSnapshot();
 
         expect(filteredRun).not.toStrictEqual(unFilteredRun);
+        _resetTasksForTesting();
       },
       TEST_TIMEOUT
     );

@@ -23,7 +23,7 @@ const DEFAULT_FLAGS: RunFlags = {
   config: undefined,
   excludePaths: undefined,
   cwd: process.cwd(),
-  task: undefined,
+  tasks: undefined,
   listTasks: false,
   format: 'stdout',
   outputFile: '',

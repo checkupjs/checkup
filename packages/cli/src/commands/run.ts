@@ -13,6 +13,7 @@ import {
   registerParser,
   ui,
   getFilePaths,
+  Task,
 } from '@checkup/core';
 
 import { BaseCommand } from '../base-command';
@@ -25,6 +26,15 @@ import { getReporter } from '../reporters/get-reporter';
 import LinesOfCodeTask from '../tasks/lines-of-code-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import * as chalk from 'chalk';
+
+let __tasksForTesting: Set<Task> = new Set<Task>();
+
+export function _registerTaskForTesting(task: Task) {
+  __tasksForTesting.add(task);
+}
+export function _resetTasksForTesting() {
+  __tasksForTesting = new Set<Task>();
+}
 
 export default class RunCommand extends BaseCommand {
   static description = 'Provides health check information about your project';
@@ -60,10 +70,11 @@ export default class RunCommand extends BaseCommand {
       char: 'd',
       description: 'The path referring to the root directory that Checkup will run in',
     }),
-    task: flags.string({
+    tasks: flags.string({
       char: 't',
       description:
-        'Runs a single task specified by the fully qualified task name in the format pluginName/taskName',
+        'Runs a subset of available tasks specified by the fully qualified task name in the format pluginName/taskName',
+      multiple: true,
     }),
     format: flags.string({
       char: 'f',
@@ -126,26 +137,21 @@ export default class RunCommand extends BaseCommand {
   private async runTasks() {
     [this.metaTaskResults, this.metaTaskErrors] = await this.defaultTasks.runTasks();
 
-    if (this.runFlags.task !== undefined) {
-      let pluginTaskResult: TaskResult | undefined;
-      let taskFound: boolean = false;
+    if (this.runFlags.tasks !== undefined) {
+      let { tasksFound, tasksNotFound } = this.pluginTasks.findTasks(this.runFlags.tasks);
 
-      if (this.pluginTasks.hasTask(this.runFlags.task)) {
-        taskFound = true;
-
-        [pluginTaskResult, this.pluginTaskErrors] = await this.pluginTasks.runTask(
-          this.runFlags.task
+      if (tasksFound.length > 0) {
+        [this.pluginTaskResults, this.pluginTaskErrors] = await this.pluginTasks.runTasks(
+          tasksFound
         );
-
-        if (pluginTaskResult) {
-          this.pluginTaskResults.push(pluginTaskResult);
-        }
       }
 
-      if (!taskFound) {
+      if (tasksNotFound.length > 0) {
         this.extendedError(
           new CheckupError(
-            `Cannot find the ${this.runFlags.task} task.`,
+            `Cannot find the ${tasksNotFound.join(',')} task${
+              tasksNotFound.length > 1 ? 's' : '' // pluralize task if more than one task is not found
+            }.`,
             "Make sure you've provided the correct task name."
           )
         );
@@ -194,6 +200,10 @@ export default class RunCommand extends BaseCommand {
     await this.config.runHook('register-tasks', {
       context: taskContext,
       tasks: this.pluginTasks,
+    });
+
+    __tasksForTesting.forEach((task: Task) => {
+      this.pluginTasks.registerTask(task);
     });
   }
 

@@ -180,6 +180,14 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
       );
     });
   },
+  foo: function (taskResult: TaskResult) {
+    ui.categoryHeader(taskResult.meta.friendlyTaskName);
+  },
+  'file-count': function (taskResult: TaskResult) {
+    ui.section(taskResult.meta.friendlyTaskName, () => {
+      ui.log(taskResult.data.result);
+    });
+  },
 };
 
 export function report(args: ReporterArguments) {

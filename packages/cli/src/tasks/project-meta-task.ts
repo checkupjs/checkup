@@ -24,7 +24,7 @@ export default class ProjectMetaTask extends BaseTask implements MetaTask {
     let package_ = this.context.pkg;
     let repositoryInfo = await getRepositoryInfo(this.context.cliFlags.cwd);
 
-    let { config, task, format, outputFile, excludePaths } = this.context.cliFlags;
+    let { config, tasks, format, outputFile, excludePaths } = this.context.cliFlags;
 
     result.data = {
       project: {
@@ -40,7 +40,7 @@ export default class ProjectMetaTask extends BaseTask implements MetaTask {
         schema: 1,
         flags: {
           config,
-          task,
+          tasks,
           format,
           outputFile,
           excludePaths,
