@@ -14,7 +14,7 @@ registeredParsers.set('ember-template-lint', createEmberTemplateLintParser);
 /**
  *
  */
-export function getRegisteredParsers(): Map<ParserName, CreateParser<any, any>> {
+export function getRegisteredParsers() {
   return registeredParsers;
 }
 

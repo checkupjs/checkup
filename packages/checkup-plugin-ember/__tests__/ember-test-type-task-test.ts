@@ -2,6 +2,7 @@ import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 
 import EmberTestTypesTask from '../src/tasks/ember-test-types-task';
+import { evaluateActions } from '../src/actions/ember-test-types-actions';
 
 const TESTS = {
   application: {
@@ -149,8 +150,10 @@ describe('ember-test-types-task', () => {
       })
     ).run();
 
-    expect(result.actions).toHaveLength(1);
-    expect(result.actions).toMatchInlineSnapshot(`
+    let actions = evaluateActions(result);
+
+    expect(actions).toHaveLength(1);
+    expect(actions).toMatchInlineSnapshot(`
       Array [
         Object {
           "defaultThreshold": 0.01,

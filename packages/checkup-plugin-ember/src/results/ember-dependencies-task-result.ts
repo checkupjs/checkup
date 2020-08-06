@@ -6,8 +6,4 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
   process(data: SummaryResult[]) {
     this.data = data;
   }
-
-  get hasDependencies() {
-    return this.data.some((dependency) => dependency.count > 0);
-  }
 }

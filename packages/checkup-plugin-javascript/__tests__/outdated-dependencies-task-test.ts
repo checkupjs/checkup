@@ -1,6 +1,7 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName, TaskResult } from '@checkup/core';
 import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task';
+import { evaluateActions } from '../src/actions/outdated-dependency-actions';
 
 // this test actually checks if dependencies are out of date, and will fail if new versions of react and react-dom are released.
 describe('outdated-dependencies-task', () => {
@@ -36,8 +37,10 @@ describe('outdated-dependencies-task', () => {
   });
 
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
-    expect(result.actions).toHaveLength(3);
-    expect(result.actions).toMatchInlineSnapshot(`
+    let actions = evaluateActions(result);
+
+    expect(actions).toHaveLength(3);
+    expect(actions).toMatchInlineSnapshot(`
       Array [
         Object {
           "defaultThreshold": 0.05,

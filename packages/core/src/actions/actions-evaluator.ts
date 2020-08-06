@@ -1,6 +1,6 @@
-import { TaskConfig, ActionConfig } from './types/config';
-import { parseConfigTuple } from './config';
-import { Action } from './types/tasks';
+import { TaskConfig, ActionConfig } from '../types/config';
+import { parseConfigTuple } from '../config';
+import { Action } from '../types/tasks';
 
 export default class ActionsEvaluator {
   private actions: Action[] = [];

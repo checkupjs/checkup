@@ -2,6 +2,7 @@ import { getPluginName } from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 
 import EslintDisableTask from '../src/tasks/eslint-disable-task';
+import { evaluateActions } from '../src/actions/eslint-disable-actions';
 
 describe('eslint-disable-task', () => {
   let project: CheckupProject;
@@ -88,8 +89,10 @@ describe('eslint-disable-task', () => {
       })
     ).run();
 
-    expect(result.actions).toHaveLength(1);
-    expect(result.actions![0]).toMatchInlineSnapshot(`
+    let actions = evaluateActions(result);
+
+    expect(actions).toHaveLength(1);
+    expect(actions![0]).toMatchInlineSnapshot(`
       Object {
         "defaultThreshold": 2,
         "details": "3 usages of template-lint-disable",

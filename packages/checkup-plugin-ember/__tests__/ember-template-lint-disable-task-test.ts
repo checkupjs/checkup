@@ -1,6 +1,7 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 
 import TemplateLintDisableTask from '../src/tasks/ember-template-lint-disable-task';
+import { evaluateActions } from '../src/actions/ember-template-lint-disable-actions';
 
 describe('ember-template-lint-disable-task', () => {
   let project: CheckupProject;
@@ -88,8 +89,10 @@ describe('ember-template-lint-disable-task', () => {
       })
     ).run();
 
-    expect(result.actions).toHaveLength(1);
-    expect(result.actions).toMatchInlineSnapshot(`
+    let actions = evaluateActions(result);
+
+    expect(actions).toHaveLength(1);
+    expect(actions).toMatchInlineSnapshot(`
       Array [
         Object {
           "defaultThreshold": 2,
