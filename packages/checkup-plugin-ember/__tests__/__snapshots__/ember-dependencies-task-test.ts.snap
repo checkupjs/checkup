@@ -1,18 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`dependencies-task detects Ember dependencies 1`] = `
-"Ember Dependencies
-
-Dependency Groups               Count 
-ember core libraries            3     
-ember addon dependencies        1     
-ember addon devDependencies     0     
-ember-cli addon dependencies    2     
-ember-cli addon devDependencies 1     
-
-"
-`;
-
 exports[`dependencies-task detects Ember dependencies as JSON 1`] = `
 Object {
   "info": Object {

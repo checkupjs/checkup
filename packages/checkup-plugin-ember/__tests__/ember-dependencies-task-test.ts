@@ -1,7 +1,6 @@
-import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 
 import EmberDependenciesTask from '../src/tasks/ember-dependencies-task';
-import EmberDependenciesTaskResult from '../src/results/ember-dependencies-task-result';
 import { getPluginName } from '@checkup/core';
 
 describe('dependencies-task', () => {
@@ -23,22 +22,6 @@ describe('dependencies-task', () => {
     emberProject.dispose();
   });
 
-  it('detects Ember dependencies', async () => {
-    const result = await new EmberDependenciesTask(
-      pluginName,
-      getTaskContext({
-        cliFlags: { cwd: emberProject.baseDir },
-        pkg: emberProject.pkg,
-        paths: emberProject.filePaths,
-      })
-    ).run();
-    const dependencyTaskResult = <EmberDependenciesTaskResult>result;
-
-    dependencyTaskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
-  });
-
   it('detects Ember dependencies as JSON', async () => {
     const result = await new EmberDependenciesTask(
       pluginName,
@@ -48,8 +31,7 @@ describe('dependencies-task', () => {
         paths: emberProject.filePaths,
       })
     ).run();
-    const dependencyTaskResult = <EmberDependenciesTaskResult>result;
 
-    expect(dependencyTaskResult.toJson()).toMatchSnapshot();
+    expect(result.toJson()).toMatchSnapshot();
   });
 });

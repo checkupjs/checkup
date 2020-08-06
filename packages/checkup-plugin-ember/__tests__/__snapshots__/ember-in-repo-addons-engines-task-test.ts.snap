@@ -1,14 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ember-in-repo-addons-engines-task can read task and output to console 1`] = `
-"Ember In Repo Addons Engines
-
-in-repo engines: 2
-in-repo addons: 2
-
-"
-`;
-
 exports[`ember-in-repo-addons-engines-task can read task as JSON 1`] = `
 Object {
   "info": Object {

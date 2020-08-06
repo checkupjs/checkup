@@ -1,8 +1,7 @@
 import { getPluginName } from '@checkup/core';
-import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 
 import EslintDisableTask from '../src/tasks/eslint-disable-task';
-import EslintDisableTaskResult from '../src/results/eslint-disable-task-result';
 
 describe('eslint-disable-task', () => {
   let project: CheckupProject;
@@ -28,24 +27,6 @@ describe('eslint-disable-task', () => {
     project.dispose();
   });
 
-  it('returns all the types found in the app and outputs to the console', async () => {
-    const result = await new EslintDisableTask(
-      pluginName,
-      getTaskContext({
-        paths: project.filePaths,
-        cliFlags: { cwd: project.baseDir },
-      })
-    ).run();
-    const eslintDisableTaskResult = <EslintDisableTaskResult>result;
-
-    eslintDisableTaskResult.toConsole();
-
-    expect(stdout()).toMatchInlineSnapshot(`
-      "eslint-disable Usages Found: 3
-      "
-    `);
-  });
-
   it('returns all the types found in the app and outputs to json', async () => {
     const result = await new EslintDisableTask(
       pluginName,
@@ -54,9 +35,8 @@ describe('eslint-disable-task', () => {
         cliFlags: { cwd: project.baseDir },
       })
     ).run();
-    const eslintDisableTaskResult = <EslintDisableTaskResult>result;
 
-    expect(eslintDisableTaskResult.toJson()).toMatchInlineSnapshot(`
+    expect(result.toJson()).toMatchInlineSnapshot(`
       Object {
         "info": Object {
           "friendlyTaskName": "Number of eslint-disable Usages",
@@ -108,9 +88,8 @@ describe('eslint-disable-task', () => {
       })
     ).run();
 
-    const eslintDisableTaskResult = <EslintDisableTaskResult>result;
-    expect(eslintDisableTaskResult.actions).toHaveLength(1);
-    expect(eslintDisableTaskResult.actions[0]).toMatchInlineSnapshot(`
+    expect(result.actions).toHaveLength(1);
+    expect(result.actions![0]).toMatchInlineSnapshot(`
       Object {
         "defaultThreshold": 2,
         "details": "3 usages of template-lint-disable",

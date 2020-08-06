@@ -1,7 +1,6 @@
-import { CheckupProject, stdout, getTaskContext, stableJson } from '@checkup/test-helpers';
+import { CheckupProject, getTaskContext, stableJson } from '@checkup/test-helpers';
 
 import LinesOfCodeTask from '../../src/tasks/lines-of-code-task';
-import LinesOfCodeTaskResult from '../../src/results/lines-of-code-task-result';
 
 describe('lines-of-code-task', () => {
   let project: CheckupProject;
@@ -28,33 +27,6 @@ describe('lines-of-code-task', () => {
     project.dispose();
   });
 
-  it('returns all the lines of code by type found in the app and outputs to the console', async () => {
-    const result = await new LinesOfCodeTask(
-      'internal',
-      getTaskContext({
-        cliFlags: { cwd: project.baseDir },
-        paths: project.filePaths,
-      })
-    ).run();
-    const linesOfCodeResult = <LinesOfCodeTaskResult>result;
-
-    linesOfCodeResult.toConsole();
-
-    expect(stdout()).toMatchInlineSnapshot(`
-      "Lines Of Code
-
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 12 lines
-      ■ scss (10)
-      ■ hbs (1)
-      ■ js (1)
-
-      "
-    `);
-
-    // random file extensions not supported by SLOC or checkup are not included in results
-    expect(stdout()).not.toContain('whatever');
-  });
-
   it('returns all the lines of code by type found in the app and outputs to json', async () => {
     const result = await new LinesOfCodeTask(
       'internal',
@@ -63,9 +35,8 @@ describe('lines-of-code-task', () => {
         paths: project.filePaths,
       })
     ).run();
-    const linesOfCodeResult = <LinesOfCodeTaskResult>result;
 
-    const json = stableJson(linesOfCodeResult.toJson());
+    const json = stableJson(result.toJson());
 
     expect(json).toMatchInlineSnapshot(`
       "{

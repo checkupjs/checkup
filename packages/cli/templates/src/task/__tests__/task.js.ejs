@@ -22,14 +22,6 @@ describe('<%- name %>-task', () => {
     project.dispose();
   });
 
-  it('can read task and output to console', async () => {
-    const taskResult = await new <%- taskClass %>(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
-  });
-
   it('can read task as JSON', async () => {
     const taskResult = await new <%- taskClass %>(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
 

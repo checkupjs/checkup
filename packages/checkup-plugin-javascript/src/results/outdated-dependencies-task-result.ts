@@ -5,7 +5,6 @@ import {
   ActionsEvaluator,
   Action,
   MultiValueResult,
-  ui,
 } from '@checkup/core';
 
 export default class OutdatedDependenciesTaskResult extends BaseTaskResult implements TaskResult {
@@ -45,27 +44,5 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
     });
 
     this.actions = actionsEvaluator.evaluate(this.config);
-  }
-
-  toConsole() {
-    let { values: dependenciesCount, total: totalDependencies } = this.data[0].dataSummary;
-
-    ui.section(this.meta.friendlyTaskName, () => {
-      ui.sectionedBar(
-        [
-          { title: 'major', count: dependenciesCount.major },
-          { title: 'minor', count: dependenciesCount.minor },
-          { title: 'patch', count: dependenciesCount.patch },
-        ],
-        totalDependencies
-      );
-    });
-  }
-
-  toJson() {
-    return {
-      info: this.meta,
-      result: this.data,
-    };
   }
 }

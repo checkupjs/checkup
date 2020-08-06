@@ -1,50 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to console 1`] = `
-"Ember Octane Migration Status
-
-Octane Violations: 22
-
-Native Classes
-
-■ ember/no-classic-classes (4 violations)
-■ ember/classic-decorator-no-classic-methods (0 violations)
-■ ember/no-actions-hash (2 violations)
-■ ember/no-get (3 violations)
-■ ember/no-mixins (0 violations)
-
-Tagless Components
-
-■ ember/require-tagless-components (2 violations)
-
-Glimmer Components
-
-■ ember/no-classic-components (2 violations)
-
-Tracked Propeties
-
-■ ember/no-computed-properties-in-native-classes (0 violations)
-
-Angle Brackets Syntax
-
-■ no-curly-component-invocation (4 violations)
-
-Named Arguments
-
-■ no-args-paths (0 violations)
-
-Own Properties
-
-■ no-implicit-this (4 violations)
-
-Modifiers
-
-■ no-action (1 violations)
-
-
-"
-`;
-
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to json 1`] = `
 Object {
   "info": Object {
@@ -340,51 +295,6 @@ Object {
     },
   ],
 }
-`;
-
-exports[`ember-octane-migration-status-task detects octane migration status for non-octane app and outputs to console 1`] = `
-"Ember Octane Migration Status
-
-Octane Violations: 22
-
-Native Classes
-
-■ ember/no-classic-classes (4 violations)
-■ ember/classic-decorator-no-classic-methods (0 violations)
-■ ember/no-actions-hash (2 violations)
-■ ember/no-get (3 violations)
-■ ember/no-mixins (0 violations)
-
-Tagless Components
-
-■ ember/require-tagless-components (2 violations)
-
-Glimmer Components
-
-■ ember/no-classic-components (2 violations)
-
-Tracked Propeties
-
-■ ember/no-computed-properties-in-native-classes (0 violations)
-
-Angle Brackets Syntax
-
-■ no-curly-component-invocation (4 violations)
-
-Named Arguments
-
-■ no-args-paths (0 violations)
-
-Own Properties
-
-■ no-implicit-this (4 violations)
-
-Modifiers
-
-■ no-action (1 violations)
-
-
-"
 `;
 
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane app and outputs to json 1`] = `
@@ -684,51 +594,6 @@ Object {
 }
 `;
 
-exports[`ember-octane-migration-status-task detects octane migration status for octane addon and outputs to console 1`] = `
-"Ember Octane Migration Status
-
-Octane Violations: 0
-
-Native Classes
-
-■ ember/no-classic-classes (0 violations)
-■ ember/classic-decorator-no-classic-methods (0 violations)
-■ ember/no-actions-hash (0 violations)
-■ ember/no-get (0 violations)
-■ ember/no-mixins (0 violations)
-
-Tagless Components
-
-■ ember/require-tagless-components (0 violations)
-
-Glimmer Components
-
-■ ember/no-classic-components (0 violations)
-
-Tracked Propeties
-
-■ ember/no-computed-properties-in-native-classes (0 violations)
-
-Angle Brackets Syntax
-
-■ no-curly-component-invocation (0 violations)
-
-Named Arguments
-
-■ no-args-paths (0 violations)
-
-Own Properties
-
-■ no-implicit-this (0 violations)
-
-Modifiers
-
-■ no-action (0 violations)
-
-
-"
-`;
-
 exports[`ember-octane-migration-status-task detects octane migration status for octane addon and outputs to json 1`] = `
 Object {
   "info": Object {
@@ -842,51 +707,6 @@ Object {
     },
   ],
 }
-`;
-
-exports[`ember-octane-migration-status-task detects octane migration status for octane app and outputs to console 1`] = `
-"Ember Octane Migration Status
-
-Octane Violations: 0
-
-Native Classes
-
-■ ember/no-classic-classes (0 violations)
-■ ember/classic-decorator-no-classic-methods (0 violations)
-■ ember/no-actions-hash (0 violations)
-■ ember/no-get (0 violations)
-■ ember/no-mixins (0 violations)
-
-Tagless Components
-
-■ ember/require-tagless-components (0 violations)
-
-Glimmer Components
-
-■ ember/no-classic-components (0 violations)
-
-Tracked Propeties
-
-■ ember/no-computed-properties-in-native-classes (0 violations)
-
-Angle Brackets Syntax
-
-■ no-curly-component-invocation (0 violations)
-
-Named Arguments
-
-■ no-args-paths (0 violations)
-
-Own Properties
-
-■ no-implicit-this (0 violations)
-
-Modifiers
-
-■ no-action (0 violations)
-
-
-"
 `;
 
 exports[`ember-octane-migration-status-task detects octane migration status for octane app and outputs to json 1`] = `

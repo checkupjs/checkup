@@ -1,7 +1,6 @@
-import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 
 import TemplateLintDisableTask from '../src/tasks/ember-template-lint-disable-task';
-import TemplateLintDisableTaskResult from '../src/results/ember-template-lint-disable-task-result';
 
 describe('ember-template-lint-disable-task', () => {
   let project: CheckupProject;
@@ -27,25 +26,6 @@ describe('ember-template-lint-disable-task', () => {
     project.dispose();
   });
 
-  it('finds all instances of template-lint-disable and outputs to the console', async () => {
-    const result = await new TemplateLintDisableTask(
-      'internal',
-      getTaskContext({
-        paths: project.filePaths,
-        cliFlags: { cwd: project.baseDir },
-      })
-    ).run();
-    const templateLintDisableTaskResult = <TemplateLintDisableTaskResult>result;
-
-    templateLintDisableTaskResult.toConsole();
-
-    expect(stdout()).toMatchInlineSnapshot(`
-      "template-lint-disable Usages Found: 3
-
-      "
-    `);
-  });
-
   it('finds all instances of template-lint-disable and outputs to json', async () => {
     const result = await new TemplateLintDisableTask(
       'internal',
@@ -54,9 +34,8 @@ describe('ember-template-lint-disable-task', () => {
         cliFlags: { cwd: project.baseDir },
       })
     ).run();
-    const templateLintDisableTaskResult = <TemplateLintDisableTaskResult>result;
 
-    expect(templateLintDisableTaskResult.toJson()).toMatchInlineSnapshot(`
+    expect(result.toJson()).toMatchInlineSnapshot(`
       Object {
         "info": Object {
           "friendlyTaskName": "Number of template-lint-disable Usages",
@@ -108,10 +87,9 @@ describe('ember-template-lint-disable-task', () => {
         cliFlags: { cwd: project.baseDir },
       })
     ).run();
-    const templateLintDisableTaskResult = <TemplateLintDisableTaskResult>result;
 
-    expect(templateLintDisableTaskResult.actions).toHaveLength(1);
-    expect(templateLintDisableTaskResult.actions).toMatchInlineSnapshot(`
+    expect(result.actions).toHaveLength(1);
+    expect(result.actions).toMatchInlineSnapshot(`
       Array [
         Object {
           "defaultThreshold": 2,

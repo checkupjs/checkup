@@ -1,7 +1,6 @@
-import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 
 import EmberTypesTask from '../src/tasks/ember-types-task';
-import EmberTypesTaskResult from '../src/results/ember-types-task-result';
 import { getPluginName } from '@checkup/core';
 
 const TYPES = {
@@ -49,48 +48,6 @@ describe('types-task', () => {
     project.dispose();
   });
 
-  it('returns all the types found in the app and outputs to the console', async () => {
-    project.files = Object.assign(project.files, {
-      'index.js': 'index js file',
-      addon: TYPES,
-    });
-
-    project.writeSync();
-
-    const result = await new EmberTypesTask(
-      pluginName,
-      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
-    ).run();
-    const typesTaskResult = <EmberTypesTaskResult>result;
-
-    typesTaskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
-  });
-
-  it('returns all the types (including nested) found in the app and outputs to the console', async () => {
-    project.files = Object.assign(project.files, {
-      'index.js': 'index js file',
-      addon: TYPES,
-    });
-
-    project.addInRepoAddon('ember-super-button', 'latest');
-
-    (project.files.lib as any)['ember-super-button'].addon = TYPES;
-
-    project.writeSync();
-
-    const result = await new EmberTypesTask(
-      pluginName,
-      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
-    ).run();
-    const typesTaskResult = <EmberTypesTaskResult>result;
-
-    typesTaskResult.toConsole();
-
-    expect(stdout()).toMatchSnapshot();
-  });
-
   it('returns all the types found in the app and outputs to JSON', async () => {
     project.files = Object.assign(project.files, {
       'index.js': 'index js file',
@@ -103,9 +60,8 @@ describe('types-task', () => {
       pluginName,
       getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
-    const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(typesTaskResult.toJson()).toMatchSnapshot();
+    expect(result.toJson()).toMatchSnapshot();
   });
 
   it('returns all the types (including nested) found in the app and outputs to JSON', async () => {
@@ -124,8 +80,7 @@ describe('types-task', () => {
       pluginName,
       getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
-    const typesTaskResult = <EmberTypesTaskResult>result;
 
-    expect(typesTaskResult.toJson()).toMatchSnapshot();
+    expect(result.toJson()).toMatchSnapshot();
   });
 });

@@ -3,6 +3,12 @@ import { CheckupConfig } from './config';
 
 export type IndexableObject = { [key: string]: any };
 
+export type DataSummary = {
+  values: Record<string, number>;
+  dataKey: string;
+  total: number;
+};
+
 interface TaskResult {
   info: TaskMetaData;
   results: Result[];
@@ -21,20 +27,7 @@ export interface SummaryResult extends BaseResult {
 
 export interface MultiValueResult extends BaseResult {
   type: 'multi-value';
-  dataSummary: {
-    values: Record<string, number>;
-    dataKey: string;
-    total: number;
-  };
-}
-
-export interface DerivedValueResult extends BaseResult {
-  type: 'derived-value';
-  dataSummary: {
-    values: Record<string, number>;
-    dataKey: string;
-    total: number;
-  };
+  dataSummary: DataSummary;
 }
 
 export interface LookupValueResult extends BaseResult {
@@ -47,7 +40,7 @@ export interface LookupValueResult extends BaseResult {
   };
 }
 
-type Result = SummaryResult | MultiValueResult | DerivedValueResult | LookupValueResult;
+type Result = SummaryResult | MultiValueResult | LookupValueResult;
 
 export interface CheckupResult {
   info: {

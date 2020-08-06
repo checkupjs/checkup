@@ -47,7 +47,6 @@ export interface TaskResult {
   actions?: Action[];
 
   process(data: Record<string, any>): void;
-  toConsole: () => void;
   toJson: () => JsonMetaTaskResult | JsonTaskResult;
 }
 

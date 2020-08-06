@@ -1,17 +1,16 @@
-import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import {
   EslintSummaryTask,
   readEslintConfig,
   ACCEPTED_ESLINT_CONFIG_FILES,
 } from '../src/tasks/eslint-summary-task';
-import EslintSummaryTaskResult from '../src/results/eslint-summary-task-result';
 import { PackageJson } from 'type-fest';
-import { getPluginName } from '@checkup/core';
+import { getPluginName, TaskResult } from '@checkup/core';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
   let pluginName = getPluginName(__dirname);
-  let taskResult: EslintSummaryTaskResult;
+  let result: TaskResult;
 
   beforeAll(async () => {
     project = new CheckupProject('checkup-app', '0.0.0');
@@ -31,7 +30,7 @@ describe('eslint-summary-task', () => {
     project.gitInit();
     project.install();
 
-    let result = await new EslintSummaryTask(
+    result = await new EslintSummaryTask(
       pluginName,
       getTaskContext({
         cliFlags: { cwd: project.baseDir },
@@ -52,39 +51,19 @@ describe('eslint-summary-task', () => {
         },
       })
     ).run();
-    taskResult = <EslintSummaryTaskResult>result;
   });
 
   afterAll(() => {
     project.dispose();
   });
 
-  it('it summarizes eslint and outputs to console', async () => {
-    taskResult.toConsole();
-
-    expect(stdout()).toMatchInlineSnapshot(`
-      "Eslint Summary
-
-
-      Errors 1
-
-      ■ semi (1)
-
-      Errors 1
-
-      ■ no-var (1)
-
-      "
-    `);
-  });
-
   it('it summarizes eslint and outputs to JSON', async () => {
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result.toJson()).toMatchSnapshot();
   });
 
   it('returns correct action items if there are too many warnings or errors', async () => {
-    expect(taskResult.actions).toHaveLength(2);
-    expect(taskResult.actions).toMatchInlineSnapshot(`
+    expect(result.actions).toHaveLength(2);
+    expect(result.actions).toMatchInlineSnapshot(`
       Array [
         Object {
           "defaultThreshold": 20,

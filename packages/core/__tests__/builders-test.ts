@@ -183,7 +183,7 @@ describe('builders', () => {
             },
           },
           "key": "foo",
-          "type": "derived-value",
+          "type": "multi-value",
         }
       `);
     });

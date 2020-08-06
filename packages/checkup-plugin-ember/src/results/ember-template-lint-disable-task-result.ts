@@ -1,11 +1,4 @@
-import {
-  BaseTaskResult,
-  TaskResult,
-  ui,
-  ActionsEvaluator,
-  Action,
-  SummaryResult,
-} from '@checkup/core';
+import { BaseTaskResult, TaskResult, ActionsEvaluator, Action, SummaryResult } from '@checkup/core';
 
 export default class EmberTemplateLintDisableTaskResult extends BaseTaskResult
   implements TaskResult {
@@ -30,17 +23,5 @@ export default class EmberTemplateLintDisableTaskResult extends BaseTaskResult
     });
 
     this.actions = actionsEvaluator.evaluate(this.config);
-  }
-
-  toConsole() {
-    ui.log(`template-lint-disable Usages Found: ${this.data[0].count}`);
-    ui.blankLine();
-  }
-
-  toJson() {
-    return {
-      info: this.meta,
-      result: this.data,
-    };
   }
 }

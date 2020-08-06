@@ -1,28 +1,25 @@
 import {
   BaseTaskResult,
   TaskResult,
-  ui,
   ActionsEvaluator,
   Action,
-  DerivedValueResult,
+  MultiValueResult,
 } from '@checkup/core';
 
 export default class EslintSummaryTaskResult extends BaseTaskResult implements TaskResult {
   actions: Action[] = [];
-  data: DerivedValueResult[] = [];
-  private errors!: DerivedValueResult;
-  private warnings!: DerivedValueResult;
+  data: MultiValueResult[] = [];
 
-  process(data: DerivedValueResult[]) {
+  process(data: MultiValueResult[]) {
     this.data = data;
 
     let actionsEvaluator = new ActionsEvaluator();
 
-    this.errors = this.data.find((result) => result.key === 'eslint-errors')!;
-    this.warnings = this.data.find((result) => result.key === 'eslint-warnings')!;
+    let errors = this.data.find((result) => result.key === 'eslint-errors')!;
+    let warnings = this.data.find((result) => result.key === 'eslint-warnings')!;
 
-    let errorCount = this.errors.dataSummary.total;
-    let warningCount = this.warnings.dataSummary.total;
+    let errorCount = errors.dataSummary.total;
+    let warningCount = warnings.dataSummary.total;
 
     actionsEvaluator.add({
       name: 'reduce-eslint-errors',
@@ -43,36 +40,5 @@ export default class EslintSummaryTaskResult extends BaseTaskResult implements T
     });
 
     this.actions = actionsEvaluator.evaluate(this.config);
-  }
-
-  toConsole() {
-    let errorsCount = this.errors.dataSummary.total;
-    let warningsCount = this.warnings.dataSummary.total;
-
-    ui.section(this.meta.friendlyTaskName, () => {
-      if (errorsCount) {
-        ui.blankLine();
-        ui.subHeader(`Errors (${errorsCount})`);
-        ui.valuesList(
-          Object.entries(this.errors.dataSummary.values).map(([key, count]) => {
-            return { title: key, count };
-          })
-        );
-      }
-
-      if (warningsCount) {
-        ui.blankLine();
-        ui.subHeader(`Errors (${warningsCount})`);
-        ui.valuesList(
-          Object.entries(this.warnings.dataSummary.values).map(([key, count]) => {
-            return { title: key, count };
-          })
-        );
-      }
-    });
-  }
-
-  toJson() {
-    return { info: this.meta, result: this.data };
   }
 }
