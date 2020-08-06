@@ -57,7 +57,7 @@ ${white.bold('Details')}: data.tasks should be object.`
       project.writeSync();
 
       await expect(
-        runCommand(['run', '--task', 'foo', '--cwd', project.baseDir])
+        runCommand(['run', '--tasks', 'foo', '--cwd', project.baseDir])
       ).rejects.toThrowErrorMatchingInlineSnapshot(`"Cannot find the foo task."`);
     });
   });
