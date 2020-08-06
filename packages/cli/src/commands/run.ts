@@ -138,7 +138,7 @@ export default class RunCommand extends BaseCommand {
     [this.metaTaskResults, this.metaTaskErrors] = await this.defaultTasks.runTasks();
 
     if (this.runFlags.tasks !== undefined) {
-      let { tasksFound, tasksNotFound } = this.pluginTasks.findTasks(this.runFlags.tasks);
+      let { tasksFound, tasksNotFound } = this.pluginTasks.findTasks(...this.runFlags.tasks);
 
       if (tasksFound.length > 0) {
         [this.pluginTaskResults, this.pluginTaskErrors] = await this.pluginTasks.runTasks(

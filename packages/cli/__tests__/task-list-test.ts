@@ -206,16 +206,16 @@ describe('TaskList', () => {
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
     taskList.registerTask(new InsightsTaskLow(getTaskContext()));
 
-    expect(taskList.findTasks(['insights-task-high', 'insights-task-low']).tasksFound).toHaveLength(
-      2
-    );
+    expect(
+      taskList.findTasks(...['insights-task-high', 'insights-task-low']).tasksFound
+    ).toHaveLength(2);
   });
 
   it('findTasks returns task instances that exist, as well as names of tasks not found', () => {
     let taskList = new TaskList();
 
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
-    let tasks = taskList.findTasks(['insights-task-high', 'random']);
+    let tasks = taskList.findTasks(...['insights-task-high', 'random']);
     expect(tasks.tasksFound).toHaveLength(1);
     expect(tasks.tasksNotFound).toEqual(['random']);
   });
