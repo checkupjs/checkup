@@ -45,11 +45,4 @@ export default class OutdatedDependenciesTaskResult extends BaseTaskResult imple
 
     this.actions = actionsEvaluator.evaluate(this.config);
   }
-
-  toJson() {
-    return {
-      info: this.meta,
-      result: this.data,
-    };
-  }
 }

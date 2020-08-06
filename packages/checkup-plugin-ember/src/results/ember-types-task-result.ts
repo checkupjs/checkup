@@ -6,8 +6,4 @@ export default class EmberTypesTaskResult extends BaseTaskResult implements Task
   process(data: SummaryResult[]) {
     this.data = data;
   }
-
-  toJson() {
-    return { info: this.meta, result: this.data };
-  }
 }

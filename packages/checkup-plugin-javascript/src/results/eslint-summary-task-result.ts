@@ -41,8 +41,4 @@ export default class EslintSummaryTaskResult extends BaseTaskResult implements T
 
     this.actions = actionsEvaluator.evaluate(this.config);
   }
-
-  toJson() {
-    return { info: this.meta, result: this.data };
-  }
 }

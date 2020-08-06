@@ -7,11 +7,4 @@ export default class EmberInRepoAddonEnginesTaskResult extends BaseTaskResult
   process(data: SummaryResult[]) {
     this.data = data;
   }
-
-  toJson() {
-    return {
-      info: this.meta,
-      result: this.data,
-    };
-  }
 }

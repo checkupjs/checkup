@@ -10,11 +10,4 @@ export default class EmberDependenciesTaskResult extends BaseTaskResult implemen
   get hasDependencies() {
     return this.data.some((dependency) => dependency.count > 0);
   }
-
-  toJson() {
-    return {
-      info: this.meta,
-      result: this.data,
-    };
-  }
 }

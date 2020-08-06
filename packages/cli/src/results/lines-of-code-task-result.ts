@@ -6,11 +6,4 @@ export default class LinesOfCodeTaskResult extends BaseTaskResult implements Tas
   process(data: LookupValueResult[]) {
     this.data = data;
   }
-
-  toJson() {
-    return {
-      info: this.meta,
-      result: this.data,
-    };
-  }
 }

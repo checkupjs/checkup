@@ -7,11 +7,4 @@ export default class EmberOctaneMigrationStatusTaskResult extends BaseTaskResult
   process(data: MultiValueResult[]) {
     this.data = data;
   }
-
-  toJson() {
-    return {
-      info: this.meta,
-      result: this.data,
-    };
-  }
 }

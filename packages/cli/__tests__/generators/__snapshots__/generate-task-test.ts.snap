@@ -26,12 +26,6 @@ exports[`task generator generates correct files with JavaScript 2`] = `
 "import { BaseTaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult {
-  toJson() {
-    return {
-      info: this.meta,
-      result: {},
-    };
-  }
 }
 "
 `;
@@ -108,12 +102,6 @@ exports[`task generator generates correct files with TypeScript for defaults 2`]
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toJson() {
-    return {
-      info: this.meta,
-      result: {},
-    };
-  }
 }
 "
 `;
@@ -191,12 +179,6 @@ exports[`task generator generates correct files with TypeScript for defaults in 
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toJson() {
-    return {
-      info: this.meta,
-      result: {},
-    };
-  }
 }
 "
 `;
@@ -274,12 +256,6 @@ exports[`task generator generates correct files with category 2`] = `
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toJson() {
-    return {
-      info: this.meta,
-      result: {},
-    };
-  }
 }
 "
 `;
@@ -358,12 +334,6 @@ exports[`task generator generates correct files with group 2`] = `
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toJson() {
-    return {
-      info: this.meta,
-      result: {},
-    };
-  }
 }
 "
 `;
@@ -441,12 +411,6 @@ exports[`task generator generates correct files with type 2`] = `
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toJson() {
-    return {
-      info: this.meta,
-      result: {},
-    };
-  }
 }
 "
 `;
@@ -524,12 +488,6 @@ exports[`task generator generates multiple correct files with TypeScript for def
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-  toJson() {
-    return {
-      info: this.meta,
-      result: {},
-    };
-  }
 }
 "
 `;
@@ -593,12 +551,6 @@ exports[`task generator generates multiple correct files with TypeScript for def
 "import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
 
 export default class MyBarTaskResult extends BaseTaskResult implements TaskResult {
-  toJson() {
-    return {
-      info: this.meta,
-      result: {},
-    };
-  }
 }
 "
 `;

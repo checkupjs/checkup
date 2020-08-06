@@ -35,8 +35,4 @@ export default class EmberTestTypesTaskResult extends BaseTaskResult implements 
 
     this.actions = actionsEvaluator.evaluate(this.config);
   }
-
-  toJson() {
-    return { info: this.meta, result: this.data };
-  }
 }
