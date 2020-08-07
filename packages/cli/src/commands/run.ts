@@ -3,20 +3,21 @@ import {
   CheckupError,
   OutputFormat,
   RunFlags,
-  TaskContext,
-  TaskError,
-  getConfigPath,
-  getRegisteredParsers,
-  loadPlugins,
-  readConfig,
-  registerParser,
-  registerActions,
-  ui,
-  getFilePaths,
-  Action,
-  getRegisteredActions,
   Task,
   TaskResult,
+  TaskContext,
+  TaskError,
+  Action,
+  loadPlugins,
+  registerParser,
+  registerActions,
+  registerTaskReporter,
+  getFilePaths,
+  getConfigPath,
+  readConfig,
+  getRegisteredParsers,
+  getRegisteredActions,
+  ui,
 } from '@checkup/core';
 
 import { BaseCommand } from '../base-command';
@@ -203,6 +204,10 @@ export default class RunCommand extends BaseCommand {
 
     await this.config.runHook('register-actions', {
       registerActions,
+    });
+
+    await this.config.runHook('register-task-reporter', {
+      registerTaskReporter,
     });
 
     // if excludePaths are provided both via the command line and config, the command line is prioritized

@@ -5,7 +5,7 @@ exports[`task generator generates correct files with JavaScript 1`] = `
 
 export default class MyFooTask extends BaseTask {
   taskName = 'my-foo';
-  friendlyTaskName = 'My Foo';
+  taskDisplayName = 'My Foo';
   category = '';
 
 
@@ -66,7 +66,7 @@ exports[`task generator generates correct files with TypeScript for defaults 1`]
 
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
-  friendlyTaskName = 'My Foo';
+  taskDisplayName = 'My Foo';
   category = '';
 
   async run(): Promise<TaskResult> {
@@ -126,7 +126,7 @@ exports[`task generator generates correct files with TypeScript for defaults in 
 
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
-  friendlyTaskName = 'My Foo';
+  taskDisplayName = 'My Foo';
   category = '';
 
   async run(): Promise<TaskResult> {
@@ -186,7 +186,7 @@ exports[`task generator generates correct files with category 1`] = `
 
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
-  friendlyTaskName = 'My Foo';
+  taskDisplayName = 'My Foo';
   category = 'foo';
 
   async run(): Promise<TaskResult> {
@@ -246,7 +246,7 @@ exports[`task generator generates correct files with group 1`] = `
 
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
-  friendlyTaskName = 'My Foo';
+  taskDisplayName = 'My Foo';
   category = 'foo';
   group = 'bar';
 
@@ -307,7 +307,7 @@ exports[`task generator generates correct files with type 1`] = `
 
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
-  friendlyTaskName = 'My Foo';
+  taskDisplayName = 'My Foo';
   category = '';
 
   async run(): Promise<TaskResult> {
@@ -367,7 +367,7 @@ exports[`task generator generates multiple correct files with TypeScript for def
 
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
-  friendlyTaskName = 'My Foo';
+  taskDisplayName = 'My Foo';
   category = '';
 
   async run(): Promise<TaskResult> {
@@ -413,7 +413,7 @@ exports[`task generator generates multiple correct files with TypeScript for def
 
 export default class MyBarTask extends BaseTask implements Task {
   taskName = 'my-bar';
-  friendlyTaskName = 'My Bar';
+  taskDisplayName = 'My Bar';
   category = '';
 
   async run(): Promise<TaskResult> {

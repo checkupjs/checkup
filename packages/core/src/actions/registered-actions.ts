@@ -1,16 +1,11 @@
-import { TaskName, Action, ActionsEvaluationResult } from '../types/tasks';
-import { TaskResult } from '../types/checkup-result';
-import { TaskConfig } from '../types/config';
+import { TaskName, TaskActionsEvaluator } from '../types/tasks';
 
-const registeredActions = new Map<
-  TaskName,
-  (taskResult: TaskResult, taskConfig: TaskConfig) => Action[]
->();
+const registeredActions = new Map<TaskName, TaskActionsEvaluator>();
 
 export function getRegisteredActions() {
   return registeredActions;
 }
 
-export function registerActions(taskName: TaskName, evaluate: ActionsEvaluationResult) {
+export function registerActions(taskName: TaskName, evaluate: TaskActionsEvaluator) {
   registeredActions.set(taskName, evaluate);
 }
