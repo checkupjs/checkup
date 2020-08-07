@@ -17,6 +17,7 @@
     "lodash": "^4.17.19",
     "micromatch": "^4.0.2",
     "pkg-up": "^3.1.0",
+    "recast": "^0.19.1",
     "resolve": "^1.17.0",
     "strip-ansi": "^6.0.0",
     "walk-sync": "^2.2.0",
