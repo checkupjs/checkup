@@ -3,10 +3,9 @@
 exports[`outdated-dependencies-task detects outdated dependencies as JSON 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Outdated Dependencies",
-    "taskClassification": Object {
-      "category": "dependencies",
-    },
+    "category": "dependencies",
+    "group": undefined,
+    "taskDisplayName": "Outdated Dependencies",
     "taskName": "outdated-dependencies",
   },
   "result": Array [

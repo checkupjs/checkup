@@ -39,11 +39,9 @@ describe('ember-template-lint-disable-task', () => {
     expect(result).toMatchInlineSnapshot(`
       Object {
         "info": Object {
-          "friendlyTaskName": "Number of template-lint-disable Usages",
-          "taskClassification": Object {
-            "category": "linting",
-            "group": "ember",
-          },
+          "category": "linting",
+          "group": "ember",
+          "taskDisplayName": "Number of template-lint-disable Usages",
           "taskName": "ember-template-lint-disables",
         },
         "result": Array [

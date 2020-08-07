@@ -1,4 +1,4 @@
-import { TaskClassification, TaskResult } from '@checkup/core';
+import { TaskResult } from '@checkup/core';
 
 const DEFAULT_CATEGORIES: Record<string, number> = {
   metrics: 6,
@@ -14,14 +14,10 @@ function getCategorySort(category: string): number {
 }
 
 export function taskResultComparator<T extends TaskResult>(first: T, second: T) {
-  let {
-    category: firstC,
-    group: firstGroup = '',
-  }: TaskClassification = first.info.taskClassification;
-  let {
-    category: secondC,
-    group: secondGroup = '',
-  }: TaskClassification = second.info.taskClassification;
+  let firstC = first.info.category;
+  let firstGroup = first.info.group || '';
+  let secondC = second.info.category;
+  let secondGroup = second.info.group || '';
 
   let firstCategory = getCategorySort(firstC);
   let secondCategory = getCategorySort(secondC);

@@ -1,18 +1,14 @@
-import { Task, TaskMetaData, BaseTask, TaskResult } from '@checkup/core';
+import { Task, BaseTask, TaskResult } from '@checkup/core';
 import { buildSummaryResult } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { readJsonSync } from 'fs-extra';
 
 export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'ember-in-repo-addons-engines',
-    friendlyTaskName: 'Ember In-Repo Addons / Engines',
-    taskClassification: {
-      category: 'metrics',
-      group: 'ember',
-    },
-  };
+  taskName = 'ember-in-repo-addons-engines';
+  taskDisplayName = 'Ember In-Repo Addons / Engines';
+  category = 'metrics';
+  group = 'ember';
 
   async run(): Promise<TaskResult> {
     let inRepoAddons: string[] = [];

@@ -23,7 +23,7 @@ function getConfigHash(checkupConfig: CheckupConfig) {
 export default class ProjectMetaTask implements MetaTask {
   meta: TaskIdentifier = {
     taskName: 'project',
-    friendlyTaskName: 'Project',
+    taskDisplayName: 'Project',
   };
   context!: TaskContext;
   _pluginName: string;

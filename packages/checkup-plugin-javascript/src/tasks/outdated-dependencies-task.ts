@@ -1,6 +1,6 @@
 import * as npmCheck from 'npm-check';
 
-import { BaseTask, Task, TaskMetaData, buildMultiValueResult, TaskResult } from '@checkup/core';
+import { BaseTask, Task, buildMultiValueResult, TaskResult } from '@checkup/core';
 
 export type Dependency = {
   moduleName: string;
@@ -58,13 +58,9 @@ async function getDependencies(path: string): Promise<OutdatedDependency[]> {
 }
 
 export default class OutdatedDependenciesTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'outdated-dependencies',
-    friendlyTaskName: 'Outdated Dependencies',
-    taskClassification: {
-      category: 'dependencies',
-    },
-  };
+  taskName = 'outdated-dependencies';
+  taskDisplayName = 'Outdated Dependencies';
+  category = 'dependencies';
 
   async run(): Promise<TaskResult> {
     let outdatedDependencies = await getDependencies(this.context.cliFlags.cwd);

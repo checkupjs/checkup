@@ -3,11 +3,9 @@
 exports[`types-task returns all the types (including nested) found in the app and outputs to JSON 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Ember Types",
-    "taskClassification": Object {
-      "category": "metrics",
-      "group": "ember",
-    },
+    "category": "metrics",
+    "group": "ember",
+    "taskDisplayName": "Ember Types",
     "taskName": "ember-types",
   },
   "result": Array [
@@ -108,11 +106,9 @@ Object {
 exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Ember Types",
-    "taskClassification": Object {
-      "category": "metrics",
-      "group": "ember",
-    },
+    "category": "metrics",
+    "group": "ember",
+    "taskDisplayName": "Ember Types",
     "taskName": "ember-types",
   },
   "result": Array [

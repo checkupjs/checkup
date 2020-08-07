@@ -42,13 +42,13 @@ export default class TaskList {
    * @param taskClassification
    */
   registerTask(task: Task) {
-    if (task.meta.taskClassification.category === '') {
+    if (task.category === '') {
       throw new Error(
-        `Task category can not be empty. Please add a category to ${task.meta.taskName}-task.`
+        `Task category can not be empty. Please add a category to ${task.taskName}-task.`
       );
     }
-    let categoryMap = this.getByCategory(task.meta.taskClassification.category);
-    categoryMap!.set(task.meta.taskName, task);
+    let categoryMap = this.getByCategory(task.category);
+    categoryMap!.set(task.taskName, task);
   }
 
   /**
@@ -68,7 +68,7 @@ export default class TaskList {
    * @param taskName The name of the task to find
    */
   findTask(taskName: TaskName): Task | undefined {
-    return this.getTasks().find((task) => task.meta.taskName === taskName);
+    return this.getTasks().find((task) => task.taskName === taskName);
   }
 
   /**
@@ -86,7 +86,7 @@ export default class TaskList {
       let taskFound = false;
 
       for (let availableTask of availableTasks) {
-        if (availableTask.meta.taskName === taskName) {
+        if (availableTask.taskName === taskName) {
           taskFound = true;
           tasksFound.push(availableTask);
           break;
@@ -122,7 +122,7 @@ export default class TaskList {
     try {
       result = await task.run();
     } catch (error) {
-      this.addError(task.meta.taskName, error.message);
+      this.addError(task.taskName, error.message);
     }
 
     this.debug('%s run done', task.fullyQualifiedTaskName);
@@ -145,7 +145,7 @@ export default class TaskList {
       try {
         result = await task.run();
       } catch (error) {
-        this.addError(task.meta.taskName, error.message);
+        this.addError(task.taskName, error.message);
       }
 
       this.debug('%s run done', task.fullyQualifiedTaskName);

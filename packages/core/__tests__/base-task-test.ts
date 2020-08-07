@@ -4,13 +4,9 @@ import { getTaskContext } from '@checkup/test-helpers';
 import BaseTask from '../src/base-task';
 
 class FakeTask extends BaseTask {
-  meta = {
-    taskName: 'my-fake',
-    friendlyTaskName: 'Fake',
-    taskClassification: {
-      category: 'foo',
-    },
-  };
+  taskName = 'my-fake';
+  taskDisplayName = 'Fake';
+  category = 'foo';
 }
 
 describe('BaseTask', () => {

@@ -22,15 +22,15 @@ interface TaskList {
 }
 
 export type TaskName = string;
-export type TaskIdentifier = { taskName: string; friendlyTaskName: string };
-export type TaskClassification = {
-  group?: string;
-  category: string;
-};
+export type TaskIdentifier = { taskName: string; taskDisplayName: string };
 
 export interface Task {
-  meta: TaskMetaData;
+  taskName: TaskName;
+  taskDisplayName: TaskName;
   config: TaskConfig;
+  category: string;
+  group?: string;
+
   readonly fullyQualifiedTaskName: string;
   readonly enabled: boolean;
 
@@ -64,18 +64,7 @@ export interface TaskContext {
   readonly paths: FilePathArray;
 }
 
-export interface TaskMetaData {
-  taskName: TaskName;
-  friendlyTaskName: TaskName;
-  taskClassification: TaskClassification;
-}
-
 export type JsonMetaTaskResult = JsonObject;
-
-export type JsonTaskResult = {
-  info: TaskMetaData;
-  result: {};
-};
 
 export enum OutputFormat {
   stdout = 'stdout',

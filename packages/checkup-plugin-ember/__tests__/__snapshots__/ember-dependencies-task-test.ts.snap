@@ -3,11 +3,9 @@
 exports[`dependencies-task detects Ember dependencies as JSON 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Ember Dependencies",
-    "taskClassification": Object {
-      "category": "dependencies",
-      "group": "ember",
-    },
+    "category": "dependencies",
+    "group": "ember",
+    "taskDisplayName": "Ember Dependencies",
     "taskName": "ember-dependencies",
   },
   "result": Array [

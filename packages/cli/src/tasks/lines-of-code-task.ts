@@ -1,14 +1,6 @@
 import { extname } from 'path';
-import {
-  BaseTask,
-  Task,
-  TaskMetaData,
-  buildLookupValueResult,
-  TaskContext,
-  TaskResult,
-} from '@checkup/core';
-
 import { sortBy } from 'lodash';
+import { BaseTask, Task, buildLookupValueResult, TaskContext, TaskResult } from '@checkup/core';
 
 const fs = require('fs');
 const sloc = require('sloc');
@@ -20,13 +12,9 @@ const sloc = require('sloc');
 const FILE_EXTENSIONS_SUPPORTED = new Set(sloc.extensions);
 
 export default class LinesOfCodeTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'lines-of-code',
-    friendlyTaskName: 'Lines of Code',
-    taskClassification: {
-      category: 'metrics', // TODO: change this to a meta task
-    },
-  };
+  taskName = 'lines-of-code';
+  taskDisplayName = 'Lines of Code';
+  category = 'metrics'; // TODO: change this to a meta task
 
   async run(): Promise<TaskResult> {
     let linesOfCode = await getLinesOfCode(this.context);

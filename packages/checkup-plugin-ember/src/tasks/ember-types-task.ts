@@ -14,14 +14,10 @@ const SEARCH_PATTERNS = [
 ];
 
 export default class EmberTypesTask extends BaseTask implements Task {
-  meta = {
-    taskName: 'ember-types',
-    friendlyTaskName: 'Ember Types',
-    taskClassification: {
-      category: 'metrics',
-      group: 'ember',
-    },
-  };
+  taskName = 'ember-types';
+  taskDisplayName = 'Ember Types';
+  category = 'metrics';
+  group = 'ember';
 
   async run(): Promise<TaskResult> {
     let types = SEARCH_PATTERNS.map((pattern) => {

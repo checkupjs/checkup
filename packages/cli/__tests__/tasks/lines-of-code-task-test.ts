@@ -39,10 +39,9 @@ describe('lines-of-code-task', () => {
     expect(result).toMatchInlineSnapshot(`
       Object {
         "info": Object {
-          "friendlyTaskName": "Lines of Code",
-          "taskClassification": Object {
-            "category": "metrics",
-          },
+          "category": "metrics",
+          "group": undefined,
+          "taskDisplayName": "Lines of Code",
           "taskName": "lines-of-code",
         },
         "result": Array [

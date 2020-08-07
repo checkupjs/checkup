@@ -40,10 +40,9 @@ describe('eslint-disable-task', () => {
     expect(result).toMatchInlineSnapshot(`
       Object {
         "info": Object {
-          "friendlyTaskName": "Number of eslint-disable Usages",
-          "taskClassification": Object {
-            "category": "linting",
-          },
+          "category": "linting",
+          "group": undefined,
+          "taskDisplayName": "Number of eslint-disable Usages",
           "taskName": "eslint-disables",
         },
         "result": Array [

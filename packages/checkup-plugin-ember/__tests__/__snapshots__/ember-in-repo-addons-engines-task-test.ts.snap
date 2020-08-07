@@ -3,11 +3,9 @@
 exports[`ember-in-repo-addons-engines-task can read task as JSON 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Ember In-Repo Addons / Engines",
-    "taskClassification": Object {
-      "category": "metrics",
-      "group": "ember",
-    },
+    "category": "metrics",
+    "group": "ember",
+    "taskDisplayName": "Ember In-Repo Addons / Engines",
     "taskName": "ember-in-repo-addons-engines",
   },
   "result": Array [

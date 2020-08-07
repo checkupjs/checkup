@@ -1,8 +1,18 @@
-import { TaskMetaData } from '@checkup/core';
+import { TaskResult } from '@checkup/core';
 
-export function getMockTaskResult(meta: TaskMetaData, result: any = {}) {
+export function getMockTaskResult(
+  taskName: string,
+  category: string,
+  group: string = '',
+  result: any = {}
+): TaskResult {
   return {
-    info: meta,
+    info: {
+      taskName,
+      taskDisplayName: taskName,
+      category,
+      group,
+    },
     result,
   };
 }

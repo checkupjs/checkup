@@ -4,13 +4,10 @@ exports[`task generator generates correct files with JavaScript 1`] = `
 "import { BaseTask } from '@checkup/core';
 
 export default class MyFooTask extends BaseTask {
-  meta = {
-    taskName: 'my-foo',
-    friendlyTaskName: 'My Foo',
-    taskClassification: {
-      category: '',
-    },
-  };
+  taskName = 'my-foo';
+  friendlyTaskName = 'My Foo';
+  category = '';
+
 
   async run() {
     return this.toJson([]);
@@ -65,16 +62,12 @@ export default hook;
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults 1`] = `
-"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskResult } from '@checkup/core';
 
 export default class MyFooTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'my-foo',
-    friendlyTaskName: 'My Foo',
-    taskClassification: {
-      category: '',
-    },
-  };
+  taskName = 'my-foo';
+  friendlyTaskName = 'My Foo';
+  category = '';
 
   async run(): Promise<TaskResult> {
     return this.toJson([]);
@@ -129,16 +122,12 @@ export default hook;
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults in custom path 1`] = `
-"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskResult } from '@checkup/core';
 
 export default class MyFooTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'my-foo',
-    friendlyTaskName: 'My Foo',
-    taskClassification: {
-      category: '',
-    },
-  };
+  taskName = 'my-foo';
+  friendlyTaskName = 'My Foo';
+  category = '';
 
   async run(): Promise<TaskResult> {
     return this.toJson([]);
@@ -193,16 +182,12 @@ export default hook;
 `;
 
 exports[`task generator generates correct files with category 1`] = `
-"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskResult } from '@checkup/core';
 
 export default class MyFooTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'my-foo',
-    friendlyTaskName: 'My Foo',
-    taskClassification: {
-      category: 'foo',
-    },
-  };
+  taskName = 'my-foo';
+  friendlyTaskName = 'My Foo';
+  category = 'foo';
 
   async run(): Promise<TaskResult> {
     return this.toJson([]);
@@ -257,17 +242,13 @@ export default hook;
 `;
 
 exports[`task generator generates correct files with group 1`] = `
-"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskResult } from '@checkup/core';
 
 export default class MyFooTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'my-foo',
-    friendlyTaskName: 'My Foo',
-    taskClassification: {
-      category: 'foo',
-      group: 'bar',
-    },
-  };
+  taskName = 'my-foo';
+  friendlyTaskName = 'My Foo';
+  category = 'foo';
+  group = 'bar';
 
   async run(): Promise<TaskResult> {
     return this.toJson([]);
@@ -322,16 +303,12 @@ export default hook;
 `;
 
 exports[`task generator generates correct files with type 1`] = `
-"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskResult } from '@checkup/core';
 
 export default class MyFooTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'my-foo',
-    friendlyTaskName: 'My Foo',
-    taskClassification: {
-      category: '',
-    },
-  };
+  taskName = 'my-foo';
+  friendlyTaskName = 'My Foo';
+  category = '';
 
   async run(): Promise<TaskResult> {
     return this.toJson([]);
@@ -386,16 +363,12 @@ export default hook;
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 1`] = `
-"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskResult } from '@checkup/core';
 
 export default class MyFooTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'my-foo',
-    friendlyTaskName: 'My Foo',
-    taskClassification: {
-      category: '',
-    },
-  };
+  taskName = 'my-foo';
+  friendlyTaskName = 'My Foo';
+  category = '';
 
   async run(): Promise<TaskResult> {
     return this.toJson([]);
@@ -436,16 +409,12 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 3`] = `
-"import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
+"import { BaseTask, Task, TaskResult } from '@checkup/core';
 
 export default class MyBarTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'my-bar',
-    friendlyTaskName: 'My Bar',
-    taskClassification: {
-      category: '',
-    },
-  };
+  taskName = 'my-bar';
+  friendlyTaskName = 'My Bar';
+  category = '';
 
   async run(): Promise<TaskResult> {
     return this.toJson([]);

@@ -14,7 +14,7 @@ import ProjectMetaTaskResult from '../results/project-meta-task-result';
 let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
   'lines-of-code': function (taskResult: TaskResult) {
     let { dataSummary } = taskResult.result[0];
-    ui.section(taskResult.info.friendlyTaskName, () => {
+    ui.section(taskResult.info.taskDisplayName, () => {
       ui.sectionedBar(
         Object.entries<number>(dataSummary.values).map(([key, count]) => {
           return { title: key, count };
@@ -29,7 +29,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
       return;
     }
 
-    ui.section(taskResult.info.friendlyTaskName, () => {
+    ui.section(taskResult.info.taskDisplayName, () => {
       ui.table(
         taskResult.result.map((dependencyGroup: SummaryResult) => {
           return {
@@ -49,7 +49,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
       return;
     }
 
-    ui.section(taskResult.info.friendlyTaskName, () => {
+    ui.section(taskResult.info.taskDisplayName, () => {
       taskResult.result.forEach((summaryItem: SummaryResult) => {
         ui.log(`${summaryItem.key}: ${summaryItem.count}`);
       });
@@ -60,7 +60,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     ui.blankLine();
   },
   'ember-test-types': function (taskResult: TaskResult) {
-    ui.section(taskResult.info.friendlyTaskName, () => {
+    ui.section(taskResult.info.taskDisplayName, () => {
       taskResult.result.forEach((testTypeInfo: MultiValueResult) => {
         ui.subHeader(testTypeInfo.key);
         ui.table(
@@ -92,7 +92,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     });
   },
   'ember-types': function (taskResult: TaskResult) {
-    ui.section(taskResult.info.friendlyTaskName, () => {
+    ui.section(taskResult.info.taskDisplayName, () => {
       ui.table(
         taskResult.result.map((type: SummaryResult) => {
           return {
@@ -108,7 +108,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     });
   },
   'ember-octane-migration-status': function (taskResult: TaskResult) {
-    ui.section(taskResult.info.friendlyTaskName, () => {
+    ui.section(taskResult.info.taskDisplayName, () => {
       ui.log(
         `${ui.emphasize('Octane Violations')}: ${taskResult.result.reduce(
           (violationsCount: number, result: MultiValueResult) => {
@@ -145,7 +145,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     let errorsCount = errors.dataSummary.total;
     let warningsCount = warnings.dataSummary.total;
 
-    ui.section(taskResult.info.friendlyTaskName, () => {
+    ui.section(taskResult.info.taskDisplayName, () => {
       if (errorsCount) {
         ui.blankLine();
         ui.subHeader(`Errors (${errorsCount})`);
@@ -170,7 +170,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
   'outdated-dependencies': function (taskResult: TaskResult) {
     let { values: dependenciesCount, total: totalDependencies } = taskResult.result[0].dataSummary;
 
-    ui.section(taskResult.info.friendlyTaskName, () => {
+    ui.section(taskResult.info.taskDisplayName, () => {
       ui.sectionedBar(
         [
           { title: 'major', count: dependenciesCount.major },
@@ -182,10 +182,10 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     });
   },
   foo: function (taskResult: TaskResult) {
-    ui.categoryHeader(taskResult.info.friendlyTaskName);
+    ui.categoryHeader(taskResult.info.taskDisplayName);
   },
   'file-count': function (taskResult: TaskResult) {
-    ui.section(taskResult.info.friendlyTaskName, () => {
+    ui.section(taskResult.info.taskDisplayName, () => {
       ui.log(taskResult.result.result);
     });
   },
@@ -202,7 +202,7 @@ function renderPluginTaskResults(pluginTaskResults: TaskResult[]): void {
   let currentCategory = '';
 
   pluginTaskResults.forEach((taskResult) => {
-    let taskCategory = taskResult.info.taskClassification.category;
+    let taskCategory = taskResult.info.category;
 
     if (taskCategory !== currentCategory) {
       ui.categoryHeader(startCase(taskCategory));
