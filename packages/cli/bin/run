@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+require('v8-compile-cache');
+
 const fs = require('fs');
 const path = require('path');
 const project = path.join(__dirname, '../tsconfig.json');
