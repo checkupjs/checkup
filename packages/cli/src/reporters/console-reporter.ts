@@ -226,7 +226,7 @@ function getTaskReporter(taskName: TaskName) {
   if (typeof reporter === 'undefined') {
     throw new CheckupError(
       `Unable to find a console reporter for ${taskName}`,
-      'Add a console reporter using a `register-reporter` hook'
+      'Add a console task reporter using a `register-task-reporter` hook'
     );
   }
 
