@@ -37,7 +37,7 @@ describe('eslint-disable-task', () => {
       })
     ).run();
 
-    expect(result.toJson()).toMatchInlineSnapshot(`
+    expect(result).toMatchInlineSnapshot(`
       Object {
         "info": Object {
           "friendlyTaskName": "Number of eslint-disable Usages",
@@ -81,15 +81,16 @@ describe('eslint-disable-task', () => {
   });
 
   it('returns actions if there are more than 2 instances of eslint-disable', async () => {
-    const result = await new EslintDisableTask(
+    const task = new EslintDisableTask(
       pluginName,
       getTaskContext({
         paths: project.filePaths,
         cliFlags: { cwd: project.baseDir },
       })
-    ).run();
+    );
+    const result = await task.run();
 
-    let actions = evaluateActions(result);
+    let actions = evaluateActions(result, task.config);
 
     expect(actions).toHaveLength(1);
     expect(actions![0]).toMatchInlineSnapshot(`

@@ -1,5 +1,5 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
-import { getPluginName, TaskResult } from '@checkup/core';
+import { getPluginName, TaskResult, Task } from '@checkup/core';
 import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task';
 import { evaluateActions } from '../src/actions/outdated-dependency-actions';
 
@@ -7,6 +7,7 @@ import { evaluateActions } from '../src/actions/outdated-dependency-actions';
 describe('outdated-dependencies-task', () => {
   let project: CheckupProject;
   let pluginName = getPluginName(__dirname);
+  let task: Task;
   let result: TaskResult;
 
   beforeAll(async () => {
@@ -19,13 +20,14 @@ describe('outdated-dependencies-task', () => {
     project.gitInit();
     project.install();
 
-    result = await new OutdatedDependenciesTask(
+    task = new OutdatedDependenciesTask(
       pluginName,
       getTaskContext({
         cliFlags: { cwd: project.baseDir },
         pkg: project.pkg,
       })
-    ).run();
+    );
+    result = await task.run();
   });
 
   afterAll(() => {
@@ -33,11 +35,11 @@ describe('outdated-dependencies-task', () => {
   });
 
   it('detects outdated dependencies as JSON', async () => {
-    expect(result.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
-    let actions = evaluateActions(result);
+    let actions = evaluateActions(result, task.config);
 
     expect(actions).toHaveLength(3);
     expect(actions).toMatchInlineSnapshot(`

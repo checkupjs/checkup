@@ -9,7 +9,7 @@ Object {
     },
     "taskName": "insights-task-high",
   },
-  "result": "insights task high is being run",
+  "result": Object {},
 }
 `;
 
@@ -22,7 +22,7 @@ Object {
     },
     "taskName": "insights-task-high",
   },
-  "result": "insights task high is being run",
+  "result": Object {},
 }
 `;
 
@@ -35,6 +35,6 @@ Object {
     },
     "taskName": "insights-task-low",
   },
-  "result": "insights task low is being run",
+  "result": Object {},
 }
 `;

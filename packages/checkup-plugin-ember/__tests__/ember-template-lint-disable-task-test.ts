@@ -36,7 +36,7 @@ describe('ember-template-lint-disable-task', () => {
       })
     ).run();
 
-    expect(result.toJson()).toMatchInlineSnapshot(`
+    expect(result).toMatchInlineSnapshot(`
       Object {
         "info": Object {
           "friendlyTaskName": "Number of template-lint-disable Usages",
@@ -81,15 +81,16 @@ describe('ember-template-lint-disable-task', () => {
   });
 
   it('returns action item if there are more than 2 instances of template-lint-disable', async () => {
-    const result = await new TemplateLintDisableTask(
+    const task = new TemplateLintDisableTask(
       'internal',
       getTaskContext({
         paths: project.filePaths,
         cliFlags: { cwd: project.baseDir },
       })
-    ).run();
+    );
+    const result = await task.run();
 
-    let actions = evaluateActions(result);
+    let actions = evaluateActions(result, task.config);
 
     expect(actions).toHaveLength(1);
     expect(actions).toMatchInlineSnapshot(`

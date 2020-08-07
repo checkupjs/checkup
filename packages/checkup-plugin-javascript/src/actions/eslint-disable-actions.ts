@@ -1,8 +1,8 @@
-import { TaskResult, ActionsEvaluator } from '@checkup/core';
+import { ActionsEvaluator, TaskResult, TaskConfig } from '@checkup/core';
 
-export function evaluateActions(taskResult: TaskResult) {
+export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
-  let summaryResult = taskResult.data[0];
+  let summaryResult = taskResult.result[0];
   let eslintDisableUsages = summaryResult.count;
 
   actionsEvaluator.add({
@@ -14,5 +14,5 @@ export function evaluateActions(taskResult: TaskResult) {
     input: eslintDisableUsages,
   });
 
-  return actionsEvaluator.evaluate(taskResult.config);
+  return actionsEvaluator.evaluate(taskConfig);
 }

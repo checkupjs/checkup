@@ -5,7 +5,6 @@ import {
   RunFlags,
   TaskContext,
   TaskError,
-  TaskResult,
   getConfigPath,
   getRegisteredParsers,
   loadPlugins,
@@ -17,6 +16,7 @@ import {
   Action,
   getRegisteredActions,
   Task,
+  TaskResult,
 } from '@checkup/core';
 
 import { BaseCommand } from '../base-command';
@@ -170,10 +170,11 @@ export default class RunCommand extends BaseCommand {
     let evaluators = getRegisteredActions();
 
     for (let [taskName, evaluator] of evaluators) {
-      let taskResult = this.pluginTaskResults.find((result) => taskName === result.meta.taskName);
+      let task = this.pluginTasks.findTask(taskName);
+      let taskResult = this.pluginTaskResults.find((result) => taskName === result.info.taskName);
 
-      if (taskResult) {
-        this.actions.push(...evaluator(taskResult));
+      if (task && taskResult) {
+        this.actions.push(...evaluator(taskResult, task.config));
       }
     }
   }

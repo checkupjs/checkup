@@ -3,7 +3,6 @@
 import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import <%- taskClass %> from '../src/tasks/<%- name %>-task';
-import <%- resultClass %> from '../src/results/<%- name %>-task-result';
 
 describe('<%- name %>-task', () => {
   let project;
@@ -23,8 +22,8 @@ describe('<%- name %>-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const taskResult = await new <%- taskClass %>(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
+    const result = await new <%- taskClass %>(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });

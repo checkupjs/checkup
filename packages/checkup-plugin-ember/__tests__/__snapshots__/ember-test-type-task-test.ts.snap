@@ -1,6 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ember-test-types-task only renders todos/only test types if they a value > 0 1`] = `""`;
+exports[`ember-test-types-task only renders todos/only test types if they a value > 0 1`] = `
+Object {
+  "info": Object {
+    "friendlyTaskName": "Test Types",
+    "taskClassification": Object {
+      "category": "testing",
+      "group": "ember",
+    },
+    "taskName": "ember-test-types",
+  },
+  "result": Array [
+    Object {
+      "data": Array [],
+      "dataSummary": Object {
+        "dataKey": "method",
+        "total": 0,
+        "values": Object {
+          "only": 0,
+          "skip": 0,
+          "test": 0,
+          "todo": 0,
+        },
+      },
+      "key": "unit",
+      "type": "multi-value",
+    },
+    Object {
+      "data": Array [
+        Object {
+          "column": 17,
+          "filePath": "/addon/rendering/tests/my-component-test.js",
+          "line": 5,
+          "message": "rendering|test",
+          "method": "test",
+          "ruleId": "test-types",
+          "severity": 2,
+        },
+        Object {
+          "column": 17,
+          "filePath": "/addon/rendering/tests/my-component-test.js",
+          "line": 6,
+          "message": "rendering|only",
+          "method": "only",
+          "ruleId": "test-types",
+          "severity": 2,
+        },
+        Object {
+          "column": 17,
+          "filePath": "/addon/rendering/tests/my-component-test.js",
+          "line": 7,
+          "message": "rendering|todo",
+          "method": "todo",
+          "ruleId": "test-types",
+          "severity": 2,
+        },
+      ],
+      "dataSummary": Object {
+        "dataKey": "method",
+        "total": 3,
+        "values": Object {
+          "only": 1,
+          "skip": 0,
+          "test": 1,
+          "todo": 1,
+        },
+      },
+      "key": "rendering",
+      "type": "multi-value",
+    },
+    Object {
+      "data": Array [],
+      "dataSummary": Object {
+        "dataKey": "method",
+        "total": 0,
+        "values": Object {
+          "only": 0,
+          "skip": 0,
+          "test": 0,
+          "todo": 0,
+        },
+      },
+      "key": "application",
+      "type": "multi-value",
+    },
+  ],
+}
+`;
 
 exports[`ember-test-types-task returns all the test types found in the app and outputs to json 1`] = `
 Object {

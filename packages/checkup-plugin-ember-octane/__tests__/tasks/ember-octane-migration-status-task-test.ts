@@ -42,7 +42,7 @@ describe('ember-octane-migration-status-task', () => {
           })
         ).run();
 
-        expect(result.toJson()).toMatchSnapshot();
+        expect(result).toMatchSnapshot();
       });
     });
   });

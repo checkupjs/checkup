@@ -6,11 +6,12 @@ import {
 } from '../src/tasks/eslint-summary-task';
 import { evaluateActions } from '../src/actions/eslint-summary-actions';
 import { PackageJson } from 'type-fest';
-import { getPluginName, TaskResult } from '@checkup/core';
+import { getPluginName, Task, TaskResult } from '@checkup/core';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
   let pluginName = getPluginName(__dirname);
+  let task: Task;
   let result: TaskResult;
 
   beforeAll(async () => {
@@ -31,7 +32,7 @@ describe('eslint-summary-task', () => {
     project.gitInit();
     project.install();
 
-    result = await new EslintSummaryTask(
+    task = new EslintSummaryTask(
       pluginName,
       getTaskContext({
         cliFlags: { cwd: project.baseDir },
@@ -51,7 +52,8 @@ describe('eslint-summary-task', () => {
           },
         },
       })
-    ).run();
+    );
+    result = await task.run();
   });
 
   afterAll(() => {
@@ -59,11 +61,11 @@ describe('eslint-summary-task', () => {
   });
 
   it('it summarizes eslint and outputs to JSON', async () => {
-    expect(result.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 
   it('returns correct action items if there are too many warnings or errors', async () => {
-    let actions = evaluateActions(result);
+    let actions = evaluateActions(result, task.config);
 
     expect(actions).toHaveLength(2);
     expect(actions).toMatchInlineSnapshot(`

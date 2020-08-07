@@ -1,4 +1,11 @@
-import { BaseTask, CheckupConfig, TaskIdentifier, normalizePaths } from '@checkup/core';
+import {
+  CheckupConfig,
+  TaskIdentifier,
+  normalizePaths,
+  TaskContext,
+  getShorthandName,
+} from '@checkup/core';
+import * as debug from 'debug';
 import * as crypto from 'crypto';
 import * as stringify from 'json-stable-stringify';
 import { MetaTask, MetaTaskResult } from '../types';
@@ -13,11 +20,21 @@ function getConfigHash(checkupConfig: CheckupConfig) {
   return crypto.createHash('md5').update(configAsJson).digest('hex');
 }
 
-export default class ProjectMetaTask extends BaseTask implements MetaTask {
+export default class ProjectMetaTask implements MetaTask {
   meta: TaskIdentifier = {
     taskName: 'project',
     friendlyTaskName: 'Project',
   };
+  context!: TaskContext;
+  _pluginName: string;
+  debug: debug.Debugger;
+
+  constructor(pluginName: string, context: TaskContext) {
+    this._pluginName = getShorthandName(pluginName);
+    this.context = context;
+
+    this.debug = debug('checkup:task');
+  }
 
   async run(): Promise<MetaTaskResult> {
     let result: ProjectMetaTaskResult = new ProjectMetaTaskResult(this.meta);

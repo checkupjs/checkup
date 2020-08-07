@@ -2,9 +2,9 @@ import {
   JsonMetaTaskResult,
   TaskIdentifier,
   RunFlags,
-  TaskResult,
   TaskError,
   Action,
+  TaskResult,
 } from '@checkup/core';
 
 export default {};

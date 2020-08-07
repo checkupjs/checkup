@@ -1,5 +1,4 @@
-import { Task, TaskMetaData, TaskResult, BaseTask } from '@checkup/core';
-import EmberInRepoAddonEnginesTaskResult from '../results/ember-in-repo-addons-engines-task-result';
+import { Task, TaskMetaData, BaseTask, TaskResult } from '@checkup/core';
 import { buildSummaryResult } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
@@ -16,11 +15,6 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
   };
 
   async run(): Promise<TaskResult> {
-    let result: EmberInRepoAddonEnginesTaskResult = new EmberInRepoAddonEnginesTaskResult(
-      this.meta,
-      this.config
-    );
-
     let inRepoAddons: string[] = [];
     let inRepoEngines: string[] = [];
 
@@ -36,12 +30,10 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
       }
     });
 
-    result.process([
+    return this.toJson([
       buildSummaryResult('in-repo engines', inRepoEngines.sort()),
       buildSummaryResult('in-repo addons', inRepoAddons.sort()),
     ]);
-
-    return result;
   }
 }
 

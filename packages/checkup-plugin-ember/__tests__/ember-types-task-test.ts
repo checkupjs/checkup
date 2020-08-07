@@ -61,7 +61,7 @@ describe('types-task', () => {
       getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    expect(result.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 
   it('returns all the types (including nested) found in the app and outputs to JSON', async () => {
@@ -81,6 +81,6 @@ describe('types-task', () => {
       getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    expect(result.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });

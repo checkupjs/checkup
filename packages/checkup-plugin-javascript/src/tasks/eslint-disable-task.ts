@@ -1,5 +1,4 @@
 import {
-  TaskResult,
   Task,
   TaskMetaData,
   BaseTask,
@@ -7,8 +6,8 @@ import {
   LintResult,
   AstTraverser,
   buildSummaryResult,
+  TaskResult,
 } from '@checkup/core';
-import EslintDisableTaskResult from '../results/eslint-disable-task-result';
 
 import * as t from '@babel/types';
 import { parse } from '@babel/parser';
@@ -29,13 +28,9 @@ export default class EslintDisableTask extends BaseTask implements Task {
 
   async run(): Promise<TaskResult> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
-
-    let result = new EslintDisableTaskResult(this.meta, this.config);
     let eslintDisables = await getEslintDisables(jsPaths, this.context.cliFlags.cwd);
 
-    result.process([buildSummaryResult('eslint-disable', eslintDisables)]);
-
-    return result;
+    return this.toJson([buildSummaryResult('eslint-disable', eslintDisables)]);
   }
 }
 
