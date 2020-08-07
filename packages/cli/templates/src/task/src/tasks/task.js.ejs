@@ -2,7 +2,7 @@ import { BaseTask } from '@checkup/core';
 
 export default class <%- taskClass %> extends BaseTask {
   taskName = '<%- name %>';
-  friendlyTaskName = '<%- _.startCase(name.split('-').join(' ')) %>';
+  taskDisplayName = '<%- _.startCase(name.split('-').join(' ')) %>';
   category = '<%- category %>';
   <%_ if (group) { _%>
   group = '<%- group %>';

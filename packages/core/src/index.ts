@@ -4,6 +4,10 @@ export { getRegisteredParsers, registerParser } from './parsers/registered-parse
 export { createParser as createEslintParser } from './parsers/eslint-parser';
 export { getRegisteredActions, registerActions } from './actions/registered-actions';
 export { default as ActionsEvaluator } from './actions/actions-evaluator';
+export {
+  getRegisteredTaskReporters,
+  registerTaskReporter,
+} from './task-reporters/registered-task-reporters';
 
 export { loadPlugins } from './loaders/plugin-loader';
 export {

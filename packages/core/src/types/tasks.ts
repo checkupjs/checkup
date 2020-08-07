@@ -12,10 +12,14 @@ export type RegisterTaskArgs = {
 };
 
 export type RegisterActionsArgs = {
-  registerActions: (taskName: TaskName, evaluate: ActionsEvaluationResult) => void;
+  registerActions: (taskName: TaskName, evaluate: TaskActionsEvaluator) => void;
 };
+export type TaskActionsEvaluator = (taskResult: TaskResult, taskConfig: TaskConfig) => Action[];
 
-export type ActionsEvaluationResult = (taskResult: TaskResult, taskConfig: TaskConfig) => Action[];
+export type RegisterTaskReporterArgs = {
+  registerTaskReporter: (taskName: TaskName, report: TaskReporter) => void;
+};
+export type TaskReporter = (taskResult: TaskResult) => void;
 
 interface TaskList {
   registerTask(task: Task): void;

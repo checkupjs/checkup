@@ -6,6 +6,9 @@ import {
   MultiValueResult,
   DataSummary,
   TaskResult,
+  getRegisteredTaskReporters,
+  TaskName,
+  CheckupError,
 } from '@checkup/core';
 import { MetaTaskResult, ReporterArguments } from '../types';
 import { startCase } from 'lodash';
@@ -209,9 +212,25 @@ function renderPluginTaskResults(pluginTaskResults: TaskResult[]): void {
       currentCategory = taskCategory;
     }
 
-    outputMap[taskResult.info.taskName](taskResult);
+    let reporter = getTaskReporter(taskResult.info.taskName);
+
+    reporter(taskResult);
   });
   ui.blankLine();
+}
+
+function getTaskReporter(taskName: TaskName) {
+  let registeredTaskReporters = getRegisteredTaskReporters();
+  let reporter = outputMap[taskName] || registeredTaskReporters.get(taskName);
+
+  if (typeof reporter === 'undefined') {
+    throw new CheckupError(
+      `Unable to find a console reporter for ${taskName}`,
+      'Add a console task reporter using a `register-task-reporter` hook'
+    );
+  }
+
+  return reporter;
 }
 
 function renderActionItems(actions: Action[]): void {
