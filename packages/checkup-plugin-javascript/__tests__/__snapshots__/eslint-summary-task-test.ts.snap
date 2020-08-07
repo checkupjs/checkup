@@ -3,10 +3,9 @@
 exports[`eslint-summary-task it summarizes eslint and outputs to JSON 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Eslint Summary",
-    "taskClassification": Object {
-      "category": "linting",
-    },
+    "category": "linting",
+    "group": undefined,
+    "taskDisplayName": "Eslint Summary",
     "taskName": "eslint-summary",
   },
   "result": Array [

@@ -1,4 +1,4 @@
-import { Action, TaskError, TaskMetaData } from './tasks';
+import { Action, TaskError, TaskName } from './tasks';
 import { CheckupConfig } from './config';
 
 export type IndexableObject = { [key: string]: any };
@@ -10,7 +10,12 @@ export type DataSummary = {
 };
 
 export interface TaskResult {
-  info: TaskMetaData;
+  info: {
+    taskName: TaskName;
+    taskDisplayName: string;
+    category: string;
+    group?: string;
+  };
   result: Record<string, any>;
 }
 

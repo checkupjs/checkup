@@ -6,7 +6,7 @@ import MockMetaTaskResult from './__utils__/mock-meta-task-result';
 class FakeMetaTask implements MetaTask {
   meta = {
     taskName: 'fake-meta-task',
-    friendlyTaskName: 'Fake Meta Task',
+    taskDisplayName: 'Fake Meta Task',
   };
 
   async run(): Promise<MetaTaskResult> {
@@ -17,7 +17,7 @@ class FakeMetaTask implements MetaTask {
 class OtherFakeMetaTask implements MetaTask {
   meta = {
     taskName: 'other-fake-meta-task',
-    friendlyTaskName: 'Other Fake Meta Task',
+    taskDisplayName: 'Other Fake Meta Task',
   };
 
   async run(): Promise<MetaTaskResult> {

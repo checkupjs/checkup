@@ -1,16 +1,12 @@
-import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
+import { BaseTask, Task, TaskResult } from '@checkup/core';
 
 export default class <%- taskClass %> extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: '<%- name %>',
-    friendlyTaskName: '<%- _.startCase(name.split('-').join(' ')) %>',
-    taskClassification: {
-      category: '<%- category %>',
-      <%_ if (group) { _%>
-      group: '<%- group %>',
-      <%_ } _%>
-    },
-  };
+  taskName = '<%- name %>';
+  friendlyTaskName = '<%- _.startCase(name.split('-').join(' ')) %>';
+  category = '<%- category %>';
+  <%_ if (group) { _%>
+  group = '<%- group %>';
+  <%_ } _%>
 
   async run(): Promise<TaskResult> {
     return this.toJson([]);

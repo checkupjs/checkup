@@ -1,6 +1,5 @@
 import {
   Task,
-  TaskMetaData,
   BaseTask,
   normalizePath,
   LintResult,
@@ -18,13 +17,9 @@ const fs = require('fs');
 const ESLINT_DISABLE_REGEX = /^eslint-disable(?:-next-line|-line)*/gi;
 
 export default class EslintDisableTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'eslint-disables',
-    friendlyTaskName: 'Number of eslint-disable Usages',
-    taskClassification: {
-      category: 'linting',
-    },
-  };
+  taskName = 'eslint-disables';
+  taskDisplayName = 'Number of eslint-disable Usages';
+  category = 'linting';
 
   async run(): Promise<TaskResult> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');

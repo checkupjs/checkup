@@ -1,119 +1,95 @@
 import TaskList from '../src/task-list';
 import { getTaskContext } from '@checkup/test-helpers';
 import { BaseTask, Task, TaskContext, TaskResult } from '@checkup/core';
-import { getMockTaskResult } from './__utils__/mock-task-result';
 
 class InsightsTaskHigh extends BaseTask implements Task {
-  meta = {
-    taskName: 'insights-task-high',
-    friendlyTaskName: 'Insights Task High',
-    taskClassification: {
-      category: 'bar',
-    },
-  };
+  taskName = 'insights-task-high';
+  taskDisplayName = 'Insights Task High';
+  category = 'bar';
 
   constructor(context: TaskContext) {
     super('fake', context);
   }
 
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta);
+    return this.toJson([]);
   }
 }
 
 class InsightsTaskLow extends BaseTask implements Task {
-  meta = {
-    taskName: 'insights-task-low',
-    friendlyTaskName: 'Insights Task Low',
-    taskClassification: {
-      category: 'foo',
-    },
-  };
+  taskName = 'insights-task-low';
+  taskDisplayName = 'Insights Task Low';
+  category = 'foo';
 
   constructor(context: TaskContext) {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta);
+    return this.toJson([]);
   }
 }
 
 class RecommendationsTaskHigh extends BaseTask implements Task {
-  meta = {
-    taskName: 'recommendations-task-high',
-    friendlyTaskName: 'Recommendations Task High',
-    taskClassification: {
-      category: 'baz',
-    },
-  };
+  taskName = 'recommendations-task-high';
+  taskDisplayName = 'Recommendations Task High';
+
+  category = 'baz';
 
   constructor(context: TaskContext) {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta);
+    return this.toJson([]);
   }
 }
 
 class RecommendationsTaskLow extends BaseTask implements Task {
-  meta = {
-    taskName: 'recommendations-task-low',
-    friendlyTaskName: 'Recommendations Task Low',
-    taskClassification: {
-      category: 'bar',
-    },
-  };
+  taskName = 'recommendations-task-low';
+  taskDisplayName = 'Recommendations Task Low';
+
+  category = 'bar';
 
   constructor(context: TaskContext) {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta);
+    return this.toJson([]);
   }
 }
 
 class MigrationTaskHigh extends BaseTask implements Task {
-  meta = {
-    taskName: 'migration-task-high',
-    friendlyTaskName: 'Migration Task High',
-    taskClassification: {
-      category: 'foo',
-    },
-  };
+  taskName = 'migration-task-high';
+  taskDisplayName = 'Migration Task High';
+
+  category = 'foo';
 
   constructor(context: TaskContext) {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta);
+    return this.toJson([]);
   }
 }
 
 class MigrationTaskLow extends BaseTask implements Task {
-  meta = {
-    taskName: 'migration-task-low',
-    friendlyTaskName: 'Migration Task Low',
-    taskClassification: {
-      category: 'baz',
-    },
-  };
+  taskName = 'migration-task-low';
+  taskDisplayName = 'Migration Task Low';
+
+  category = 'baz';
 
   constructor(context: TaskContext) {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta);
+    return this.toJson([]);
   }
 }
 
 class ErrorTask extends BaseTask implements Task {
-  meta = {
-    taskName: 'error-task',
-    friendlyTaskName: 'Error Task',
-    taskClassification: {
-      category: 'bar',
-    },
-  };
+  taskName = 'error-task';
+  taskDisplayName = 'Error Task';
+
+  category = 'bar';
 
   constructor(context: TaskContext) {
     super('fake', context);
@@ -124,20 +100,17 @@ class ErrorTask extends BaseTask implements Task {
 }
 
 class TaskWithoutCategory extends BaseTask implements Task {
-  meta = {
-    taskName: 'task-without-category',
-    friendlyTaskName: 'Task Without Category',
-    taskClassification: {
-      category: '',
-    },
-  };
+  taskName = 'task-without-category';
+  taskDisplayName = 'Task Without Category';
+
+  category = '';
 
   constructor(context: TaskContext) {
     super('fake', context);
   }
 
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta);
+    return this.toJson([]);
   }
 }
 
@@ -164,7 +137,7 @@ describe('TaskList', () => {
     expect(() => {
       taskList.registerTask(taskWithoutCategory);
     }).toThrow(
-      `Task category can not be empty. Please add a category to ${taskWithoutCategory.meta.taskName}-task.`
+      `Task category can not be empty. Please add a category to ${taskWithoutCategory.taskName}-task.`
     );
   });
 
@@ -260,63 +233,57 @@ describe('TaskList', () => {
       Array [
         Object {
           "info": Object {
-            "friendlyTaskName": "Insights Task Low",
-            "taskClassification": Object {
-              "category": "foo",
-            },
+            "category": "foo",
+            "group": undefined,
+            "taskDisplayName": "Insights Task Low",
             "taskName": "insights-task-low",
           },
-          "result": Object {},
+          "result": Array [],
         },
         Object {
           "info": Object {
-            "friendlyTaskName": "Migration Task High",
-            "taskClassification": Object {
-              "category": "foo",
-            },
+            "category": "foo",
+            "group": undefined,
+            "taskDisplayName": "Migration Task High",
             "taskName": "migration-task-high",
           },
-          "result": Object {},
+          "result": Array [],
         },
         Object {
           "info": Object {
-            "friendlyTaskName": "Recommendations Task High",
-            "taskClassification": Object {
-              "category": "baz",
-            },
+            "category": "baz",
+            "group": undefined,
+            "taskDisplayName": "Recommendations Task High",
             "taskName": "recommendations-task-high",
           },
-          "result": Object {},
+          "result": Array [],
         },
         Object {
           "info": Object {
-            "friendlyTaskName": "Migration Task Low",
-            "taskClassification": Object {
-              "category": "baz",
-            },
+            "category": "baz",
+            "group": undefined,
+            "taskDisplayName": "Migration Task Low",
             "taskName": "migration-task-low",
           },
-          "result": Object {},
+          "result": Array [],
         },
         Object {
           "info": Object {
-            "friendlyTaskName": "Recommendations Task Low",
-            "taskClassification": Object {
-              "category": "bar",
-            },
+            "category": "bar",
+            "group": undefined,
+            "taskDisplayName": "Recommendations Task Low",
             "taskName": "recommendations-task-low",
           },
-          "result": Object {},
+          "result": Array [],
         },
         Object {
           "info": Object {
-            "friendlyTaskName": "Insights Task High",
-            "taskClassification": Object {
-              "category": "bar",
-            },
+            "category": "bar",
+            "group": undefined,
+            "taskDisplayName": "Insights Task High",
             "taskName": "insights-task-high",
           },
-          "result": Object {},
+          "result": Array [],
         },
       ]
     `);

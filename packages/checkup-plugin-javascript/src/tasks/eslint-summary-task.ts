@@ -5,7 +5,6 @@ import {
   Parser,
   Task,
   TaskContext,
-  TaskMetaData,
   buildDerivedValueResult,
   buildLintResultData,
   bySeverity,
@@ -30,13 +29,9 @@ export const ACCEPTED_ESLINT_CONFIG_FILES = [
 ];
 
 export class EslintSummaryTask extends BaseTask implements Task {
-  meta: TaskMetaData = {
-    taskName: 'eslint-summary',
-    friendlyTaskName: 'Eslint Summary',
-    taskClassification: {
-      category: 'linting',
-    },
-  };
+  taskName = 'eslint-summary';
+  taskDisplayName = 'Eslint Summary';
+  category = 'linting';
 
   private _eslintParser: Parser<ESLintReport>;
 

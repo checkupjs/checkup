@@ -1,16 +1,13 @@
 import { BaseTask } from '@checkup/core';
 
 export default class <%- taskClass %> extends BaseTask {
-  meta = {
-    taskName: '<%- name %>',
-    friendlyTaskName: '<%- _.startCase(name.split('-').join(' ')) %>',
-    taskClassification: {
-      category: '<%- category %>',
-      <%_ if (group) { _%>
-      group: '<%- group %>',
-      <%_ } _%>
-    },
-  };
+  taskName = '<%- name %>';
+  friendlyTaskName = '<%- _.startCase(name.split('-').join(' ')) %>';
+  category = '<%- category %>';
+  <%_ if (group) { _%>
+  group = '<%- group %>';
+  <%_ } _%>
+
 
   async run() {
     return this.toJson([]);

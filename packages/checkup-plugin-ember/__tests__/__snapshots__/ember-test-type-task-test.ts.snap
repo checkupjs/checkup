@@ -3,11 +3,9 @@
 exports[`ember-test-types-task only renders todos/only test types if they a value > 0 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Test Types",
-    "taskClassification": Object {
-      "category": "testing",
-      "group": "ember",
-    },
+    "category": "testing",
+    "group": "ember",
+    "taskDisplayName": "Test Types",
     "taskName": "ember-test-types",
   },
   "result": Array [
@@ -91,11 +89,9 @@ Object {
 exports[`ember-test-types-task returns all the test types found in the app and outputs to json 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Test Types",
-    "taskClassification": Object {
-      "category": "testing",
-      "group": "ember",
-    },
+    "category": "testing",
+    "group": "ember",
+    "taskDisplayName": "Test Types",
     "taskName": "ember-test-types",
   },
   "result": Array [

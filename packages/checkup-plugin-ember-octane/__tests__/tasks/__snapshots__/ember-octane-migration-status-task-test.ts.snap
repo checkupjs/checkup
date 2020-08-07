@@ -3,11 +3,9 @@
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to json 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Ember Octane Migration Status",
-    "taskClassification": Object {
-      "category": "migrations",
-      "group": "ember",
-    },
+    "category": "migrations",
+    "group": "ember",
+    "taskDisplayName": "Ember Octane Migration Status",
     "taskName": "ember-octane-migration-status",
   },
   "result": Array [
@@ -300,11 +298,9 @@ Object {
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane app and outputs to json 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Ember Octane Migration Status",
-    "taskClassification": Object {
-      "category": "migrations",
-      "group": "ember",
-    },
+    "category": "migrations",
+    "group": "ember",
+    "taskDisplayName": "Ember Octane Migration Status",
     "taskName": "ember-octane-migration-status",
   },
   "result": Array [
@@ -597,11 +593,9 @@ Object {
 exports[`ember-octane-migration-status-task detects octane migration status for octane addon and outputs to json 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Ember Octane Migration Status",
-    "taskClassification": Object {
-      "category": "migrations",
-      "group": "ember",
-    },
+    "category": "migrations",
+    "group": "ember",
+    "taskDisplayName": "Ember Octane Migration Status",
     "taskName": "ember-octane-migration-status",
   },
   "result": Array [
@@ -712,11 +706,9 @@ Object {
 exports[`ember-octane-migration-status-task detects octane migration status for octane app and outputs to json 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Ember Octane Migration Status",
-    "taskClassification": Object {
-      "category": "migrations",
-      "group": "ember",
-    },
+    "category": "migrations",
+    "group": "ember",
+    "taskDisplayName": "Ember Octane Migration Status",
     "taskName": "ember-octane-migration-status",
   },
   "result": Array [

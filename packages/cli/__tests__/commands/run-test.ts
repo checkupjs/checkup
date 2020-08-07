@@ -10,41 +10,32 @@ import * as fs from 'fs';
 import { join } from 'path';
 import { _registerTaskForTesting, _resetTasksForTesting } from '../../src/commands/run';
 import { runCommand } from '../../src/run-command';
-import { getMockTaskResult } from '../__utils__/mock-task-result';
 
 const TEST_TIMEOUT = 100000;
 
 class FooTask extends BaseTask implements Task {
-  meta = {
-    taskName: 'foo',
-    friendlyTaskName: 'Foo Task',
-    taskClassification: {
-      category: 'fake',
-    },
-  };
+  taskName = 'foo';
+  taskDisplayName = 'Foo Task';
+  category = 'fake';
 
   constructor(context: TaskContext) {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta);
+    return this.toJson([]);
   }
 }
 
 class FileCountTask extends BaseTask implements Task {
-  meta = {
-    taskName: 'file-count',
-    friendlyTaskName: 'File Count Task',
-    taskClassification: {
-      category: 'fake',
-    },
-  };
+  taskName = 'file-count';
+  taskDisplayName = 'File Count Task';
+  category = 'fake';
 
   constructor(context: TaskContext) {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta);
+    return this.toJson([]);
   }
 }
 

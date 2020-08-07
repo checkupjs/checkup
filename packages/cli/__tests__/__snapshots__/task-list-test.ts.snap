@@ -3,38 +3,35 @@
 exports[`TaskList runTask will run a task by taskName 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Insights Task High",
-    "taskClassification": Object {
-      "category": "bar",
-    },
+    "category": "bar",
+    "group": undefined,
+    "taskDisplayName": "Insights Task High",
     "taskName": "insights-task-high",
   },
-  "result": Object {},
+  "result": Array [],
 }
 `;
 
 exports[`TaskList runTasks will run all registered tasks 1`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Insights Task High",
-    "taskClassification": Object {
-      "category": "bar",
-    },
+    "category": "bar",
+    "group": undefined,
+    "taskDisplayName": "Insights Task High",
     "taskName": "insights-task-high",
   },
-  "result": Object {},
+  "result": Array [],
 }
 `;
 
 exports[`TaskList runTasks will run all registered tasks 2`] = `
 Object {
   "info": Object {
-    "friendlyTaskName": "Insights Task Low",
-    "taskClassification": Object {
-      "category": "foo",
-    },
+    "category": "foo",
+    "group": undefined,
+    "taskDisplayName": "Insights Task Low",
     "taskName": "insights-task-low",
   },
-  "result": Object {},
+  "result": Array [],
 }
 `;
