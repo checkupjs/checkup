@@ -6,14 +6,13 @@ import {
   Task,
   TaskContext,
   TaskMetaData,
-  TaskResult,
   buildDerivedValueResult,
   buildLintResultData,
   bySeverity,
+  TaskResult,
 } from '@checkup/core';
 import { join, resolve } from 'path';
 
-import EslintSummaryTaskResult from '../results/eslint-summary-task-result';
 import { PackageJson } from 'type-fest';
 import { readFileSync } from 'fs';
 
@@ -55,7 +54,6 @@ export class EslintSummaryTask extends BaseTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    let result = new EslintSummaryTaskResult(this.meta, this.config);
     let report = await this._eslintParser.execute([this.context.cliFlags.cwd]);
     let transformedData = buildLintResultData(report, this.context.cliFlags.cwd);
 
@@ -70,9 +68,7 @@ export class EslintSummaryTask extends BaseTask implements Task {
       'ruleId'
     );
 
-    result.process([errorsResult, warningsResult]);
-
-    return result;
+    return this.toJson([errorsResult, warningsResult]);
   }
 }
 

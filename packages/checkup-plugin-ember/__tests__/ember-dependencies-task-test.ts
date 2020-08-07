@@ -32,6 +32,6 @@ describe('dependencies-task', () => {
       })
     ).run();
 
-    expect(result.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });

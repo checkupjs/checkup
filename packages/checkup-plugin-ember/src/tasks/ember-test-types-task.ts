@@ -1,17 +1,15 @@
 import {
   Task,
   TaskContext,
-  TaskResult,
   ESLintReport,
   Parser,
   BaseTask,
   buildLintResultDataItem,
   IndexableObject,
   buildMultiValueResult,
+  TaskResult,
 } from '@checkup/core';
 import { EMBER_TEST_TYPES } from '../utils/lint-configs';
-
-import EmberTestTypesTaskResult from '../results/ember-test-types-task-result';
 
 export default class EmberTestTypesTask extends BaseTask implements Task {
   meta = {
@@ -35,14 +33,11 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    let result = new EmberTestTypesTaskResult(this.meta, this.config);
     let esLintReport = await this.runEsLint();
 
     let multiValueResult = buildResult(esLintReport, this.context.cliFlags.cwd);
 
-    result.process(multiValueResult);
-
-    return result;
+    return this.toJson(multiValueResult);
   }
 
   private async runEsLint(): Promise<ESLintReport> {

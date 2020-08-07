@@ -2,7 +2,6 @@
 
 exports[`task generator generates correct files with JavaScript 1`] = `
 "import { BaseTask } from '@checkup/core';
-import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask {
   meta = {
@@ -14,27 +13,16 @@ export default class MyFooTask extends BaseTask {
   };
 
   async run() {
-    let result = new MyFooTaskResult(this.meta);
-
-    return result;
+    return this.toJson([]);
   }
 }
 "
 `;
 
 exports[`task generator generates correct files with JavaScript 2`] = `
-"import { BaseTaskResult, ui } from '@checkup/core';
-
-export default class MyFooTaskResult extends BaseTaskResult {
-}
-"
-`;
-
-exports[`task generator generates correct files with JavaScript 3`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
-import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
   let project;
@@ -54,15 +42,15 @@ describe('my-foo-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const taskResult = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });
 "
 `;
 
-exports[`task generator generates correct files with JavaScript 4`] = `
+exports[`task generator generates correct files with JavaScript 3`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
 import { getPluginName } from '@checkup/core';
@@ -78,7 +66,6 @@ export default hook;
 
 exports[`task generator generates correct files with TypeScript for defaults 1`] = `
 "import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
-import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
   meta: TaskMetaData = {
@@ -90,27 +77,16 @@ export default class MyFooTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: MyFooTaskResult = new MyFooTaskResult(this.meta);
-
-    return result;
+    return this.toJson([]);
   }
 }
 "
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults 2`] = `
-"import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
-
-export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-}
-"
-`;
-
-exports[`task generator generates correct files with TypeScript for defaults 3`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
-import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
@@ -131,15 +107,14 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });
 "
 `;
 
-exports[`task generator generates correct files with TypeScript for defaults 4`] = `
+exports[`task generator generates correct files with TypeScript for defaults 3`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
 import { getPluginName, RegisterTaskArgs } from '@checkup/core';
@@ -155,7 +130,6 @@ export default hook;
 
 exports[`task generator generates correct files with TypeScript for defaults in custom path 1`] = `
 "import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
-import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
   meta: TaskMetaData = {
@@ -167,27 +141,16 @@ export default class MyFooTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: MyFooTaskResult = new MyFooTaskResult(this.meta);
-
-    return result;
+    return this.toJson([]);
   }
 }
 "
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults in custom path 2`] = `
-"import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
-
-export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-}
-"
-`;
-
-exports[`task generator generates correct files with TypeScript for defaults in custom path 3`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
-import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
@@ -208,15 +171,14 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });
 "
 `;
 
-exports[`task generator generates correct files with TypeScript for defaults in custom path 4`] = `
+exports[`task generator generates correct files with TypeScript for defaults in custom path 3`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
 import { getPluginName, RegisterTaskArgs } from '@checkup/core';
@@ -232,7 +194,6 @@ export default hook;
 
 exports[`task generator generates correct files with category 1`] = `
 "import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
-import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
   meta: TaskMetaData = {
@@ -244,27 +205,16 @@ export default class MyFooTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: MyFooTaskResult = new MyFooTaskResult(this.meta);
-
-    return result;
+    return this.toJson([]);
   }
 }
 "
 `;
 
 exports[`task generator generates correct files with category 2`] = `
-"import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
-
-export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-}
-"
-`;
-
-exports[`task generator generates correct files with category 3`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
-import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
@@ -285,15 +235,14 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });
 "
 `;
 
-exports[`task generator generates correct files with category 4`] = `
+exports[`task generator generates correct files with category 3`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
 import { getPluginName, RegisterTaskArgs } from '@checkup/core';
@@ -309,7 +258,6 @@ export default hook;
 
 exports[`task generator generates correct files with group 1`] = `
 "import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
-import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
   meta: TaskMetaData = {
@@ -322,27 +270,16 @@ export default class MyFooTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: MyFooTaskResult = new MyFooTaskResult(this.meta);
-
-    return result;
+    return this.toJson([]);
   }
 }
 "
 `;
 
 exports[`task generator generates correct files with group 2`] = `
-"import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
-
-export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-}
-"
-`;
-
-exports[`task generator generates correct files with group 3`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
-import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
@@ -363,15 +300,14 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });
 "
 `;
 
-exports[`task generator generates correct files with group 4`] = `
+exports[`task generator generates correct files with group 3`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
 import { getPluginName, RegisterTaskArgs } from '@checkup/core';
@@ -387,7 +323,6 @@ export default hook;
 
 exports[`task generator generates correct files with type 1`] = `
 "import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
-import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
   meta: TaskMetaData = {
@@ -399,27 +334,16 @@ export default class MyFooTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: MyFooTaskResult = new MyFooTaskResult(this.meta);
-
-    return result;
+    return this.toJson([]);
   }
 }
 "
 `;
 
 exports[`task generator generates correct files with type 2`] = `
-"import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
-
-export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-}
-"
-`;
-
-exports[`task generator generates correct files with type 3`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
-import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
@@ -440,15 +364,14 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });
 "
 `;
 
-exports[`task generator generates correct files with type 4`] = `
+exports[`task generator generates correct files with type 3`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
 import { getPluginName, RegisterTaskArgs } from '@checkup/core';
@@ -464,7 +387,6 @@ export default hook;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 1`] = `
 "import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
-import MyFooTaskResult from '../results/my-foo-task-result';
 
 export default class MyFooTask extends BaseTask implements Task {
   meta: TaskMetaData = {
@@ -476,27 +398,16 @@ export default class MyFooTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: MyFooTaskResult = new MyFooTaskResult(this.meta);
-
-    return result;
+    return this.toJson([]);
   }
 }
 "
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 2`] = `
-"import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
-
-export default class MyFooTaskResult extends BaseTaskResult implements TaskResult {
-}
-"
-`;
-
-exports[`task generator generates multiple correct files with TypeScript for defaults 3`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
-import MyFooTaskResult from '../src/results/my-foo-task-result';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
@@ -517,17 +428,15 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyFooTaskResult>result;
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });
 "
 `;
 
-exports[`task generator generates multiple correct files with TypeScript for defaults 4`] = `
+exports[`task generator generates multiple correct files with TypeScript for defaults 3`] = `
 "import { BaseTask, Task, TaskMetaData, TaskResult } from '@checkup/core';
-import MyBarTaskResult from '../results/my-bar-task-result';
 
 export default class MyBarTask extends BaseTask implements Task {
   meta: TaskMetaData = {
@@ -539,27 +448,16 @@ export default class MyBarTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: MyBarTaskResult = new MyBarTaskResult(this.meta);
-
-    return result;
+    return this.toJson([]);
   }
 }
 "
 `;
 
-exports[`task generator generates multiple correct files with TypeScript for defaults 5`] = `
-"import { BaseTaskResult, TaskResult, ui } from '@checkup/core';
-
-export default class MyBarTaskResult extends BaseTaskResult implements TaskResult {
-}
-"
-`;
-
-exports[`task generator generates multiple correct files with TypeScript for defaults 6`] = `
+exports[`task generator generates multiple correct files with TypeScript for defaults 4`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyBarTask from '../src/tasks/my-bar-task';
-import MyBarTaskResult from '../src/results/my-bar-task-result';
 
 describe('my-bar-task', () => {
   let project: CheckupProject;
@@ -580,15 +478,14 @@ describe('my-bar-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyBarTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
-    const taskResult = <MyBarTaskResult>result;
 
-    expect(taskResult.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 });
 "
 `;
 
-exports[`task generator generates multiple correct files with TypeScript for defaults 7`] = `
+exports[`task generator generates multiple correct files with TypeScript for defaults 5`] = `
 "import { Hook } from '@oclif/config';
 import MyBarTask from '../tasks/my-bar-task';
 import MyFooTask from '../tasks/my-foo-task';

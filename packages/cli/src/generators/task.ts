@@ -12,7 +12,6 @@ import { PackageJson } from 'type-fest';
 import { AstTransformer, CheckupError } from '@checkup/core';
 
 interface TaskOptions extends Options {
-  taskResultClass: string;
   taskClass: string;
   pascalCaseName: string;
   typescript: boolean;
@@ -81,7 +80,6 @@ export default class TaskGenerator extends BaseGenerator {
 
     this.options.pascalCaseName = _.upperFirst(_.camelCase(this.options.name));
     this.options.taskClass = `${this.options.pascalCaseName}Task`;
-    this.options.taskResultClass = `${this.options.taskClass}Result`;
     this.options.typescript = this.answers.typescript;
     this.options.category = this.answers.category;
     this.options.group = this.answers.group;
@@ -95,12 +93,6 @@ export default class TaskGenerator extends BaseGenerator {
     this.fs.copyTpl(
       this.templatePath(`src/tasks/task.${this._ext}.ejs`),
       this.destinationPath(`src/tasks/${this.options.name}-task.${this._ext}`),
-      options
-    );
-
-    this.fs.copyTpl(
-      this.templatePath(`src/results/task-result.${this._ext}.ejs`),
-      this.destinationPath(`src/results/${this.options.name}-task-result.${this._ext}`),
       options
     );
 

@@ -11,7 +11,6 @@ function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
 
   expect(root.file(`src/tasks/${name}-task.${extension}`).contents).toMatchSnapshot();
-  expect(root.file(`src/results/${name}-task-result.${extension}`).contents).toMatchSnapshot();
   expect(root.file(`__tests__/${name}-task-test.${extension}`).contents).toMatchSnapshot();
 }
 

@@ -1,12 +1,18 @@
-import { TaskResult, ActionsEvaluator, MultiValueResult, toPercent } from '@checkup/core';
+import {
+  ActionsEvaluator,
+  MultiValueResult,
+  toPercent,
+  TaskResult,
+  TaskConfig,
+} from '@checkup/core';
 
-export function evaluateActions(taskResult: TaskResult) {
+export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
-  let totalSkippedTests = taskResult.data.reduce(
+  let totalSkippedTests = taskResult.result.reduce(
     (total: number, result: MultiValueResult) => total + result.dataSummary.values.skip,
     0
   );
-  let totalTests = taskResult.data.reduce(
+  let totalTests = taskResult.result.reduce(
     (total: number, result: MultiValueResult) => total + result.dataSummary.total,
     0
   );
@@ -21,5 +27,5 @@ export function evaluateActions(taskResult: TaskResult) {
     input: totalSkippedTests / totalTests,
   });
 
-  return actionsEvaluator.evaluate(taskResult.config);
+  return actionsEvaluator.evaluate(taskConfig);
 }

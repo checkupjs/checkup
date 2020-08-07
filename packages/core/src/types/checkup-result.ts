@@ -9,9 +9,9 @@ export type DataSummary = {
   total: number;
 };
 
-interface TaskResult {
+export interface TaskResult {
   info: TaskMetaData;
-  results: Result[];
+  result: Record<string, any>;
 }
 
 interface BaseResult {

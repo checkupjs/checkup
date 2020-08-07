@@ -1,5 +1,4 @@
 import {
-  TaskResult,
   Task,
   TaskMetaData,
   BaseTask,
@@ -7,8 +6,8 @@ import {
   buildSummaryResult,
   normalizePath,
   AstTraverser,
+  TaskResult,
 } from '@checkup/core';
-import EmberTemplateLintDisableTaskResult from '../results/ember-template-lint-disable-task-result';
 
 const fs = require('fs');
 const { parse, traverse } = require('ember-template-recast');
@@ -26,17 +25,10 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
   };
 
   async run(): Promise<TaskResult> {
-    let result: EmberTemplateLintDisableTaskResult = new EmberTemplateLintDisableTaskResult(
-      this.meta,
-      this.config
-    );
-
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.cliFlags.cwd);
 
-    result.process([buildSummaryResult('ember-template-lint-disable', templateLintDisables)]);
-
-    return result;
+    return this.toJson([buildSummaryResult('ember-template-lint-disable', templateLintDisables)]);
   }
 }
 

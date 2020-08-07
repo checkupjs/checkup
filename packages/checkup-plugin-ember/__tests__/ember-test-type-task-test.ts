@@ -1,4 +1,4 @@
-import { EmberProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 
 import EmberTestTypesTask from '../src/tasks/ember-test-types-task';
@@ -96,9 +96,7 @@ describe('ember-test-types-task', () => {
       getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    result.toJson();
-
-    expect(stdout()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 
   it('returns all the test types found in the app and outputs to json', async () => {
@@ -114,7 +112,7 @@ describe('ember-test-types-task', () => {
       getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    expect(result.toJson()).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 
   it('returns action item if more than 1% of your tests are skipped and if your ratio of application tests is not matching threshold', async () => {
@@ -125,7 +123,7 @@ describe('ember-test-types-task', () => {
 
     project.writeSync();
 
-    const result = await new EmberTestTypesTask(
+    const task = new EmberTestTypesTask(
       pluginName,
       getTaskContext({
         cliFlags: { cwd: project.baseDir },
@@ -148,9 +146,10 @@ describe('ember-test-types-task', () => {
           },
         },
       })
-    ).run();
+    );
+    const result = await task.run();
 
-    let actions = evaluateActions(result);
+    let actions = evaluateActions(result, task.config);
 
     expect(actions).toHaveLength(1);
     expect(actions).toMatchInlineSnapshot(`

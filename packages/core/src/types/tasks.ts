@@ -1,6 +1,7 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 import { JsonObject, PackageJson } from 'type-fest';
 
+import { TaskResult } from './checkup-result';
 import { CheckupConfig, TaskConfig } from './config';
 import { FilePathArray } from '../utils/file-path-array';
 import { RunFlags } from './cli';
@@ -14,7 +15,7 @@ export type RegisterActionsArgs = {
   registerActions: (taskName: TaskName, evaluate: ActionsEvaluationResult) => void;
 };
 
-export type ActionsEvaluationResult = (taskResult: TaskResult) => Action[];
+export type ActionsEvaluationResult = (taskResult: TaskResult, taskConfig: TaskConfig) => Action[];
 
 interface TaskList {
   registerTask(task: Task): void;
@@ -29,10 +30,12 @@ export type TaskClassification = {
 
 export interface Task {
   meta: TaskMetaData;
+  config: TaskConfig;
   readonly fullyQualifiedTaskName: string;
   readonly enabled: boolean;
 
   run: () => Promise<TaskResult>;
+  toJson: <T>(data: T) => TaskResult;
 }
 
 export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
@@ -45,20 +48,6 @@ export interface Action {
 
   items: ActionItem[];
   input: number;
-}
-
-export interface TaskResult {
-  meta: TaskMetaData;
-  config: TaskConfig;
-  data: Record<string, any>;
-
-  process(data: Record<string, any>): void;
-  toJson: () => JsonMetaTaskResult | JsonTaskResult;
-}
-
-export interface NewTaskResult {
-  info: TaskMetaData | TaskIdentifier;
-  result: Record<string, any>;
 }
 
 export type TaskError = {

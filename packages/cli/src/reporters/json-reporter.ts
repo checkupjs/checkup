@@ -11,7 +11,7 @@ export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${TODAY}`;
 export function report(args: ReporterArguments) {
   let resultJson = {
     info: Object.assign({}, ...args.info.map((result) => result.toJson())),
-    results: args.results.map((result) => result.toJson()),
+    results: args.results,
     errors: args.errors,
     actions: args.actions,
   };

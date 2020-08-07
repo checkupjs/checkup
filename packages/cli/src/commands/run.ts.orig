@@ -5,6 +5,7 @@ import {
   RunFlags,
   TaskContext,
   TaskError,
+  TaskResult,
   getConfigPath,
   getRegisteredParsers,
   loadPlugins,
@@ -13,10 +14,12 @@ import {
   registerActions,
   ui,
   getFilePaths,
+<<<<<<< HEAD
+  Task,
+=======
   Action,
   getRegisteredActions,
-  Task,
-  TaskResult,
+>>>>>>> refactor: Adding actions registration system to decouple from task results
 } from '@checkup/core';
 
 import { BaseCommand } from '../base-command';
@@ -170,11 +173,10 @@ export default class RunCommand extends BaseCommand {
     let evaluators = getRegisteredActions();
 
     for (let [taskName, evaluator] of evaluators) {
-      let task = this.pluginTasks.findTask(taskName);
-      let taskResult = this.pluginTaskResults.find((result) => taskName === result.info.taskName);
+      let taskResult = this.pluginTaskResults.find((result) => taskName === result.meta.taskName);
 
-      if (task && taskResult) {
-        this.actions.push(...evaluator(taskResult, task.config));
+      if (taskResult) {
+        this.actions.push(...evaluator(taskResult));
       }
     }
   }

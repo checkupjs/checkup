@@ -3,12 +3,11 @@ import {
   BaseTask,
   Task,
   TaskMetaData,
-  TaskResult,
   buildLookupValueResult,
   TaskContext,
+  TaskResult,
 } from '@checkup/core';
 
-import LinesOfCodeTaskResult from '../results/lines-of-code-task-result';
 import { sortBy } from 'lodash';
 
 const fs = require('fs');
@@ -39,11 +38,7 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
       'lines'
     );
 
-    let result = new LinesOfCodeTaskResult(this.meta, this.config);
-
-    result.process([lookupValueResult]);
-
-    return result;
+    return this.toJson([lookupValueResult]);
   }
 }
 

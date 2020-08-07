@@ -1,11 +1,11 @@
 import {
-  TaskResult,
   TaskError,
   Action,
   ui,
   SummaryResult,
   MultiValueResult,
   DataSummary,
+  TaskResult,
 } from '@checkup/core';
 import { MetaTaskResult, ReporterArguments } from '../types';
 import { startCase } from 'lodash';
@@ -13,8 +13,8 @@ import ProjectMetaTaskResult from '../results/project-meta-task-result';
 
 let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
   'lines-of-code': function (taskResult: TaskResult) {
-    let { dataSummary } = taskResult.data[0];
-    ui.section(taskResult.meta.friendlyTaskName, () => {
+    let { dataSummary } = taskResult.result[0];
+    ui.section(taskResult.info.friendlyTaskName, () => {
       ui.sectionedBar(
         Object.entries<number>(dataSummary.values).map(([key, count]) => {
           return { title: key, count };
@@ -25,13 +25,13 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     });
   },
   'ember-dependencies': function (taskResult: TaskResult) {
-    if (!taskResult.data.some((dependency: SummaryResult) => dependency.count > 0)) {
+    if (!taskResult.result.some((dependency: SummaryResult) => dependency.count > 0)) {
       return;
     }
 
-    ui.section(taskResult.meta.friendlyTaskName, () => {
+    ui.section(taskResult.info.friendlyTaskName, () => {
       ui.table(
-        taskResult.data.map((dependencyGroup: SummaryResult) => {
+        taskResult.result.map((dependencyGroup: SummaryResult) => {
           return {
             key: dependencyGroup.key,
             count: dependencyGroup.count,
@@ -45,23 +45,23 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     });
   },
   'ember-in-repo-addons-engines': function (taskResult: TaskResult) {
-    if (taskResult.data.every((summaryItem: SummaryResult) => summaryItem.count === 0)) {
+    if (taskResult.result.every((summaryItem: SummaryResult) => summaryItem.count === 0)) {
       return;
     }
 
-    ui.section(taskResult.meta.friendlyTaskName, () => {
-      taskResult.data.forEach((summaryItem: SummaryResult) => {
+    ui.section(taskResult.info.friendlyTaskName, () => {
+      taskResult.result.forEach((summaryItem: SummaryResult) => {
         ui.log(`${summaryItem.key}: ${summaryItem.count}`);
       });
     });
   },
   'ember-template-lint-disables': function (taskResult: TaskResult) {
-    ui.log(`template-lint-disable Usages Found: ${taskResult.data[0].count}`);
+    ui.log(`template-lint-disable Usages Found: ${taskResult.result[0].count}`);
     ui.blankLine();
   },
   'ember-test-types': function (taskResult: TaskResult) {
-    ui.section(taskResult.meta.friendlyTaskName, () => {
-      taskResult.data.forEach((testTypeInfo: MultiValueResult) => {
+    ui.section(taskResult.info.friendlyTaskName, () => {
+      taskResult.result.forEach((testTypeInfo: MultiValueResult) => {
         ui.subHeader(testTypeInfo.key);
         ui.table(
           Object.entries(testTypeInfo.dataSummary.values).map(([key, count]) => {
@@ -77,13 +77,13 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
 
       ui.subHeader('tests by type');
       ui.sectionedBar(
-        taskResult.data.map((testType: MultiValueResult) => {
+        taskResult.result.map((testType: MultiValueResult) => {
           return {
             title: testType.key,
             count: testType.dataSummary.total,
           };
         }),
-        taskResult.data.reduce(
+        taskResult.result.reduce(
           (total: number, result: MultiValueResult) => total + result.dataSummary.total,
           0
         ),
@@ -92,9 +92,9 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     });
   },
   'ember-types': function (taskResult: TaskResult) {
-    ui.section(taskResult.meta.friendlyTaskName, () => {
+    ui.section(taskResult.info.friendlyTaskName, () => {
       ui.table(
-        taskResult.data.map((type: SummaryResult) => {
+        taskResult.result.map((type: SummaryResult) => {
           return {
             key: type.key,
             count: type.count,
@@ -108,9 +108,9 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     });
   },
   'ember-octane-migration-status': function (taskResult: TaskResult) {
-    ui.section(taskResult.meta.friendlyTaskName, () => {
+    ui.section(taskResult.info.friendlyTaskName, () => {
       ui.log(
-        `${ui.emphasize('Octane Violations')}: ${taskResult.data.reduce(
+        `${ui.emphasize('Octane Violations')}: ${taskResult.result.reduce(
           (violationsCount: number, result: MultiValueResult) => {
             return violationsCount + result.dataSummary.total;
           },
@@ -118,32 +118,34 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
         )}`
       );
       ui.blankLine();
-      taskResult.data.forEach(({ key, dataSummary }: { key: string; dataSummary: DataSummary }) => {
-        ui.subHeader(key);
-        ui.valuesList(
-          Object.entries<number>(dataSummary.values).map(([key, total]) => {
-            return { title: key, count: total };
-          }),
-          'violations'
-        );
-        ui.blankLine();
-      });
+      taskResult.result.forEach(
+        ({ key, dataSummary }: { key: string; dataSummary: DataSummary }) => {
+          ui.subHeader(key);
+          ui.valuesList(
+            Object.entries<number>(dataSummary.values).map(([key, total]) => {
+              return { title: key, count: total };
+            }),
+            'violations'
+          );
+          ui.blankLine();
+        }
+      );
     });
   },
   'eslint-disables': function (taskResult: TaskResult) {
-    ui.log(`eslint-disable Usages Found: ${taskResult.data[0].count}`);
+    ui.log(`eslint-disable Usages Found: ${taskResult.result[0].count}`);
   },
   'eslint-summary': function (taskResult: TaskResult) {
-    let errors = taskResult.data.find(
+    let errors = taskResult.result.find(
       (result: MultiValueResult) => result.key === 'eslint-errors'
     )!;
-    let warnings = taskResult.data.find(
+    let warnings = taskResult.result.find(
       (result: MultiValueResult) => result.key === 'eslint-warnings'
     )!;
     let errorsCount = errors.dataSummary.total;
     let warningsCount = warnings.dataSummary.total;
 
-    ui.section(taskResult.meta.friendlyTaskName, () => {
+    ui.section(taskResult.info.friendlyTaskName, () => {
       if (errorsCount) {
         ui.blankLine();
         ui.subHeader(`Errors (${errorsCount})`);
@@ -166,9 +168,9 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     });
   },
   'outdated-dependencies': function (taskResult: TaskResult) {
-    let { values: dependenciesCount, total: totalDependencies } = taskResult.data[0].dataSummary;
+    let { values: dependenciesCount, total: totalDependencies } = taskResult.result[0].dataSummary;
 
-    ui.section(taskResult.meta.friendlyTaskName, () => {
+    ui.section(taskResult.info.friendlyTaskName, () => {
       ui.sectionedBar(
         [
           { title: 'major', count: dependenciesCount.major },
@@ -180,11 +182,11 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
     });
   },
   foo: function (taskResult: TaskResult) {
-    ui.categoryHeader(taskResult.meta.friendlyTaskName);
+    ui.categoryHeader(taskResult.info.friendlyTaskName);
   },
   'file-count': function (taskResult: TaskResult) {
-    ui.section(taskResult.meta.friendlyTaskName, () => {
-      ui.log(taskResult.data.result);
+    ui.section(taskResult.info.friendlyTaskName, () => {
+      ui.log(taskResult.result.result);
     });
   },
 };
@@ -200,14 +202,14 @@ function renderPluginTaskResults(pluginTaskResults: TaskResult[]): void {
   let currentCategory = '';
 
   pluginTaskResults.forEach((taskResult) => {
-    let taskCategory = taskResult.meta.taskClassification.category;
+    let taskCategory = taskResult.info.taskClassification.category;
 
     if (taskCategory !== currentCategory) {
       ui.categoryHeader(startCase(taskCategory));
       currentCategory = taskCategory;
     }
 
-    outputMap[taskResult.meta.taskName](taskResult);
+    outputMap[taskResult.info.taskName](taskResult);
   });
   ui.blankLine();
 }

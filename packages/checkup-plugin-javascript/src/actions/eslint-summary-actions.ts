@@ -1,10 +1,12 @@
-import { TaskResult, ActionsEvaluator, MultiValueResult } from '@checkup/core';
+import { ActionsEvaluator, MultiValueResult, TaskResult, TaskConfig } from '@checkup/core';
 
-export function evaluateActions(taskResult: TaskResult) {
+export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
-  let errors = taskResult.data.find((result: MultiValueResult) => result.key === 'eslint-errors')!;
-  let warnings = taskResult.data.find(
+  let errors = taskResult.result.find(
+    (result: MultiValueResult) => result.key === 'eslint-errors'
+  )!;
+  let warnings = taskResult.result.find(
     (result: MultiValueResult) => result.key === 'eslint-warnings'
   )!;
 
@@ -29,5 +31,5 @@ export function evaluateActions(taskResult: TaskResult) {
     input: warningCount,
   });
 
-  return actionsEvaluator.evaluate(taskResult.config);
+  return actionsEvaluator.evaluate(taskConfig);
 }

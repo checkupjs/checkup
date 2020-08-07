@@ -1,7 +1,6 @@
-import { BaseTask, Task, TaskResult, SummaryResult } from '@checkup/core';
+import { BaseTask, Task, SummaryResult, TaskResult } from '@checkup/core';
 import { buildSummaryResult } from '@checkup/core';
 
-import EmberDependenciesTaskResult from '../results/ember-dependencies-task-result';
 import { PackageJson } from 'type-fest';
 
 type Dependency = {
@@ -20,10 +19,6 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: EmberDependenciesTaskResult = new EmberDependenciesTaskResult(
-      this.meta,
-      this.config
-    );
     let packageJson = this.context.pkg;
 
     let coreLibraries: SummaryResult = buildSummaryResult('ember core libraries', [
@@ -48,15 +43,13 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
       findDependencies(packageJson.devDependencies, emberCliAddonFilter)
     );
 
-    result.process([
+    return this.toJson([
       coreLibraries,
       emberDependencies,
       emberDevDependencies,
       emberCliDependencies,
       emberCliDevDependencies,
     ]);
-
-    return result;
   }
 }
 

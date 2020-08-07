@@ -17,11 +17,11 @@ export function taskResultComparator<T extends TaskResult>(first: T, second: T) 
   let {
     category: firstC,
     group: firstGroup = '',
-  }: TaskClassification = first.meta.taskClassification;
+  }: TaskClassification = first.info.taskClassification;
   let {
     category: secondC,
     group: secondGroup = '',
-  }: TaskClassification = second.meta.taskClassification;
+  }: TaskClassification = second.info.taskClassification;
 
   let firstCategory = getCategorySort(firstC);
   let secondCategory = getCategorySort(secondC);

@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 
-import { TaskContext, TaskIdentifier, TaskMetaData } from './types/tasks';
+import { TaskContext, TaskMetaData } from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
@@ -8,7 +8,7 @@ import { parseConfigTuple } from './config';
 
 export default abstract class BaseTask {
   context: TaskContext;
-  meta!: TaskMetaData | TaskIdentifier;
+  meta!: TaskMetaData;
   debug: debug.Debugger;
 
   _pluginName: string;
@@ -36,6 +36,13 @@ export default abstract class BaseTask {
 
   get fullyQualifiedTaskName() {
     return `${this._pluginName}/${this.meta.taskName}`;
+  }
+
+  toJson<T>(data: T) {
+    return {
+      info: this.meta,
+      result: data,
+    };
   }
 
   private _parseConfig() {

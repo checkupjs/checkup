@@ -1,5 +1,4 @@
 import { BaseTask } from '@checkup/core';
-import <%- taskResultClass %> from '../results/<%- name %>-task-result';
 
 export default class <%- taskClass %> extends BaseTask {
   meta = {
@@ -14,8 +13,6 @@ export default class <%- taskClass %> extends BaseTask {
   };
 
   async run() {
-    let result = new <%- taskResultClass %>(this.meta);
-
-    return result;
+    return this.toJson([]);
   }
 }

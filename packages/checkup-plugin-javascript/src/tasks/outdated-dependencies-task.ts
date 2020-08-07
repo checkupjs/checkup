@@ -1,8 +1,6 @@
 import * as npmCheck from 'npm-check';
 
-import { BaseTask, Task, TaskMetaData, TaskResult, buildMultiValueResult } from '@checkup/core';
-
-import OutdatedDependenciesTaskResult from '../results/outdated-dependencies-task-result';
+import { BaseTask, Task, TaskMetaData, buildMultiValueResult, TaskResult } from '@checkup/core';
 
 export type Dependency = {
   moduleName: string;
@@ -69,11 +67,6 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
   };
 
   async run(): Promise<TaskResult> {
-    let result: OutdatedDependenciesTaskResult = new OutdatedDependenciesTaskResult(
-      this.meta,
-      this.config
-    );
-
     let outdatedDependencies = await getDependencies(this.context.cliFlags.cwd);
 
     let multiValue = buildMultiValueResult('dependencies', outdatedDependencies, 'semverBump', [
@@ -82,8 +75,6 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
       'patch',
     ]);
 
-    result.process([multiValue]);
-
-    return result;
+    return this.toJson([multiValue]);
   }
 }

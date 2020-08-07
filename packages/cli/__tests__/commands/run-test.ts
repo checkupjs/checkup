@@ -27,7 +27,7 @@ class FooTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta, this.config, 'foo is being run');
+    return getMockTaskResult(this.meta);
   }
 }
 
@@ -44,7 +44,7 @@ class FileCountTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    return getMockTaskResult(this.meta, this.config, this.context.paths.length);
+    return getMockTaskResult(this.meta);
   }
 }
 
