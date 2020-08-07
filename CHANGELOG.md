@@ -1,3 +1,13 @@
+## v0.3.1 (2020-08-07)
+
+#### :rocket: Enhancement
+* `cli`
+  * [#615](https://github.com/checkupjs/checkup/pull/615) task: Adding v8-compile-cache to speed up CLI perf ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.3.0 (2020-08-07)
 
 #### :boom: Breaking Change
