@@ -74,7 +74,7 @@ export default class RunCommand extends BaseCommand {
       char: 'd',
       description: 'The path referring to the root directory that Checkup will run in',
     }),
-    tasks: flags.string({
+    task: flags.string({
       char: 't',
       description:
         'Runs a subset of available tasks specified by the fully qualified task name in the format pluginName/taskName',
@@ -143,8 +143,8 @@ export default class RunCommand extends BaseCommand {
   private async runTasks() {
     [this.metaTaskResults, this.metaTaskErrors] = await this.defaultTasks.runTasks();
 
-    if (this.runFlags.tasks !== undefined) {
-      let { tasksFound, tasksNotFound } = this.pluginTasks.findTasks(...this.runFlags.tasks);
+    if (this.runFlags.task !== undefined) {
+      let { tasksFound, tasksNotFound } = this.pluginTasks.findTasks(...this.runFlags.task);
 
       if (tasksFound.length > 0) {
         [this.pluginTaskResults, this.pluginTaskErrors] = await this.pluginTasks.runTasks(
