@@ -50,21 +50,42 @@ Checking up on your project...
 
 A CLI that provides health check information about your project
 
-```
+```shell
+A health checkup for your project
+
 USAGE
-  $ checkup PATH
+  $ checkup [run] PATHS
 
 ARGUMENTS
-  PATHS    The paths that checkup will operate on. If no paths are provided, checkup will run on the entire directory beginning at --cwd
+  PATHS  The paths that checkup will operate on. If no paths are provided, checkup
+         will run on the entire directory beginning at --cwd.
 
 OPTIONS
-  -h, --help                               show CLI help
-  -v, --version                            show CLI version
-  -c, --config=config                      Use this configuration, overriding .checkuprc.* if present
-  -d, --cwd=cwd  [default: .]              [default: .] The path referring to the root directory that Checkup will run in
-  -t, --task=task
-  -f, --format=stdout|json                 [default: stdout]
-  -o, --outputFile=outputFile              [default: .]
+  -c, --config=config              Use this configuration, overriding .checkuprc.*
+                                   if present.
+
+  -d, --cwd=cwd                    [default: /Users/scalvert/Workspace/travis-web]
+                                   The path referring to the root directory that
+                                   Checkup will run in
+
+  -e, --excludePaths=excludePaths  Paths to exclude from checkup. If paths are
+                                   provided via command line and via checkup
+                                   config, command line paths will be used.
+
+  -f, --format=stdout|json         [default: stdout] The output format, one of
+                                   stdout, json
+
+  -h, --help                       show CLI help
+
+  -l, --listTasks                  List all available tasks to run.
+
+  -o, --outputFile=outputFile      Specify file to write report to.
+
+  -t, --task=task                  Runs specific task specified by the fully
+                                   qualified task name in the format
+                                   pluginName/taskName. Can be used multiple times.
+
+  -v, --version                    show CLI version
 ```
 
 _See code: [src/commands/run.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/run.ts)_

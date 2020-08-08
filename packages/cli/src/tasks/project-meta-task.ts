@@ -41,7 +41,7 @@ export default class ProjectMetaTask implements MetaTask {
     let package_ = this.context.pkg;
     let repositoryInfo = await getRepositoryInfo(this.context.cliFlags.cwd);
 
-    let { config, tasks, format, outputFile, excludePaths } = this.context.cliFlags;
+    let { config, task, format, outputFile, excludePaths } = this.context.cliFlags;
 
     result.data = {
       project: {
@@ -57,7 +57,7 @@ export default class ProjectMetaTask implements MetaTask {
         schema: 1,
         flags: {
           config,
-          tasks,
+          task,
           format,
           outputFile,
           excludePaths,

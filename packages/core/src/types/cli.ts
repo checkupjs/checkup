@@ -3,7 +3,7 @@ export type RunFlags = {
   help: void;
   config: string | undefined;
   cwd: string;
-  tasks: string[] | undefined;
+  task: string[] | undefined;
   listTasks: boolean;
   format: string;
   outputFile: string;

@@ -180,7 +180,7 @@ describe('TaskList', () => {
     taskList.registerTask(new InsightsTaskLow(getTaskContext()));
 
     expect(
-      taskList.findTasks(...['insights-task-high', 'insights-task-low']).tasksFound
+      taskList.findTasks('fake/insights-task-high', 'fake/insights-task-low').tasksFound
     ).toHaveLength(2);
   });
 
@@ -188,9 +188,9 @@ describe('TaskList', () => {
     let taskList = new TaskList();
 
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
-    let tasks = taskList.findTasks(...['insights-task-high', 'random']);
+    let tasks = taskList.findTasks('fake/insights-task-high', 'fake/random');
     expect(tasks.tasksFound).toHaveLength(1);
-    expect(tasks.tasksNotFound).toEqual(['random']);
+    expect(tasks.tasksNotFound).toContain('fake/random');
   });
 
   it('runTask will run a task by taskName', async () => {

@@ -41,7 +41,7 @@ export function _resetTasksForTesting() {
 }
 
 export default class RunCommand extends BaseCommand {
-  static description = 'Provides health check information about your project';
+  static description = 'A health checkup for your project';
 
   // required for variable length command line arguments
   static strict = false;
@@ -52,7 +52,7 @@ export default class RunCommand extends BaseCommand {
     {
       name: 'paths',
       description:
-        'The paths that checkup will operate on. If no paths are provided, checkup will run on the entire directory beginning at --cwd',
+        'The paths that checkup will operate on. If no paths are provided, checkup will run on the entire directory beginning at --cwd.',
     },
   ];
 
@@ -67,17 +67,17 @@ export default class RunCommand extends BaseCommand {
     }),
     config: flags.string({
       char: 'c',
-      description: 'Use this configuration, overriding .checkuprc.* if present',
+      description: 'Use this configuration, overriding .checkuprc.* if present.',
     }),
     cwd: flags.string({
       default: () => process.cwd(),
       char: 'd',
       description: 'The path referring to the root directory that Checkup will run in',
     }),
-    tasks: flags.string({
+    task: flags.string({
       char: 't',
       description:
-        'Runs a subset of available tasks specified by the fully qualified task name in the format pluginName/taskName',
+        'Runs specific task specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
       multiple: true,
     }),
     format: flags.string({
@@ -89,11 +89,11 @@ export default class RunCommand extends BaseCommand {
     outputFile: flags.string({
       char: 'o',
       default: '',
-      description: 'Specify file to write report to',
+      description: 'Specify file to write report to.',
     }),
     listTasks: flags.boolean({
       char: 'l',
-      description: 'List all available tasks to run',
+      description: 'List all available tasks to run.',
     }),
   };
 
@@ -143,8 +143,8 @@ export default class RunCommand extends BaseCommand {
   private async runTasks() {
     [this.metaTaskResults, this.metaTaskErrors] = await this.defaultTasks.runTasks();
 
-    if (this.runFlags.tasks !== undefined) {
-      let { tasksFound, tasksNotFound } = this.pluginTasks.findTasks(...this.runFlags.tasks);
+    if (this.runFlags.task !== undefined) {
+      let { tasksFound, tasksNotFound } = this.pluginTasks.findTasks(...this.runFlags.task);
 
       if (tasksFound.length > 0) {
         [this.pluginTaskResults, this.pluginTaskErrors] = await this.pluginTasks.runTasks(
@@ -158,7 +158,7 @@ export default class RunCommand extends BaseCommand {
             `Cannot find the ${tasksNotFound.join(',')} task${
               tasksNotFound.length > 1 ? 's' : '' // pluralize task if more than one task is not found
             }.`,
-            "Make sure you've provided the correct task name."
+            'Run `checkup --listTasks` to see available tasks'
           )
         );
       }

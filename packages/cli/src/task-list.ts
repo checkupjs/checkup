@@ -86,7 +86,7 @@ export default class TaskList {
       let taskFound = false;
 
       for (let availableTask of availableTasks) {
-        if (availableTask.taskName === taskName) {
+        if (availableTask.fullyQualifiedTaskName === taskName) {
           taskFound = true;
           tasksFound.push(availableTask);
           break;

@@ -110,7 +110,7 @@ describe('@checkup/cli', () => {
     it('should run a single task if the tasks option is specified with a single task', async () => {
       _registerTaskForTesting(new FileCountTask(getTaskContext()));
 
-      await runCommand(['run', '--tasks', 'file-count', '--cwd', project.baseDir]);
+      await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
       _resetTasksForTesting();
@@ -120,7 +120,15 @@ describe('@checkup/cli', () => {
       _registerTaskForTesting(new FileCountTask(getTaskContext()));
       _registerTaskForTesting(new FooTask(getTaskContext()));
 
-      await runCommand(['run', '--tasks', 'file-count', 'foo', '--cwd', project.baseDir]);
+      await runCommand([
+        'run',
+        '--task',
+        'fake/file-count',
+        '--task',
+        'fake/foo',
+        '--cwd',
+        project.baseDir,
+      ]);
 
       expect(stdout()).toMatchSnapshot();
       _resetTasksForTesting();
