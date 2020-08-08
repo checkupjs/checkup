@@ -158,7 +158,7 @@ export default class RunCommand extends BaseCommand {
             `Cannot find the ${tasksNotFound.join(',')} task${
               tasksNotFound.length > 1 ? 's' : '' // pluralize task if more than one task is not found
             }.`,
-            "Make sure you've provided the correct task name."
+            'Run `checkup --listTasks` to see available tasks'
           )
         );
       }
