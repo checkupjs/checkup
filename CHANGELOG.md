@@ -1,3 +1,15 @@
+## v0.3.2 (2020-08-09)
+
+#### :bug: Bug Fix
+* `cli`, `core`, `test-helpers`
+  * [#617](https://github.com/checkupjs/checkup/pull/617) Updates --tasks flag back to --tasks, and allows multiple invocations ([@scalvert](https://github.com/scalvert))
+* `core`
+  * [#616](https://github.com/checkupjs/checkup/pull/616) Adding missing dependency ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.3.1 (2020-08-07)
 
 #### :rocket: Enhancement
