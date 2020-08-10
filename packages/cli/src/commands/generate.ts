@@ -10,7 +10,7 @@ import { createEnv } from 'yeoman-environment';
 import { flags } from '@oclif/command';
 import { CheckupError } from '@checkup/core';
 
-const VALID_GENERATORS = ['config', 'plugin', 'task'];
+const VALID_GENERATORS = ['config', 'plugin', 'task', 'actions'];
 
 export interface Options {
   type: string;
@@ -40,7 +40,7 @@ export default class GenerateCommand extends BaseCommand {
     {
       name: 'type',
       required: true,
-      description: 'type of generator to run (config, plugin, task)',
+      description: 'type of generator to run (config, plugin, task, actions)',
     },
     {
       name: 'name',

@@ -8,6 +8,10 @@ import { resolve } from 'path';
 import { existsSync, mkdirSync } from 'fs';
 
 export default class GeneratorBase extends Generator {
+  protected get _ext() {
+    return this.options.typescript ? 'ts' : 'js';
+  }
+
   constructor(args: string | string[], options: Options) {
     super(args, options);
 

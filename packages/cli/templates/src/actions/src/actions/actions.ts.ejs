@@ -1,0 +1,7 @@
+import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+
+export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}

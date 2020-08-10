@@ -11,10 +11,6 @@ const PLUGIN_DIR_PATTERN = /checkup-plugin-.*/;
 export default class PluginGenerator extends BaseGenerator {
   answers!: Answers;
 
-  private get _ext() {
-    return this.options.typescript ? 'ts' : 'js';
-  }
-
   private get _destinationPath() {
     let cwd = process.cwd();
 

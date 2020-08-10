@@ -23,10 +23,6 @@ export default class TaskGenerator extends BaseGenerator {
   packageJson!: PackageJson;
   answers!: Answers;
 
-  private get _ext() {
-    return this.options.typescript ? 'ts' : 'js';
-  }
-
   constructor(args: any, public options: TaskOptions) {
     super(args, options);
   }
