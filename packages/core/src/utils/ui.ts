@@ -61,7 +61,7 @@ export const ui = Object.assign(ux, {
   },
 
   sectionHeader(header: string) {
-    process.stdout.write(this.emphasize(`${chalk.underline(chalk.white(startCase(header)))}\n`));
+    process.stdout.write(this.emphasize(`${chalk.underline(startCase(header))}\n`));
     ui.blankLine();
   },
 
@@ -72,7 +72,7 @@ export const ui = Object.assign(ux, {
   },
 
   subHeader(header: string) {
-    process.stdout.write(`${chalk.underline(chalk.white(startCase(header)))}\n`);
+    process.stdout.write(`${chalk.underline(startCase(header))}\n`);
     ui.blankLine();
   },
 
@@ -87,7 +87,7 @@ export const ui = Object.assign(ux, {
   },
 
   emphasize(format: string) {
-    return chalk.bold(chalk.white(format));
+    return chalk.bold(format);
   },
 
   bar(title: string, complete: number, total: number, unit: string = '', maximum: number = 50) {
