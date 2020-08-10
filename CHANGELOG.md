@@ -1,3 +1,17 @@
+## v0.4.0 (2020-08-10)
+
+#### :rocket: Enhancement
+* `cli`
+  * [#628](https://github.com/checkupjs/checkup/pull/628) Adding actions generator ([@scalvert](https://github.com/scalvert))
+
+#### :recycle: Generators
+* `cli`
+  * [#628](https://github.com/checkupjs/checkup/pull/628) Adding actions generator ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.3.2 (2020-08-09)
 
 #### :bug: Bug Fix

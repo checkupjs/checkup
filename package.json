@@ -1,6 +1,6 @@
 {
   "name": "checkup",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "private": true,
   "repository": "https://github.com/checkupjs/checkup.git",
   "license": "MIT",
