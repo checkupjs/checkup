@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions generator generates correct files with JavaScript 1`] = `
+"import { ActionsEvaluator } from '@checkup/core';
+
+export function evaluateActions(taskResult, taskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}"
+`;
+
+exports[`actions generator generates correct files with JavaScript 2`] = `
+"import { Hook } from '@oclif/config';
+import { getPluginName } from '@checkup/core';
+
+const hook = async function({ context, tasks }) {
+  let pluginName = getPluginName(__dirname);
+};
+
+export default hook;
+"
+`;
+
+exports[`actions generator generates correct files with TypeScript 1`] = `
+"import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+
+export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}"
+`;
+
+exports[`actions generator generates correct files with TypeScript 2`] = `
+"import { Hook } from '@oclif/config';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+  let pluginName = getPluginName(__dirname);
+};
+
+export default hook;
+"
+`;
+
+exports[`actions generator generates correct files with TypeScript in custom path 1`] = `
+"import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+
+export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}"
+`;
+
+exports[`actions generator generates correct files with TypeScript in custom path 2`] = `
+"import { Hook } from '@oclif/config';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+  let pluginName = getPluginName(__dirname);
+};
+
+export default hook;
+"
+`;
+
+exports[`actions generator generates multiple correct files with TypeScript 1`] = `
+"import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+
+export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}"
+`;
+
+exports[`actions generator generates multiple correct files with TypeScript 2`] = `
+"import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+
+export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}"
+`;
+
+exports[`actions generator generates multiple correct files with TypeScript 3`] = `
+"import { Hook } from '@oclif/config';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+  let pluginName = getPluginName(__dirname);
+};
+
+export default hook;
+"
+`;
