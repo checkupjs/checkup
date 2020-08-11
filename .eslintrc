@@ -25,7 +25,8 @@
     "@typescript-eslint/no-unused-vars": "error",
     "no-global-assign": ["error", { "exceptions": ["console"] }],
     "unicorn/no-reduce": "off",
-    "unicorn/prevent-abbreviations": "off"
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-process-exit": "off"
   },
   "overrides": [
     {
