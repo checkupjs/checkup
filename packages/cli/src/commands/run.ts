@@ -89,7 +89,8 @@ export default class RunCommand extends BaseCommand {
     outputFile: flags.string({
       char: 'o',
       default: '',
-      description: 'Specify file to write report to.',
+      description:
+        'Specify file to write JSON output to. Requires the `--format` flag to be set to `json`',
     }),
     listTasks: flags.boolean({
       char: 'l',
@@ -110,6 +111,14 @@ export default class RunCommand extends BaseCommand {
 
   public async init() {
     let { argv, flags } = this.parse(RunCommand);
+
+    if (flags.outputFile && flags.format !== OutputFormat.json) {
+      this.error(
+        new Error(
+          'Missing --format flag. --format=json must also be provided when using --outputFile'
+        )
+      );
+    }
 
     this.runArgs = argv;
     this.runFlags = flags;
@@ -161,6 +170,7 @@ export default class RunCommand extends BaseCommand {
             'Run `checkup --listTasks` to see available tasks'
           )
         );
+        ui.action.stop();
       }
     } else {
       [this.pluginTaskResults, this.pluginTaskErrors] = await this.pluginTasks.runTasks();
