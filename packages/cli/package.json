@@ -42,7 +42,7 @@
     "@checkup/test-helpers": "0.5.0",
     "@oclif/dev-cli": "^1",
     "@types/yeoman-environment": "^2.3.3",
-    "@types/yeoman-generator": "^3.1.4",
+    "@types/yeoman-generator": "^4.11.1",
     "yeoman-test": "^3.0.0"
   },
   "engines": {
