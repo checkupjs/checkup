@@ -1,3 +1,19 @@
+## v0.5.0 (2020-08-12)
+
+#### :rocket: Enhancement
+* `cli`
+  * [#633](https://github.com/checkupjs/checkup/pull/633) Adding dependency on `--format json` for `outputFile` flag ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `core`
+  * [#629](https://github.com/checkupjs/checkup/pull/629) Remove chalk.white from terminal output ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.4.0 (2020-08-10)
 
 #### :rocket: Enhancement
