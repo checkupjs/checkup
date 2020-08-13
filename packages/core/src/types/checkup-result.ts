@@ -7,6 +7,7 @@ export type DataSummary = {
   values: Record<string, number>;
   dataKey: string;
   total: number;
+  units?: string;
 };
 
 export interface TaskResult {
@@ -45,7 +46,7 @@ export interface LookupValueResult extends BaseResult {
   };
 }
 
-type Result = SummaryResult | MultiValueResult | LookupValueResult;
+export type Result = SummaryResult | MultiValueResult | LookupValueResult;
 
 export interface CheckupResult {
   info: {

@@ -42,7 +42,7 @@ export function calculateSectionBar(
   };
 }
 
-export const ui = Object.assign(ux, {
+export const ui: typeof ux & { [key: string]: any } = Object.assign(ux, {
   blankLine() {
     process.stdout.write('\n');
   },
@@ -133,14 +133,24 @@ export const ui = Object.assign(ux, {
     );
   },
 
-  valuesList(values: { title: string; count: number }[], unit: string = '') {
+  valuesList(
+    values: { title: string; count: number }[],
+    unit: string = '',
+    color: chalk.Chalk = ui.randomColor()
+  ) {
     values.forEach((value) => {
-      ui.log(
-        `${ui.randomColor()('■')} ${value.title} (${value.count.toLocaleString()}${
-          unit ? ' ' + unit : ''
-        })`
-      );
+      ui.value(value, unit, color);
     });
+  },
+
+  value(
+    value: { title: string; count: number },
+    unit: string = '',
+    color: chalk.Chalk = ui.randomColor()
+  ) {
+    ui.log(
+      `${color('■')} ${value.title} (${value.count.toLocaleString()}${unit ? ' ' + unit : ''})`
+    );
   },
 
   randomColor() {

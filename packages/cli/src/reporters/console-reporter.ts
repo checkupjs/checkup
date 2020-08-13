@@ -12,69 +12,20 @@ import {
   MultiValueResult,
   DataSummary,
   ui,
+  Result,
 } from '@checkup/core';
-import TaskList from '../task-list';
+import { MetaTaskResult, ReporterArguments } from '../types';
+import { yellow, bold } from 'chalk';
 
 let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
-  'lines-of-code': function (taskResult: TaskResult) {
-    let { dataSummary } = taskResult.result[0];
-    ui.section(taskResult.info.taskDisplayName, () => {
-      ui.sectionedBar(
-        Object.entries<number>(dataSummary.values).map(([key, count]) => {
-          return { title: key, count };
-        }),
-        dataSummary.total,
-        'lines'
-      );
-    });
-  },
-  'ember-dependencies': function (taskResult: TaskResult) {
-    if (!taskResult.result.some((dependency: SummaryResult) => dependency.count > 0)) {
-      return;
-    }
-
-    ui.section(taskResult.info.taskDisplayName, () => {
-      ui.table(
-        taskResult.result.map((dependencyGroup: SummaryResult) => {
-          return {
-            key: dependencyGroup.key,
-            count: dependencyGroup.count,
-          };
-        }),
-        {
-          key: { header: 'Dependency Groups' },
-          count: { header: 'Count' },
-        }
-      );
-    });
-  },
-  'ember-in-repo-addons-engines': function (taskResult: TaskResult) {
-    if (taskResult.result.every((summaryItem: SummaryResult) => summaryItem.count === 0)) {
-      return;
-    }
-
-    ui.section(taskResult.info.taskDisplayName, () => {
-      taskResult.result.forEach((summaryItem: SummaryResult) => {
-        ui.log(`${summaryItem.key}: ${summaryItem.count}`);
-      });
-    });
-  },
-  'ember-template-lint-disables': function (taskResult: TaskResult) {
-    ui.log(`template-lint-disable Usages Found: ${taskResult.result[0].count}`);
-    ui.blankLine();
-  },
   'ember-test-types': function (taskResult: TaskResult) {
     ui.section(taskResult.info.taskDisplayName, () => {
       taskResult.result.forEach((testTypeInfo: MultiValueResult) => {
         ui.subHeader(testTypeInfo.key);
-        ui.table(
+        ui.valuesList(
           Object.entries(testTypeInfo.dataSummary.values).map(([key, count]) => {
-            return { [testTypeInfo.dataSummary.dataKey]: key, count };
-          }),
-          {
-            [testTypeInfo.dataSummary.dataKey]: {},
-            count: {},
-          }
+            return { title: key, count };
+          })
         );
         ui.blankLine();
       });
@@ -95,22 +46,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
       );
     });
   },
-  'ember-types': function (taskResult: TaskResult) {
-    ui.section(taskResult.info.taskDisplayName, () => {
-      ui.table(
-        taskResult.result.map((type: SummaryResult) => {
-          return {
-            key: type.key,
-            count: type.count,
-          };
-        }),
-        {
-          key: { header: 'Types' },
-          count: { header: 'Count' },
-        }
-      );
-    });
-  },
+
   'ember-octane-migration-status': function (taskResult: TaskResult) {
     ui.section(taskResult.info.taskDisplayName, () => {
       ui.log(
@@ -136,53 +72,45 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
       );
     });
   },
-  'eslint-disables': function (taskResult: TaskResult) {
-    ui.log(`eslint-disable Usages Found: ${taskResult.result[0].count}`);
-  },
   'eslint-summary': function (taskResult: TaskResult) {
-    let errors = taskResult.result.find(
-      (result: MultiValueResult) => result.key === 'eslint-errors'
-    )!;
-    let warnings = taskResult.result.find(
-      (result: MultiValueResult) => result.key === 'eslint-warnings'
-    )!;
-    let errorsCount = errors.dataSummary.total;
-    let warningsCount = warnings.dataSummary.total;
-
     ui.section(taskResult.info.taskDisplayName, () => {
-      if (errorsCount) {
+      taskResult.result.forEach((result: MultiValueResult) => {
         ui.blankLine();
-        ui.subHeader(`Errors (${errorsCount})`);
+        ui.subHeader(`${result.key} (${result.dataSummary.total})`);
         ui.valuesList(
-          Object.entries<number>(errors.dataSummary.values).map(([key, count]) => {
+          Object.entries<number>(result.dataSummary.values).map(([key, count]) => {
             return { title: key, count };
           })
         );
-      }
-
-      if (warningsCount) {
-        ui.blankLine();
-        ui.subHeader(`Warnings (${warningsCount})`);
-        ui.valuesList(
-          Object.entries<number>(warnings.dataSummary.values).map(([key, count]) => {
+      });
+    });
+  },
+  'lines-of-code': function (taskResult: TaskResult) {
+    ui.section(taskResult.info.taskDisplayName, () => {
+      taskResult.result.forEach((result: MultiValueResult) => {
+        let dataSummary = result.dataSummary;
+        ui.sectionedBar(
+          Object.entries<number>(dataSummary.values).map(([key, count]) => {
             return { title: key, count };
-          })
+          }),
+          dataSummary.total,
+          'lines'
         );
-      }
+      });
     });
   },
   'outdated-dependencies': function (taskResult: TaskResult) {
-    let { values: dependenciesCount, total: totalDependencies } = taskResult.result[0].dataSummary;
-
     ui.section(taskResult.info.taskDisplayName, () => {
-      ui.sectionedBar(
-        [
-          { title: 'major', count: dependenciesCount.major },
-          { title: 'minor', count: dependenciesCount.minor },
-          { title: 'patch', count: dependenciesCount.patch },
-        ],
-        totalDependencies
-      );
+      taskResult.result.forEach((result: MultiValueResult) => {
+        let dataSummary = result.dataSummary;
+        ui.sectionedBar(
+          Object.keys(dataSummary.values).map((value) => {
+            return { title: value, count: dataSummary.values[value] };
+          }),
+          dataSummary.total,
+          'dependencies'
+        );
+      });
     });
   },
   foo: function (taskResult: TaskResult) {
@@ -227,16 +155,17 @@ function renderTaskResults(pluginTaskResults: TaskResult[]): void {
       currentCategory = taskCategory;
     }
 
-    let reporter = getTaskReporter(taskResult.info.taskName);
+    let reporter = getTaskReporter(taskResult);
 
     reporter(taskResult);
   });
   ui.blankLine();
 }
 
-function getTaskReporter(taskName: TaskName) {
+function getTaskReporter(taskResult: TaskResult) {
+  let taskName = taskResult.info.taskName;
   let registeredTaskReporters = getRegisteredTaskReporters();
-  let reporter = outputMap[taskName] || registeredTaskReporters.get(taskName);
+  let reporter = outputMap[taskName] || registeredTaskReporters.get(taskName) || getReportComponent;
 
   if (typeof reporter === 'undefined') {
     throw new CheckupError(
@@ -248,17 +177,24 @@ function getTaskReporter(taskName: TaskName) {
   return reporter;
 }
 
-function renderActions(actions: Action[]): void {
-  if (actions.length > 0) {
-    let tabularActions = actions.map((action) => {
-      return {
-        summary: action.summary,
-        details: action.details,
-      };
-    });
+function getReportComponent(taskResult: TaskResult) {
+  ui.section(taskResult.info.taskDisplayName, () => {
+    taskResult.result.forEach((result: Result) => {
+      let type = result.type;
 
+      if (type === 'summary') {
+        ui.value({ title: result.key, count: (<SummaryResult>result).count });
+      }
+    });
+  });
+}
+
+function renderActionItems(actions: Action[]): void {
+  if (actions.length > 0) {
     ui.categoryHeader('Actions');
-    ui.table(tabularActions, { summary: { header: 'Summary' }, details: { header: 'Details' } });
+    actions.forEach((action: Action) => {
+      ui.log(`${yellow('■')} ${bold(action.summary)} (${action.details})`);
+    });
     ui.blankLine();
   }
 }

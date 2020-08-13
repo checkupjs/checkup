@@ -17,13 +17,13 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
   taskName = 'ember-template-lint-disables';
   taskDisplayName = 'Number of template-lint-disable Usages';
   category = 'linting';
-  group = 'ember';
+  group = 'disabled-lint-rules';
 
   async run(): Promise<TaskResult> {
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.cliFlags.cwd);
 
-    return this.toJson([buildSummaryResult('ember-template-lint-disable', templateLintDisables)]);
+    return this.toJson([buildSummaryResult('template-lint-disable usages', templateLintDisables)]);
   }
 }
 

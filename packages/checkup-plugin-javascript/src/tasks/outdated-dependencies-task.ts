@@ -1,6 +1,6 @@
 import * as npmCheck from 'npm-check';
 
-import { BaseTask, Task, buildMultiValueResult, TaskResult } from '@checkup/core';
+import { BaseTask, Task, TaskResult, buildDerivedValueResult } from '@checkup/core';
 
 export type Dependency = {
   moduleName: string;
@@ -50,7 +50,7 @@ async function getDependencies(path: string): Promise<OutdatedDependency[]> {
       latest: pkg.latest,
       installed: pkg.installed,
       wanted: pkg.packageWanted,
-      semverBump: pkg.bump,
+      semverBump: pkg.bump === null ? 'current' : pkg.bump,
     };
   });
 
@@ -65,11 +65,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
   async run(): Promise<TaskResult> {
     let outdatedDependencies = await getDependencies(this.context.cliFlags.cwd);
 
-    let multiValue = buildMultiValueResult('dependencies', outdatedDependencies, 'semverBump', [
-      'major',
-      'minor',
-      'patch',
-    ]);
+    let multiValue = buildDerivedValueResult('dependencies', outdatedDependencies, 'semverBump');
 
     return this.toJson([multiValue]);
   }

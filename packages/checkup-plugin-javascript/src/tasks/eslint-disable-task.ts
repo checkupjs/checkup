@@ -20,12 +20,13 @@ export default class EslintDisableTask extends BaseTask implements Task {
   taskName = 'eslint-disables';
   taskDisplayName = 'Number of eslint-disable Usages';
   category = 'linting';
+  group = 'disabled-lint-rules';
 
   async run(): Promise<TaskResult> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
     let eslintDisables = await getEslintDisables(jsPaths, this.context.cliFlags.cwd);
 
-    return this.toJson([buildSummaryResult('eslint-disable', eslintDisables)]);
+    return this.toJson([buildSummaryResult('eslint-disable usages', eslintDisables)]);
   }
 }
 
