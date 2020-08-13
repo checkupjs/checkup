@@ -28,7 +28,7 @@ export { default as AstTransformer } from './ast/ast-transformer';
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { exec } from './utils/exec';
 export { ui } from './utils/ui';
-export { getFilePaths } from './utils/get-paths';
+export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
 
 export { byRuleId, byRuleIds, bySeverity } from './data/filters';

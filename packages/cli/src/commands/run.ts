@@ -12,12 +12,13 @@ import {
   registerParser,
   registerActions,
   registerTaskReporter,
-  getFilePaths,
+  getFilePathsAsync,
   getConfigPath,
   readConfig,
   getRegisteredParsers,
   getRegisteredActions,
   ui,
+  FilePathArray,
 } from '@checkup/core';
 
 import { BaseCommand } from '../base-command';
@@ -229,7 +230,9 @@ export default class RunCommand extends BaseCommand {
       parsers: getRegisteredParsers(),
       config: this.checkupConfig,
       pkg: getPackageJson(this.runFlags.cwd),
-      paths: getFilePaths(this.runFlags.cwd, this.runArgs, excludePaths),
+      paths: FilePathArray.from(
+        await getFilePathsAsync(this.runFlags.cwd, this.runArgs, excludePaths)
+      ) as FilePathArray,
     });
 
     await this.registerDefaultTasks(taskContext);
