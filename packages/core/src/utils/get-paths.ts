@@ -5,6 +5,7 @@ import { FilePathArray } from './file-path-array';
 const isValidGlob = require('is-valid-glob');
 const micromatch = require('micromatch');
 const walkSync = require('walk-sync');
+const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
 
 const PATHS_TO_IGNORE: string[] = [
   '**/node_modules/**',
@@ -18,6 +19,26 @@ const PATHS_TO_IGNORE: string[] = [
   '**/*.log',
   '*.log',
 ];
+
+export function getFilePathsAsync(
+  basePath: string,
+  globs: string[] = [],
+  excludePaths: string[] = []
+) {
+  return new Promise<FilePathArray>((resolve, reject) => {
+    const worker = new Worker(__filename, {
+      workerData: { basePath, globs, excludePaths },
+    });
+
+    worker.on('message', resolve);
+    worker.on('error', reject);
+    worker.on('exit', (code: number) => {
+      if (code !== 0) {
+        reject(new Error(`Worker stopped with exit code ${code}`));
+      }
+    });
+  });
+}
 
 /**
  * @param basePath
@@ -80,4 +101,12 @@ function resolveFilePaths(filePaths: string[], basePath: string): FilePathArray 
     return new FilePathArray(...resolvedPaths);
   }
   return new FilePathArray(...filePaths);
+}
+
+if (require.main === module) {
+  if (!isMainThread) {
+    parentPort.postMessage(
+      getFilePaths(workerData.basePath, workerData.globs, workerData.excludePaths)
+    );
+  }
 }
