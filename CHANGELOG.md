@@ -1,3 +1,14 @@
+## v0.6.0 (2020-08-17)
+
+#### :house: Internal
+* `cli`, `core`
+  * [#645](https://github.com/checkupjs/checkup/pull/645) Prioritizing cli args for turning tasks on ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v0.5.0 (2020-08-12)
 
 #### :rocket: Enhancement
