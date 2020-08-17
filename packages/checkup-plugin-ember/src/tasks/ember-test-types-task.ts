@@ -52,11 +52,13 @@ function buildResult(report: ESLintReport, cwd: string) {
         return testTypes;
       }
 
-      let messages = lintResult.messages.map((lintMessage) => {
-        [testType, method] = lintMessage.message.split('|');
+      let messages = lintResult.messages
+        .filter((message) => message.ruleId === 'test-types')
+        .map((lintMessage) => {
+          [testType, method] = lintMessage.message.split('|');
 
-        return buildLintResultDataItem(lintMessage, cwd, lintResult.filePath, { method });
-      });
+          return buildLintResultDataItem(lintMessage, cwd, lintResult.filePath, { method });
+        });
 
       testTypes[testType].push(...messages);
 
