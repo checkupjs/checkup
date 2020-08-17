@@ -13,7 +13,7 @@ Object {
       "data": Array [
         Object {
           "column": 32,
-          "filePath": "/foo.js",
+          "filePath": "/included-path.js",
           "line": 2,
           "message": "Missing semicolon.",
           "ruleId": "semi",
@@ -34,7 +34,7 @@ Object {
       "data": Array [
         Object {
           "column": 9,
-          "filePath": "/foo.js",
+          "filePath": "/included-path.js",
           "line": 2,
           "message": "Unexpected var, use let or const instead.",
           "ruleId": "no-var",

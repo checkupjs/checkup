@@ -49,7 +49,7 @@ export class EslintSummaryTask extends BaseTask implements Task {
   }
 
   async run(): Promise<TaskResult> {
-    let report = await this._eslintParser.execute([this.context.cliFlags.cwd]);
+    let report = await this._eslintParser.execute(this.context.paths.filterByGlob('**/*.js'));
     let transformedData = buildLintResultData(report, this.context.cliFlags.cwd);
 
     let errorsResult = buildDerivedValueResult(

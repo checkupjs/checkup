@@ -6,7 +6,7 @@ import {
 } from '../src/tasks/eslint-summary-task';
 import { evaluateActions } from '../src/actions/eslint-summary-actions';
 import { PackageJson } from 'type-fest';
-import { getPluginName, Task, TaskResult } from '@checkup/core';
+import { getPluginName, Task, TaskResult, FilePathArray } from '@checkup/core';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
@@ -16,7 +16,13 @@ describe('eslint-summary-task', () => {
 
   beforeAll(async () => {
     project = new CheckupProject('checkup-app', '0.0.0');
-    project.files['foo.js'] = `function foo() {
+    project.files['included-path.js'] = `function foo() {
+        var whatever = 'ESLint'
+        return {
+          name: whatever
+        };
+      }`;
+    project.files['excluded-path.js'] = `function shmoo() {
         var whatever = 'ESLint'
         return {
           name: whatever
@@ -37,7 +43,7 @@ describe('eslint-summary-task', () => {
       getTaskContext({
         cliFlags: { cwd: project.baseDir },
         pkg: project.pkg,
-        paths: project.filePaths,
+        paths: project.filePaths.filter((path) => path.includes('included-path')) as FilePathArray,
         config: {
           tasks: {
             'javascript/eslint-summary': [
@@ -62,6 +68,21 @@ describe('eslint-summary-task', () => {
 
   it('it summarizes eslint and outputs to JSON', async () => {
     expect(result).toMatchSnapshot();
+  });
+
+  it('it only lints the files passed in via paths array', async () => {
+    let excludedPathsResults = result.result.filter(
+      (resultData: any) =>
+        resultData.data.filter((data: any) => data.filePath.includes('excluded-path')).length > 0
+    );
+
+    let includedPathsResults = result.result.filter(
+      (resultData: any) =>
+        resultData.data.filter((data: any) => data.filePath.includes('included-path')).length > 0
+    );
+
+    expect(excludedPathsResults).toHaveLength(0);
+    expect(includedPathsResults).toHaveLength(2);
   });
 
   it('returns correct action items if there are too many warnings or errors', async () => {
