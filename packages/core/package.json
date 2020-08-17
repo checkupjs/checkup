@@ -6,7 +6,7 @@
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@types/micromatch": "^4.0.1",
-    "ajv": "^6.12.3",
+    "ajv": "^6.12.4",
     "chalk": "^4.0.0",
     "cli-ux": "^5.4.10",
     "debug": "^4.1.1",
