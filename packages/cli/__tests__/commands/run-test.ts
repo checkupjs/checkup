@@ -134,6 +134,23 @@ describe('@checkup/cli', () => {
       _resetTasksForTesting();
     });
 
+    it(
+      'should run a task if its passed in via command line, even if it is turned "off" in config',
+      async () => {
+        _registerTaskForTesting(new FileCountTask(getTaskContext()));
+
+        project.addCheckupConfig({ tasks: { 'fake/file-count': 'off' } });
+        project.writeSync();
+
+        await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir]);
+
+        expect(stdout()).toMatchSnapshot();
+        project.dispose();
+        _resetTasksForTesting();
+      },
+      TEST_TIMEOUT
+    );
+
     it('should use the config at the config path if provided', async () => {
       const anotherProject = new CheckupProject('another-project');
 
