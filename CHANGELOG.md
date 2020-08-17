@@ -1,3 +1,18 @@
+## v0.6.1 (2020-08-17)
+
+#### :bug: Bug Fix
+* `checkup-plugin-javascript`
+  * [#648](https://github.com/checkupjs/checkup/pull/648) [bugfix] Fixing eslint-summary task so it only lints files passed in ([@carakessler](https://github.com/carakessler))
+
+#### :house: Internal
+* `cli`, `core`
+  * [#647](https://github.com/checkupjs/checkup/pull/647) Fixing checkup-result types and ensuring results use typed output ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v0.6.0 (2020-08-17)
 
 #### :house: Internal
