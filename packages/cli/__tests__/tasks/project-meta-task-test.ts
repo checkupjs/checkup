@@ -35,8 +35,12 @@ describe('project-meta-task', () => {
 
       expect(taskResult.toJson()).toMatchInlineSnapshot(`
         Object {
-          "analyzedFilesCount": FilePathArray [],
+          "analyzedFiles": FilePathArray [],
+          "analyzedFilesCount": 0,
           "cli": Object {
+            "args": Object {
+              "paths": Array [],
+            },
             "config": Object {
               "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
               "excludePaths": Array [],
@@ -85,8 +89,12 @@ describe('project-meta-task', () => {
 
       expect(result.toJson()).toMatchInlineSnapshot(`
         Object {
-          "analyzedFilesCount": FilePathArray [],
+          "analyzedFiles": FilePathArray [],
+          "analyzedFilesCount": 0,
           "cli": Object {
+            "args": Object {
+              "paths": Array [],
+            },
             "config": Object {
               "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
               "excludePaths": Array [],

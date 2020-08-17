@@ -64,10 +64,18 @@ export interface CheckupResult {
       configHash: string;
       config: CheckupConfig;
       version: string;
+      args: {
+        paths: string[];
+      };
       flags: {
-        paths: [];
+        config?: string;
+        task?: string[];
+        format: string;
+        outputFile?: string;
+        excludePaths?: string[];
       };
     };
+    analyzedFiles: string[];
     analyzedFilesCount: number;
   };
   results: TaskResult[];

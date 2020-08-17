@@ -1,27 +1,11 @@
-import { MetaTaskResult, RepositoryInfo } from '../types';
+import { MetaTaskResult } from '../types';
 
 import BaseMetaTaskResult from '../base-meta-task-result';
-import { CheckupConfig, RunFlags } from '@checkup/core';
+import { CheckupResult } from '@checkup/core';
 import { JsonObject } from 'type-fest';
 
 export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements MetaTaskResult {
-  data!: {
-    project: {
-      name: string;
-      version: string;
-      repository: RepositoryInfo;
-    };
-
-    cli: {
-      configHash: string;
-      config: CheckupConfig;
-      version: string;
-      schema: number;
-      flags: Partial<RunFlags>;
-    };
-
-    analyzedFilesCount: string[];
-  };
+  data!: CheckupResult['info'];
 
   toJson() {
     return this.data as JsonObject;

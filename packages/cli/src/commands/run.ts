@@ -19,6 +19,7 @@ import {
   getRegisteredActions,
   ui,
   FilePathArray,
+  CheckupResult,
 } from '@checkup/core';
 
 import { BaseCommand } from '../base-command';
@@ -30,7 +31,8 @@ import { getPackageJson } from '../utils/get-package-json';
 import { getReporter } from '../reporters/get-reporter';
 import LinesOfCodeTask from '../tasks/lines-of-code-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
-import * as chalk from 'chalk';
+import { getCheckupResult } from '../get-checkup-result';
+import { reportAvailableTasks } from '../reporters/console-reporter';
 
 let __tasksForTesting: Set<Task> = new Set<Task>();
 
@@ -249,23 +251,17 @@ export default class RunCommand extends BaseCommand {
 
   private report() {
     let errors = [...this.metaTaskErrors, ...this.pluginTaskErrors];
-    let generateReport = getReporter(this.runFlags.format as OutputFormat);
-    generateReport({
-      flags: this.runFlags,
-      info: this.metaTaskResults,
-      results: this.pluginTaskResults,
+    let checkupResult: CheckupResult = getCheckupResult(
+      this.metaTaskResults,
+      this.pluginTaskResults,
       errors,
-      actions: this.actions,
-    });
+      this.actions
+    );
+    let generateReport = getReporter(this.runFlags.format as OutputFormat);
+    generateReport(checkupResult, this.runFlags);
   }
 
   private printAvailableTasks() {
-    ui.blankLine();
-    ui.log(chalk.bold.white('AVAILABLE TASKS'));
-    ui.blankLine();
-    this.pluginTasks.fullyQualifiedTaskNames.forEach((taskName) => {
-      ui.log(`  ${taskName}`);
-    });
-    ui.blankLine();
+    reportAvailableTasks(this.pluginTasks);
   }
 }

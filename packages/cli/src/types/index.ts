@@ -1,21 +1,6 @@
-import {
-  JsonMetaTaskResult,
-  TaskIdentifier,
-  RunFlags,
-  TaskError,
-  Action,
-  TaskResult,
-} from '@checkup/core';
+import { JsonMetaTaskResult, TaskIdentifier } from '@checkup/core';
 
 export default {};
-
-export interface ReporterArguments {
-  flags?: RunFlags;
-  info: MetaTaskResult[];
-  results: TaskResult[];
-  errors: TaskError[];
-  actions: Action[];
-}
 
 export interface MetaTask {
   meta: TaskIdentifier;
