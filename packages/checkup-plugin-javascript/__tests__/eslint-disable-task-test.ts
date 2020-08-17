@@ -52,7 +52,7 @@ describe('eslint-disable-task', () => {
       Object {
         "info": Object {
           "category": "linting",
-          "group": undefined,
+          "group": "disabled-lint-rules",
           "taskDisplayName": "Number of eslint-disable Usages",
           "taskName": "eslint-disables",
         },
@@ -89,7 +89,7 @@ describe('eslint-disable-task', () => {
                 "ruleId": "no-eslint-disable",
               },
             ],
-            "key": "eslint-disable",
+            "key": "eslint-disable usages",
             "type": "summary",
           },
         ],
