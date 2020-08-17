@@ -84,19 +84,23 @@ exports[`@checkup/cli normal cli output should output checkup result in JSON 1`]
       },
       \\"version\\": \\"0.0.0\\",
       \\"schema\\": 1,
+      \\"args\\": {
+        \\"paths\\": []
+      },
       \\"flags\\": {
         \\"format\\": \\"json\\",
         \\"outputFile\\": \\"\\"
       }
     },
-    \\"analyzedFilesCount\\": [
+    \\"analyzedFiles\\": [
       \\"/.checkuprc\\",
       \\"/.eslintrc.js\\",
       \\"/index.hbs\\",
       \\"/index.js\\",
       \\"/package-lock.json\\",
       \\"/package.json\\"
-    ]
+    ],
+    \\"analyzedFilesCount\\": 6
   },
   \\"results\\": [
     {

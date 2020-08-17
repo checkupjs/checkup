@@ -1,18 +1,19 @@
+import * as chalk from 'chalk';
+import { startCase } from 'lodash';
 import {
+  TaskName,
+  TaskResult,
   TaskError,
   Action,
-  ui,
+  getRegisteredTaskReporters,
+  CheckupError,
+  CheckupResult,
   SummaryResult,
   MultiValueResult,
   DataSummary,
-  TaskResult,
-  getRegisteredTaskReporters,
-  TaskName,
-  CheckupError,
+  ui,
 } from '@checkup/core';
-import { MetaTaskResult, ReporterArguments } from '../types';
-import { startCase } from 'lodash';
-import ProjectMetaTaskResult from '../results/project-meta-task-result';
+import TaskList from '../task-list';
 
 let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
   'lines-of-code': function (taskResult: TaskResult) {
@@ -194,14 +195,24 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
   },
 };
 
-export function report(args: ReporterArguments) {
-  renderMetaTaskResults(args.info);
-  renderPluginTaskResults(args.results);
-  renderActionItems(args.actions);
-  renderErrors(args.errors);
+export function report(result: CheckupResult) {
+  renderInfo(result.info);
+  renderTaskResults(result.results);
+  renderActions(result.actions);
+  renderErrors(result.errors);
 }
 
-function renderPluginTaskResults(pluginTaskResults: TaskResult[]): void {
+export function reportAvailableTasks(pluginTasks: TaskList) {
+  ui.blankLine();
+  ui.log(chalk.bold.white('AVAILABLE TASKS'));
+  ui.blankLine();
+  pluginTasks.fullyQualifiedTaskNames.forEach((taskName) => {
+    ui.log(`  ${taskName}`);
+  });
+  ui.blankLine();
+}
+
+function renderTaskResults(pluginTaskResults: TaskResult[]): void {
   let currentCategory = '';
 
   pluginTaskResults.forEach((taskResult) => {
@@ -233,7 +244,7 @@ function getTaskReporter(taskName: TaskName) {
   return reporter;
 }
 
-function renderActionItems(actions: Action[]): void {
+function renderActions(actions: Action[]): void {
   if (actions.length > 0) {
     let tabularActions = actions.map((action) => {
       return {
@@ -248,16 +259,14 @@ function renderActionItems(actions: Action[]): void {
   }
 }
 
-function renderMetaTaskResults(metaTaskResults: MetaTaskResult[]) {
-  let projectResult = <ProjectMetaTaskResult>metaTaskResults[0];
-
-  let { analyzedFilesCount } = projectResult.data;
-  let { name, version, repository } = projectResult.data.project;
-  let { version: cliVersion, configHash } = projectResult.data.cli;
+function renderInfo(info: CheckupResult['info']) {
+  let { analyzedFilesCount } = info;
+  let { name, version, repository } = info.project;
+  let { version: cliVersion, configHash } = info.cli;
 
   let analyzedFilesMessage =
-    repository.totalFiles !== analyzedFilesCount.length
-      ? ` (${ui.emphasize(`${analyzedFilesCount.length.toString()} files`)} analyzed)`
+    repository.totalFiles !== analyzedFilesCount
+      ? ` (${ui.emphasize(`${analyzedFilesCount} files`)} analyzed)`
       : '';
 
   ui.blankLine();

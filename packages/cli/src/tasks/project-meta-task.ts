@@ -42,6 +42,7 @@ export default class ProjectMetaTask implements MetaTask {
     let repositoryInfo = await getRepositoryInfo(this.context.cliFlags.cwd);
 
     let { config, task, format, outputFile, excludePaths } = this.context.cliFlags;
+    let analyzedFiles = normalizePaths(this.context.paths, this.context.cliFlags.cwd);
 
     result.data = {
       project: {
@@ -55,6 +56,9 @@ export default class ProjectMetaTask implements MetaTask {
         config: this.context.config,
         version: getVersion(),
         schema: 1,
+        args: {
+          paths: this.context.cliArguments,
+        },
         flags: {
           config,
           task,
@@ -64,7 +68,8 @@ export default class ProjectMetaTask implements MetaTask {
         },
       },
 
-      analyzedFilesCount: normalizePaths(this.context.paths, this.context.cliFlags.cwd),
+      analyzedFiles,
+      analyzedFilesCount: analyzedFiles.length,
     };
 
     return result;
