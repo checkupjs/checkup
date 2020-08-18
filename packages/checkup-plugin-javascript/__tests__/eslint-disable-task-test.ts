@@ -50,6 +50,13 @@ describe('eslint-disable-task', () => {
             "count": 3,
             "data": Array [
               Object {
+                "column": 19,
+                "filePath": "/index.js",
+                "line": 6,
+                "message": "eslint-disable is not allowed",
+                "ruleId": "no-eslint-disable",
+              },
+              Object {
                 "column": 4,
                 "filePath": "/index.js",
                 "line": 2,
@@ -60,13 +67,6 @@ describe('eslint-disable-task', () => {
                 "column": 4,
                 "filePath": "/index.js",
                 "line": 3,
-                "message": "eslint-disable is not allowed",
-                "ruleId": "no-eslint-disable",
-              },
-              Object {
-                "column": 19,
-                "filePath": "/index.js",
-                "line": 6,
                 "message": "eslint-disable is not allowed",
                 "ruleId": "no-eslint-disable",
               },

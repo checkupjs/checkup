@@ -9,8 +9,9 @@ import {
 } from '@checkup/core';
 
 import * as t from '@babel/types';
-import { parse } from '@babel/parser';
-import traverse, { TraverseOptions } from '@babel/traverse';
+import { parse, visit } from 'recast';
+import { parse as babelParser } from '@babel/parser';
+import { Visitor } from 'ast-types';
 
 const fs = require('fs');
 
@@ -37,7 +38,7 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
 
     constructor(private filePath: string) {}
 
-    get visitors(): TraverseOptions {
+    get visitors(): Visitor<any> {
       let add = (node: any) => {
         this.data.push({
           filePath: normalizePath(this.filePath, cwd),
@@ -49,12 +50,12 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
       };
 
       return {
-        Program: function (node: any) {
-          node.container.comments.forEach((comment: t.Comment) => {
-            if (comment.value.trim().match(ESLINT_DISABLE_REGEX)) {
-              add(comment);
-            }
-          });
+        visitComment: function (path: any) {
+          if (path.value.value.trim().match(ESLINT_DISABLE_REGEX)) {
+            add(path.value);
+          }
+
+          this.traverse(path);
         },
       };
     }
@@ -64,12 +65,14 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
     filePaths.map((filePath) => {
       return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
         let accumulator = new ESLintDisableAccumulator(filePath);
-        let astTraverser = new AstTraverser<t.File, TraverseOptions, typeof parse, typeof traverse>(
+        let astTraverser = new AstTraverser<t.File, Visitor<any>, typeof parse, typeof visit>(
           fileContents,
           parse,
-          traverse,
+          visit,
           {
-            sourceType: 'module',
+            parser: {
+              parse: babelParser,
+            },
           }
         );
 
