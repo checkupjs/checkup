@@ -1,5 +1,6 @@
 import * as debug from 'debug';
 import * as pMap from 'p-map';
+import * as convertHrtime from 'convert-hrtime';
 
 import { Task, TaskError, TaskName, TaskResult } from '@checkup/core';
 import { taskResultComparator } from './task-result-comparator';
@@ -12,10 +13,15 @@ import { taskResultComparator } from './task-result-comparator';
 export default class TaskList {
   private _categories: Map<string, Map<TaskName, Task>>;
   private _errors: TaskError[];
+  private _timings: Record<TaskName, number>;
   debug: debug.Debugger;
 
   get categories() {
     return this._categories;
+  }
+
+  get timings() {
+    return this._timings;
   }
 
   /**
@@ -30,6 +36,7 @@ export default class TaskList {
   constructor() {
     this._categories = new Map<string, Map<TaskName, Task>>();
     this._errors = [];
+    this._timings = {};
     this.debug = debug('checkup:task');
   }
 
@@ -120,7 +127,7 @@ export default class TaskList {
     this.debug('start %s run', task.fullyQualifiedTaskName);
 
     try {
-      result = await task.run();
+      result = await this._runTask(task);
     } catch (error) {
       this.addError(task.taskName, error.message);
     }
@@ -143,7 +150,7 @@ export default class TaskList {
       this.debug('start %s run', task.fullyQualifiedTaskName);
 
       try {
-        result = await task.run();
+        result = await this._runTask(task);
       } catch (error) {
         this.addError(task.taskName, error.message);
       }
@@ -153,6 +160,16 @@ export default class TaskList {
     }, tasks);
 
     return [(results.filter(Boolean) as TaskResult[]).sort(taskResultComparator), this._errors];
+  }
+
+  private async _runTask(task: Task) {
+    let t = process.hrtime();
+    let result = await task.run();
+    t = process.hrtime(t);
+
+    this._timings[task.fullyQualifiedTaskName] = convertHrtime(t).seconds;
+
+    return result;
   }
 
   /**

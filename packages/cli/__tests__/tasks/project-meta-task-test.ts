@@ -56,6 +56,7 @@ describe('project-meta-task', () => {
               "task": undefined,
             },
             "schema": 1,
+            "timings": Object {},
             "version": "0.0.0",
           },
           "project": Object {
@@ -112,6 +113,7 @@ describe('project-meta-task', () => {
               "task": undefined,
             },
             "schema": 1,
+            "timings": Object {},
             "version": "0.0.0",
           },
           "project": Object {

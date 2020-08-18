@@ -79,7 +79,13 @@ describe('@checkup/cli', () => {
 
       let output = normalizePath(stdout().trim(), project.baseDir);
 
-      expect(output).toMatchSnapshot();
+      expect(JSON.parse(output)).toMatchSnapshot({
+        info: {
+          cli: {
+            timings: expect.any(Object),
+          },
+        },
+      });
     });
 
     it(
@@ -113,6 +119,17 @@ describe('@checkup/cli', () => {
       await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir]);
 
       expect(stdout()).toMatchSnapshot();
+      _resetTasksForTesting();
+    });
+
+    it('should run with timing if CHECKUP_TIMING=1', async () => {
+      _registerTaskForTesting(new FileCountTask(getTaskContext()));
+
+      process.env.CHECKUP_TIMING = '1';
+      await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir]);
+
+      expect(stdout()).toContain('Task Timings');
+      process.env.CHECKUP_TIMING = undefined;
       _resetTasksForTesting();
     });
 

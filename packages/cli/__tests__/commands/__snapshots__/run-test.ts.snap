@@ -62,90 +62,91 @@ Lines Of Code
 `;
 
 exports[`@checkup/cli normal cli output should output checkup result in JSON 1`] = `
-"{
-  \\"info\\": {
-    \\"project\\": {
-      \\"name\\": \\"checkup-app\\",
-      \\"version\\": \\"0.0.0\\",
-      \\"repository\\": {
-        \\"totalCommits\\": 0,
-        \\"totalFiles\\": 0,
-        \\"age\\": \\"0 days\\",
-        \\"activeDays\\": \\"0 days\\"
-      }
-    },
-    \\"cli\\": {
-      \\"configHash\\": \\"395b15f7dea0dee193db593e1c6cfb5b\\",
-      \\"config\\": {
-        \\"$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json\\",
-        \\"excludePaths\\": [],
-        \\"plugins\\": [],
-        \\"tasks\\": {}
-      },
-      \\"version\\": \\"0.0.0\\",
-      \\"schema\\": 1,
-      \\"args\\": {
-        \\"paths\\": []
-      },
-      \\"flags\\": {
-        \\"format\\": \\"json\\",
-        \\"outputFile\\": \\"\\"
-      }
-    },
-    \\"analyzedFiles\\": [
-      \\"/.checkuprc\\",
-      \\"/.eslintrc.js\\",
-      \\"/index.hbs\\",
-      \\"/index.js\\",
-      \\"/package-lock.json\\",
-      \\"/package.json\\"
+Object {
+  "actions": Array [],
+  "errors": Array [],
+  "info": Object {
+    "analyzedFiles": Array [
+      "/.checkuprc",
+      "/.eslintrc.js",
+      "/index.hbs",
+      "/index.js",
+      "/package-lock.json",
+      "/package.json",
     ],
-    \\"analyzedFilesCount\\": 6
-  },
-  \\"results\\": [
-    {
-      \\"info\\": {
-        \\"taskName\\": \\"lines-of-code\\",
-        \\"taskDisplayName\\": \\"Lines of Code\\",
-        \\"category\\": \\"metrics\\"
+    "analyzedFilesCount": 6,
+    "cli": Object {
+      "args": Object {
+        "paths": Array [],
       },
-      \\"result\\": [
-        {
-          \\"key\\": \\"lines of code\\",
-          \\"type\\": \\"lookup-value\\",
-          \\"dataSummary\\": {
-            \\"values\\": {
-              \\"js\\": 2,
-              \\"hbs\\": 1
+      "config": Object {
+        "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+        "excludePaths": Array [],
+        "plugins": Array [],
+        "tasks": Object {},
+      },
+      "configHash": "395b15f7dea0dee193db593e1c6cfb5b",
+      "flags": Object {
+        "format": "json",
+        "outputFile": "",
+      },
+      "schema": 1,
+      "timings": Any<Object>,
+      "version": "0.0.0",
+    },
+    "project": Object {
+      "name": "checkup-app",
+      "repository": Object {
+        "activeDays": "0 days",
+        "age": "0 days",
+        "totalCommits": 0,
+        "totalFiles": 0,
+      },
+      "version": "0.0.0",
+    },
+  },
+  "results": Array [
+    Object {
+      "info": Object {
+        "category": "metrics",
+        "taskDisplayName": "Lines of Code",
+        "taskName": "lines-of-code",
+      },
+      "result": Array [
+        Object {
+          "data": Array [
+            Object {
+              "extension": "js",
+              "filePath": "/.eslintrc.js",
+              "lines": 1,
             },
-            \\"dataKey\\": \\"extension\\",
-            \\"valueKey\\": \\"lines\\",
-            \\"total\\": 3
+            Object {
+              "extension": "hbs",
+              "filePath": "/index.hbs",
+              "lines": 1,
+            },
+            Object {
+              "extension": "js",
+              "filePath": "/index.js",
+              "lines": 1,
+            },
+          ],
+          "dataSummary": Object {
+            "dataKey": "extension",
+            "total": 3,
+            "valueKey": "lines",
+            "values": Object {
+              "hbs": 1,
+              "js": 2,
+            },
           },
-          \\"data\\": [
-            {
-              \\"filePath\\": \\"/.eslintrc.js\\",
-              \\"extension\\": \\"js\\",
-              \\"lines\\": 1
-            },
-            {
-              \\"filePath\\": \\"/index.hbs\\",
-              \\"extension\\": \\"hbs\\",
-              \\"lines\\": 1
-            },
-            {
-              \\"filePath\\": \\"/index.js\\",
-              \\"extension\\": \\"js\\",
-              \\"lines\\": 1
-            }
-          ]
-        }
-      ]
-    }
+          "key": "lines of code",
+          "type": "lookup-value",
+        },
+      ],
+    },
   ],
-  \\"errors\\": [],
-  \\"actions\\": []
-}"
+}
 `;
 
 exports[`@checkup/cli normal cli output should run a single task if the tasks option is specified with a single task 1`] = `
