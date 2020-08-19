@@ -1,3 +1,18 @@
+## v0.7.0 (2020-08-19)
+
+#### :rocket: Enhancement
+* `cli`, `core`
+  * [#650](https://github.com/checkupjs/checkup/pull/650) Adding task timings ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember`
+  * [#649](https://github.com/checkupjs/checkup/pull/649) Bug fix for ember-test-types-task ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v0.6.1 (2020-08-17)
 
 #### :bug: Bug Fix
