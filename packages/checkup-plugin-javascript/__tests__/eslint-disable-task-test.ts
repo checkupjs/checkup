@@ -21,6 +21,17 @@ describe('eslint-disable-task', () => {
     }
     `;
 
+    project.files['decorator.js'] = `
+      /* eslint-disable */
+
+      @decorated
+      export default class Bar {
+        barBaz() {
+          return baz.toLowerCase();
+        }
+      }
+    `;
+
     project.writeSync();
   });
 
@@ -47,8 +58,15 @@ describe('eslint-disable-task', () => {
         },
         "result": Array [
           Object {
-            "count": 3,
+            "count": 4,
             "data": Array [
+              Object {
+                "column": 6,
+                "filePath": "/decorator.js",
+                "line": 2,
+                "message": "eslint-disable is not allowed",
+                "ruleId": "no-eslint-disable",
+              },
               Object {
                 "column": 19,
                 "filePath": "/index.js",
@@ -95,10 +113,10 @@ describe('eslint-disable-task', () => {
     expect(actions![0]).toMatchInlineSnapshot(`
       Object {
         "defaultThreshold": 2,
-        "details": "3 usages of template-lint-disable",
-        "input": 3,
+        "details": "4 usages of template-lint-disable",
+        "input": 4,
         "items": Array [
-          "Total eslint-disable usages: 3",
+          "Total eslint-disable usages: 4",
         ],
         "name": "reduce-eslint-disable-usages",
         "summary": "Reduce number of eslint-disable usages",

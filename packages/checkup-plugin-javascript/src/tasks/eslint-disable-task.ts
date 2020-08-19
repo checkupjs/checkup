@@ -10,7 +10,6 @@ import {
 
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
-import { parse as babelParser } from '@babel/parser';
 import { Visitor } from 'ast-types';
 
 const fs = require('fs');
@@ -70,9 +69,7 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
           parse,
           visit,
           {
-            parser: {
-              parse: babelParser,
-            },
+            parser: require('recast/parsers/babel'),
           }
         );
 
