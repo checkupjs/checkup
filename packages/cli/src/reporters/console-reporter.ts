@@ -200,6 +200,10 @@ export function report(result: CheckupResult) {
   renderTaskResults(result.results);
   renderActions(result.actions);
   renderErrors(result.errors);
+
+  if (process.env.CHECKUP_TIMING === '1') {
+    renderTimings(result.info.cli.timings);
+  }
 }
 
 export function reportAvailableTasks(pluginTasks: TaskList) {
@@ -292,4 +296,27 @@ function renderErrors(errors: TaskError[]) {
   if (errors.length > 0) {
     ui.table(errors, { taskName: {}, error: {} });
   }
+}
+
+function renderTimings(timings: Record<string, number>) {
+  let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
+
+  ui.categoryHeader('Task Timings');
+  ui.table(
+    Object.keys(timings)
+      .map((taskName) => {
+        return {
+          taskName,
+          time: timings[taskName],
+          relative: `${((timings[taskName] * 100) / total).toFixed(1)}%`,
+        };
+      })
+      .sort((a, b) => b.time - a.time),
+    {
+      taskName: {},
+      timeFormatted: { header: 'Time', get: (row) => `${row.time.toFixed(1)}s` },
+      relative: {},
+    }
+  );
+  ui.blankLine();
 }

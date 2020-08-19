@@ -66,6 +66,7 @@ export default class ProjectMetaTask implements MetaTask {
           outputFile,
           excludePaths,
         },
+        timings: {},
       },
 
       analyzedFiles,

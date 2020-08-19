@@ -5,10 +5,15 @@ export function getCheckupResult(
   info: MetaTaskResult[],
   results: TaskResult[],
   errors: TaskError[],
-  actions: Action[]
+  actions: Action[],
+  timings: Record<string, number>
 ): CheckupResult {
+  let _info = Object.assign({}, ...info.map((result) => result.toJson()));
+
+  _info.cli.timings = timings;
+
   return {
-    info: Object.assign({}, ...info.map((result) => result.toJson())),
+    info: _info,
     results,
     errors,
     actions,
