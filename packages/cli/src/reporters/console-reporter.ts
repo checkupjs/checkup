@@ -1,7 +1,6 @@
 import * as chalk from 'chalk';
 import { startCase } from 'lodash';
 import {
-  TaskName,
   TaskResult,
   TaskError,
   Action,
@@ -14,8 +13,8 @@ import {
   ui,
   Result,
 } from '@checkup/core';
-import { MetaTaskResult, ReporterArguments } from '../types';
 import { yellow, bold } from 'chalk';
+import TaskList from '../task-list';
 
 let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
   'ember-test-types': function (taskResult: TaskResult) {
@@ -189,7 +188,7 @@ function getReportComponent(taskResult: TaskResult) {
   });
 }
 
-function renderActionItems(actions: Action[]): void {
+function renderActions(actions: Action[]): void {
   if (actions.length > 0) {
     ui.categoryHeader('Actions');
     actions.forEach((action: Action) => {
