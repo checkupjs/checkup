@@ -1,3 +1,13 @@
+## v0.7.1 (2020-08-19)
+
+#### :bug: Bug Fix
+* `checkup-plugin-javascript`
+  * [#652](https://github.com/checkupjs/checkup/pull/652) Fixing missing dep in checkup-plugin-javascript ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 1
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v0.7.0 (2020-08-19)
 
 #### :rocket: Enhancement
