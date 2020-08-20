@@ -162,7 +162,7 @@ let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
 
       if (warningsCount) {
         ui.blankLine();
-        ui.subHeader(`Errors (${warningsCount})`);
+        ui.subHeader(`Warnings (${warningsCount})`);
         ui.valuesList(
           Object.entries<number>(warnings.dataSummary.values).map(([key, count]) => {
             return { title: key, count };

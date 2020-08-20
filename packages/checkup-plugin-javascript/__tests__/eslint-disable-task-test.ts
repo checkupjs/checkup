@@ -113,7 +113,7 @@ describe('eslint-disable-task', () => {
     expect(actions![0]).toMatchInlineSnapshot(`
       Object {
         "defaultThreshold": 2,
-        "details": "4 usages of template-lint-disable",
+        "details": "4 usages of eslint-disable",
         "input": 4,
         "items": Array [
           "Total eslint-disable usages: 4",
