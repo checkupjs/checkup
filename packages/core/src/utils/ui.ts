@@ -109,7 +109,7 @@ export const ui = Object.assign(ux, {
     const colors = this.colors();
 
     segments.forEach((segment, i) => {
-      segment.color = colors[i];
+      segment.color = colors[i + 3];
     });
 
     const { completedSegments, incompleteSegments } = calculateSectionBar(segments, total, width);
@@ -148,7 +148,7 @@ export const ui = Object.assign(ux, {
     return colors[Math.floor(Math.random() * colors.length)];
   },
 
-  colors(range: number = 50) {
+  colors(range: number = 70) {
     const ANSI_CODE_START = 33;
 
     // eslint-disable-next-line unicorn/no-useless-undefined
