@@ -31,7 +31,7 @@ exports[`plugin generator generates plugin into existing directory with defaults
     \\"typescript\\": \\"^3.8\\"
   },
   \\"engines\\": {
-    \\"node\\": \\">= 12.*\\"
+    \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
@@ -253,7 +253,7 @@ exports[`plugin generator generates plugin with JavaScript defaults 1`] = `
     \\"prettier\\": \\"^2.0.5\\"
   },
   \\"engines\\": {
-    \\"node\\": \\">= 12.*\\"
+    \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
@@ -455,7 +455,7 @@ exports[`plugin generator generates plugin with custom options 1`] = `
     \\"typescript\\": \\"^3.8\\"
   },
   \\"engines\\": {
-    \\"node\\": \\">= 12.*\\"
+    \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
@@ -685,7 +685,7 @@ exports[`plugin generator generates plugin with defaults 1`] = `
     \\"typescript\\": \\"^3.8\\"
   },
   \\"engines\\": {
-    \\"node\\": \\">= 12.*\\"
+    \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
@@ -915,7 +915,7 @@ exports[`plugin generator generates plugin with defaults in custom path 1`] = `
     \\"typescript\\": \\"^3.8\\"
   },
   \\"engines\\": {
-    \\"node\\": \\">= 12.*\\"
+    \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
@@ -1145,7 +1145,7 @@ exports[`plugin generator generates plugin with unmodified name with defaults 1`
     \\"typescript\\": \\"^3.8\\"
   },
   \\"engines\\": {
-    \\"node\\": \\">= 12.*\\"
+    \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
     \\"/lib\\",
