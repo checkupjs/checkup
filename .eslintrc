@@ -41,7 +41,13 @@
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-process-exit": "off",
     "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }],
-    "node/no-extraneous-import": ["error"]
+    "node/no-extraneous-import": ["error"],
+    "node/no-missing-import": [
+      "error",
+      {
+        "allowModules": ["@checkup/core", "@checkup/test-helpers"]
+      }
+    ]
   },
   "overrides": [
     {
