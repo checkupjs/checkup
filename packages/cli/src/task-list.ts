@@ -51,7 +51,7 @@ export default class TaskList {
   registerTask(task: Task) {
     if (task.category === '') {
       throw new Error(
-        `Task category can not be empty. Please add a category to ${task.taskName}-task.`
+        `Task category can not be empty. Please add a category to ${task.fullyQualifiedTaskName}-task.`
       );
     }
     let categoryMap = this.getByCategory(task.category);
@@ -129,7 +129,7 @@ export default class TaskList {
     try {
       result = await this._runTask(task);
     } catch (error) {
-      this.addError(task.taskName, error.message);
+      this.addError(task.fullyQualifiedTaskName, error.message);
     }
 
     this.debug('%s run done', task.fullyQualifiedTaskName);
@@ -152,7 +152,7 @@ export default class TaskList {
       try {
         result = await this._runTask(task);
       } catch (error) {
-        this.addError(task.taskName, error.message);
+        this.addError(task.fullyQualifiedTaskName, error.message);
       }
 
       this.debug('%s run done', task.fullyQualifiedTaskName);

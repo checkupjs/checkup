@@ -137,7 +137,7 @@ describe('TaskList', () => {
     expect(() => {
       taskList.registerTask(taskWithoutCategory);
     }).toThrow(
-      `Task category can not be empty. Please add a category to ${taskWithoutCategory.taskName}-task.`
+      `Task category can not be empty. Please add a category to ${taskWithoutCategory.fullyQualifiedTaskName}-task.`
     );
   });
 
@@ -299,7 +299,7 @@ describe('TaskList', () => {
 
     expect(results).toHaveLength(0);
     expect(errors).toHaveLength(1);
-    expect(errors[0].taskName).toEqual('error-task');
+    expect(errors[0].taskName).toEqual('fake/error-task');
     expect(errors[0].error).toEqual('Something went wrong in this task');
   });
 });
