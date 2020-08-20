@@ -8,7 +8,7 @@ export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) 
   actionsEvaluator.add({
     name: 'reduce-eslint-disable-usages',
     summary: 'Reduce number of eslint-disable usages',
-    details: `${eslintDisableUsages} usages of template-lint-disable`,
+    details: `${eslintDisableUsages} usages of eslint-disable`,
     defaultThreshold: 2,
     items: [`Total eslint-disable usages: ${eslintDisableUsages}`],
     input: eslintDisableUsages,
