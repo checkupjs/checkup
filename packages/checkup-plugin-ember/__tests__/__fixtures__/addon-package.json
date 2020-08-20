@@ -50,7 +50,7 @@
     "qunit-dom": "^0.9.2"
   },
   "engines": {
-    "node": ">= 12.*"
+    "node": ">= 12.11.*"
   },
   "ember": {
     "edition": "octane"

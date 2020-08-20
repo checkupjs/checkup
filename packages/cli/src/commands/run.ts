@@ -22,11 +22,11 @@ import {
   CheckupResult,
 } from '@checkup/core';
 
+import { flags } from '@oclif/command';
 import { BaseCommand } from '../base-command';
 import MetaTaskList from '../meta-task-list';
 import { MetaTaskResult } from '../types';
 import TaskList from '../task-list';
-import { flags } from '@oclif/command';
 import { getPackageJson } from '../utils/get-package-json';
 import { getReporter } from '../reporters/get-reporter';
 import LinesOfCodeTask from '../tasks/lines-of-code-task';

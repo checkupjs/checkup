@@ -11,10 +11,11 @@
     "handlebars": "^4.7.6",
     "json-stable-stringify": "^1.0.1",
     "stdout-stderr": "^0.1.13",
-    "tmp": "^0.2.1"
+    "tmp": "^0.2.1",
+    "walk-sync": "^2.2.0"
   },
   "engines": {
-    "node": ">= 12.*"
+    "node": ">= 12.11.*"
   },
   "files": [
     "/lib",
