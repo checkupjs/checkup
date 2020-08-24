@@ -51,7 +51,7 @@
     "husky": "^4.2.5",
     "jest": "^25.5.4",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
+    "prettier": "^2.1.0",
     "release-it": "^13.6.7",
     "release-it-lerna-changelog": "^2.3.0",
     "release-it-yarn-workspaces": "^1.4.0",
