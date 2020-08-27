@@ -41,7 +41,7 @@ describe('outdated-dependencies-task', () => {
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
     let actions = evaluateActions(result, task.config);
 
-    expect(actions).toHaveLength(3);
+    expect(actions).toHaveLength(2);
     expect(actions).toMatchInlineSnapshot(`
       Array [
         Object {
@@ -59,14 +59,6 @@ describe('outdated-dependencies-task', () => {
           "items": Array [],
           "name": "reduce-outdated-minor-dependencies",
           "summary": "Update outdated minor versions",
-        },
-        Object {
-          "defaultThreshold": 0.2,
-          "details": "100% of versions outdated",
-          "input": 1,
-          "items": Array [],
-          "name": "reduce-outdated-dependencies",
-          "summary": "Update outdated versions",
         },
       ]
     `);

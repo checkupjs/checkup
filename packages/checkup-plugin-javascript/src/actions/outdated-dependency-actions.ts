@@ -2,7 +2,12 @@ import { ActionsEvaluator, toPercent, TaskResult, TaskConfig } from '@checkup/co
 
 export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
   let { values: dependenciesCount, total: totalDependencies } = taskResult.result[0].dataSummary;
-  let outdatedCount = Object.values<number>(dependenciesCount).reduce(
+  let outdatedOnly = {
+    major: dependenciesCount.major,
+    minor: dependenciesCount.minor,
+    patch: dependenciesCount.patch,
+  };
+  let outdatedCount = Object.values<number>(outdatedOnly).reduce(
     (total: number, count: number) => total + count,
     0
   );

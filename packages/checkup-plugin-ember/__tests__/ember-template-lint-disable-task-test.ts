@@ -40,7 +40,7 @@ describe('ember-template-lint-disable-task', () => {
       Object {
         "info": Object {
           "category": "linting",
-          "group": "ember",
+          "group": "disabled-lint-rules",
           "taskDisplayName": "Number of template-lint-disable Usages",
           "taskName": "ember-template-lint-disables",
         },
@@ -70,7 +70,7 @@ describe('ember-template-lint-disable-task', () => {
                 "ruleId": "no-ember-template-lint-disable",
               },
             ],
-            "key": "ember-template-lint-disable",
+            "key": "template-lint-disable usages",
             "type": "summary",
           },
         ],
