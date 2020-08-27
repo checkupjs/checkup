@@ -12,11 +12,10 @@ on:
 jobs:
   test:
     name: Tests
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest]
         node: ['12']
 
     steps:
