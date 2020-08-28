@@ -42,7 +42,9 @@ describe('config', () => {
 
       expect(() => {
         readConfig(configPath);
-      }).toThrow(`The checkup config at ${configPath} contains a syntax error.`);
+      }).toThrow(
+        `The checkup config at ${configPath} contains invalid JSON.\nError: Unexpected token p in JSON at position 10`
+      );
     });
 
     it('throws if invalid paths are passed in via config', () => {

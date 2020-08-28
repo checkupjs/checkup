@@ -37,8 +37,10 @@ export function readConfig(configPath: string) {
     config = readJsonSync(resolve(configPath || getConfigPath()));
   } catch (error) {
     if (error instanceof SyntaxError) {
+      let hint = error.message.replace(/.*:\s(.*)/, '$1');
+
       throw new CheckupError(
-        `The checkup config at ${configPath} contains a syntax error.`,
+        `The checkup config at ${configPath} contains invalid JSON.\nError: ${hint}`,
         'Fix the syntax error in your .checkuprc before continuing.'
       );
     }
