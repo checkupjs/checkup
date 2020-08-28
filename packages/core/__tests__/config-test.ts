@@ -1,5 +1,5 @@
 import { getConfigPath, readConfig, writeConfig, parseConfigTuple } from '../src/config';
-import { readJsonSync, writeJsonSync } from 'fs-extra';
+import { readJsonSync, writeJsonSync, writeFileSync } from 'fs-extra';
 
 import { DEFAULT_CONFIG } from '../src';
 import { createTmpDir } from '@checkup/test-helpers';
@@ -28,6 +28,23 @@ describe('config', () => {
       expect(() => {
         readConfig(configPath);
       }).toThrow(`Config in ${configPath} is invalid.`);
+    });
+
+    it('throws if JSON is invalid', () => {
+      let configPath = getConfigPath(tmp);
+      writeFileSync(
+        configPath,
+        `{
+        plugins: ['javascript'],
+        task: {},
+      }`
+      );
+
+      expect(() => {
+        readConfig(configPath);
+      }).toThrow(
+        `The checkup config at ${configPath} contains invalid JSON.\nError: Unexpected token p in JSON at position 10`
+      );
     });
 
     it('throws if invalid paths are passed in via config', () => {
