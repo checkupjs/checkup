@@ -1,3 +1,21 @@
+## v0.7.3 (2020-08-28)
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember-octane`
+  * [#669](https://github.com/checkupjs/checkup/pull/669) Bumping eslint-plugin-ember ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-javascript`, `cli`
+  * [#657](https://github.com/checkupjs/checkup/pull/657) Fixing typos ([@carakessler](https://github.com/carakessler))
+
+#### :house: Internal
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#646](https://github.com/checkupjs/checkup/pull/646) First steps at standardizing console reporter - implementing SummaryResult reporters ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.7.2 (2020-08-20)
 
 #### :house: Internal
