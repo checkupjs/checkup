@@ -29,7 +29,7 @@
     "lodash": "^4.17.19",
     "p-map": "^4.0.0",
     "promise.hash.helper": "^1.0.7",
-    "recast": "^0.20.2",
+    "recast": "^0.20.3",
     "shorthash": "^0.0.2",
     "sloc": "^0.2.1",
     "tmp": "^0.2.1",
