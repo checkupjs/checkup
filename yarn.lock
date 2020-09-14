@@ -7740,15 +7740,15 @@ relative@^3.0.2:
   dependencies:
     isobject "^2.0.0"
 
-release-it-lerna-changelog@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/release-it-lerna-changelog/-/release-it-lerna-changelog-2.3.0.tgz#4bcaa0934d2fa2c48b3de47fb993cb0ce061d415"
-  integrity sha512-UBoquh1Vv5fSICr6ur/j0ZqlVu4qK4MMoGzNp003GJYoj+sg/3gAN0FpAdm1r2jn//XG0PGooadq8uCYX0d08Q==
+release-it-lerna-changelog@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/release-it-lerna-changelog/-/release-it-lerna-changelog-2.4.0.tgz#2751cc1b00989d7095fc8c232a54d75b9240e735"
+  integrity sha512-133XeF9esKAnYuhJQ5nKpQWZYTzkfxVy6YU9NnC0LiiA2jG/4lq9G2D70C3YceWgIAA9uX+Q+1WwWwkY4GY8Uw==
   dependencies:
-    execa "^4.0.0"
+    execa "^4.0.3"
     lerna-changelog "^1.0.1"
-    release-it "^13.5.5"
-    tmp "^0.2.0"
+    release-it "^13.7.0"
+    tmp "^0.2.1"
     which "^2.0.2"
 
 release-it-yarn-workspaces@^1.4.0:
@@ -7763,7 +7763,7 @@ release-it-yarn-workspaces@^1.4.0:
     url-join "^4.0.1"
     walk-sync "^2.0.2"
 
-release-it@^13.3.2, release-it@^13.5.5, release-it@^13.7.0:
+release-it@^13.3.2, release-it@^13.7.0:
   version "13.7.0"
   resolved "https://registry.yarnpkg.com/release-it/-/release-it-13.7.0.tgz#a25f1052688a4ecc30e0ef9c580d365702ce5e95"
   integrity sha512-zrCQcw9vXh/ROHiYMLI9Nl/lgSlMg6XgxTjc8XmVWy/boaeRMXg935MnU6W1cF8WqhWAuUGfy3ZGqSvD6eYoBw==
@@ -8882,7 +8882,7 @@ tmp@^0.1.0:
   dependencies:
     rimraf "^2.6.3"
 
-tmp@^0.2.0, tmp@^0.2.1:
+tmp@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.2.1.tgz#8457fc3037dcf4719c251367a1af6500ee1ccf14"
   integrity sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
