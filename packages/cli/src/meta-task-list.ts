@@ -40,7 +40,7 @@ export default class MetaTaskList {
     try {
       result = await task.run();
     } catch (error) {
-      this.addError(task.meta.taskName, error.message);
+      this.addError(task.meta.taskName, error);
     }
 
     this.debug('%s run done', task.meta.taskName);
@@ -56,7 +56,7 @@ export default class MetaTaskList {
       try {
         result = await task.run();
       } catch (error) {
-        this.addError(task.meta.taskName, error.message);
+        this.addError(task.meta.taskName, error);
       }
 
       this.debug('%s run done', task.meta.taskName);
@@ -72,7 +72,7 @@ export default class MetaTaskList {
     return pMap([...this._entries.values()], fn);
   }
 
-  private addError(taskName: TaskName, error: string) {
+  private addError(taskName: TaskName, error: Error) {
     this._errors.push({ taskName, error });
   }
 }

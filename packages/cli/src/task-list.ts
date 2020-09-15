@@ -129,7 +129,7 @@ export default class TaskList {
     try {
       result = await this._runTask(task);
     } catch (error) {
-      this.addError(task.fullyQualifiedTaskName, error.message);
+      this.addError(task.fullyQualifiedTaskName, error);
     }
 
     this.debug('%s run done', task.fullyQualifiedTaskName);
@@ -152,7 +152,7 @@ export default class TaskList {
       try {
         result = await this._runTask(task);
       } catch (error) {
-        this.addError(task.fullyQualifiedTaskName, error.message);
+        this.addError(task.fullyQualifiedTaskName, error);
       }
 
       this.debug('%s run done', task.fullyQualifiedTaskName);
@@ -222,7 +222,7 @@ export default class TaskList {
     return values;
   }
 
-  private addError(taskName: TaskName, error: string) {
+  private addError(taskName: TaskName, error: Error) {
     this._errors.push({ taskName, error });
   }
 }

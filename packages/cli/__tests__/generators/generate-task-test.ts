@@ -83,6 +83,8 @@ describe('task generator', () => {
       })
       .withPrompts({
         typescript: false,
+        category: 'foo',
+        group: 'bar',
       });
 
     assertTaskFiles('my-foo', dir, 'js');
