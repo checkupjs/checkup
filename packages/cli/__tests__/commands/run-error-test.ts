@@ -18,7 +18,7 @@ describe('@checkup/cli', () => {
 
     it('should correctly report error when no config detected', async () => {
       await expect(
-        runCommand(['run', '--cwd', project.baseDir])
+        runCommand(['run', '--cwd', project.baseDir], { testing: true })
       ).rejects.toThrowErrorMatchingInlineSnapshot(
         `"Could not find a checkup config in the given path: ${project.baseDir}/.checkuprc."`
       );
@@ -31,7 +31,9 @@ describe('@checkup/cli', () => {
       });
       project.writeSync();
 
-      await expect(runCommand(['run', '--cwd', project.baseDir])).rejects.toThrow(
+      await expect(
+        runCommand(['run', '--cwd', project.baseDir], { testing: true })
+      ).rejects.toThrow(
         `Config in ${project.baseDir}/.checkuprc is invalid.
 
 ${white.bold('Details')}: data should have required property 'tasks'.`
@@ -45,7 +47,9 @@ ${white.bold('Details')}: data should have required property 'tasks'.`
       });
       project.writeSync();
 
-      await expect(runCommand(['run', '--cwd', project.baseDir])).rejects.toThrow(
+      await expect(
+        runCommand(['run', '--cwd', project.baseDir], { testing: true })
+      ).rejects.toThrow(
         `Config in ${project.baseDir}/.checkuprc is invalid.
 
 ${white.bold('Details')}: data.tasks should be object.`
@@ -57,7 +61,7 @@ ${white.bold('Details')}: data.tasks should be object.`
       project.writeSync();
 
       await expect(
-        runCommand(['run', '--task', 'foo', '--cwd', project.baseDir])
+        runCommand(['run', '--task', 'foo', '--cwd', project.baseDir], { testing: true })
       ).rejects.toThrowErrorMatchingInlineSnapshot(`"Cannot find the foo task."`);
     });
   });

@@ -11,10 +11,13 @@ let root = require.resolve('.');
 
 export async function runCommand(args: string[] | string, opts: loadConfig.Options = {}) {
   let output: string;
+  let patch;
 
-  let patch = stdout((str: string) => {
-    output = stripAnsi(str);
-  });
+  if (!opts.testing) {
+    patch = stdout((str: string) => {
+      output = stripAnsi(str);
+    });
+  }
 
   let config = await Config.load(opts.root || root);
 
@@ -24,9 +27,13 @@ export async function runCommand(args: string[] | string, opts: loadConfig.Optio
   await config.runHook('init', { id, argv: extra });
   await config.runCommand(id, extra);
 
-  patch.restore();
+  if (!opts.testing) {
+    patch.restore();
 
-  return { stdout: output! };
+    return { stdout: output! };
+  }
+
+  return;
 }
 
 export namespace loadConfig {
@@ -34,5 +41,6 @@ export namespace loadConfig {
   export interface Options {
     root?: string;
     reset?: boolean;
+    testing?: boolean;
   }
 }
