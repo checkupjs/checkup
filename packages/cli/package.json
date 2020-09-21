@@ -33,6 +33,8 @@
     "recast": "^0.20.3",
     "shorthash": "^0.0.2",
     "sloc": "^0.2.1",
+    "stdout-monkey": "^1.1.0",
+    "strip-ansi": "^6.0.0",
     "tmp": "^0.2.1",
     "tslib": "^2",
     "v8-compile-cache": "^2.1.1",

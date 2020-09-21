@@ -67,7 +67,7 @@ describe('@checkup/cli', () => {
     it(
       'should output checkup result',
       async () => {
-        await runCommand(['run', '--cwd', project.baseDir]);
+        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
 
         expect(stdout()).toMatchSnapshot();
       },
@@ -75,7 +75,7 @@ describe('@checkup/cli', () => {
     );
 
     it('should output checkup result in JSON', async () => {
-      await runCommand(['run', '--format', 'json', '--cwd', project.baseDir]);
+      await runCommand(['run', '--format', 'json', '--cwd', project.baseDir], { testing: true });
 
       let output = normalizePath(stdout().trim(), project.baseDir);
 
@@ -93,15 +93,18 @@ describe('@checkup/cli', () => {
       async () => {
         let tmp = createTmpDir();
 
-        await runCommand([
-          'run',
-          '--format',
-          'json',
-          `--outputFile`,
-          join(tmp, 'my-checkup-file.json'),
-          '--cwd',
-          project.baseDir,
-        ]);
+        await runCommand(
+          [
+            'run',
+            '--format',
+            'json',
+            `--outputFile`,
+            join(tmp, 'my-checkup-file.json'),
+            '--cwd',
+            project.baseDir,
+          ],
+          { testing: true }
+        );
 
         let outputPath = stdout().trim();
 
@@ -116,7 +119,9 @@ describe('@checkup/cli', () => {
     it('should run a single task if the tasks option is specified with a single task', async () => {
       _registerTaskForTesting(new FileCountTask(getTaskContext()));
 
-      await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir]);
+      await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir], {
+        testing: true,
+      });
 
       expect(stdout()).toMatchSnapshot();
       _resetTasksForTesting();
@@ -126,7 +131,9 @@ describe('@checkup/cli', () => {
       _registerTaskForTesting(new FileCountTask(getTaskContext()));
 
       process.env.CHECKUP_TIMING = '1';
-      await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir]);
+      await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir], {
+        testing: true,
+      });
 
       expect(stdout()).toContain('Task Timings');
       process.env.CHECKUP_TIMING = undefined;
@@ -137,15 +144,10 @@ describe('@checkup/cli', () => {
       _registerTaskForTesting(new FileCountTask(getTaskContext()));
       _registerTaskForTesting(new FooTask(getTaskContext()));
 
-      await runCommand([
-        'run',
-        '--task',
-        'fake/file-count',
-        '--task',
-        'fake/foo',
-        '--cwd',
-        project.baseDir,
-      ]);
+      await runCommand(
+        ['run', '--task', 'fake/file-count', '--task', 'fake/foo', '--cwd', project.baseDir],
+        { testing: true }
+      );
 
       expect(stdout()).toMatchSnapshot();
       _resetTasksForTesting();
@@ -159,7 +161,9 @@ describe('@checkup/cli', () => {
         project.addCheckupConfig({ tasks: { 'fake/file-count': 'off' } });
         project.writeSync();
 
-        await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir]);
+        await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir], {
+          testing: true,
+        });
 
         expect(stdout()).toMatchSnapshot();
         project.dispose();
@@ -174,13 +178,10 @@ describe('@checkup/cli', () => {
       anotherProject.addCheckupConfig();
       anotherProject.writeSync();
 
-      await runCommand([
-        'run',
-        '--config',
-        join(anotherProject.baseDir, '.checkuprc'),
-        '--cwd',
-        project.baseDir,
-      ]);
+      await runCommand(
+        ['run', '--config', join(anotherProject.baseDir, '.checkuprc'), '--cwd', project.baseDir],
+        { testing: true }
+      );
 
       expect(stdout()).toMatchSnapshot();
       anotherProject.dispose();
@@ -204,21 +205,16 @@ describe('@checkup/cli', () => {
         });
 
         project.writeSync();
-        await runCommand([
-          'run',
-          '**/*.hbs',
-          '**baz/**',
-          '--tasks',
-          'file-count',
-          '--cwd',
-          project.baseDir,
-        ]);
+        await runCommand(
+          ['run', '**/*.hbs', '**baz/**', '--tasks', 'file-count', '--cwd', project.baseDir],
+          { testing: true }
+        );
         let filteredRun = stdout();
         expect(filteredRun).toMatchSnapshot();
 
         clearStdout();
 
-        await runCommand(['run', '--cwd', project.baseDir]);
+        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
         let unFilteredRun = stdout();
         expect(unFilteredRun).toMatchSnapshot();
 
@@ -234,7 +230,7 @@ describe('@checkup/cli', () => {
         project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
         project.writeSync();
 
-        await runCommand(['run', '--cwd', project.baseDir]);
+        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
         let filteredRun = stdout();
         expect(filteredRun).toMatchSnapshot();
 
@@ -243,7 +239,7 @@ describe('@checkup/cli', () => {
         project.addCheckupConfig({ excludePaths: [] });
         project.writeSync();
 
-        await runCommand(['run', '--cwd', project.baseDir]);
+        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
         let unFilteredRun = stdout();
         expect(unFilteredRun).toMatchSnapshot();
 
@@ -257,14 +253,10 @@ describe('@checkup/cli', () => {
     it(
       'should use the excludePaths provided by the command line',
       async () => {
-        await runCommand([
-          'run',
-          '--cwd',
-          project.baseDir,
-          '--excludePaths',
-          '**/*.hbs',
-          '**/*.js',
-        ]);
+        await runCommand(
+          ['run', '--cwd', project.baseDir, '--excludePaths', '**/*.hbs', '**/*.js'],
+          { testing: true }
+        );
 
         let hbsJsFilteredRun = stdout();
 
@@ -272,7 +264,9 @@ describe('@checkup/cli', () => {
 
         clearStdout();
 
-        await runCommand(['run', '--cwd', project.baseDir, '--excludePaths', '**/*.hbs']);
+        await runCommand(['run', '--cwd', project.baseDir, '--excludePaths', '**/*.hbs'], {
+          testing: true,
+        });
 
         let hbsFilteredRun = stdout();
         expect(hbsFilteredRun).toMatchSnapshot();
@@ -288,7 +282,9 @@ describe('@checkup/cli', () => {
         project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
         project.writeSync();
 
-        await runCommand(['run', '--cwd', project.baseDir, '--excludePaths', '**/*.js']);
+        await runCommand(['run', '--cwd', project.baseDir, '--excludePaths', '**/*.js'], {
+          testing: true,
+        });
 
         let jsFilteredRun = stdout();
 
@@ -296,7 +292,7 @@ describe('@checkup/cli', () => {
 
         clearStdout();
 
-        await runCommand(['run', '--cwd', project.baseDir]);
+        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
 
         let hbsFilteredRun = stdout();
         expect(hbsFilteredRun).toMatchSnapshot();
