@@ -18,6 +18,7 @@
     "@oclif/plugin-help": "^3",
     "@types/sloc": "^0.2.0",
     "chalk": "^4.0.0",
+    "clean-stack": "^3.0.0",
     "convert-hrtime": "^3.0.0",
     "date-and-time": "^0.14.1",
     "debug": "^4.1.1",

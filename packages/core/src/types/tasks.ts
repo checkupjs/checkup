@@ -56,7 +56,7 @@ export interface Action {
 
 export type TaskError = {
   taskName: TaskName;
-  error: string;
+  error: Error;
 };
 
 export interface TaskContext {

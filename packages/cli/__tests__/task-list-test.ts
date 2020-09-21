@@ -2,6 +2,8 @@ import TaskList from '../src/task-list';
 import { getTaskContext } from '@checkup/test-helpers';
 import { BaseTask, Task, TaskContext, TaskResult } from '@checkup/core';
 
+const STABLE_ERROR = new Error('Something went wrong in this task');
+
 class InsightsTaskHigh extends BaseTask implements Task {
   taskName = 'insights-task-high';
   taskDisplayName = 'Insights Task High';
@@ -95,7 +97,7 @@ class ErrorTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<TaskResult> {
-    throw new Error('Something went wrong in this task');
+    throw STABLE_ERROR;
   }
 }
 
@@ -300,6 +302,6 @@ describe('TaskList', () => {
     expect(results).toHaveLength(0);
     expect(errors).toHaveLength(1);
     expect(errors[0].taskName).toEqual('fake/error-task');
-    expect(errors[0].error).toEqual('Something went wrong in this task');
+    expect(errors[0].error).toEqual(STABLE_ERROR);
   });
 });

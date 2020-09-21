@@ -15,6 +15,7 @@ import {
 } from '@checkup/core';
 import { yellow, bold } from 'chalk';
 import TaskList from '../task-list';
+import * as cleanStack from 'clean-stack';
 
 let outputMap: { [taskName: string]: (taskResult: TaskResult) => void } = {
   'ember-test-types': function (taskResult: TaskResult) {
@@ -229,7 +230,15 @@ function renderInfo(info: CheckupResult['info']) {
 
 function renderErrors(errors: TaskError[]) {
   if (errors.length > 0) {
-    ui.table(errors, { taskName: {}, error: {} });
+    ui.table(
+      errors.map((taskError) => {
+        return {
+          taskName: taskError.taskName,
+          stack: cleanStack(taskError.error.stack || ''),
+        };
+      }),
+      { taskName: {}, stack: { header: 'Error' } }
+    );
   }
 }
 
