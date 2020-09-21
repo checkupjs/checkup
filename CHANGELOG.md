@@ -1,3 +1,19 @@
+## v0.7.4 (2020-09-21)
+
+#### :rocket: Enhancement
+* `cli`, `core`
+  * [#704](https://github.com/checkupjs/checkup/pull/704) Extends error output to include stack traces ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `cli`
+  * [#705](https://github.com/checkupjs/checkup/pull/705) Fixes node API to return stdout from runCommand ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.7.3 (2020-08-28)
 
 #### :bug: Bug Fix
