@@ -1,16 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`dependencies-task detects Ember dependencies as JSON 1`] = `
-Object {
-  "info": Object {
-    "category": "dependencies",
-    "group": "ember",
-    "taskDisplayName": "Ember Dependencies",
-    "taskName": "ember-dependencies",
-  },
-  "result": Array [
-    Object {
-      "count": 3,
+Array [
+  Object {
+    "message": Object {
+      "text": "ember core libraries",
+    },
+    "occurrenceCount": 3,
+    "properties": Object {
+      "category": "dependencies",
       "data": Array [
         Object {
           "packageName": "ember-source",
@@ -25,28 +23,49 @@ Object {
           "version": "Not found",
         },
       ],
-      "key": "ember core libraries",
-      "type": "summary",
+      "group": "ember",
+      "taskDisplayName": "Ember Dependencies",
+      "taskName": "ember-dependencies",
     },
-    Object {
-      "count": 1,
+  },
+  Object {
+    "message": Object {
+      "text": "ember addon dependencies",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "dependencies",
       "data": Array [
         Object {
           "packageName": "ember-source",
           "version": "^3.15.0",
         },
       ],
-      "key": "ember addon dependencies",
-      "type": "summary",
+      "group": "ember",
+      "taskDisplayName": "Ember Dependencies",
+      "taskName": "ember-dependencies",
     },
-    Object {
-      "count": 0,
+  },
+  Object {
+    "message": Object {
+      "text": "ember addon devDependencies",
+    },
+    "occurrenceCount": 0,
+    "properties": Object {
+      "category": "dependencies",
       "data": Array [],
-      "key": "ember addon devDependencies",
-      "type": "summary",
+      "group": "ember",
+      "taskDisplayName": "Ember Dependencies",
+      "taskName": "ember-dependencies",
     },
-    Object {
-      "count": 2,
+  },
+  Object {
+    "message": Object {
+      "text": "ember-cli addon dependencies",
+    },
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "dependencies",
       "data": Array [
         Object {
           "packageName": "ember-cli",
@@ -57,20 +76,28 @@ Object {
           "version": "latest",
         },
       ],
-      "key": "ember-cli addon dependencies",
-      "type": "summary",
+      "group": "ember",
+      "taskDisplayName": "Ember Dependencies",
+      "taskName": "ember-dependencies",
     },
-    Object {
-      "count": 1,
+  },
+  Object {
+    "message": Object {
+      "text": "ember-cli addon devDependencies",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "dependencies",
       "data": Array [
         Object {
           "packageName": "ember-cli-string-utils",
           "version": "latest",
         },
       ],
-      "key": "ember-cli addon devDependencies",
-      "type": "summary",
+      "group": "ember",
+      "taskDisplayName": "Ember Dependencies",
+      "taskName": "ember-dependencies",
     },
-  ],
-}
+  },
+]
 `;

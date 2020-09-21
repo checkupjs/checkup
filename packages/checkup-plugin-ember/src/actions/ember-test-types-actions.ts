@@ -1,19 +1,17 @@
-import {
-  ActionsEvaluator,
-  MultiValueResult,
-  toPercent,
-  TaskResult,
-  TaskConfig,
-} from '@checkup/core';
+import { ActionsEvaluator, toPercent, TaskConfig } from '@checkup/core';
+import { Result } from 'sarif';
 
-export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
-  let totalSkippedTests = taskResult.result.reduce(
-    (total: number, result: MultiValueResult) => total + result.dataSummary.values.skip,
-    0
-  );
-  let totalTests = taskResult.result.reduce(
-    (total: number, result: MultiValueResult) => total + result.dataSummary.total,
+
+  let totalSkippedTests = taskResults
+    .filter((taskResult) => taskResult.properties?.method === 'skip')
+    .reduce((acc, filteredResult) => {
+      return acc + (filteredResult?.occurrenceCount || 0);
+    }, 0);
+
+  let totalTests = taskResults.reduce(
+    (total: number, result: Result) => total + (result?.occurrenceCount || 0),
     0
   );
 

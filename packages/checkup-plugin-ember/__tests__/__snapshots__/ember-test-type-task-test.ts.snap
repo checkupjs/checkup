@@ -1,256 +1,320 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ember-test-types-task only renders todos/only test types if they a value > 0 1`] = `
-Object {
-  "info": Object {
-    "category": "testing",
-    "group": "ember",
-    "taskDisplayName": "Test Types",
-    "taskName": "ember-test-types",
+Array [
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/rendering/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 17,
+            "startLine": 5,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "rendering",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "method": "test",
+      "taskDisplayName": "Test Types",
+      "taskName": "ember-test-types",
+    },
+    "ruleId": "test-types",
   },
-  "result": Array [
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "method",
-        "total": 0,
-        "values": Object {
-          "only": 0,
-          "skip": 0,
-          "test": 0,
-          "todo": 0,
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/rendering/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 17,
+            "startLine": 6,
+          },
         },
       },
-      "key": "unit",
-      "type": "multi-value",
+    ],
+    "message": Object {
+      "text": "rendering",
     },
-    Object {
-      "data": Array [
-        Object {
-          "column": 17,
-          "filePath": "/addon/rendering/tests/my-component-test.js",
-          "line": 5,
-          "message": "rendering|test",
-          "method": "test",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 17,
-          "filePath": "/addon/rendering/tests/my-component-test.js",
-          "line": 6,
-          "message": "rendering|only",
-          "method": "only",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 17,
-          "filePath": "/addon/rendering/tests/my-component-test.js",
-          "line": 7,
-          "message": "rendering|todo",
-          "method": "todo",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "method",
-        "total": 3,
-        "values": Object {
-          "only": 1,
-          "skip": 0,
-          "test": 1,
-          "todo": 1,
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "method": "only",
+      "taskDisplayName": "Test Types",
+      "taskName": "ember-test-types",
+    },
+    "ruleId": "test-types",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/rendering/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 17,
+            "startLine": 7,
+          },
         },
       },
-      "key": "rendering",
-      "type": "multi-value",
+    ],
+    "message": Object {
+      "text": "rendering",
     },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "method",
-        "total": 0,
-        "values": Object {
-          "only": 0,
-          "skip": 0,
-          "test": 0,
-          "todo": 0,
-        },
-      },
-      "key": "application",
-      "type": "multi-value",
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "method": "todo",
+      "taskDisplayName": "Test Types",
+      "taskName": "ember-test-types",
     },
-  ],
-}
+    "ruleId": "test-types",
+  },
+]
 `;
 
 exports[`ember-test-types-task returns all the test types found in the app and outputs to json 1`] = `
-Object {
-  "info": Object {
-    "category": "testing",
-    "group": "ember",
-    "taskDisplayName": "Test Types",
-    "taskName": "ember-test-types",
+Array [
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/application/someFolder/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 5,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/application/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 5,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "application",
+    },
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "method": "test",
+      "taskDisplayName": "Test Types",
+      "taskName": "ember-test-types",
+    },
+    "ruleId": "test-types",
   },
-  "result": Array [
-    Object {
-      "data": Array [
-        Object {
-          "column": 9,
-          "filePath": "/addon/unit/tests/my-component-test.js",
-          "line": 5,
-          "message": "unit|test",
-          "method": "test",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 9,
-          "filePath": "/addon/unit/tests/my-component-test.js",
-          "line": 6,
-          "message": "unit|skip",
-          "method": "skip",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 9,
-          "filePath": "/addon/unit/tests/my-component-test.js",
-          "line": 7,
-          "message": "unit|skip",
-          "method": "skip",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "method",
-        "total": 3,
-        "values": Object {
-          "only": 0,
-          "skip": 2,
-          "test": 1,
-          "todo": 0,
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/application/someFolder/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 6,
+          },
         },
       },
-      "key": "unit",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 9,
-          "filePath": "/addon/rendering/tests/my-component-test.js",
-          "line": 5,
-          "message": "rendering|test",
-          "method": "test",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 9,
-          "filePath": "/addon/rendering/tests/my-component-test.js",
-          "line": 6,
-          "message": "rendering|skip",
-          "method": "skip",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 9,
-          "filePath": "/addon/rendering/tests/my-component-test.js",
-          "line": 7,
-          "message": "rendering|skip",
-          "method": "skip",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "method",
-        "total": 3,
-        "values": Object {
-          "only": 0,
-          "skip": 2,
-          "test": 1,
-          "todo": 0,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/application/someFolder/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 7,
+          },
         },
       },
-      "key": "rendering",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 9,
-          "filePath": "/addon/application/someFolder/my-component-test.js",
-          "line": 5,
-          "message": "application|test",
-          "method": "test",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 9,
-          "filePath": "/addon/application/someFolder/my-component-test.js",
-          "line": 6,
-          "message": "application|skip",
-          "method": "skip",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 9,
-          "filePath": "/addon/application/someFolder/my-component-test.js",
-          "line": 7,
-          "message": "application|skip",
-          "method": "skip",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 9,
-          "filePath": "/addon/application/tests/my-component-test.js",
-          "line": 5,
-          "message": "application|test",
-          "method": "test",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 9,
-          "filePath": "/addon/application/tests/my-component-test.js",
-          "line": 6,
-          "message": "application|skip",
-          "method": "skip",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-        Object {
-          "column": 9,
-          "filePath": "/addon/application/tests/my-component-test.js",
-          "line": 7,
-          "message": "application|skip",
-          "method": "skip",
-          "ruleId": "test-types",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "method",
-        "total": 6,
-        "values": Object {
-          "only": 0,
-          "skip": 4,
-          "test": 2,
-          "todo": 0,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/application/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 6,
+          },
         },
       },
-      "key": "application",
-      "type": "multi-value",
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/application/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 7,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "application",
     },
-  ],
-}
+    "occurrenceCount": 4,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "method": "skip",
+      "taskDisplayName": "Test Types",
+      "taskName": "ember-test-types",
+    },
+    "ruleId": "test-types",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/rendering/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 5,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "rendering",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "method": "test",
+      "taskDisplayName": "Test Types",
+      "taskName": "ember-test-types",
+    },
+    "ruleId": "test-types",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/rendering/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 6,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/rendering/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 7,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "rendering",
+    },
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "method": "skip",
+      "taskDisplayName": "Test Types",
+      "taskName": "ember-test-types",
+    },
+    "ruleId": "test-types",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/unit/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 5,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "unit",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "method": "test",
+      "taskDisplayName": "Test Types",
+      "taskName": "ember-test-types",
+    },
+    "ruleId": "test-types",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/unit/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 6,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/unit/tests/my-component-test.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 7,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "unit",
+    },
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "method": "skip",
+      "taskDisplayName": "Test Types",
+      "taskName": "ember-test-types",
+    },
+    "ruleId": "test-types",
+  },
+]
 `;

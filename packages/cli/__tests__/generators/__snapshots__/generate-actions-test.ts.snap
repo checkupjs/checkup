@@ -23,13 +23,15 @@ export default hook;
 `;
 
 exports[`actions generator generates correct files with TypeScript 1`] = `
-"import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+"import { TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { Result } from 'sarif';
 
-export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
   return actionsEvaluator.evaluate(taskConfig);
-}"
+}
+"
 `;
 
 exports[`actions generator generates correct files with TypeScript 2`] = `
@@ -45,13 +47,15 @@ export default hook;
 `;
 
 exports[`actions generator generates correct files with TypeScript in custom path 1`] = `
-"import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+"import { TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { Result } from 'sarif';
 
-export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
   return actionsEvaluator.evaluate(taskConfig);
-}"
+}
+"
 `;
 
 exports[`actions generator generates correct files with TypeScript in custom path 2`] = `
@@ -67,23 +71,27 @@ export default hook;
 `;
 
 exports[`actions generator generates multiple correct files with TypeScript 1`] = `
-"import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+"import { TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { Result } from 'sarif';
 
-export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
   return actionsEvaluator.evaluate(taskConfig);
-}"
+}
+"
 `;
 
 exports[`actions generator generates multiple correct files with TypeScript 2`] = `
-"import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+"import { TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { Result } from 'sarif';
 
-export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
   return actionsEvaluator.evaluate(taskConfig);
-}"
+}
+"
 `;
 
 exports[`actions generator generates multiple correct files with TypeScript 3`] = `

@@ -1,817 +1,755 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to json 1`] = `
-Object {
-  "info": Object {
-    "category": "migrations",
-    "group": "ember",
-    "taskDisplayName": "Ember Octane Migration Status",
-    "taskName": "ember-octane-migration-status",
+Array [
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/routes/my-route.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 4,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/services/my-service.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 4,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "Native JS classes should be used instead of classic classes",
+    },
+    "occurrenceCount": 4,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/no-classic-classes",
   },
-  "result": Array [
-    Object {
-      "data": Array [
-        Object {
-          "column": 24,
-          "filePath": "/addon/components/my-component.js",
-          "line": 6,
-          "message": "Native JS classes should be used instead of classic classes",
-          "ruleId": "ember/no-classic-classes",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/addon/components/my-component.js",
-          "line": 10,
-          "message": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
-          "ruleId": "ember/no-get",
-          "severity": 2,
-        },
-        Object {
-          "column": 11,
-          "filePath": "/addon/components/my-component.js",
-          "line": 15,
-          "message": "Use the @action decorator instead of declaring an actions hash",
-          "ruleId": "ember/no-actions-hash",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/addon/components/other-component.js",
-          "line": 6,
-          "message": "Native JS classes should be used instead of classic classes",
-          "ruleId": "ember/no-classic-classes",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/addon/components/other-component.js",
-          "line": 10,
-          "message": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
-          "ruleId": "ember/no-get",
-          "severity": 2,
-        },
-        Object {
-          "column": 11,
-          "filePath": "/addon/components/other-component.js",
-          "line": 15,
-          "message": "Use the @action decorator instead of declaring an actions hash",
-          "ruleId": "ember/no-actions-hash",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/addon/routes/my-route.js",
-          "line": 4,
-          "message": "Native JS classes should be used instead of classic classes",
-          "ruleId": "ember/no-classic-classes",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/addon/services/my-service.js",
-          "line": 4,
-          "message": "Native JS classes should be used instead of classic classes",
-          "ruleId": "ember/no-classic-classes",
-          "severity": 2,
-        },
-        Object {
-          "column": 25,
-          "filePath": "/addon/services/my-service.js",
-          "line": 8,
-          "message": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
-          "ruleId": "ember/no-get",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 9,
-        "values": Object {
-          "ember/classic-decorator-no-classic-methods": 0,
-          "ember/no-actions-hash": 2,
-          "ember/no-classic-classes": 4,
-          "ember/no-get": 3,
-          "ember/no-mixins": 0,
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 10,
+          },
         },
       },
-      "key": "Native Classes",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 24,
-          "filePath": "/addon/components/my-component.js",
-          "line": 6,
-          "message": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
-          "ruleId": "ember/require-tagless-components",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/addon/components/other-component.js",
-          "line": 6,
-          "message": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
-          "ruleId": "ember/require-tagless-components",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 2,
-        "values": Object {
-          "ember/require-tagless-components": 2,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 10,
+          },
         },
       },
-      "key": "Tagless Components",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 16,
-          "filePath": "/addon/components/my-component.js",
-          "line": 2,
-          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
-          "ruleId": "ember/no-classic-components",
-          "severity": 2,
-        },
-        Object {
-          "column": 16,
-          "filePath": "/addon/components/other-component.js",
-          "line": 2,
-          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
-          "ruleId": "ember/no-classic-components",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 2,
-        "values": Object {
-          "ember/no-classic-components": 2,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/services/my-service.js",
+          },
+          "region": Object {
+            "startColumn": 25,
+            "startLine": 8,
+          },
         },
       },
-      "key": "Glimmer Components",
-      "type": "multi-value",
+    ],
+    "message": Object {
+      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
     },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/no-computed-properties-in-native-classes": 0,
+    "occurrenceCount": 3,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/no-get",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 11,
+            "startLine": 15,
+          },
         },
       },
-      "key": "Tracked Propeties",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 10,
-          "filePath": "/addon/templates/application.hbs",
-          "line": 2,
-          "message": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
-          "ruleId": "no-curly-component-invocation",
-          "severity": 2,
-        },
-        Object {
-          "column": 10,
-          "filePath": "/addon/templates/application.hbs",
-          "line": 3,
-          "message": "You are using the component {{other-component}} with curly component syntax. You should use <OtherComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['other-component'] }\`.",
-          "ruleId": "no-curly-component-invocation",
-          "severity": 2,
-        },
-        Object {
-          "column": 10,
-          "filePath": "/addon/templates/my-component.hbs",
-          "line": 3,
-          "message": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
-          "ruleId": "no-curly-component-invocation",
-          "severity": 2,
-        },
-        Object {
-          "column": 10,
-          "filePath": "/addon/templates/other-component.hbs",
-          "line": 2,
-          "message": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
-          "ruleId": "no-curly-component-invocation",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 4,
-        "values": Object {
-          "no-curly-component-invocation": 4,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 11,
+            "startLine": 15,
+          },
         },
       },
-      "key": "Angle Brackets Syntax",
-      "type": "multi-value",
+    ],
+    "message": Object {
+      "text": "Use the @action decorator instead of declaring an actions hash",
     },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-args-paths": 0,
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/no-actions-hash",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 6,
+          },
         },
       },
-      "key": "Named Arguments",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 33,
-          "filePath": "/addon/templates/application.hbs",
-          "line": 2,
-          "message": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
-          "ruleId": "no-implicit-this",
-          "severity": 2,
-        },
-        Object {
-          "column": 39,
-          "filePath": "/addon/templates/application.hbs",
-          "line": 3,
-          "message": "Ambiguous path 'bar' is not allowed. Use '@bar' if it is a named argument or 'this.bar' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['bar'] }.",
-          "ruleId": "no-implicit-this",
-          "severity": 2,
-        },
-        Object {
-          "column": 12,
-          "filePath": "/addon/templates/my-component.hbs",
-          "line": 3,
-          "message": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
-          "ruleId": "no-implicit-this",
-          "severity": 2,
-        },
-        Object {
-          "column": 12,
-          "filePath": "/addon/templates/other-component.hbs",
-          "line": 2,
-          "message": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
-          "ruleId": "no-implicit-this",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 4,
-        "values": Object {
-          "no-implicit-this": 4,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 6,
+          },
         },
       },
-      "key": "Own Properties",
-      "type": "multi-value",
+    ],
+    "message": Object {
+      "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
     },
-    Object {
-      "data": Array [
-        Object {
-          "column": 18,
-          "filePath": "/addon/templates/my-component.hbs",
-          "line": 2,
-          "message": "Do not use \`action\` as <button {{action ...}} />. Instead, use the \`on\` modifier and \`fn\` helper.",
-          "ruleId": "no-action",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 1,
-        "values": Object {
-          "no-action": 1,
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Tagless Components",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/require-tagless-components",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 16,
+            "startLine": 2,
+          },
         },
       },
-      "key": "Modifiers",
-      "type": "multi-value",
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 16,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
     },
-  ],
-}
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Glimmer Components",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/no-classic-components",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/templates/application.hbs",
+          },
+          "region": Object {
+            "startColumn": 10,
+            "startLine": 2,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/templates/application.hbs",
+          },
+          "region": Object {
+            "startColumn": 10,
+            "startLine": 3,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/templates/my-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 10,
+            "startLine": 3,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/templates/other-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 10,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
+    },
+    "occurrenceCount": 4,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Angle Brackets Syntax",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "no-curly-component-invocation",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/templates/application.hbs",
+          },
+          "region": Object {
+            "startColumn": 33,
+            "startLine": 2,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/templates/application.hbs",
+          },
+          "region": Object {
+            "startColumn": 39,
+            "startLine": 3,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/templates/my-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 12,
+            "startLine": 3,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/templates/other-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 12,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
+    },
+    "occurrenceCount": 4,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Own Properties",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "no-implicit-this",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/addon/templates/my-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 18,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "Do not use \`action\` as <button {{action ...}} />. Instead, use the \`on\` modifier and \`fn\` helper.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Modifiers",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "no-action",
+  },
+]
 `;
 
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane app and outputs to json 1`] = `
-Object {
-  "info": Object {
-    "category": "migrations",
-    "group": "ember",
-    "taskDisplayName": "Ember Octane Migration Status",
-    "taskName": "ember-octane-migration-status",
+Array [
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/routes/my-route.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 4,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/services/my-service.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 4,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "Native JS classes should be used instead of classic classes",
+    },
+    "occurrenceCount": 4,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/no-classic-classes",
   },
-  "result": Array [
-    Object {
-      "data": Array [
-        Object {
-          "column": 24,
-          "filePath": "/app/components/my-component.js",
-          "line": 6,
-          "message": "Native JS classes should be used instead of classic classes",
-          "ruleId": "ember/no-classic-classes",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/app/components/my-component.js",
-          "line": 10,
-          "message": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
-          "ruleId": "ember/no-get",
-          "severity": 2,
-        },
-        Object {
-          "column": 11,
-          "filePath": "/app/components/my-component.js",
-          "line": 15,
-          "message": "Use the @action decorator instead of declaring an actions hash",
-          "ruleId": "ember/no-actions-hash",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/app/components/other-component.js",
-          "line": 6,
-          "message": "Native JS classes should be used instead of classic classes",
-          "ruleId": "ember/no-classic-classes",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/app/components/other-component.js",
-          "line": 10,
-          "message": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
-          "ruleId": "ember/no-get",
-          "severity": 2,
-        },
-        Object {
-          "column": 11,
-          "filePath": "/app/components/other-component.js",
-          "line": 15,
-          "message": "Use the @action decorator instead of declaring an actions hash",
-          "ruleId": "ember/no-actions-hash",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/app/routes/my-route.js",
-          "line": 4,
-          "message": "Native JS classes should be used instead of classic classes",
-          "ruleId": "ember/no-classic-classes",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/app/services/my-service.js",
-          "line": 4,
-          "message": "Native JS classes should be used instead of classic classes",
-          "ruleId": "ember/no-classic-classes",
-          "severity": 2,
-        },
-        Object {
-          "column": 25,
-          "filePath": "/app/services/my-service.js",
-          "line": 8,
-          "message": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
-          "ruleId": "ember/no-get",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 9,
-        "values": Object {
-          "ember/classic-decorator-no-classic-methods": 0,
-          "ember/no-actions-hash": 2,
-          "ember/no-classic-classes": 4,
-          "ember/no-get": 3,
-          "ember/no-mixins": 0,
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 10,
+          },
         },
       },
-      "key": "Native Classes",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 24,
-          "filePath": "/app/components/my-component.js",
-          "line": 6,
-          "message": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
-          "ruleId": "ember/require-tagless-components",
-          "severity": 2,
-        },
-        Object {
-          "column": 24,
-          "filePath": "/app/components/other-component.js",
-          "line": 6,
-          "message": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
-          "ruleId": "ember/require-tagless-components",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 2,
-        "values": Object {
-          "ember/require-tagless-components": 2,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 10,
+          },
         },
       },
-      "key": "Tagless Components",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 16,
-          "filePath": "/app/components/my-component.js",
-          "line": 2,
-          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
-          "ruleId": "ember/no-classic-components",
-          "severity": 2,
-        },
-        Object {
-          "column": 16,
-          "filePath": "/app/components/other-component.js",
-          "line": 2,
-          "message": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
-          "ruleId": "ember/no-classic-components",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 2,
-        "values": Object {
-          "ember/no-classic-components": 2,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/services/my-service.js",
+          },
+          "region": Object {
+            "startColumn": 25,
+            "startLine": 8,
+          },
         },
       },
-      "key": "Glimmer Components",
-      "type": "multi-value",
+    ],
+    "message": Object {
+      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
     },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/no-computed-properties-in-native-classes": 0,
+    "occurrenceCount": 3,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/no-get",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 11,
+            "startLine": 15,
+          },
         },
       },
-      "key": "Tracked Propeties",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 10,
-          "filePath": "/app/templates/application.hbs",
-          "line": 2,
-          "message": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
-          "ruleId": "no-curly-component-invocation",
-          "severity": 2,
-        },
-        Object {
-          "column": 10,
-          "filePath": "/app/templates/application.hbs",
-          "line": 3,
-          "message": "You are using the component {{other-component}} with curly component syntax. You should use <OtherComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['other-component'] }\`.",
-          "ruleId": "no-curly-component-invocation",
-          "severity": 2,
-        },
-        Object {
-          "column": 10,
-          "filePath": "/app/templates/my-component.hbs",
-          "line": 3,
-          "message": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
-          "ruleId": "no-curly-component-invocation",
-          "severity": 2,
-        },
-        Object {
-          "column": 10,
-          "filePath": "/app/templates/other-component.hbs",
-          "line": 2,
-          "message": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
-          "ruleId": "no-curly-component-invocation",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 4,
-        "values": Object {
-          "no-curly-component-invocation": 4,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 11,
+            "startLine": 15,
+          },
         },
       },
-      "key": "Angle Brackets Syntax",
-      "type": "multi-value",
+    ],
+    "message": Object {
+      "text": "Use the @action decorator instead of declaring an actions hash",
     },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-args-paths": 0,
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/no-actions-hash",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 6,
+          },
         },
       },
-      "key": "Named Arguments",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [
-        Object {
-          "column": 33,
-          "filePath": "/app/templates/application.hbs",
-          "line": 2,
-          "message": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
-          "ruleId": "no-implicit-this",
-          "severity": 2,
-        },
-        Object {
-          "column": 39,
-          "filePath": "/app/templates/application.hbs",
-          "line": 3,
-          "message": "Ambiguous path 'bar' is not allowed. Use '@bar' if it is a named argument or 'this.bar' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['bar'] }.",
-          "ruleId": "no-implicit-this",
-          "severity": 2,
-        },
-        Object {
-          "column": 12,
-          "filePath": "/app/templates/my-component.hbs",
-          "line": 3,
-          "message": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
-          "ruleId": "no-implicit-this",
-          "severity": 2,
-        },
-        Object {
-          "column": 12,
-          "filePath": "/app/templates/other-component.hbs",
-          "line": 2,
-          "message": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
-          "ruleId": "no-implicit-this",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 4,
-        "values": Object {
-          "no-implicit-this": 4,
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 24,
+            "startLine": 6,
+          },
         },
       },
-      "key": "Own Properties",
-      "type": "multi-value",
+    ],
+    "message": Object {
+      "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
     },
-    Object {
-      "data": Array [
-        Object {
-          "column": 18,
-          "filePath": "/app/templates/my-component.hbs",
-          "line": 2,
-          "message": "Do not use \`action\` as <button {{action ...}} />. Instead, use the \`on\` modifier and \`fn\` helper.",
-          "ruleId": "no-action",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 1,
-        "values": Object {
-          "no-action": 1,
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Tagless Components",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/require-tagless-components",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/my-component.js",
+          },
+          "region": Object {
+            "startColumn": 16,
+            "startLine": 2,
+          },
         },
       },
-      "key": "Modifiers",
-      "type": "multi-value",
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/components/other-component.js",
+          },
+          "region": Object {
+            "startColumn": 16,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
     },
-  ],
-}
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Glimmer Components",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "ember/no-classic-components",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/templates/application.hbs",
+          },
+          "region": Object {
+            "startColumn": 10,
+            "startLine": 2,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/templates/application.hbs",
+          },
+          "region": Object {
+            "startColumn": 10,
+            "startLine": 3,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/templates/my-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 10,
+            "startLine": 3,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/templates/other-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 10,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
+    },
+    "occurrenceCount": 4,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Angle Brackets Syntax",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "no-curly-component-invocation",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/templates/application.hbs",
+          },
+          "region": Object {
+            "startColumn": 33,
+            "startLine": 2,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/templates/application.hbs",
+          },
+          "region": Object {
+            "startColumn": 39,
+            "startLine": 3,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/templates/my-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 12,
+            "startLine": 3,
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/templates/other-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 12,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
+    },
+    "occurrenceCount": 4,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Own Properties",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "no-implicit-this",
+  },
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "/app/templates/my-component.hbs",
+          },
+          "region": Object {
+            "startColumn": 18,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "Do not use \`action\` as <button {{action ...}} />. Instead, use the \`on\` modifier and \`fn\` helper.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "resultGroup": "Modifiers",
+      "taskDisplayName": "Ember Octane Migration Status",
+      "taskName": "ember-octane-migration-status",
+    },
+    "ruleId": "no-action",
+  },
+]
 `;
 
-exports[`ember-octane-migration-status-task detects octane migration status for octane addon and outputs to json 1`] = `
-Object {
-  "info": Object {
-    "category": "migrations",
-    "group": "ember",
-    "taskDisplayName": "Ember Octane Migration Status",
-    "taskName": "ember-octane-migration-status",
-  },
-  "result": Array [
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/classic-decorator-no-classic-methods": 0,
-          "ember/no-actions-hash": 0,
-          "ember/no-classic-classes": 0,
-          "ember/no-get": 0,
-          "ember/no-mixins": 0,
-        },
-      },
-      "key": "Native Classes",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/require-tagless-components": 0,
-        },
-      },
-      "key": "Tagless Components",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/no-classic-components": 0,
-        },
-      },
-      "key": "Glimmer Components",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/no-computed-properties-in-native-classes": 0,
-        },
-      },
-      "key": "Tracked Propeties",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-curly-component-invocation": 0,
-        },
-      },
-      "key": "Angle Brackets Syntax",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-args-paths": 0,
-        },
-      },
-      "key": "Named Arguments",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-implicit-this": 0,
-        },
-      },
-      "key": "Own Properties",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-action": 0,
-        },
-      },
-      "key": "Modifiers",
-      "type": "multi-value",
-    },
-  ],
-}
-`;
+exports[`ember-octane-migration-status-task detects octane migration status for octane addon and outputs to json 1`] = `Array []`;
 
-exports[`ember-octane-migration-status-task detects octane migration status for octane app and outputs to json 1`] = `
-Object {
-  "info": Object {
-    "category": "migrations",
-    "group": "ember",
-    "taskDisplayName": "Ember Octane Migration Status",
-    "taskName": "ember-octane-migration-status",
-  },
-  "result": Array [
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/classic-decorator-no-classic-methods": 0,
-          "ember/no-actions-hash": 0,
-          "ember/no-classic-classes": 0,
-          "ember/no-get": 0,
-          "ember/no-mixins": 0,
-        },
-      },
-      "key": "Native Classes",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/require-tagless-components": 0,
-        },
-      },
-      "key": "Tagless Components",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/no-classic-components": 0,
-        },
-      },
-      "key": "Glimmer Components",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "ember/no-computed-properties-in-native-classes": 0,
-        },
-      },
-      "key": "Tracked Propeties",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-curly-component-invocation": 0,
-        },
-      },
-      "key": "Angle Brackets Syntax",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-args-paths": 0,
-        },
-      },
-      "key": "Named Arguments",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-implicit-this": 0,
-        },
-      },
-      "key": "Own Properties",
-      "type": "multi-value",
-    },
-    Object {
-      "data": Array [],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 0,
-        "values": Object {
-          "no-action": 0,
-        },
-      },
-      "key": "Modifiers",
-      "type": "multi-value",
-    },
-  ],
-}
-`;
+exports[`ember-octane-migration-status-task detects octane migration status for octane app and outputs to json 1`] = `Array []`;

@@ -16,7 +16,6 @@
     "@oclif/config": "^1",
     "@oclif/errors": "^1.3.3",
     "@oclif/plugin-help": "^3",
-    "@types/sloc": "^0.2.0",
     "chalk": "^4.0.0",
     "clean-stack": "^3.0.0",
     "convert-hrtime": "^3.0.0",
@@ -45,6 +44,8 @@
   "devDependencies": {
     "@checkup/test-helpers": "0.7.4",
     "@oclif/dev-cli": "^1",
+    "@types/sarif": "^2.1.3",
+    "@types/sloc": "^0.2.0",
     "@types/yeoman-environment": "^2.3.3",
     "@types/yeoman-generator": "^3.1.4",
     "yeoman-test": "^3.0.0"

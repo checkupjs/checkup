@@ -32,14 +32,14 @@ export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
 
 export { byRuleId, byRuleIds, bySeverity } from './data/filters';
-export { toPercent } from './data/formatters';
+export { toPercent, groupDataByField } from './data/formatters';
 export {
-  buildSummaryResult,
-  buildMultiValueResult,
-  buildDerivedValueResult,
-  buildLookupValueResult,
+  buildResultFromProperties,
+  buildResultFromLintResult,
+  buildResultFromPathArray,
   buildLintResultData,
   buildLintResultDataItem,
+  buildNotificationsFromTaskErrors,
   normalizePath,
   normalizePaths,
 } from './data/builders';

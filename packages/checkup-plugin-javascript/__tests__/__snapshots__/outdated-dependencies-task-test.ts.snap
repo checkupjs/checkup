@@ -1,15 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`outdated-dependencies-task detects outdated dependencies as JSON 1`] = `
-Object {
-  "info": Object {
-    "category": "dependencies",
-    "group": undefined,
-    "taskDisplayName": "Outdated Dependencies",
-    "taskName": "outdated-dependencies",
-  },
-  "result": Array [
-    Object {
+Array [
+  Object {
+    "message": Object {
+      "text": "major",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "dependencies",
       "data": Array [
         Object {
           "homepage": "https://reactjs.org/",
@@ -20,6 +19,20 @@ Object {
           "semverBump": "major",
           "wanted": "15.6.2",
         },
+      ],
+      "group": undefined,
+      "taskDisplayName": "Outdated Dependencies",
+      "taskName": "outdated-dependencies",
+    },
+  },
+  Object {
+    "message": Object {
+      "text": "minor",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "dependencies",
+      "data": Array [
         Object {
           "homepage": "https://reactjs.org/",
           "installed": "16.0.0",
@@ -30,17 +43,10 @@ Object {
           "wanted": "16.0.0",
         },
       ],
-      "dataSummary": Object {
-        "dataKey": "semverBump",
-        "total": 2,
-        "values": Object {
-          "major": 1,
-          "minor": 1,
-        },
-      },
-      "key": "dependencies",
-      "type": "multi-value",
+      "group": undefined,
+      "taskDisplayName": "Outdated Dependencies",
+      "taskName": "outdated-dependencies",
     },
-  ],
-}
+  },
+]
 `;

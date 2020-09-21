@@ -1,24 +1,24 @@
 import {
   BaseTask,
+  buildLintResultDataItem,
+  buildResultFromLintResult,
+  byRuleIds,
+  ESLintMessage,
+  ESLintOptions,
   ESLintReport,
+  ESLintResult,
+  LintResult,
   Parser,
   Task,
   TaskContext,
-  TemplateLintReport,
-  TemplateLinter,
-  ESLintOptions,
   TemplateLintConfig,
-  buildLintResultDataItem,
-  LintResult,
-  ESLintResult,
-  buildMultiValueResult,
-  byRuleIds,
-  TemplateLintResult,
-  MultiValueResult,
-  ESLintMessage,
+  TemplateLinter,
   TemplateLintMessage,
-  TaskResult,
+  TemplateLintReport,
+  TemplateLintResult,
+  groupDataByField,
 } from '@checkup/core';
+import { Result } from 'sarif';
 
 const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
   parser: 'babel-eslint',
@@ -97,7 +97,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
     this.templateLinter = createEmberTemplateLintParser(OCTANE_TEMPLATE_LINT_CONFIG);
   }
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     let [esLintReport, templateLintReport] = await Promise.all([
       this.runEsLint(),
       this.runTemplateLint(),
@@ -107,8 +107,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
       [...esLintReport.results, ...templateLintReport.results],
       this.context.cliFlags.cwd
     );
-
-    return this.toJson(octaneResults);
+    return octaneResults.map((octaneResult) => this.toJson(octaneResult));
   }
 
   private async runEsLint(): Promise<ESLintReport> {
@@ -124,14 +123,11 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
   }
 }
 
-function buildResult(
-  lintResults: (ESLintResult | TemplateLintResult)[],
-  cwd: string
-): MultiValueResult[] {
-  let rawData = lintResults.reduce((resultDataItems, lintResult) => {
-    let messages = (<any>lintResult.messages).map(
+function buildResult(lintingResults: (ESLintResult | TemplateLintResult)[], cwd: string): Result[] {
+  let rawData = lintingResults.reduce((resultDataItems, lintingResults) => {
+    let messages = (<any>lintingResults.messages).map(
       (lintMessage: ESLintMessage | TemplateLintMessage) => {
-        return buildLintResultDataItem(lintMessage, cwd, lintResult.filePath);
+        return buildLintResultDataItem(lintMessage, cwd, lintingResults.filePath);
       }
     );
 
@@ -149,7 +145,12 @@ function buildResult(
     { key: 'Named Arguments', rules: NAMED_ARGUMENTS_RULES },
     { key: 'Own Properties', rules: OWN_PROPERTIES_RULES },
     { key: 'Modifiers', rules: USE_MODIFIERS_RULES },
-  ].map(({ key, rules }) => {
-    return buildMultiValueResult(key, byRuleIds(rawData, rules), 'ruleId', rules);
+  ].flatMap(({ rules, key }) => {
+    let rulesGroupForKey = groupDataByField(byRuleIds(rawData, rules), 'ruleId');
+    return rulesGroupForKey.map((rulesForKey) => {
+      return buildResultFromLintResult(rulesForKey, {
+        resultGroup: key,
+      });
+    });
   });
 }

@@ -1,32 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ember-in-repo-addons-engines-task can read task as JSON 1`] = `
-Object {
-  "info": Object {
-    "category": "metrics",
-    "group": "ember",
-    "taskDisplayName": "Ember In-Repo Addons / Engines",
-    "taskName": "ember-in-repo-addons-engines",
+Array [
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "admin",
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "shopping-cart",
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "in-repo addons",
+    },
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember In-Repo Addons / Engines",
+      "taskName": "ember-in-repo-addons-engines",
+    },
   },
-  "result": Array [
-    Object {
-      "count": 2,
-      "data": Array [
-        "foo-engine",
-        "shmoo-engine",
-      ],
-      "key": "in-repo engines",
-      "type": "summary",
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "foo-engine",
+          },
+        },
+      },
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "shmoo-engine",
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "in-repo engines",
     },
-    Object {
-      "count": 2,
-      "data": Array [
-        "admin",
-        "shopping-cart",
-      ],
-      "key": "in-repo addons",
-      "type": "summary",
+    "occurrenceCount": 2,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember In-Repo Addons / Engines",
+      "taskName": "ember-in-repo-addons-engines",
     },
-  ],
-}
+  },
+]
 `;

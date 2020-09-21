@@ -1,4 +1,5 @@
-import { BaseTask, Task, TaskResult } from '@checkup/core';
+import { BaseTask, Task } from '@checkup/core';
+import { Result } from 'sarif';
 
 export default class <%- taskClass %> extends BaseTask implements Task {
   taskName = '<%- name %>';
@@ -8,7 +9,7 @@ export default class <%- taskClass %> extends BaseTask implements Task {
   group = '<%- group %>';
   <%_ } _%>
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     return this.toJson([]);
   }
 }

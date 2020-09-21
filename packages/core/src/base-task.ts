@@ -6,6 +6,8 @@ import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
 import { parseConfigTuple } from './config';
 
+import { Result } from 'sarif';
+
 export default abstract class BaseTask {
   abstract taskName: TaskName;
   abstract taskDisplayName: string;
@@ -45,16 +47,17 @@ export default abstract class BaseTask {
     return `${this._pluginName}/${this.taskName}`;
   }
 
-  toJson<T>(data: T) {
-    return {
-      info: {
+  toJson(result: Result) {
+    result.properties = {
+      ...result.properties,
+      ...{
         taskName: this.taskName,
         taskDisplayName: this.taskDisplayName,
         category: this.category,
         group: this.group,
       },
-      result: data,
     };
+    return result;
   }
 
   private _parseConfig() {

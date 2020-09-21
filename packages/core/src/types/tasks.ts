@@ -1,10 +1,10 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 import { JsonObject, PackageJson } from 'type-fest';
 
-import { TaskResult } from './checkup-result';
 import { CheckupConfig, TaskConfig } from './config';
 import { FilePathArray } from '../utils/file-path-array';
 import { RunFlags } from './cli';
+import { Result } from 'sarif';
 
 export type RegisterTaskArgs = {
   context: TaskContext;
@@ -14,12 +14,12 @@ export type RegisterTaskArgs = {
 export type RegisterActionsArgs = {
   registerActions: (taskName: TaskName, evaluate: TaskActionsEvaluator) => void;
 };
-export type TaskActionsEvaluator = (taskResult: TaskResult, taskConfig: TaskConfig) => Action[];
+export type TaskActionsEvaluator = (taskResults: Result[], taskConfig: TaskConfig) => Action[];
 
 export type RegisterTaskReporterArgs = {
   registerTaskReporter: (taskName: TaskName, report: TaskReporter) => void;
 };
-export type TaskReporter = (taskResult: TaskResult) => void;
+export type TaskReporter = (taskResult: Result) => void;
 
 interface TaskList {
   registerTask(task: Task): void;
@@ -38,8 +38,8 @@ export interface Task {
   readonly fullyQualifiedTaskName: string;
   readonly enabled: boolean;
 
-  run: () => Promise<TaskResult>;
-  toJson: <T>(data: T) => TaskResult;
+  run: () => Promise<Result[]>;
+  toJson: (result: Result) => Result;
 }
 
 export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
