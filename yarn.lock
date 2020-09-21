@@ -7887,10 +7887,10 @@ release-it-lerna-changelog@^2.4.0:
     tmp "^0.2.1"
     which "^2.0.2"
 
-release-it-yarn-workspaces@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/release-it-yarn-workspaces/-/release-it-yarn-workspaces-1.4.0.tgz#ebc6723a59592cea5f7d31cb3c11c1757f65a7da"
-  integrity sha512-alXTftlKl3fhm+UKvVaB4urUecZskWe7g7kBdfgWqm5mqQ363gd/3f9sdM5r/KXKJAGE1xH9Us3igTliiG/SxQ==
+release-it-yarn-workspaces@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/release-it-yarn-workspaces/-/release-it-yarn-workspaces-1.5.0.tgz#33e40e5c611999f03809b3316c2e56efc25eeceb"
+  integrity sha512-X8TcRADePg0k5VeAhAEvih45vx1Kbm1ViHJoiMGMpGI5hPvUJ9l4NDHH79HbIJYvzzirPgzAvMTXDrr20pjT9w==
   dependencies:
     detect-indent "^6.0.0"
     detect-newline "^3.1.0"
@@ -9505,16 +9505,7 @@ w3c-xmlserializer@^1.1.2:
     webidl-conversions "^4.0.2"
     xml-name-validator "^3.0.0"
 
-walk-sync@^2.0.2:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/walk-sync/-/walk-sync-2.1.0.tgz#e214248e5f5cf497ddd87db5a2a02e47e29c6501"
-  integrity sha512-KpH9Xw64LNSx7/UI+3guRZvJWlDxVA4+KKb/4puRoVrG8GkvZRxnF3vhxdjgpoKJGL2TVg1OrtkXIE/VuGPLHQ==
-  dependencies:
-    "@types/minimatch" "^3.0.3"
-    ensure-posix-path "^1.1.0"
-    matcher-collection "^2.0.0"
-
-walk-sync@^2.2.0:
+walk-sync@^2.0.2, walk-sync@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/walk-sync/-/walk-sync-2.2.0.tgz#80786b0657fcc8c0e1c0b1a042a09eae2966387a"
   integrity sha512-IC8sL7aB4/ZgFcGI2T1LczZeFWZ06b3zoHH7jBPyHxOtIIz1jppWHjjEXkOFvFojBVAK9pV7g47xOZ4LW3QLfg==
