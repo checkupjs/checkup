@@ -10,7 +10,7 @@
     "@oclif/config": "^1",
     "babel-eslint": "^10.1.0",
     "debug": "^4.2.0",
-    "eslint-plugin-ember": "^9.2.0",
+    "eslint-plugin-ember": "^9.3.0",
     "tslib": "^2"
   },
   "devDependencies": {
