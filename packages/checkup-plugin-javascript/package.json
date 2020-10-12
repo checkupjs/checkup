@@ -11,7 +11,7 @@
     "@oclif/config": "^1",
     "ember-template-recast": "^4.2.0",
     "npm-check": "^5.9.2",
-    "recast": "^0.20.3",
+    "recast": "^0.20.4",
     "tslib": "^2"
   },
   "devDependencies": {
