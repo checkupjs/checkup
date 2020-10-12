@@ -30,7 +30,7 @@
     "lodash": "^4.17.19",
     "p-map": "^4.0.0",
     "promise.hash.helper": "^1.0.7",
-    "recast": "^0.20.3",
+    "recast": "^0.20.4",
     "shorthash": "^0.0.2",
     "sloc": "^0.2.1",
     "stdout-monkey": "^1.1.0",
