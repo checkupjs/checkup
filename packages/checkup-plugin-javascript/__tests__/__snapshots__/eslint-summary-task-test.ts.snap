@@ -7,7 +7,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/included-path.js",
+            "uri": "included-path.js",
           },
           "region": Object {
             "startColumn": 32,
@@ -23,18 +23,18 @@ Array [
     "properties": Object {
       "category": "linting",
       "group": undefined,
+      "lintRuleId": "semi",
       "taskDisplayName": "Eslint Summary",
-      "taskName": "eslint-summary",
       "type": "error",
     },
-    "ruleId": "semi",
+    "ruleId": "eslint-summary",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/included-path.js",
+            "uri": "included-path.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -50,11 +50,11 @@ Array [
     "properties": Object {
       "category": "linting",
       "group": undefined,
+      "lintRuleId": "no-var",
       "taskDisplayName": "Eslint Summary",
-      "taskName": "eslint-summary",
       "type": "warning",
     },
-    "ruleId": "no-var",
+    "ruleId": "eslint-summary",
   },
 ]
 `;

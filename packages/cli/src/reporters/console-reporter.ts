@@ -5,8 +5,9 @@ import {
   getRegisteredTaskReporters,
   ui,
   groupDataByField,
+  NO_RESULTS_FOUND,
+  sumOccurrences,
 } from '@checkup/core';
-import * as chalk from 'chalk';
 import { bold, yellow } from 'chalk';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
@@ -21,7 +22,11 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
 
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
       taskResults.forEach((result: Result) => {
-        ui.value({ title: result.message.text, count: result.properties?.data.length });
+        if (result.message.text === NO_RESULTS_FOUND) {
+          renderEmptyResult(result);
+        } else {
+          ui.value({ title: result.message.text, count: result.properties?.data.length });
+        }
       });
     });
   },
@@ -33,7 +38,11 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
         ui.subHeader(resultGroup[0].message.text);
         ui.valuesList(
           resultGroup.map((result) => {
-            return { title: result.properties?.method, count: result.occurrenceCount };
+            if (result.message.text === NO_RESULTS_FOUND) {
+              renderEmptyResult(result);
+            } else {
+              return { title: result.properties?.method, count: result.occurrenceCount };
+            }
           })
         );
         ui.blankLine();
@@ -41,27 +50,20 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
 
       ui.subHeader('tests by type');
       ui.sectionedBar(
-        groupedTaskResults.map((result: Result[]) => {
+        groupedTaskResults.map((results: Result[]) => {
           return {
-            title: result[0].message.text,
-            count: result.reduce((total, value) => total + (value.occurrenceCount || 0), 0),
+            title: results[0].message.text,
+            count: sumOccurrences(results),
           };
         }),
-        taskResults.reduce((total, value) => total + (value.occurrenceCount || 0), 0),
+        sumOccurrences(taskResults),
         'tests'
       );
     });
   },
   'ember-octane-migration-status': function (taskResults: Result[]) {
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
-      ui.log(
-        `${ui.emphasize('Octane Violations')}: ${taskResults.reduce(
-          (violationsCount: number, result: Result) => {
-            return violationsCount + (result.occurrenceCount || 0);
-          },
-          0
-        )}`
-      );
+      ui.log(`${ui.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`);
       ui.blankLine();
 
       let groupedTaskResults = groupDataByField(taskResults, 'properties.resultGroup');
@@ -70,7 +72,11 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
         ui.subHeader(resultGroup[0].properties?.resultGroup);
         ui.valuesList(
           resultGroup.map((result) => {
-            return { title: result.ruleId, count: result.occurrenceCount };
+            if (result.message.text === NO_RESULTS_FOUND) {
+              renderEmptyResult(result);
+            } else {
+              return { title: result.properties?.lintRuleId, count: result.occurrenceCount };
+            }
           }),
           'violations'
         );
@@ -83,18 +89,19 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
 
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
       groupedTaskResults.forEach((resultGroup: Result[]) => {
-        let totalCount = resultGroup.reduce(
-          (total, value) => total + (value?.occurrenceCount || 0),
-          0
-        );
+        let totalCount = sumOccurrences(resultGroup);
         if (totalCount) {
-          ui.blankLine();
           ui.subHeader(`${resultGroup[0].properties?.type}s: (${totalCount})`);
           ui.valuesList(
             resultGroup.map((result) => {
-              return { title: result.ruleId, count: result?.occurrenceCount };
+              if (result.message.text === NO_RESULTS_FOUND) {
+                renderEmptyResult(result);
+              } else {
+                return { title: result.properties?.lintRuleId, count: result?.occurrenceCount };
+              }
             })
           );
+          ui.blankLine();
         }
       });
     });
@@ -103,9 +110,13 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
       ui.sectionedBar(
         taskResults.map((result: Result) => {
-          return { title: result.message.text, count: result.occurrenceCount };
+          if (result.message.text === NO_RESULTS_FOUND) {
+            renderEmptyResult(result);
+          } else {
+            return { title: result.message.text, count: result.occurrenceCount };
+          }
         }),
-        taskResults.reduce((total, value) => total + (value.occurrenceCount || 0), 0),
+        sumOccurrences(taskResults),
         'dependencies'
       );
     });
@@ -125,13 +136,13 @@ export function report(result: Log) {
   renderActions(result.properties?.actions);
 
   if (process.env.CHECKUP_TIMING === '1') {
-    renderTimings(result.properties?.cli.timings);
+    renderTimings(result.properties?.timings);
   }
 }
 
 export function reportAvailableTasks(pluginTasks: TaskList) {
   ui.blankLine();
-  ui.log(chalk.bold.white('AVAILABLE TASKS'));
+  ui.log(bold.white('AVAILABLE TASKS'));
   ui.blankLine();
   pluginTasks.fullyQualifiedTaskNames.forEach((taskName) => {
     ui.log(`  ${taskName}`);
@@ -143,7 +154,7 @@ function renderTaskResults(pluginTaskResults: Result[] | undefined): void {
   let currentCategory = '';
 
   if (pluginTaskResults) {
-    let groupedTaskResults = groupDataByField(pluginTaskResults, 'properties.taskName');
+    let groupedTaskResults = groupDataByField(pluginTaskResults, 'ruleId');
 
     groupedTaskResults?.forEach((taskResultGroup: Result[]) => {
       let taskCategory = taskResultGroup[0].properties?.category;
@@ -162,9 +173,8 @@ function renderTaskResults(pluginTaskResults: Result[] | undefined): void {
 }
 
 function getTaskReporter(taskResult: Result[]) {
-  let taskName = taskResult[0].properties?.taskName;
+  let taskName = taskResult[0].ruleId as string;
   let registeredTaskReporters = getRegisteredTaskReporters();
-
   let reporter = outputMap[taskName] || registeredTaskReporters.get(taskName) || getReportComponent;
 
   if (typeof reporter === 'undefined') {
@@ -177,13 +187,24 @@ function getTaskReporter(taskResult: Result[]) {
   return reporter;
 }
 
+function renderEmptyResult(taskResult: Result) {
+  ui.value({
+    title: taskResult.message.properties?.consoleMessage || taskResult.properties?.taskDisplayName,
+    count: 0,
+  });
+}
+
 function getReportComponent(taskResults: Result[]) {
   ui.section(taskResults[0].properties?.taskDisplayName, () => {
     taskResults.forEach((result) => {
-      ui.value({
-        title: result.message.text || result.properties?.taskName,
-        count: result?.occurrenceCount || Number.NaN,
-      });
+      if (result.message.text === NO_RESULTS_FOUND) {
+        renderEmptyResult(result);
+      } else {
+        ui.value({
+          title: result.message.text || result.ruleId,
+          count: result?.occurrenceCount || Number.NaN,
+        });
+      }
     });
   });
 }

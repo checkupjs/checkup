@@ -55,7 +55,7 @@ describe('eslint-disable-task', () => {
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
-                  "uri": "/decorator.js",
+                  "uri": "decorator.js",
                 },
                 "region": Object {
                   "startColumn": 6,
@@ -66,7 +66,7 @@ describe('eslint-disable-task', () => {
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
-                  "uri": "/index.js",
+                  "uri": "index.js",
                 },
                 "region": Object {
                   "startColumn": 19,
@@ -77,7 +77,7 @@ describe('eslint-disable-task', () => {
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
-                  "uri": "/index.js",
+                  "uri": "index.js",
                 },
                 "region": Object {
                   "startColumn": 4,
@@ -88,7 +88,7 @@ describe('eslint-disable-task', () => {
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
-                  "uri": "/index.js",
+                  "uri": "index.js",
                 },
                 "region": Object {
                   "startColumn": 4,
@@ -104,10 +104,10 @@ describe('eslint-disable-task', () => {
           "properties": Object {
             "category": "linting",
             "group": "disabled-lint-rules",
+            "lintRuleId": "no-eslint-disable",
             "taskDisplayName": "Number of eslint-disable Usages",
-            "taskName": "eslint-disables",
           },
-          "ruleId": "no-eslint-disable",
+          "ruleId": "eslint-disables",
         },
       ]
     `);

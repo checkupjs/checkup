@@ -242,8 +242,8 @@ describe('TaskList', () => {
             "category": "foo",
             "group": undefined,
             "taskDisplayName": "Insights Task Low",
-            "taskName": "insights-task-low",
           },
+          "ruleId": "insights-task-low",
         },
         Object {
           "message": Object {
@@ -253,8 +253,8 @@ describe('TaskList', () => {
             "category": "foo",
             "group": undefined,
             "taskDisplayName": "Migration Task High",
-            "taskName": "migration-task-high",
           },
+          "ruleId": "migration-task-high",
         },
         Object {
           "message": Object {
@@ -264,8 +264,8 @@ describe('TaskList', () => {
             "category": "baz",
             "group": undefined,
             "taskDisplayName": "Recommendations Task High",
-            "taskName": "recommendations-task-high",
           },
+          "ruleId": "recommendations-task-high",
         },
         Object {
           "message": Object {
@@ -275,8 +275,8 @@ describe('TaskList', () => {
             "category": "baz",
             "group": undefined,
             "taskDisplayName": "Migration Task Low",
-            "taskName": "migration-task-low",
           },
+          "ruleId": "migration-task-low",
         },
         Object {
           "message": Object {
@@ -286,8 +286,8 @@ describe('TaskList', () => {
             "category": "bar",
             "group": undefined,
             "taskDisplayName": "Recommendations Task Low",
-            "taskName": "recommendations-task-low",
           },
+          "ruleId": "recommendations-task-low",
         },
         Object {
           "message": Object {
@@ -297,8 +297,8 @@ describe('TaskList', () => {
             "category": "bar",
             "group": undefined,
             "taskDisplayName": "Insights Task High",
-            "taskName": "insights-task-high",
           },
+          "ruleId": "insights-task-high",
         },
       ]
     `);

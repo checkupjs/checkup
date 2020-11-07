@@ -146,7 +146,7 @@ function buildResult(lintingResults: (ESLintResult | TemplateLintResult)[], cwd:
     { key: 'Own Properties', rules: OWN_PROPERTIES_RULES },
     { key: 'Modifiers', rules: USE_MODIFIERS_RULES },
   ].flatMap(({ rules, key }) => {
-    let rulesGroupForKey = groupDataByField(byRuleIds(rawData, rules), 'ruleId');
+    let rulesGroupForKey = groupDataByField(byRuleIds(rawData, rules), 'lintRuleId');
     return rulesGroupForKey.map((rulesForKey) => {
       return buildResultFromLintResult(rulesForKey, {
         resultGroup: key,

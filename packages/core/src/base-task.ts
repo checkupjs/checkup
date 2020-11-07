@@ -51,12 +51,12 @@ export default abstract class BaseTask {
     result.properties = {
       ...result.properties,
       ...{
-        taskName: this.taskName,
         taskDisplayName: this.taskDisplayName,
         category: this.category,
         group: this.group,
       },
     };
+    result.ruleId = this.taskName;
     return result;
   }
 

@@ -56,7 +56,7 @@ Array [
       "arguments": Array [],
       "endTimeUtc": "",
       "environmentVariables": Object {
-        "cwd": "",
+        "cwd": "checkup-app",
         "format": "json",
         "outputFile": "",
       },

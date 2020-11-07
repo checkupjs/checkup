@@ -12,18 +12,18 @@ Array [
       "data": Array [
         Object {
           "homepage": "https://reactjs.org/",
-          "installed": "15.6.2",
-          "latest": "16.13.1",
-          "packageJsonVersion": "^15.0.0",
+          "installed": "16.0.0",
+          "latest": "17.0.1",
+          "packageJsonVersion": "16.0.0",
           "packageName": "react",
           "semverBump": "major",
-          "wanted": "15.6.2",
+          "wanted": "16.0.0",
         },
       ],
       "group": undefined,
       "taskDisplayName": "Outdated Dependencies",
-      "taskName": "outdated-dependencies",
     },
+    "ruleId": "outdated-dependencies",
   },
   Object {
     "message": Object {
@@ -34,19 +34,19 @@ Array [
       "category": "dependencies",
       "data": Array [
         Object {
-          "homepage": "https://reactjs.org/",
-          "installed": "16.0.0",
-          "latest": "16.13.1",
-          "packageJsonVersion": "16.0.0",
-          "packageName": "react-dom",
+          "homepage": "https://ember-cli.com/",
+          "installed": "3.20.0",
+          "latest": "3.22.0",
+          "packageJsonVersion": "3.20.0",
+          "packageName": "ember-cli",
           "semverBump": "minor",
-          "wanted": "16.0.0",
+          "wanted": "3.20.0",
         },
       ],
       "group": undefined,
       "taskDisplayName": "Outdated Dependencies",
-      "taskName": "outdated-dependencies",
     },
+    "ruleId": "outdated-dependencies",
   },
 ]
 `;

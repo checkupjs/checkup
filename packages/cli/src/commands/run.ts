@@ -256,8 +256,8 @@ export default class RunCommand extends BaseCommand {
       this.metaTaskResults,
       this.pluginTaskResults,
       this.actions,
-      this.pluginTasks.timings,
-      this.getInvocation(errors)
+      this.getInvocation(errors),
+      this.pluginTasks
     );
     let generateReport = getReporter(this.runFlags.format as OutputFormat);
     generateReport(log, this.runFlags);

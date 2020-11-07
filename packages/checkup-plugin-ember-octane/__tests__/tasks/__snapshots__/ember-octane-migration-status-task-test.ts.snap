@@ -7,7 +7,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/my-component.js",
+            "uri": "addon/components/my-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -18,7 +18,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/other-component.js",
+            "uri": "addon/components/other-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -29,7 +29,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/routes/my-route.js",
+            "uri": "addon/routes/my-route.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -40,7 +40,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/services/my-service.js",
+            "uri": "addon/services/my-service.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -56,18 +56,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/no-classic-classes",
       "resultGroup": "Native Classes",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/no-classic-classes",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/my-component.js",
+            "uri": "addon/components/my-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -78,7 +78,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/other-component.js",
+            "uri": "addon/components/other-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -89,7 +89,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/services/my-service.js",
+            "uri": "addon/services/my-service.js",
           },
           "region": Object {
             "startColumn": 25,
@@ -105,18 +105,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/no-get",
       "resultGroup": "Native Classes",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/no-get",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/my-component.js",
+            "uri": "addon/components/my-component.js",
           },
           "region": Object {
             "startColumn": 11,
@@ -127,7 +127,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/other-component.js",
+            "uri": "addon/components/other-component.js",
           },
           "region": Object {
             "startColumn": 11,
@@ -143,18 +143,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/no-actions-hash",
       "resultGroup": "Native Classes",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/no-actions-hash",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/my-component.js",
+            "uri": "addon/components/my-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -165,7 +165,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/other-component.js",
+            "uri": "addon/components/other-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -181,18 +181,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/require-tagless-components",
       "resultGroup": "Tagless Components",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/require-tagless-components",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/my-component.js",
+            "uri": "addon/components/my-component.js",
           },
           "region": Object {
             "startColumn": 16,
@@ -203,7 +203,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/other-component.js",
+            "uri": "addon/components/other-component.js",
           },
           "region": Object {
             "startColumn": 16,
@@ -219,18 +219,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/no-classic-components",
       "resultGroup": "Glimmer Components",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/no-classic-components",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/application.hbs",
+            "uri": "addon/templates/application.hbs",
           },
           "region": Object {
             "startColumn": 10,
@@ -241,7 +241,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/application.hbs",
+            "uri": "addon/templates/application.hbs",
           },
           "region": Object {
             "startColumn": 10,
@@ -252,7 +252,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/my-component.hbs",
+            "uri": "addon/templates/my-component.hbs",
           },
           "region": Object {
             "startColumn": 10,
@@ -263,7 +263,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/other-component.hbs",
+            "uri": "addon/templates/other-component.hbs",
           },
           "region": Object {
             "startColumn": 10,
@@ -279,18 +279,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "no-curly-component-invocation",
       "resultGroup": "Angle Brackets Syntax",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "no-curly-component-invocation",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/application.hbs",
+            "uri": "addon/templates/application.hbs",
           },
           "region": Object {
             "startColumn": 33,
@@ -301,7 +301,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/application.hbs",
+            "uri": "addon/templates/application.hbs",
           },
           "region": Object {
             "startColumn": 39,
@@ -312,7 +312,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/my-component.hbs",
+            "uri": "addon/templates/my-component.hbs",
           },
           "region": Object {
             "startColumn": 12,
@@ -323,7 +323,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/other-component.hbs",
+            "uri": "addon/templates/other-component.hbs",
           },
           "region": Object {
             "startColumn": 12,
@@ -339,18 +339,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "no-implicit-this",
       "resultGroup": "Own Properties",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "no-implicit-this",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/my-component.hbs",
+            "uri": "addon/templates/my-component.hbs",
           },
           "region": Object {
             "startColumn": 18,
@@ -366,11 +366,11 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "no-action",
       "resultGroup": "Modifiers",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "no-action",
+    "ruleId": "ember-octane-migration-status",
   },
 ]
 `;
@@ -382,7 +382,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/my-component.js",
+            "uri": "app/components/my-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -393,7 +393,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/other-component.js",
+            "uri": "app/components/other-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -404,7 +404,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/routes/my-route.js",
+            "uri": "app/routes/my-route.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -415,7 +415,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/services/my-service.js",
+            "uri": "app/services/my-service.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -431,18 +431,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/no-classic-classes",
       "resultGroup": "Native Classes",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/no-classic-classes",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/my-component.js",
+            "uri": "app/components/my-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -453,7 +453,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/other-component.js",
+            "uri": "app/components/other-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -464,7 +464,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/services/my-service.js",
+            "uri": "app/services/my-service.js",
           },
           "region": Object {
             "startColumn": 25,
@@ -480,18 +480,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/no-get",
       "resultGroup": "Native Classes",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/no-get",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/my-component.js",
+            "uri": "app/components/my-component.js",
           },
           "region": Object {
             "startColumn": 11,
@@ -502,7 +502,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/other-component.js",
+            "uri": "app/components/other-component.js",
           },
           "region": Object {
             "startColumn": 11,
@@ -518,18 +518,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/no-actions-hash",
       "resultGroup": "Native Classes",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/no-actions-hash",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/my-component.js",
+            "uri": "app/components/my-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -540,7 +540,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/other-component.js",
+            "uri": "app/components/other-component.js",
           },
           "region": Object {
             "startColumn": 24,
@@ -556,18 +556,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/require-tagless-components",
       "resultGroup": "Tagless Components",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/require-tagless-components",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/my-component.js",
+            "uri": "app/components/my-component.js",
           },
           "region": Object {
             "startColumn": 16,
@@ -578,7 +578,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/components/other-component.js",
+            "uri": "app/components/other-component.js",
           },
           "region": Object {
             "startColumn": 16,
@@ -594,18 +594,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "ember/no-classic-components",
       "resultGroup": "Glimmer Components",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "ember/no-classic-components",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/templates/application.hbs",
+            "uri": "app/templates/application.hbs",
           },
           "region": Object {
             "startColumn": 10,
@@ -616,7 +616,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/templates/application.hbs",
+            "uri": "app/templates/application.hbs",
           },
           "region": Object {
             "startColumn": 10,
@@ -627,7 +627,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/templates/my-component.hbs",
+            "uri": "app/templates/my-component.hbs",
           },
           "region": Object {
             "startColumn": 10,
@@ -638,7 +638,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/templates/other-component.hbs",
+            "uri": "app/templates/other-component.hbs",
           },
           "region": Object {
             "startColumn": 10,
@@ -654,18 +654,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "no-curly-component-invocation",
       "resultGroup": "Angle Brackets Syntax",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "no-curly-component-invocation",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/templates/application.hbs",
+            "uri": "app/templates/application.hbs",
           },
           "region": Object {
             "startColumn": 33,
@@ -676,7 +676,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/templates/application.hbs",
+            "uri": "app/templates/application.hbs",
           },
           "region": Object {
             "startColumn": 39,
@@ -687,7 +687,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/templates/my-component.hbs",
+            "uri": "app/templates/my-component.hbs",
           },
           "region": Object {
             "startColumn": 12,
@@ -698,7 +698,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/templates/other-component.hbs",
+            "uri": "app/templates/other-component.hbs",
           },
           "region": Object {
             "startColumn": 12,
@@ -714,18 +714,18 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "no-implicit-this",
       "resultGroup": "Own Properties",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "no-implicit-this",
+    "ruleId": "ember-octane-migration-status",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/app/templates/my-component.hbs",
+            "uri": "app/templates/my-component.hbs",
           },
           "region": Object {
             "startColumn": 18,
@@ -741,11 +741,11 @@ Array [
     "properties": Object {
       "category": "migrations",
       "group": "ember",
+      "lintRuleId": "no-action",
       "resultGroup": "Modifiers",
       "taskDisplayName": "Ember Octane Migration Status",
-      "taskName": "ember-octane-migration-status",
     },
-    "ruleId": "no-action",
+    "ruleId": "ember-octane-migration-status",
   },
 ]
 `;

@@ -1,11 +1,11 @@
 import { LintResult } from '../types/tasks';
 
-function byRuleId(lintResult: LintResult[], ruleId: string) {
-  return lintResult.filter((lintResult) => lintResult.ruleId === ruleId);
+function byRuleId(lintResults: LintResult[], ruleId: string) {
+  return lintResults.filter((lintResult) => lintResult.lintRuleId === ruleId);
 }
 
-function byRuleIds(lintResult: LintResult[], ruleIds: string[]) {
-  return lintResult.filter((lintResult) => ruleIds.includes(lintResult.ruleId!));
+function byRuleIds(lintResults: LintResult[], ruleIds: string[]) {
+  return lintResults.filter((lintResult) => ruleIds.includes(lintResult.lintRuleId!));
 }
 
 function bySeverity(lintResultData: LintResult[], severity: 1 | 2) {

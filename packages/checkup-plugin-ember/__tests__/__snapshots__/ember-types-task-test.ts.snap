@@ -7,14 +7,14 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/my-component.js",
+            "uri": "addon/components/my-component.js",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/components/my-component.js",
+            "uri": "lib/ember-super-button/addon/components/my-component.js",
           },
         },
       },
@@ -27,22 +27,22 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/controllers/my-controller.js",
+            "uri": "addon/controllers/my-controller.js",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/controllers/my-controller.js",
+            "uri": "lib/ember-super-button/addon/controllers/my-controller.js",
           },
         },
       },
@@ -55,22 +55,22 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/helpers/my-helper.js",
+            "uri": "addon/helpers/my-helper.js",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/helpers/my-helper.js",
+            "uri": "lib/ember-super-button/addon/helpers/my-helper.js",
           },
         },
       },
@@ -83,22 +83,22 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/initializers/my-initializer.js",
+            "uri": "addon/initializers/my-initializer.js",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/initializers/my-initializer.js",
+            "uri": "lib/ember-super-button/addon/initializers/my-initializer.js",
           },
         },
       },
@@ -111,22 +111,22 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/instance-initializers/my-helper.js",
+            "uri": "addon/instance-initializers/my-helper.js",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/instance-initializers/my-helper.js",
+            "uri": "lib/ember-super-button/addon/instance-initializers/my-helper.js",
           },
         },
       },
@@ -139,22 +139,22 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/mixins/my-mixin.js",
+            "uri": "addon/mixins/my-mixin.js",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/mixins/my-mixin.js",
+            "uri": "lib/ember-super-button/addon/mixins/my-mixin.js",
           },
         },
       },
@@ -167,22 +167,22 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/models/my-model.js",
+            "uri": "addon/models/my-model.js",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/models/my-model.js",
+            "uri": "lib/ember-super-button/addon/models/my-model.js",
           },
         },
       },
@@ -195,22 +195,22 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/routes/my-route.js",
+            "uri": "addon/routes/my-route.js",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/routes/my-route.js",
+            "uri": "lib/ember-super-button/addon/routes/my-route.js",
           },
         },
       },
@@ -223,22 +223,22 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/services/my-service.js",
+            "uri": "addon/services/my-service.js",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/services/my-service.js",
+            "uri": "lib/ember-super-button/addon/services/my-service.js",
           },
         },
       },
@@ -251,22 +251,22 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/my-component.hbs",
+            "uri": "addon/templates/my-component.hbs",
           },
         },
       },
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/lib/ember-super-button/addon/templates/my-component.hbs",
+            "uri": "lib/ember-super-button/addon/templates/my-component.hbs",
           },
         },
       },
@@ -279,8 +279,8 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
 ]
 `;
@@ -292,7 +292,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/components/my-component.js",
+            "uri": "addon/components/my-component.js",
           },
         },
       },
@@ -305,15 +305,15 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/controllers/my-controller.js",
+            "uri": "addon/controllers/my-controller.js",
           },
         },
       },
@@ -326,15 +326,15 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/helpers/my-helper.js",
+            "uri": "addon/helpers/my-helper.js",
           },
         },
       },
@@ -347,15 +347,15 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/initializers/my-initializer.js",
+            "uri": "addon/initializers/my-initializer.js",
           },
         },
       },
@@ -368,15 +368,15 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/instance-initializers/my-helper.js",
+            "uri": "addon/instance-initializers/my-helper.js",
           },
         },
       },
@@ -389,15 +389,15 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/mixins/my-mixin.js",
+            "uri": "addon/mixins/my-mixin.js",
           },
         },
       },
@@ -410,15 +410,15 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/models/my-model.js",
+            "uri": "addon/models/my-model.js",
           },
         },
       },
@@ -431,15 +431,15 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/routes/my-route.js",
+            "uri": "addon/routes/my-route.js",
           },
         },
       },
@@ -452,15 +452,15 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/services/my-service.js",
+            "uri": "addon/services/my-service.js",
           },
         },
       },
@@ -473,15 +473,15 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/templates/my-component.hbs",
+            "uri": "addon/templates/my-component.hbs",
           },
         },
       },
@@ -494,8 +494,8 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember Types",
-      "taskName": "ember-types",
     },
+    "ruleId": "ember-types",
   },
 ]
 `;

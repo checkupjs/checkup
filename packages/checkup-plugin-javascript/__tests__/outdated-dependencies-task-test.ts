@@ -14,8 +14,8 @@ describe('outdated-dependencies-task', () => {
 
   beforeAll(async () => {
     project = new CheckupProject('checkup-app', '0.0.0', (project) => {
-      project.addDependency('react', '^15.0.0');
-      project.addDependency('react-dom', '16.0.0');
+      project.addDependency('react', '16.0.0');
+      project.addDependency('ember-cli', '3.20.0');
     });
 
     project.writeSync();

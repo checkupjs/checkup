@@ -42,7 +42,7 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
       let add = (node: any) => {
         this.data.push({
           filePath: normalizePath(this.filePath, cwd),
-          ruleId: 'no-eslint-disable',
+          lintRuleId: 'no-eslint-disable',
           message: 'eslint-disable usages',
           line: node.loc.start.line,
           column: node.loc.start.column,

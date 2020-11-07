@@ -79,7 +79,7 @@ describe('@checkup/cli', () => {
       await runCommand(['run', '--format', 'json', '--cwd', project.baseDir], { testing: true });
 
       let output = JSON.parse(normalizePath(stdout().trim(), project.baseDir)) as Log;
-      expect(stripUtcTimes(output)).toMatchSnapshot();
+      expect(normalizeInvocationForTesting(output)).toMatchSnapshot();
     });
 
     it(
@@ -298,10 +298,14 @@ describe('@checkup/cli', () => {
   });
 });
 
-function stripUtcTimes(output: Log) {
+function normalizeInvocationForTesting(output: Log) {
   return output.runs.map((run) => {
     return run.invocations?.map((invocation) => {
       invocation.endTimeUtc = '';
+      if (invocation.environmentVariables) {
+        invocation.environmentVariables.cwd =
+          invocation.environmentVariables?.cwd?.split('/').pop() || '';
+      }
       invocation.startTimeUtc = '';
       return invocation;
     });

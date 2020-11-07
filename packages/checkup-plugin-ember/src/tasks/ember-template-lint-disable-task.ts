@@ -39,7 +39,7 @@ async function getTemplateLintDisables(filePaths: string[], cwd: string) {
       let add = (node: any) => {
         this.data.push({
           filePath: normalizePath(this.filePath, cwd),
-          ruleId: 'no-ember-template-lint-disable',
+          lintRuleId: 'no-ember-template-lint-disable',
           message: 'ember-template-lint-disable usages',
           line: node.loc.start.line,
           column: node.loc.start.column,

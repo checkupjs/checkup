@@ -27,8 +27,8 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember In-Repo Addons / Engines",
-      "taskName": "ember-in-repo-addons-engines",
     },
+    "ruleId": "ember-in-repo-addons-engines",
   },
   Object {
     "locations": Array [
@@ -55,8 +55,8 @@ Array [
       "category": "metrics",
       "group": "ember",
       "taskDisplayName": "Ember In-Repo Addons / Engines",
-      "taskName": "ember-in-repo-addons-engines",
     },
+    "ruleId": "ember-in-repo-addons-engines",
   },
 ]
 `;

@@ -3,6 +3,8 @@ import { LintResult, TaskError } from '../types/tasks';
 import { TemplateLintMessage } from '../types/ember-template-lint';
 import { Result, Location, Notification } from 'sarif';
 
+export const NO_RESULTS_FOUND = 'No results found';
+
 /**
  * @param lintResult {LintResult[]}
  * @returns Location[]
@@ -62,13 +64,19 @@ export function buildResultFromLintResult(
   lintResults: LintResult[],
   additionalData: object = {}
 ): Result {
+  if (lintResults.length === 0) {
+    return {
+      message: { text: NO_RESULTS_FOUND },
+    };
+  }
+
   return {
-    ruleId: (lintResults.length && lintResults[0].ruleId) as string,
-    message: { text: (lintResults.length as unknown) && lintResults[0].message },
+    message: { text: lintResults[0].message },
     locations: buildLocationDataFromLintResult(lintResults),
     occurrenceCount: lintResults.length,
     properties: {
       ...additionalData,
+      lintRuleId: lintResults[0].lintRuleId,
     },
   };
 }
@@ -78,6 +86,12 @@ export function buildResultFromLintResult(
  * @param message {string} The message that identifies the data represented in the Result
  */
 export function buildResultFromPathArray(paths: string[], message: string): Result {
+  if (paths.length === 0) {
+    return {
+      message: { text: NO_RESULTS_FOUND, properties: { consoleMessage: message } },
+    };
+  }
+
   return {
     message: { text: message },
     locations: buildLocationDataFromPathArray(paths),
@@ -91,6 +105,12 @@ export function buildResultFromPathArray(paths: string[], message: string): Resu
  * @param data {Array<string | object>} The raw data used to derive the result's count
  */
 export function buildResultFromProperties(data: any[], message: string): Result {
+  if (data.length === 0) {
+    return {
+      message: { text: NO_RESULTS_FOUND, properties: { consoleMessage: message } },
+    };
+  }
+
   return {
     occurrenceCount: data.length,
     message: { text: message },
@@ -120,7 +140,7 @@ export function buildLintResultDataItem(
 ): LintResult {
   return {
     filePath: normalizePath(filePath, cwd),
-    ruleId: getRuleId(message),
+    lintRuleId: getLintRuleId(message),
     message: message.message,
     severity: message.severity,
     line: message.line,
@@ -129,7 +149,7 @@ export function buildLintResultDataItem(
   };
 }
 
-function getRuleId(message: any) {
+function getLintRuleId(message: any) {
   if (typeof message.ruleId !== 'undefined') {
     return message.ruleId;
   } else if (typeof message.rule !== 'undefined') {
@@ -151,7 +171,7 @@ export function buildNotificationsFromTaskErrors(errors: TaskError[]): Notificat
 }
 
 export function normalizePath(path: string, cwd: string) {
-  return path.replace(cwd, '');
+  return path.replace(`${cwd}/`, '');
 }
 
 export function normalizePaths(paths: string[], cwd: string) {

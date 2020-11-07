@@ -77,7 +77,7 @@ export enum OutputFormat {
 
 export interface LintResult {
   filePath: string;
-  ruleId: string | null;
+  lintRuleId: string | null;
   message: string;
   line: number;
   column: number;

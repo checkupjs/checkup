@@ -10,8 +10,8 @@ Array [
       "category": "bar",
       "group": undefined,
       "taskDisplayName": "Insights Task High",
-      "taskName": "insights-task-high",
     },
+    "ruleId": "insights-task-high",
   },
 ]
 `;
@@ -25,8 +25,8 @@ Object {
     "category": "bar",
     "group": undefined,
     "taskDisplayName": "Insights Task High",
-    "taskName": "insights-task-high",
   },
+  "ruleId": "insights-task-high",
 }
 `;
 
@@ -39,7 +39,7 @@ Object {
     "category": "foo",
     "group": undefined,
     "taskDisplayName": "Insights Task Low",
-    "taskName": "insights-task-low",
   },
+  "ruleId": "insights-task-low",
 }
 `;

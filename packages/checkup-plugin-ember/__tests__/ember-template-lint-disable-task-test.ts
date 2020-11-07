@@ -43,7 +43,7 @@ describe('ember-template-lint-disable-task', () => {
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
-                  "uri": "/index.hbs",
+                  "uri": "index.hbs",
                 },
                 "region": Object {
                   "startColumn": 4,
@@ -54,7 +54,7 @@ describe('ember-template-lint-disable-task', () => {
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
-                  "uri": "/index.hbs",
+                  "uri": "index.hbs",
                 },
                 "region": Object {
                   "startColumn": 6,
@@ -65,7 +65,7 @@ describe('ember-template-lint-disable-task', () => {
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
-                  "uri": "/index.hbs",
+                  "uri": "index.hbs",
                 },
                 "region": Object {
                   "startColumn": 4,
@@ -81,10 +81,10 @@ describe('ember-template-lint-disable-task', () => {
           "properties": Object {
             "category": "linting",
             "group": "disabled-lint-rules",
+            "lintRuleId": "no-ember-template-lint-disable",
             "taskDisplayName": "Number of template-lint-disable Usages",
-            "taskName": "ember-template-lint-disables",
           },
-          "ruleId": "no-ember-template-lint-disable",
+          "ruleId": "ember-template-lint-disables",
         },
       ]
     `);

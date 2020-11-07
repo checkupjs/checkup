@@ -7,7 +7,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/rendering/tests/my-component-test.js",
+            "uri": "addon/rendering/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 17,
@@ -23,18 +23,18 @@ Array [
     "properties": Object {
       "category": "testing",
       "group": "ember",
+      "lintRuleId": "test-types",
       "method": "test",
       "taskDisplayName": "Test Types",
-      "taskName": "ember-test-types",
     },
-    "ruleId": "test-types",
+    "ruleId": "ember-test-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/rendering/tests/my-component-test.js",
+            "uri": "addon/rendering/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 17,
@@ -50,18 +50,18 @@ Array [
     "properties": Object {
       "category": "testing",
       "group": "ember",
+      "lintRuleId": "test-types",
       "method": "only",
       "taskDisplayName": "Test Types",
-      "taskName": "ember-test-types",
     },
-    "ruleId": "test-types",
+    "ruleId": "ember-test-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/rendering/tests/my-component-test.js",
+            "uri": "addon/rendering/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 17,
@@ -77,11 +77,11 @@ Array [
     "properties": Object {
       "category": "testing",
       "group": "ember",
+      "lintRuleId": "test-types",
       "method": "todo",
       "taskDisplayName": "Test Types",
-      "taskName": "ember-test-types",
     },
-    "ruleId": "test-types",
+    "ruleId": "ember-test-types",
   },
 ]
 `;
@@ -93,7 +93,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/application/someFolder/my-component-test.js",
+            "uri": "addon/application/someFolder/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -104,7 +104,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/application/tests/my-component-test.js",
+            "uri": "addon/application/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -120,18 +120,18 @@ Array [
     "properties": Object {
       "category": "testing",
       "group": "ember",
+      "lintRuleId": "test-types",
       "method": "test",
       "taskDisplayName": "Test Types",
-      "taskName": "ember-test-types",
     },
-    "ruleId": "test-types",
+    "ruleId": "ember-test-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/application/someFolder/my-component-test.js",
+            "uri": "addon/application/someFolder/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -142,7 +142,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/application/someFolder/my-component-test.js",
+            "uri": "addon/application/someFolder/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -153,7 +153,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/application/tests/my-component-test.js",
+            "uri": "addon/application/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -164,7 +164,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/application/tests/my-component-test.js",
+            "uri": "addon/application/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -180,18 +180,18 @@ Array [
     "properties": Object {
       "category": "testing",
       "group": "ember",
+      "lintRuleId": "test-types",
       "method": "skip",
       "taskDisplayName": "Test Types",
-      "taskName": "ember-test-types",
     },
-    "ruleId": "test-types",
+    "ruleId": "ember-test-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/rendering/tests/my-component-test.js",
+            "uri": "addon/rendering/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -207,18 +207,18 @@ Array [
     "properties": Object {
       "category": "testing",
       "group": "ember",
+      "lintRuleId": "test-types",
       "method": "test",
       "taskDisplayName": "Test Types",
-      "taskName": "ember-test-types",
     },
-    "ruleId": "test-types",
+    "ruleId": "ember-test-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/rendering/tests/my-component-test.js",
+            "uri": "addon/rendering/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -229,7 +229,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/rendering/tests/my-component-test.js",
+            "uri": "addon/rendering/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -245,18 +245,18 @@ Array [
     "properties": Object {
       "category": "testing",
       "group": "ember",
+      "lintRuleId": "test-types",
       "method": "skip",
       "taskDisplayName": "Test Types",
-      "taskName": "ember-test-types",
     },
-    "ruleId": "test-types",
+    "ruleId": "ember-test-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/unit/tests/my-component-test.js",
+            "uri": "addon/unit/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -272,18 +272,18 @@ Array [
     "properties": Object {
       "category": "testing",
       "group": "ember",
+      "lintRuleId": "test-types",
       "method": "test",
       "taskDisplayName": "Test Types",
-      "taskName": "ember-test-types",
     },
-    "ruleId": "test-types",
+    "ruleId": "ember-test-types",
   },
   Object {
     "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/unit/tests/my-component-test.js",
+            "uri": "addon/unit/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -294,7 +294,7 @@ Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
-            "uri": "/addon/unit/tests/my-component-test.js",
+            "uri": "addon/unit/tests/my-component-test.js",
           },
           "region": Object {
             "startColumn": 9,
@@ -310,11 +310,11 @@ Array [
     "properties": Object {
       "category": "testing",
       "group": "ember",
+      "lintRuleId": "test-types",
       "method": "skip",
       "taskDisplayName": "Test Types",
-      "taskName": "ember-test-types",
     },
-    "ruleId": "test-types",
+    "ruleId": "ember-test-types",
   },
 ]
 `;

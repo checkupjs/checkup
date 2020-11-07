@@ -53,8 +53,9 @@ export class EslintSummaryTask extends BaseTask implements Task {
     let report = await this._eslintParser.execute(this.context.paths.filterByGlob('**/*.js'));
     let transformedData = buildLintResultData(report, this.context.cliFlags.cwd);
 
-    let lintingErrors = groupDataByField(bySeverity(transformedData, 2), 'ruleId');
-    let lintingWarnings = groupDataByField(bySeverity(transformedData, 1), 'ruleId');
+    let lintingErrors = groupDataByField(bySeverity(transformedData, 2), 'lintRuleId');
+    let lintingWarnings = groupDataByField(bySeverity(transformedData, 1), 'lintRuleId');
+
     let errorsResult = lintingErrors.map((lintingError) => {
       return this.toJson(
         buildResultFromLintResult(lintingError, {

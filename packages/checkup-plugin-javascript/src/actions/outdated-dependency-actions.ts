@@ -1,16 +1,12 @@
-import { ActionsEvaluator, toPercent, TaskConfig } from '@checkup/core';
+import { ActionsEvaluator, toPercent, TaskConfig, sumOccurrences } from '@checkup/core';
 import { Result } from 'sarif';
 
 export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
-  let totalDependencies = taskResults.reduce(
-    (total, value) => total + (value.occurrenceCount || 0),
-    0
-  );
+  let totalDependencies = sumOccurrences(taskResults);
+
   let outdatedDependencies = {
-    major:
-      taskResults.find((taskResult) => taskResult.message.text === 'major')?.occurrenceCount || 0,
-    minor:
-      taskResults.find((taskResult) => taskResult.message.text === 'minor')?.occurrenceCount || 0,
+    major: sumOccurrences(taskResults.filter((taskResult) => taskResult.message.text === 'major')),
+    minor: sumOccurrences(taskResults.filter((taskResult) => taskResult.message.text === 'minor')),
   };
 
   let actionsEvaluator = new ActionsEvaluator();

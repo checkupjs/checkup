@@ -47,7 +47,6 @@ export interface CheckupMetadata {
       outputFile?: string;
       excludePaths?: string[];
     };
-    timings: Record<string, number>;
   };
   analyzedFiles: string[];
   analyzedFilesCount: number;

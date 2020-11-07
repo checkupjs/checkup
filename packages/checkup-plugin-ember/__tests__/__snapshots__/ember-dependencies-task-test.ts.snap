@@ -25,8 +25,8 @@ Array [
       ],
       "group": "ember",
       "taskDisplayName": "Ember Dependencies",
-      "taskName": "ember-dependencies",
     },
+    "ruleId": "ember-dependencies",
   },
   Object {
     "message": Object {
@@ -43,21 +43,22 @@ Array [
       ],
       "group": "ember",
       "taskDisplayName": "Ember Dependencies",
-      "taskName": "ember-dependencies",
     },
+    "ruleId": "ember-dependencies",
   },
   Object {
     "message": Object {
-      "text": "ember addon devDependencies",
+      "properties": Object {
+        "consoleMessage": "ember addon devDependencies",
+      },
+      "text": "No results found",
     },
-    "occurrenceCount": 0,
     "properties": Object {
       "category": "dependencies",
-      "data": Array [],
       "group": "ember",
       "taskDisplayName": "Ember Dependencies",
-      "taskName": "ember-dependencies",
     },
+    "ruleId": "ember-dependencies",
   },
   Object {
     "message": Object {
@@ -78,8 +79,8 @@ Array [
       ],
       "group": "ember",
       "taskDisplayName": "Ember Dependencies",
-      "taskName": "ember-dependencies",
     },
+    "ruleId": "ember-dependencies",
   },
   Object {
     "message": Object {
@@ -96,8 +97,8 @@ Array [
       ],
       "group": "ember",
       "taskDisplayName": "Ember Dependencies",
-      "taskName": "ember-dependencies",
     },
+    "ruleId": "ember-dependencies",
   },
 ]
 `;

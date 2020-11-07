@@ -213,7 +213,7 @@ export default class TaskList {
    * @private
    * @method getTasks
    */
-  private getTasks() {
+  getTasks() {
     let values: Task[] = [];
 
     this._categories.forEach((category) => {
