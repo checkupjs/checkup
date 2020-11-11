@@ -48,7 +48,7 @@
   "scripts": {
     "build": "tsc --build",
     "postpack": "rm -f oclif.manifest.json",
-    "prepack": "tsc --build && oclif-dev manifest",
+    "prepack": "oclif-dev manifest",
     "test": "jest --no-cache",
     "version": "git add README.md"
   },
