@@ -1,7 +1,7 @@
 {
   "name": "@checkup/cli",
   "description": "A CLI that provides health check information about your project.",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bin": {
     "checkup": "./bin/run"
@@ -11,7 +11,7 @@
     "@babel/parser": "^7.11.4",
     "@babel/traverse": "^7.11.5",
     "@babel/types": "7.12.6",
-    "@checkup/core": "0.8.0",
+    "@checkup/core": "0.8.1",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/errors": "^1.3.3",
@@ -42,7 +42,7 @@
     "yeoman-generator": "^4.12.0"
   },
   "devDependencies": {
-    "@checkup/test-helpers": "0.8.0",
+    "@checkup/test-helpers": "0.8.1",
     "@oclif/dev-cli": "^1",
     "@types/sarif": "^2.1.3",
     "@types/sloc": "^0.2.0",

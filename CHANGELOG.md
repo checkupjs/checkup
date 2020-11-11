@@ -1,3 +1,16 @@
+## v0.8.1 (2020-11-11)
+
+#### :bug: Bug Fix
+* `cli`, `core`
+  * [#751](https://github.com/checkupjs/checkup/pull/751) Bug fixes ([@carakessler](https://github.com/carakessler))
+* `core`
+  * [#750](https://github.com/checkupjs/checkup/pull/750) Moving @types/sarif from devDeps to deps ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.8.0 (2020-11-11)
 
 #### :boom: Breaking Change
