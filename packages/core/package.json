@@ -33,7 +33,7 @@
     "@types/resolve": "^1.17.1",
     "@types/sarif": "^2.1.3",
     "@types/wrap-ansi": "^3.0.0",
-    "eslint-plugin-jest": "^23.20.0"
+    "eslint-plugin-jest": "^24.1.0"
   },
   "engines": {
     "node": ">= 12.11.*"

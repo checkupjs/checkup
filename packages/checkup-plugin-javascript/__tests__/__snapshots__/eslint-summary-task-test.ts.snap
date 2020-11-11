@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`eslint-summary-task it summarizes eslint and outputs to JSON 1`] = `
+exports[`eslint-summary-task summarizes eslint and outputs to JSON 1`] = `
 Array [
   Object {
     "locations": Array [

@@ -68,11 +68,11 @@ describe('eslint-summary-task', () => {
     project.dispose();
   });
 
-  it('it summarizes eslint and outputs to JSON', async () => {
+  it('summarizes eslint and outputs to JSON', async () => {
     expect(result).toMatchSnapshot();
   });
 
-  it('it only lints the files passed in via paths array', async () => {
+  it('only lints the files passed in via paths array', async () => {
     let excludedPathsResults = result.filter(
       (resultData: Result) =>
         (
@@ -150,13 +150,13 @@ describe('readEslintConfig', () => {
     });
   });
 
-  it('it reads config from package.json, only if there is no .eslintrc*', () => {
+  it('reads config from package.json, only if there is no .eslintrc*', () => {
     const eslintConfig = readEslintConfig([], '.', pkg);
 
     expect(eslintConfig).toEqual(eslintConfigJson);
   });
 
-  it('it reads the higher prioritzed .eslintrc*', () => {
+  it('reads the higher prioritzed .eslintrc*', () => {
     let expectedConfig = 'foo';
 
     let project = new CheckupProject('foo-project');
