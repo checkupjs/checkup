@@ -20,6 +20,7 @@ describe('@checkup/cli', () => {
       await expect(
         runCommand(['run', '--cwd', project.baseDir], { testing: true })
       ).rejects.toThrowErrorMatchingInlineSnapshot(
+        // eslint-disable-next-line jest/no-interpolation-in-snapshots
         `"Could not find a checkup config in the given path: ${project.baseDir}/.checkuprc."`
       );
     });
