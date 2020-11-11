@@ -35,7 +35,8 @@
   "rules": {
     "prettier/prettier": "error",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars-experimental": "error",
     "no-global-assign": ["error", { "exceptions": ["console"] }],
     "unicorn/no-reduce": "off",
     "unicorn/prevent-abbreviations": "off",

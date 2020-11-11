@@ -9,12 +9,6 @@ export type DataSummary = {
   units?: string;
 };
 
-interface BaseResult {
-  key: string;
-  type: string;
-  data: Array<string | IndexableObject>;
-}
-
 export type RepositoryInfo = {
   totalCommits: number;
   totalFiles: number;
