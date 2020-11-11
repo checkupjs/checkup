@@ -49,11 +49,7 @@ export default class CheckupFixturifyProject extends Project {
   install() {
     let cmd: string;
 
-    if (existsSync(join(this.baseDir, 'yarn.lock'))) {
-      cmd = 'yarn install';
-    } else {
-      cmd = 'npm install';
-    }
+    cmd = existsSync(join(this.baseDir, 'yarn.lock')) ? 'yarn install' : 'npm install';
 
     try {
       execSync(cmd, { cwd: this.baseDir });

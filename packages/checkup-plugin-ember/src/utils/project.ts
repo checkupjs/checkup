@@ -12,11 +12,9 @@ import { PackageJson } from 'type-fest';
  */
 export function getProjectType(pkg: PackageJson): ProjectType {
   if (pkg.keywords && Array.isArray(pkg.keywords) && pkg.keywords.includes('ember-addon')) {
-    if (fs.existsSync(path.join(process.cwd(), 'addon', 'engine.js'))) {
-      return ProjectType.Engine;
-    } else {
-      return ProjectType.Addon;
-    }
+    return fs.existsSync(path.join(process.cwd(), 'addon', 'engine.js'))
+      ? ProjectType.Engine
+      : ProjectType.Addon;
   } else if (
     (pkg.dependencies && Object.keys(pkg.dependencies).includes('ember-cli')) ||
     (pkg.devDependencies && Object.keys(pkg.devDependencies).includes('ember-cli'))
