@@ -8,6 +8,7 @@
     "@oclif/config": "^1",
     "@oclif/errors": "^1.3.3",
     "@types/micromatch": "^4.0.1",
+    "@types/sarif": "^2.1.3",
     "ajv": "^6.12.6",
     "chalk": "^4.0.0",
     "cli-ux": "^5.5.0",
@@ -31,7 +32,6 @@
     "@types/chalk": "^2.2.0",
     "@types/eslint": "^7.2.2",
     "@types/resolve": "^1.17.1",
-    "@types/sarif": "^2.1.3",
     "@types/wrap-ansi": "^3.0.0",
     "eslint-plugin-jest": "^24.1.0"
   },
