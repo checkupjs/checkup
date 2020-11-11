@@ -187,7 +187,7 @@ function getTaskReporter(taskResult: Result[]) {
   return reporter;
 }
 
-function renderEmptyResult(taskResult: Result) {
+export function renderEmptyResult(taskResult: Result) {
   ui.value({
     title: taskResult.message.properties?.consoleMessage || taskResult.properties?.taskDisplayName,
     count: 0,

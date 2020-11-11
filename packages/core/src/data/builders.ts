@@ -1,6 +1,6 @@
-import { ESLintMessage, ESLintReport } from '../types/parsers';
+import { ESLintMessage, ESLintReport, ESLintResult } from '../types/parsers';
 import { LintResult, TaskError } from '../types/tasks';
-import { TemplateLintMessage } from '../types/ember-template-lint';
+import { TemplateLintMessage, TemplateLintResult } from '../types/ember-template-lint';
 import { Result, Location, Notification } from 'sarif';
 
 export const NO_RESULTS_FOUND = 'No results found';
@@ -147,6 +147,21 @@ export function buildLintResultDataItem(
     column: message.column,
     ...additionalData,
   };
+}
+
+export function buildLintResultsFromEslintOrTemplateLint(
+  lintResults: (ESLintResult | TemplateLintResult)[],
+  cwd: string
+): LintResult[] {
+  return lintResults.reduce((resultDataItems, lintingResults) => {
+    const messages = (<any>lintingResults.messages).map(
+      (lintMessage: ESLintMessage | TemplateLintMessage) => {
+        return buildLintResultDataItem(lintMessage, cwd, lintingResults.filePath);
+      }
+    );
+    resultDataItems.push(...messages);
+    return resultDataItems;
+  }, [] as LintResult[]);
 }
 
 function getLintRuleId(message: any) {

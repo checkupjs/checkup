@@ -19,7 +19,7 @@ export type TaskActionsEvaluator = (taskResults: Result[], taskConfig: TaskConfi
 export type RegisterTaskReporterArgs = {
   registerTaskReporter: (taskName: TaskName, report: TaskReporter) => void;
 };
-export type TaskReporter = (taskResult: Result) => void;
+export type TaskReporter = (taskResults: Result[]) => void;
 
 interface TaskList {
   registerTask(task: Task): void;

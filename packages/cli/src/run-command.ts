@@ -1,6 +1,5 @@
 import * as Config from '@oclif/config';
 import * as stdout from 'stdout-monkey';
-const stripAnsi = require('strip-ansi');
 
 const castArray = <T>(input?: T | T[]): T[] => {
   if (input === undefined) return [];
@@ -15,7 +14,7 @@ export async function runCommand(args: string[] | string, opts: loadConfig.Optio
 
   if (!opts.testing) {
     patch = stdout((str: string) => {
-      output = stripAnsi(str);
+      output += str;
     });
   }
 
