@@ -1,3 +1,18 @@
+## v0.8.0 (2020-11-11)
+
+#### :boom: Breaking Change
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#723](https://github.com/checkupjs/checkup/pull/723) Migrating to SARIF Schema ([@carakessler](https://github.com/carakessler))
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#723](https://github.com/checkupjs/checkup/pull/723) Migrating to SARIF Schema ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.7.4 (2020-09-21)
 
 #### :rocket: Enhancement
