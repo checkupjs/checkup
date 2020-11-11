@@ -2,8 +2,9 @@ import * as debug from 'debug';
 import * as pMap from 'p-map';
 import * as convertHrtime from 'convert-hrtime';
 
-import { Task, TaskError, TaskName, TaskResult } from '@checkup/core';
+import { Task, TaskError, TaskName } from '@checkup/core';
 import { taskResultComparator } from './task-result-comparator';
+import { Result } from 'sarif';
 
 /**
  * @class TaskList
@@ -113,11 +114,11 @@ export default class TaskList {
    *
    * @method runTask
    * @param {TaskName} taskName
-   * @returns {Promise<TaskResult>}
+   * @returns {Promise<[Result[], TaskError[]]>}
    * @memberof TaskList
    */
-  async runTask(taskName: TaskName): Promise<[TaskResult | undefined, TaskError[]]> {
-    let result: TaskResult | undefined;
+  async runTask(taskName: TaskName): Promise<[Result[] | undefined, TaskError[]]> {
+    let result: Result[] | undefined;
     let task: Task | undefined = this.findTask(taskName);
 
     if (task === undefined) {
@@ -141,10 +142,10 @@ export default class TaskList {
    * Runs all tasks that have been added to the task list.
    *
    * @method runTasks
-   * @returns {Promise<TaskResult[]>}
+   * @returns {Promise<[Result[], TaskError[]]>}
    * @memberof TaskList
    */
-  async runTasks(tasks?: Task[]): Promise<[TaskResult[], TaskError[]]> {
+  async runTasks(tasks?: Task[]): Promise<[Result[], TaskError[]]> {
     let results = await this.eachTask(async (task: Task) => {
       let result;
       this.debug('start %s run', task.fullyQualifiedTaskName);
@@ -159,7 +160,7 @@ export default class TaskList {
       return result;
     }, tasks);
 
-    return [(results.filter(Boolean) as TaskResult[]).sort(taskResultComparator), this._errors];
+    return [(results.flat().filter(Boolean) as Result[]).sort(taskResultComparator), this._errors];
   }
 
   private async _runTask(task: Task) {
@@ -193,12 +194,12 @@ export default class TaskList {
    * @private
    * @method eachTask
    * @param fn {Function} the function expressing the wrapped task to run
-   * @returns {Promise<TaskResult[]>}
+   * @returns {Promise<Result[][]>}
    */
   private eachTask(
-    fn: (task: Task) => Promise<TaskResult | undefined>,
+    fn: (task: Task) => Promise<Result[] | undefined>,
     tasksToRun?: Task[]
-  ): Promise<(TaskResult | undefined)[]> {
+  ): Promise<(Result[] | undefined)[]> {
     let availableTasks = tasksToRun || this.getTasks();
     return pMap(
       availableTasks.filter((task) => task.enabled),
@@ -212,7 +213,7 @@ export default class TaskList {
    * @private
    * @method getTasks
    */
-  private getTasks() {
+  getTasks() {
     let values: Task[] = [];
 
     this._categories.forEach((category) => {

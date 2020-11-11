@@ -4,7 +4,6 @@ import {
   OutputFormat,
   RunFlags,
   Task,
-  TaskResult,
   TaskContext,
   TaskError,
   Action,
@@ -18,8 +17,8 @@ import {
   getRegisteredParsers,
   getRegisteredActions,
   ui,
+  buildNotificationsFromTaskErrors,
   FilePathArray,
-  CheckupResult,
 } from '@checkup/core';
 
 import { flags } from '@oclif/command';
@@ -29,10 +28,10 @@ import { MetaTaskResult } from '../types';
 import TaskList from '../task-list';
 import { getPackageJson } from '../utils/get-package-json';
 import { getReporter } from '../reporters/get-reporter';
-import LinesOfCodeTask from '../tasks/lines-of-code-task';
 import ProjectMetaTask from '../tasks/project-meta-task';
-import { getCheckupResult } from '../get-checkup-result';
+import { getLog } from '../get-log';
 import { reportAvailableTasks } from '../reporters/console-reporter';
+import { Invocation, Log, Result } from 'sarif';
 
 let __tasksForTesting: Set<Task> = new Set<Task>();
 
@@ -107,8 +106,9 @@ export default class RunCommand extends BaseCommand {
   metaTaskResults: MetaTaskResult[] = [];
   metaTaskErrors: TaskError[] = [];
   pluginTasks: TaskList = new TaskList();
-  pluginTaskResults: TaskResult[] = [];
+  pluginTaskResults: Result[] = [];
   pluginTaskErrors: TaskError[] = [];
+  startTime: string = '';
   actions: Action[] = [];
   checkupConfig!: CheckupConfig;
 
@@ -122,7 +122,7 @@ export default class RunCommand extends BaseCommand {
         )
       );
     }
-
+    this.startTime = new Date().toJSON();
     this.runArgs = argv;
     this.runFlags = flags;
   }
@@ -147,9 +147,6 @@ export default class RunCommand extends BaseCommand {
     let pluginName = 'meta';
 
     this.defaultTasks.registerTask(new ProjectMetaTask(pluginName, context));
-
-    // TODO: figure out where to put this. Internal? External?
-    this.pluginTasks.registerTask(new LinesOfCodeTask(pluginName, context));
   }
 
   private async runTasks() {
@@ -185,9 +182,12 @@ export default class RunCommand extends BaseCommand {
 
     for (let [taskName, evaluator] of evaluators) {
       let task = this.pluginTasks.findTask(taskName);
-      let taskResult = this.pluginTaskResults.find((result) => taskName === result.info.taskName);
 
-      if (task && taskResult) {
+      let taskResult = this.pluginTaskResults.filter((result: Result) => {
+        return result.properties?.taskName === taskName;
+      });
+
+      if (task && taskResult.length > 0) {
         this.actions.push(...evaluator(taskResult, task.config));
       }
     }
@@ -251,18 +251,34 @@ export default class RunCommand extends BaseCommand {
 
   private report() {
     let errors = [...this.metaTaskErrors, ...this.pluginTaskErrors];
-    let checkupResult: CheckupResult = getCheckupResult(
+
+    let log: Log = getLog(
       this.metaTaskResults,
       this.pluginTaskResults,
-      errors,
       this.actions,
-      this.pluginTasks.timings
+      this.getInvocation(errors),
+      this.pluginTasks
     );
     let generateReport = getReporter(this.runFlags.format as OutputFormat);
-    generateReport(checkupResult, this.runFlags);
+    generateReport(log, this.runFlags);
   }
 
   private printAvailableTasks() {
     reportAvailableTasks(this.pluginTasks);
+  }
+
+  private getInvocation(errors: TaskError[]): Invocation {
+    return {
+      arguments: this.runArgs,
+      executionSuccessful: true,
+      endTimeUtc: new Date().toJSON(),
+      environmentVariables: {
+        cwd: this.runFlags.cwd,
+        outputFile: this.runFlags.outputFile,
+        format: this.runFlags.format,
+      },
+      toolExecutionNotifications: buildNotificationsFromTaskErrors(errors),
+      startTimeUtc: this.startTime,
+    };
   }
 }

@@ -2,11 +2,11 @@ import {
   Task,
   BaseTask,
   LintResult,
-  buildSummaryResult,
+  buildResultFromLintResult,
   normalizePath,
   AstTraverser,
-  TaskResult,
 } from '@checkup/core';
+import { Result } from 'sarif';
 
 const fs = require('fs');
 const { parse, traverse } = require('ember-template-recast');
@@ -19,11 +19,11 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
   category = 'linting';
   group = 'disabled-lint-rules';
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.cliFlags.cwd);
 
-    return this.toJson([buildSummaryResult('template-lint-disable usages', templateLintDisables)]);
+    return [this.toJson(buildResultFromLintResult(templateLintDisables))];
   }
 }
 
@@ -39,8 +39,8 @@ async function getTemplateLintDisables(filePaths: string[], cwd: string) {
       let add = (node: any) => {
         this.data.push({
           filePath: normalizePath(this.filePath, cwd),
-          ruleId: 'no-ember-template-lint-disable',
-          message: 'ember-template-lint-disable is not allowed',
+          lintRuleId: 'no-ember-template-lint-disable',
+          message: 'ember-template-lint-disable usages',
           line: node.loc.start.line,
           column: node.loc.start.column,
         });

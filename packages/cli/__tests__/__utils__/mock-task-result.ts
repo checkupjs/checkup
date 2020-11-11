@@ -1,18 +1,20 @@
-import { TaskResult } from '@checkup/core';
+import { Result } from 'sarif';
 
-export function getMockTaskResult(
+export function getMockResult(
   taskName: string,
   category: string,
   group: string = '',
-  result: any = {}
-): TaskResult {
-  return {
-    info: {
-      taskName,
+  // eslint-disable-next-line unicorn/no-object-as-default-parameter
+  result: Result = { message: { text: 'hey' } }
+): Result {
+  result.properties = {
+    ...result.properties,
+    ...{
+      taskName: taskName,
       taskDisplayName: taskName,
-      category,
-      group,
+      category: category,
+      group: group,
     },
-    result,
   };
+  return result;
 }

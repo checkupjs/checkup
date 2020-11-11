@@ -37,44 +37,56 @@ describe('ember-template-lint-disable-task', () => {
     ).run();
 
     expect(result).toMatchInlineSnapshot(`
-      Object {
-        "info": Object {
-          "category": "linting",
-          "group": "disabled-lint-rules",
-          "taskDisplayName": "Number of template-lint-disable Usages",
-          "taskName": "ember-template-lint-disables",
-        },
-        "result": Array [
-          Object {
-            "count": 3,
-            "data": Array [
-              Object {
-                "column": 4,
-                "filePath": "/index.hbs",
-                "line": 2,
-                "message": "ember-template-lint-disable is not allowed",
-                "ruleId": "no-ember-template-lint-disable",
+      Array [
+        Object {
+          "locations": Array [
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "index.hbs",
+                },
+                "region": Object {
+                  "startColumn": 4,
+                  "startLine": 2,
+                },
               },
-              Object {
-                "column": 6,
-                "filePath": "/index.hbs",
-                "line": 5,
-                "message": "ember-template-lint-disable is not allowed",
-                "ruleId": "no-ember-template-lint-disable",
+            },
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "index.hbs",
+                },
+                "region": Object {
+                  "startColumn": 6,
+                  "startLine": 5,
+                },
               },
-              Object {
-                "column": 4,
-                "filePath": "/index.hbs",
-                "line": 9,
-                "message": "ember-template-lint-disable is not allowed",
-                "ruleId": "no-ember-template-lint-disable",
+            },
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "index.hbs",
+                },
+                "region": Object {
+                  "startColumn": 4,
+                  "startLine": 9,
+                },
               },
-            ],
-            "key": "template-lint-disable usages",
-            "type": "summary",
+            },
+          ],
+          "message": Object {
+            "text": "ember-template-lint-disable usages",
           },
-        ],
-      }
+          "occurrenceCount": 3,
+          "properties": Object {
+            "category": "linting",
+            "group": "disabled-lint-rules",
+            "lintRuleId": "no-ember-template-lint-disable",
+            "taskDisplayName": "Number of template-lint-disable Usages",
+          },
+          "ruleId": "ember-template-lint-disables",
+        },
+      ]
     `);
   });
 

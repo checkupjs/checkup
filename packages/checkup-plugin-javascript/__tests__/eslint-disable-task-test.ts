@@ -49,51 +49,67 @@ describe('eslint-disable-task', () => {
     ).run();
 
     expect(result).toMatchInlineSnapshot(`
-      Object {
-        "info": Object {
-          "category": "linting",
-          "group": "disabled-lint-rules",
-          "taskDisplayName": "Number of eslint-disable Usages",
-          "taskName": "eslint-disables",
-        },
-        "result": Array [
-          Object {
-            "count": 4,
-            "data": Array [
-              Object {
-                "column": 6,
-                "filePath": "/decorator.js",
-                "line": 2,
-                "message": "eslint-disable is not allowed",
-                "ruleId": "no-eslint-disable",
+      Array [
+        Object {
+          "locations": Array [
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "decorator.js",
+                },
+                "region": Object {
+                  "startColumn": 6,
+                  "startLine": 2,
+                },
               },
-              Object {
-                "column": 19,
-                "filePath": "/index.js",
-                "line": 6,
-                "message": "eslint-disable is not allowed",
-                "ruleId": "no-eslint-disable",
+            },
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "index.js",
+                },
+                "region": Object {
+                  "startColumn": 19,
+                  "startLine": 6,
+                },
               },
-              Object {
-                "column": 4,
-                "filePath": "/index.js",
-                "line": 2,
-                "message": "eslint-disable is not allowed",
-                "ruleId": "no-eslint-disable",
+            },
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "index.js",
+                },
+                "region": Object {
+                  "startColumn": 4,
+                  "startLine": 2,
+                },
               },
-              Object {
-                "column": 4,
-                "filePath": "/index.js",
-                "line": 3,
-                "message": "eslint-disable is not allowed",
-                "ruleId": "no-eslint-disable",
+            },
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "index.js",
+                },
+                "region": Object {
+                  "startColumn": 4,
+                  "startLine": 3,
+                },
               },
-            ],
-            "key": "eslint-disable usages",
-            "type": "summary",
+            },
+          ],
+          "message": Object {
+            "text": "eslint-disable usages",
           },
-        ],
-      }
+          "occurrenceCount": 4,
+          "properties": Object {
+            "category": "linting",
+            "group": "disabled-lint-rules",
+            "lintRuleId": "no-eslint-disable",
+            "taskDisplayName": "Number of eslint-disable Usages",
+          },
+          "ruleId": "eslint-disables",
+        },
+      ]
     `);
   });
 

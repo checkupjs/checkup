@@ -31,6 +31,7 @@
     "@types/chalk": "^2.2.0",
     "@types/eslint": "^7.2.2",
     "@types/resolve": "^1.17.1",
+    "@types/sarif": "^2.1.3",
     "@types/wrap-ansi": "^3.0.0",
     "eslint-plugin-jest": "^23.20.0"
   },

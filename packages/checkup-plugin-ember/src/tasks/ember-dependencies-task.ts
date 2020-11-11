@@ -1,7 +1,8 @@
-import { BaseTask, Task, SummaryResult, TaskResult } from '@checkup/core';
-import { buildSummaryResult } from '@checkup/core';
+import { BaseTask, Task } from '@checkup/core';
+import { buildResultFromProperties } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
+import { Result } from 'sarif';
 
 type Dependency = {
   packageName: string;
@@ -14,38 +15,41 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
   category = 'dependencies';
   group = 'ember';
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     let packageJson = this.context.pkg;
 
-    let coreLibraries: SummaryResult = buildSummaryResult('ember core libraries', [
-      findDependency(packageJson, 'ember-source'),
-      findDependency(packageJson, 'ember-cli'),
-      findDependency(packageJson, 'ember-data'),
-    ]);
-    let emberDependencies = buildSummaryResult(
-      'ember addon dependencies',
-      findDependencies(packageJson.dependencies, emberAddonFilter)
+    let coreLibraries = buildResultFromProperties(
+      [
+        findDependency(packageJson, 'ember-source'),
+        findDependency(packageJson, 'ember-cli'),
+        findDependency(packageJson, 'ember-data'),
+      ],
+      'ember core libraries'
     );
-    let emberDevDependencies = buildSummaryResult(
-      'ember addon devDependencies',
-      findDependencies(packageJson.devDependencies, emberAddonFilter)
+    let emberDependencies = buildResultFromProperties(
+      findDependencies(packageJson.dependencies, emberAddonFilter),
+      'ember addon dependencies'
     );
-    let emberCliDependencies = buildSummaryResult(
-      'ember-cli addon dependencies',
-      findDependencies(packageJson.dependencies, emberCliAddonFilter)
+    let emberDevDependencies = buildResultFromProperties(
+      findDependencies(packageJson.devDependencies, emberAddonFilter),
+      'ember addon devDependencies'
     );
-    let emberCliDevDependencies = buildSummaryResult(
-      'ember-cli addon devDependencies',
-      findDependencies(packageJson.devDependencies, emberCliAddonFilter)
+    let emberCliDependencies = buildResultFromProperties(
+      findDependencies(packageJson.dependencies, emberCliAddonFilter),
+      'ember-cli addon dependencies'
+    );
+    let emberCliDevDependencies = buildResultFromProperties(
+      findDependencies(packageJson.devDependencies, emberCliAddonFilter),
+      'ember-cli addon devDependencies'
     );
 
-    return this.toJson([
-      coreLibraries,
-      emberDependencies,
-      emberDevDependencies,
-      emberCliDependencies,
-      emberCliDevDependencies,
-    ]);
+    return [
+      this.toJson(coreLibraries),
+      this.toJson(emberDependencies),
+      this.toJson(emberDevDependencies),
+      this.toJson(emberCliDependencies),
+      this.toJson(emberCliDevDependencies),
+    ];
   }
 }
 

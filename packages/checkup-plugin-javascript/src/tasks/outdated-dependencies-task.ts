@@ -1,6 +1,7 @@
 import * as npmCheck from 'npm-check';
 
-import { BaseTask, Task, TaskResult, buildDerivedValueResult } from '@checkup/core';
+import { BaseTask, Task, buildResultFromProperties, groupDataByField } from '@checkup/core';
+import { Result } from 'sarif';
 
 export type Dependency = {
   moduleName: string;
@@ -62,11 +63,12 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
   taskDisplayName = 'Outdated Dependencies';
   category = 'dependencies';
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     let outdatedDependencies = await getDependencies(this.context.cliFlags.cwd);
+    let groupedDependencies = groupDataByField(outdatedDependencies, 'semverBump');
 
-    let multiValue = buildDerivedValueResult('dependencies', outdatedDependencies, 'semverBump');
-
-    return this.toJson([multiValue]);
+    return groupedDependencies.map((dependencyGroup) =>
+      this.toJson(buildResultFromProperties(dependencyGroup, dependencyGroup[0].semverBump))
+    );
   }
 }

@@ -1,4 +1,5 @@
-import { Task, BaseTask, buildSummaryResult, normalizePaths, TaskResult } from '@checkup/core';
+import { Task, BaseTask, buildResultFromPathArray, normalizePaths } from '@checkup/core';
+import { Result } from 'sarif';
 
 const SEARCH_PATTERNS = [
   { patternName: 'components', pattern: ['**/components/**/*.js'] },
@@ -19,15 +20,15 @@ export default class EmberTypesTask extends BaseTask implements Task {
   category = 'metrics';
   group = 'ember';
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     let types = SEARCH_PATTERNS.map((pattern) => {
       let files = this.context.paths.filterByGlob(pattern.pattern);
-      return buildSummaryResult(
-        pattern.patternName,
-        normalizePaths(files, this.context.cliFlags.cwd)
+      return buildResultFromPathArray(
+        normalizePaths(files, this.context.cliFlags.cwd),
+        pattern.patternName
       );
     });
 
-    return this.toJson(types);
+    return types.map((type) => this.toJson(type));
   }
 }

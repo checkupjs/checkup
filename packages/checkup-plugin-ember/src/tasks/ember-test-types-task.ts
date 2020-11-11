@@ -5,11 +5,11 @@ import {
   Parser,
   BaseTask,
   buildLintResultDataItem,
-  IndexableObject,
-  buildMultiValueResult,
-  TaskResult,
+  buildResultFromLintResult,
+  LintResult,
 } from '@checkup/core';
 import { EMBER_TEST_TYPES } from '../utils/lint-configs';
+import { Result } from 'sarif';
 
 export default class EmberTestTypesTask extends BaseTask implements Task {
   taskName = 'ember-test-types';
@@ -29,49 +29,50 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     this.testFiles = this.context.paths.filterByGlob('**/*test.js');
   }
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     let esLintReport = await this.runEsLint();
 
-    let multiValueResult = buildResult(esLintReport, this.context.cliFlags.cwd);
-
-    return this.toJson(multiValueResult);
+    let results = this.buildResult(esLintReport, this.context.cliFlags.cwd);
+    return results.map((result) => this.toJson(result));
   }
 
   private async runEsLint(): Promise<ESLintReport> {
     return this.eslintParser.execute(this.testFiles);
   }
-}
 
-function buildResult(report: ESLintReport, cwd: string) {
-  let resultData = report.results.reduce(
-    (testTypes, lintResult) => {
+  buildResult(report: ESLintReport, cwd: string): Result[] {
+    let testTypes: { [key: string]: LintResult[] } = {};
+    report.results.forEach((esLintResult) => {
       let testType: string = '';
-      let method: string;
+      let method: string = '';
 
-      if (lintResult.messages.length === 0) {
-        return testTypes;
+      if (esLintResult.messages.length === 0) {
+        return;
       }
 
-      let messages = lintResult.messages
+      esLintResult.messages
         .filter((message) => message.ruleId === 'test-types')
-        .map((lintMessage) => {
+        .forEach((lintMessage) => {
           [testType, method] = lintMessage.message.split('|');
+          lintMessage.message = testType;
+          let lintResult = buildLintResultDataItem(lintMessage, cwd, esLintResult.filePath, {
+            method,
+          });
+          let testCategory = `${testType}_${method}`;
+          if (testTypes[testCategory] === undefined) {
+            testTypes[testCategory] = [];
+          }
 
-          return buildLintResultDataItem(lintMessage, cwd, lintResult.filePath, { method });
+          testTypes[testCategory].push(lintResult);
         });
 
-      testTypes[testType].push(...messages);
-
       return testTypes;
-    },
-    {
-      unit: [],
-      rendering: [],
-      application: [],
-    } as IndexableObject
-  );
+    });
 
-  return Object.keys(resultData).map((key) => {
-    return buildMultiValueResult(key, resultData[key], 'method', ['test', 'skip', 'only', 'todo']);
-  });
+    return Object.keys(testTypes).map((key) => {
+      return buildResultFromLintResult(testTypes[key], {
+        method: testTypes[key][0].method,
+      });
+    });
+  }
 }

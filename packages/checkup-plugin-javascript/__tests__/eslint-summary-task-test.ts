@@ -6,13 +6,15 @@ import {
 } from '../src/tasks/eslint-summary-task';
 import { evaluateActions } from '../src/actions/eslint-summary-actions';
 import { PackageJson } from 'type-fest';
-import { getPluginName, Task, TaskResult, FilePathArray } from '@checkup/core';
+import { getPluginName, Task, FilePathArray } from '@checkup/core';
+
+import { Result, Location } from 'sarif';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
   let pluginName = getPluginName(__dirname);
   let task: Task;
-  let result: TaskResult;
+  let result: Result[];
 
   beforeAll(async () => {
     project = new CheckupProject('checkup-app', '0.0.0');
@@ -71,14 +73,22 @@ describe('eslint-summary-task', () => {
   });
 
   it('it only lints the files passed in via paths array', async () => {
-    let excludedPathsResults = result.result.filter(
-      (resultData: any) =>
-        resultData.data.filter((data: any) => data.filePath.includes('excluded-path')).length > 0
+    let excludedPathsResults = result.filter(
+      (resultData: Result) =>
+        (
+          resultData.locations?.filter((fileLocation: Location) => {
+            return fileLocation?.physicalLocation?.artifactLocation?.uri?.includes('excluded-path');
+          }) || []
+        ).length > 0
     );
 
-    let includedPathsResults = result.result.filter(
-      (resultData: any) =>
-        resultData.data.filter((data: any) => data.filePath.includes('included-path')).length > 0
+    let includedPathsResults = result.filter(
+      (resultData: Result) =>
+        (
+          resultData.locations?.filter((fileLocation: Location) => {
+            return fileLocation?.physicalLocation?.artifactLocation?.uri?.includes('included-path');
+          }) || []
+        ).length > 0
     );
 
     expect(excludedPathsResults).toHaveLength(0);

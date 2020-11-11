@@ -5,15 +5,16 @@ import {
   Parser,
   Task,
   TaskContext,
-  buildDerivedValueResult,
+  buildResultFromLintResult,
   buildLintResultData,
   bySeverity,
-  TaskResult,
+  groupDataByField,
 } from '@checkup/core';
 import { join, resolve } from 'path';
 
 import { PackageJson } from 'type-fest';
 import { readFileSync } from 'fs';
+import { Result } from 'sarif';
 
 /**
  * @export
@@ -48,22 +49,29 @@ export class EslintSummaryTask extends BaseTask implements Task {
     this._eslintParser = createEslintParser(eslintConfig);
   }
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     let report = await this._eslintParser.execute(this.context.paths.filterByGlob('**/*.js'));
     let transformedData = buildLintResultData(report, this.context.cliFlags.cwd);
 
-    let errorsResult = buildDerivedValueResult(
-      'eslint-errors',
-      bySeverity(transformedData, 2),
-      'ruleId'
-    );
-    let warningsResult = buildDerivedValueResult(
-      'eslint-warnings',
-      bySeverity(transformedData, 1),
-      'ruleId'
-    );
+    let lintingErrors = groupDataByField(bySeverity(transformedData, 2), 'lintRuleId');
+    let lintingWarnings = groupDataByField(bySeverity(transformedData, 1), 'lintRuleId');
 
-    return this.toJson([errorsResult, warningsResult]);
+    let errorsResult = lintingErrors.map((lintingError) => {
+      return this.toJson(
+        buildResultFromLintResult(lintingError, {
+          type: 'error',
+        })
+      );
+    });
+    let warningsResult = lintingWarnings.map((lintingWarning) => {
+      return this.toJson(
+        buildResultFromLintResult(lintingWarning, {
+          type: 'warning',
+        })
+      );
+    });
+
+    return [...errorsResult, ...warningsResult];
   }
 }
 

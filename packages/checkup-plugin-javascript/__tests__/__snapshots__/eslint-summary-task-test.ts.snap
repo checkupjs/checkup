@@ -1,56 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`eslint-summary-task it summarizes eslint and outputs to JSON 1`] = `
-Object {
-  "info": Object {
-    "category": "linting",
-    "group": undefined,
-    "taskDisplayName": "Eslint Summary",
-    "taskName": "eslint-summary",
+Array [
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "included-path.js",
+          },
+          "region": Object {
+            "startColumn": 32,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": Object {
+      "text": "Missing semicolon.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "linting",
+      "group": undefined,
+      "lintRuleId": "semi",
+      "taskDisplayName": "Eslint Summary",
+      "type": "error",
+    },
+    "ruleId": "eslint-summary",
   },
-  "result": Array [
-    Object {
-      "data": Array [
-        Object {
-          "column": 32,
-          "filePath": "/included-path.js",
-          "line": 2,
-          "message": "Missing semicolon.",
-          "ruleId": "semi",
-          "severity": 2,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 1,
-        "values": Object {
-          "semi": 1,
+  Object {
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "included-path.js",
+          },
+          "region": Object {
+            "startColumn": 9,
+            "startLine": 2,
+          },
         },
       },
-      "key": "eslint-errors",
-      "type": "multi-value",
+    ],
+    "message": Object {
+      "text": "Unexpected var, use let or const instead.",
     },
-    Object {
-      "data": Array [
-        Object {
-          "column": 9,
-          "filePath": "/included-path.js",
-          "line": 2,
-          "message": "Unexpected var, use let or const instead.",
-          "ruleId": "no-var",
-          "severity": 1,
-        },
-      ],
-      "dataSummary": Object {
-        "dataKey": "ruleId",
-        "total": 1,
-        "values": Object {
-          "no-var": 1,
-        },
-      },
-      "key": "eslint-warnings",
-      "type": "multi-value",
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "linting",
+      "group": undefined,
+      "lintRuleId": "no-var",
+      "taskDisplayName": "Eslint Summary",
+      "type": "warning",
     },
-  ],
-}
+    "ruleId": "eslint-summary",
+  },
+]
 `;

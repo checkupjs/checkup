@@ -39,7 +39,7 @@ export default class ProjectMetaTask implements MetaTask {
   async run(): Promise<MetaTaskResult> {
     let result: ProjectMetaTaskResult = new ProjectMetaTaskResult(this.meta);
     let package_ = this.context.pkg;
-    let repositoryInfo = await getRepositoryInfo(this.context.cliFlags.cwd);
+    let repositoryInfo = await getRepositoryInfo(this.context.cliFlags.cwd, this.context.paths);
 
     let { config, task, format, outputFile, excludePaths } = this.context.cliFlags;
     let analyzedFiles = normalizePaths(this.context.paths, this.context.cliFlags.cwd);
@@ -66,7 +66,6 @@ export default class ProjectMetaTask implements MetaTask {
           outputFile,
           excludePaths,
         },
-        timings: {},
       },
 
       analyzedFiles,

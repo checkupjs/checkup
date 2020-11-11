@@ -1,8 +1,10 @@
-import { Task, BaseTask, TaskResult } from '@checkup/core';
-import { buildSummaryResult } from '@checkup/core';
+import { Task, BaseTask } from '@checkup/core';
+import { buildResultFromPathArray } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { readJsonSync } from 'fs-extra';
+
+import { Result } from 'sarif';
 
 export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Task {
   taskName = 'ember-in-repo-addons-engines';
@@ -10,7 +12,7 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
   category = 'metrics';
   group = 'ember';
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     let inRepoAddons: string[] = [];
     let inRepoEngines: string[] = [];
 
@@ -26,10 +28,10 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
       }
     });
 
-    return this.toJson([
-      buildSummaryResult('in-repo engines', inRepoEngines.sort()),
-      buildSummaryResult('in-repo addons', inRepoAddons.sort()),
-    ]);
+    return [
+      this.toJson(buildResultFromPathArray(inRepoAddons.sort(), 'in-repo addons')),
+      this.toJson(buildResultFromPathArray(inRepoEngines.sort(), 'in-repo engines')),
+    ];
   }
 }
 

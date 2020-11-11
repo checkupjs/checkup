@@ -1,37 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TaskList runTask will run a task by taskName 1`] = `
-Object {
-  "info": Object {
-    "category": "bar",
-    "group": undefined,
-    "taskDisplayName": "Insights Task High",
-    "taskName": "insights-task-high",
+Array [
+  Object {
+    "message": Object {
+      "text": "hi",
+    },
+    "properties": Object {
+      "category": "bar",
+      "group": undefined,
+      "taskDisplayName": "Insights Task High",
+    },
+    "ruleId": "insights-task-high",
   },
-  "result": Array [],
-}
+]
 `;
 
 exports[`TaskList runTasks will run all registered tasks 1`] = `
 Object {
-  "info": Object {
+  "message": Object {
+    "text": "hi",
+  },
+  "properties": Object {
     "category": "bar",
     "group": undefined,
     "taskDisplayName": "Insights Task High",
-    "taskName": "insights-task-high",
   },
-  "result": Array [],
+  "ruleId": "insights-task-high",
 }
 `;
 
 exports[`TaskList runTasks will run all registered tasks 2`] = `
 Object {
-  "info": Object {
+  "message": Object {
+    "text": "hi",
+  },
+  "properties": Object {
     "category": "foo",
     "group": undefined,
     "taskDisplayName": "Insights Task Low",
-    "taskName": "insights-task-low",
   },
-  "result": Array [],
+  "ruleId": "insights-task-low",
 }
 `;

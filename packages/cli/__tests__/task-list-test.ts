@@ -1,7 +1,8 @@
 import TaskList from '../src/task-list';
 import { getTaskContext } from '@checkup/test-helpers';
-import { BaseTask, Task, TaskContext, TaskResult } from '@checkup/core';
+import { BaseTask, Task, TaskContext } from '@checkup/core';
 
+import { Result } from 'sarif';
 const STABLE_ERROR = new Error('Something went wrong in this task');
 
 class InsightsTaskHigh extends BaseTask implements Task {
@@ -13,8 +14,8 @@ class InsightsTaskHigh extends BaseTask implements Task {
     super('fake', context);
   }
 
-  async run(): Promise<TaskResult> {
-    return this.toJson([]);
+  async run(): Promise<Result[]> {
+    return [this.toJson({ message: { text: 'hi' } })];
   }
 }
 
@@ -26,8 +27,8 @@ class InsightsTaskLow extends BaseTask implements Task {
   constructor(context: TaskContext) {
     super('fake', context);
   }
-  async run(): Promise<TaskResult> {
-    return this.toJson([]);
+  async run(): Promise<Result[]> {
+    return [this.toJson({ message: { text: 'hi' } })];
   }
 }
 
@@ -40,8 +41,8 @@ class RecommendationsTaskHigh extends BaseTask implements Task {
   constructor(context: TaskContext) {
     super('fake', context);
   }
-  async run(): Promise<TaskResult> {
-    return this.toJson([]);
+  async run(): Promise<Result[]> {
+    return [this.toJson({ message: { text: 'hi' } })];
   }
 }
 
@@ -54,8 +55,8 @@ class RecommendationsTaskLow extends BaseTask implements Task {
   constructor(context: TaskContext) {
     super('fake', context);
   }
-  async run(): Promise<TaskResult> {
-    return this.toJson([]);
+  async run(): Promise<Result[]> {
+    return [this.toJson({ message: { text: 'hi' } })];
   }
 }
 
@@ -68,8 +69,8 @@ class MigrationTaskHigh extends BaseTask implements Task {
   constructor(context: TaskContext) {
     super('fake', context);
   }
-  async run(): Promise<TaskResult> {
-    return this.toJson([]);
+  async run(): Promise<Result[]> {
+    return [this.toJson({ message: { text: 'hi' } })];
   }
 }
 
@@ -82,8 +83,8 @@ class MigrationTaskLow extends BaseTask implements Task {
   constructor(context: TaskContext) {
     super('fake', context);
   }
-  async run(): Promise<TaskResult> {
-    return this.toJson([]);
+  async run(): Promise<Result[]> {
+    return [this.toJson({ message: { text: 'hi' } })];
   }
 }
 
@@ -96,7 +97,7 @@ class ErrorTask extends BaseTask implements Task {
   constructor(context: TaskContext) {
     super('fake', context);
   }
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     throw STABLE_ERROR;
   }
 }
@@ -111,8 +112,8 @@ class TaskWithoutCategory extends BaseTask implements Task {
     super('fake', context);
   }
 
-  async run(): Promise<TaskResult> {
-    return this.toJson([]);
+  async run(): Promise<Result[]> {
+    return [this.toJson({ message: { text: 'hi' } })];
   }
 }
 
@@ -234,58 +235,70 @@ describe('TaskList', () => {
     expect(results).toMatchInlineSnapshot(`
       Array [
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hi",
+          },
+          "properties": Object {
             "category": "foo",
             "group": undefined,
             "taskDisplayName": "Insights Task Low",
-            "taskName": "insights-task-low",
           },
-          "result": Array [],
+          "ruleId": "insights-task-low",
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hi",
+          },
+          "properties": Object {
             "category": "foo",
             "group": undefined,
             "taskDisplayName": "Migration Task High",
-            "taskName": "migration-task-high",
           },
-          "result": Array [],
+          "ruleId": "migration-task-high",
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hi",
+          },
+          "properties": Object {
             "category": "baz",
             "group": undefined,
             "taskDisplayName": "Recommendations Task High",
-            "taskName": "recommendations-task-high",
           },
-          "result": Array [],
+          "ruleId": "recommendations-task-high",
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hi",
+          },
+          "properties": Object {
             "category": "baz",
             "group": undefined,
             "taskDisplayName": "Migration Task Low",
-            "taskName": "migration-task-low",
           },
-          "result": Array [],
+          "ruleId": "migration-task-low",
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hi",
+          },
+          "properties": Object {
             "category": "bar",
             "group": undefined,
             "taskDisplayName": "Recommendations Task Low",
-            "taskName": "recommendations-task-low",
           },
-          "result": Array [],
+          "ruleId": "recommendations-task-low",
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hi",
+          },
+          "properties": Object {
             "category": "bar",
             "group": undefined,
             "taskDisplayName": "Insights Task High",
-            "taskName": "insights-task-high",
           },
-          "result": Array [],
+          "ruleId": "insights-task-high",
         },
       ]
     `);

@@ -4,13 +4,13 @@ import {
   normalizePath,
   LintResult,
   AstTraverser,
-  buildSummaryResult,
-  TaskResult,
+  buildResultFromLintResult,
 } from '@checkup/core';
 
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
 import { Visitor } from 'ast-types';
+import { Result } from 'sarif';
 
 const fs = require('fs');
 
@@ -22,11 +22,11 @@ export default class EslintDisableTask extends BaseTask implements Task {
   category = 'linting';
   group = 'disabled-lint-rules';
 
-  async run(): Promise<TaskResult> {
+  async run(): Promise<Result[]> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
-    let eslintDisables = await getEslintDisables(jsPaths, this.context.cliFlags.cwd);
+    let eslintDisables: LintResult[] = await getEslintDisables(jsPaths, this.context.cliFlags.cwd);
 
-    return this.toJson([buildSummaryResult('eslint-disable usages', eslintDisables)]);
+    return [this.toJson(buildResultFromLintResult(eslintDisables))];
   }
 }
 
@@ -42,8 +42,8 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
       let add = (node: any) => {
         this.data.push({
           filePath: normalizePath(this.filePath, cwd),
-          ruleId: 'no-eslint-disable',
-          message: 'eslint-disable is not allowed',
+          lintRuleId: 'no-eslint-disable',
+          message: 'eslint-disable usages',
           line: node.loc.start.line,
           column: node.loc.start.column,
         });

@@ -1,6 +1,7 @@
-import { TaskResult, TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { Result } from 'sarif';
 
-export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
   return actionsEvaluator.evaluate(taskConfig);

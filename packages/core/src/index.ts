@@ -30,18 +30,20 @@ export { exec } from './utils/exec';
 export { ui } from './utils/ui';
 export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
+export { sumOccurrences } from './utils/sarif-utils';
 
 export { byRuleId, byRuleIds, bySeverity } from './data/filters';
-export { toPercent } from './data/formatters';
+export { toPercent, groupDataByField } from './data/formatters';
 export {
-  buildSummaryResult,
-  buildMultiValueResult,
-  buildDerivedValueResult,
-  buildLookupValueResult,
+  buildResultFromProperties,
+  buildResultFromLintResult,
+  buildResultFromPathArray,
   buildLintResultData,
   buildLintResultDataItem,
+  buildNotificationsFromTaskErrors,
   normalizePath,
   normalizePaths,
+  NO_RESULTS_FOUND,
 } from './data/builders';
 
 export * from './types/cli';

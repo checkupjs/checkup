@@ -1,19 +1,21 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
-import { getPluginName, TaskResult, Task } from '@checkup/core';
+import { getPluginName, Task } from '@checkup/core';
 import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task';
 import { evaluateActions } from '../src/actions/outdated-dependency-actions';
+
+import { Result } from 'sarif';
 
 // this test actually checks if dependencies are out of date, and will fail if new versions of react and react-dom are released.
 describe('outdated-dependencies-task', () => {
   let project: CheckupProject;
   let pluginName = getPluginName(__dirname);
   let task: Task;
-  let result: TaskResult;
+  let result: Result[];
 
   beforeAll(async () => {
     project = new CheckupProject('checkup-app', '0.0.0', (project) => {
-      project.addDependency('react', '^15.0.0');
-      project.addDependency('react-dom', '16.0.0');
+      project.addDependency('react', '16.0.0');
+      project.addDependency('ember-cli', '3.20.0');
     });
 
     project.writeSync();
@@ -41,7 +43,7 @@ describe('outdated-dependencies-task', () => {
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
     let actions = evaluateActions(result, task.config);
 
-    expect(actions).toHaveLength(2);
+    expect(actions).toHaveLength(3);
     expect(actions).toMatchInlineSnapshot(`
       Array [
         Object {
@@ -59,6 +61,14 @@ describe('outdated-dependencies-task', () => {
           "items": Array [],
           "name": "reduce-outdated-minor-dependencies",
           "summary": "Update outdated minor versions",
+        },
+        Object {
+          "defaultThreshold": 0.2,
+          "details": "100% of versions outdated",
+          "input": 1,
+          "items": Array [],
+          "name": "reduce-outdated-dependencies",
+          "summary": "Update outdated versions",
         },
       ]
     `);

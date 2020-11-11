@@ -45,7 +45,7 @@
     "node/no-missing-import": [
       "error",
       {
-        "allowModules": ["@checkup/core", "@checkup/test-helpers"]
+        "allowModules": ["@checkup/core", "@checkup/test-helpers", "sarif"]
       }
     ]
   },

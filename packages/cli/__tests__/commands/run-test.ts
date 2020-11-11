@@ -1,4 +1,4 @@
-import { BaseTask, normalizePath, Task, TaskContext, TaskResult } from '@checkup/core';
+import { BaseTask, normalizePath, Task, TaskContext } from '@checkup/core';
 import {
   CheckupProject,
   clearStdout,
@@ -8,6 +8,7 @@ import {
 } from '@checkup/test-helpers';
 import * as fs from 'fs';
 import { join } from 'path';
+import { Log, Result } from 'sarif';
 import { _registerTaskForTesting, _resetTasksForTesting } from '../../src/commands/run';
 import { runCommand } from '../../src/run-command';
 
@@ -21,8 +22,8 @@ class FooTask extends BaseTask implements Task {
   constructor(context: TaskContext) {
     super('fake', context);
   }
-  async run(): Promise<TaskResult> {
-    return this.toJson([]);
+  async run(): Promise<Result[]> {
+    return [this.toJson({ message: { text: 'hi' }, occurrenceCount: 0 })];
   }
 }
 
@@ -34,8 +35,8 @@ class FileCountTask extends BaseTask implements Task {
   constructor(context: TaskContext) {
     super('fake', context);
   }
-  async run(): Promise<TaskResult> {
-    return this.toJson([]);
+  async run(): Promise<Result[]> {
+    return [this.toJson({ message: { text: 'hi' }, occurrenceCount: 0 })];
   }
 }
 
@@ -77,15 +78,8 @@ describe('@checkup/cli', () => {
     it('should output checkup result in JSON', async () => {
       await runCommand(['run', '--format', 'json', '--cwd', project.baseDir], { testing: true });
 
-      let output = normalizePath(stdout().trim(), project.baseDir);
-
-      expect(JSON.parse(output)).toMatchSnapshot({
-        info: {
-          cli: {
-            timings: expect.any(Object),
-          },
-        },
-      });
+      let output = JSON.parse(normalizePath(stdout().trim(), project.baseDir)) as Log;
+      expect(normalizeInvocationForTesting(output)).toMatchSnapshot();
     });
 
     it(
@@ -303,3 +297,17 @@ describe('@checkup/cli', () => {
     );
   });
 });
+
+function normalizeInvocationForTesting(output: Log) {
+  return output.runs.map((run) => {
+    return run.invocations?.map((invocation) => {
+      invocation.endTimeUtc = '';
+      if (invocation.environmentVariables) {
+        invocation.environmentVariables.cwd =
+          invocation.environmentVariables?.cwd?.split('/').pop() || '';
+      }
+      invocation.startTimeUtc = '';
+      return invocation;
+    });
+  });
+}

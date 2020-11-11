@@ -1,72 +1,84 @@
 import { taskResultComparator } from '../src/task-result-comparator';
-import { getMockTaskResult } from './__utils__/mock-task-result';
+import { getMockResult } from './__utils__/mock-task-result';
 
 describe('taskResultComparator', () => {
   it('should sort task results by category with no group', () => {
     let results = [
-      getMockTaskResult('foo', 'linting'),
-      getMockTaskResult('fod', 'migrations'),
-      getMockTaskResult('bar', 'testing'),
-      getMockTaskResult('bag', 'best practices'),
-      getMockTaskResult('baz', 'metrics'),
-      getMockTaskResult('bad', 'dependencies'),
+      getMockResult('foo', 'linting'),
+      getMockResult('fod', 'migrations'),
+      getMockResult('bar', 'testing'),
+      getMockResult('bag', 'best practices'),
+      getMockResult('baz', 'metrics'),
+      getMockResult('bad', 'dependencies'),
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
       Array [
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "metrics",
             "group": "",
             "taskDisplayName": "baz",
             "taskName": "baz",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "best practices",
             "group": "",
             "taskDisplayName": "bag",
             "taskName": "bag",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "dependencies",
             "group": "",
             "taskDisplayName": "bad",
             "taskName": "bad",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "linting",
             "group": "",
             "taskDisplayName": "foo",
             "taskName": "foo",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "testing",
             "group": "",
             "taskDisplayName": "bar",
             "taskName": "bar",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "migrations",
             "group": "",
             "taskDisplayName": "fod",
             "taskName": "fod",
           },
-          "result": Object {},
         },
       ]
     `);
@@ -74,79 +86,93 @@ describe('taskResultComparator', () => {
 
   it('should sort task results with custom category by category with no group', () => {
     let results = [
-      getMockTaskResult('foo', 'linting'),
-      getMockTaskResult('fod', 'testing'),
-      getMockTaskResult('bar', 'custom category2'),
-      getMockTaskResult('bar', 'custom category'),
-      getMockTaskResult('bag', 'best practices'),
-      getMockTaskResult('baz', 'metrics'),
-      getMockTaskResult('bad', 'dependencies'),
+      getMockResult('foo', 'linting'),
+      getMockResult('fod', 'testing'),
+      getMockResult('bar', 'custom category2'),
+      getMockResult('bar', 'custom category'),
+      getMockResult('bag', 'best practices'),
+      getMockResult('baz', 'metrics'),
+      getMockResult('bad', 'dependencies'),
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
       Array [
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "metrics",
             "group": "",
             "taskDisplayName": "baz",
             "taskName": "baz",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "best practices",
             "group": "",
             "taskDisplayName": "bag",
             "taskName": "bag",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "dependencies",
             "group": "",
             "taskDisplayName": "bad",
             "taskName": "bad",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "linting",
             "group": "",
             "taskDisplayName": "foo",
             "taskName": "foo",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "testing",
             "group": "",
             "taskDisplayName": "fod",
             "taskName": "fod",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "custom category2",
             "group": "",
             "taskDisplayName": "bar",
             "taskName": "bar",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "custom category",
             "group": "",
             "taskDisplayName": "bar",
             "taskName": "bar",
           },
-          "result": Object {},
         },
       ]
     `);
@@ -154,69 +180,81 @@ describe('taskResultComparator', () => {
 
   it('should sort task results by category with group', () => {
     let results = [
-      getMockTaskResult('foo', 'linting'),
-      getMockTaskResult('fod', 'best practices', 'lint'),
-      getMockTaskResult('bar', 'best practices'),
-      getMockTaskResult('baz', 'metrics'),
-      getMockTaskResult('bag', 'dependencies'),
-      getMockTaskResult('bad', 'best practices', 'lint'),
+      getMockResult('foo', 'linting'),
+      getMockResult('fod', 'best practices', 'lint'),
+      getMockResult('bar', 'best practices'),
+      getMockResult('baz', 'metrics'),
+      getMockResult('bag', 'dependencies'),
+      getMockResult('bad', 'best practices', 'lint'),
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
       Array [
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "metrics",
             "group": "",
             "taskDisplayName": "baz",
             "taskName": "baz",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "best practices",
             "group": "lint",
             "taskDisplayName": "fod",
             "taskName": "fod",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "best practices",
             "group": "lint",
             "taskDisplayName": "bad",
             "taskName": "bad",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "best practices",
             "group": "",
             "taskDisplayName": "bar",
             "taskName": "bar",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "dependencies",
             "group": "",
             "taskDisplayName": "bag",
             "taskName": "bag",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "linting",
             "group": "",
             "taskDisplayName": "foo",
             "taskName": "foo",
           },
-          "result": Object {},
         },
       ]
     `);
@@ -224,69 +262,81 @@ describe('taskResultComparator', () => {
 
   it('should sort task results with custom category by category with group', () => {
     let results = [
-      getMockTaskResult('foo', 'linting'),
-      getMockTaskResult('fod', 'grouped linting', 'lint'),
-      getMockTaskResult('bar', 'best practices'),
-      getMockTaskResult('baz', 'metrics'),
-      getMockTaskResult('bad', 'dependencies'),
-      getMockTaskResult('bag', 'grouped linting2', 'lint'),
+      getMockResult('foo', 'linting'),
+      getMockResult('fod', 'grouped linting', 'lint'),
+      getMockResult('bar', 'best practices'),
+      getMockResult('baz', 'metrics'),
+      getMockResult('bad', 'dependencies'),
+      getMockResult('bag', 'grouped linting2', 'lint'),
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
       Array [
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "metrics",
             "group": "",
             "taskDisplayName": "baz",
             "taskName": "baz",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "best practices",
             "group": "",
             "taskDisplayName": "bar",
             "taskName": "bar",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "dependencies",
             "group": "",
             "taskDisplayName": "bad",
             "taskName": "bad",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "linting",
             "group": "",
             "taskDisplayName": "foo",
             "taskName": "foo",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "grouped linting",
             "group": "lint",
             "taskDisplayName": "fod",
             "taskName": "fod",
           },
-          "result": Object {},
         },
         Object {
-          "info": Object {
+          "message": Object {
+            "text": "hey",
+          },
+          "properties": Object {
             "category": "grouped linting2",
             "group": "lint",
             "taskDisplayName": "bag",
             "taskName": "bag",
           },
-          "result": Object {},
         },
       ]
     `);

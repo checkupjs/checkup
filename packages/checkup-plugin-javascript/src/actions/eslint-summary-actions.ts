@@ -1,17 +1,14 @@
-import { ActionsEvaluator, MultiValueResult, TaskResult, TaskConfig } from '@checkup/core';
+import { ActionsEvaluator, TaskConfig, sumOccurrences } from '@checkup/core';
+import { Result } from 'sarif';
 
-export function evaluateActions(taskResult: TaskResult, taskConfig: TaskConfig) {
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
-  let errors = taskResult.result.find(
-    (result: MultiValueResult) => result.key === 'eslint-errors'
-  )!;
-  let warnings = taskResult.result.find(
-    (result: MultiValueResult) => result.key === 'eslint-warnings'
-  )!;
+  let errors = taskResults.filter((result: Result) => result.properties?.type === 'error')!;
+  let warnings = taskResults.filter((result: Result) => result.properties?.type === 'warning')!;
 
-  let errorCount = errors.dataSummary.total;
-  let warningCount = warnings.dataSummary.total;
+  let errorCount = sumOccurrences(errors);
+  let warningCount = sumOccurrences(warnings);
 
   actionsEvaluator.add({
     name: 'reduce-eslint-errors',
