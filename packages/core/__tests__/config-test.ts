@@ -1,8 +1,22 @@
-import { getConfigPath, readConfig, writeConfig, parseConfigTuple } from '../src/config';
+import {
+  getConfigPath,
+  readConfig,
+  writeConfig,
+  parseConfigTuple,
+  getConfigPathFromOptions,
+  CONFIG_SCHEMA_URL,
+} from '../src/config';
 import { readJsonSync, writeJsonSync, writeFileSync } from 'fs-extra';
 
 import { DEFAULT_CONFIG } from '../src';
 import { createTmpDir } from '@checkup/test-helpers';
+
+const REMOTE_CONFIG = {
+  $schema: CONFIG_SCHEMA_URL,
+  excludePaths: ['**/foo'],
+  plugins: ['@foo/checkup-plugin-bar'],
+  tasks: {},
+};
 
 describe('config', () => {
   let tmp: string;
@@ -65,6 +79,15 @@ describe('config', () => {
       let config = readConfig(configPath);
 
       expect(config).toEqual(DEFAULT_CONFIG);
+    });
+
+    it('can load a config from an HTTP endpoint', async () => {
+      let configPath = await getConfigPathFromOptions(
+        'https://raw.githubusercontent.com/checkupjs/checkup/http-config/packages/core/__tests__/__fixtures__/.checkuprc.json'
+      );
+      let config = readConfig(configPath!);
+
+      expect(config).toEqual(REMOTE_CONFIG);
     });
 
     it('throws if config with invalid task config string value set invalid string', () => {

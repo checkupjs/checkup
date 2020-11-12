@@ -1,6 +1,7 @@
 import * as Ajv from 'ajv';
-
-import { existsSync, readJsonSync, writeJsonSync } from 'fs-extra';
+import fetch from 'node-fetch';
+import * as tmp from 'tmp';
+import { existsSync, readJsonSync, writeJsonSync, writeJSON } from 'fs-extra';
 import { join, resolve } from 'path';
 
 import { CheckupConfig, ConfigValue } from './types/config';
@@ -26,6 +27,29 @@ export const DEFAULT_CONFIG: CheckupConfig = {
 
 export function getConfigPath(path: string = '') {
   return join(resolve(path), '.checkuprc');
+}
+
+export async function getConfigPathFromOptions(configPath: string | undefined) {
+  if (!configPath) {
+    return;
+  }
+
+  if (configPath.startsWith('http')) {
+    const contents = await downloadFile(configPath);
+    const filePath = tmp.fileSync();
+
+    await writeJSON(filePath.name, contents);
+
+    return filePath.name;
+  } else {
+    configPath;
+  }
+}
+
+async function downloadFile(url: string) {
+  let response = await fetch(url);
+
+  return JSON.parse(await response.text());
 }
 
 export function readConfig(configPath: string) {
