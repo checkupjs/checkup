@@ -1,3 +1,17 @@
+## v0.8.2 (2020-11-12)
+
+#### :rocket: Enhancement
+* `core`
+  * [#752](https://github.com/checkupjs/checkup/pull/752) Exporting buildLintResultsFromEslintOrTemplateLint ([@carakessler](https://github.com/carakessler))
+
+#### :bug: Bug Fix
+* `core`
+  * [#752](https://github.com/checkupjs/checkup/pull/752) Exporting buildLintResultsFromEslintOrTemplateLint ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 1
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v0.8.1 (2020-11-11)
 
 #### :bug: Bug Fix
