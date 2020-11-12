@@ -40,6 +40,7 @@ export {
   buildResultFromPathArray,
   buildLintResultData,
   buildLintResultDataItem,
+  buildLintResultsFromEslintOrTemplateLint,
   buildNotificationsFromTaskErrors,
   normalizePath,
   normalizePaths,
