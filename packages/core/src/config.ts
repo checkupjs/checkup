@@ -49,7 +49,7 @@ export async function getConfigPathFromOptions(configPath: string | undefined) {
 async function downloadFile(url: string) {
   let response = await fetch(url);
 
-  return JSON.parse(await response.text());
+  return response.json();
 }
 
 export function readConfig(configPath: string) {
