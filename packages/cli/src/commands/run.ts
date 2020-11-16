@@ -13,6 +13,7 @@ import {
   registerTaskReporter,
   getFilePathsAsync,
   getConfigPath,
+  getConfigPathFromOptions,
   readConfig,
   getRegisteredParsers,
   getRegisteredActions,
@@ -197,7 +198,8 @@ export default class RunCommand extends BaseCommand {
     let configPath;
 
     try {
-      configPath = this.runFlags.config || getConfigPath(this.runFlags.cwd);
+      configPath =
+        (await getConfigPathFromOptions(this.runFlags.config)) || getConfigPath(this.runFlags.cwd);
       this.checkupConfig = readConfig(configPath);
 
       let plugins = await loadPlugins(this.checkupConfig.plugins, this.runFlags.cwd);
