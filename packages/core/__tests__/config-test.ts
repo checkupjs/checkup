@@ -83,7 +83,7 @@ describe('config', () => {
 
     it('can load a config from an HTTP endpoint', async () => {
       let configPath = await getConfigPathFromOptions(
-        'https://raw.githubusercontent.com/checkupjs/checkup/http-config/packages/core/__tests__/__fixtures__/.checkuprc.json'
+        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/__tests__/__fixtures__/.checkuprc.json'
       );
       let config = readConfig(configPath!);
 
