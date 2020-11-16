@@ -22,7 +22,7 @@
     "micromatch": "^4.0.2",
     "pkg-up": "^3.1.0",
     "recast": "^0.20.4",
-    "resolve": "^1.17.0",
+    "resolve": "^1.19.0",
     "strip-ansi": "^6.0.0",
     "type-fest": "^0.16.0",
     "walk-sync": "^2.2.0",
