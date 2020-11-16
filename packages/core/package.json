@@ -6,7 +6,7 @@
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@oclif/config": "^1",
-    "@oclif/errors": "^1.3.3",
+    "@oclif/errors": "^1.3.4",
     "@types/micromatch": "^4.0.1",
     "@types/sarif": "^2.1.3",
     "ajv": "^6.12.6",

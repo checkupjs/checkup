@@ -14,7 +14,7 @@
     "@checkup/core": "0.8.2",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
-    "@oclif/errors": "^1.3.3",
+    "@oclif/errors": "^1.3.4",
     "@oclif/plugin-help": "^3",
     "chalk": "^4.0.0",
     "clean-stack": "^3.0.0",
