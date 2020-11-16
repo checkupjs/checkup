@@ -1,3 +1,18 @@
+## v0.9.0 (2020-11-16)
+
+#### :rocket: Enhancement
+* `cli`, `core`
+  * [#753](https://github.com/checkupjs/checkup/pull/753) Adding HTTP support for config loading ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember`, `cli`, `core`
+  * [#771](https://github.com/checkupjs/checkup/pull/771) Moving consoleMessage to properties ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v0.8.2 (2020-11-12)
 
 #### :rocket: Enhancement
