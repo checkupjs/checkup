@@ -189,7 +189,7 @@ function getTaskReporter(taskResult: Result[]) {
 
 export function renderEmptyResult(taskResult: Result) {
   ui.value({
-    title: taskResult.message.properties?.consoleMessage || taskResult.properties?.taskDisplayName,
+    title: taskResult.properties?.consoleMessage || taskResult.properties?.taskDisplayName,
     count: 0,
   });
 }

@@ -88,7 +88,8 @@ export function buildResultFromLintResult(
 export function buildResultFromPathArray(paths: string[], message: string): Result {
   if (paths.length === 0) {
     return {
-      message: { text: NO_RESULTS_FOUND, properties: { consoleMessage: message } },
+      message: { text: NO_RESULTS_FOUND },
+      properties: { consoleMessage: message },
     };
   }
 
@@ -107,7 +108,8 @@ export function buildResultFromPathArray(paths: string[], message: string): Resu
 export function buildResultFromProperties(data: any[], message: string): Result {
   if (data.length === 0) {
     return {
-      message: { text: NO_RESULTS_FOUND, properties: { consoleMessage: message } },
+      message: { text: NO_RESULTS_FOUND },
+      properties: { consoleMessage: message },
     };
   }
 

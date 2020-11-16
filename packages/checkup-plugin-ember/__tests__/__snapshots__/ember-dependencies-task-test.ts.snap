@@ -48,13 +48,11 @@ Array [
   },
   Object {
     "message": Object {
-      "properties": Object {
-        "consoleMessage": "ember addon devDependencies",
-      },
       "text": "No results found",
     },
     "properties": Object {
       "category": "dependencies",
+      "consoleMessage": "ember addon devDependencies",
       "group": "ember",
       "taskDisplayName": "Ember Dependencies",
     },
