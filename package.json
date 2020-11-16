@@ -59,7 +59,7 @@
     "stdout-stderr": "^0.1.13",
     "ts-jest": "^25.5.1",
     "ts-node": "^9",
-    "type-fest": "^0.16.0",
+    "type-fest": "^0.18.1",
     "typescript": "^3.9"
   },
   "publishConfig": {
