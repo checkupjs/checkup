@@ -19,7 +19,11 @@ export function run() {
     args.unshift(DEFAULT_COMMAND);
   }
 
+  process.env.CHECKUP_CLI = '1';
+
   return oclifRun(args);
 }
 
 export { runCommand } from './run-command';
+
+export { default as Checkup } from './commands/run';

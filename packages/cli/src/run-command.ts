@@ -12,6 +12,8 @@ export async function runCommand(args: string[] | string, opts: loadConfig.Optio
   let output: string;
   let patch;
 
+  process.env.CHECKUP_CLI = '1';
+
   if (!opts.testing) {
     patch = stdout((str: string) => {
       output += str;
