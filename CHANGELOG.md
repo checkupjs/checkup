@@ -1,3 +1,17 @@
+## v0.10.0 (2020-11-19)
+
+#### :boom: Breaking Change
+* `cli`
+  * [#778](https://github.com/checkupjs/checkup/pull/778) Changes file extension of outputFile to sarif ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `cli`
+  * [#777](https://github.com/checkupjs/checkup/pull/777) Implements new node API to allow for programmatic invocation of Checkup ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.9.0 (2020-11-16)
 
 #### :rocket: Enhancement
