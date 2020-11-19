@@ -91,7 +91,7 @@ describe('task generator', () => {
     assertPluginFiles(dir, 'js');
   });
 
-  it('generates correct files with type', async () => {
+  it('generates correct files with typescript', async () => {
     let baseDir = await generatePlugin();
     let dir = await helpers
       .run(TaskGenerator, { namespace: 'checkup:task' })
@@ -100,7 +100,8 @@ describe('task generator', () => {
         name: 'my-foo',
       })
       .withPrompts({
-        type: 'Insights',
+        category: 'foo',
+        group: 'bar',
       });
 
     assertTaskFiles('my-foo', dir);
@@ -117,6 +118,7 @@ describe('task generator', () => {
       })
       .withPrompts({
         category: 'foo',
+        group: 'bar',
       });
 
     assertTaskFiles('my-foo', dir);

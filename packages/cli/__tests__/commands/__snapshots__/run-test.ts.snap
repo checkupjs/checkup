@@ -50,22 +50,65 @@ config 395b15f7dea0dee193db593e1c6cfb5b
 `;
 
 exports[`@checkup/cli normal cli output should output checkup result in JSON 1`] = `
-Array [
-  Array [
-    Object {
-      "arguments": Array [],
-      "endTimeUtc": "",
-      "environmentVariables": Object {
-        "cwd": "checkup-app",
+Object {
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "properties": Object {
+    "actions": Array [],
+    "analyzedFiles": Array [
+      ".checkuprc",
+      ".eslintrc.js",
+      "index.hbs",
+      "index.js",
+      "package-lock.json",
+      "package.json",
+    ],
+    "analyzedFilesCount": 6,
+    "cli": Object {
+      "args": Object {
+        "paths": Array [],
+      },
+      "config": Object {
+        "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+        "excludePaths": Array [],
+        "plugins": Array [],
+        "tasks": Object {},
+      },
+      "configHash": "395b15f7dea0dee193db593e1c6cfb5b",
+      "flags": Object {
         "format": "json",
         "outputFile": "",
       },
-      "executionSuccessful": true,
-      "startTimeUtc": "",
-      "toolExecutionNotifications": Array [],
+      "schema": 1,
+      "version": "0.0.0",
     },
-  ],
-]
+    "project": Object {
+      "name": "checkup-app",
+      "repository": Object {
+        "activeDays": "0 days",
+        "age": "0 days",
+        "linesOfCode": Object {
+          "total": 3,
+          "types": Array [
+            Object {
+              "extension": "js",
+              "total": 2,
+            },
+            Object {
+              "extension": "hbs",
+              "total": 1,
+            },
+          ],
+        },
+        "totalCommits": 0,
+        "totalFiles": 0,
+      },
+      "version": "0.0.0",
+    },
+    "timings": Object {},
+  },
+  "runs": Any<Array>,
+  "version": "2.1.0",
+}
 `;
 
 exports[`@checkup/cli normal cli output should run a single task if the tasks option is specified with a single task 1`] = `

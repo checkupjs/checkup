@@ -192,6 +192,7 @@ export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
   category = 'foo';
+  group = 'bar';
 
   async run(): Promise<Result[]> {
     return this.toJson([]);
@@ -307,14 +308,15 @@ export default hook;
 "
 `;
 
-exports[`task generator generates correct files with type 1`] = `
+exports[`task generator generates correct files with typescript 1`] = `
 "import { BaseTask, Task } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
-  category = '';
+  category = 'foo';
+  group = 'bar';
 
   async run(): Promise<Result[]> {
     return this.toJson([]);
@@ -323,7 +325,7 @@ export default class MyFooTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates correct files with type 2`] = `
+exports[`task generator generates correct files with typescript 2`] = `
 "import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
@@ -354,7 +356,7 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates correct files with type 3`] = `
+exports[`task generator generates correct files with typescript 3`] = `
 "import { Hook } from '@oclif/config';
 import MyFooTask from '../tasks/my-foo-task';
 import { getPluginName, RegisterTaskArgs } from '@checkup/core';

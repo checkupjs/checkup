@@ -68,7 +68,7 @@ describe('@checkup/cli', () => {
     it(
       'should output checkup result',
       async () => {
-        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
+        await runCommand(['run', '--cwd', project.baseDir]);
 
         expect(stdout()).toMatchSnapshot();
       },
@@ -76,10 +76,12 @@ describe('@checkup/cli', () => {
     );
 
     it('should output checkup result in JSON', async () => {
-      await runCommand(['run', '--format', 'json', '--cwd', project.baseDir], { testing: true });
+      await runCommand(['run', '--format', 'json', '--cwd', project.baseDir]);
 
       let output = JSON.parse(normalizePath(stdout().trim(), project.baseDir)) as Log;
-      expect(normalizeInvocationForTesting(output)).toMatchSnapshot();
+      expect(output).toMatchSnapshot({
+        runs: expect.any(Array),
+      });
     });
 
     it(
@@ -208,7 +210,7 @@ describe('@checkup/cli', () => {
 
         clearStdout();
 
-        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
+        await runCommand(['run', '--cwd', project.baseDir]);
         let unFilteredRun = stdout();
         expect(unFilteredRun).toMatchSnapshot();
 
@@ -224,7 +226,7 @@ describe('@checkup/cli', () => {
         project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
         project.writeSync();
 
-        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
+        await runCommand(['run', '--cwd', project.baseDir]);
         let filteredRun = stdout();
         expect(filteredRun).toMatchSnapshot();
 
@@ -233,7 +235,7 @@ describe('@checkup/cli', () => {
         project.addCheckupConfig({ excludePaths: [] });
         project.writeSync();
 
-        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
+        await runCommand(['run', '--cwd', project.baseDir]);
         let unFilteredRun = stdout();
         expect(unFilteredRun).toMatchSnapshot();
 
@@ -286,7 +288,7 @@ describe('@checkup/cli', () => {
 
         clearStdout();
 
-        await runCommand(['run', '--cwd', project.baseDir], { testing: true });
+        await runCommand(['run', '--cwd', project.baseDir]);
 
         let hbsFilteredRun = stdout();
         expect(hbsFilteredRun).toMatchSnapshot();
@@ -297,17 +299,3 @@ describe('@checkup/cli', () => {
     );
   });
 });
-
-function normalizeInvocationForTesting(output: Log) {
-  return output.runs.map((run) => {
-    return run.invocations?.map((invocation) => {
-      invocation.endTimeUtc = '';
-      if (invocation.environmentVariables) {
-        invocation.environmentVariables.cwd =
-          invocation.environmentVariables?.cwd?.split('/').pop() || '';
-      }
-      invocation.startTimeUtc = '';
-      return invocation;
-    });
-  });
-}

@@ -112,6 +112,7 @@ export default class RunCommand extends BaseCommand {
   startTime: string = '';
   actions: Action[] = [];
   checkupConfig!: CheckupConfig;
+  cliModeEnabled: boolean = true;
 
   public async init() {
     let { argv, flags } = this.parse(RunCommand);
@@ -126,6 +127,7 @@ export default class RunCommand extends BaseCommand {
     this.startTime = new Date().toJSON();
     this.runArgs = argv;
     this.runFlags = flags;
+    this.cliModeEnabled = process.env.CHECKUP_CLI === '1';
   }
 
   public async run() {
@@ -136,11 +138,29 @@ export default class RunCommand extends BaseCommand {
     if (this.runFlags.listTasks) {
       this.printAvailableTasks();
     } else {
-      ui.action.start('Checking up on your project');
+      if (this.cliModeEnabled) {
+        ui.action.start('Checking up on your project');
+      }
+
       await this.runTasks();
       await this.runActions();
-      this.report();
-      ui.action.stop();
+
+      let errors = [...this.metaTaskErrors, ...this.pluginTaskErrors];
+
+      let log: Log = getLog(
+        this.metaTaskResults,
+        this.pluginTaskResults,
+        this.actions,
+        this.getInvocation(errors),
+        this.pluginTasks
+      );
+
+      if (this.cliModeEnabled) {
+        this.report(log);
+        ui.action.stop();
+      }
+
+      return log;
     }
   }
 
@@ -179,19 +199,27 @@ export default class RunCommand extends BaseCommand {
   }
 
   private runActions() {
-    let evaluators = getRegisteredActions();
+    new Promise((resolve, reject) => {
+      let evaluators = getRegisteredActions();
 
-    for (let [taskName, evaluator] of evaluators) {
-      let task = this.pluginTasks.findTask(taskName);
+      for (let [taskName, evaluator] of evaluators) {
+        let task = this.pluginTasks.findTask(taskName);
 
-      let taskResult = this.pluginTaskResults.filter((result: Result) => {
-        return result.properties?.taskName === taskName;
-      });
+        let taskResult = this.pluginTaskResults.filter((result: Result) => {
+          return result.properties?.taskName === taskName;
+        });
 
-      if (task && taskResult.length > 0) {
-        this.actions.push(...evaluator(taskResult, task.config));
+        if (task && taskResult.length > 0) {
+          try {
+            this.actions.push(...evaluator(taskResult, task.config));
+          } catch (error) {
+            reject(error);
+          }
+        }
       }
-    }
+
+      resolve();
+    });
   }
 
   private async loadConfig() {
@@ -251,16 +279,7 @@ export default class RunCommand extends BaseCommand {
     });
   }
 
-  private report() {
-    let errors = [...this.metaTaskErrors, ...this.pluginTaskErrors];
-
-    let log: Log = getLog(
-      this.metaTaskResults,
-      this.pluginTaskResults,
-      this.actions,
-      this.getInvocation(errors),
-      this.pluginTasks
-    );
+  private report(log: Log) {
     let generateReport = getReporter(this.runFlags.format as OutputFormat);
     generateReport(log, this.runFlags);
   }
