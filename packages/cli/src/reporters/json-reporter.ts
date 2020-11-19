@@ -29,7 +29,7 @@ export function getOutputPath(outputFile: string, cwd: string = '') {
 
   let outputPath = isAbsolute(outputFile)
     ? outputFile
-    : resolve(cwd, outputFile || `${DEFAULT_OUTPUT_FILENAME}.json`);
+    : resolve(cwd, outputFile || `${DEFAULT_OUTPUT_FILENAME}.sarif`);
 
   let dir = dirname(outputPath);
 
