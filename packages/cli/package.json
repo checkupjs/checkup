@@ -32,7 +32,6 @@
     "recast": "^0.20.4",
     "shorthash": "^0.0.2",
     "sloc": "^0.2.1",
-    "stdout-monkey": "^1.1.0",
     "strip-ansi": "^6.0.0",
     "tmp": "^0.2.1",
     "tslib": "^2",

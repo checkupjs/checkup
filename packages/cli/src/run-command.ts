@@ -1,5 +1,4 @@
 import * as Config from '@oclif/config';
-import * as stdout from 'stdout-monkey';
 
 const castArray = <T>(input?: T | T[]): T[] => {
   if (input === undefined) return [];
@@ -9,16 +8,9 @@ const castArray = <T>(input?: T | T[]): T[] => {
 let root = require.resolve('.');
 
 export async function runCommand(args: string[] | string, opts: loadConfig.Options = {}) {
-  let output: string;
-  let patch;
-
+  // Used to signal to the oclif commands that we're invoking in
+  // CLI mode - prevents any stdout when invoking Checkup programmatically
   process.env.CHECKUP_CLI = '1';
-
-  if (!opts.testing) {
-    patch = stdout((str: string) => {
-      output += str;
-    });
-  }
 
   let config = await Config.load(opts.root || root);
 
@@ -27,12 +19,6 @@ export async function runCommand(args: string[] | string, opts: loadConfig.Optio
   const [id, ...extra] = args;
   await config.runHook('init', { id, argv: extra });
   await config.runCommand(id, extra);
-
-  if (!opts.testing) {
-    patch.restore();
-
-    return { stdout: output! };
-  }
 
   return;
 }

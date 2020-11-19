@@ -19,6 +19,8 @@ export function run() {
     args.unshift(DEFAULT_COMMAND);
   }
 
+  // Used to signal to the oclif commands that we're invoking in
+  // CLI mode - prevents any stdout when invoking Checkup programmatically
   process.env.CHECKUP_CLI = '1';
 
   return oclifRun(args);

@@ -112,6 +112,7 @@ export default class RunCommand extends BaseCommand {
   startTime: string = '';
   actions: Action[] = [];
   checkupConfig!: CheckupConfig;
+  cliModeEnabled: boolean = true;
 
   public async init() {
     let { argv, flags } = this.parse(RunCommand);
@@ -126,6 +127,7 @@ export default class RunCommand extends BaseCommand {
     this.startTime = new Date().toJSON();
     this.runArgs = argv;
     this.runFlags = flags;
+    this.cliModeEnabled = process.env.CHECKUP_CLI === '1';
   }
 
   public async run() {
@@ -136,7 +138,7 @@ export default class RunCommand extends BaseCommand {
     if (this.runFlags.listTasks) {
       this.printAvailableTasks();
     } else {
-      if (process.env.CHECKUP_CLI === '1') {
+      if (this.cliModeEnabled) {
         ui.action.start('Checking up on your project');
       }
 
@@ -153,7 +155,7 @@ export default class RunCommand extends BaseCommand {
         this.pluginTasks
       );
 
-      if (process.env.CHECKUP_CLI === '1') {
+      if (this.cliModeEnabled) {
         this.report(log);
         ui.action.stop();
       }
