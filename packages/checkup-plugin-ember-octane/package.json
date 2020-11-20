@@ -1,11 +1,11 @@
 {
   "name": "checkup-plugin-ember-octane",
   "description": "An oclif plugin for Ember Octane migration tasks",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "author": "Lewis Miller @lbdm44",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
-    "@checkup/core": "^0.10.0",
+    "@checkup/core": "^0.11.0",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "babel-eslint": "^10.1.0",

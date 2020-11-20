@@ -1,3 +1,13 @@
+## v0.11.0 (2020-11-20)
+
+#### :rocket: Enhancement
+* `cli`
+  * [#780](https://github.com/checkupjs/checkup/pull/780) Exporting getReporters API in order to provide reporting for Node API ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.10.0 (2020-11-19)
 
 #### :boom: Breaking Change
