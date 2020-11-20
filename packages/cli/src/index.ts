@@ -28,4 +28,5 @@ export function run() {
 
 export { runCommand } from './run-command';
 
+export { getReporter } from './reporters/get-reporter';
 export { default as Checkup } from './commands/run';
