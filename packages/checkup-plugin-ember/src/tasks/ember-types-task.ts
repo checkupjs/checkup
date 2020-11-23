@@ -1,4 +1,4 @@
-import { Task, BaseTask, buildResultFromPathArray, normalizePaths } from '@checkup/core';
+import { Task, BaseTask, buildResultsFromPathArray, normalizePaths } from '@checkup/core';
 import { Result } from 'sarif';
 
 const SEARCH_PATTERNS = [
@@ -21,14 +21,14 @@ export default class EmberTypesTask extends BaseTask implements Task {
   group = 'ember';
 
   async run(): Promise<Result[]> {
-    let types = SEARCH_PATTERNS.map((pattern) => {
+    let types = SEARCH_PATTERNS.flatMap((pattern) => {
       let files = this.context.paths.filterByGlob(pattern.pattern);
-      return buildResultFromPathArray(
+      return buildResultsFromPathArray(
         normalizePaths(files, this.context.cliFlags.cwd),
         pattern.patternName
-      );
+      ).map((type) => this.appendCheckupProperties(type));
     });
 
-    return types.map((type) => this.toJson(type));
+    return types;
   }
 }

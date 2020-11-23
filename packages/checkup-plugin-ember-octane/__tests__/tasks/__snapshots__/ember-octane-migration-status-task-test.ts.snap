@@ -15,6 +15,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Native JS classes should be used instead of classic classes",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-classic-classes",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -26,6 +42,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Native JS classes should be used instead of classic classes",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-classic-classes",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -37,6 +69,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Native JS classes should be used instead of classic classes",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-classic-classes",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -52,7 +100,7 @@ Array [
     "message": Object {
       "text": "Native JS classes should be used instead of classic classes",
     },
-    "occurrenceCount": 4,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -75,6 +123,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-get",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -86,6 +150,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-get",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -101,7 +181,7 @@ Array [
     "message": Object {
       "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
     },
-    "occurrenceCount": 3,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -124,6 +204,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Use the @action decorator instead of declaring an actions hash",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-actions-hash",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -139,7 +235,7 @@ Array [
     "message": Object {
       "text": "Use the @action decorator instead of declaring an actions hash",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -162,6 +258,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/require-tagless-components",
+      "resultGroup": "Tagless Components",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -177,7 +289,7 @@ Array [
     "message": Object {
       "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -200,6 +312,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-classic-components",
+      "resultGroup": "Glimmer Components",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -215,7 +343,7 @@ Array [
     "message": Object {
       "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -238,6 +366,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-curly-component-invocation",
+      "resultGroup": "Angle Brackets Syntax",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -249,6 +393,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "You are using the component {{other-component}} with curly component syntax. You should use <OtherComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['other-component'] }\`.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-curly-component-invocation",
+      "resultGroup": "Angle Brackets Syntax",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -260,6 +420,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-curly-component-invocation",
+      "resultGroup": "Angle Brackets Syntax",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -273,9 +449,9 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
+      "text": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
     },
-    "occurrenceCount": 4,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -298,6 +474,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-implicit-this",
+      "resultGroup": "Own Properties",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -309,6 +501,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Ambiguous path 'bar' is not allowed. Use '@bar' if it is a named argument or 'this.bar' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['bar'] }.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-implicit-this",
+      "resultGroup": "Own Properties",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -320,6 +528,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-implicit-this",
+      "resultGroup": "Own Properties",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -333,9 +557,9 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
+      "text": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
     },
-    "occurrenceCount": 4,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -390,6 +614,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Native JS classes should be used instead of classic classes",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-classic-classes",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -401,6 +641,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Native JS classes should be used instead of classic classes",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-classic-classes",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -412,6 +668,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Native JS classes should be used instead of classic classes",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-classic-classes",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -427,7 +699,7 @@ Array [
     "message": Object {
       "text": "Native JS classes should be used instead of classic classes",
     },
-    "occurrenceCount": 4,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -450,6 +722,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-get",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -461,6 +749,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-get",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -476,7 +780,7 @@ Array [
     "message": Object {
       "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
     },
-    "occurrenceCount": 3,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -499,6 +803,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Use the @action decorator instead of declaring an actions hash",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-actions-hash",
+      "resultGroup": "Native Classes",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -514,7 +834,7 @@ Array [
     "message": Object {
       "text": "Use the @action decorator instead of declaring an actions hash",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -537,6 +857,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/require-tagless-components",
+      "resultGroup": "Tagless Components",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -552,7 +888,7 @@ Array [
     "message": Object {
       "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -575,6 +911,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "ember/no-classic-components",
+      "resultGroup": "Glimmer Components",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -590,7 +942,7 @@ Array [
     "message": Object {
       "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -613,6 +965,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-curly-component-invocation",
+      "resultGroup": "Angle Brackets Syntax",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -624,6 +992,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "You are using the component {{other-component}} with curly component syntax. You should use <OtherComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['other-component'] }\`.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-curly-component-invocation",
+      "resultGroup": "Angle Brackets Syntax",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -635,6 +1019,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-curly-component-invocation",
+      "resultGroup": "Angle Brackets Syntax",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -648,9 +1048,9 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
+      "text": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
     },
-    "occurrenceCount": 4,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",
@@ -673,6 +1073,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-implicit-this",
+      "resultGroup": "Own Properties",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -684,6 +1100,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Ambiguous path 'bar' is not allowed. Use '@bar' if it is a named argument or 'this.bar' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['bar'] }.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-implicit-this",
+      "resultGroup": "Own Properties",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -695,6 +1127,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "migrations",
+      "group": "ember",
+      "lintRuleId": "no-implicit-this",
+      "resultGroup": "Own Properties",
+      "taskDisplayName": "Ember Octane Migration Status",
+    },
+    "ruleId": "ember-octane-migration-status",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -708,9 +1156,9 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
+      "text": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
     },
-    "occurrenceCount": 4,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "migrations",
       "group": "ember",

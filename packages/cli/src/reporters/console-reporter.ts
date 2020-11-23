@@ -7,6 +7,7 @@ import {
   groupDataByField,
   NO_RESULTS_FOUND,
   sumOccurrences,
+  combineResultsForRendering,
 } from '@checkup/core';
 import { bold, yellow } from 'chalk';
 import * as cleanStack from 'clean-stack';
@@ -35,9 +36,12 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
 
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
       groupedTaskResults.forEach((resultGroup: Result[]) => {
-        ui.subHeader(resultGroup[0].message.text);
+        let groupedTaskResultsByMethod = combineResultsForRendering(
+          groupDataByField(resultGroup, 'properties.method')
+        );
+        ui.subHeader(groupedTaskResultsByMethod[0].message.text);
         ui.valuesList(
-          resultGroup.map((result) => {
+          groupedTaskResultsByMethod.map((result) => {
             if (result.message.text === NO_RESULTS_FOUND) {
               renderEmptyResult(result);
             } else {
@@ -69,9 +73,13 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
       let groupedTaskResults = groupDataByField(taskResults, 'properties.resultGroup');
 
       groupedTaskResults.forEach((resultGroup: Result[]) => {
-        ui.subHeader(resultGroup[0].properties?.resultGroup);
+        let groupedTaskResultsByLintRuleId = combineResultsForRendering(
+          groupDataByField(resultGroup, 'properties.lintRuleId')
+        );
+
+        ui.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
         ui.valuesList(
-          resultGroup.map((result) => {
+          groupedTaskResultsByLintRuleId.map((result) => {
             if (result.message.text === NO_RESULTS_FOUND) {
               renderEmptyResult(result);
             } else {
@@ -85,15 +93,18 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
     });
   },
   'eslint-summary': function (taskResults: Result[]) {
-    let groupedTaskResults = groupDataByField(taskResults, 'properties.type');
+    let groupedTaskResultsByType = groupDataByField(taskResults, 'properties.type');
 
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
-      groupedTaskResults.forEach((resultGroup: Result[]) => {
-        let totalCount = sumOccurrences(resultGroup);
+      groupedTaskResultsByType.forEach((resultGroup: Result[]) => {
+        let groupedTaskResultsByLintRule = combineResultsForRendering(
+          groupDataByField(resultGroup, 'properties.lintRuleId')
+        );
+        let totalCount = sumOccurrences(groupedTaskResultsByLintRule);
         if (totalCount) {
-          ui.subHeader(`${resultGroup[0].properties?.type}s: (${totalCount})`);
+          ui.subHeader(`${groupedTaskResultsByLintRule[0].properties?.type}s: (${totalCount})`);
           ui.valuesList(
-            resultGroup.map((result) => {
+            groupedTaskResultsByLintRule.map((result) => {
               if (result.message.text === NO_RESULTS_FOUND) {
                 renderEmptyResult(result);
               } else {
@@ -195,8 +206,12 @@ export function renderEmptyResult(taskResult: Result) {
 }
 
 function getReportComponent(taskResults: Result[]) {
-  ui.section(taskResults[0].properties?.taskDisplayName, () => {
-    taskResults.forEach((result) => {
+  const groupedTaskResults = combineResultsForRendering(
+    groupDataByField(taskResults, 'message.text')
+  );
+
+  ui.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
+    groupedTaskResults.forEach((result) => {
       if (result.message.text === NO_RESULTS_FOUND) {
         renderEmptyResult(result);
       } else {

@@ -10,7 +10,10 @@ export function getLog(
   invocation: Invocation,
   taskList: TaskList
 ): Log {
-  let _info = Object.assign({}, ...info.map((result) => result.toJson())) as CheckupMetadata;
+  let _info = Object.assign(
+    {},
+    ...info.map((result) => result.appendCheckupProperties())
+  ) as CheckupMetadata;
 
   return {
     version: '2.1.0',

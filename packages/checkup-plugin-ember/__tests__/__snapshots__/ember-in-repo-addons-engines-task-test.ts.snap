@@ -11,6 +11,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "in-repo addons",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember In-Repo Addons / Engines",
+    },
+    "ruleId": "ember-in-repo-addons-engines",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -22,7 +36,7 @@ Array [
     "message": Object {
       "text": "in-repo addons",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -39,6 +53,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "in-repo engines",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember In-Repo Addons / Engines",
+    },
+    "ruleId": "ember-in-repo-addons-engines",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -50,7 +78,7 @@ Array [
     "message": Object {
       "text": "in-repo engines",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",

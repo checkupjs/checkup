@@ -5,7 +5,7 @@ import {
   Parser,
   BaseTask,
   buildLintResultDataItem,
-  buildResultFromLintResult,
+  buildResultsFromLintResult,
   LintResult,
 } from '@checkup/core';
 import { EMBER_TEST_TYPES } from '../utils/lint-configs';
@@ -33,7 +33,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     let esLintReport = await this.runEsLint();
 
     let results = this.buildResult(esLintReport, this.context.cliFlags.cwd);
-    return results.map((result) => this.toJson(result));
+    return results.map((result) => this.appendCheckupProperties(result));
   }
 
   private async runEsLint(): Promise<ESLintReport> {
@@ -69,8 +69,8 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
       return testTypes;
     });
 
-    return Object.keys(testTypes).map((key) => {
-      return buildResultFromLintResult(testTypes[key], {
+    return Object.keys(testTypes).flatMap((key) => {
+      return buildResultsFromLintResult(testTypes[key], {
         method: testTypes[key][0].method,
       });
     });

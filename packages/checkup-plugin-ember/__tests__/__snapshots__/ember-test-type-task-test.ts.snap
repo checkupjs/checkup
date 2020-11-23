@@ -101,6 +101,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "application",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "lintRuleId": "test-types",
+      "method": "test",
+      "taskDisplayName": "Test Types",
+    },
+    "ruleId": "ember-test-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -116,7 +132,7 @@ Array [
     "message": Object {
       "text": "application",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "testing",
       "group": "ember",
@@ -139,6 +155,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "application",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "lintRuleId": "test-types",
+      "method": "skip",
+      "taskDisplayName": "Test Types",
+    },
+    "ruleId": "ember-test-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -150,6 +182,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "application",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "lintRuleId": "test-types",
+      "method": "skip",
+      "taskDisplayName": "Test Types",
+    },
+    "ruleId": "ember-test-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -161,6 +209,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "application",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "lintRuleId": "test-types",
+      "method": "skip",
+      "taskDisplayName": "Test Types",
+    },
+    "ruleId": "ember-test-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -176,7 +240,7 @@ Array [
     "message": Object {
       "text": "application",
     },
-    "occurrenceCount": 4,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "testing",
       "group": "ember",
@@ -226,6 +290,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "rendering",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "lintRuleId": "test-types",
+      "method": "skip",
+      "taskDisplayName": "Test Types",
+    },
+    "ruleId": "ember-test-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -241,7 +321,7 @@ Array [
     "message": Object {
       "text": "rendering",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "testing",
       "group": "ember",
@@ -291,6 +371,22 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "unit",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "testing",
+      "group": "ember",
+      "lintRuleId": "test-types",
+      "method": "skip",
+      "taskDisplayName": "Test Types",
+    },
+    "ruleId": "ember-test-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -306,7 +402,7 @@ Array [
     "message": Object {
       "text": "unit",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "testing",
       "group": "ember",

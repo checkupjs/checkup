@@ -11,6 +11,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "components",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -22,7 +36,7 @@ Array [
     "message": Object {
       "text": "components",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -39,6 +53,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "controllers",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -50,7 +78,7 @@ Array [
     "message": Object {
       "text": "controllers",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -67,6 +95,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "helpers",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -78,7 +120,7 @@ Array [
     "message": Object {
       "text": "helpers",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -95,6 +137,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "initializers",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -106,7 +162,7 @@ Array [
     "message": Object {
       "text": "initializers",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -123,6 +179,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "instance-initializers",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -134,7 +204,7 @@ Array [
     "message": Object {
       "text": "instance-initializers",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -151,6 +221,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "mixins",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -162,7 +246,7 @@ Array [
     "message": Object {
       "text": "mixins",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -179,6 +263,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "models",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -190,7 +288,7 @@ Array [
     "message": Object {
       "text": "models",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -207,6 +305,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "routes",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -218,7 +330,7 @@ Array [
     "message": Object {
       "text": "routes",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -235,6 +347,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "services",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -246,7 +372,7 @@ Array [
     "message": Object {
       "text": "services",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",
@@ -263,6 +389,20 @@ Array [
           },
         },
       },
+    ],
+    "message": Object {
+      "text": "templates",
+    },
+    "occurrenceCount": 1,
+    "properties": Object {
+      "category": "metrics",
+      "group": "ember",
+      "taskDisplayName": "Ember Types",
+    },
+    "ruleId": "ember-types",
+  },
+  Object {
+    "locations": Array [
       Object {
         "physicalLocation": Object {
           "artifactLocation": Object {
@@ -274,7 +414,7 @@ Array [
     "message": Object {
       "text": "templates",
     },
-    "occurrenceCount": 2,
+    "occurrenceCount": 1,
     "properties": Object {
       "category": "metrics",
       "group": "ember",

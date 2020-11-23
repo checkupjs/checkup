@@ -15,7 +15,7 @@ class InsightsTaskHigh extends BaseTask implements Task {
   }
 
   async run(): Promise<Result[]> {
-    return [this.toJson({ message: { text: 'hi' } })];
+    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
   }
 }
 
@@ -28,7 +28,7 @@ class InsightsTaskLow extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.toJson({ message: { text: 'hi' } })];
+    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
   }
 }
 
@@ -42,7 +42,7 @@ class RecommendationsTaskHigh extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.toJson({ message: { text: 'hi' } })];
+    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
   }
 }
 
@@ -56,7 +56,7 @@ class RecommendationsTaskLow extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.toJson({ message: { text: 'hi' } })];
+    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
   }
 }
 
@@ -70,7 +70,7 @@ class MigrationTaskHigh extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.toJson({ message: { text: 'hi' } })];
+    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
   }
 }
 
@@ -84,7 +84,7 @@ class MigrationTaskLow extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.toJson({ message: { text: 'hi' } })];
+    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
   }
 }
 
@@ -113,7 +113,7 @@ class TaskWithoutCategory extends BaseTask implements Task {
   }
 
   async run(): Promise<Result[]> {
-    return [this.toJson({ message: { text: 'hi' } })];
+    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
   }
 }
 

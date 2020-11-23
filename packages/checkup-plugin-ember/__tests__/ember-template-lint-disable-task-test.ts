@@ -51,6 +51,21 @@ describe('ember-template-lint-disable-task', () => {
                 },
               },
             },
+          ],
+          "message": Object {
+            "text": "ember-template-lint-disable usages",
+          },
+          "occurrenceCount": 1,
+          "properties": Object {
+            "category": "linting",
+            "group": "disabled-lint-rules",
+            "lintRuleId": "no-ember-template-lint-disable",
+            "taskDisplayName": "Number of template-lint-disable Usages",
+          },
+          "ruleId": "ember-template-lint-disables",
+        },
+        Object {
+          "locations": Array [
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
@@ -62,6 +77,21 @@ describe('ember-template-lint-disable-task', () => {
                 },
               },
             },
+          ],
+          "message": Object {
+            "text": "ember-template-lint-disable usages",
+          },
+          "occurrenceCount": 1,
+          "properties": Object {
+            "category": "linting",
+            "group": "disabled-lint-rules",
+            "lintRuleId": "no-ember-template-lint-disable",
+            "taskDisplayName": "Number of template-lint-disable Usages",
+          },
+          "ruleId": "ember-template-lint-disables",
+        },
+        Object {
+          "locations": Array [
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
@@ -77,7 +107,7 @@ describe('ember-template-lint-disable-task', () => {
           "message": Object {
             "text": "ember-template-lint-disable usages",
           },
-          "occurrenceCount": 3,
+          "occurrenceCount": 1,
           "properties": Object {
             "category": "linting",
             "group": "disabled-lint-rules",

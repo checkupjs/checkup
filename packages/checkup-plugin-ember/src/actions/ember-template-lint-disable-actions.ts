@@ -1,9 +1,9 @@
-import { ActionsEvaluator, TaskConfig } from '@checkup/core';
+import { ActionsEvaluator, TaskConfig, sumOccurrences } from '@checkup/core';
 import { Result } from 'sarif';
 
 export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
-  let templateLintDisableUsages = taskResults[0].occurrenceCount || 0;
+  let templateLintDisableUsages = sumOccurrences(taskResults);
 
   actionsEvaluator.add({
     name: 'reduce-template-lint-disable-usages',

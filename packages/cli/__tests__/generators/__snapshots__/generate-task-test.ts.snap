@@ -11,7 +11,7 @@ export default class MyFooTask extends BaseTask {
 
 
   async run() {
-    return this.toJson([]);
+    return this.appendCheckupProperties([]);
   }
 }
 "
@@ -72,7 +72,7 @@ export default class MyFooTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return this.toJson([]);
+    return this.appendCheckupProperties([]);
   }
 }
 "
@@ -133,7 +133,7 @@ export default class MyFooTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return this.toJson([]);
+    return this.appendCheckupProperties([]);
   }
 }
 "
@@ -195,7 +195,7 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return this.toJson([]);
+    return this.appendCheckupProperties([]);
   }
 }
 "
@@ -257,7 +257,7 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return this.toJson([]);
+    return this.appendCheckupProperties([]);
   }
 }
 "
@@ -319,7 +319,7 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return this.toJson([]);
+    return this.appendCheckupProperties([]);
   }
 }
 "
@@ -380,7 +380,7 @@ export default class MyFooTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return this.toJson([]);
+    return this.appendCheckupProperties([]);
   }
 }
 "
@@ -427,7 +427,7 @@ export default class MyBarTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return this.toJson([]);
+    return this.appendCheckupProperties([]);
   }
 }
 "

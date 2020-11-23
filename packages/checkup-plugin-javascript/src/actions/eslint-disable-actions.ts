@@ -1,9 +1,9 @@
-import { ActionsEvaluator, TaskConfig } from '@checkup/core';
+import { ActionsEvaluator, TaskConfig, sumOccurrences } from '@checkup/core';
 import { Result } from 'sarif';
 
 export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
-  let eslintDisableUsages = taskResults[0].occurrenceCount || 0;
+  let eslintDisableUsages = sumOccurrences(taskResults);
 
   actionsEvaluator.add({
     name: 'reduce-eslint-disable-usages',

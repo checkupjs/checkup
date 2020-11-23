@@ -6,53 +6,49 @@ import { Result, Location, Notification } from 'sarif';
 export const NO_RESULTS_FOUND = 'No results found';
 
 /**
- * @param lintResult {LintResult[]}
+ * @param lintResult {LintResult}
  * @returns Location[]
  */
-function buildLocationDataFromLintResult(lintResult: LintResult[]): Location[] {
-  return lintResult
-    .map((result: LintResult) => {
-      const location: Location = {
-        physicalLocation: {
-          artifactLocation: {
-            uri: result.filePath,
-          },
-        },
-      };
+function buildLocationDataFromLintResult(lintResult: LintResult): Location[] {
+  const location: Location = {
+    physicalLocation: {
+      artifactLocation: {
+        uri: lintResult.filePath,
+      },
+    },
+  };
 
-      if (
-        (result.line > 0 || result.column > 0) &&
-        location &&
-        location.physicalLocation !== undefined
-      ) {
-        location.physicalLocation.region = {};
-        if (result.line > 0) {
-          location.physicalLocation.region.startLine = result.line;
-        }
-        if (result.column > 0) {
-          location.physicalLocation.region.startColumn = result.column;
-        }
-      }
+  if (
+    (lintResult.line > 0 || lintResult.column > 0) &&
+    location &&
+    location.physicalLocation !== undefined
+  ) {
+    location.physicalLocation.region = {};
+    if (lintResult.line > 0) {
+      location.physicalLocation.region.startLine = lintResult.line;
+    }
+    if (lintResult.column > 0) {
+      location.physicalLocation.region.startColumn = lintResult.column;
+    }
+  }
 
-      return location;
-    })
-    .sort();
+  return [location];
 }
 
 /**
  * @param paths {string[]}
  * @returns Location[]
  */
-function buildLocationDataFromPathArray(paths: string[]): Location[] {
-  return paths.map((path) => {
-    return {
+function buildLocationDataFromPath(path: string): Location[] {
+  return [
+    {
       physicalLocation: {
         artifactLocation: {
           uri: path,
         },
       },
-    };
-  });
+    },
+  ];
 }
 
 /**
@@ -60,44 +56,52 @@ function buildLocationDataFromPathArray(paths: string[]): Location[] {
  * @param lintResults {LintResult[]} The LintResults used to create Result
  * @param [additionalData] {Object} Any additional data to be put into the properties bag
  */
-export function buildResultFromLintResult(
+export function buildResultsFromLintResult(
   lintResults: LintResult[],
   additionalData: object = {}
-): Result {
+): Result[] {
   if (lintResults.length === 0) {
-    return {
-      message: { text: NO_RESULTS_FOUND },
-    };
+    return [
+      {
+        message: { text: NO_RESULTS_FOUND },
+      },
+    ];
   }
 
-  return {
-    message: { text: lintResults[0].message },
-    locations: buildLocationDataFromLintResult(lintResults),
-    occurrenceCount: lintResults.length,
-    properties: {
-      ...additionalData,
-      lintRuleId: lintResults[0].lintRuleId,
-    },
-  };
+  return lintResults.map((lintResult) => {
+    return {
+      message: { text: lintResult.message },
+      locations: buildLocationDataFromLintResult(lintResult),
+      occurrenceCount: 1,
+      properties: {
+        ...additionalData,
+        lintRuleId: lintResult.lintRuleId,
+      },
+    };
+  });
 }
 
 /**
  * @param paths {string[]} The paths used to create Result
  * @param message {string} The message that identifies the data represented in the Result
  */
-export function buildResultFromPathArray(paths: string[], message: string): Result {
+export function buildResultsFromPathArray(paths: string[], message: string): Result[] {
   if (paths.length === 0) {
-    return {
-      message: { text: NO_RESULTS_FOUND },
-      properties: { consoleMessage: message },
-    };
+    return [
+      {
+        message: { text: NO_RESULTS_FOUND },
+        properties: { consoleMessage: message },
+      },
+    ];
   }
 
-  return {
-    message: { text: message },
-    locations: buildLocationDataFromPathArray(paths),
-    occurrenceCount: paths.length,
-  };
+  return paths.map((path) => {
+    return {
+      message: { text: message },
+      locations: buildLocationDataFromPath(path),
+      occurrenceCount: 1,
+    };
+  });
 }
 
 /**
@@ -105,21 +109,25 @@ export function buildResultFromPathArray(paths: string[], message: string): Resu
  * @param key {string} An identifier used to help identify the result
  * @param data {Array<string | object>} The raw data used to derive the result's count
  */
-export function buildResultFromProperties(data: any[], message: string): Result {
+export function buildResultsFromProperties(data: any[], message: string): Result[] {
   if (data.length === 0) {
-    return {
-      message: { text: NO_RESULTS_FOUND },
-      properties: { consoleMessage: message },
-    };
+    return [
+      {
+        message: { text: NO_RESULTS_FOUND },
+        properties: { consoleMessage: message },
+      },
+    ];
   }
 
-  return {
-    occurrenceCount: data.length,
-    message: { text: message },
-    properties: {
-      data: data,
+  return [
+    {
+      occurrenceCount: data.length,
+      message: { text: message },
+      properties: {
+        data: data,
+      },
     },
-  };
+  ];
 }
 
 export function buildLintResultData(report: ESLintReport, cwd: string): LintResult[] {

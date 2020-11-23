@@ -8,7 +8,7 @@ export default class MockMetaTaskResult extends BaseMetaTaskResult implements Me
     super(meta);
   }
 
-  toJson() {
+  appendCheckupProperties() {
     return {
       [this.meta.taskName]: this.result,
     };
