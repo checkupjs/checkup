@@ -51,7 +51,7 @@ describe('project-meta-task', () => {
       ).run();
       const taskResult = <ProjectMetaTaskResult>result;
 
-      expect(taskResult.toJson()).toMatchInlineSnapshot(`
+      expect(taskResult.appendCheckupProperties()).toMatchInlineSnapshot(`
         Object {
           "analyzedFiles": FilePathArray [
             ".git/HEAD",
@@ -144,7 +144,7 @@ describe('project-meta-task', () => {
         })
       ).run();
 
-      expect(result.toJson()).toMatchInlineSnapshot(`
+      expect(result.appendCheckupProperties()).toMatchInlineSnapshot(`
         Object {
           "analyzedFiles": FilePathArray [],
           "analyzedFilesCount": 0,

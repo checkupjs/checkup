@@ -10,5 +10,5 @@ export interface MetaTask {
 
 export interface MetaTaskResult {
   meta: TaskIdentifier;
-  toJson: () => JsonMetaTaskResult;
+  appendCheckupProperties: () => JsonMetaTaskResult;
 }

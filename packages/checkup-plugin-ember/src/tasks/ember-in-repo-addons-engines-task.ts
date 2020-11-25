@@ -1,5 +1,5 @@
 import { Task, BaseTask } from '@checkup/core';
-import { buildResultFromPathArray } from '@checkup/core';
+import { buildResultsFromPathArray } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { readJsonSync } from 'fs-extra';
@@ -29,8 +29,12 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
     });
 
     return [
-      this.toJson(buildResultFromPathArray(inRepoAddons.sort(), 'in-repo addons')),
-      this.toJson(buildResultFromPathArray(inRepoEngines.sort(), 'in-repo engines')),
+      ...buildResultsFromPathArray(inRepoAddons.sort(), 'in-repo addons').map((result) =>
+        this.appendCheckupProperties(result)
+      ),
+      ...buildResultsFromPathArray(inRepoEngines.sort(), 'in-repo engines').map((result) =>
+        this.appendCheckupProperties(result)
+      ),
     ];
   }
 }

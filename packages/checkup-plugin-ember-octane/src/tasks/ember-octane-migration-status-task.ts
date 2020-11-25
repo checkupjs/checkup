@@ -1,7 +1,7 @@
 import {
   BaseTask,
   buildLintResultDataItem,
-  buildResultFromLintResult,
+  buildResultsFromLintResult,
   byRuleIds,
   ESLintMessage,
   ESLintOptions,
@@ -107,7 +107,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
       [...esLintReport.results, ...templateLintReport.results],
       this.context.cliFlags.cwd
     );
-    return octaneResults.map((octaneResult) => this.toJson(octaneResult));
+    return octaneResults.map((octaneResult) => this.appendCheckupProperties(octaneResult));
   }
 
   private async runEsLint(): Promise<ESLintReport> {
@@ -147,8 +147,8 @@ function buildResult(lintingResults: (ESLintResult | TemplateLintResult)[], cwd:
     { key: 'Modifiers', rules: USE_MODIFIERS_RULES },
   ].flatMap(({ rules, key }) => {
     let rulesGroupForKey = groupDataByField(byRuleIds(rawData, rules), 'lintRuleId');
-    return rulesGroupForKey.map((rulesForKey) => {
-      return buildResultFromLintResult(rulesForKey, {
+    return rulesGroupForKey.flatMap((rulesForKey) => {
+      return buildResultsFromLintResult(rulesForKey, {
         resultGroup: key,
       });
     });

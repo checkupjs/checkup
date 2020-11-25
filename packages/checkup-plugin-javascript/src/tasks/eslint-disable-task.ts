@@ -4,7 +4,7 @@ import {
   normalizePath,
   LintResult,
   AstTraverser,
-  buildResultFromLintResult,
+  buildResultsFromLintResult,
 } from '@checkup/core';
 
 import * as t from '@babel/types';
@@ -26,7 +26,9 @@ export default class EslintDisableTask extends BaseTask implements Task {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
     let eslintDisables: LintResult[] = await getEslintDisables(jsPaths, this.context.cliFlags.cwd);
 
-    return [this.toJson(buildResultFromLintResult(eslintDisables))];
+    return buildResultsFromLintResult(eslintDisables).map((result) =>
+      this.appendCheckupProperties(result)
+    );
   }
 }
 

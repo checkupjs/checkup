@@ -1,5 +1,5 @@
 import { BaseTask, Task } from '@checkup/core';
-import { buildResultFromProperties } from '@checkup/core';
+import { buildResultsFromProperties } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { Result } from 'sarif';
@@ -18,37 +18,37 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
   async run(): Promise<Result[]> {
     let packageJson = this.context.pkg;
 
-    let coreLibraries = buildResultFromProperties(
+    let coreLibraries = buildResultsFromProperties(
       [
         findDependency(packageJson, 'ember-source'),
         findDependency(packageJson, 'ember-cli'),
         findDependency(packageJson, 'ember-data'),
       ],
       'ember core libraries'
-    );
-    let emberDependencies = buildResultFromProperties(
+    ).map((result) => this.appendCheckupProperties(result));
+    let emberDependencies = buildResultsFromProperties(
       findDependencies(packageJson.dependencies, emberAddonFilter),
       'ember addon dependencies'
-    );
-    let emberDevDependencies = buildResultFromProperties(
+    ).map((result) => this.appendCheckupProperties(result));
+    let emberDevDependencies = buildResultsFromProperties(
       findDependencies(packageJson.devDependencies, emberAddonFilter),
       'ember addon devDependencies'
-    );
-    let emberCliDependencies = buildResultFromProperties(
+    ).map((result) => this.appendCheckupProperties(result));
+    let emberCliDependencies = buildResultsFromProperties(
       findDependencies(packageJson.dependencies, emberCliAddonFilter),
       'ember-cli addon dependencies'
-    );
-    let emberCliDevDependencies = buildResultFromProperties(
+    ).map((result) => this.appendCheckupProperties(result));
+    let emberCliDevDependencies = buildResultsFromProperties(
       findDependencies(packageJson.devDependencies, emberCliAddonFilter),
       'ember-cli addon devDependencies'
-    );
+    ).map((result) => this.appendCheckupProperties(result));
 
     return [
-      this.toJson(coreLibraries),
-      this.toJson(emberDependencies),
-      this.toJson(emberDevDependencies),
-      this.toJson(emberCliDependencies),
-      this.toJson(emberCliDevDependencies),
+      ...coreLibraries,
+      ...emberDependencies,
+      ...emberDevDependencies,
+      ...emberCliDependencies,
+      ...emberCliDevDependencies,
     ];
   }
 }

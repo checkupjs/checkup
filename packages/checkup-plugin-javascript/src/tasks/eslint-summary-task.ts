@@ -5,7 +5,7 @@ import {
   Parser,
   Task,
   TaskContext,
-  buildResultFromLintResult,
+  buildResultsFromLintResult,
   buildLintResultData,
   bySeverity,
   groupDataByField,
@@ -56,19 +56,15 @@ export class EslintSummaryTask extends BaseTask implements Task {
     let lintingErrors = groupDataByField(bySeverity(transformedData, 2), 'lintRuleId');
     let lintingWarnings = groupDataByField(bySeverity(transformedData, 1), 'lintRuleId');
 
-    let errorsResult = lintingErrors.map((lintingError) => {
-      return this.toJson(
-        buildResultFromLintResult(lintingError, {
-          type: 'error',
-        })
-      );
+    let errorsResult = lintingErrors.flatMap((lintingError) => {
+      return buildResultsFromLintResult(lintingError, {
+        type: 'error',
+      }).map((result) => this.appendCheckupProperties(result));
     });
-    let warningsResult = lintingWarnings.map((lintingWarning) => {
-      return this.toJson(
-        buildResultFromLintResult(lintingWarning, {
-          type: 'warning',
-        })
-      );
+    let warningsResult = lintingWarnings.flatMap((lintingWarning) => {
+      return buildResultsFromLintResult(lintingWarning, {
+        type: 'warning',
+      }).map((result) => this.appendCheckupProperties(result));
     });
 
     return [...errorsResult, ...warningsResult];

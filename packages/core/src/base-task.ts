@@ -47,7 +47,7 @@ export default abstract class BaseTask {
     return `${this._pluginName}/${this.taskName}`;
   }
 
-  toJson(result: Result) {
+  appendCheckupProperties(result: Result) {
     result.properties = {
       ...result.properties,
       ...{

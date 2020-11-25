@@ -23,7 +23,7 @@ class FooTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.toJson({ message: { text: 'hi' }, occurrenceCount: 0 })];
+    return [this.appendCheckupProperties({ message: { text: 'hi' }, occurrenceCount: 0 })];
   }
 }
 
@@ -36,7 +36,7 @@ class FileCountTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.toJson({ message: { text: 'hi' }, occurrenceCount: 0 })];
+    return [this.appendCheckupProperties({ message: { text: 'hi' }, occurrenceCount: 0 })];
   }
 }
 

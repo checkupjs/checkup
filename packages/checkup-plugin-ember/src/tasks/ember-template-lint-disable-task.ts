@@ -2,7 +2,7 @@ import {
   Task,
   BaseTask,
   LintResult,
-  buildResultFromLintResult,
+  buildResultsFromLintResult,
   normalizePath,
   AstTraverser,
 } from '@checkup/core';
@@ -23,7 +23,9 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.cliFlags.cwd);
 
-    return [this.toJson(buildResultFromLintResult(templateLintDisables))];
+    return buildResultsFromLintResult(templateLintDisables).map((result) =>
+      this.appendCheckupProperties(result)
+    );
   }
 }
 

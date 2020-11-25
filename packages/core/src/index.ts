@@ -34,11 +34,11 @@ export { FilePathArray } from './utils/file-path-array';
 export { sumOccurrences } from './utils/sarif-utils';
 
 export { byRuleId, byRuleIds, bySeverity } from './data/filters';
-export { toPercent, groupDataByField } from './data/formatters';
+export { toPercent, groupDataByField, combineResultsForRendering } from './data/formatters';
 export {
-  buildResultFromProperties,
-  buildResultFromLintResult,
-  buildResultFromPathArray,
+  buildResultsFromProperties,
+  buildResultsFromLintResult,
+  buildResultsFromPathArray,
   buildLintResultData,
   buildLintResultDataItem,
   buildLintResultsFromEslintOrTemplateLint,

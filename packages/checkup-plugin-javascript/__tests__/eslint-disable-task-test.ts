@@ -48,7 +48,7 @@ describe('eslint-disable-task', () => {
       })
     ).run();
 
-    expect(result).toMatchInlineSnapshot(`
+    expect(result.sort()).toMatchInlineSnapshot(`
       Array [
         Object {
           "locations": Array [
@@ -63,6 +63,21 @@ describe('eslint-disable-task', () => {
                 },
               },
             },
+          ],
+          "message": Object {
+            "text": "eslint-disable usages",
+          },
+          "occurrenceCount": 1,
+          "properties": Object {
+            "category": "linting",
+            "group": "disabled-lint-rules",
+            "lintRuleId": "no-eslint-disable",
+            "taskDisplayName": "Number of eslint-disable Usages",
+          },
+          "ruleId": "eslint-disables",
+        },
+        Object {
+          "locations": Array [
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
@@ -74,6 +89,21 @@ describe('eslint-disable-task', () => {
                 },
               },
             },
+          ],
+          "message": Object {
+            "text": "eslint-disable usages",
+          },
+          "occurrenceCount": 1,
+          "properties": Object {
+            "category": "linting",
+            "group": "disabled-lint-rules",
+            "lintRuleId": "no-eslint-disable",
+            "taskDisplayName": "Number of eslint-disable Usages",
+          },
+          "ruleId": "eslint-disables",
+        },
+        Object {
+          "locations": Array [
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
@@ -85,6 +115,21 @@ describe('eslint-disable-task', () => {
                 },
               },
             },
+          ],
+          "message": Object {
+            "text": "eslint-disable usages",
+          },
+          "occurrenceCount": 1,
+          "properties": Object {
+            "category": "linting",
+            "group": "disabled-lint-rules",
+            "lintRuleId": "no-eslint-disable",
+            "taskDisplayName": "Number of eslint-disable Usages",
+          },
+          "ruleId": "eslint-disables",
+        },
+        Object {
+          "locations": Array [
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
@@ -100,7 +145,7 @@ describe('eslint-disable-task', () => {
           "message": Object {
             "text": "eslint-disable usages",
           },
-          "occurrenceCount": 4,
+          "occurrenceCount": 1,
           "properties": Object {
             "category": "linting",
             "group": "disabled-lint-rules",
