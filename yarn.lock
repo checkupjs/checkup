@@ -294,36 +294,62 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@glimmer/env@0.1.7":
+"@glimmer/env@0.1.7", "@glimmer/env@^0.1.7":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@glimmer/env/-/env-0.1.7.tgz#fd2d2b55a9029c6b37a6c935e8c8871ae70dfa07"
   integrity sha1-/S0rVakCnGs3psk16MiHGucN+gc=
 
-"@glimmer/interfaces@0.62.1":
-  version "0.62.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.62.1.tgz#42e4021569a00ca60d469ef06cc0c719883d109e"
-  integrity sha512-Ui4u/0G0zOYeDuz497DQ/isOgd43r6zNO0JdsDeVw1D/tYQQHR1Xk/1YRKC9jK2n5oicMYKVyEeT62Ec2rL/Jg==
+"@glimmer/global-context@0.62.4":
+  version "0.62.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/global-context/-/global-context-0.62.4.tgz#6b942b6ca0d23141a88fe707f7ce6bcac6709336"
+  integrity sha512-F1vD6+zURXOzFKYUL7Dw+zDasfYKpBWt/7GJ8lUVNJ7XOZQQOOeY8Tr29K4ZUrqu3lByTqyBR46gpE8UdbsJ2w==
+  dependencies:
+    "@glimmer/env" "^0.1.7"
+
+"@glimmer/interfaces@0.62.4":
+  version "0.62.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.62.4.tgz#e9027d637a0ea80522f29a241aa819e686c623ae"
+  integrity sha512-x3L9YUL17fRgxFrnUvUYTxgnLoh8BipdqkweUEVA5qdIa1dcidUzHUFtWgRiWZ+dKCJBtxh2ubEwjOfgobpMuQ==
   dependencies:
     "@simple-dom/interface" "^1.4.0"
 
-"@glimmer/syntax@^0.62.1":
-  version "0.62.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.62.1.tgz#60f0b14c8503f059b9b73065a2d86f9ca6c6e3f3"
-  integrity sha512-pjnPouu3tVJ5sDcpYCv9hyodJW6T07LvOjsGQ+QT5TdMqN4hoc4iK3dkdrRh+dkNcUsBxFQhxOtAbwOVSgtVtg==
+"@glimmer/reference@^0.62.4":
+  version "0.62.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/reference/-/reference-0.62.4.tgz#50dbd0d202ca94f73bbcdfe19ce450ca5c6babdc"
+  integrity sha512-oabqcfZrMB8FoVLZqqD4w0cUcWt1/d8uBGtXKGGNLkrV2smPFJO/rcfFpZq8alMgzqII5F9Q57gRL+qh0AD8og==
   dependencies:
-    "@glimmer/interfaces" "0.62.1"
-    "@glimmer/util" "0.62.1"
-    "@handlebars/parser" "^1.1.0"
-    simple-html-tokenizer "^0.5.9"
+    "@glimmer/env" "^0.1.7"
+    "@glimmer/global-context" "0.62.4"
+    "@glimmer/interfaces" "0.62.4"
+    "@glimmer/util" "0.62.4"
+    "@glimmer/validator" "0.62.4"
 
-"@glimmer/util@0.62.1":
-  version "0.62.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.62.1.tgz#44221aca6a8bb06791b0057db9b1d72330c08094"
-  integrity sha512-e6YTDAgEh8fqarhyN+0ncXOixLn5Wt12/IWdwKmtGIhdALOc/lWbJfrxlmKD+kkFTTjUVJUKm1Y6pxUyXOo4Ww==
+"@glimmer/syntax@^0.62.1", "@glimmer/syntax@^0.62.4":
+  version "0.62.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.62.4.tgz#9d5ec15584fed85d807762992a1879fe7fe15ae8"
+  integrity sha512-c/c+tqv1Ob+IaiVYe3DfHsLQwk/DZ3RA14gVcrE8Bbqrr7RtmjdKPfgNswiQhx7b+1ygcUhvYUfxfI8nCVswIw==
+  dependencies:
+    "@glimmer/interfaces" "0.62.4"
+    "@glimmer/util" "0.62.4"
+    "@handlebars/parser" "^1.1.0"
+    simple-html-tokenizer "^0.5.10"
+
+"@glimmer/util@0.62.4":
+  version "0.62.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.62.4.tgz#2e33dd2a8e3e81f5ffc8325fdc9bebb0e274c421"
+  integrity sha512-7x04I4mQpxveAoEbpFfXFFkYpuJoATHuGdwPjgcQc0nSjAkGDkzIMlRN3stgZAz32eSVj9n7SOXHVtHEhw3cCg==
   dependencies:
     "@glimmer/env" "0.1.7"
-    "@glimmer/interfaces" "0.62.1"
+    "@glimmer/interfaces" "0.62.4"
     "@simple-dom/interface" "^1.4.0"
+
+"@glimmer/validator@0.62.4", "@glimmer/validator@^0.62.4":
+  version "0.62.4"
+  resolved "https://registry.yarnpkg.com/@glimmer/validator/-/validator-0.62.4.tgz#80570d3fbf9c9a9e6a50e5c022a073da24d14d85"
+  integrity sha512-yZ3cfvbW/S3kAu/EDFCxqMrOp4lWiZ5QxKiDej+GVkuz8yirYVBkf1vZnxogmDyCWLZGvmTr/7QimvQZSHQxVw==
+  dependencies:
+    "@glimmer/env" "^0.1.7"
+    "@glimmer/global-context" "0.62.4"
 
 "@handlebars/parser@^1.1.0":
   version "1.1.0"
@@ -3242,6 +3268,23 @@ ember-template-recast@^4.2.0:
     slash "^3.0.0"
     tmp "^0.2.1"
     workerpool "^6.0.1"
+
+ember-template-recast@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-5.0.0.tgz#6bc442d1dd3df221cb488af8deda5af116f803ea"
+  integrity sha512-ShN7j9MmwccJJgCeTMispBwJfRxX98yWPhJ6zkhg45Ty8nPGOPESbxOqKooeUqN+aDJt96bjSkpNbHeV1YeHAg==
+  dependencies:
+    "@glimmer/reference" "^0.62.4"
+    "@glimmer/syntax" "^0.62.4"
+    "@glimmer/validator" "^0.62.4"
+    async-promise-queue "^1.0.5"
+    colors "^1.4.0"
+    commander "^6.2.0"
+    globby "^11.0.1"
+    ora "^5.1.0"
+    slash "^3.0.0"
+    tmp "^0.2.1"
+    workerpool "^6.0.3"
 
 "emoji-regex@>=6.0.0 <=6.1.1":
   version "6.1.1"
@@ -8281,10 +8324,10 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
 
-simple-html-tokenizer@^0.5.9:
-  version "0.5.9"
-  resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.5.9.tgz#1a83fe97f5a3e39b335fddf71cfe9b0263b581c2"
-  integrity sha512-w/3FEDN94r4JQ9WoYrIr8RqDIPZdyNkdpbK9glFady1CAEyD97XWCv8HFetQO21w81e7h7Nh59iYTyG1mUJftg==
+simple-html-tokenizer@^0.5.10:
+  version "0.5.10"
+  resolved "https://registry.yarnpkg.com/simple-html-tokenizer/-/simple-html-tokenizer-0.5.10.tgz#0843e4f00c9677f1c81e3dfeefcee0a4aca8e5d0"
+  integrity sha512-1DHMUmvUOGuUZ9/+cX/+hOhWhRD5dEw6lodn8WuV+T+cQ31hhBcCu1dcDsNotowi4mMaNhrLyKoS+DtB81HdDA==
 
 sinon@^9.0.2:
   version "9.0.2"
@@ -9495,10 +9538,10 @@ wordwrap@^1.0.0:
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=
 
-workerpool@^6.0.1:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/workerpool/-/workerpool-6.0.2.tgz#e241b43d8d033f1beb52c7851069456039d1d438"
-  integrity sha512-DSNyvOpFKrNusaaUwk+ej6cBj1bmhLcBfj80elGk+ZIo5JSkq+unB1dLKEOcNfJDZgjGICfhQ0Q5TbP0PvF4+Q==
+workerpool@^6.0.1, workerpool@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/workerpool/-/workerpool-6.0.3.tgz#3f80ba4d914fe7bb8d933628c26e5d7ff820c703"
+  integrity sha512-meU8ZzO+ipcx/njxtKUcbu2K95085q5WYDo8fR6PMW3hCY4driteIsNsEowYV7dzOtvq0HotUKsReJkK8gKXgg==
 
 wrap-ansi@^4.0.0:
   version "4.0.0"
