@@ -1,3 +1,18 @@
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v0.11.1 (2020-11-25)
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#781](https://github.com/checkupjs/checkup/pull/781) Fixing SARIF log so that each location is mapped to one Result ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.11.0 (2020-11-20)
 
 #### :rocket: Enhancement
