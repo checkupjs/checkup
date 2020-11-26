@@ -26,7 +26,7 @@
     "resolve": "^1.19.0",
     "strip-ansi": "^6.0.0",
     "tmp": "^0.2.1",
-    "type-fest": "^0.16.0",
+    "type-fest": "^0.20.1",
     "walk-sync": "^2.2.0",
     "wrap-ansi": "^7.0.0"
   },
