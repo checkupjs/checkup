@@ -6,6 +6,7 @@ import EmberInRepoAddonsEnginesTask from '../tasks/ember-in-repo-addons-engines-
 import EmberTestTypesTaskTask from '../tasks/ember-test-types-task';
 import EmberTypesTask from '../tasks/ember-types-task';
 import EmberTemplateLintDisableTask from '../tasks/ember-template-lint-disable-task';
+import EmberTemplateLintSummaryTask from '../tasks/ember-template-lint-summary-task';
 
 const hook: Hook<RegisterTaskArgs> = async function ({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
@@ -15,6 +16,7 @@ const hook: Hook<RegisterTaskArgs> = async function ({ context, tasks }: Registe
   tasks.registerTask(new EmberInRepoAddonsEnginesTask(pluginName, context));
   tasks.registerTask(new EmberTestTypesTaskTask(pluginName, context));
   tasks.registerTask(new EmberTemplateLintDisableTask(pluginName, context));
+  tasks.registerTask(new EmberTemplateLintSummaryTask(pluginName, context));
 };
 
 export default hook;
