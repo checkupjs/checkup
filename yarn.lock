@@ -2439,10 +2439,10 @@ clean-stack@^2.0.0:
   resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
   integrity sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==
 
-clean-stack@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-3.0.0.tgz#a7c249369fcf0f33c7888c20ea3f3dc79620211f"
-  integrity sha512-RHxtgFvXsRQ+1AM7dlozLDY7ssmvUUh0XEnfnyhYgJTO6beNZHBogiaCwGM9Q3rFrUkYxOtsZRC0zAturg5bjg==
+clean-stack@^3.0.0, clean-stack@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-3.0.1.tgz#155bf0b2221bf5f4fba89528d24c5953f17fe3a8"
+  integrity sha512-lR9wNiMRcVQjSB3a7xXGLuz4cr4wJuuXlaAEbRutGowQTmlp7R72/DOgN21e8jdwblMWl9UOJMJXarX94pzKdg==
   dependencies:
     escape-string-regexp "4.0.0"
 
