@@ -40,21 +40,23 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
 
     constructor(private filePath: string) {}
 
+    add(node: any) {
+      this.data.push({
+        filePath: normalizePath(this.filePath, cwd),
+        lintRuleId: 'no-eslint-disable',
+        message: 'eslint-disable usages',
+        line: node.loc.start.line,
+        column: node.loc.start.column,
+      });
+    }
+
     get visitors(): Visitor<any> {
-      let add = (node: any) => {
-        this.data.push({
-          filePath: normalizePath(this.filePath, cwd),
-          lintRuleId: 'no-eslint-disable',
-          message: 'eslint-disable usages',
-          line: node.loc.start.line,
-          column: node.loc.start.column,
-        });
-      };
+      let self = this;
 
       return {
         visitComment: function (path: any) {
           if (path.value.value.trim().match(ESLINT_DISABLE_REGEX)) {
-            add(path.value);
+            self.add(path.value);
           }
 
           this.traverse(path);

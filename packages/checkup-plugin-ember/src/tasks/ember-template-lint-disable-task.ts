@@ -37,26 +37,28 @@ async function getTemplateLintDisables(filePaths: string[], cwd: string) {
 
     constructor(private filePath: string) {}
 
+    add(node: any) {
+      this.data.push({
+        filePath: normalizePath(this.filePath, cwd),
+        lintRuleId: 'no-ember-template-lint-disable',
+        message: 'ember-template-lint-disable usages',
+        line: node.loc.start.line,
+        column: node.loc.start.column,
+      });
+    }
+
     get visitors() {
-      let add = (node: any) => {
-        this.data.push({
-          filePath: normalizePath(this.filePath, cwd),
-          lintRuleId: 'no-ember-template-lint-disable',
-          message: 'ember-template-lint-disable usages',
-          line: node.loc.start.line,
-          column: node.loc.start.column,
-        });
-      };
+      let self = this;
 
       return {
         MustacheCommentStatement(node: any) {
           if (node.value.toLowerCase().includes(TEMPLATE_LINT_DISABLE)) {
-            add(node);
+            self.add(node);
           }
         },
         CommentStatement(node: any) {
           if (node.value.toLowerCase().includes(TEMPLATE_LINT_DISABLE)) {
-            add(node);
+            self.add(node);
           }
         },
       };

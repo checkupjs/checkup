@@ -1,3 +1,7 @@
+import fetch from 'node-fetch';
+import { readJsonSync, writeJsonSync, writeFileSync } from 'fs-extra';
+import { createTmpDir } from '@checkup/test-helpers';
+import { DEFAULT_CONFIG } from '../src';
 import {
   getConfigPath,
   readConfig,
@@ -6,10 +10,6 @@ import {
   getConfigPathFromOptions,
   CONFIG_SCHEMA_URL,
 } from '../src/config';
-import { readJsonSync, writeJsonSync, writeFileSync } from 'fs-extra';
-
-import { DEFAULT_CONFIG } from '../src';
-import { createTmpDir } from '@checkup/test-helpers';
 
 const REMOTE_CONFIG = {
   $schema: CONFIG_SCHEMA_URL,
@@ -104,6 +104,12 @@ describe('config', () => {
       }).toThrow(`Config in ${configPath} is invalid.`);
     });
 
+    it('references schema from a valid HTTP endpoint', async () => {
+      let response = await fetch(CONFIG_SCHEMA_URL);
+
+      expect(response.ok).toEqual(true);
+    });
+
     it('can read a valid config with valid task config string value set to "on"', () => {
       let configPath = writeConfig(tmp, {
         plugins: ['ember'],
@@ -116,7 +122,7 @@ describe('config', () => {
 
       expect(config).toMatchInlineSnapshot(`
         Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
           "excludePaths": Array [],
           "plugins": Array [
             "checkup-plugin-ember",
@@ -140,7 +146,7 @@ describe('config', () => {
 
       expect(config).toMatchInlineSnapshot(`
         Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
           "excludePaths": Array [],
           "plugins": Array [
             "checkup-plugin-ember",
@@ -164,7 +170,7 @@ describe('config', () => {
 
       expect(config).toMatchInlineSnapshot(`
         Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
           "excludePaths": Array [],
           "plugins": Array [
             "checkup-plugin-ember",
@@ -198,7 +204,7 @@ describe('config', () => {
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
         Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
           "excludePaths": Array [],
           "plugins": Array [],
           "tasks": Object {},
@@ -216,7 +222,7 @@ describe('config', () => {
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
         Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
           "excludePaths": Array [],
           "plugins": Array [
             "ember",

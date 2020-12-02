@@ -1,6 +1,6 @@
 import { CLIEngine, Linter } from 'eslint';
 
-const TemplateLinter = require('ember-template-lint');
+const EmberTemplateLinter = require('ember-template-lint').TemplateLinter;
 
 export type ParserName = string;
 export type ParserOptions = Record<string, any>;
@@ -13,7 +13,7 @@ export interface CreateParser<ParserOptions, TParser = Parser<ParserReport>> {
   (config: ParserOptions): TParser;
 }
 
-export type TemplateLinter = typeof TemplateLinter;
+export type TemplateLinter = typeof EmberTemplateLinter;
 
 export type ESLintOptions = CLIEngine.Options;
 export type ESLintReport = CLIEngine.LintReport;
