@@ -1,3 +1,5 @@
+import type Prepend from 'eslint';
+
 type Severity = 0 | 1 | 2;
 type RuleLevel = Severity | 'off' | 'warn' | 'error';
 type RuleLevelAndOptions<Options extends any[] = any[]> = Prepend<Partial<Options>, RuleLevel>;

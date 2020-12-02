@@ -16,7 +16,7 @@ export const CONFIG_DOCS_URL =
   'https://docs.checkupjs.com/quickstart/usage#1-generate-a-configuration-file';
 
 export const CONFIG_SCHEMA_URL =
-  'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json';
+  'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json';
 
 export const DEFAULT_CONFIG: CheckupConfig = {
   $schema: CONFIG_SCHEMA_URL,
