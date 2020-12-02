@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+  "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
   "excludePaths": ["**/foo"],
   "plugins": ["@foo/checkup-plugin-bar"],
   "tasks": {}
