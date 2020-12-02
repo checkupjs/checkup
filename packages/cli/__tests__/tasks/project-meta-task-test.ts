@@ -82,12 +82,12 @@ describe('project-meta-task', () => {
               "paths": Array [],
             },
             "config": Object {
-              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
               "excludePaths": Array [],
               "plugins": Array [],
               "tasks": Object {},
             },
-            "configHash": "395b15f7dea0dee193db593e1c6cfb5b",
+            "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
             "flags": Object {
               "config": undefined,
               "excludePaths": undefined,
@@ -153,14 +153,14 @@ describe('project-meta-task', () => {
               "paths": Array [],
             },
             "config": Object {
-              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
               "excludePaths": Array [],
               "plugins": Array [
                 "checkup-plugin-ember",
               ],
               "tasks": Object {},
             },
-            "configHash": "1ba2bd62ba89147967dc57decae6b129",
+            "configHash": "2f97c4acdec7c73cce0b6c3e3e0cedc2",
             "flags": Object {
               "config": undefined,
               "excludePaths": undefined,

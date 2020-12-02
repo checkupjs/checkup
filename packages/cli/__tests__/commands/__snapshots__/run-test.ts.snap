@@ -7,7 +7,7 @@ Checkup report generated for checkup-app v0.0.0 (4 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 988dab0635e80290c915a8729decff96
+config 0e3da47ee1e0a5e663465af5cc66cf37
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 1 lines of code
 ■ hbs (1)
@@ -23,7 +23,7 @@ Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 988dab0635e80290c915a8729decff96
+config 0e3da47ee1e0a5e663465af5cc66cf37
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
 ■ js (2)
@@ -39,7 +39,7 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
@@ -68,12 +68,12 @@ Object {
         "paths": Array [],
       },
       "config": Object {
-        "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/config/config-schema.json",
+        "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
         "excludePaths": Array [],
         "plugins": Array [],
         "tasks": Object {},
       },
-      "configHash": "395b15f7dea0dee193db593e1c6cfb5b",
+      "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
       "flags": Object {
         "format": "json",
         "outputFile": "",
@@ -118,7 +118,7 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
@@ -141,7 +141,7 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config c88c290095f76e0b55cc190c876eaa8f
+config 2910e38984c8092494a42c88b642b9de
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
@@ -164,7 +164,7 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
@@ -191,7 +191,7 @@ Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ hbs (2)
@@ -214,7 +214,7 @@ Checkup report generated for checkup-app v0.0.0 (9 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 6 lines of code
 ■ js (4)
@@ -237,7 +237,7 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
@@ -254,7 +254,7 @@ Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
  0 lines of code
 
@@ -269,7 +269,7 @@ Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
 ■ js (2)
@@ -285,7 +285,7 @@ Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 988dab0635e80290c915a8729decff96
+config 0e3da47ee1e0a5e663465af5cc66cf37
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
 ■ js (2)
@@ -301,7 +301,7 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 checkup v0.0.0
-config 395b15f7dea0dee193db593e1c6cfb5b
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
