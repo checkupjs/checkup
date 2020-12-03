@@ -1,11 +1,14 @@
 'use strict';
 
+import { PackageJson } from 'type-fest';
 import CheckupFixturifyProject from './checkup-fixturify-project';
 
 const enum InRepoPackageType {
   Addon = 'addon',
   Engine = 'engine',
 }
+
+type IndexablePackageJson = PackageJson & { [key: string]: any };
 
 const Project = require('fixturify-project');
 
@@ -57,7 +60,8 @@ export default class EmberCLIFixturifyProject extends CheckupFixturifyProject {
       project.files['index.js'] = 'module.exports = { name: require("./package").name };';
     });
     // configure the current project to have an ember-addon configured at the appropriate path
-    let addon: any = (this.pkg['ember-addon'] = this.pkg['ember-addon'] || {});
+    let addon: any = ((<IndexablePackageJson>this.pkg)['ember-addon'] =
+      (<IndexablePackageJson>this.pkg)['ember-addon'] || {});
     addon.paths = addon.paths || [];
     const addonPath = `lib/${name}`;
 
