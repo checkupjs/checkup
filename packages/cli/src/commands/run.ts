@@ -33,6 +33,7 @@ import ProjectMetaTask from '../tasks/project-meta-task';
 import { getLog } from '../get-log';
 import { reportAvailableTasks } from '../reporters/console-reporter';
 import { Invocation, Log, Result } from 'sarif';
+import { TASK_ERRORS } from '../task-errors';
 
 let __tasksForTesting: Set<Task> = new Set<Task>();
 
@@ -77,10 +78,18 @@ export default class RunCommand extends BaseCommand {
       char: 'd',
       description: 'The path referring to the root directory that Checkup will run in',
     }),
+    category: flags.string({
+      description: 'Runs specific tasks specified by category. Can be used multiple times.',
+      multiple: true,
+    }),
+    group: flags.string({
+      description: 'Runs specific tasks specified by group. Can be used multiple times.',
+      multiple: true,
+    }),
     task: flags.string({
       char: 't',
       description:
-        'Runs specific task specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
+        'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
       multiple: true,
     }),
     format: flags.string({
@@ -113,6 +122,18 @@ export default class RunCommand extends BaseCommand {
   actions: Action[] = [];
   checkupConfig!: CheckupConfig;
   cliModeEnabled: boolean = true;
+
+  get taskFilterType() {
+    if (this.runFlags.task !== undefined) {
+      return 'task';
+    } else if (this.runFlags.category !== undefined) {
+      return 'category';
+    } else if (this.runFlags.group !== undefined) {
+      return 'group';
+    }
+
+    return '';
+  }
 
   public async init() {
     let { argv, flags } = this.parse(RunCommand);
@@ -173,8 +194,8 @@ export default class RunCommand extends BaseCommand {
   private async runTasks() {
     [this.metaTaskResults, this.metaTaskErrors] = await this.defaultTasks.runTasks();
 
-    if (this.runFlags.task !== undefined) {
-      let { tasksFound, tasksNotFound } = this.pluginTasks.findTasks(...this.runFlags.task);
+    if (this.taskFilterType) {
+      let { tasksFound, tasksNotFound } = this.findTasks();
 
       if (tasksFound.length > 0) {
         [this.pluginTaskResults, this.pluginTaskErrors] = await this.pluginTasks.runTasks(
@@ -183,14 +204,9 @@ export default class RunCommand extends BaseCommand {
       }
 
       if (tasksNotFound.length > 0) {
-        this.extendedError(
-          new CheckupError(
-            `Cannot find the ${tasksNotFound.join(',')} task${
-              tasksNotFound.length > 1 ? 's' : '' // pluralize task if more than one task is not found
-            }.`,
-            'Run `checkup --listTasks` to see available tasks'
-          )
-        );
+        let error = TASK_ERRORS.get(this.taskFilterType)!;
+
+        this.extendedError(new CheckupError(error.message(tasksNotFound), error.callToAction));
         ui.action.stop();
       }
     } else {
@@ -198,12 +214,24 @@ export default class RunCommand extends BaseCommand {
     }
   }
 
+  private findTasks() {
+    if (this.runFlags.task !== undefined) {
+      return this.pluginTasks.findAllByTaskName(...this.runFlags.task);
+    } else if (this.runFlags.category !== undefined) {
+      return this.pluginTasks.findAllByCategory(...this.runFlags.category);
+    } else if (this.runFlags.group !== undefined) {
+      return this.pluginTasks.findAllByGroup(...this.runFlags.group);
+    }
+
+    return { tasksFound: [], tasksNotFound: [] };
+  }
+
   private runActions() {
     new Promise((resolve, reject) => {
       let evaluators = getRegisteredActions();
 
       for (let [taskName, evaluator] of evaluators) {
-        let task = this.pluginTasks.findTask(taskName);
+        let task = this.pluginTasks.find(taskName);
 
         let taskResult = this.pluginTaskResults.filter((result: Result) => {
           return result.properties?.taskName === taskName;

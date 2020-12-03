@@ -6,6 +6,8 @@ import { Task, TaskError, TaskName } from '@checkup/core';
 import { taskResultComparator } from './task-result-comparator';
 import { Result } from 'sarif';
 
+export type TaskFinderResult = { tasksFound: Task[]; tasksNotFound: (TaskName | string)[] };
+
 /**
  * @class TaskList
  *
@@ -66,7 +68,7 @@ export default class TaskList {
    * @param taskName The name of the task to check for existence of
    */
   hasTask(taskName: TaskName): boolean {
-    return this.findTask(taskName) !== undefined;
+    return this.find(taskName) !== undefined;
   }
 
   /**
@@ -75,8 +77,11 @@ export default class TaskList {
    * @method findTask
    * @param taskName The name of the task to find
    */
-  findTask(taskName: TaskName): Task | undefined {
-    return this.getTasks().find((task) => task.taskName === taskName);
+  find(
+    taskName: TaskName,
+    predicate: (task: Task) => boolean = (task) => task.taskName === taskName
+  ): Task | undefined {
+    return this.getTasks().find(predicate);
   }
 
   /**
@@ -85,7 +90,7 @@ export default class TaskList {
    * @method findTasks
    * @param taskNames The name of the task to find
    */
-  findTasks(...taskNames: TaskName[]): { tasksFound: Task[]; tasksNotFound: TaskName[] } {
+  findAllByTaskName(...taskNames: TaskName[]): TaskFinderResult {
     let tasksFound: Task[] = [];
     let tasksNotFound: TaskName[] = [];
     let availableTasks = this.getTasks();
@@ -109,6 +114,46 @@ export default class TaskList {
     return { tasksFound, tasksNotFound };
   }
 
+  findAllByCategory(...categories: string[]): TaskFinderResult {
+    let tasksFound: Task[] = [];
+    let tasksNotFound: string[] = [];
+
+    categories.forEach((category) => {
+      let tasks = this._categories.get(category);
+
+      if (tasks !== undefined) {
+        tasksFound = [...tasksFound, ...tasks.values()];
+      } else {
+        tasksNotFound.push(category);
+      }
+    });
+
+    return { tasksFound, tasksNotFound };
+  }
+
+  findAllByGroup(...groups: string[]): TaskFinderResult {
+    let tasksFound: Task[] = [];
+    let tasksNotFound: string[] = [];
+    let availableTasks = this.getTasks();
+
+    groups.forEach((group) => {
+      let taskFound = false;
+
+      for (let availableTask of availableTasks) {
+        if (availableTask.group === group) {
+          taskFound = true;
+          tasksFound.push(availableTask);
+        }
+      }
+
+      if (taskFound === false) {
+        tasksNotFound.push(group);
+      }
+    });
+
+    return { tasksFound, tasksNotFound };
+  }
+
   /**
    * Runs the task specified by the taskName parameter.
    *
@@ -119,7 +164,7 @@ export default class TaskList {
    */
   async runTask(taskName: TaskName): Promise<[Result[] | undefined, TaskError[]]> {
     let result: Result[] | undefined;
-    let task: Task | undefined = this.findTask(taskName);
+    let task: Task | undefined = this.find(taskName);
 
     if (task === undefined) {
       throw new Error(`The ${taskName} task was not found`);

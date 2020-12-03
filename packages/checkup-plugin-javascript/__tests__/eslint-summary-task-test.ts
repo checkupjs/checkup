@@ -128,7 +128,7 @@ describe('eslint-summary-task', () => {
 
 describe('readEslintConfig', () => {
   const eslintConfigJson = 'airbnb';
-  const pkg: PackageJson = {
+  const pkg: PackageJson & { eslintConfig: string } = {
     name: 'foo-project',
     version: '0.0.0',
     keywords: [],

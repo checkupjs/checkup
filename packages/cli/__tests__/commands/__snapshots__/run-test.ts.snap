@@ -124,7 +124,7 @@ config dd17cda1fc2eb2bc6bb5206b41fc1a84
 ■ js (2)
 ■ hbs (1)
 
-=== Fake
+=== Fake 2
 
 File Count Task
 
@@ -147,9 +147,67 @@ config 2910e38984c8092494a42c88b642b9de
 ■ js (2)
 ■ hbs (1)
 
-=== Fake
+=== Fake 2
 
 File Count Task
+
+■ hi (NaN)
+
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should run multiple tasks if the category option is specified with multiple categories 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+■ js (2)
+■ hbs (1)
+
+=== Fake 2
+
+File Count Task
+
+■ hi (-NaN)
+
+=== Fake 1
+
+Foo Task
+
+■ hi (-NaN)
+
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should run multiple tasks if the group option is specified with multiple groups 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+■ js (2)
+■ hbs (1)
+
+=== Fake 2
+
+File Count Task
+
+■ hi (-NaN)
+
+=== Fake 1
+
+Foo Task
 
 ■ hi (-NaN)
 
@@ -170,11 +228,59 @@ config dd17cda1fc2eb2bc6bb5206b41fc1a84
 ■ js (2)
 ■ hbs (1)
 
-=== Fake
+=== Fake 2
 
 File Count Task
 
 ■ hi (-NaN)
+
+=== Fake 1
+
+Foo Task
+
+■ hi (-NaN)
+
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should run only one task if the category option is specified 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+■ js (2)
+■ hbs (1)
+
+=== Fake 1
+
+Foo Task
+
+■ hi (-NaN)
+
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should run only one task if the group option is specified 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+■ js (2)
+■ hbs (1)
+
+=== Fake 1
 
 Foo Task
 
@@ -197,11 +303,11 @@ config dd17cda1fc2eb2bc6bb5206b41fc1a84
 ■ hbs (2)
 ■ js (1)
 
-=== Fake
+=== Fake 2
 
 File Count Task
 
-■ hi (-NaN)
+■ hi (NaN)
 
 
 "
@@ -220,11 +326,11 @@ config dd17cda1fc2eb2bc6bb5206b41fc1a84
 ■ js (4)
 ■ hbs (2)
 
-=== Fake
+=== Fake 2
 
 File Count Task
 
-■ hi (-NaN)
+■ hi (NaN)
 
 
 "
