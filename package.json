@@ -94,9 +94,6 @@
       "generators": ":recycle: Generators"
     }
   },
-  "resolutions": {
-    "type-fest": "^0.13.1"
-  },
   "volta": {
     "node": "12.16.2",
     "yarn": "1.22.4"

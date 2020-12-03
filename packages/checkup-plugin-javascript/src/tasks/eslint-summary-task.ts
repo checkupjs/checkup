@@ -16,6 +16,8 @@ import { PackageJson } from 'type-fest';
 import { readFileSync } from 'fs';
 import { Result } from 'sarif';
 
+export type PackageJsonWithEslint = PackageJson & { eslintConfig: string };
+
 /**
  * @export
  * @description In prioritized order as specified by https://eslint.org/docs/user-guide/configuring
@@ -44,7 +46,7 @@ export class EslintSummaryTask extends BaseTask implements Task {
     let eslintConfig: ESLintOptions = readEslintConfig(
       this.context.paths,
       this.context.cliFlags.cwd,
-      this.context.pkg
+      this.context.pkg as PackageJsonWithEslint
     );
     this._eslintParser = createEslintParser(eslintConfig);
   }
@@ -74,7 +76,7 @@ export class EslintSummaryTask extends BaseTask implements Task {
 export function readEslintConfig(
   paths: string[],
   basePath: string,
-  pkg: PackageJson
+  pkg: PackageJsonWithEslint
 ): ESLintOptions {
   let eslintConfigFile: string = '';
 

@@ -8,7 +8,7 @@ Array [
     },
     "properties": Object {
       "category": "bar",
-      "group": undefined,
+      "group": "group1",
       "taskDisplayName": "Insights Task High",
     },
     "ruleId": "insights-task-high",
@@ -22,11 +22,11 @@ Object {
     "text": "hi",
   },
   "properties": Object {
-    "category": "bar",
-    "group": undefined,
-    "taskDisplayName": "Insights Task High",
+    "category": "foo",
+    "group": "group2",
+    "taskDisplayName": "Insights Task Low",
   },
-  "ruleId": "insights-task-high",
+  "ruleId": "insights-task-low",
 }
 `;
 
@@ -36,10 +36,10 @@ Object {
     "text": "hi",
   },
   "properties": Object {
-    "category": "foo",
-    "group": undefined,
-    "taskDisplayName": "Insights Task Low",
+    "category": "bar",
+    "group": "group1",
+    "taskDisplayName": "Insights Task High",
   },
-  "ruleId": "insights-task-low",
+  "ruleId": "insights-task-high",
 }
 `;
