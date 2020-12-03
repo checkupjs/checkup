@@ -79,17 +79,17 @@ export default class RunCommand extends BaseCommand {
       description: 'The path referring to the root directory that Checkup will run in',
     }),
     category: flags.string({
-      description: 'Runs specific task specified by category. Can be used multiple times.',
+      description: 'Runs specific tasks specified by category. Can be used multiple times.',
       multiple: true,
     }),
     group: flags.string({
-      description: 'Runs specific task specified by group. Can be used multiple times.',
+      description: 'Runs specific tasks specified by group. Can be used multiple times.',
       multiple: true,
     }),
     task: flags.string({
       char: 't',
       description:
-        'Runs specific task specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
+        'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
       multiple: true,
     }),
     format: flags.string({
