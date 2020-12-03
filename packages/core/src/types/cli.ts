@@ -10,4 +10,5 @@ export type RunFlags = {
   format: string;
   outputFile: string;
   excludePaths: string[] | undefined;
+  verbose: boolean;
 };
