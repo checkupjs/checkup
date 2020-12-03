@@ -92,31 +92,8 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
       });
     });
   },
-  'eslint-summary': function (taskResults: Result[]) {
-    let groupedTaskResultsByType = groupDataByField(taskResults, 'properties.type');
-
-    ui.section(taskResults[0].properties?.taskDisplayName, () => {
-      groupedTaskResultsByType.forEach((resultGroup: Result[]) => {
-        let groupedTaskResultsByLintRule = combineResultsForRendering(
-          groupDataByField(resultGroup, 'properties.lintRuleId')
-        );
-        let totalCount = sumOccurrences(groupedTaskResultsByLintRule);
-        if (totalCount) {
-          ui.subHeader(`${groupedTaskResultsByLintRule[0].properties?.type}s: (${totalCount})`);
-          ui.valuesList(
-            groupedTaskResultsByLintRule.map((result) => {
-              if (result.message.text === NO_RESULTS_FOUND) {
-                renderEmptyResult(result);
-              } else {
-                return { title: result.properties?.lintRuleId, count: result?.occurrenceCount };
-              }
-            })
-          );
-          ui.blankLine();
-        }
-      });
-    });
-  },
+  'ember-template-lint-summary': renderLintingSummaryResult,
+  'eslint-summary': renderLintingSummaryResult,
   'outdated-dependencies': function (taskResults: Result[]) {
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
       ui.sectionedBar(
@@ -308,4 +285,30 @@ function renderTimings(timings: Record<string, number>) {
     }
   );
   ui.blankLine();
+}
+
+function renderLintingSummaryResult(taskResults: Result[]) {
+  let groupedTaskResultsByType = groupDataByField(taskResults, 'properties.type');
+
+  ui.section(taskResults[0].properties?.taskDisplayName, () => {
+    groupedTaskResultsByType.forEach((resultGroup: Result[]) => {
+      let groupedTaskResultsByLintRule = combineResultsForRendering(
+        groupDataByField(resultGroup, 'properties.lintRuleId')
+      ).sort((a, b) => (b.occurrenceCount || 0) - (a.occurrenceCount || 0));
+      let totalCount = sumOccurrences(groupedTaskResultsByLintRule);
+      if (totalCount) {
+        ui.subHeader(`${groupedTaskResultsByLintRule[0].properties?.type}s: (${totalCount})`);
+        ui.valuesList(
+          groupedTaskResultsByLintRule.map((result) => {
+            if (result.message.text === NO_RESULTS_FOUND) {
+              renderEmptyResult(result);
+            } else {
+              return { title: result.properties?.lintRuleId, count: result?.occurrenceCount };
+            }
+          })
+        );
+        ui.blankLine();
+      }
+    });
+  });
 }
