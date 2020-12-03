@@ -9,7 +9,7 @@
     "@checkup/core": "^0.11.1",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
-    "ember-template-recast": "^5.0.0",
+    "ember-template-recast": "^5.0.1",
     "npm-check": "^5.9.2",
     "recast": "^0.20.4",
     "tslib": "^2"
