@@ -9,29 +9,17 @@
 
 > :warning: Checkup is pre-release and still in active development.
 
-Checkup aims to provide you with insights into your codebase. You can track the progress of your codebase for things such as:
+<img src="docs/checkup-output.png" alt="Checkup sample output" />
 
-1. **Metrics**
-   - repository meta data
-   - lines of code breakdown
-   - types breakdown
-1. **Best practices**
-   - suggested areas of improvement
-1. **Dependencies**
-   - listing outdated dependencies
-1. **Linting**
-   - summarized lint runs
-   - linting overrides
-1. **Testing**
-   - test type breakdown (unit, integration, functional, visual, etc)
-1. **Migrations**
-   - active code migration progress
+Checkup aims to provide you with insights into your codebase. It's a task runner that leverages existing infrastructure to provide information about key characteristics of your codebase.
 
-This allows you to have a more full, high level view of your codebase at any one point in time. Checkup can help you with making resourcing decisions, planning and prioritizing the general health of your codebase.
+Checkup can help you with making resourcing decisions, planning and prioritizing the general health of your codebase.
 
-## What you get with Checkup
+## Features
 
-Checkup provides you with a CLI, which can be run against your code base. Using a custom Checkup configuration file, **plugins** can be configured and loaded containing **tasks** to run. The CLI will execute these tasks on your codebase, ultimately aggregating and producing a comprehensive **Checkup report**.
+- **Task Runner CLI** - A [CLI](packages/cli/README.md) that runs tasks that can be loaded via plugins.
+- **Code Generators** - A collection of generators allowing you to generate a checkup **config** file, **plugin** project structure, and **task** files and tests.
+- **Plugins** - Existing plugins for **JavaScript**, **Ember**, and **Ember Octane**.
 
 ## Usage
 
