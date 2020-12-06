@@ -31,7 +31,7 @@ import { getPackageJson } from '../utils/get-package-json';
 import { getReporter } from '../reporters/get-reporter';
 import ProjectMetaTask from '../tasks/project-meta-task';
 import { getLog } from '../get-log';
-import { reportAvailableTasks } from '../reporters/console-reporter';
+import { reportAvailableTasks } from '../reporters/available-task-reporter';
 import { Invocation, Log, Result } from 'sarif';
 import { TASK_ERRORS } from '../task-errors';
 
@@ -81,16 +81,19 @@ export default class RunCommand extends BaseCommand {
     category: flags.string({
       description: 'Runs specific tasks specified by category. Can be used multiple times.',
       multiple: true,
+      exclusive: ['group', 'task'],
     }),
     group: flags.string({
       description: 'Runs specific tasks specified by group. Can be used multiple times.',
       multiple: true,
+      exclusive: ['category', 'task'],
     }),
     task: flags.string({
       char: 't',
       description:
         'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
       multiple: true,
+      exclusive: ['category', 'group'],
     }),
     format: flags.string({
       char: 'f',
@@ -107,6 +110,9 @@ export default class RunCommand extends BaseCommand {
     listTasks: flags.boolean({
       char: 'l',
       description: 'List all available tasks to run.',
+    }),
+    verbose: flags.boolean({
+      exclusive: ['format'],
     }),
   };
 
@@ -227,7 +233,7 @@ export default class RunCommand extends BaseCommand {
   }
 
   private runActions() {
-    new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       let evaluators = getRegisteredActions();
 
       for (let [taskName, evaluator] of evaluators) {
@@ -308,7 +314,8 @@ export default class RunCommand extends BaseCommand {
   }
 
   private report(log: Log) {
-    let generateReport = getReporter(this.runFlags.format as OutputFormat);
+    let generateReport = getReporter(this.runFlags);
+
     generateReport(log, this.runFlags);
   }
 

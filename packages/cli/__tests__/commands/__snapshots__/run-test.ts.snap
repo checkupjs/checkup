@@ -6,12 +6,12 @@ Checkup report generated for checkup-app v0.0.0 (4 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config 0e3da47ee1e0a5e663465af5cc66cf37
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 1 lines of code
 ■ hbs (1)
 
+
+checkup v0.0.0
+config 0e3da47ee1e0a5e663465af5cc66cf37
 
 "
 `;
@@ -22,29 +22,12 @@ Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config 0e3da47ee1e0a5e663465af5cc66cf37
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
 ■ js (2)
 
 
-"
-`;
-
-exports[`@checkup/cli normal cli output should output checkup result 1`] = `
-"
-Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
-
-This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
 checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
-
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
-■ js (2)
-■ hbs (1)
-
+config 0e3da47ee1e0a5e663465af5cc66cf37
 
 "
 `;
@@ -111,14 +94,28 @@ Object {
 }
 `;
 
-exports[`@checkup/cli normal cli output should run a single task if the tasks option is specified with a single task 1`] = `
+exports[`@checkup/cli normal cli output should output checkup result in verbose mode 1`] = `
 "
 Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+■ js (2)
+■ hbs (1)
+
+
 checkup v0.0.0
 config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
+"
+`;
+
+exports[`@checkup/cli normal cli output should run a single task if the tasks option is specified with a single task 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
@@ -130,6 +127,9 @@ File Count Task
 
 ■ hi (NaN)
 
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 "
 `;
@@ -140,9 +140,6 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config 2910e38984c8092494a42c88b642b9de
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
 ■ hbs (1)
@@ -154,6 +151,9 @@ File Count Task
 ■ hi (NaN)
 
 
+checkup v0.0.0
+config 2910e38984c8092494a42c88b642b9de
+
 "
 `;
 
@@ -162,9 +162,6 @@ exports[`@checkup/cli normal cli output should run multiple tasks if the categor
 Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
@@ -182,6 +179,9 @@ Foo Task
 
 ■ hi (-NaN)
 
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 "
 `;
@@ -192,9 +192,6 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
 ■ hbs (1)
@@ -211,6 +208,9 @@ Foo Task
 
 ■ hi (-NaN)
 
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 "
 `;
@@ -221,9 +221,6 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
 ■ hbs (1)
@@ -241,6 +238,9 @@ Foo Task
 ■ hi (-NaN)
 
 
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
 "
 `;
 
@@ -249,9 +249,6 @@ exports[`@checkup/cli normal cli output should run only one task if the category
 Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
@@ -263,6 +260,9 @@ Foo Task
 
 ■ hi (-NaN)
 
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 "
 `;
@@ -273,9 +273,6 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
 ■ hbs (1)
@@ -287,6 +284,9 @@ Foo Task
 ■ hi (-NaN)
 
 
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
 "
 `;
 
@@ -295,9 +295,6 @@ exports[`@checkup/cli normal cli output should run the tasks on the globs passed
 Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ hbs (2)
@@ -310,6 +307,9 @@ File Count Task
 ■ hi (NaN)
 
 
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
 "
 `;
 
@@ -318,9 +318,6 @@ exports[`@checkup/cli normal cli output should run the tasks on the globs passed
 Checkup report generated for checkup-app v0.0.0 (9 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 6 lines of code
 ■ js (4)
@@ -333,6 +330,9 @@ File Count Task
 ■ hi (NaN)
 
 
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
 "
 `;
 
@@ -342,13 +342,13 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
 ■ hbs (1)
 
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 "
 `;
@@ -359,11 +359,11 @@ Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
-
  0 lines of code
 
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 "
 `;
@@ -374,12 +374,12 @@ Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
 ■ js (2)
 
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 "
 `;
@@ -390,12 +390,12 @@ Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config 0e3da47ee1e0a5e663465af5cc66cf37
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
 ■ js (2)
 
+
+checkup v0.0.0
+config 0e3da47ee1e0a5e663465af5cc66cf37
 
 "
 `;
@@ -406,13 +406,13 @@ Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-checkup v0.0.0
-config dd17cda1fc2eb2bc6bb5206b41fc1a84
-
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ js (2)
 ■ hbs (1)
 
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
 
 "
 `;

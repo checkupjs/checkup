@@ -29,6 +29,7 @@ const DEFAULT_FLAGS: RunFlags = {
   listTasks: false,
   format: 'stdout',
   outputFile: '',
+  verbose: false,
 };
 
 const DEFAULT_CONFIG: CheckupConfig = {
