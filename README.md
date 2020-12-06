@@ -9,11 +9,18 @@
 
 > :warning: Checkup is pre-release and still in active development.
 
-<img src="docs/checkup-output.png" alt="Checkup sample output" />
+![Checkup sample output](docs/checkup-output.png)
 
-Checkup aims to provide you with insights into your codebase. It's a task runner that leverages existing infrastructure to provide information about key characteristics of your codebase.
+Checkup aims to provide you with **insights** into your codebase. It runs **tasks** that leverage existing infrastructure to provide information about key characteristics of your codebase. Task results are output as [SARIF](https://sarifweb.azurewebsites.net/), and can be integrated into your development workflow.
 
 Checkup can help you with making resourcing decisions, planning and prioritizing the general health of your codebase.
+
+Tasks can gather information about
+
+- code structure
+- dependency health
+- test health
+- migration status
 
 ## Features
 
