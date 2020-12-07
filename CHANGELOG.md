@@ -2,6 +2,36 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v0.12.0 (2020-12-07)
+
+#### :boom: Breaking Change
+* `cli`, `core`, `test-helpers`
+  * [#807](https://github.com/checkupjs/checkup/pull/807) Converts current console output to use verbose flag, adds summarized output ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `cli`, `core`, `test-helpers`
+  * [#807](https://github.com/checkupjs/checkup/pull/807) Converts current console output to use verbose flag, adds summarized output ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `cli`
+  * [#793](https://github.com/checkupjs/checkup/pull/793) Adding task to run ember-template-lint ([@carakessler](https://github.com/carakessler))
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#794](https://github.com/checkupjs/checkup/pull/794) Fixes warnings, lint issues, and adds a test to ensure config schema is reachable ([@scalvert](https://github.com/scalvert))
+
+#### :bar_chart: Checkup Task
+* `checkup-plugin-ember`, `cli`
+  * [#793](https://github.com/checkupjs/checkup/pull/793) Adding task to run ember-template-lint ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.11.1 (2020-11-25)
 
 #### :bug: Bug Fix
