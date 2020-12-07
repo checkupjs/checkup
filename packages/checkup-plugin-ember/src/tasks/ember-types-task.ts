@@ -15,10 +15,12 @@ const SEARCH_PATTERNS = [
 ];
 
 export default class EmberTypesTask extends BaseTask implements Task {
-  taskName = 'ember-types';
-  taskDisplayName = 'Ember Types';
-  category = 'metrics';
-  group = 'ember';
+  taskMetadata = {
+    taskName: 'ember-types',
+    taskDisplayName: 'Ember Types',
+    category: 'metrics',
+    group: 'ember',
+  };
 
   async run(): Promise<Result[]> {
     let types = SEARCH_PATTERNS.flatMap((pattern) => {

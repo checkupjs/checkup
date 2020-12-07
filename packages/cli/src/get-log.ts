@@ -46,9 +46,13 @@ function getReportingDescriptors(taskList: TaskList): ReportingDescriptor[] {
   let tasks = taskList.getTasks();
   return tasks.map((task: Task) => {
     return {
-      id: task.taskName,
-      shortDescription: { text: task.taskDisplayName },
-      properties: { enabled: task.enabled, group: task.group, category: task.category },
+      id: task.taskMetadata.taskName,
+      shortDescription: { text: task.taskMetadata.taskDisplayName },
+      properties: {
+        enabled: task.enabled,
+        group: task.taskMetadata.group,
+        category: task.taskMetadata.category,
+      },
     };
   });
 }

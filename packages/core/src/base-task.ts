@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 
-import { TaskContext, TaskName } from './types/tasks';
+import { TaskContext, TaskMetadata } from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
@@ -9,10 +9,7 @@ import { parseConfigTuple } from './config';
 import { Result } from 'sarif';
 
 export default abstract class BaseTask {
-  abstract taskName: TaskName;
-  abstract taskDisplayName: string;
-  abstract category: string;
-  group?: string;
+  abstract taskMetadata: TaskMetadata;
   context: TaskContext;
   debug: debug.Debugger;
 
@@ -44,19 +41,19 @@ export default abstract class BaseTask {
   }
 
   get fullyQualifiedTaskName() {
-    return `${this._pluginName}/${this.taskName}`;
+    return `${this._pluginName}/${this.taskMetadata.taskName}`;
   }
 
   appendCheckupProperties(result: Result) {
     result.properties = {
       ...result.properties,
       ...{
-        taskDisplayName: this.taskDisplayName,
-        category: this.category,
-        group: this.group,
+        taskDisplayName: this.taskMetadata.taskDisplayName,
+        category: this.taskMetadata.category,
+        group: this.taskMetadata.group,
       },
     };
-    result.ruleId = this.taskName;
+    result.ruleId = this.taskMetadata.taskName;
     return result;
   }
 

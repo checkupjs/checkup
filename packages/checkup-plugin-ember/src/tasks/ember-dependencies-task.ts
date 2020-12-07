@@ -10,10 +10,12 @@ type Dependency = {
 };
 
 export default class EmberDependenciesTask extends BaseTask implements Task {
-  taskName = 'ember-dependencies';
-  taskDisplayName = 'Ember Dependencies';
-  category = 'dependencies';
-  group = 'ember';
+  taskMetadata = {
+    taskName: 'ember-dependencies',
+    taskDisplayName: 'Ember Dependencies',
+    category: 'dependencies',
+    group: 'ember',
+  };
 
   async run(): Promise<Result[]> {
     let packageJson = this.context.pkg;

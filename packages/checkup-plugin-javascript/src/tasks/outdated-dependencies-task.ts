@@ -59,9 +59,11 @@ async function getDependencies(path: string): Promise<OutdatedDependency[]> {
 }
 
 export default class OutdatedDependenciesTask extends BaseTask implements Task {
-  taskName = 'outdated-dependencies';
-  taskDisplayName = 'Outdated Dependencies';
-  category = 'dependencies';
+  taskMetadata = {
+    taskName: 'outdated-dependencies',
+    taskDisplayName: 'Outdated Dependencies',
+    category: 'dependencies',
+  };
 
   async run(): Promise<Result[]> {
     let outdatedDependencies = await getDependencies(this.context.cliFlags.cwd);

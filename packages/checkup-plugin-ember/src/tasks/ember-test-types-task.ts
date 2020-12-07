@@ -12,10 +12,12 @@ import { EMBER_TEST_TYPES } from '../utils/lint-configs';
 import { Result } from 'sarif';
 
 export default class EmberTestTypesTask extends BaseTask implements Task {
-  taskName = 'ember-test-types';
-  taskDisplayName = 'Test Types';
-  category = 'testing';
-  group = 'ember';
+  taskMetadata = {
+    taskName: 'ember-test-types',
+    taskDisplayName: 'Test Types',
+    category: 'testing',
+    group: 'ember',
+  };
 
   private eslintParser: Parser<ESLintReport>;
   private testFiles: string[];

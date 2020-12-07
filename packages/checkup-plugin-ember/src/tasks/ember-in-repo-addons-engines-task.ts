@@ -7,10 +7,12 @@ import { readJsonSync } from 'fs-extra';
 import { Result } from 'sarif';
 
 export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Task {
-  taskName = 'ember-in-repo-addons-engines';
-  taskDisplayName = 'Ember In-Repo Addons / Engines';
-  category = 'metrics';
-  group = 'ember';
+  taskMetadata = {
+    taskName: 'ember-in-repo-addons-engines',
+    taskDisplayName: 'Ember In-Repo Addons / Engines',
+    category: 'metrics',
+    group: 'ember',
+  };
 
   async run(): Promise<Result[]> {
     let inRepoAddons: string[] = [];

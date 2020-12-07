@@ -32,9 +32,12 @@ export const ACCEPTED_ESLINT_CONFIG_FILES = [
 ];
 
 export class EslintSummaryTask extends BaseTask implements Task {
-  taskName = 'eslint-summary';
-  taskDisplayName = 'Eslint Summary';
-  category = 'linting';
+  taskMetadata = {
+    taskName: 'eslint-summary',
+    taskDisplayName: 'Eslint Summary',
+    category: 'linting',
+    group: 'linting-summary',
+  };
 
   private _eslintParser: Parser<ESLintReport>;
 

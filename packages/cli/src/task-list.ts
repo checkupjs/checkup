@@ -52,13 +52,13 @@ export default class TaskList {
    * @param taskClassification
    */
   registerTask(task: Task) {
-    if (task.category === '') {
+    if (task.taskMetadata.category === '') {
       throw new Error(
         `Task category can not be empty. Please add a category to ${task.fullyQualifiedTaskName}-task.`
       );
     }
-    let categoryMap = this.getByCategory(task.category);
-    categoryMap!.set(task.taskName, task);
+    let categoryMap = this.getByCategory(task.taskMetadata.category);
+    categoryMap!.set(task.taskMetadata.taskName, task);
   }
 
   /**
@@ -79,7 +79,7 @@ export default class TaskList {
    */
   find(
     taskName: TaskName,
-    predicate: (task: Task) => boolean = (task) => task.taskName === taskName
+    predicate: (task: Task) => boolean = (task) => task.taskMetadata.taskName === taskName
   ): Task | undefined {
     return this.getTasks().find(predicate);
   }
@@ -140,7 +140,7 @@ export default class TaskList {
       let taskFound = false;
 
       for (let availableTask of availableTasks) {
-        if (availableTask.group === group) {
+        if (availableTask.taskMetadata.group === group) {
           taskFound = true;
           tasksFound.push(availableTask);
         }

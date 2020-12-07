@@ -29,17 +29,21 @@ export type TaskName = string;
 export type TaskIdentifier = { taskName: string; taskDisplayName: string };
 
 export interface Task {
-  taskName: TaskName;
-  taskDisplayName: TaskName;
+  taskMetadata: TaskMetadata;
   config: TaskConfig;
-  category: string;
-  group?: string;
 
   readonly fullyQualifiedTaskName: string;
   readonly enabled: boolean;
 
   run: () => Promise<Result[]>;
   appendCheckupProperties: (result: Result) => Result;
+}
+
+export interface TaskMetadata {
+  taskName: TaskName;
+  taskDisplayName: TaskName;
+  category: string;
+  group?: string;
 }
 
 export type ActionItem = string | string[] | { columns: string[]; rows: object[] };

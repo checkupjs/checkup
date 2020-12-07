@@ -22,7 +22,7 @@ Array [
     "occurrenceCount": 1,
     "properties": Object {
       "category": "linting",
-      "group": undefined,
+      "group": "linting-summary",
       "lintRuleId": "semi",
       "taskDisplayName": "Eslint Summary",
       "type": "error",
@@ -49,7 +49,7 @@ Array [
     "occurrenceCount": 1,
     "properties": Object {
       "category": "linting",
-      "group": undefined,
+      "group": "linting-summary",
       "lintRuleId": "no-var",
       "taskDisplayName": "Eslint Summary",
       "type": "warning",

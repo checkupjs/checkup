@@ -79,10 +79,12 @@ const OWN_PROPERTIES_RULES = ['no-implicit-this'];
 const USE_MODIFIERS_RULES = ['no-action'];
 
 export default class EmberOctaneMigrationStatusTask extends BaseTask implements Task {
-  taskName = 'ember-octane-migration-status';
-  taskDisplayName = 'Ember Octane Migration Status';
-  category = 'migrations';
-  group = 'ember';
+  taskMetadata = {
+    taskName: 'ember-octane-migration-status',
+    taskDisplayName: 'Ember Octane Migration Status',
+    category: 'migrations',
+    group: 'ember',
+  };
 
   private eslintParser: Parser<ESLintReport>;
   private templateLinter: TemplateLinter;

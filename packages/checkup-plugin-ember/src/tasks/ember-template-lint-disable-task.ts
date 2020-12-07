@@ -14,10 +14,12 @@ const { parse, traverse } = require('ember-template-recast');
 const TEMPLATE_LINT_DISABLE = 'template-lint-disable';
 
 export default class EmberTemplateLintDisableTask extends BaseTask implements Task {
-  taskName = 'ember-template-lint-disables';
-  taskDisplayName = 'Number of template-lint-disable Usages';
-  category = 'linting';
-  group = 'disabled-lint-rules';
+  taskMetadata = {
+    taskName: 'ember-template-lint-disables',
+    taskDisplayName: 'Number of template-lint-disable Usages',
+    category: 'linting',
+    group: 'disabled-lint-rules',
+  };
 
   async run(): Promise<Result[]> {
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');

@@ -6,10 +6,12 @@ import { Result } from 'sarif';
 const STABLE_ERROR = new Error('Something went wrong in this task');
 
 class InsightsTaskHigh extends BaseTask implements Task {
-  taskName = 'insights-task-high';
-  taskDisplayName = 'Insights Task High';
-  category = 'bar';
-  group = 'group1';
+  taskMetadata = {
+    taskName: 'insights-task-high',
+    taskDisplayName: 'Insights Task High',
+    category: 'bar',
+    group: 'group1',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);
@@ -21,10 +23,12 @@ class InsightsTaskHigh extends BaseTask implements Task {
 }
 
 class InsightsTaskLow extends BaseTask implements Task {
-  taskName = 'insights-task-low';
-  taskDisplayName = 'Insights Task Low';
-  category = 'foo';
-  group = 'group2';
+  taskMetadata = {
+    taskName: 'insights-task-low',
+    taskDisplayName: 'Insights Task Low',
+    category: 'foo',
+    group: 'group2',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);
@@ -35,10 +39,11 @@ class InsightsTaskLow extends BaseTask implements Task {
 }
 
 class RecommendationsTaskHigh extends BaseTask implements Task {
-  taskName = 'recommendations-task-high';
-  taskDisplayName = 'Recommendations Task High';
-
-  category = 'baz';
+  taskMetadata = {
+    taskName: 'recommendations-task-high',
+    taskDisplayName: 'Recommendations Task High',
+    category: 'baz',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);
@@ -49,10 +54,11 @@ class RecommendationsTaskHigh extends BaseTask implements Task {
 }
 
 class RecommendationsTaskLow extends BaseTask implements Task {
-  taskName = 'recommendations-task-low';
-  taskDisplayName = 'Recommendations Task Low';
-
-  category = 'bar';
+  taskMetadata = {
+    taskName: 'recommendations-task-low',
+    taskDisplayName: 'Recommendations Task Low',
+    category: 'bar',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);
@@ -63,10 +69,11 @@ class RecommendationsTaskLow extends BaseTask implements Task {
 }
 
 class MigrationTaskHigh extends BaseTask implements Task {
-  taskName = 'migration-task-high';
-  taskDisplayName = 'Migration Task High';
-
-  category = 'foo';
+  taskMetadata = {
+    taskName: 'migration-task-high',
+    taskDisplayName: 'Migration Task High',
+    category: 'foo',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);
@@ -77,10 +84,11 @@ class MigrationTaskHigh extends BaseTask implements Task {
 }
 
 class MigrationTaskLow extends BaseTask implements Task {
-  taskName = 'migration-task-low';
-  taskDisplayName = 'Migration Task Low';
-
-  category = 'baz';
+  taskMetadata = {
+    taskName: 'migration-task-low',
+    taskDisplayName: 'Migration Task Low',
+    category: 'baz',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);
@@ -91,10 +99,11 @@ class MigrationTaskLow extends BaseTask implements Task {
 }
 
 class ErrorTask extends BaseTask implements Task {
-  taskName = 'error-task';
-  taskDisplayName = 'Error Task';
-
-  category = 'bar';
+  taskMetadata = {
+    taskName: 'error-task',
+    taskDisplayName: 'Error Task',
+    category: 'bar',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);
@@ -105,10 +114,11 @@ class ErrorTask extends BaseTask implements Task {
 }
 
 class TaskWithoutCategory extends BaseTask implements Task {
-  taskName = 'task-without-category';
-  taskDisplayName = 'Task Without Category';
-
-  category = '';
+  taskMetadata = {
+    taskName: 'task-without-category',
+    taskDisplayName: 'Task Without Category',
+    category: '',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);

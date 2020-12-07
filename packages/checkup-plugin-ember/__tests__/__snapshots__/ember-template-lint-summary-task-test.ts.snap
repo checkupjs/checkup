@@ -22,7 +22,7 @@ Array [
     "occurrenceCount": 1,
     "properties": Object {
       "category": "linting",
-      "group": "ember",
+      "group": "linting-summary",
       "lintRuleId": "no-bare-strings",
       "taskDisplayName": "Template Lint Summary",
       "type": "error",
@@ -49,7 +49,7 @@ Array [
     "occurrenceCount": 1,
     "properties": Object {
       "category": "linting",
-      "group": "ember",
+      "group": "linting-summary",
       "lintRuleId": "no-bare-strings",
       "taskDisplayName": "Template Lint Summary",
       "type": "error",
@@ -76,7 +76,7 @@ Array [
     "occurrenceCount": 1,
     "properties": Object {
       "category": "linting",
-      "group": "ember",
+      "group": "linting-summary",
       "lintRuleId": "no-inline-styles",
       "taskDisplayName": "Template Lint Summary",
       "type": "error",
@@ -103,7 +103,7 @@ Array [
     "occurrenceCount": 1,
     "properties": Object {
       "category": "linting",
-      "group": "ember",
+      "group": "linting-summary",
       "lintRuleId": "require-valid-alt-text",
       "taskDisplayName": "Template Lint Summary",
       "type": "warning",

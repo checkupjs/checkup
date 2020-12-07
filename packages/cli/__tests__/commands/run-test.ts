@@ -15,10 +15,12 @@ import { runCommand } from '../../src/run-command';
 const TEST_TIMEOUT = 100000;
 
 class FooTask extends BaseTask implements Task {
-  taskName = 'foo';
-  taskDisplayName = 'Foo Task';
-  category = 'fake1';
-  group = 'group1';
+  taskMetadata = {
+    taskName: 'foo',
+    taskDisplayName: 'Foo Task',
+    category: 'fake1',
+    group: 'group1',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);
@@ -29,10 +31,12 @@ class FooTask extends BaseTask implements Task {
 }
 
 class FileCountTask extends BaseTask implements Task {
-  taskName = 'file-count';
-  taskDisplayName = 'File Count Task';
-  category = 'fake2';
-  group = 'group2';
+  taskMetadata = {
+    taskName: 'file-count',
+    taskDisplayName: 'File Count Task',
+    category: 'fake2',
+    group: 'group2',
+  };
 
   constructor(context: TaskContext) {
     super('fake', context);

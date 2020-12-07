@@ -15,10 +15,12 @@ import { join, resolve } from 'path';
 import { Result } from 'sarif';
 
 export default class TemplateLintSummaryTask extends BaseTask implements Task {
-  taskName = 'ember-template-lint-summary';
-  taskDisplayName = 'Template Lint Summary';
-  category = 'linting';
-  group = 'ember';
+  taskMetadata = {
+    taskName: 'ember-template-lint-summary',
+    taskDisplayName: 'Template Lint Summary',
+    category: 'linting',
+    group: 'linting-summary',
+  };
 
   private templateLinter: TemplateLinter;
 

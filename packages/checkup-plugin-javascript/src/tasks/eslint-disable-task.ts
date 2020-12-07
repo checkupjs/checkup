@@ -17,10 +17,12 @@ const fs = require('fs');
 const ESLINT_DISABLE_REGEX = /^eslint-disable(?:-next-line|-line)*/gi;
 
 export default class EslintDisableTask extends BaseTask implements Task {
-  taskName = 'eslint-disables';
-  taskDisplayName = 'Number of eslint-disable Usages';
-  category = 'linting';
-  group = 'disabled-lint-rules';
+  taskMetadata = {
+    taskName: 'eslint-disables',
+    taskDisplayName: 'Number of eslint-disable Usages',
+    category: 'linting',
+    group: 'disabled-lint-rules',
+  };
 
   async run(): Promise<Result[]> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
