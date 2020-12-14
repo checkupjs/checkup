@@ -8,7 +8,8 @@ export function getLog(
   taskResults: Result[],
   actions: Action[],
   invocation: Invocation,
-  taskList: TaskList
+  taskList: TaskList,
+  executedTasks: Task[]
 ): Log {
   let _info = Object.assign(
     {},
@@ -26,7 +27,7 @@ export function getLog(
         tool: {
           driver: {
             name: 'Checkup',
-            rules: getReportingDescriptors(taskList),
+            rules: getReportingDescriptors(executedTasks),
             language: 'en-US',
             informationUri: 'https://github.com/checkupjs/checkup',
             version: _info.cli.version,
@@ -42,8 +43,7 @@ export function getLog(
  * @param taskNames
  * @returns {ReportingDescriptor[]} used to populate tool.driver.rules
  */
-function getReportingDescriptors(taskList: TaskList): ReportingDescriptor[] {
-  let tasks = taskList.getTasks();
+function getReportingDescriptors(tasks: Task[]): ReportingDescriptor[] {
   return tasks.map((task: Task) => {
     return {
       id: task.taskName,

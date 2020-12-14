@@ -111,6 +111,16 @@ config dd17cda1fc2eb2bc6bb5206b41fc1a84
 "
 `;
 
+exports[`@checkup/cli normal cli output should output list of available tasks 1`] = `
+"
+AVAILABLE TASKS
+
+  fake/file-count
+  fake/foo
+
+"
+`;
+
 exports[`@checkup/cli normal cli output should run a single task if the tasks option is specified with a single task 1`] = `
 "
 Checkup report generated for checkup-app v0.0.0 (6 files analyzed)

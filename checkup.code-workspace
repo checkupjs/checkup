@@ -15,7 +15,8 @@
     "files.exclude": {
       "**/node_modules/**": true
     },
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.formatOnSave": true
   },
   "files.associations": {}
 }

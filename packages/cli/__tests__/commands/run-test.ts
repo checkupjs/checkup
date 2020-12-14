@@ -64,6 +64,7 @@ describe('@checkup/cli', () => {
     });
 
     afterEach(function () {
+      _resetTasksForTesting();
       project.dispose();
     });
 
@@ -80,7 +81,7 @@ describe('@checkup/cli', () => {
           '',
           'This project is 0 days old, with 0 days active days, 0 commits and 0 files.',
           '',
-          'Checkup ran the following tasks successfully:',
+          'Checkup ran the following task(s) successfully:',
           '',
           'Results have been saved to the following file:',
           '<outputPath>',
@@ -88,6 +89,19 @@ describe('@checkup/cli', () => {
           'checkup v0.0.0',
           'config dd17cda1fc2eb2bc6bb5206b41fc1a84',
         ]);
+      },
+      TEST_TIMEOUT
+    );
+
+    it(
+      'should output list of available tasks',
+      async () => {
+        _registerTaskForTesting(new FileCountTask(getTaskContext()));
+        _registerTaskForTesting(new FooTask(getTaskContext()));
+
+        await runCommand(['run', '--cwd', project.baseDir, '--listTasks']);
+
+        expect(stdout()).toMatchSnapshot();
       },
       TEST_TIMEOUT
     );
@@ -142,7 +156,6 @@ describe('@checkup/cli', () => {
       await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir, '--verbose']);
 
       expect(stdout()).toMatchSnapshot();
-      _resetTasksForTesting();
     });
 
     it('should run with timing if CHECKUP_TIMING=1', async () => {
@@ -153,7 +166,6 @@ describe('@checkup/cli', () => {
 
       expect(stdout()).toContain('Task Timings');
       process.env.CHECKUP_TIMING = undefined;
-      _resetTasksForTesting();
     });
 
     it('should run multiple tasks if the tasks option is specified with multiple tasks', async () => {
@@ -172,7 +184,6 @@ describe('@checkup/cli', () => {
       ]);
 
       expect(stdout()).toMatchSnapshot();
-      _resetTasksForTesting();
     });
 
     it('should run only one task if the category option is specified', async () => {
@@ -182,7 +193,6 @@ describe('@checkup/cli', () => {
       await runCommand(['run', '--category', 'fake1', '--cwd', project.baseDir, '--verbose']);
 
       expect(stdout()).toMatchSnapshot();
-      _resetTasksForTesting();
     });
 
     it('should run multiple tasks if the category option is specified with multiple categories', async () => {
@@ -201,7 +211,6 @@ describe('@checkup/cli', () => {
       ]);
 
       expect(stdout()).toMatchSnapshot();
-      _resetTasksForTesting();
     });
 
     it('should run only one task if the group option is specified', async () => {
@@ -211,7 +220,6 @@ describe('@checkup/cli', () => {
       await runCommand(['run', '--group', 'group1', '--cwd', project.baseDir, '--verbose']);
 
       expect(stdout()).toMatchSnapshot();
-      _resetTasksForTesting();
     });
 
     it('should run multiple tasks if the group option is specified with multiple groups', async () => {
@@ -230,7 +238,6 @@ describe('@checkup/cli', () => {
       ]);
 
       expect(stdout()).toMatchSnapshot();
-      _resetTasksForTesting();
     });
 
     it(
@@ -251,8 +258,6 @@ describe('@checkup/cli', () => {
         ]);
 
         expect(stdout()).toMatchSnapshot();
-        project.dispose();
-        _resetTasksForTesting();
       },
       TEST_TIMEOUT
     );
@@ -314,7 +319,6 @@ describe('@checkup/cli', () => {
         expect(unFilteredRun).toMatchSnapshot();
 
         expect(filteredRun).not.toStrictEqual(unFilteredRun);
-        _resetTasksForTesting();
       },
       TEST_TIMEOUT
     );
