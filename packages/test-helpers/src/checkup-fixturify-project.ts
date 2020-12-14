@@ -18,6 +18,16 @@ const walkSync = require('walk-sync');
 export default class CheckupFixturifyProject extends Project {
   _hasWritten: boolean = false;
 
+  constructor(name: string, version?: string, cb?: (project: Project) => void, root?: string) {
+    super(name, version, cb, root);
+
+    this.pkg = Object.assign({}, this.pkg, {
+      license: 'MIT',
+      description: 'Fake project',
+      repository: 'http://fakerepo.com',
+    });
+  }
+
   writeSync() {
     super.writeSync(...arguments);
     this._hasWritten = true;
@@ -49,7 +59,9 @@ export default class CheckupFixturifyProject extends Project {
   install() {
     let cmd: string;
 
-    cmd = existsSync(join(this.baseDir, 'yarn.lock')) ? 'yarn install' : 'npm install';
+    cmd = existsSync(join(this.baseDir, 'yarn.lock'))
+      ? 'yarn install --silent'
+      : 'npm install --loglevel error';
 
     try {
       execSync(cmd, { cwd: this.baseDir });
