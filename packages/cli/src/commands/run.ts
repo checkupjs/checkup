@@ -109,6 +109,7 @@ export default class RunCommand extends BaseCommand {
     }),
     listTasks: flags.boolean({
       char: 'l',
+
       description: 'List all available tasks to run.',
     }),
     verbose: flags.boolean({
@@ -127,6 +128,7 @@ export default class RunCommand extends BaseCommand {
   startTime: string = '';
   actions: Action[] = [];
   checkupConfig!: CheckupConfig;
+  executedTasks!: Task[];
   cliModeEnabled: boolean = true;
 
   get taskFilterType() {
@@ -179,7 +181,8 @@ export default class RunCommand extends BaseCommand {
         this.pluginTaskResults,
         this.actions,
         this.getInvocation(errors),
-        this.pluginTasks
+        this.pluginTasks,
+        this.executedTasks
       );
 
       if (this.cliModeEnabled) {
@@ -215,8 +218,11 @@ export default class RunCommand extends BaseCommand {
         this.extendedError(new CheckupError(error.message(tasksNotFound), error.callToAction));
         ui.action.stop();
       }
+
+      this.executedTasks = tasksFound;
     } else {
       [this.pluginTaskResults, this.pluginTaskErrors] = await this.pluginTasks.runTasks();
+      this.executedTasks = this.pluginTasks.getTasks();
     }
   }
 

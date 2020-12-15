@@ -11,7 +11,7 @@ export function report(result: Log, flags?: RunFlags) {
 
   renderInfo(metaData);
 
-  ui.log('Checkup ran the following tasks successfully:');
+  ui.log('Checkup ran the following task(s) successfully:');
   rules!
     .map((rule) => rule.id)
     .sort()
