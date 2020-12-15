@@ -57,35 +57,36 @@ USAGE
   $ checkup [run] PATHS
 
 ARGUMENTS
-  PATHS  The paths that checkup will operate on. If no paths are provided, checkup
-         will run on the entire directory beginning at --cwd.
+  PATHS  The paths that checkup will operate on. If no paths are provided, checkup will run on the entire directory beginning
+         at --cwd.
 
 OPTIONS
-  -c, --config=config              Use this configuration, overriding .checkuprc.*
-                                   if present.
+  -c, --config=config                Use this configuration, overriding .checkuprc.* if present.
 
-  -d, --cwd=cwd                    [default: /Users/scalvert/Workspace/travis-web]
-                                   The path referring to the root directory that
-                                   Checkup will run in
+  -d, --cwd=cwd                      [default: '.'] The path referring to the root
+                                     directory that Checkup will run in
 
-  -e, --exclude-paths=excludePaths  Paths to exclude from checkup. If paths are
-                                   provided via command line and via checkup
-                                   config, command line paths will be used.
+  -e, --exclude-paths=exclude-paths  Paths to exclude from checkup. If paths are provided via command line and via checkup
+                                     config, command line paths will be used.
 
-  -f, --format=stdout|json         [default: stdout] The output format, one of
-                                   stdout, json
+  -f, --format=stdout|json           [default: stdout] The output format, one of stdout, json
 
-  -h, --help                       show CLI help
+  -h, --help                         show CLI help
 
-  -l, --list-tasks                  List all available tasks to run.
+  -l, --list-tasks                   List all available tasks to run.
 
-  -o, --output-file=outputFile      Specify file to write report to.
+  -o, --output-file=output-file      Specify file to write JSON output to. Requires the `--format` flag to be set to `json`
 
-  -t, --task=task                  Runs specific task specified by the fully
-                                   qualified task name in the format
-                                   pluginName/taskName. Can be used multiple times.
+  -t, --task=task                    Runs specific tasks specified by the fully qualified task name in the format
+                                     pluginName/taskName. Can be used multiple times.
 
-  -v, --version                    show CLI version
+  -v, --version                      show CLI version
+
+  --category=category                Runs specific tasks specified by category. Can be used multiple times.
+
+  --group=group                      Runs specific tasks specified by group. Can be used multiple times.
+
+  --verbose
 ```
 
 _See code: [src/commands/run.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/run.ts)_
