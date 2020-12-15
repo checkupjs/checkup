@@ -21,14 +21,14 @@ const DEFAULT_FLAGS: RunFlags = {
   version: undefined,
   help: undefined,
   config: undefined,
-  excludePaths: undefined,
+  'exclude-paths': undefined,
   cwd: process.cwd(),
   category: undefined,
   group: undefined,
   task: undefined,
-  listTasks: false,
+  'list-tasks': false,
   format: 'stdout',
-  outputFile: '',
+  'output-file': '',
   verbose: false,
 };
 

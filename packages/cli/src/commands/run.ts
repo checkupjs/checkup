@@ -63,7 +63,7 @@ export default class RunCommand extends BaseCommand {
   static flags = {
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' }),
-    excludePaths: flags.string({
+    'exclude-paths': flags.string({
       description:
         'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
       char: 'e',
@@ -101,19 +101,19 @@ export default class RunCommand extends BaseCommand {
       default: 'stdout',
       description: `The output format, one of ${[...Object.values(OutputFormat)].join(', ')}`,
     }),
-    outputFile: flags.string({
+    'output-file': flags.string({
       char: 'o',
       default: '',
       description:
         'Specify file to write JSON output to. Requires the `--format` flag to be set to `json`',
     }),
-    listTasks: flags.boolean({
+    'list-tasks': flags.boolean({
       char: 'l',
 
       description: 'List all available tasks to run.',
     }),
     verbose: flags.boolean({
-      exclusive: ['format'],
+      exclusive: ['format', 'output-file'],
     }),
   };
 
@@ -146,10 +146,10 @@ export default class RunCommand extends BaseCommand {
   public async init() {
     let { argv, flags } = this.parse(RunCommand);
 
-    if (flags.outputFile && flags.format !== OutputFormat.json) {
+    if (flags['output-file'] && flags.format !== OutputFormat.json) {
       this.error(
         new Error(
-          'Missing --format flag. --format=json must also be provided when using --outputFile'
+          'Missing --format flag. --format=json must also be provided when using --output-file'
         )
       );
     }
@@ -164,7 +164,7 @@ export default class RunCommand extends BaseCommand {
 
     await this.register();
 
-    if (this.runFlags.listTasks) {
+    if (this.runFlags['list-tasks']) {
       this.printAvailableTasks();
     } else {
       if (this.cliModeEnabled) {
@@ -294,7 +294,7 @@ export default class RunCommand extends BaseCommand {
     });
 
     // if excludePaths are provided both via the command line and config, the command line is prioritized
-    let excludePaths = this.runFlags.excludePaths || this.checkupConfig.excludePaths;
+    let excludePaths = this.runFlags['exclude-paths'] || this.checkupConfig.excludePaths;
 
     taskContext = Object.freeze({
       cliArguments: this.runArgs,
@@ -336,7 +336,7 @@ export default class RunCommand extends BaseCommand {
       endTimeUtc: new Date().toJSON(),
       environmentVariables: {
         cwd: this.runFlags.cwd,
-        outputFile: this.runFlags.outputFile,
+        outputFile: this.runFlags['output-file'],
         format: this.runFlags.format,
       },
       toolExecutionNotifications: buildNotificationsFromTaskErrors(errors),

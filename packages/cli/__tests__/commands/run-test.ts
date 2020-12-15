@@ -99,7 +99,7 @@ describe('@checkup/cli', () => {
         _registerTaskForTesting(new FileCountTask(getTaskContext()));
         _registerTaskForTesting(new FooTask(getTaskContext()));
 
-        await runCommand(['run', '--cwd', project.baseDir, '--listTasks']);
+        await runCommand(['run', '--cwd', project.baseDir, '--list-tasks']);
 
         expect(stdout()).toMatchSnapshot();
       },
@@ -126,7 +126,7 @@ describe('@checkup/cli', () => {
     });
 
     it(
-      'should output a json file in a custom directory if the json format and outputFile options are provided',
+      'should output a json file in a custom directory if the json format and output-file options are provided',
       async () => {
         let tmp = createTmpDir();
 
@@ -134,7 +134,7 @@ describe('@checkup/cli', () => {
           'run',
           '--format',
           'json',
-          `--outputFile`,
+          `--output-file`,
           join(tmp, 'my-checkup-file.json'),
           '--cwd',
           project.baseDir,
@@ -356,7 +356,7 @@ describe('@checkup/cli', () => {
           'run',
           '--cwd',
           project.baseDir,
-          '--excludePaths',
+          '--exclude-paths',
           '**/*.hbs',
           '**/*.js',
           '--verbose',
@@ -372,7 +372,7 @@ describe('@checkup/cli', () => {
           'run',
           '--cwd',
           project.baseDir,
-          '--excludePaths',
+          '--exclude-paths',
           '**/*.hbs',
           '--verbose',
         ]);
@@ -395,7 +395,7 @@ describe('@checkup/cli', () => {
           'run',
           '--cwd',
           project.baseDir,
-          '--excludePaths',
+          '--exclude-paths',
           '**/*.js',
           '--verbose',
         ]);

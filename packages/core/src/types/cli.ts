@@ -6,9 +6,9 @@ export type RunFlags = {
   category: string[] | undefined;
   group: string[] | undefined;
   task: string[] | undefined;
-  listTasks: boolean;
+  'list-tasks': boolean;
   format: string;
-  outputFile: string;
-  excludePaths: string[] | undefined;
+  'output-file': string;
+  'exclude-paths': string[] | undefined;
   verbose: boolean;
 };
