@@ -113,7 +113,7 @@ export default class RunCommand extends BaseCommand {
       description: 'List all available tasks to run.',
     }),
     verbose: flags.boolean({
-      exclusive: ['format'],
+      exclusive: ['format', 'output-file'],
     }),
   };
 
