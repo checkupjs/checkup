@@ -68,7 +68,7 @@ OPTIONS
                                    The path referring to the root directory that
                                    Checkup will run in
 
-  -e, --excludePaths=excludePaths  Paths to exclude from checkup. If paths are
+  -e, --exclude-paths=excludePaths  Paths to exclude from checkup. If paths are
                                    provided via command line and via checkup
                                    config, command line paths will be used.
 
@@ -77,9 +77,9 @@ OPTIONS
 
   -h, --help                       show CLI help
 
-  -l, --listTasks                  List all available tasks to run.
+  -l, --list-tasks                  List all available tasks to run.
 
-  -o, --outputFile=outputFile      Specify file to write report to.
+  -o, --output-file=outputFile      Specify file to write report to.
 
   -t, --task=task                  Runs specific task specified by the fully
                                    qualified task name in the format
