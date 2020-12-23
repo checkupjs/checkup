@@ -1,5 +1,5 @@
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
-import { JsonObject, PackageJson } from 'type-fest';
+import { PackageJson } from 'type-fest';
 
 import { CheckupConfig, TaskConfig } from './config';
 import { FilePathArray } from '../utils/file-path-array';
@@ -66,8 +66,6 @@ export interface TaskContext {
   readonly pkg: PackageJson;
   readonly paths: FilePathArray;
 }
-
-export type JsonMetaTaskResult = JsonObject;
 
 export enum OutputFormat {
   stdout = 'stdout',

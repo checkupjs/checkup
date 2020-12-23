@@ -24,12 +24,9 @@ import {
 
 import { flags } from '@oclif/command';
 import { BaseCommand } from '../base-command';
-import MetaTaskList from '../meta-task-list';
-import { MetaTaskResult } from '../types';
 import TaskList from '../task-list';
 import { getPackageJson } from '../utils/get-package-json';
 import { getReporter } from '../reporters/get-reporter';
-import ProjectMetaTask from '../tasks/project-meta-task';
 import { getLog } from '../get-log';
 import { reportAvailableTasks } from '../reporters/available-task-reporter';
 import { Invocation, Log, Result } from 'sarif';
@@ -119,9 +116,6 @@ export default class RunCommand extends BaseCommand {
 
   runArgs!: string[];
   runFlags!: RunFlags;
-  defaultTasks: MetaTaskList = new MetaTaskList();
-  metaTaskResults: MetaTaskResult[] = [];
-  metaTaskErrors: TaskError[] = [];
   pluginTasks: TaskList = new TaskList();
   pluginTaskResults: Result[] = [];
   pluginTaskErrors: TaskError[] = [];
@@ -130,6 +124,7 @@ export default class RunCommand extends BaseCommand {
   checkupConfig!: CheckupConfig;
   executedTasks!: Task[];
   cliModeEnabled: boolean = true;
+  taskContext!: TaskContext;
 
   get taskFilterType() {
     if (this.runFlags.task !== undefined) {
@@ -174,13 +169,11 @@ export default class RunCommand extends BaseCommand {
       await this.runTasks();
       await this.runActions();
 
-      let errors = [...this.metaTaskErrors, ...this.pluginTaskErrors];
-
-      let log: Log = getLog(
-        this.metaTaskResults,
+      let log: Log = await getLog(
+        this.taskContext,
         this.pluginTaskResults,
         this.actions,
-        this.getInvocation(errors),
+        this.getInvocation(this.pluginTaskErrors),
         this.pluginTasks,
         this.executedTasks
       );
@@ -194,15 +187,7 @@ export default class RunCommand extends BaseCommand {
     }
   }
 
-  private async registerDefaultTasks(context: TaskContext) {
-    let pluginName = 'meta';
-
-    this.defaultTasks.registerTask(new ProjectMetaTask(pluginName, context));
-  }
-
   private async runTasks() {
-    [this.metaTaskResults, this.metaTaskErrors] = await this.defaultTasks.runTasks();
-
     if (this.taskFilterType) {
       let { tasksFound, tasksNotFound } = this.findTasks();
 
@@ -239,7 +224,7 @@ export default class RunCommand extends BaseCommand {
   }
 
   private runActions() {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       let evaluators = getRegisteredActions();
 
       for (let [taskName, evaluator] of evaluators) {
@@ -279,8 +264,6 @@ export default class RunCommand extends BaseCommand {
   }
 
   private async register() {
-    let taskContext: TaskContext;
-
     await this.config.runHook('register-parsers', {
       registerParser,
     });
@@ -296,7 +279,7 @@ export default class RunCommand extends BaseCommand {
     // if excludePaths are provided both via the command line and config, the command line is prioritized
     let excludePaths = this.runFlags['exclude-paths'] || this.checkupConfig.excludePaths;
 
-    taskContext = Object.freeze({
+    this.taskContext = Object.freeze({
       cliArguments: this.runArgs,
       cliFlags: this.runFlags,
       parsers: getRegisteredParsers(),
@@ -307,10 +290,8 @@ export default class RunCommand extends BaseCommand {
       ) as FilePathArray,
     });
 
-    await this.registerDefaultTasks(taskContext);
-
     await this.config.runHook('register-tasks', {
-      context: taskContext,
+      context: this.taskContext,
       tasks: this.pluginTasks,
     });
 
