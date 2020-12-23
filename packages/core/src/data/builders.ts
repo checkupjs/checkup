@@ -3,8 +3,6 @@ import { LintResult, TaskError, Task } from '../types/tasks';
 import { TemplateLintMessage, TemplateLintResult } from '../types/ember-template-lint';
 import { Result, Location, Notification } from 'sarif';
 
-export const NO_RESULTS_FOUND = 'No results found';
-
 /**
  * @param lintResult {LintResult}
  * @returns Location[]
@@ -62,7 +60,7 @@ export function buildResultsFromLintResult(
   additionalData: object = {}
 ): Result[] {
   if (lintResults.length === 0) {
-    return buildEmptyResult(taskContext);
+    return [];
   }
 
   return lintResults.map((lintResult) => {
@@ -95,7 +93,7 @@ export function buildResultsFromPathArray(
   message: string
 ): Result[] {
   if (paths.length === 0) {
-    return buildEmptyResult(taskContext, message);
+    return [];
   }
 
   return paths.map((path) => {
@@ -124,7 +122,7 @@ export function buildResultsFromProperties(
   message: string
 ): Result[] {
   if (data.length === 0) {
-    return buildEmptyResult(taskContext, message);
+    return [];
   }
 
   return [
@@ -134,26 +132,6 @@ export function buildResultsFromProperties(
       occurrenceCount: data.length,
       properties: {
         data: data,
-        ...{
-          taskDisplayName: taskContext.taskDisplayName,
-          category: taskContext.category,
-          group: taskContext.group,
-        },
-      },
-    },
-  ];
-}
-
-function buildEmptyResult(
-  taskContext: Pick<Task, 'taskName' | 'taskDisplayName' | 'category' | 'group'>,
-  consoleMessage?: string
-): Result[] {
-  return [
-    {
-      message: { text: NO_RESULTS_FOUND },
-      ruleId: taskContext.taskName,
-      properties: {
-        consoleMessage,
         ...{
           taskDisplayName: taskContext.taskDisplayName,
           category: taskContext.category,

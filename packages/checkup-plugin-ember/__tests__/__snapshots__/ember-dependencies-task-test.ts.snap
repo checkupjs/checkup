@@ -48,18 +48,6 @@ Array [
   },
   Object {
     "message": Object {
-      "text": "No results found",
-    },
-    "properties": Object {
-      "category": "dependencies",
-      "consoleMessage": "ember addon devDependencies",
-      "group": "ember",
-      "taskDisplayName": "Ember Dependencies",
-    },
-    "ruleId": "ember-dependencies",
-  },
-  Object {
-    "message": Object {
       "text": "ember-cli addon dependencies",
     },
     "occurrenceCount": 2,

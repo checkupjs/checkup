@@ -47,6 +47,18 @@ class FileCountTask extends BaseTask implements Task {
     return buildResultsFromProperties(this, [], 'hi');
   }
 }
+class TaskWithNoResults extends BaseTask implements Task {
+  taskName = 'no-results-task';
+  taskDisplayName = 'Task Without Results';
+  category = 'fake3';
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<Result[]> {
+    return [];
+  }
+}
 
 describe('@checkup/cli', () => {
   describe('normal cli output', () => {
@@ -160,6 +172,21 @@ describe('@checkup/cli', () => {
       _registerTaskForTesting(new FileCountTask(getTaskContext()));
 
       await runCommand(['run', '--task', 'fake/file-count', '--cwd', project.baseDir, '--verbose']);
+
+      expect(stdout()).toMatchSnapshot();
+    });
+
+    it('should render list of tasks with no results in verbose mode', async () => {
+      _registerTaskForTesting(new TaskWithNoResults(getTaskContext()));
+
+      await runCommand([
+        'run',
+        '--task',
+        'fake/no-results-task',
+        '--cwd',
+        project.baseDir,
+        '--verbose',
+      ]);
 
       expect(stdout()).toMatchSnapshot();
     });

@@ -121,6 +121,27 @@ AVAILABLE TASKS
 "
 `;
 
+exports[`@checkup/cli normal cli output should render list of tasks with no results in verbose mode 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+■ js (2)
+■ hbs (1)
+
+
+No Results Found For
+
+■ Task Without Results
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+
+"
+`;
+
 exports[`@checkup/cli normal cli output should run a single task if the tasks option is specified with a single task 1`] = `
 "
 Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
@@ -131,12 +152,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■ js (2)
 ■ hbs (1)
 
-=== Fake 2
 
-File Count Task
+No Results Found For
 
-■ hi (0)
-
+■ File Count Task
 
 checkup v0.0.0
 config dd17cda1fc2eb2bc6bb5206b41fc1a84
@@ -154,12 +173,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■ js (2)
 ■ hbs (1)
 
-=== Fake 2
 
-File Count Task
+No Results Found For
 
-■ hi (0)
-
+■ File Count Task
 
 checkup v0.0.0
 config 2910e38984c8092494a42c88b642b9de
@@ -177,18 +194,11 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■ js (2)
 ■ hbs (1)
 
-=== Fake 2
 
-File Count Task
+No Results Found For
 
-■ hi (0)
-
-=== Fake 1
-
-Foo Task
-
-■ hi (0)
-
+■ Foo Task
+■ File Count Task
 
 checkup v0.0.0
 config dd17cda1fc2eb2bc6bb5206b41fc1a84
@@ -206,18 +216,11 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■ js (2)
 ■ hbs (1)
 
-=== Fake 2
 
-File Count Task
+No Results Found For
 
-■ hi (0)
-
-=== Fake 1
-
-Foo Task
-
-■ hi (0)
-
+■ Foo Task
+■ File Count Task
 
 checkup v0.0.0
 config dd17cda1fc2eb2bc6bb5206b41fc1a84
@@ -235,18 +238,11 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■ js (2)
 ■ hbs (1)
 
-=== Fake 2
 
-File Count Task
+No Results Found For
 
-■ hi (0)
-
-=== Fake 1
-
-Foo Task
-
-■ hi (0)
-
+■ File Count Task
+■ Foo Task
 
 checkup v0.0.0
 config dd17cda1fc2eb2bc6bb5206b41fc1a84
@@ -264,12 +260,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■ js (2)
 ■ hbs (1)
 
-=== Fake 1
 
-Foo Task
+No Results Found For
 
-■ hi (0)
-
+■ Foo Task
 
 checkup v0.0.0
 config dd17cda1fc2eb2bc6bb5206b41fc1a84
@@ -287,12 +281,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■ js (2)
 ■ hbs (1)
 
-=== Fake 1
 
-Foo Task
+No Results Found For
 
-■ hi (0)
-
+■ Foo Task
 
 checkup v0.0.0
 config dd17cda1fc2eb2bc6bb5206b41fc1a84
@@ -310,12 +302,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■ hbs (2)
 ■ js (1)
 
-=== Fake 2
 
-File Count Task
+No Results Found For
 
-■ hi (0)
-
+■ File Count Task
 
 checkup v0.0.0
 config dd17cda1fc2eb2bc6bb5206b41fc1a84
@@ -333,12 +323,10 @@ This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 ■ js (4)
 ■ hbs (2)
 
-=== Fake 2
 
-File Count Task
+No Results Found For
 
-■ hi (0)
-
+■ File Count Task
 
 checkup v0.0.0
 config dd17cda1fc2eb2bc6bb5206b41fc1a84

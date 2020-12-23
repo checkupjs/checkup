@@ -153,6 +153,12 @@ export const ui: typeof ux & { [key: string]: any } = Object.assign(ux, {
     );
   },
 
+  stringsList(strings: string[], color: chalk.Chalk = ui.randomColor()) {
+    strings.forEach((string) => {
+      ui.log(`${color('■')} ${string}`);
+    });
+  },
+
   randomColor() {
     const colors = this.colors();
     return colors[Math.floor(Math.random() * colors.length)];

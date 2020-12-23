@@ -4,13 +4,12 @@ import {
   getRegisteredTaskReporters,
   ui,
   groupDataByField,
-  NO_RESULTS_FOUND,
   sumOccurrences,
   combineResultsForRendering,
 } from '@checkup/core';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
-import { Invocation, Log, Notification, Result, Run } from 'sarif';
+import { Invocation, Log, Notification, Result, Run, ReportingDescriptor } from 'sarif';
 import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './reporter-utils';
 
 let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
@@ -21,11 +20,7 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
 
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
       taskResults.forEach((result: Result) => {
-        if (result.message.text === NO_RESULTS_FOUND) {
-          renderEmptyResult(result);
-        } else {
-          ui.value({ title: result.message.text, count: result.properties?.data.length });
-        }
+        ui.value({ title: result.message.text, count: result.properties?.data.length });
       });
     });
   },
@@ -40,11 +35,7 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
         ui.subHeader(groupedTaskResultsByMethod[0].message.text);
         ui.valuesList(
           groupedTaskResultsByMethod.map((result) => {
-            if (result.message.text === NO_RESULTS_FOUND) {
-              renderEmptyResult(result);
-            } else {
-              return { title: result.properties?.method, count: result.occurrenceCount };
-            }
+            return { title: result.properties?.method, count: result.occurrenceCount };
           })
         );
         ui.blankLine();
@@ -78,11 +69,7 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
         ui.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
         ui.valuesList(
           groupedTaskResultsByLintRuleId.map((result) => {
-            if (result.message.text === NO_RESULTS_FOUND) {
-              renderEmptyResult(result);
-            } else {
-              return { title: result.properties?.lintRuleId, count: result.occurrenceCount };
-            }
+            return { title: result.properties?.lintRuleId, count: result.occurrenceCount };
           }),
           'violations'
         );
@@ -96,11 +83,7 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
       ui.sectionedBar(
         taskResults.map((result: Result) => {
-          if (result.message.text === NO_RESULTS_FOUND) {
-            renderEmptyResult(result);
-          } else {
-            return { title: result.message.text, count: result.occurrenceCount };
-          }
+          return { title: result.message.text, count: result.occurrenceCount };
         }),
         sumOccurrences(taskResults),
         'dependencies'
@@ -117,6 +100,7 @@ export function report(result: Log) {
 
   result.runs.forEach((run: Run) => {
     renderTaskResults(run.results);
+    renderTasksWithNoResults(run.results, run.tool.driver.rules);
     run.invocations?.forEach((invocation: Invocation) => {
       renderErrors(invocation.toolExecutionNotifications);
     });
@@ -153,6 +137,30 @@ function renderTaskResults(pluginTaskResults: Result[] | undefined): void {
   ui.blankLine();
 }
 
+function renderTasksWithNoResults(
+  pluginTaskResults: Result[] | undefined,
+  rules: ReportingDescriptor[] | undefined
+) {
+  let tasksWithoutResults: ReportingDescriptor[] = [];
+  if (pluginTaskResults && rules) {
+    rules.forEach((rule) => {
+      if (!pluginTaskResults.find((result) => result.ruleId === rule.id)) {
+        tasksWithoutResults.push(rule);
+      }
+    });
+
+    if (tasksWithoutResults.length > 0) {
+      ui.section('No results found for:', () => {
+        ui.stringsList(
+          tasksWithoutResults.map((task) => {
+            return task.shortDescription?.text;
+          })
+        );
+      });
+    }
+  }
+}
+
 function getTaskReporter(taskResult: Result[]) {
   let taskName = taskResult[0].ruleId as string;
   let registeredTaskReporters = getRegisteredTaskReporters();
@@ -168,13 +176,6 @@ function getTaskReporter(taskResult: Result[]) {
   return reporter;
 }
 
-export function renderEmptyResult(taskResult: Result) {
-  ui.value({
-    title: taskResult.properties?.consoleMessage || taskResult.properties?.taskDisplayName,
-    count: 0,
-  });
-}
-
 function getReportComponent(taskResults: Result[]) {
   const groupedTaskResults = combineResultsForRendering(
     groupDataByField(taskResults, 'message.text')
@@ -182,14 +183,10 @@ function getReportComponent(taskResults: Result[]) {
 
   ui.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
     groupedTaskResults.forEach((result) => {
-      if (result.message.text === NO_RESULTS_FOUND) {
-        renderEmptyResult(result);
-      } else {
-        ui.value({
-          title: result.message.text || result.ruleId,
-          count: result?.occurrenceCount || Number.NaN,
-        });
-      }
+      ui.value({
+        title: result.message.text || result.ruleId,
+        count: result?.occurrenceCount || Number.NaN,
+      });
     });
   });
 }
@@ -244,11 +241,7 @@ function renderLintingSummaryResult(taskResults: Result[]) {
         ui.subHeader(`${groupedTaskResultsByLintRule[0].properties?.type}s: (${totalCount})`);
         ui.valuesList(
           groupedTaskResultsByLintRule.map((result) => {
-            if (result.message.text === NO_RESULTS_FOUND) {
-              renderEmptyResult(result);
-            } else {
-              return { title: result.properties?.lintRuleId, count: result?.occurrenceCount };
-            }
+            return { title: result.properties?.lintRuleId, count: result?.occurrenceCount };
           })
         );
         ui.blankLine();

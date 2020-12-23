@@ -45,7 +45,6 @@ export {
   buildNotificationsFromTaskErrors,
   normalizePath,
   normalizePaths,
-  NO_RESULTS_FOUND,
 } from './data/builders';
 
 export * from './types/cli';
