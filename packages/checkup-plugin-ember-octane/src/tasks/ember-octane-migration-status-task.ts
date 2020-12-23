@@ -103,11 +103,10 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
       this.runTemplateLint(),
     ]);
 
-    let octaneResults = buildResult(
+    return this.buildResult(
       [...esLintReport.results, ...templateLintReport.results],
       this.context.cliFlags.cwd
     );
-    return octaneResults.map((octaneResult) => this.appendCheckupProperties(octaneResult));
   }
 
   private async runEsLint(): Promise<ESLintReport> {
@@ -121,36 +120,36 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
 
     return this.templateLinter.execute(hbsPaths);
   }
-}
 
-function buildResult(lintingResults: (ESLintResult | TemplateLintResult)[], cwd: string): Result[] {
-  let rawData = lintingResults.reduce((resultDataItems, lintingResults) => {
-    let messages = (<any>lintingResults.messages).map(
-      (lintMessage: ESLintMessage | TemplateLintMessage) => {
-        return buildLintResultDataItem(lintMessage, cwd, lintingResults.filePath);
-      }
-    );
+  buildResult(lintingResults: (ESLintResult | TemplateLintResult)[], cwd: string): Result[] {
+    let rawData = lintingResults.reduce((resultDataItems, lintingResults) => {
+      let messages = (<any>lintingResults.messages).map(
+        (lintMessage: ESLintMessage | TemplateLintMessage) => {
+          return buildLintResultDataItem(lintMessage, cwd, lintingResults.filePath);
+        }
+      );
 
-    resultDataItems.push(...messages);
+      resultDataItems.push(...messages);
 
-    return resultDataItems;
-  }, [] as LintResult[]);
+      return resultDataItems;
+    }, [] as LintResult[]);
 
-  return [
-    { key: 'Native Classes', rules: NATIVE_CLASS_RULES },
-    { key: 'Tagless Components', rules: TAGLESS_COMPONENTS_RULES },
-    { key: 'Glimmer Components', rules: GLIMMER_COMPONENTS_RULES },
-    { key: 'Tracked Propeties', rules: TRACKED_PROPERTIES_RULES },
-    { key: 'Angle Brackets Syntax', rules: ANGLE_BRACKETS_SYNTAX_RULES },
-    { key: 'Named Arguments', rules: NAMED_ARGUMENTS_RULES },
-    { key: 'Own Properties', rules: OWN_PROPERTIES_RULES },
-    { key: 'Modifiers', rules: USE_MODIFIERS_RULES },
-  ].flatMap(({ rules, key }) => {
-    let rulesGroupForKey = groupDataByField(byRuleIds(rawData, rules), 'lintRuleId');
-    return rulesGroupForKey.flatMap((rulesForKey) => {
-      return buildResultsFromLintResult(rulesForKey, {
-        resultGroup: key,
+    return [
+      { key: 'Native Classes', rules: NATIVE_CLASS_RULES },
+      { key: 'Tagless Components', rules: TAGLESS_COMPONENTS_RULES },
+      { key: 'Glimmer Components', rules: GLIMMER_COMPONENTS_RULES },
+      { key: 'Tracked Propeties', rules: TRACKED_PROPERTIES_RULES },
+      { key: 'Angle Brackets Syntax', rules: ANGLE_BRACKETS_SYNTAX_RULES },
+      { key: 'Named Arguments', rules: NAMED_ARGUMENTS_RULES },
+      { key: 'Own Properties', rules: OWN_PROPERTIES_RULES },
+      { key: 'Modifiers', rules: USE_MODIFIERS_RULES },
+    ].flatMap(({ rules, key }) => {
+      let rulesGroupForKey = groupDataByField(byRuleIds(rawData, rules), 'lintRuleId');
+      return rulesGroupForKey.flatMap((rulesForKey) => {
+        return buildResultsFromLintResult(this, rulesForKey, {
+          resultGroup: key,
+        });
       });
     });
-  });
+  }
 }

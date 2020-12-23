@@ -1,5 +1,5 @@
 import { ESLintMessage, ESLintReport, ESLintResult } from '../types/parsers';
-import { LintResult, TaskError } from '../types/tasks';
+import { LintResult, TaskError, Task } from '../types/tasks';
 import { TemplateLintMessage, TemplateLintResult } from '../types/ember-template-lint';
 import { Result, Location, Notification } from 'sarif';
 
@@ -52,28 +52,31 @@ function buildLocationDataFromPath(path: string): Location[] {
 }
 
 /**
- *
+ * @param taskContext {Task} This is used to set Task properties on the Result
  * @param lintResults {LintResult[]} The LintResults used to create Result
  * @param [additionalData] {Object} Any additional data to be put into the properties bag
  */
 export function buildResultsFromLintResult(
+  taskContext: Pick<Task, 'taskName' | 'taskDisplayName' | 'category' | 'group'>,
   lintResults: LintResult[],
   additionalData: object = {}
 ): Result[] {
   if (lintResults.length === 0) {
-    return [
-      {
-        message: { text: NO_RESULTS_FOUND },
-      },
-    ];
+    return buildEmptyResult(taskContext);
   }
 
   return lintResults.map((lintResult) => {
     return {
-      message: { text: lintResult.message },
       locations: buildLocationDataFromLintResult(lintResult),
+      message: { text: lintResult.message },
       occurrenceCount: 1,
+      ruleId: taskContext.taskName,
       properties: {
+        ...{
+          taskDisplayName: taskContext.taskDisplayName,
+          category: taskContext.category,
+          group: taskContext.group,
+        },
         ...additionalData,
         lintRuleId: lintResult.lintRuleId,
       },
@@ -82,49 +85,80 @@ export function buildResultsFromLintResult(
 }
 
 /**
+ * @param taskContext {Task} This is used to set Task properties on the Result
  * @param paths {string[]} The paths used to create Result
  * @param message {string} The message that identifies the data represented in the Result
  */
-export function buildResultsFromPathArray(paths: string[], message: string): Result[] {
+export function buildResultsFromPathArray(
+  taskContext: Pick<Task, 'taskName' | 'taskDisplayName' | 'category' | 'group'>,
+  paths: string[],
+  message: string
+): Result[] {
   if (paths.length === 0) {
-    return [
-      {
-        message: { text: NO_RESULTS_FOUND },
-        properties: { consoleMessage: message },
-      },
-    ];
+    return buildEmptyResult(taskContext, message);
   }
 
   return paths.map((path) => {
     return {
-      message: { text: message },
       locations: buildLocationDataFromPath(path),
+      message: { text: message },
       occurrenceCount: 1,
+      ruleId: taskContext.taskName,
+      properties: {
+        taskDisplayName: taskContext.taskDisplayName,
+        category: taskContext.category,
+        group: taskContext.group,
+      },
     };
   });
 }
 
 /**
- *
+ * @param taskContext {Task} This is used to set Task properties on the Result
  * @param key {string} An identifier used to help identify the result
  * @param data {Array<string | object>} The raw data used to derive the result's count
  */
-export function buildResultsFromProperties(data: any[], message: string): Result[] {
+export function buildResultsFromProperties(
+  taskContext: Pick<Task, 'taskName' | 'taskDisplayName' | 'category' | 'group'>,
+  data: any[],
+  message: string
+): Result[] {
   if (data.length === 0) {
-    return [
-      {
-        message: { text: NO_RESULTS_FOUND },
-        properties: { consoleMessage: message },
-      },
-    ];
+    return buildEmptyResult(taskContext, message);
   }
 
   return [
     {
-      occurrenceCount: data.length,
       message: { text: message },
+      ruleId: taskContext.taskName,
+      occurrenceCount: data.length,
       properties: {
         data: data,
+        ...{
+          taskDisplayName: taskContext.taskDisplayName,
+          category: taskContext.category,
+          group: taskContext.group,
+        },
+      },
+    },
+  ];
+}
+
+function buildEmptyResult(
+  taskContext: Pick<Task, 'taskName' | 'taskDisplayName' | 'category' | 'group'>,
+  consoleMessage?: string
+): Result[] {
+  return [
+    {
+      message: { text: NO_RESULTS_FOUND },
+      ruleId: taskContext.taskName,
+      properties: {
+        consoleMessage,
+        ...{
+          taskDisplayName: taskContext.taskDisplayName,
+          category: taskContext.category,
+          group: taskContext.group,
+        },
       },
     },
   ];

@@ -32,8 +32,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   async run(): Promise<Result[]> {
     let esLintReport = await this.runEsLint();
 
-    let results = this.buildResult(esLintReport, this.context.cliFlags.cwd);
-    return results.map((result) => this.appendCheckupProperties(result));
+    return this.buildResult(esLintReport, this.context.cliFlags.cwd);
   }
 
   private async runEsLint(): Promise<ESLintReport> {
@@ -70,7 +69,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     });
 
     return Object.keys(testTypes).flatMap((key) => {
-      return buildResultsFromLintResult(testTypes[key], {
+      return buildResultsFromLintResult(this, testTypes[key], {
         method: testTypes[key][0].method,
       });
     });

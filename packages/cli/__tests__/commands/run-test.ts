@@ -1,4 +1,10 @@
-import { BaseTask, normalizePath, Task, TaskContext } from '@checkup/core';
+import {
+  BaseTask,
+  normalizePath,
+  Task,
+  TaskContext,
+  buildResultsFromProperties,
+} from '@checkup/core';
 import {
   CheckupProject,
   clearStdout,
@@ -24,7 +30,7 @@ class FooTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.appendCheckupProperties({ message: { text: 'hi' }, occurrenceCount: 0 })];
+    return buildResultsFromProperties(this, [], 'hi');
   }
 }
 
@@ -38,7 +44,7 @@ class FileCountTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.appendCheckupProperties({ message: { text: 'hi' }, occurrenceCount: 0 })];
+    return buildResultsFromProperties(this, [], 'hi');
   }
 }
 

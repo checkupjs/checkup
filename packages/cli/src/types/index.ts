@@ -1,4 +1,4 @@
-import { JsonMetaTaskResult, TaskIdentifier } from '@checkup/core';
+import { TaskIdentifier, JsonMetaTaskResult } from '@checkup/core';
 
 export default {};
 
@@ -10,5 +10,5 @@ export interface MetaTask {
 
 export interface MetaTaskResult {
   meta: TaskIdentifier;
-  appendCheckupProperties: () => JsonMetaTaskResult;
+  getData: () => JsonMetaTaskResult;
 }

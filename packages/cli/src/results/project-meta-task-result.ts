@@ -7,7 +7,7 @@ import { JsonObject } from 'type-fest';
 export default class ProjectMetaTaskResult extends BaseMetaTaskResult implements MetaTaskResult {
   data!: CheckupMetadata;
 
-  appendCheckupProperties() {
+  getData() {
     return (this.data as unknown) as JsonObject;
   }
 }

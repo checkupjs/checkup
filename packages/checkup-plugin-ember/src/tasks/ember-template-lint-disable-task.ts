@@ -23,9 +23,7 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.cliFlags.cwd);
 
-    return buildResultsFromLintResult(templateLintDisables).map((result) =>
-      this.appendCheckupProperties(result)
-    );
+    return buildResultsFromLintResult(this, templateLintDisables);
   }
 }
 

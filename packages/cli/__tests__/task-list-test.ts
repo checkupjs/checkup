@@ -16,7 +16,17 @@ class InsightsTaskHigh extends BaseTask implements Task {
   }
 
   async run(): Promise<Result[]> {
-    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
+    return [
+      {
+        message: { text: 'hi' },
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+          group: this.group,
+        },
+        ruleId: this.taskName,
+      },
+    ];
   }
 }
 
@@ -30,7 +40,17 @@ class InsightsTaskLow extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
+    return [
+      {
+        message: { text: 'hi' },
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+          group: this.group,
+        },
+        ruleId: this.taskName,
+      },
+    ];
   }
 }
 
@@ -44,7 +64,17 @@ class RecommendationsTaskHigh extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
+    return [
+      {
+        message: { text: 'hi' },
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+          group: this.group,
+        },
+        ruleId: this.taskName,
+      },
+    ];
   }
 }
 
@@ -58,7 +88,17 @@ class RecommendationsTaskLow extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
+    return [
+      {
+        message: { text: 'hi' },
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+          group: this.group,
+        },
+        ruleId: this.taskName,
+      },
+    ];
   }
 }
 
@@ -72,7 +112,17 @@ class MigrationTaskHigh extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
+    return [
+      {
+        message: { text: 'hi' },
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+          group: this.group,
+        },
+        ruleId: this.taskName,
+      },
+    ];
   }
 }
 
@@ -86,7 +136,17 @@ class MigrationTaskLow extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
+    return [
+      {
+        message: { text: 'hi' },
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+          group: this.group,
+        },
+        ruleId: this.taskName,
+      },
+    ];
   }
 }
 
@@ -115,7 +175,16 @@ class TaskWithoutCategory extends BaseTask implements Task {
   }
 
   async run(): Promise<Result[]> {
-    return [this.appendCheckupProperties({ message: { text: 'hi' } })];
+    return [
+      {
+        message: { text: 'hi' },
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          group: this.group,
+        },
+        ruleId: this.taskName,
+      },
+    ];
   }
 }
 
