@@ -6,6 +6,24 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v0.12.1 (2020-12-23)
+
+#### :boom: Breaking Change
+* `cli`, `core`, `test-helpers`
+  * [#824](https://github.com/checkupjs/checkup/pull/824) Convert all flags to dasherized ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `checkup-plugin-javascript`, `cli`
+  * [#822](https://github.com/checkupjs/checkup/pull/822) Fixes output to only include tasks that were executed. ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.12.0 (2020-12-07)
 
 #### :boom: Breaking Change

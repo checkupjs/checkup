@@ -1,12 +1,12 @@
 {
   "name": "checkup-plugin-javascript",
   "description": "An oclif plugin for Javascript project tasks",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "author": "Cara Kessler @carakessler",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@babel/parser": "^7.12.7",
-    "@checkup/core": "^0.12.0",
+    "@checkup/core": "^0.12.1",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "ember-template-recast": "^5.0.1",
@@ -15,7 +15,7 @@
     "tslib": "^2"
   },
   "devDependencies": {
-    "@checkup/test-helpers": "^0.12.0",
+    "@checkup/test-helpers": "^0.12.1",
     "@oclif/dev-cli": "^1",
     "fixturify-project": "^2.1.0",
     "rimraf": "^3.0.2"
