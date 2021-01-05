@@ -93,8 +93,8 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
     let createEslintParser = this.context.parsers.get('eslint')!;
     let createEmberTemplateLintParser = this.context.parsers.get('ember-template-lint')!;
 
-    this.eslintParser = createEslintParser(OCTANE_ES_LINT_CONFIG);
-    this.templateLinter = createEmberTemplateLintParser(OCTANE_TEMPLATE_LINT_CONFIG);
+    this.eslintParser = createEslintParser(OCTANE_ES_LINT_CONFIG, this.config);
+    this.templateLinter = createEmberTemplateLintParser(OCTANE_TEMPLATE_LINT_CONFIG, this.config);
   }
 
   async run(): Promise<Result[]> {
