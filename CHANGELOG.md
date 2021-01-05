@@ -10,6 +10,21 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v0.13.0 (2021-01-05)
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember-octane`, `core`
+  * [#840](https://github.com/checkupjs/checkup/pull/840) Extend lint tasks with custom config ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.12.1 (2020-12-23)
 
 #### :boom: Breaking Change
