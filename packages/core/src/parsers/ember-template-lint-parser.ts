@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import * as deepmerge from 'deepmerge';
 
 import { CreateParser, Parser } from '../types/parsers';
 import {
@@ -7,6 +8,7 @@ import {
   TemplateLintReport,
   TemplateLintResult,
 } from '../types/ember-template-lint';
+import { TaskConfig } from '../types/config';
 
 const TemplateLinter = require('ember-template-lint');
 
@@ -51,9 +53,14 @@ class EmberTemplateLintParser implements Parser<TemplateLintReport> {
 }
 
 let createParser: CreateParser<TemplateLintConfig, Parser<TemplateLintReport>> = function (
-  config: TemplateLintConfig
+  config: TemplateLintConfig,
+  taskConfig?: TaskConfig
 ) {
+  if (taskConfig && taskConfig.emberTemplateLintConfig) {
+    config = deepmerge(config, taskConfig.emberTemplateLintConfig);
+  }
+
   return new EmberTemplateLintParser(config);
 };
 
-export { createParser };
+export { createParser, EmberTemplateLintParser };

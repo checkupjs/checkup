@@ -1,4 +1,5 @@
 import { CLIEngine, Linter } from 'eslint';
+import { TaskConfig } from './config';
 
 const EmberTemplateLinter = require('ember-template-lint').TemplateLinter;
 
@@ -10,7 +11,7 @@ export interface Parser<ParserReport> {
 }
 
 export interface CreateParser<ParserOptions, TParser = Parser<ParserReport>> {
-  (config: ParserOptions): TParser;
+  (config: ParserOptions, taskConfig?: TaskConfig): TParser;
 }
 
 export type TemplateLinter = typeof EmberTemplateLinter;
