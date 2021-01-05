@@ -6,7 +6,7 @@ import { TemplateLintConfig } from '../../src/types/ember-template-lint';
 
 const TemplateLinter = require('ember-template-lint');
 
-describe('eslint-parser', () => {
+describe('ember-template-lint-parser', () => {
   it('can create an eslint parser', () => {
     let config: TemplateLintConfig = {};
 
