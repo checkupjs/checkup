@@ -14,6 +14,22 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v0.13.1 (2021-01-06)
+
+#### :house: Internal
+* `cli`, `core`
+  * [#830](https://github.com/checkupjs/checkup/pull/830) Removing meta-task as a concept, moving logic from project-meta-task into get-log ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#829](https://github.com/checkupjs/checkup/pull/829) Removing `appendCheckupProperties` and doing it directly in the builders ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 1
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v0.13.0 (2021-01-05)
 
 #### :rocket: Enhancement
