@@ -71,9 +71,13 @@ describe('MetaTaskList', () => {
 
     let [result, errors] = await taskList.runTask('fake-meta-task');
 
-    expect(result!.appendCheckupProperties()).toMatchInlineSnapshot(`
-      Object {
-        "fake-meta-task": "fake meta task is being run",
+    expect(result!).toMatchInlineSnapshot(`
+      MockMetaTaskResult {
+        "meta": Object {
+          "taskDisplayName": "Fake Meta Task",
+          "taskName": "fake-meta-task",
+        },
+        "result": "fake meta task is being run",
       }
     `);
     expect(errors).toHaveLength(0);
@@ -87,8 +91,8 @@ describe('MetaTaskList', () => {
 
     let [results, errors] = await taskList.runTasks();
 
-    expect(results[0].appendCheckupProperties()).toMatchSnapshot();
-    expect(results[1].appendCheckupProperties()).toMatchSnapshot();
+    expect(results[0]).toMatchSnapshot();
+    expect(results[1]).toMatchSnapshot();
     expect(errors).toHaveLength(0);
   });
 });

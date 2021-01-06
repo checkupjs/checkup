@@ -19,29 +19,34 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
     let packageJson = this.context.pkg;
 
     let coreLibraries = buildResultsFromProperties(
+      this,
       [
         findDependency(packageJson, 'ember-source'),
         findDependency(packageJson, 'ember-cli'),
         findDependency(packageJson, 'ember-data'),
       ],
       'ember core libraries'
-    ).map((result) => this.appendCheckupProperties(result));
+    );
     let emberDependencies = buildResultsFromProperties(
+      this,
       findDependencies(packageJson.dependencies, emberAddonFilter),
       'ember addon dependencies'
-    ).map((result) => this.appendCheckupProperties(result));
+    );
     let emberDevDependencies = buildResultsFromProperties(
+      this,
       findDependencies(packageJson.devDependencies, emberAddonFilter),
       'ember addon devDependencies'
-    ).map((result) => this.appendCheckupProperties(result));
+    );
     let emberCliDependencies = buildResultsFromProperties(
+      this,
       findDependencies(packageJson.dependencies, emberCliAddonFilter),
       'ember-cli addon dependencies'
-    ).map((result) => this.appendCheckupProperties(result));
+    );
     let emberCliDevDependencies = buildResultsFromProperties(
+      this,
       findDependencies(packageJson.devDependencies, emberCliAddonFilter),
       'ember-cli addon devDependencies'
-    ).map((result) => this.appendCheckupProperties(result));
+    );
 
     return [
       ...coreLibraries,

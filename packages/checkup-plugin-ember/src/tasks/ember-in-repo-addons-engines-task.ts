@@ -29,12 +29,8 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
     });
 
     return [
-      ...buildResultsFromPathArray(inRepoAddons.sort(), 'in-repo addons').map((result) =>
-        this.appendCheckupProperties(result)
-      ),
-      ...buildResultsFromPathArray(inRepoEngines.sort(), 'in-repo engines').map((result) =>
-        this.appendCheckupProperties(result)
-      ),
+      ...buildResultsFromPathArray(this, inRepoAddons.sort(), 'in-repo addons'),
+      ...buildResultsFromPathArray(this, inRepoEngines.sort(), 'in-repo engines'),
     ];
   }
 }

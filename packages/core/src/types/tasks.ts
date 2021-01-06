@@ -39,7 +39,6 @@ export interface Task {
   readonly enabled: boolean;
 
   run: () => Promise<Result[]>;
-  appendCheckupProperties: (result: Result) => Result;
 }
 
 export type ActionItem = string | string[] | { columns: string[]; rows: object[] };

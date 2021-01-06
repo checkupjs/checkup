@@ -11,10 +11,7 @@ export function getLog(
   taskList: TaskList,
   executedTasks: Task[]
 ): Log {
-  let _info = Object.assign(
-    {},
-    ...info.map((result) => result.appendCheckupProperties())
-  ) as CheckupMetadata;
+  let _info = Object.assign({}, ...info.map((result) => result.getData())) as CheckupMetadata;
 
   return {
     version: '2.1.0',

@@ -51,79 +51,85 @@ describe('project-meta-task', () => {
       ).run();
       const taskResult = <ProjectMetaTaskResult>result;
 
-      expect(taskResult.appendCheckupProperties()).toMatchInlineSnapshot(`
-        Object {
-          "analyzedFiles": FilePathArray [
-            ".git/HEAD",
-            ".git/config",
-            ".git/description",
-            ".git/hooks/applypatch-msg.sample",
-            ".git/hooks/commit-msg.sample",
-            ".git/hooks/fsmonitor-watchman.sample",
-            ".git/hooks/post-update.sample",
-            ".git/hooks/pre-applypatch.sample",
-            ".git/hooks/pre-commit.sample",
-            ".git/hooks/pre-merge-commit.sample",
-            ".git/hooks/pre-push.sample",
-            ".git/hooks/pre-rebase.sample",
-            ".git/hooks/pre-receive.sample",
-            ".git/hooks/prepare-commit-msg.sample",
-            ".git/hooks/update.sample",
-            ".git/info/exclude",
-            "index.hbs",
-            "index.js",
-            "index.scss",
-            "index.whatever",
-            "package.json",
-          ],
-          "analyzedFilesCount": 21,
-          "cli": Object {
-            "args": Object {
-              "paths": Array [],
-            },
-            "config": Object {
-              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-              "excludePaths": Array [],
-              "plugins": Array [],
-              "tasks": Object {},
-            },
-            "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
-            "flags": Object {
-              "config": undefined,
-              "excludePaths": undefined,
-              "format": "stdout",
-              "outputFile": "",
-              "task": undefined,
-            },
-            "schema": 1,
-            "version": "0.0.0",
-          },
-          "project": Object {
-            "name": "checkup-app",
-            "repository": Object {
-              "activeDays": "0 days",
-              "age": "0 days",
-              "linesOfCode": Object {
-                "total": 15,
-                "types": Array [
-                  Object {
-                    "extension": "scss",
-                    "total": 10,
-                  },
-                  Object {
-                    "extension": "js",
-                    "total": 4,
-                  },
-                  Object {
-                    "extension": "hbs",
-                    "total": 1,
-                  },
-                ],
+      expect(taskResult).toMatchInlineSnapshot(`
+        ProjectMetaTaskResult {
+          "data": Object {
+            "analyzedFiles": FilePathArray [
+              ".git/HEAD",
+              ".git/config",
+              ".git/description",
+              ".git/hooks/applypatch-msg.sample",
+              ".git/hooks/commit-msg.sample",
+              ".git/hooks/fsmonitor-watchman.sample",
+              ".git/hooks/post-update.sample",
+              ".git/hooks/pre-applypatch.sample",
+              ".git/hooks/pre-commit.sample",
+              ".git/hooks/pre-merge-commit.sample",
+              ".git/hooks/pre-push.sample",
+              ".git/hooks/pre-rebase.sample",
+              ".git/hooks/pre-receive.sample",
+              ".git/hooks/prepare-commit-msg.sample",
+              ".git/hooks/update.sample",
+              ".git/info/exclude",
+              "index.hbs",
+              "index.js",
+              "index.scss",
+              "index.whatever",
+              "package.json",
+            ],
+            "analyzedFilesCount": 21,
+            "cli": Object {
+              "args": Object {
+                "paths": Array [],
               },
-              "totalCommits": 0,
-              "totalFiles": 0,
+              "config": Object {
+                "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+                "excludePaths": Array [],
+                "plugins": Array [],
+                "tasks": Object {},
+              },
+              "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
+              "flags": Object {
+                "config": undefined,
+                "excludePaths": undefined,
+                "format": "stdout",
+                "outputFile": "",
+                "task": undefined,
+              },
+              "schema": 1,
+              "version": "0.0.0",
             },
-            "version": "0.0.0",
+            "project": Object {
+              "name": "checkup-app",
+              "repository": Object {
+                "activeDays": "0 days",
+                "age": "0 days",
+                "linesOfCode": Object {
+                  "total": 15,
+                  "types": Array [
+                    Object {
+                      "extension": "scss",
+                      "total": 10,
+                    },
+                    Object {
+                      "extension": "js",
+                      "total": 4,
+                    },
+                    Object {
+                      "extension": "hbs",
+                      "total": 1,
+                    },
+                  ],
+                },
+                "totalCommits": 0,
+                "totalFiles": 0,
+              },
+              "version": "0.0.0",
+            },
+          },
+          "meta": Object {
+            "taskDisplayName": "Project",
+            "taskName": "project",
           },
         }
       `);
@@ -144,46 +150,52 @@ describe('project-meta-task', () => {
         })
       ).run();
 
-      expect(result.appendCheckupProperties()).toMatchInlineSnapshot(`
-        Object {
-          "analyzedFiles": FilePathArray [],
-          "analyzedFilesCount": 0,
-          "cli": Object {
-            "args": Object {
-              "paths": Array [],
-            },
-            "config": Object {
-              "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-              "excludePaths": Array [],
-              "plugins": Array [
-                "checkup-plugin-ember",
-              ],
-              "tasks": Object {},
-            },
-            "configHash": "2f97c4acdec7c73cce0b6c3e3e0cedc2",
-            "flags": Object {
-              "config": undefined,
-              "excludePaths": undefined,
-              "format": "stdout",
-              "outputFile": "",
-              "task": undefined,
-            },
-            "schema": 1,
-            "version": "0.0.0",
-          },
-          "project": Object {
-            "name": "checkup-app",
-            "repository": Object {
-              "activeDays": "0 days",
-              "age": "0 days",
-              "linesOfCode": Object {
-                "total": 0,
-                "types": Array [],
+      expect(result).toMatchInlineSnapshot(`
+        ProjectMetaTaskResult {
+          "data": Object {
+            "analyzedFiles": FilePathArray [],
+            "analyzedFilesCount": 0,
+            "cli": Object {
+              "args": Object {
+                "paths": Array [],
               },
-              "totalCommits": 0,
-              "totalFiles": 0,
+              "config": Object {
+                "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+                "excludePaths": Array [],
+                "plugins": Array [
+                  "checkup-plugin-ember",
+                ],
+                "tasks": Object {},
+              },
+              "configHash": "2f97c4acdec7c73cce0b6c3e3e0cedc2",
+              "flags": Object {
+                "config": undefined,
+                "excludePaths": undefined,
+                "format": "stdout",
+                "outputFile": "",
+                "task": undefined,
+              },
+              "schema": 1,
+              "version": "0.0.0",
             },
-            "version": "0.0.0",
+            "project": Object {
+              "name": "checkup-app",
+              "repository": Object {
+                "activeDays": "0 days",
+                "age": "0 days",
+                "linesOfCode": Object {
+                  "total": 0,
+                  "types": Array [],
+                },
+                "totalCommits": 0,
+                "totalFiles": 0,
+              },
+              "version": "0.0.0",
+            },
+          },
+          "meta": Object {
+            "taskDisplayName": "Project",
+            "taskName": "project",
           },
         }
       `);

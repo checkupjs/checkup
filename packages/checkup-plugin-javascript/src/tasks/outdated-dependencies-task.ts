@@ -68,9 +68,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
     let groupedDependencies = groupDataByField(outdatedDependencies, 'semverBump');
 
     return groupedDependencies.flatMap((dependencyGroup) =>
-      buildResultsFromProperties(dependencyGroup, dependencyGroup[0].semverBump).map((result) =>
-        this.appendCheckupProperties(result)
-      )
+      buildResultsFromProperties(this, dependencyGroup, dependencyGroup[0].semverBump)
     );
   }
 }

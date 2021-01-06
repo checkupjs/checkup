@@ -7,10 +7,7 @@ export default class MockMetaTaskResult extends BaseMetaTaskResult implements Me
   constructor(meta: TaskIdentifier, public result: any) {
     super(meta);
   }
-
-  appendCheckupProperties() {
-    return {
-      [this.meta.taskName]: this.result,
-    };
+  getData() {
+    return { [this.meta.taskName]: this.result };
   }
 }

@@ -24,9 +24,10 @@ export default class EmberTypesTask extends BaseTask implements Task {
     let types = SEARCH_PATTERNS.flatMap((pattern) => {
       let files = this.context.paths.filterByGlob(pattern.pattern);
       return buildResultsFromPathArray(
+        this,
         normalizePaths(files, this.context.cliFlags.cwd),
         pattern.patternName
-      ).map((type) => this.appendCheckupProperties(type));
+      );
     });
 
     return types;

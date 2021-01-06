@@ -5,9 +5,6 @@ import { TaskContext, TaskName } from './types/tasks';
 import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
 import { parseConfigTuple } from './config';
-
-import { Result } from 'sarif';
-
 export default abstract class BaseTask {
   abstract taskName: TaskName;
   abstract taskDisplayName: string;
@@ -45,19 +42,6 @@ export default abstract class BaseTask {
 
   get fullyQualifiedTaskName() {
     return `${this._pluginName}/${this.taskName}`;
-  }
-
-  appendCheckupProperties(result: Result) {
-    result.properties = {
-      ...result.properties,
-      ...{
-        taskDisplayName: this.taskDisplayName,
-        category: this.category,
-        group: this.group,
-      },
-    };
-    result.ruleId = this.taskName;
-    return result;
   }
 
   private _parseConfig() {

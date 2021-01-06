@@ -60,15 +60,15 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
     let lintingWarnings = groupDataByField(bySeverity(lintResults, 1), 'lintRuleId');
 
     let errorsResult = lintingErrors.flatMap((lintingError) => {
-      return buildResultsFromLintResult(lintingError, {
+      return buildResultsFromLintResult(this, lintingError, {
         type: 'error',
-      }).map((result) => this.appendCheckupProperties(result));
+      });
     });
 
     let warningsResult = lintingWarnings.flatMap((lintingWarning) => {
-      return buildResultsFromLintResult(lintingWarning, {
+      return buildResultsFromLintResult(this, lintingWarning, {
         type: 'warning',
-      }).map((result) => this.appendCheckupProperties(result));
+      });
     });
 
     return [...errorsResult, ...warningsResult];
