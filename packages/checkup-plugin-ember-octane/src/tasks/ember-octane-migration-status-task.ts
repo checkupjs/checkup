@@ -78,6 +78,33 @@ const NAMED_ARGUMENTS_RULES = ['no-args-paths'];
 const OWN_PROPERTIES_RULES = ['no-implicit-this'];
 const USE_MODIFIERS_RULES = ['no-action'];
 
+const CUSTOM_RULE_MESSAGES = {
+  'ember/no-classic-classes':
+    'Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
+  'ember/classic-decorator-no-classic-methods':
+    'Octane | Native Classes : Do not use classic API methods within a class. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
+  'ember/no-actions-hash':
+    'Octane | Native Classes : Do not use the actions hash and {{action}} modifier and helper. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions',
+  'ember/no-get':
+    'Octane | Native Classes : Use native ES5 getters instead of `get` / `getProperties` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set',
+  'ember/no-mixins':
+    'Octane | Native Classes : Do not use mixins, as they no longer work with native classes. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__mixins',
+  'ember/require-tagless-components':
+    'Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name',
+  'ember/no-classic-components':
+    'Octane | Glimmer Components : Use Glimmer components over classic Ember Components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
+  'ember/no-computed-properties-in-native-classes':
+    'Octane | Tracked Properties : Use tracked properties over computed properties. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__tracked-vs-cp',
+  'no-curly-component-invocation':
+    'Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets',
+  'no-args-paths':
+    'Octane | Named Arguments : Use arguments prefixed with the @ symbol to pass arguments to components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-named',
+  'no-implicit-this':
+    'Octane | Own Properties : Use `this` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this',
+  'no-action':
+    'Octane | Modifiers : Do not use `action`. Instead, use the `on` modifier and `fn` helper. More info: https://guides.emberjs.com/release/components/template-lifecycle-dom-and-modifiers/',
+};
+
 export default class EmberOctaneMigrationStatusTask extends BaseTask implements Task {
   taskName = 'ember-octane-migration-status';
   taskDisplayName = 'Ember Octane Migration Status';
@@ -138,7 +165,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
       { key: 'Native Classes', rules: NATIVE_CLASS_RULES },
       { key: 'Tagless Components', rules: TAGLESS_COMPONENTS_RULES },
       { key: 'Glimmer Components', rules: GLIMMER_COMPONENTS_RULES },
-      { key: 'Tracked Propeties', rules: TRACKED_PROPERTIES_RULES },
+      { key: 'Tracked Properties', rules: TRACKED_PROPERTIES_RULES },
       { key: 'Angle Brackets Syntax', rules: ANGLE_BRACKETS_SYNTAX_RULES },
       { key: 'Named Arguments', rules: NAMED_ARGUMENTS_RULES },
       { key: 'Own Properties', rules: OWN_PROPERTIES_RULES },
@@ -146,9 +173,14 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
     ].flatMap(({ rules, key }) => {
       let rulesGroupForKey = groupDataByField(byRuleIds(rawData, rules), 'lintRuleId');
       return rulesGroupForKey.flatMap((rulesForKey) => {
-        return buildResultsFromLintResult(this, rulesForKey, {
-          resultGroup: key,
-        });
+        return buildResultsFromLintResult(
+          this,
+          rulesForKey,
+          {
+            resultGroup: key,
+          },
+          CUSTOM_RULE_MESSAGES
+        );
       });
     });
   }

@@ -17,7 +17,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Native JS classes should be used instead of classic classes",
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -44,7 +44,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Native JS classes should be used instead of classic classes",
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -71,7 +71,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Native JS classes should be used instead of classic classes",
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -98,7 +98,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Native JS classes should be used instead of classic classes",
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -125,7 +125,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -152,7 +152,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -179,7 +179,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -206,7 +206,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use the @action decorator instead of declaring an actions hash",
+      "text": "Octane | Native Classes : Do not use the actions hash and {{action}} modifier and helper. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -233,7 +233,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use the @action decorator instead of declaring an actions hash",
+      "text": "Octane | Native Classes : Do not use the actions hash and {{action}} modifier and helper. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -260,7 +260,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
+      "text": "Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -287,7 +287,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
+      "text": "Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -314,7 +314,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+      "text": "Octane | Glimmer Components : Use Glimmer components over classic Ember Components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -341,7 +341,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+      "text": "Octane | Glimmer Components : Use Glimmer components over classic Ember Components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -368,7 +368,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -395,7 +395,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{other-component}} with curly component syntax. You should use <OtherComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['other-component'] }\`.",
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -422,7 +422,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -449,7 +449,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -476,7 +476,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -503,7 +503,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'bar' is not allowed. Use '@bar' if it is a named argument or 'this.bar' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['bar'] }.",
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -530,7 +530,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -557,7 +557,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -584,7 +584,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Do not use \`action\` as <button {{action ...}} />. Instead, use the \`on\` modifier and \`fn\` helper.",
+      "text": "Octane | Modifiers : Do not use \`action\`. Instead, use the \`on\` modifier and \`fn\` helper. More info: https://guides.emberjs.com/release/components/template-lifecycle-dom-and-modifiers/",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -616,7 +616,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Native JS classes should be used instead of classic classes",
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -643,7 +643,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Native JS classes should be used instead of classic classes",
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -670,7 +670,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Native JS classes should be used instead of classic classes",
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -697,7 +697,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Native JS classes should be used instead of classic classes",
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -724,7 +724,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -751,7 +751,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -778,7 +778,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use ES5 getters (\`this.property\`) instead of Ember's \`get\` function",
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -805,7 +805,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use the @action decorator instead of declaring an actions hash",
+      "text": "Octane | Native Classes : Do not use the actions hash and {{action}} modifier and helper. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -832,7 +832,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use the @action decorator instead of declaring an actions hash",
+      "text": "Octane | Native Classes : Do not use the actions hash and {{action}} modifier and helper. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -859,7 +859,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
+      "text": "Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -886,7 +886,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Please switch to a tagless component by setting \`tagName: ''\` or converting to a Glimmer component",
+      "text": "Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -913,7 +913,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+      "text": "Octane | Glimmer Components : Use Glimmer components over classic Ember Components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -940,7 +940,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Use Glimmer components(@glimmer/component) instead of classic components(@ember/component)",
+      "text": "Octane | Glimmer Components : Use Glimmer components over classic Ember Components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -967,7 +967,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{my-component}} with curly component syntax. You should use <MyComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['my-component'] }\`.",
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -994,7 +994,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{other-component}} with curly component syntax. You should use <OtherComponent> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['other-component'] }\`.",
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -1021,7 +1021,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -1048,7 +1048,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "You are using the component {{someProp}} with curly component syntax. You should use <SomeProp> instead. If it is actually a helper you must manually add it to the 'no-curly-component-invocation' rule configuration, e.g. \`'no-curly-component-invocation': { allow: ['someProp'] }\`.",
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -1075,7 +1075,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'foo' is not allowed. Use '@foo' if it is a named argument or 'this.foo' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['foo'] }.",
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -1102,7 +1102,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'bar' is not allowed. Use '@bar' if it is a named argument or 'this.bar' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['bar'] }.",
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -1129,7 +1129,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -1156,7 +1156,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Ambiguous path 'someProp' is not allowed. Use '@someProp' if it is a named argument or 'this.someProp' if it is a property on 'this'. If it is a helper or component that has no arguments, you must either convert it to an angle bracket invocation or manually add it to the 'no-implicit-this' rule configuration, e.g. 'no-implicit-this': { allow: ['someProp'] }.",
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
     },
     "occurrenceCount": 1,
     "properties": Object {
@@ -1183,7 +1183,7 @@ Array [
       },
     ],
     "message": Object {
-      "text": "Do not use \`action\` as <button {{action ...}} />. Instead, use the \`on\` modifier and \`fn\` helper.",
+      "text": "Octane | Modifiers : Do not use \`action\`. Instead, use the \`on\` modifier and \`fn\` helper. More info: https://guides.emberjs.com/release/components/template-lifecycle-dom-and-modifiers/",
     },
     "occurrenceCount": 1,
     "properties": Object {

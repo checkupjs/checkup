@@ -59,16 +59,20 @@ function buildLocationDataFromPath(path: string): Location[] {
 export function buildResultsFromLintResult(
   taskContext: Pick<Task, 'taskName' | 'taskDisplayName' | 'category' | 'group'>,
   lintResults: LintResult[],
-  additionalData: object = {}
+  additionalData: object = {},
+  customMessages: Record<string, string> = {}
 ): Result[] {
   if (lintResults.length === 0) {
     return buildEmptyResult(taskContext);
   }
 
   return lintResults.map((lintResult) => {
+    let message =
+      (lintResult.lintRuleId && customMessages[lintResult.lintRuleId]) ?? lintResult.message;
+
     return {
       locations: buildLocationDataFromLintResult(lintResult),
-      message: { text: lintResult.message },
+      message: { text: message },
       occurrenceCount: 1,
       ruleId: taskContext.taskName,
       properties: {
