@@ -7,7 +7,7 @@ const castArray = <T>(input?: T | T[]): T[] => {
 
 let root = require.resolve('.');
 
-export async function runCommand(args: string[] | string, opts: loadConfig.Options = {}) {
+export async function runCommand(args: string[] | string = [], opts: loadConfig.Options = {}) {
   // Used to signal to the oclif commands that we're invoking in
   // CLI mode - prevents any stdout when invoking Checkup programmatically
   process.env.CHECKUP_CLI = '1';

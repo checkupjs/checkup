@@ -41,13 +41,13 @@ export function _resetTasksForTesting() {
   __tasksForTesting = new Set<Task>();
 }
 
-export default class RunCommand extends BaseCommand {
-  static description = 'A health checkup for your project';
+export default class InfoCommand extends BaseCommand {
+  static description = 'Runs information-based tasks';
 
   // required for variable length command line arguments
   static strict = false;
 
-  static usage = '[run] PATHS';
+  static usage = 'info PATHS [OPTIONS]';
 
   static args = [
     {
@@ -139,7 +139,7 @@ export default class RunCommand extends BaseCommand {
   }
 
   public async init() {
-    let { argv, flags } = this.parse(RunCommand);
+    let { argv, flags } = this.parse(InfoCommand);
 
     if (flags['output-file'] && flags.format !== OutputFormat.json) {
       this.error(

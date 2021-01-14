@@ -1,11 +1,10 @@
-import { Checkup } from '@checkup/cli';
 import { CheckupProject } from '@checkup/test-helpers';
-import { _registerTaskForTesting, _resetTasksForTesting } from '../src/commands/info';
+import { run } from '../__utils__/run';
 
 const TEST_TIMEOUT = 100000;
 
 describe('@checkup/cli', () => {
-  describe('node API output', () => {
+  describe('normal cli output', () => {
     let project: CheckupProject;
 
     beforeEach(function () {
@@ -30,13 +29,20 @@ describe('@checkup/cli', () => {
     });
 
     it(
-      'should output checkup result',
+      'should output checkup help text',
       async () => {
-        let result = await Checkup.run(['--cwd', project.baseDir]);
-
-        expect(result).toMatchSnapshot({
-          runs: expect.any(Array),
+        let result = await run([], {
+          cwd: project.baseDir,
         });
+
+        expect(result.stdout).toMatch('A health checkup for your project');
+        expect(result.stdout).toMatch('VERSION');
+        expect(result.stdout).toMatch(/@checkup\/cli\/\d*\.\d*\.\d*\s.*/);
+        expect(result.stdout).toMatch('USAGE');
+        expect(result.stdout).toMatch('$ checkup [COMMAND]');
+        expect(result.stdout).toMatch('COMMANDS');
+        expect(result.stdout).toMatch('generate  Runs a generator to scaffold Checkup code');
+        expect(result.stdout).toMatch('info      Runs information-based tasks');
       },
       TEST_TIMEOUT
     );
