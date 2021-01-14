@@ -55,6 +55,7 @@ function buildLocationDataFromPath(path: string): Location[] {
  * @param taskContext {Task} This is used to set Task properties on the Result
  * @param lintResults {LintResult[]} The LintResults used to create Result
  * @param [additionalData] {Object} Any additional data to be put into the properties bag
+ * @param [customMessages] {Record<string, string>} Custom messages to be rendered for each lintRule
  */
 export function buildResultsFromLintResult(
   taskContext: Pick<Task, 'taskName' | 'taskDisplayName' | 'category' | 'group'>,
@@ -66,26 +67,34 @@ export function buildResultsFromLintResult(
     return buildEmptyResult(taskContext);
   }
 
-  return lintResults.map((lintResult) => {
-    let message =
-      (lintResult.lintRuleId && customMessages[lintResult.lintRuleId]) ?? lintResult.message;
+  // When files disable lint rules that are not defined in the context of our Task's parser, it adds a lintResult
+  // that indicates that the rule was not found. Since this is not an actual error || warning, we filter them out
+  const lintRuleNotDefinedRegex = new RegExp('Definition for rule .* was not found');
 
-    return {
-      locations: buildLocationDataFromLintResult(lintResult),
-      message: { text: message },
-      occurrenceCount: 1,
-      ruleId: taskContext.taskName,
-      properties: {
-        ...{
-          taskDisplayName: taskContext.taskDisplayName,
-          category: taskContext.category,
-          group: taskContext.group,
+  return lintResults
+    .filter((lintResult) => {
+      return lintRuleNotDefinedRegex.test(lintResult.message) === false;
+    })
+    .map((lintResult) => {
+      let message =
+        (lintResult.lintRuleId && customMessages[lintResult.lintRuleId]) ?? lintResult.message;
+
+      return {
+        locations: buildLocationDataFromLintResult(lintResult),
+        message: { text: message },
+        occurrenceCount: 1,
+        ruleId: taskContext.taskName,
+        properties: {
+          ...{
+            taskDisplayName: taskContext.taskDisplayName,
+            category: taskContext.category,
+            group: taskContext.group,
+          },
+          ...additionalData,
+          lintRuleId: lintResult.lintRuleId,
         },
-        ...additionalData,
-        lintRuleId: lintResult.lintRuleId,
-      },
-    };
-  });
+      };
+    });
 }
 
 /**
