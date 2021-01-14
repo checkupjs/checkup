@@ -18,6 +18,26 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v0.13.2 (2021-01-14)
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember-octane`, `core`
+  * [#847](https://github.com/checkupjs/checkup/pull/847) Updates Octane migration task with better messages ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `cli`, `core`
+  * [#848](https://github.com/checkupjs/checkup/pull/848) Filtering out eslint results that indicate a rule was not found ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.13.1 (2021-01-06)
 
 #### :house: Internal
