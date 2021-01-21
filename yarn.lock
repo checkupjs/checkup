@@ -973,6 +973,11 @@
   resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.5.tgz#b14efa8852b7768d898906613c23f688713e02cd"
   integrity sha512-Q1y515GcOdTHgagaVFhHnIFQ38ygs/kmxdNpvpou+raI9UO3YZcHDngBSYKQklcKlvA7iuQlmIKbzvmxcOE9CQ==
 
+"@types/diff@*":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/diff/-/diff-5.0.0.tgz#eb71e94feae62548282c4889308a3dfb57e36020"
+  integrity sha512-jrm2K65CokCCX4NmowtA+MfXyuprZC13jbRuwprs6/04z/EcFg/MCwYdsHn+zgV4CQBiATiI7AEq7y1sZCtWKA==
+
 "@types/eslint@^7.2.2":
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.2.tgz#c88426b896efeb0b2732a92431ce8aa7ec0dee61"
@@ -1188,6 +1193,11 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
 
+"@types/text-table@*":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@types/text-table/-/text-table-0.2.1.tgz#39c4d4a058a82f677392dfd09976e83d9b4c9264"
+  integrity sha512-dchbFCWfVgUSWEvhOkXGS7zjm+K7jCUvGrQkAHPk2Fmslfofp4HQTH2pqnQ3Pw5GPYv0zWa2AQjKtsfZThuemQ==
+
 "@types/through@*":
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/through/-/through-0.0.30.tgz#e0e42ce77e897bd6aead6f6ea62aeb135b8a3895"
@@ -1235,14 +1245,17 @@
   resolved "https://registry.yarnpkg.com/@types/yeoman-assert/-/yeoman-assert-3.1.1.tgz#d1f683e5f6e6b15d36bfb216221a19bd7e9735c6"
   integrity sha512-ACDlMVhoLIA3VQPFKtJWlr3evUE3DaEbVxi1ukivBRNB1havMW+vo2J0+hNURF19yiqs7iu+yUHLG25bCi2xcw==
 
-"@types/yeoman-environment@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@types/yeoman-environment/-/yeoman-environment-2.3.3.tgz#6535ae2a5de2f19199bf4f6fbe1eafacae491acf"
-  integrity sha512-s9qn0TVNxnHn6KR71m9Om3Lxsvd4PMc9SfDMnmIjZpbSycp/M+IIgNCKN8xJ4GhK0APJKwm+n9+lCvX5BsmUag==
+"@types/yeoman-environment@^2.10.2":
+  version "2.10.2"
+  resolved "https://registry.yarnpkg.com/@types/yeoman-environment/-/yeoman-environment-2.10.2.tgz#008b4f7a350ff8fb2be7ad7dda2580ead048ee76"
+  integrity sha512-Vz0qYnsUkTdH15nYo1OKax6wODQvPk6OKnbr3ATWRFizMTn6FhtoInuOIxVELK9swdqhAOF1goSdWhid0HmJkg==
   dependencies:
+    "@types/diff" "*"
     "@types/inquirer" "*"
     "@types/mem-fs" "*"
+    "@types/text-table" "*"
     "@types/yeoman-generator" "*"
+    chalk "^4.1.0"
     rxjs ">=6.4.0"
 
 "@types/yeoman-generator@*", "@types/yeoman-generator@^3.1.4":
