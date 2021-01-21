@@ -27,6 +27,10 @@ export default class TaskList {
     return this._timings;
   }
 
+  get size() {
+    return this.getTasks().length;
+  }
+
   /**
    * @returns {string[]} The list of fully qualified task names.
    */

@@ -15,9 +15,6 @@
       "path": "../checkup-plugin-javascript"
     },
     {
-      "path": "../checkup-plugin-ember-octane"
-    },
-    {
       "path": "../test-helpers"
     }
   ],

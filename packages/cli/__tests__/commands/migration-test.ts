@@ -20,9 +20,9 @@ import { runCommand } from '../../src/run-command';
 
 const TEST_TIMEOUT = 100000;
 
-class FooTask extends BaseTask implements Task {
-  taskName = 'foo';
-  taskDisplayName = 'Foo Task';
+class MigrationTask extends BaseTask implements Task {
+  taskName = 'migration';
+  taskDisplayName = 'Migration Task';
   category = 'fake1';
   group = 'group1';
 
@@ -34,9 +34,9 @@ class FooTask extends BaseTask implements Task {
   }
 }
 
-class FileCountTask extends BaseTask implements Task {
-  taskName = 'file-count';
-  taskDisplayName = 'File Count Task';
+class MigrationItemCountTask extends BaseTask implements Task {
+  taskName = 'migration-item-count';
+  taskDisplayName = 'Migration Item Count Task';
   category = 'fake2';
   group = 'group2';
 
@@ -77,7 +77,7 @@ describe('@checkup/cli', () => {
     it(
       'should output checkup result',
       async () => {
-        await runCommand(['info', '--cwd', project.baseDir]);
+        await runCommand(['migration', '--cwd', project.baseDir]);
 
         let output = stdout().trim().split('\n');
         output[7] = '<outputPath>';
@@ -102,10 +102,10 @@ describe('@checkup/cli', () => {
     it(
       'should output list of available tasks',
       async () => {
-        _registerTaskForTesting(new FileCountTask(getTaskContext()));
-        _registerTaskForTesting(new FooTask(getTaskContext()));
+        _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
+        _registerTaskForTesting(new MigrationTask(getTaskContext()));
 
-        await runCommand(['info', '--cwd', project.baseDir, '--list-tasks']);
+        await runCommand(['migration', '--cwd', project.baseDir, '--list-tasks']);
 
         expect(stdout()).toMatchSnapshot();
       },
@@ -115,7 +115,7 @@ describe('@checkup/cli', () => {
     it(
       'should output checkup result in verbose mode',
       async () => {
-        await runCommand(['info', '--cwd', project.baseDir, '--verbose']);
+        await runCommand(['migration', '--cwd', project.baseDir, '--verbose']);
 
         expect(stdout()).toMatchSnapshot();
       },
@@ -123,7 +123,7 @@ describe('@checkup/cli', () => {
     );
 
     it('should output checkup result in JSON', async () => {
-      await runCommand(['info', '--format', 'json', '--cwd', project.baseDir]);
+      await runCommand(['migration', '--format', 'json', '--cwd', project.baseDir]);
 
       let output = JSON.parse(normalizePath(stdout().trim(), project.baseDir)) as Log;
       expect(output).toMatchSnapshot({
@@ -137,7 +137,7 @@ describe('@checkup/cli', () => {
         let tmp = createTmpDir();
 
         await runCommand([
-          'info',
+          'migration',
           '--format',
           'json',
           `--output-file`,
@@ -157,12 +157,12 @@ describe('@checkup/cli', () => {
     );
 
     it('should run a single task if the tasks option is specified with a single task', async () => {
-      _registerTaskForTesting(new FileCountTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
 
       await runCommand([
-        'info',
+        'migration',
         '--task',
-        'fake/file-count',
+        'fake/migration-item-count',
         '--cwd',
         project.baseDir,
         '--verbose',
@@ -172,13 +172,13 @@ describe('@checkup/cli', () => {
     });
 
     it('should run with timing if CHECKUP_TIMING=1', async () => {
-      _registerTaskForTesting(new FileCountTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
 
       process.env.CHECKUP_TIMING = '1';
       await runCommand([
-        'info',
+        'migration',
         '--task',
-        'fake/file-count',
+        'fake/migration-item-count',
         '--cwd',
         project.baseDir,
         '--verbose',
@@ -189,15 +189,15 @@ describe('@checkup/cli', () => {
     });
 
     it('should run multiple tasks if the tasks option is specified with multiple tasks', async () => {
-      _registerTaskForTesting(new FileCountTask(getTaskContext()));
-      _registerTaskForTesting(new FooTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationTask(getTaskContext()));
 
       await runCommand([
-        'info',
+        'migration',
         '--task',
-        'fake/file-count',
+        'fake/migration-item-count',
         '--task',
-        'fake/foo',
+        'fake/migration',
         '--cwd',
         project.baseDir,
         '--verbose',
@@ -207,20 +207,20 @@ describe('@checkup/cli', () => {
     });
 
     it('should run only one task if the category option is specified', async () => {
-      _registerTaskForTesting(new FileCountTask(getTaskContext()));
-      _registerTaskForTesting(new FooTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationTask(getTaskContext()));
 
-      await runCommand(['info', '--category', 'fake1', '--cwd', project.baseDir, '--verbose']);
+      await runCommand(['migration', '--category', 'fake1', '--cwd', project.baseDir, '--verbose']);
 
       expect(stdout()).toMatchSnapshot();
     });
 
     it('should run multiple tasks if the category option is specified with multiple categories', async () => {
-      _registerTaskForTesting(new FileCountTask(getTaskContext()));
-      _registerTaskForTesting(new FooTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationTask(getTaskContext()));
 
       await runCommand([
-        'info',
+        'migration',
         '--category',
         'fake1',
         '--category',
@@ -234,20 +234,20 @@ describe('@checkup/cli', () => {
     });
 
     it('should run only one task if the group option is specified', async () => {
-      _registerTaskForTesting(new FileCountTask(getTaskContext()));
-      _registerTaskForTesting(new FooTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationTask(getTaskContext()));
 
-      await runCommand(['info', '--group', 'group1', '--cwd', project.baseDir, '--verbose']);
+      await runCommand(['migration', '--group', 'group1', '--cwd', project.baseDir, '--verbose']);
 
       expect(stdout()).toMatchSnapshot();
     });
 
     it('should run multiple tasks if the group option is specified with multiple groups', async () => {
-      _registerTaskForTesting(new FileCountTask(getTaskContext()));
-      _registerTaskForTesting(new FooTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
+      _registerTaskForTesting(new MigrationTask(getTaskContext()));
 
       await runCommand([
-        'info',
+        'migration',
         '--group',
         'group1',
         '--group',
@@ -263,15 +263,15 @@ describe('@checkup/cli', () => {
     it(
       'should run a task if its passed in via command line, even if it is turned "off" in config',
       async () => {
-        _registerTaskForTesting(new FileCountTask(getTaskContext()));
+        _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
 
-        project.addCheckupConfig({ tasks: { 'fake/file-count': 'off' } });
+        project.addCheckupConfig({ tasks: { 'fake/migration-item-count': 'off' } });
         project.writeSync();
 
         await runCommand([
-          'info',
+          'migration',
           '--task',
-          'fake/file-count',
+          'fake/migration-item-count',
           '--cwd',
           project.baseDir,
           '--verbose',
@@ -289,7 +289,7 @@ describe('@checkup/cli', () => {
       anotherProject.writeSync();
 
       await runCommand([
-        'info',
+        'migration',
         '--config',
         join(anotherProject.baseDir, '.checkuprc'),
         '--cwd',
@@ -304,7 +304,7 @@ describe('@checkup/cli', () => {
     it(
       'should run the tasks on the globs passed into checkup, if provided, instead of entire app',
       async () => {
-        _registerTaskForTesting(new FileCountTask(getTaskContext()));
+        _registerTaskForTesting(new MigrationItemCountTask(getTaskContext()));
 
         project.files = Object.assign(project.files, {
           foo: {
@@ -320,11 +320,11 @@ describe('@checkup/cli', () => {
 
         project.writeSync();
         await runCommand([
-          'info',
+          'migration',
           '**/*.hbs',
           '**baz/**',
           '--tasks',
-          'file-count',
+          'migration-item-count',
           '--cwd',
           project.baseDir,
           '--verbose',
@@ -334,7 +334,7 @@ describe('@checkup/cli', () => {
 
         clearStdout();
 
-        await runCommand(['info', '--cwd', project.baseDir, '--verbose']);
+        await runCommand(['migration', '--cwd', project.baseDir, '--verbose']);
         let unFilteredRun = stdout();
         expect(unFilteredRun).toMatchSnapshot();
 
@@ -349,7 +349,7 @@ describe('@checkup/cli', () => {
         project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
         project.writeSync();
 
-        await runCommand(['info', '--cwd', project.baseDir, '--verbose']);
+        await runCommand(['migration', '--cwd', project.baseDir, '--verbose']);
         let filteredRun = stdout();
         expect(filteredRun).toMatchSnapshot();
 
@@ -358,7 +358,7 @@ describe('@checkup/cli', () => {
         project.addCheckupConfig({ excludePaths: [] });
         project.writeSync();
 
-        await runCommand(['info', '--cwd', project.baseDir, '--verbose']);
+        await runCommand(['migration', '--cwd', project.baseDir, '--verbose']);
         let unFilteredRun = stdout();
         expect(unFilteredRun).toMatchSnapshot();
 
@@ -373,7 +373,7 @@ describe('@checkup/cli', () => {
       'should use the excludePaths provided by the command line',
       async () => {
         await runCommand([
-          'info',
+          'migration',
           '--cwd',
           project.baseDir,
           '--exclude-paths',
@@ -389,7 +389,7 @@ describe('@checkup/cli', () => {
         clearStdout();
 
         await runCommand([
-          'info',
+          'migration',
           '--cwd',
           project.baseDir,
           '--exclude-paths',
@@ -412,7 +412,7 @@ describe('@checkup/cli', () => {
         project.writeSync();
 
         await runCommand([
-          'info',
+          'migration',
           '--cwd',
           project.baseDir,
           '--exclude-paths',
@@ -426,7 +426,7 @@ describe('@checkup/cli', () => {
 
         clearStdout();
 
-        await runCommand(['info', '--cwd', project.baseDir, '--verbose']);
+        await runCommand(['migration', '--cwd', project.baseDir, '--verbose']);
 
         let hbsFilteredRun = stdout();
         expect(hbsFilteredRun).toMatchSnapshot();

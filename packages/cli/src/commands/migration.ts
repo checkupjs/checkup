@@ -13,11 +13,10 @@ import {
   outputFile,
   listTasks,
 } from '../flags';
-
-export default class InfoCommand extends BaseTaskCommand {
-  static description = 'Runs information-based tasks';
+export default class MigrationCommand extends BaseTaskCommand {
+  static description = 'Runs migration-based tasks';
   static strict = false;
-  static usage = 'info PATHS [OPTIONS]';
+  static usage = 'migration PATHS [OPTIONS]';
   static args = [pathArg];
   static flags = {
     version: flags.version({ char: 'v' }),
@@ -37,7 +36,7 @@ export default class InfoCommand extends BaseTaskCommand {
   };
 
   public async init() {
-    let { argv, flags } = this.parse(InfoCommand);
+    let { argv, flags } = this.parse(MigrationCommand);
 
     if (flags['output-file'] && flags.format !== OutputFormat.json) {
       this.error(
@@ -53,7 +52,7 @@ export default class InfoCommand extends BaseTaskCommand {
   }
 
   protected async registerTasks() {
-    await this.config.runHook('register-info-tasks', {
+    await this.config.runHook('register-migration-tasks', {
       context: this.taskContext,
       tasks: this.pluginTasks,
     });

@@ -1,6 +1,6 @@
 import { Checkup } from '@checkup/cli';
 import { CheckupProject } from '@checkup/test-helpers';
-import { _registerTaskForTesting, _resetTasksForTesting } from '../src/commands/info';
+import { _registerTaskForTesting, _resetTasksForTesting } from '../src/base-task-command';
 
 const TEST_TIMEOUT = 100000;
 
