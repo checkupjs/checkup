@@ -10,7 +10,7 @@ A checkup plugin for Javascript project tasks
 
 - [Usage](#usage)
 
-# Usage
+## Usage
 
 1. Install [@checkup/cli](https://github.com/checkupjs/checkup/blob/master/packages/cli/README.md) globally following the README.
 
