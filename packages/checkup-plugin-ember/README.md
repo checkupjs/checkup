@@ -11,7 +11,7 @@ A checkup plugin for Ember project tasks
 - [checkup-plugin-ember](#checkup-plugin-ember)
 - [Usage](#usage)
 
-# Usage
+## Usage
 
 1. Install [@checkup/cli](https://github.com/checkupjs/checkup/blob/master/packages/cli/README.md) globally following the README.
 
@@ -20,7 +20,7 @@ A checkup plugin for Ember project tasks
    ```sh-session
    $ npm install --save-dev checkup-plugin-ember
 
-  or
+   # or
 
    $ yarn add --dev checkup-plugin-ember
    ```
