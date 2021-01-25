@@ -1,6 +1,6 @@
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 
-import EmberOctaneMigrationStatusTask from '../../src/tasks/ember-octane-migration-status-task';
+import EmberOctaneMigrationStatusTask from '../src/tasks/ember-octane-migration-status-task';
 import { getPluginName } from '@checkup/core';
 
 describe('ember-octane-migration-status-task', () => {
@@ -13,7 +13,6 @@ describe('ember-octane-migration-status-task', () => {
       plugins: ['ember', 'ember-octane'],
     });
     project.addDevDependency('checkup-plugin-ember', '0.2.3');
-    project.addDevDependency('checkup-plugin-ember-octane', '0.2.3');
   });
 
   afterEach(function () {

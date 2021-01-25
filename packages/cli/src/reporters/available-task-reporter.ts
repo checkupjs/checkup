@@ -6,8 +6,12 @@ export function reportAvailableTasks(pluginTasks: TaskList) {
   ui.blankLine();
   ui.log(bold.white('AVAILABLE TASKS'));
   ui.blankLine();
-  pluginTasks.fullyQualifiedTaskNames.forEach((taskName) => {
-    ui.log(`  ${taskName}`);
-  });
+  if (pluginTasks.size > 0) {
+    pluginTasks.fullyQualifiedTaskNames.forEach((taskName) => {
+      ui.log(`  ${taskName}`);
+    });
+  } else {
+    ui.log(`  No tasks found`);
+  }
   ui.blankLine();
 }
