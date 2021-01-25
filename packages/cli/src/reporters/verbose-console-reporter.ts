@@ -182,7 +182,11 @@ function getReportComponent(taskResults: Result[]) {
 
   ui.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
     const totalResults = sumOccurrences(groupedTaskResults);
-    ui.log(`Total: ${totalResults}`);
+    const numberOfBulletPoints = groupedTaskResults.length;
+
+    if (numberOfBulletPoints > 1) {
+      ui.log(`Total: ${totalResults}`);
+    }
 
     groupedTaskResults.forEach((result) => {
       if (result.message.text === NO_RESULTS_FOUND) {
