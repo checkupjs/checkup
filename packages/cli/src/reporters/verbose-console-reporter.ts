@@ -182,9 +182,9 @@ function getReportComponent(taskResults: Result[]) {
 
   ui.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
     const totalResults = sumOccurrences(groupedTaskResults);
+    const numberOfBulletPoints = groupedTaskResults.length;
 
-    // if there is only going to be 1 bullet point shown, we dont need to sum the total
-    if (groupedTaskResults.length > 1) {
+    if (numberOfBulletPoints > 1) {
       ui.log(`Total: ${totalResults}`);
     }
 
