@@ -1,8 +1,8 @@
 import { join, resolve } from 'path';
-import { existsSync } from 'fs';
+import { existsSync, statSync } from 'fs';
 import { FilePathArray } from './file-path-array';
 
-const isValidGlob = require('is-valid-glob');
+const isGlob = require('is-glob');
 const micromatch = require('micromatch');
 const walkSync = require('walk-sync');
 const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
@@ -22,12 +22,12 @@ const PATHS_TO_IGNORE: string[] = [
 
 export function getFilePathsAsync(
   basePath: string,
-  globs: string[] = [],
+  globsOrPaths: string[] = [],
   excludePaths: string[] = []
 ) {
   return new Promise<FilePathArray>((resolve, reject) => {
     const worker = new Worker(__filename, {
-      workerData: { basePath, globs, excludePaths },
+      workerData: { basePath, globsOrPaths, excludePaths },
     });
 
     worker.on('message', resolve);
@@ -40,18 +40,15 @@ export function getFilePathsAsync(
   });
 }
 
-/**
- * @param basePath
- */
 export function getFilePaths(
   basePath: string,
-  globs: string[] = [],
+  globsOrPaths: string[] = [],
   excludePaths: string[] = []
 ): FilePathArray {
   let mergedPathsToIgnore = [...excludePaths, ...PATHS_TO_IGNORE];
 
-  if (globs.length > 0) {
-    return expandFileGlobs(globs, basePath, mergedPathsToIgnore);
+  if (globsOrPaths.length > 0) {
+    return expandGlobsOrPaths(globsOrPaths, basePath, mergedPathsToIgnore);
   }
 
   const allFiles: string[] = walkSync(basePath, {
@@ -63,32 +60,45 @@ export function getFilePaths(
   return resolveFilePaths(allFiles, basePath);
 }
 
-function expandFileGlobs(
-  filePatterns: string[],
+function expandGlobsOrPaths(
+  globsOrPaths: string[],
   basePath: string,
   excludePaths: string[]
 ): FilePathArray {
   return new FilePathArray(
-    ...filePatterns.flatMap((pattern) => {
-      let isLiteralPath = !isValidGlob(pattern) && existsSync(pattern);
+    ...globsOrPaths.flatMap((globOrPath) => {
+      let isLiteralPath =
+        !isGlob(globOrPath) &&
+        existsSync(`${basePath}/${globOrPath}`) &&
+        statSync(`${basePath}/${globOrPath}`).isFile();
+      let isGlobString = isGlob(globOrPath);
 
       if (isLiteralPath) {
-        let isIgnored = !micromatch.isMatch(pattern, excludePaths);
+        let isIgnored = micromatch.isMatch(globOrPath, excludePaths);
 
         if (!isIgnored) {
-          return pattern;
+          return resolveFilePaths([globOrPath], basePath);
         }
 
         return [];
       }
 
-      let expandedGlobs = walkSync(basePath, {
-        globs: [pattern],
+      if (isGlobString) {
+        let expandedGlob = walkSync(basePath, {
+          globs: [globOrPath],
+          directories: false,
+          ignore: excludePaths,
+        }) as string[];
+
+        return resolveFilePaths(expandedGlob, basePath);
+      }
+
+      let expandedFolder = walkSync(`${basePath}/${globOrPath}`, {
         directories: false,
         ignore: excludePaths,
       }) as string[];
 
-      return resolveFilePaths(expandedGlobs, basePath);
+      return resolveFilePaths(expandedFolder, basePath);
     })
   );
 }
@@ -106,7 +116,7 @@ function resolveFilePaths(filePaths: string[], basePath: string): FilePathArray 
 if (require.main === module) {
   if (!isMainThread) {
     parentPort.postMessage(
-      getFilePaths(workerData.basePath, workerData.globs, workerData.excludePaths)
+      getFilePaths(workerData.basePath, workerData.globsOrPaths, workerData.excludePaths)
     );
   }
 }
