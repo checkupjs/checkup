@@ -20,6 +20,12 @@ describe('getFilePaths', function () {
       baz: {
         'index.js': '// TODO: write better code',
       },
+      someFolder: {
+        anotherFolder: {
+          'goo.js': '// gooey',
+          'shoe.js': '// shooey',
+        },
+      },
       node_modules: {
         '.bin': {
           'foo.js': 'whatever',
@@ -45,6 +51,8 @@ describe('getFilePaths', function () {
           "/foo/index.hbs",
           "/index.js",
           "/package.json",
+          "/someFolder/anotherFolder/goo.js",
+          "/someFolder/anotherFolder/shoe.js",
         ]
       `);
 
@@ -69,6 +77,27 @@ describe('getFilePaths', function () {
         ]
       `);
     });
+
+    it('handles a file path being passed in', function () {
+      let files = getFilePaths(project.baseDir, ['bar/index.js']);
+
+      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
+        FilePathArray [
+          "/bar/index.js",
+        ]
+      `);
+    });
+
+    it('handles a folder being passed in', function () {
+      let files = getFilePaths(project.baseDir, ['someFolder/']);
+
+      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
+        FilePathArray [
+          "/anotherFolder/goo.js",
+          "/anotherFolder/shoe.js",
+        ]
+      `);
+    });
   });
 
   describe('glob', function () {
@@ -77,6 +106,18 @@ describe('getFilePaths', function () {
 
       expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
         FilePathArray [
+          "/foo/index.hbs",
+        ]
+      `);
+    });
+
+    it('handles a mixture of globs and folders being passed in', function () {
+      let files = getFilePaths(project.baseDir, ['someFolder/', '**/*.hbs']);
+
+      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
+        FilePathArray [
+          "/anotherFolder/goo.js",
+          "/anotherFolder/shoe.js",
           "/foo/index.hbs",
         ]
       `);
