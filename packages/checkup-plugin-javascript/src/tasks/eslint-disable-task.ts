@@ -4,7 +4,7 @@ import {
   normalizePath,
   LintResult,
   AstTraverser,
-  buildResultsFromLintResult,
+  sarifBuilder,
 } from '@checkup/core';
 
 import * as t from '@babel/types';
@@ -26,7 +26,7 @@ export default class EslintDisableTask extends BaseTask implements Task {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
     let eslintDisables: LintResult[] = await getEslintDisables(jsPaths, this.context.cliFlags.cwd);
 
-    return buildResultsFromLintResult(this, eslintDisables);
+    return sarifBuilder.fromLintResults(this, eslintDisables);
   }
 }
 

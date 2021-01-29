@@ -6,7 +6,7 @@ import {
   groupDataByField,
   NO_RESULTS_FOUND,
   sumOccurrences,
-  combineResultsForRendering,
+  reduceResults,
 } from '@checkup/core';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
@@ -34,7 +34,7 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
 
     ui.section(taskResults[0].properties?.taskDisplayName, () => {
       groupedTaskResults.forEach((resultGroup: Result[]) => {
-        let groupedTaskResultsByMethod = combineResultsForRendering(
+        let groupedTaskResultsByMethod = reduceResults(
           groupDataByField(resultGroup, 'properties.method')
         );
         ui.subHeader(groupedTaskResultsByMethod[0].message.text);
@@ -71,7 +71,7 @@ let outputMap: { [taskName: string]: (taskResults: Result[]) => void } = {
       let groupedTaskResults = groupDataByField(taskResults, 'properties.resultGroup');
 
       groupedTaskResults.forEach((resultGroup: Result[]) => {
-        let groupedTaskResultsByLintRuleId = combineResultsForRendering(
+        let groupedTaskResultsByLintRuleId = reduceResults(
           groupDataByField(resultGroup, 'properties.lintRuleId')
         );
 
@@ -176,9 +176,7 @@ export function renderEmptyResult(taskResult: Result) {
 }
 
 function getReportComponent(taskResults: Result[]) {
-  const groupedTaskResults = combineResultsForRendering(
-    groupDataByField(taskResults, 'message.text')
-  );
+  const groupedTaskResults = reduceResults(groupDataByField(taskResults, 'message.text'));
 
   ui.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
     const totalResults = sumOccurrences(groupedTaskResults);
@@ -243,7 +241,7 @@ function renderLintingSummaryResult(taskResults: Result[]) {
 
   ui.section(taskResults[0].properties?.taskDisplayName, () => {
     groupedTaskResultsByType.forEach((resultGroup: Result[]) => {
-      let groupedTaskResultsByLintRule = combineResultsForRendering(
+      let groupedTaskResultsByLintRule = reduceResults(
         groupDataByField(resultGroup, 'properties.lintRuleId')
       ).sort((a, b) => (b.occurrenceCount || 0) - (a.occurrenceCount || 0));
       let totalCount = sumOccurrences(groupedTaskResultsByLintRule);

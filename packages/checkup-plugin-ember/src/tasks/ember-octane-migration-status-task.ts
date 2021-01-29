@@ -1,7 +1,6 @@
 import {
   BaseTask,
-  buildLintResultDataItem,
-  buildResultsFromLintResult,
+  sarifBuilder,
   byRuleIds,
   ESLintMessage,
   ESLintOptions,
@@ -17,6 +16,7 @@ import {
   TemplateLintReport,
   TemplateLintResult,
   groupDataByField,
+  lintBuilder,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -152,7 +152,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
     let rawData = lintingResults.reduce((resultDataItems, lintingResults) => {
       let messages = (<any>lintingResults.messages).map(
         (lintMessage: ESLintMessage | TemplateLintMessage) => {
-          return buildLintResultDataItem(lintMessage, cwd, lintingResults.filePath);
+          return lintBuilder.toLintResult(lintMessage, cwd, lintingResults.filePath);
         }
       );
 
@@ -173,7 +173,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
     ].flatMap(({ rules, key }) => {
       let rulesGroupForKey = groupDataByField(byRuleIds(rawData, rules), 'lintRuleId');
       return rulesGroupForKey.flatMap((rulesForKey) => {
-        return buildResultsFromLintResult(
+        return sarifBuilder.fromLintResults(
           this,
           rulesForKey,
           {

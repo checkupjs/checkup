@@ -2,9 +2,9 @@ import {
   Task,
   BaseTask,
   LintResult,
-  buildResultsFromLintResult,
   normalizePath,
   AstTraverser,
+  sarifBuilder,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -23,7 +23,7 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.cliFlags.cwd);
 
-    return buildResultsFromLintResult(this, templateLintDisables);
+    return sarifBuilder.fromLintResults(this, templateLintDisables);
   }
 }
 

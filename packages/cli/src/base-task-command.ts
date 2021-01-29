@@ -19,7 +19,7 @@ import {
   getRegisteredParsers,
   FilePathArray,
   getFilePathsAsync,
-  buildNotificationsFromTaskErrors,
+  sarifBuilder,
 } from '@checkup/core';
 import { BaseCommand } from './base-command';
 import TaskList from './task-list';
@@ -228,7 +228,7 @@ export abstract class BaseTaskCommand extends BaseCommand {
         outputFile: this.runFlags['output-file'],
         format: this.runFlags.format,
       },
-      toolExecutionNotifications: buildNotificationsFromTaskErrors(errors),
+      toolExecutionNotifications: sarifBuilder.notifications.fromTaskErrors(errors),
       startTimeUtc: this.startTime,
     };
   }

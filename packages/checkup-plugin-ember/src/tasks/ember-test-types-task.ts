@@ -4,9 +4,9 @@ import {
   ESLintReport,
   Parser,
   BaseTask,
-  buildLintResultDataItem,
-  buildResultsFromLintResult,
   LintResult,
+  sarifBuilder,
+  lintBuilder,
 } from '@checkup/core';
 import { EMBER_TEST_TYPES } from '../utils/lint-configs';
 import { Result } from 'sarif';
@@ -54,7 +54,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
         .forEach((lintMessage) => {
           [testType, method] = lintMessage.message.split('|');
           lintMessage.message = testType;
-          let lintResult = buildLintResultDataItem(lintMessage, cwd, esLintResult.filePath, {
+          let lintResult = lintBuilder.toLintResult(lintMessage, cwd, esLintResult.filePath, {
             method,
           });
           let testCategory = `${testType}_${method}`;
@@ -69,7 +69,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     });
 
     return Object.keys(testTypes).flatMap((key) => {
-      return buildResultsFromLintResult(this, testTypes[key], {
+      return sarifBuilder.fromLintResults(this, testTypes[key], {
         method: testTypes[key][0].method,
       });
     });

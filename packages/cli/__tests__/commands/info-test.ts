@@ -1,13 +1,7 @@
 import * as fs from 'fs';
 import { join } from 'path';
 import { Log, Result } from 'sarif';
-import {
-  BaseTask,
-  normalizePath,
-  Task,
-  TaskContext,
-  buildResultsFromProperties,
-} from '@checkup/core';
+import { BaseTask, normalizePath, Task, TaskContext, sarifBuilder } from '@checkup/core';
 import {
   CheckupProject,
   clearStdout,
@@ -30,7 +24,7 @@ class FooTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return buildResultsFromProperties(this, [], 'hi');
+    return sarifBuilder.fromProperties(this, [], 'hi');
   }
 }
 
@@ -44,7 +38,7 @@ class FileCountTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return buildResultsFromProperties(this, [], 'hi');
+    return sarifBuilder.fromProperties(this, [], 'hi');
   }
 }
 
