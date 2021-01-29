@@ -15,6 +15,7 @@ interface TaskOptions extends Options {
   taskClass: string;
   pascalCaseName: string;
   typescript: boolean;
+  commandType: string;
   category: string;
   group: string;
 }
@@ -48,6 +49,7 @@ export default class TaskGenerator extends BaseGenerator {
 
     const defaults = {
       typescript: true,
+      commandType: 'info',
     };
 
     if (this.options.defaults) {
@@ -59,6 +61,13 @@ export default class TaskGenerator extends BaseGenerator {
           name: 'typescript',
           message: 'TypeScript',
           default: () => true,
+        },
+        {
+          type: 'list',
+          name: 'commandType',
+          message: 'Select the command type this task is to be run under.',
+          default: 'info',
+          choices: ['info', 'migration', 'validate'],
         },
         {
           type: 'input',
@@ -77,6 +86,7 @@ export default class TaskGenerator extends BaseGenerator {
     this.options.pascalCaseName = _.upperFirst(_.camelCase(this.options.name));
     this.options.taskClass = `${this.options.pascalCaseName}Task`;
     this.options.typescript = this.answers.typescript;
+    this.options.commandType = this.answers.commandType;
     this.options.category = this.answers.category;
     this.options.group = this.answers.group;
   }
@@ -85,6 +95,17 @@ export default class TaskGenerator extends BaseGenerator {
     this.sourceRoot(path.join(__dirname, '../../templates/src/task'));
 
     const options = { ...this.options, _ };
+
+    if (
+      !this.fs.exists(
+        this.destinationPath(`src/hooks/register-${this.options.commandType}-tasks.${this._ext}`)
+      )
+    ) {
+      this.fs.copy(
+        this.templatePath(`src/hooks/register-tasks.${this._ext}.ejs`),
+        this.destinationPath(`src/hooks/register-${this.options.commandType}-tasks.${this._ext}`)
+      );
+    }
 
     this.fs.copyTpl(
       this.templatePath(`src/tasks/task.${this._ext}.ejs`),
@@ -102,7 +123,9 @@ export default class TaskGenerator extends BaseGenerator {
   }
 
   private _transformHooks() {
-    let hooksDestinationPath = this.destinationPath(`src/hooks/register-tasks.${this._ext}`);
+    let hooksDestinationPath = this.destinationPath(
+      `src/hooks/register-${this.options.commandType}-tasks.${this._ext}`
+    );
 
     let registerTasksSource = this.fs.read(hooksDestinationPath);
     let registerTaskStatement = t.expressionStatement(

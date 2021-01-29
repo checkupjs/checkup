@@ -88,12 +88,6 @@ export default class PluginGenerator extends BaseGenerator {
     );
 
     this.fs.copyTpl(
-      this.templatePath(`src/hooks/register-tasks.${this._ext}.ejs`),
-      this.destinationPath(`src/hooks/register-tasks.${this._ext}`),
-      this.options
-    );
-
-    this.fs.copyTpl(
       this.templatePath(`src/types/index.${this._ext}.ejs`),
       this.destinationPath(`src/types/index.${this._ext}`),
       this.options
@@ -103,10 +97,17 @@ export default class PluginGenerator extends BaseGenerator {
       this.templatePath('__tests__/.gitkeep'),
       this.destinationPath('__tests__/.gitkeep')
     );
+
+    this.fs.copy(
+      this.templatePath('src/hooks/.gitkeep'),
+      this.destinationPath('src/hooks/.gitkeep')
+    );
+
     this.fs.copy(
       this.templatePath('src/results/.gitkeep'),
       this.destinationPath('src/results/.gitkeep')
     );
+
     this.fs.copy(
       this.templatePath('src/tasks/.gitkeep'),
       this.destinationPath('src/tasks/.gitkeep')

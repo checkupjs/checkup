@@ -246,6 +246,68 @@ export default hook;
 "
 `;
 
+exports[`task generator generates correct files with commandType 1`] = `
+"import { BaseTask, Task } from '@checkup/core';
+import { Result } from 'sarif';
+
+export default class MyFooTask extends BaseTask implements Task {
+  taskName = 'my-foo';
+  taskDisplayName = 'My Foo';
+  category = 'foo';
+  group = 'bar';
+
+  async run(): Promise<Result[]> {
+    return [];
+  }
+}
+"
+`;
+
+exports[`task generator generates correct files with commandType 2`] = `
+"import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { getPluginName } from '@checkup/core';
+import MyFooTask from '../src/tasks/my-foo-task';
+
+describe('my-foo-task', () => {
+  let project: CheckupProject;
+  let pluginName = getPluginName(__dirname);
+
+  beforeEach(() => {
+    project = new CheckupProject('checkup-app', '0.0.0', project => {
+      project.addDependency('ember-cli', '^3.15.0');
+    });
+
+    project.writeSync();
+    project.gitInit();
+  });
+
+  afterEach(() => {
+    project.dispose();
+  });
+
+  it('can read task as JSON', async () => {
+    const result = await new MyFooTask(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
+
+    expect(result).toMatchSnapshot();
+  });
+});
+"
+`;
+
+exports[`task generator generates correct files with commandType 3`] = `
+"import { Hook } from '@oclif/config';
+import MyFooTask from '../tasks/my-foo-task';
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+
+const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+  let pluginName = getPluginName(__dirname);
+  tasks.registerTask(new MyFooTask(pluginName, context));
+};
+
+export default hook;
+"
+`;
+
 exports[`task generator generates correct files with group 1`] = `
 "import { BaseTask, Task } from '@checkup/core';
 import { Result } from 'sarif';
