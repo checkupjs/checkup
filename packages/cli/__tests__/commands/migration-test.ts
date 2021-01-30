@@ -24,7 +24,7 @@ class MigrationTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return sarifBuilder.fromProperties(this, [], 'hi');
+    return sarifBuilder.fromData(this, [], 'hi');
   }
 }
 
@@ -38,7 +38,7 @@ class MigrationItemCountTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return sarifBuilder.fromProperties(this, [], 'hi');
+    return sarifBuilder.fromData(this, [], 'hi');
   }
 }
 

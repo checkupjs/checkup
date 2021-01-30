@@ -17,7 +17,7 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
   async run(): Promise<Result[]> {
     let packageJson = this.context.pkg;
 
-    let coreLibraries = sarifBuilder.fromProperties(
+    let coreLibraries = sarifBuilder.fromData(
       this,
       [
         findDependency(packageJson, 'ember-source'),
@@ -26,22 +26,22 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
       ],
       'ember core libraries'
     );
-    let emberDependencies = sarifBuilder.fromProperties(
+    let emberDependencies = sarifBuilder.fromData(
       this,
       findDependencies(packageJson.dependencies, emberAddonFilter),
       'ember addon dependencies'
     );
-    let emberDevDependencies = sarifBuilder.fromProperties(
+    let emberDevDependencies = sarifBuilder.fromData(
       this,
       findDependencies(packageJson.devDependencies, emberAddonFilter),
       'ember addon devDependencies'
     );
-    let emberCliDependencies = sarifBuilder.fromProperties(
+    let emberCliDependencies = sarifBuilder.fromData(
       this,
       findDependencies(packageJson.dependencies, emberCliAddonFilter),
       'ember-cli addon dependencies'
     );
-    let emberCliDevDependencies = sarifBuilder.fromProperties(
+    let emberCliDevDependencies = sarifBuilder.fromData(
       this,
       findDependencies(packageJson.devDependencies, emberCliAddonFilter),
       'ember-cli addon devDependencies'

@@ -89,14 +89,10 @@ function fromLocations(
  *
  * @param taskContext {Task} This is used to set Task properties on the Result
  * @param key {string} An identifier used to help identify the result
- * @param properties {Array<string | object>} The raw data used to derive the result's count
+ * @param data {Array<string | object>} The raw data used to derive the result's count
  */
-function fromProperties<T>(
-  taskContext: SarifTaskIdentifier,
-  properties: T[],
-  message: string
-): Result[] {
-  if (properties.length === 0) {
+function fromData<T>(taskContext: SarifTaskIdentifier, data: T[], message: string): Result[] {
+  if (data.length === 0) {
     return buildEmptyResult(taskContext, message);
   }
 
@@ -104,9 +100,9 @@ function fromProperties<T>(
     {
       message: { text: message },
       ruleId: taskContext.taskName,
-      occurrenceCount: properties.length,
+      occurrenceCount: data.length,
       properties: {
-        data: properties,
+        data: data,
         ...{
           taskDisplayName: taskContext.taskDisplayName,
           category: taskContext.category,
@@ -132,7 +128,7 @@ export function fromTaskErrors(errors: TaskError[]): Notification[] {
 export const sarifBuilder = {
   fromLintResults,
   fromLocations,
-  fromProperties,
+  fromData,
   notifications: {
     fromTaskErrors,
   },
