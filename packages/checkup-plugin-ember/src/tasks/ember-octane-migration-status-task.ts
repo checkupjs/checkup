@@ -2,17 +2,14 @@ import {
   BaseTask,
   sarifBuilder,
   byRuleIds,
-  ESLintMessage,
   ESLintOptions,
   ESLintReport,
   ESLintResult,
-  LintResult,
   Parser,
   Task,
   TaskContext,
   TemplateLintConfig,
   TemplateLinter,
-  TemplateLintMessage,
   TemplateLintReport,
   TemplateLintResult,
   groupDataByField,
@@ -148,18 +145,8 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
     return this.templateLinter.execute(hbsPaths);
   }
 
-  buildResult(lintingResults: (ESLintResult | TemplateLintResult)[], cwd: string): Result[] {
-    let rawData = lintingResults.reduce((resultDataItems, lintingResults) => {
-      let messages = (<any>lintingResults.messages).map(
-        (lintMessage: ESLintMessage | TemplateLintMessage) => {
-          return lintBuilder.toLintResult(lintMessage, cwd, lintingResults.filePath);
-        }
-      );
-
-      resultDataItems.push(...messages);
-
-      return resultDataItems;
-    }, [] as LintResult[]);
+  buildResult(results: (ESLintResult | TemplateLintResult)[], cwd: string): Result[] {
+    let rawData = lintBuilder.toLintResults(results, cwd);
 
     return [
       { key: 'Native Classes', rules: NATIVE_CLASS_RULES },
@@ -171,11 +158,12 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
       { key: 'Own Properties', rules: OWN_PROPERTIES_RULES },
       { key: 'Modifiers', rules: USE_MODIFIERS_RULES },
     ].flatMap(({ rules, key }) => {
-      let rulesGroupForKey = groupDataByField(byRuleIds(rawData, rules), 'lintRuleId');
-      return rulesGroupForKey.flatMap((rulesForKey) => {
+      let resultsByRuleId = groupDataByField(byRuleIds(rawData, rules), 'lintRuleId');
+
+      return resultsByRuleId.flatMap((resultsForRuleId) => {
         return sarifBuilder.fromLintResults(
           this,
-          rulesForKey,
+          resultsForRuleId,
           {
             resultGroup: key,
           },

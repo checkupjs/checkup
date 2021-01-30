@@ -21,10 +21,10 @@ export function toLintResult(
 }
 
 export function toLintResults(
-  lintResults: (ESLintResult | TemplateLintResult)[],
+  results: (ESLintResult | TemplateLintResult)[],
   cwd: string
 ): LintResult[] {
-  return lintResults.reduce((transformed, lintingResults) => {
+  return results.reduce((transformed, lintingResults) => {
     const messages = (<any>lintingResults.messages).map(
       (lintMessage: ESLintMessage | TemplateLintMessage) => {
         return toLintResult(lintMessage, cwd, lintingResults.filePath);
