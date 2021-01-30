@@ -14,10 +14,16 @@ function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
   expect(root.file(`__tests__/${name}-task-test.${extension}`).contents).toMatchSnapshot();
 }
 
-function assertPluginFiles(dir: string, extension: string = 'ts') {
+function assertPluginFiles(
+  dir: string,
+  commandType: 'info' | 'migration' | 'validate' = 'info',
+  extension: string = 'ts'
+) {
   let root = testRoot(dir);
 
-  expect(root.file(`src/hooks/register-tasks.${extension}`).contents).toMatchSnapshot();
+  expect(
+    root.file(`src/hooks/register-${commandType}-tasks.${extension}`).contents
+  ).toMatchSnapshot();
 }
 
 describe('task generator', () => {
@@ -83,12 +89,13 @@ describe('task generator', () => {
       })
       .withPrompts({
         typescript: false,
+        commandType: 'info',
         category: 'foo',
         group: 'bar',
       });
 
     assertTaskFiles('my-foo', dir, 'js');
-    assertPluginFiles(dir, 'js');
+    assertPluginFiles(dir, 'info', 'js');
   });
 
   it('generates correct files with typescript', async () => {
@@ -100,12 +107,31 @@ describe('task generator', () => {
         name: 'my-foo',
       })
       .withPrompts({
+        commandType: 'info',
         category: 'foo',
         group: 'bar',
       });
 
     assertTaskFiles('my-foo', dir);
     assertPluginFiles(dir);
+  });
+
+  it('generates correct files with commandType', async () => {
+    let baseDir = await generatePlugin();
+    let dir = await helpers
+      .run(TaskGenerator, { namespace: 'checkup:task' })
+      .cd(baseDir)
+      .withOptions({
+        name: 'my-foo',
+      })
+      .withPrompts({
+        commandType: 'migration',
+        category: 'foo',
+        group: 'bar',
+      });
+
+    assertTaskFiles('my-foo', dir);
+    assertPluginFiles(dir, 'migration');
   });
 
   it('generates correct files with category', async () => {
@@ -117,6 +143,7 @@ describe('task generator', () => {
         name: 'my-foo',
       })
       .withPrompts({
+        commandType: 'info',
         category: 'foo',
         group: 'bar',
       });
@@ -134,6 +161,7 @@ describe('task generator', () => {
         name: 'my-foo',
       })
       .withPrompts({
+        commandType: 'info',
         category: 'foo',
         group: 'bar',
       });

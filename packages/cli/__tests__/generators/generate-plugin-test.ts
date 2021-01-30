@@ -24,8 +24,8 @@ describe('plugin generator', () => {
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
-    expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
+    expect(root.directory('src/hooks/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
@@ -45,8 +45,8 @@ describe('plugin generator', () => {
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
-    expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
+    expect(root.directory('src/hooks/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
@@ -65,8 +65,8 @@ describe('plugin generator', () => {
     expect(root.file('README.md').contents).toMatchSnapshot();
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('src/index.js').contents).toMatchSnapshot();
-    expect(root.file('src/hooks/register-tasks.js').contents).toMatchSnapshot();
     expect(root.file('src/types/index.js').contents).toMatchSnapshot();
+    expect(root.directory('src/hooks/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
@@ -86,8 +86,8 @@ describe('plugin generator', () => {
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
-    expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
+    expect(root.directory('src/hooks/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
@@ -109,8 +109,8 @@ describe('plugin generator', () => {
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
-    expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
+    expect(root.directory('src/hooks/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
@@ -140,8 +140,8 @@ describe('plugin generator', () => {
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
-    expect(root.file('src/hooks/register-tasks.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
+    expect(root.directory('src/hooks/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();

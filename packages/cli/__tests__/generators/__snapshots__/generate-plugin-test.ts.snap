@@ -198,19 +198,13 @@ export * from './types';
 "
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 10`] = `
-"import { Hook } from '@oclif/config';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+exports[`plugin generator generates plugin into existing directory with defaults 10`] = `""`;
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
-  let pluginName = getPluginName(__dirname);
-};
-
-export default hook;
-"
+exports[`plugin generator generates plugin into existing directory with defaults 11`] = `
+Array [
+  ".gitkeep",
+]
 `;
-
-exports[`plugin generator generates plugin into existing directory with defaults 11`] = `""`;
 
 exports[`plugin generator generates plugin into existing directory with defaults 12`] = `
 Array [
@@ -392,19 +386,13 @@ exports[`plugin generator generates plugin with JavaScript defaults 8`] = `
 "
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 9`] = `
-"import { Hook } from '@oclif/config';
-import { getPluginName } from '@checkup/core';
+exports[`plugin generator generates plugin with JavaScript defaults 9`] = `""`;
 
-const hook = async function({ context, tasks }) {
-  let pluginName = getPluginName(__dirname);
-};
-
-export default hook;
-"
+exports[`plugin generator generates plugin with JavaScript defaults 10`] = `
+Array [
+  ".gitkeep",
+]
 `;
-
-exports[`plugin generator generates plugin with JavaScript defaults 10`] = `""`;
 
 exports[`plugin generator generates plugin with JavaScript defaults 11`] = `
 Array [
@@ -622,19 +610,13 @@ export * from './types';
 "
 `;
 
-exports[`plugin generator generates plugin with custom options 10`] = `
-"import { Hook } from '@oclif/config';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+exports[`plugin generator generates plugin with custom options 10`] = `""`;
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
-  let pluginName = getPluginName(__dirname);
-};
-
-export default hook;
-"
+exports[`plugin generator generates plugin with custom options 11`] = `
+Array [
+  ".gitkeep",
+]
 `;
-
-exports[`plugin generator generates plugin with custom options 11`] = `""`;
 
 exports[`plugin generator generates plugin with custom options 12`] = `
 Array [
@@ -852,19 +834,13 @@ export * from './types';
 "
 `;
 
-exports[`plugin generator generates plugin with defaults 10`] = `
-"import { Hook } from '@oclif/config';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+exports[`plugin generator generates plugin with defaults 10`] = `""`;
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
-  let pluginName = getPluginName(__dirname);
-};
-
-export default hook;
-"
+exports[`plugin generator generates plugin with defaults 11`] = `
+Array [
+  ".gitkeep",
+]
 `;
-
-exports[`plugin generator generates plugin with defaults 11`] = `""`;
 
 exports[`plugin generator generates plugin with defaults 12`] = `
 Array [
@@ -1082,19 +1058,13 @@ export * from './types';
 "
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 10`] = `
-"import { Hook } from '@oclif/config';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+exports[`plugin generator generates plugin with defaults in custom path 10`] = `""`;
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
-  let pluginName = getPluginName(__dirname);
-};
-
-export default hook;
-"
+exports[`plugin generator generates plugin with defaults in custom path 11`] = `
+Array [
+  ".gitkeep",
+]
 `;
-
-exports[`plugin generator generates plugin with defaults in custom path 11`] = `""`;
 
 exports[`plugin generator generates plugin with defaults in custom path 12`] = `
 Array [
@@ -1312,19 +1282,13 @@ export * from './types';
 "
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 10`] = `
-"import { Hook } from '@oclif/config';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+exports[`plugin generator generates plugin with unmodified name with defaults 10`] = `""`;
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
-  let pluginName = getPluginName(__dirname);
-};
-
-export default hook;
-"
+exports[`plugin generator generates plugin with unmodified name with defaults 11`] = `
+Array [
+  ".gitkeep",
+]
 `;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 11`] = `""`;
 
 exports[`plugin generator generates plugin with unmodified name with defaults 12`] = `
 Array [
