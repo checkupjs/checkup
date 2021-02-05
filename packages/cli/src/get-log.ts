@@ -2,7 +2,7 @@ import {
   Action,
   CheckupConfig,
   CheckupMetadata,
-  normalizePaths,
+  trimAllCwd,
   Task,
   TaskContext,
 } from '@checkup/core';
@@ -71,7 +71,7 @@ async function getCheckupMetadata(taskContext: TaskContext): Promise<CheckupMeta
   let repositoryInfo = await getRepositoryInfo(taskContext.cliFlags.cwd, taskContext.paths);
 
   let { config, task, format } = taskContext.cliFlags;
-  let analyzedFiles = normalizePaths(taskContext.paths, taskContext.cliFlags.cwd);
+  let analyzedFiles = trimAllCwd(taskContext.paths, taskContext.cliFlags.cwd);
 
   return {
     project: {

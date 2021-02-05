@@ -1,4 +1,4 @@
-import { Task, BaseTask, normalizePaths, sarifBuilder } from '@checkup/core';
+import { Task, BaseTask, trimAllCwd, sarifBuilder } from '@checkup/core';
 import { Result } from 'sarif';
 
 const SEARCH_PATTERNS = [
@@ -25,7 +25,7 @@ export default class EmberTypesTask extends BaseTask implements Task {
       let files = this.context.paths.filterByGlob(pattern.pattern);
       return sarifBuilder.fromLocations(
         this,
-        normalizePaths(files, this.context.cliFlags.cwd),
+        trimAllCwd(files, this.context.cliFlags.cwd),
         pattern.patternName
       );
     });

@@ -35,7 +35,7 @@ export { sumOccurrences, reduceResults } from './utils/sarif-utils';
 
 export { byRuleId, byRuleIds, bySeverity } from './data/filters';
 export { toPercent, groupDataByField } from './data/formatters';
-export { normalizePath, normalizePaths } from './data/path';
+export { trimCwd, trimAllCwd } from './data/path';
 export { lintBuilder } from './data/lint';
 export { sarifBuilder, NO_RESULTS_FOUND } from './data/sarif';
 

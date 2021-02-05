@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { join } from 'path';
 import { Log, Result } from 'sarif';
-import { BaseTask, normalizePath, Task, TaskContext, sarifBuilder } from '@checkup/core';
+import { BaseTask, trimCwd, Task, TaskContext, sarifBuilder } from '@checkup/core';
 import {
   CheckupProject,
   clearStdout,
@@ -119,7 +119,7 @@ describe('@checkup/cli', () => {
     it('should output checkup result in JSON', async () => {
       await runCommand(['info', '--format', 'json', '--cwd', project.baseDir]);
 
-      let output = JSON.parse(normalizePath(stdout().trim(), project.baseDir)) as Log;
+      let output = JSON.parse(trimCwd(stdout().trim(), project.baseDir)) as Log;
       expect(output).toMatchSnapshot({
         runs: expect.any(Array),
       });

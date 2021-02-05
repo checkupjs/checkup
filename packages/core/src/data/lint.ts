@@ -1,7 +1,7 @@
 import { ESLintMessage, ESLintResult } from '../types/parsers';
 import { LintResult } from '../types/tasks';
 import { TemplateLintMessage, TemplateLintResult } from '../types/ember-template-lint';
-import { normalizePath } from './path';
+import { trimCwd } from './path';
 
 export function toLintResult(
   message: ESLintMessage | TemplateLintMessage,
@@ -10,7 +10,7 @@ export function toLintResult(
   additionalData: object = {}
 ): LintResult {
   return {
-    filePath: normalizePath(filePath, cwd),
+    filePath: trimCwd(filePath, cwd),
     lintRuleId: getLintRuleId(message),
     message: message.message,
     severity: message.severity,

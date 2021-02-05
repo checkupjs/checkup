@@ -1,11 +1,4 @@
-import {
-  Task,
-  BaseTask,
-  LintResult,
-  normalizePath,
-  AstTraverser,
-  sarifBuilder,
-} from '@checkup/core';
+import { Task, BaseTask, LintResult, trimCwd, AstTraverser, sarifBuilder } from '@checkup/core';
 import { Result } from 'sarif';
 
 const fs = require('fs');
@@ -37,7 +30,7 @@ async function getTemplateLintDisables(filePaths: string[], cwd: string) {
 
     add(node: any) {
       this.data.push({
-        filePath: normalizePath(this.filePath, cwd),
+        filePath: trimCwd(this.filePath, cwd),
         lintRuleId: 'no-ember-template-lint-disable',
         message: 'ember-template-lint-disable usages',
         line: node.loc.start.line,
