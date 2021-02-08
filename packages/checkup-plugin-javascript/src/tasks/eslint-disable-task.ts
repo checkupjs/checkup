@@ -1,11 +1,4 @@
-import {
-  Task,
-  BaseTask,
-  normalizePath,
-  LintResult,
-  AstTraverser,
-  buildResultsFromLintResult,
-} from '@checkup/core';
+import { Task, BaseTask, trimCwd, LintResult, AstTraverser, sarifBuilder } from '@checkup/core';
 
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
@@ -26,7 +19,7 @@ export default class EslintDisableTask extends BaseTask implements Task {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
     let eslintDisables: LintResult[] = await getEslintDisables(jsPaths, this.context.cliFlags.cwd);
 
-    return buildResultsFromLintResult(this, eslintDisables);
+    return sarifBuilder.fromLintResults(this, eslintDisables);
   }
 }
 
@@ -40,7 +33,7 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
 
     add(node: any) {
       this.data.push({
-        filePath: normalizePath(this.filePath, cwd),
+        filePath: trimCwd(this.filePath, cwd),
         lintRuleId: 'no-eslint-disable',
         message: 'eslint-disable usages',
         line: node.loc.start.line,

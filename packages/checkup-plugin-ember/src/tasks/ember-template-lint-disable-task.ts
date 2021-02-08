@@ -1,11 +1,4 @@
-import {
-  Task,
-  BaseTask,
-  LintResult,
-  buildResultsFromLintResult,
-  normalizePath,
-  AstTraverser,
-} from '@checkup/core';
+import { Task, BaseTask, LintResult, trimCwd, AstTraverser, sarifBuilder } from '@checkup/core';
 import { Result } from 'sarif';
 
 const fs = require('fs');
@@ -23,7 +16,7 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.cliFlags.cwd);
 
-    return buildResultsFromLintResult(this, templateLintDisables);
+    return sarifBuilder.fromLintResults(this, templateLintDisables);
   }
 }
 
@@ -37,7 +30,7 @@ async function getTemplateLintDisables(filePaths: string[], cwd: string) {
 
     add(node: any) {
       this.data.push({
-        filePath: normalizePath(this.filePath, cwd),
+        filePath: trimCwd(this.filePath, cwd),
         lintRuleId: 'no-ember-template-lint-disable',
         message: 'ember-template-lint-disable usages',
         line: node.loc.start.line,

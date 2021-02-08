@@ -31,22 +31,13 @@ export { exec } from './utils/exec';
 export { ui } from './utils/ui';
 export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
-export { sumOccurrences } from './utils/sarif-utils';
+export { sumOccurrences, reduceResults } from './utils/sarif-utils';
 
 export { byRuleId, byRuleIds, bySeverity } from './data/filters';
-export { toPercent, groupDataByField, combineResultsForRendering } from './data/formatters';
-export {
-  buildResultsFromProperties,
-  buildResultsFromLintResult,
-  buildResultsFromPathArray,
-  buildLintResultData,
-  buildLintResultDataItem,
-  buildLintResultsFromEslintOrTemplateLint,
-  buildNotificationsFromTaskErrors,
-  normalizePath,
-  normalizePaths,
-  NO_RESULTS_FOUND,
-} from './data/builders';
+export { toPercent, groupDataByField } from './data/formatters';
+export { trimCwd, trimAllCwd } from './data/path';
+export { lintBuilder } from './data/lint';
+export { sarifBuilder, NO_RESULTS_FOUND } from './data/sarif';
 
 export * from './types/cli';
 export * from './types/parsers';

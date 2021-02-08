@@ -1,6 +1,6 @@
 import * as npmCheck from 'npm-check';
 
-import { BaseTask, Task, buildResultsFromProperties, groupDataByField } from '@checkup/core';
+import { BaseTask, Task, groupDataByField, sarifBuilder } from '@checkup/core';
 import { Result } from 'sarif';
 
 export type Dependency = {
@@ -68,7 +68,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
     let groupedDependencies = groupDataByField(outdatedDependencies, 'semverBump');
 
     return groupedDependencies.flatMap((dependencyGroup) =>
-      buildResultsFromProperties(this, dependencyGroup, dependencyGroup[0].semverBump)
+      sarifBuilder.fromData(this, dependencyGroup, dependencyGroup[0].semverBump)
     );
   }
 }

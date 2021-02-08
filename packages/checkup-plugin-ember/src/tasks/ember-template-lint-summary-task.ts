@@ -1,7 +1,5 @@
 import {
   BaseTask,
-  buildLintResultDataItem,
-  buildResultsFromLintResult,
   LintResult,
   Task,
   TaskContext,
@@ -10,6 +8,8 @@ import {
   TemplateLintReport,
   groupDataByField,
   bySeverity,
+  sarifBuilder,
+  lintBuilder,
 } from '@checkup/core';
 import { join, resolve } from 'path';
 import { Result } from 'sarif';
@@ -45,7 +45,7 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
     let templateLintReport = await this.runTemplateLint();
     let lintResults = templateLintReport.results.reduce((resultDataItems, lintingResults) => {
       let messages = (<any>lintingResults.messages).map((lintMessage: TemplateLintMessage) => {
-        return buildLintResultDataItem(
+        return lintBuilder.toLintResult(
           lintMessage,
           this.context.cliFlags.cwd,
           lintingResults.filePath
@@ -60,13 +60,13 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
     let lintingWarnings = groupDataByField(bySeverity(lintResults, 1), 'lintRuleId');
 
     let errorsResult = lintingErrors.flatMap((lintingError) => {
-      return buildResultsFromLintResult(this, lintingError, {
+      return sarifBuilder.fromLintResults(this, lintingError, {
         type: 'error',
       });
     });
 
     let warningsResult = lintingWarnings.flatMap((lintingWarning) => {
-      return buildResultsFromLintResult(this, lintingWarning, {
+      return sarifBuilder.fromLintResults(this, lintingWarning, {
         type: 'warning',
       });
     });
