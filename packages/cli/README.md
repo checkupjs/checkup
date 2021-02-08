@@ -161,6 +161,11 @@ The configuration object has the following properties:
 
 Plugins are collections of Checkup tasks that are intended to be configured and run. Conceptually, they're very similar to eslint plugins, which themselves contain a collection of eslint rules to run.
 
+Check out some existing plugins:
+
+- [checkup-plugin-javascript](https://www.npmjs.com/package/checkup-plugin-javascript)
+- [checkup-plugin-ember](https://www.npmjs.com/package/checkup-plugin-ember)
+
 Plugins can be authored by anyone, and configured to run for any codebase. Checkup comes with a plugin generator, making it easy to generate the scaffolding needed.
 
 To generate a plugin, run:
