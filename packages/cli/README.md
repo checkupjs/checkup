@@ -165,7 +165,6 @@ Check out some existing plugins:
 
 - [checkup-plugin-javascript](https://www.npmjs.com/package/checkup-plugin-javascript)
 - [checkup-plugin-ember](https://www.npmjs.com/package/checkup-plugin-ember)
-- [checkup-plugin-ember-octane](https://www.npmjs.com/package/checkup-plugin-ember-octane)
 
 Plugins can be authored by anyone, and configured to run for any codebase. Checkup comes with a plugin generator, making it easy to generate the scaffolding needed.
 
