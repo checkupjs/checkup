@@ -107,6 +107,47 @@ describe('mergeLintConfig', () => {
         }
       `);
     });
+
+    it('should merge rule tuples when there are rule overrides with true merge', () => {
+      let original: CLIEngine.Options = {
+        rules: {
+          'fake-eslint-rule': [
+            'error',
+            {
+              prop1: 'error',
+              prop2: 'off',
+            },
+          ],
+        },
+      };
+
+      let overrides = {
+        rules: {
+          'fake-eslint-rule': [
+            'error',
+            {
+              prop1: 'warn',
+              prop3: 'error',
+            },
+          ],
+        },
+      };
+
+      expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
+        Object {
+          "rules": Object {
+            "fake-eslint-rule": Array [
+              "error",
+              Object {
+                "prop1": "warn",
+                "prop2": "off",
+                "prop3": "error",
+              },
+            ],
+          },
+        }
+      `);
+    });
   });
 
   describe('ember-template-lint', () => {
@@ -192,6 +233,47 @@ describe('mergeLintConfig', () => {
             {
               prop1: 'warn',
               prop2: 'off',
+              prop3: 'error',
+            },
+          ],
+        },
+      };
+
+      expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
+        Object {
+          "rules": Object {
+            "fake-ember-template-lint-rule": Array [
+              "error",
+              Object {
+                "prop1": "warn",
+                "prop2": "off",
+                "prop3": "error",
+              },
+            ],
+          },
+        }
+      `);
+    });
+
+    it('should merge rule tuples when there are rule overrides with true merge', () => {
+      let original: TemplateLintConfig = {
+        rules: {
+          'fake-ember-template-lint-rule': [
+            'error',
+            {
+              prop1: 'error',
+              prop2: 'off',
+            },
+          ],
+        },
+      };
+
+      let overrides = {
+        rules: {
+          'fake-ember-template-lint-rule': [
+            'error',
+            {
+              prop1: 'warn',
               prop3: 'error',
             },
           ],
