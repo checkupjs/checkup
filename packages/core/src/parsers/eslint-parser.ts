@@ -1,7 +1,6 @@
-import { CreateParser, Parser } from '../types/parsers';
-import * as deepmerge from 'deepmerge';
-
 import { CLIEngine, Rule } from 'eslint';
+import { mergeLintConfig } from '../utils/merge-lint-config';
+import { CreateParser, Parser } from '../types/parsers';
 import { TaskConfig } from '../types/config';
 
 class ESLintParser implements Parser<CLIEngine.LintReport> {
@@ -30,7 +29,7 @@ let createParser: CreateParser<CLIEngine.Options, Parser<CLIEngine.LintReport>> 
   taskConfig?: TaskConfig
 ) {
   if (taskConfig && taskConfig.eslintConfig) {
-    config = deepmerge(config, taskConfig.eslintConfig);
+    config = mergeLintConfig(config, taskConfig.eslintConfig);
   }
 
   return new ESLintParser(config);
