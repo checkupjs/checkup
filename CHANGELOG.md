@@ -22,6 +22,20 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v0.13.3 (2021-02-09)
+
+#### :bug: Bug Fix
+* `core`
+  * [#864](https://github.com/checkupjs/checkup/pull/864) Fixing task config overrides merging correctly ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v0.13.2 (2021-01-14)
 
 #### :rocket: Enhancement
