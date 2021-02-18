@@ -42,7 +42,8 @@
     "hooks": {
       "register-info-tasks": "./lib/hooks/register-info-tasks",
       "register-migration-tasks": "./lib/hooks/register-migration-tasks",
-      "register-actions": "./lib/hooks/register-actions"
+      "register-actions": "./lib/hooks/register-actions",
+      "register-task-reporter": "./lib/hooks/register-task-reporters"
     }
   },
   "publishConfig": {
