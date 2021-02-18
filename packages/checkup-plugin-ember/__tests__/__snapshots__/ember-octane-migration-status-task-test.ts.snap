@@ -3,6 +3,7 @@
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to json 1`] = `
 Array [
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -30,6 +31,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -57,6 +59,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -84,6 +87,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -111,6 +115,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -138,6 +143,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -165,6 +171,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -192,6 +199,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -219,6 +227,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -246,6 +255,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -273,6 +283,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -300,6 +311,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -327,6 +339,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -354,6 +367,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -381,6 +395,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -408,6 +423,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -435,6 +451,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -462,6 +479,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -489,6 +507,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -516,6 +535,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -543,6 +563,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -570,6 +591,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -602,6 +624,7 @@ Array [
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane app and outputs to json 1`] = `
 Array [
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -629,6 +652,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -656,6 +680,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -683,6 +708,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -710,6 +736,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -737,6 +764,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -764,6 +792,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -791,6 +820,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -818,6 +848,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -845,6 +876,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -872,6 +904,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -899,6 +932,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -926,6 +960,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -953,6 +988,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -980,6 +1016,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -1007,6 +1044,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -1034,6 +1072,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -1061,6 +1100,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -1088,6 +1128,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -1115,6 +1156,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -1142,6 +1184,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -1169,6 +1212,7 @@ Array [
     "ruleId": "ember-octane-migration-status",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {

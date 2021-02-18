@@ -3,6 +3,7 @@
 exports[`outdated-dependencies-task detects outdated dependencies as JSON 1`] = `
 Array [
   Object {
+    "kind": "informational",
     "message": Object {
       "text": "major",
     },
@@ -26,6 +27,7 @@ Array [
     "ruleId": "outdated-dependencies",
   },
   Object {
+    "kind": "informational",
     "message": Object {
       "text": "minor",
     },

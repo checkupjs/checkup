@@ -3,6 +3,7 @@
 exports[`types-task returns all the types (including nested) found in the app and outputs to JSON 1`] = `
 Array [
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -24,6 +25,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -45,6 +47,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -66,6 +69,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -87,6 +91,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -108,6 +113,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -129,6 +135,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -150,6 +157,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -171,6 +179,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -192,6 +201,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -213,6 +223,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -234,6 +245,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -255,6 +267,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -276,6 +289,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -297,6 +311,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -318,6 +333,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -339,6 +355,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -360,6 +377,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -381,6 +399,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -402,6 +421,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -428,6 +448,7 @@ Array [
 exports[`types-task returns all the types found in the app and outputs to JSON 1`] = `
 Array [
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -449,6 +470,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -470,6 +492,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -491,6 +514,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -512,6 +536,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -533,6 +558,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -554,6 +580,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -575,6 +602,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -596,6 +624,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -617,6 +646,7 @@ Array [
     "ruleId": "ember-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {

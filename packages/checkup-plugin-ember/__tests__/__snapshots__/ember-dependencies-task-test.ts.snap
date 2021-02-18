@@ -3,6 +3,7 @@
 exports[`dependencies-task detects Ember dependencies as JSON 1`] = `
 Array [
   Object {
+    "kind": "informational",
     "message": Object {
       "text": "ember core libraries",
     },
@@ -29,6 +30,7 @@ Array [
     "ruleId": "ember-dependencies",
   },
   Object {
+    "kind": "informational",
     "message": Object {
       "text": "ember addon dependencies",
     },
@@ -47,6 +49,7 @@ Array [
     "ruleId": "ember-dependencies",
   },
   Object {
+    "kind": "notApplicable",
     "message": Object {
       "text": "No results found",
     },
@@ -59,6 +62,7 @@ Array [
     "ruleId": "ember-dependencies",
   },
   Object {
+    "kind": "informational",
     "message": Object {
       "text": "ember-cli addon dependencies",
     },
@@ -81,6 +85,7 @@ Array [
     "ruleId": "ember-dependencies",
   },
   Object {
+    "kind": "informational",
     "message": Object {
       "text": "ember-cli addon devDependencies",
     },

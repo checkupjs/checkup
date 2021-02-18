@@ -51,6 +51,7 @@ describe('eslint-disable-task', () => {
     expect(result.sort()).toMatchInlineSnapshot(`
       Array [
         Object {
+          "kind": "fail",
           "locations": Array [
             Object {
               "physicalLocation": Object {
@@ -77,6 +78,7 @@ describe('eslint-disable-task', () => {
           "ruleId": "eslint-disables",
         },
         Object {
+          "kind": "fail",
           "locations": Array [
             Object {
               "physicalLocation": Object {
@@ -103,6 +105,7 @@ describe('eslint-disable-task', () => {
           "ruleId": "eslint-disables",
         },
         Object {
+          "kind": "fail",
           "locations": Array [
             Object {
               "physicalLocation": Object {
@@ -129,6 +132,7 @@ describe('eslint-disable-task', () => {
           "ruleId": "eslint-disables",
         },
         Object {
+          "kind": "fail",
           "locations": Array [
             Object {
               "physicalLocation": Object {

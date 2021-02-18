@@ -39,6 +39,7 @@ describe('ember-template-lint-disable-task', () => {
     expect(result).toMatchInlineSnapshot(`
       Array [
         Object {
+          "kind": "fail",
           "locations": Array [
             Object {
               "physicalLocation": Object {
@@ -65,6 +66,7 @@ describe('ember-template-lint-disable-task', () => {
           "ruleId": "ember-template-lint-disables",
         },
         Object {
+          "kind": "fail",
           "locations": Array [
             Object {
               "physicalLocation": Object {
@@ -91,6 +93,7 @@ describe('ember-template-lint-disable-task', () => {
           "ruleId": "ember-template-lint-disables",
         },
         Object {
+          "kind": "fail",
           "locations": Array [
             Object {
               "physicalLocation": Object {

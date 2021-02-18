@@ -3,6 +3,7 @@
 exports[`ember-test-types-task only renders todos/only test types if they a value > 0 1`] = `
 Array [
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -30,6 +31,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -57,6 +59,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -89,6 +92,7 @@ Array [
 exports[`ember-test-types-task returns all the test types found in the app and outputs to json 1`] = `
 Array [
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -116,6 +120,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -143,6 +148,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -170,6 +176,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -197,6 +204,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -224,6 +232,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -251,6 +260,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -278,6 +288,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -305,6 +316,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -332,6 +344,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -359,6 +372,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -386,6 +400,7 @@ Array [
     "ruleId": "ember-test-types",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {

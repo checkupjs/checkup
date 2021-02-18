@@ -69,9 +69,15 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     });
 
     return Object.keys(testTypes).flatMap((key) => {
-      return sarifBuilder.fromLintResults(this, testTypes[key], {
-        method: testTypes[key][0].method,
-      });
+      return sarifBuilder.fromLintResults(
+        this,
+        testTypes[key],
+        {
+          method: testTypes[key][0].method,
+        },
+        {},
+        'informational'
+      );
     });
   }
 }

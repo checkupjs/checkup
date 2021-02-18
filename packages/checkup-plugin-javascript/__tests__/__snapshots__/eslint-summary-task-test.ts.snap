@@ -3,6 +3,7 @@
 exports[`eslint-summary-task summarizes eslint and outputs to JSON 1`] = `
 Array [
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -30,6 +31,7 @@ Array [
     "ruleId": "eslint-summary",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {

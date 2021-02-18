@@ -3,6 +3,7 @@
 exports[`ember-in-repo-addons-engines-task can read task as JSON 1`] = `
 Array [
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -24,6 +25,7 @@ Array [
     "ruleId": "ember-in-repo-addons-engines",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -45,6 +47,7 @@ Array [
     "ruleId": "ember-in-repo-addons-engines",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -66,6 +69,7 @@ Array [
     "ruleId": "ember-in-repo-addons-engines",
   },
   Object {
+    "kind": "informational",
     "locations": Array [
       Object {
         "physicalLocation": Object {

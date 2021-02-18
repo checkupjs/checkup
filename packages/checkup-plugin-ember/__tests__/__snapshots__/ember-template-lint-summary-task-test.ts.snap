@@ -3,6 +3,7 @@
 exports[`ember-emplate-lint-summary-task summarizes eslint and outputs to JSON 1`] = `
 Array [
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -30,6 +31,7 @@ Array [
     "ruleId": "ember-template-lint-summary",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -57,6 +59,7 @@ Array [
     "ruleId": "ember-template-lint-summary",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {
@@ -84,6 +87,7 @@ Array [
     "ruleId": "ember-template-lint-summary",
   },
   Object {
+    "kind": "fail",
     "locations": Array [
       Object {
         "physicalLocation": Object {

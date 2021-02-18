@@ -8,16 +8,18 @@ type SarifTaskIdentifier = Pick<Task, 'taskName' | 'taskDisplayName' | 'category
 /**
  * Builds SARIF Results from a list of LintResults.
  *
- * @param taskContext {Task} This is used to set Task properties on the Result
- * @param lintResults {LintResult[]} The LintResults used to create Result
- * @param [additionalData] {Object} Any additional data to be put into the properties bag
- * @param [customMessages] {Record<string, string>} Custom messages to be rendered for each lintRule
+ * @param {SarifTaskIdentifier} taskContext  This is used to set Task properties on the Results
+ * @param {LintResult[]} lintResults  The LintResults used to create Results
+ * @param {Object} [additionalData] Any additional data to be put into the properties bag
+ * @param {Record<string, string>} [customMessages]  Custom messages to be rendered for each lintRule
+ * @param {Result.kind} [resultKind='fail']  This is used to specify the nature of the Results
  */
 function fromLintResults(
   taskContext: SarifTaskIdentifier,
   lintResults: LintResult[],
-  additionalData: object = {},
-  customMessages: Record<string, string> = {}
+  additionalData: Object = {},
+  customMessages: Record<string, string> = {},
+  resultKind: Result.kind = 'fail'
 ): Result[] {
   if (lintResults.length === 0) {
     return buildEmptyResult(taskContext);
@@ -36,6 +38,7 @@ function fromLintResults(
         (lintResult.lintRuleId && customMessages[lintResult.lintRuleId]) ?? lintResult.message;
 
       return {
+        kind: resultKind,
         locations: buildLocationDataFromLintResult(lintResult),
         message: { text: message },
         occurrenceCount: 1,
@@ -56,14 +59,16 @@ function fromLintResults(
 /**
  * Builds SARIF Results from a list of locations.
  *
- * @param taskContext {Task} This is used to set Task properties on the Result
- * @param locations {string[]} The paths used to create Result
- * @param message {string} The message that identifies the data represented in the Result
+ * @param {SarifTaskIdentifier} taskContext This is used to set Task properties on the Results
+ * @param {string[]} locations The paths used to create Results
+ * @param {string} message The message that identifies the data represented in the Results
+ * @param {Result.kind} [resultKind='informational']  This is used to specify the nature of the Results
  */
 function fromLocations(
   taskContext: SarifTaskIdentifier,
   locations: string[],
-  message: string
+  message: string,
+  resultKind: Result.kind = 'informational'
 ): Result[] {
   if (locations.length === 0) {
     return buildEmptyResult(taskContext, message);
@@ -71,6 +76,7 @@ function fromLocations(
 
   return locations.map((path) => {
     return {
+      kind: resultKind,
       locations: buildLocationDataFromPath(path),
       message: { text: message },
       occurrenceCount: 1,
@@ -87,17 +93,24 @@ function fromLocations(
 /**
  * Builds SARIF Results from a list of properties.
  *
- * @param taskContext {Task} This is used to set Task properties on the Result
- * @param key {string} An identifier used to help identify the result
- * @param data {Array<string | object>} The raw data used to derive the result's count
+ * @param {SarifTaskIdentifier} taskContext This is used to set Task properties on the Result
+ * @param {T[]} data  The raw data used to derive the Result's count
+ * @param {string} message The message that identifies the data represented in the Results
+ * @param {Result.kind} [resultKind='informational']  This is used to specify the nature of the Results
  */
-function fromData<T>(taskContext: SarifTaskIdentifier, data: T[], message: string): Result[] {
+function fromData<T>(
+  taskContext: SarifTaskIdentifier,
+  data: T[],
+  message: string,
+  resultKind: Result.kind = 'informational'
+): Result[] {
   if (data.length === 0) {
     return buildEmptyResult(taskContext, message);
   }
 
   return [
     {
+      kind: resultKind,
       message: { text: message },
       ruleId: taskContext.taskName,
       occurrenceCount: data.length,
@@ -137,6 +150,7 @@ export const sarifBuilder = {
 function buildEmptyResult(taskContext: SarifTaskIdentifier, consoleMessage?: string): Result[] {
   return [
     {
+      kind: 'notApplicable',
       message: { text: NO_RESULTS_FOUND },
       ruleId: taskContext.taskName,
       properties: {
