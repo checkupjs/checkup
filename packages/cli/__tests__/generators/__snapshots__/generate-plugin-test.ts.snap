@@ -231,12 +231,12 @@ exports[`plugin generator generates plugin with JavaScript defaults 1`] = `
   \\"version\\": \\"0.0.0\\",
   \\"author\\": \\"\\",
   \\"dependencies\\": {
-    \\"@checkup/core\\": \\"^0.0.1\\",
+    \\"@checkup/core\\": \\"^0.13.2\\",
     \\"@oclif/command\\": \\"^1\\",
     \\"@oclif/config\\": \\"^1\\"
   },
   \\"devDependencies\\": {
-    \\"@checkup/test-helpers\\": \\"^0.0.1\\",
+    \\"@checkup/test-helpers\\": \\"^0.13.2\\",
     \\"@oclif/dev-cli\\": \\"^1\\",
     \\"eslint\\": \\"^7.5.0\\",
     \\"eslint-config-prettier\\": \\"^6.11.0\\",
