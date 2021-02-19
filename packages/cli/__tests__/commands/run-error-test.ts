@@ -18,7 +18,7 @@ describe('@checkup/cli', () => {
 
     it('should correctly report error when no config detected', async () => {
       await expect(
-        runCommand(['info', '--cwd', project.baseDir], { testing: true })
+        runCommand(['run', '--cwd', project.baseDir], { testing: true })
       ).rejects.toThrowErrorMatchingInlineSnapshot(
         // eslint-disable-next-line jest/no-interpolation-in-snapshots
         `"Could not find a checkup config in the given path: ${project.baseDir}/.checkuprc."`
@@ -33,7 +33,7 @@ describe('@checkup/cli', () => {
       project.writeSync();
 
       await expect(
-        runCommand(['info', '--cwd', project.baseDir], { testing: true })
+        runCommand(['run', '--cwd', project.baseDir], { testing: true })
       ).rejects.toThrow(
         `Config in ${project.baseDir}/.checkuprc is invalid.
 
@@ -49,7 +49,7 @@ ${white.bold('Details')}: data should have required property 'tasks'.`
       project.writeSync();
 
       await expect(
-        runCommand(['info', '--cwd', project.baseDir], { testing: true })
+        runCommand(['run', '--cwd', project.baseDir], { testing: true })
       ).rejects.toThrow(
         `Config in ${project.baseDir}/.checkuprc is invalid.
 
@@ -62,7 +62,7 @@ ${white.bold('Details')}: data.tasks should be object.`
       project.writeSync();
 
       await expect(
-        runCommand(['info', '--task', 'foo', '--cwd', project.baseDir], { testing: true })
+        runCommand(['run', '--task', 'foo', '--cwd', project.baseDir], { testing: true })
       ).rejects.toThrowErrorMatchingInlineSnapshot(`"Cannot find the foo task."`);
     });
   });
