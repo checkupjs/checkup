@@ -3,6 +3,7 @@ import * as chalk from 'chalk';
 import { Answers } from 'inquirer';
 import BaseGenerator from './base-generator';
 import { join } from 'path';
+import { readJsonSync } from 'fs-extra';
 import { readdirSync, existsSync } from 'fs';
 import { CheckupError } from '@checkup/core';
 
@@ -71,6 +72,8 @@ export default class PluginGenerator extends BaseGenerator {
       ]);
     }
 
+    const checkupVersion = readJsonSync(join(__dirname, '../../package.json')).version;
+    this.options.checkupVersion = checkupVersion;
     this.options.typescript = this.answers.typescript;
     this.options.description = this.answers.description;
     this.options.author = this.answers.author;
