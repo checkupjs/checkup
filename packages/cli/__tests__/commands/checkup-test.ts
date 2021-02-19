@@ -41,9 +41,8 @@ describe('@checkup/cli', () => {
         expect(result.stdout).toMatch('USAGE');
         expect(result.stdout).toMatch('$ checkup [COMMAND]');
         expect(result.stdout).toMatch('COMMANDS');
-        expect(result.stdout).toMatch('generate   Runs a generator to scaffold Checkup code');
-        expect(result.stdout).toMatch('info       Runs information-based tasks');
-        expect(result.stdout).toMatch('migration  Runs migration-based tasks');
+        expect(result.stdout).toMatch('generate  Runs a generator to scaffold Checkup code');
+        expect(result.stdout).toMatch('run       Runs information-based tasks');
       },
       TEST_TIMEOUT
     );
