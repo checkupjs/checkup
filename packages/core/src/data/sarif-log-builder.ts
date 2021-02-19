@@ -11,7 +11,7 @@ const RUN_DEFAULTS = {
   },
 };
 
-export class SarifBuilder {
+export class SarifLogBuilder {
   log: Log;
   runs: Run[];
   rules: ReportingDescriptor[];

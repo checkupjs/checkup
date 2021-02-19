@@ -1,8 +1,8 @@
-import { SarifBuilder } from '../../src/data/sarif-builder';
+import { SarifLogBuilder } from '../../src/data/sarif-log-builder';
 
 describe('sarif-builder', () => {
   it('builds a default SARIF builder log', () => {
-    let builder = new SarifBuilder();
+    let builder = new SarifLogBuilder();
 
     expect(builder.log).toMatchInlineSnapshot(`
       Object {
@@ -23,7 +23,7 @@ describe('sarif-builder', () => {
   });
 
   it('can add runs to a log', () => {
-    let builder = new SarifBuilder();
+    let builder = new SarifLogBuilder();
 
     builder.addRun({
       tool: {
@@ -62,7 +62,7 @@ describe('sarif-builder', () => {
   });
 
   it('can add rules to a log', () => {
-    let builder = new SarifBuilder();
+    let builder = new SarifLogBuilder();
 
     builder.addRule({
       id: 'FOO',
@@ -87,7 +87,7 @@ describe('sarif-builder', () => {
   });
 
   it('can add results to a log', () => {
-    let builder = new SarifBuilder();
+    let builder = new SarifLogBuilder();
 
     builder.addResult({
       message: {
