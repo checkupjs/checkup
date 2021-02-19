@@ -9,17 +9,17 @@ type SarifTaskIdentifier = Pick<Task, 'taskName' | 'taskDisplayName' | 'category
  *
  * @param ruleId The SARIF Result.ruleId property.
  * @param message The SARIF Result.message.text property.
- * @param rest Additional properties to populate a SARIF Result.
+ * @param props Additional properties to populate a SARIF Result.
  */
 function buildResult(
   ruleId: string,
   message: string,
-  rest: Omit<Result, 'ruleId' | 'message'>
+  props: Partial<Omit<Result, 'ruleId' | 'message'>>
 ): Result {
   return {
     ruleId,
     message: { text: message },
-    ...rest,
+    ...props,
   };
 }
 
