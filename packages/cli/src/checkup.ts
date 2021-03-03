@@ -88,7 +88,7 @@ checkup <command> [options]`
       },
       handler: async (argv: yargs.Arguments) => {
         let cmd = new RunCommand(argv);
-        let spinner = ora().start('Checking up on your project');
+        let spinner = ora().start('🕵️‍♀️ Checking up on your project');
 
         await cmd.run();
 
