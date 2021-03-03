@@ -128,6 +128,8 @@ checkup <command> [options]`
           });
       },
       handler: async (argv: yargs.Arguments) => {
+        // Intentionally not using ora here as the generate command defers to yeoman,
+        // and yeoman uses inquirer, which has some issues inter-operating with ora.
         let cmd = new GenerateCommand(argv);
 
         await cmd.run();
