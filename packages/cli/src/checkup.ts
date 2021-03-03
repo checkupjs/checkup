@@ -10,7 +10,7 @@ async function parseArgv(argv: string[]) {
     .scriptName('checkup')
     .usage(
       `
-A health checkup for your project
+A health checkup for your project ✅
 
 checkup <command> [options]`
     )
