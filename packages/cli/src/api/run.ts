@@ -3,15 +3,15 @@ import * as yargs from 'yargs';
 export type RunOptions = {
   version: void;
   help: void;
-  config: string | undefined;
+  config?: string;
   cwd: string;
-  category: string[] | undefined;
-  group: string[] | undefined;
-  task: string[] | undefined;
+  category?: string[];
+  group?: string[];
+  task?: string[];
   'list-tasks': boolean;
   format: string;
   'output-file': string;
-  'exclude-paths': string[] | undefined;
+  'exclude-paths'?: string[];
   verbose: boolean;
 } & yargs.Arguments;
 
