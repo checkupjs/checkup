@@ -11,12 +11,15 @@ import stringify from 'json-stable-stringify';
 
 const walkSync = require('walk-sync');
 
+const ROOT = process.cwd();
+
 /**
  * An extension of {@link Project} that adds methods specific to creating
  * mock checkup projects.
  */
 export default class CheckupFixturifyProject extends Project {
-  _hasWritten: boolean = false;
+  private _hasWritten: boolean = false;
+  private _dirChanged: boolean = false;
 
   constructor(name: string, version?: string, cb?: (project: Project) => void, root?: string) {
     super(name, version, cb, root);
@@ -68,6 +71,23 @@ export default class CheckupFixturifyProject extends Project {
     } catch {
       throw new Error(`Couldn't install dependencies using ${cmd}`);
     }
+  }
+
+  chdir() {
+    this._dirChanged = true;
+
+    // ensure the directory structure is created initially
+    this.writeSync();
+
+    process.chdir(this.baseDir);
+  }
+
+  dispose() {
+    if (this._dirChanged) {
+      process.chdir(ROOT);
+    }
+
+    return super.dispose();
   }
 
   /**

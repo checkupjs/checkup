@@ -5,7 +5,7 @@ import { OutputFormat } from '@checkup/core';
 import RunCommand from './api/run';
 import GenerateCommand from './api/generate';
 
-async function parseArgv(argv: string[]) {
+export async function run(argv: string[] = process.argv.slice(2)) {
   let parser = yargs
     .scriptName('checkup')
     .usage(
@@ -139,12 +139,7 @@ checkup <command> [options]`
 
   if (argv.length === 0) {
     parser.showHelp();
-    parser.exit(1, new Error('Showing help'));
   } else {
-    await parser.parse(argv);
+    parser.parse(argv);
   }
-}
-
-export async function run() {
-  await parseArgv(process.argv.slice(2));
 }
