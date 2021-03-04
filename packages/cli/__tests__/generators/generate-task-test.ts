@@ -14,16 +14,10 @@ function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
   expect(root.file(`__tests__/${name}-task-test.${extension}`).contents).toMatchSnapshot();
 }
 
-function assertPluginFiles(
-  dir: string,
-  commandType: 'info' | 'migration' | 'validate' = 'info',
-  extension: string = 'ts'
-) {
+function assertPluginFiles(dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
 
-  expect(
-    root.file(`src/hooks/register-${commandType}-tasks.${extension}`).contents
-  ).toMatchSnapshot();
+  expect(root.file(`src/hooks/register-tasks.${extension}`).contents).toMatchSnapshot();
 }
 
 describe('task generator', () => {
@@ -95,7 +89,7 @@ describe('task generator', () => {
       });
 
     assertTaskFiles('my-foo', dir, 'js');
-    assertPluginFiles(dir, 'info', 'js');
+    assertPluginFiles(dir, 'js');
   });
 
   it('generates correct files with typescript', async () => {
@@ -131,7 +125,7 @@ describe('task generator', () => {
       });
 
     assertTaskFiles('my-foo', dir);
-    assertPluginFiles(dir, 'migration');
+    assertPluginFiles(dir);
   });
 
   it('generates correct files with category', async () => {

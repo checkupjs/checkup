@@ -2,8 +2,8 @@ import * as yargs from 'yargs';
 import * as ora from 'ora';
 import { OutputFormat } from '@checkup/core';
 
-import RunCommand from './api/run';
-import GenerateCommand from './api/generate';
+import CheckupTaskRunner from './api/checkup-task-runner';
+import Generator from './api/generator';
 
 export async function run(argv: string[] = process.argv.slice(2)) {
   let parser = yargs
@@ -87,7 +87,15 @@ checkup <command> [options]`
           });
       },
       handler: async (argv: yargs.Arguments) => {
-        let cmd = new RunCommand(argv);
+        let cmd = new CheckupTaskRunner({
+          excludePaths: argv.excludePaths as string[],
+          config: argv.config as string,
+          cwd: argv.cwd as string,
+          category: argv.category as string[],
+          group: argv.group as string[],
+          task: argv.task as string[],
+        });
+
         let spinner = ora().start('🕵️‍♀️ Checking up on your project');
 
         await cmd.run();
@@ -101,23 +109,18 @@ checkup <command> [options]`
       describe: 'Runs a generator to scaffold Checkup code',
       builder: (yargs) => {
         return yargs
-          .positional('type', {
+          .positional('generator', {
             description: 'Type of generator to run',
             choices: ['config', 'plugin', 'task', 'actions'],
-            required: true,
           })
           .positional('name', {
             description: 'Name of the entity (kebab-case)',
-            require: false,
+            default: '',
           })
           .options({
             defaults: {
               alias: 'd',
               description: 'Use defaults for every setting',
-              boolean: true,
-            },
-            force: {
-              description: 'Overwrite existing files',
               boolean: true,
             },
             path: {
@@ -128,9 +131,14 @@ checkup <command> [options]`
           });
       },
       handler: async (argv: yargs.Arguments) => {
-        // Intentionally not using ora here as the generate command defers to yeoman,
+        // Intentionally not using ora here as the generate class defers to yeoman,
         // and yeoman uses inquirer, which has some issues inter-operating with ora.
-        let cmd = new GenerateCommand(argv);
+        let cmd = new Generator({
+          path: argv.path === '.' ? process.cwd() : (argv.path as string),
+          generator: argv.generator as string,
+          name: argv.name as string,
+          defaults: argv.defaults as boolean,
+        });
 
         await cmd.run();
       },

@@ -65,9 +65,9 @@ export default class TaskGenerator extends BaseGenerator {
         {
           type: 'list',
           name: 'commandType',
-          message: 'Select the command type this task is to be run under.',
+          message: 'Select the command this task is to be run under.',
           default: 'info',
-          choices: ['info', 'migration', 'validate'],
+          choices: ['run', 'validate'],
         },
         {
           type: 'input',
@@ -96,14 +96,10 @@ export default class TaskGenerator extends BaseGenerator {
 
     const options = { ...this.options, _ };
 
-    if (
-      !this.fs.exists(
-        this.destinationPath(`src/hooks/register-${this.options.commandType}-tasks.${this._ext}`)
-      )
-    ) {
+    if (!this.fs.exists(this.destinationPath(`src/hooks/register-tasks.${this._ext}`))) {
       this.fs.copy(
         this.templatePath(`src/hooks/register-tasks.${this._ext}.ejs`),
-        this.destinationPath(`src/hooks/register-${this.options.commandType}-tasks.${this._ext}`)
+        this.destinationPath(`src/hooks/register-tasks.${this._ext}`)
       );
     }
 
@@ -123,9 +119,7 @@ export default class TaskGenerator extends BaseGenerator {
   }
 
   private _transformHooks() {
-    let hooksDestinationPath = this.destinationPath(
-      `src/hooks/register-${this.options.commandType}-tasks.${this._ext}`
-    );
+    let hooksDestinationPath = this.destinationPath(`src/hooks/register-tasks.${this._ext}`);
 
     let registerTasksSource = this.fs.read(hooksDestinationPath);
     let registerTaskStatement = t.expressionStatement(

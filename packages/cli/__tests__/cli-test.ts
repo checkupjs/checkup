@@ -85,14 +85,13 @@ describe('cli-test', () => {
       Runs a generator to scaffold Checkup code
 
       Positionals:
-        type  Type of generator to run  [choices: \\"config\\", \\"plugin\\", \\"task\\", \\"actions\\"]
-        name  Name of the entity (kebab-case)  [required]
+        generator  Type of generator to run  [required] [choices: \\"config\\", \\"plugin\\", \\"task\\", \\"actions\\"]
+        name       Name of the entity (kebab-case)  [required] [default: \\"\\"]
 
       Options:
             --help      Show help  [boolean]
             --version   Show version number  [boolean]
         -d, --defaults  Use defaults for every setting  [boolean]
-            --force     Overwrite existing files  [boolean]
         -p, --path      The path referring to the directory that the generator will run in  [default: \\".\\"]
 
       Not enough non-option arguments: got 0, need at least 2"
