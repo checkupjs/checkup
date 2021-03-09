@@ -96,7 +96,7 @@ checkup <command> [options]`
           task: argv.task as string[],
         });
 
-        let spinner = ora().start('🕵️‍♀️ Checking up on your project');
+        let spinner = ora().start('Checking up on your project');
 
         await cmd.run();
 
@@ -104,43 +104,135 @@ checkup <command> [options]`
       },
     })
     .command({
-      command: 'generate <generator> <name> [options]',
+      command: 'generate',
       aliases: ['g'],
       describe: 'Runs a generator to scaffold Checkup code',
       builder: (yargs) => {
         return yargs
-          .positional('generator', {
-            description: 'Type of generator to run',
-            choices: ['config', 'plugin', 'task', 'actions'],
-          })
-          .positional('name', {
-            description: 'Name of the entity (kebab-case)',
-            default: '',
-          })
-          .options({
-            defaults: {
-              alias: 'd',
-              description: 'Use defaults for every setting',
-              boolean: true,
+          .command({
+            command: 'plugin <name> [options]',
+            describe: 'Generates a checkup plugin project',
+            builder: (yargs) => {
+              return yargs
+                .positional('name', {
+                  description: 'Name of the plugin (eg. checkup-plugin-myplugin)',
+                  default: '',
+                })
+                .options({
+                  defaults: {
+                    alias: 'd',
+                    description: 'Use defaults for every setting',
+                    boolean: true,
+                  },
+                  path: {
+                    alias: 'p',
+                    default: '.',
+                    description:
+                      'The path referring to the directory that the generator will run in',
+                  },
+                });
             },
-            path: {
-              alias: 'p',
-              default: '.',
-              description: 'The path referring to the directory that the generator will run in',
+            handler: async (argv: yargs.Arguments) => {
+              let cmd = new Generator({
+                path: argv.path === '.' ? process.cwd() : (argv.path as string),
+                generator: 'plugin',
+                name: argv.name as string,
+                defaults: argv.defaults as boolean,
+              });
+              await cmd.run();
+            },
+          })
+          .command({
+            command: 'task <name> [options]',
+            describe: 'Generates a checkup task within a project',
+            builder: (yargs) => {
+              return yargs
+                .positional('name', {
+                  description: 'Name of the task (foo-task)',
+                  default: '',
+                })
+                .options({
+                  defaults: {
+                    alias: 'd',
+                    description: 'Use defaults for every setting',
+                    boolean: true,
+                  },
+                  path: {
+                    alias: 'p',
+                    default: '.',
+                    description:
+                      'The path referring to the directory that the generator will run in',
+                  },
+                });
+            },
+            handler: async (argv: yargs.Arguments) => {
+              let cmd = new Generator({
+                path: argv.path === '.' ? process.cwd() : (argv.path as string),
+                generator: 'task',
+                name: argv.name as string,
+                defaults: argv.defaults as boolean,
+              });
+              await cmd.run();
+            },
+          })
+          .command({
+            command: 'actions <name> [options]',
+            describe: 'Generates checkup actions within a project',
+            builder: (yargs) => {
+              return yargs
+                .positional('name', {
+                  description: 'Name of the actions (foo-task-actions)',
+                  default: '',
+                })
+                .options({
+                  defaults: {
+                    alias: 'd',
+                    description: 'Use defaults for every setting',
+                    boolean: true,
+                  },
+                  path: {
+                    alias: 'p',
+                    default: '.',
+                    description:
+                      'The path referring to the directory that the generator will run in',
+                  },
+                });
+            },
+            handler: async (argv: yargs.Arguments) => {
+              let cmd = new Generator({
+                path: argv.path === '.' ? process.cwd() : (argv.path as string),
+                generator: 'actions',
+                name: argv.name as string,
+                defaults: argv.defaults as boolean,
+              });
+              await cmd.run();
+            },
+          })
+          .command({
+            command: 'config',
+            describe: 'Generates a .checkuprc within a project',
+            builder: (yargs) => {
+              return yargs.options({
+                path: {
+                  alias: 'p',
+                  default: '.',
+                  description: 'The path referring to the directory that the generator will run in',
+                },
+              });
+            },
+            handler: async (argv: yargs.Arguments) => {
+              let cmd = new Generator({
+                path: argv.path === '.' ? process.cwd() : (argv.path as string),
+                generator: 'config',
+                name: 'config',
+                defaults: false,
+              });
+              await cmd.run();
             },
           });
       },
-      handler: async (argv: yargs.Arguments) => {
-        // Intentionally not using ora here as the generate class defers to yeoman,
-        // and yeoman uses inquirer, which has some issues inter-operating with ora.
-        let cmd = new Generator({
-          path: argv.path === '.' ? process.cwd() : (argv.path as string),
-          generator: argv.generator as string,
-          name: argv.name as string,
-          defaults: argv.defaults as boolean,
-        });
-
-        await cmd.run();
+      handler: async () => {
+        parser.showHelp();
       },
     })
     .wrap(yargs.terminalWidth())
