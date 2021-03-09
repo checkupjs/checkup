@@ -1,7 +1,7 @@
 import * as chalk from 'chalk';
 
 import { Answers } from 'inquirer';
-import BaseGenerator from './base-generator';
+import BaseGenerator, { Works } from './base-generator';
 import { join } from 'path';
 import { readJsonSync } from 'fs-extra';
 import { readdirSync, existsSync } from 'fs';
@@ -10,6 +10,7 @@ import { CheckupError } from '@checkup/core';
 const PLUGIN_DIR_PATTERN = /checkup-plugin-.*/;
 
 export default class PluginGenerator extends BaseGenerator {
+  works: Works = Works.OutsidePlugin;
   answers!: Answers;
 
   private get _destinationPath() {
@@ -20,6 +21,15 @@ export default class PluginGenerator extends BaseGenerator {
     }
 
     return join(cwd, this.options.name);
+  }
+
+  initializing() {
+    if (!this.canRunGenerator) {
+      throw new CheckupError(
+        `Can only generate plugins outside a Checkup plugin directory`,
+        `Run ${chalk.bold.white('checkup generate plugin')} from outside a Checkup plugin`
+      );
+    }
   }
 
   async prompting() {

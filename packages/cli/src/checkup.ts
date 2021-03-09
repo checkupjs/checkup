@@ -87,18 +87,19 @@ checkup <command> [options]`
           });
       },
       handler: async (argv: yargs.Arguments) => {
-        let cmd = new CheckupTaskRunner({
+        let taskRunner = new CheckupTaskRunner({
+          paths: argv.paths as string[],
           excludePaths: argv.excludePaths as string[],
           config: argv.config as string,
           cwd: argv.cwd as string,
-          category: argv.category as string[],
-          group: argv.group as string[],
-          task: argv.task as string[],
+          categories: argv.category as string[],
+          groups: argv.group as string[],
+          tasks: argv.task as string[],
         });
 
         let spinner = ora().start('Checking up on your project');
 
-        await cmd.run();
+        await taskRunner.run();
 
         spinner.stop();
       },
@@ -133,13 +134,13 @@ checkup <command> [options]`
                 });
             },
             handler: async (argv: yargs.Arguments) => {
-              let cmd = new Generator({
+              let generator = new Generator({
                 path: argv.path === '.' ? process.cwd() : (argv.path as string),
                 generator: 'plugin',
                 name: argv.name as string,
                 defaults: argv.defaults as boolean,
               });
-              await cmd.run();
+              await generator.run();
             },
           })
           .command({
@@ -166,13 +167,18 @@ checkup <command> [options]`
                 });
             },
             handler: async (argv: yargs.Arguments) => {
-              let cmd = new Generator({
-                path: argv.path === '.' ? process.cwd() : (argv.path as string),
-                generator: 'task',
-                name: argv.name as string,
-                defaults: argv.defaults as boolean,
-              });
-              await cmd.run();
+              try {
+                let generator = new Generator({
+                  path: argv.path === '.' ? process.cwd() : (argv.path as string),
+                  generator: 'task',
+                  name: argv.name as string,
+                  defaults: argv.defaults as boolean,
+                });
+
+                await generator.run();
+              } catch {
+                // already handled
+              }
             },
           })
           .command({
@@ -199,13 +205,14 @@ checkup <command> [options]`
                 });
             },
             handler: async (argv: yargs.Arguments) => {
-              let cmd = new Generator({
+              let generator = new Generator({
                 path: argv.path === '.' ? process.cwd() : (argv.path as string),
                 generator: 'actions',
                 name: argv.name as string,
                 defaults: argv.defaults as boolean,
               });
-              await cmd.run();
+
+              await generator.run();
             },
           })
           .command({
@@ -221,18 +228,20 @@ checkup <command> [options]`
               });
             },
             handler: async (argv: yargs.Arguments) => {
-              let cmd = new Generator({
+              let generator = new Generator({
                 path: argv.path === '.' ? process.cwd() : (argv.path as string),
                 generator: 'config',
                 name: 'config',
                 defaults: false,
               });
-              await cmd.run();
+
+              await generator.run();
             },
           });
       },
       handler: async () => {
         parser.showHelp();
+        process.exitCode = 1;
       },
     })
     .wrap(yargs.terminalWidth())

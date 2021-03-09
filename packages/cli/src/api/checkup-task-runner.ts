@@ -1,9 +1,10 @@
 export type RunOptions = {
+  paths: string[];
   cwd: string;
   config?: string;
-  category?: string[];
-  group?: string[];
-  task?: string[];
+  categories?: string[];
+  groups?: string[];
+  tasks?: string[];
   excludePaths?: string[];
 };
 

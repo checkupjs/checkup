@@ -37,8 +37,8 @@ describe('cli-test', () => {
        checkup <command> [options]
 
       Commands:
-        checkup run <paths> [options]                  Runs configured checkup tasks  [aliases: r]
-        checkup generate <generator> <name> [options]  Runs a generator to scaffold Checkup code  [aliases: g]
+        checkup run <paths> [options]  Runs configured checkup tasks  [aliases: r]
+        checkup generate               Runs a generator to scaffold Checkup code  [aliases: g]
 
       Options:
         --help     Show help  [boolean]

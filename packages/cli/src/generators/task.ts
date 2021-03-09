@@ -6,7 +6,7 @@ import * as recast from 'recast';
 
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import BaseGenerator from './base-generator';
+import BaseGenerator, { Works } from './base-generator';
 import { Options } from '../commands/generate';
 import { PackageJson } from 'type-fest';
 import { AstTransformer, CheckupError } from '@checkup/core';
@@ -21,6 +21,7 @@ interface TaskOptions extends Options {
 }
 
 export default class TaskGenerator extends BaseGenerator {
+  works: Works = Works.InsidePlugin;
   packageJson!: PackageJson;
   answers!: Answers;
 
@@ -28,15 +29,10 @@ export default class TaskGenerator extends BaseGenerator {
     super(args, options);
   }
 
-  async prompting() {
-    this.packageJson = this.fs.readJSON('package.json');
-
-    if (
-      !this.packageJson ||
-      !(this.packageJson.keywords && this.packageJson.keywords.includes('oclif-plugin'))
-    ) {
+  initializing() {
+    if (!this.canRunGenerator) {
       throw new CheckupError(
-        'Can only generate tasks in Checkup plugin directory',
+        `Can only generate tasks from inside a Checkup plugin directory`,
         `Run ${chalk.bold.white(
           'checkup generate task'
         )} from the root of a Checkup plugin or use the ${chalk.bold.white(
@@ -44,7 +40,9 @@ export default class TaskGenerator extends BaseGenerator {
         )} option to specify the path to a Checkup plugin`
       );
     }
+  }
 
+  async prompting() {
     this.headline(`${this.options.name}-task`);
 
     const defaults = {
