@@ -19,8 +19,7 @@ export default class CheckupTaskRunner {
       setTimeout(resolve, 2000);
     });
 
-    return {
-      message: 'I ran',
-    };
+    // TEMPORARY: just returning this through right now for testing
+    return this.options;
   }
 }
