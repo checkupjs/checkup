@@ -57,22 +57,22 @@ export default abstract class GeneratorBase extends Generator {
 
     switch (this.works) {
       case Works.InsideProject: {
-        isValidWorkContext = isInsideProject(this.options.path);
+        isValidWorkContext = isInsideProject(this.path);
         break;
       }
 
       case Works.OutsideProject: {
-        isValidWorkContext = isOutsideProject(this.options.path);
+        isValidWorkContext = isOutsideProject(this.path);
         break;
       }
 
       case Works.InsidePlugin: {
-        isValidWorkContext = isInsidePlugin(this.options.path);
+        isValidWorkContext = isInsidePlugin(this.path);
         break;
       }
 
       case Works.OutsidePlugin: {
-        isValidWorkContext = isOutsidePlugin(this.options.path);
+        isValidWorkContext = isOutsidePlugin(this.path);
         break;
       }
 
