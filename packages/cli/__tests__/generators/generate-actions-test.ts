@@ -21,6 +21,7 @@ describe('actions generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
       })
       .withPrompts({
         taskName: 'foo',
@@ -54,6 +55,7 @@ describe('actions generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
       })
       .withPrompts({
         taskName: 'foo',
@@ -65,6 +67,7 @@ describe('actions generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-bar',
+        path: '.',
       })
       .withPrompts({
         taskName: 'foo',
@@ -85,6 +88,7 @@ describe('actions generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
       })
       .withPrompts({
         taskName: 'foo',

@@ -28,6 +28,7 @@ describe('task generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
         defaults: true,
       });
 
@@ -57,11 +58,13 @@ describe('task generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
         defaults: true,
       });
 
     dir = await helpers.run(TaskGenerator, { namespace: 'checkup:task' }).cd(baseDir).withOptions({
       name: 'my-bar',
+      path: '.',
       defaults: true,
     });
 
@@ -72,7 +75,7 @@ describe('task generator', () => {
 
   it('generates correct files with JavaScript', async () => {
     let baseDir = await generatePlugin(
-      { name: 'my-plugin', defaults: false },
+      { name: 'my-plugin', path: '.', defaults: false },
       { typescript: false }
     );
     let dir = await helpers
@@ -80,6 +83,7 @@ describe('task generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
       })
       .withPrompts({
         typescript: false,
@@ -99,6 +103,7 @@ describe('task generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
       })
       .withPrompts({
         commandType: 'info',
@@ -117,6 +122,7 @@ describe('task generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
       })
       .withPrompts({
         commandType: 'migration',
@@ -135,6 +141,7 @@ describe('task generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
       })
       .withPrompts({
         commandType: 'info',
@@ -153,6 +160,7 @@ describe('task generator', () => {
       .cd(baseDir)
       .withOptions({
         name: 'my-foo',
+        path: '.',
       })
       .withPrompts({
         commandType: 'info',

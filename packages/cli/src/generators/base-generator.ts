@@ -46,6 +46,7 @@ function isInsideProject(path: string): boolean {
 
 export default abstract class GeneratorBase extends Generator {
   abstract works: Works;
+  path: string;
 
   protected get _ext() {
     return this.options.typescript ? 'ts' : 'js';
@@ -56,22 +57,22 @@ export default abstract class GeneratorBase extends Generator {
 
     switch (this.works) {
       case Works.InsideProject: {
-        isValidWorkContext = isInsideProject(this.options.path);
+        isValidWorkContext = isInsideProject(this.path);
         break;
       }
 
       case Works.OutsideProject: {
-        isValidWorkContext = isOutsideProject(this.options.path);
+        isValidWorkContext = isOutsideProject(this.path);
         break;
       }
 
       case Works.InsidePlugin: {
-        isValidWorkContext = isInsidePlugin(this.options.path);
+        isValidWorkContext = isInsidePlugin(this.path);
         break;
       }
 
       case Works.OutsidePlugin: {
-        isValidWorkContext = isOutsidePlugin(this.options.path);
+        isValidWorkContext = isOutsidePlugin(this.path);
         break;
       }
 
@@ -87,15 +88,13 @@ export default abstract class GeneratorBase extends Generator {
   constructor(args: string | string[], options: Options) {
     super(args, options);
 
-    if (options.path && options.path !== '.') {
-      let resolvedPath = resolve(options.path);
+    this.path = options.path === '.' ? process.cwd() : resolve(options.path);
 
-      if (!existsSync(resolvedPath)) {
-        mkdirSync(resolvedPath);
-      }
-
-      this.destinationRoot(resolvedPath);
+    if (!existsSync(this.path)) {
+      mkdirSync(this.path);
     }
+
+    this.destinationRoot(this.path);
   }
 
   headline(name: string) {

@@ -38,7 +38,7 @@ export default class Generator {
 
     await this.generate(this.options.generator, {
       name: this.options.name,
-      path: this.options.path,
+      path: this.options.path === '.' ? process.cwd() : this.options.path,
       defaults: this.options.defaults,
     } as GenerateOptions);
   }

@@ -10,7 +10,7 @@ describe('config-init-generator', () => {
   it('should write a config', async () => {
     let tmp = createTmpDir();
 
-    const dir = await helpers.run(ConfigGenerator).cd(tmp);
+    const dir = await helpers.run(ConfigGenerator).cd(tmp).withOptions({ path: tmp });
 
     expect(testRoot(dir).file('.checkuprc').contents).toMatchSnapshot();
   });

@@ -135,7 +135,7 @@ checkup <command> [options]`
             },
             handler: async (argv: yargs.Arguments) => {
               let generator = new Generator({
-                path: argv.path === '.' ? process.cwd() : (argv.path as string),
+                path: argv.path as string,
                 generator: 'plugin',
                 name: argv.name as string,
                 defaults: argv.defaults as boolean,
@@ -169,7 +169,7 @@ checkup <command> [options]`
             handler: async (argv: yargs.Arguments) => {
               try {
                 let generator = new Generator({
-                  path: argv.path === '.' ? process.cwd() : (argv.path as string),
+                  path: argv.path as string,
                   generator: 'task',
                   name: argv.name as string,
                   defaults: argv.defaults as boolean,
@@ -206,7 +206,7 @@ checkup <command> [options]`
             },
             handler: async (argv: yargs.Arguments) => {
               let generator = new Generator({
-                path: argv.path === '.' ? process.cwd() : (argv.path as string),
+                path: argv.path as string,
                 generator: 'actions',
                 name: argv.name as string,
                 defaults: argv.defaults as boolean,
@@ -229,7 +229,7 @@ checkup <command> [options]`
             },
             handler: async (argv: yargs.Arguments) => {
               let generator = new Generator({
-                path: argv.path === '.' ? process.cwd() : (argv.path as string),
+                path: argv.path as string,
                 generator: 'config',
                 name: 'config',
                 defaults: false,
