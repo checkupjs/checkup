@@ -24,10 +24,15 @@ describe('config-init-generator', () => {
   });
 
   it('should error if a checkuprc file is already present', async () => {
+    let tmp = createTmpDir();
+
     await expect(
-      helpers.run(ConfigGenerator).inTmpDir(function (dir) {
-        writeFileSync(join(dir, '.checkuprc'), JSON.stringify({}));
-      })
+      helpers
+        .run(ConfigGenerator)
+        .withOptions({ path: tmp })
+        .inTmpDir(function (dir) {
+          writeFileSync(join(dir, '.checkuprc'), JSON.stringify({}));
+        })
     ).rejects.toThrow();
   });
 });
