@@ -10,7 +10,7 @@ describe('config-init-generator', () => {
   it('should write a config', async () => {
     let tmp = createTmpDir();
 
-    const dir = await helpers.run(ConfigGenerator).cd(tmp);
+    const dir = await helpers.run(ConfigGenerator).cd(tmp).withOptions({ path: tmp });
 
     expect(testRoot(dir).file('.checkuprc').contents).toMatchSnapshot();
   });
@@ -24,10 +24,10 @@ describe('config-init-generator', () => {
   });
 
   it('should error if a checkuprc file is already present', async () => {
-    await expect(
-      helpers.run(ConfigGenerator).inTmpDir(function (dir) {
-        writeFileSync(join(dir, '.checkuprc'), JSON.stringify({}));
-      })
-    ).rejects.toThrow();
+    let tmp = createTmpDir();
+
+    writeFileSync(join(tmp, '.checkuprc'), JSON.stringify({}));
+
+    await expect(helpers.run(ConfigGenerator).withOptions({ path: tmp })).rejects.toThrow();
   });
 });

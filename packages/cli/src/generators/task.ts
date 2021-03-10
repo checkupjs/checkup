@@ -6,7 +6,7 @@ import * as recast from 'recast';
 
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import BaseGenerator from './base-generator';
+import BaseGenerator, { Works } from './base-generator';
 import { Options } from '../commands/generate';
 import { PackageJson } from 'type-fest';
 import { AstTransformer, CheckupError } from '@checkup/core';
@@ -21,6 +21,7 @@ interface TaskOptions extends Options {
 }
 
 export default class TaskGenerator extends BaseGenerator {
+  works: Works = Works.InsidePlugin;
   packageJson!: PackageJson;
   answers!: Answers;
 
@@ -28,15 +29,10 @@ export default class TaskGenerator extends BaseGenerator {
     super(args, options);
   }
 
-  async prompting() {
-    this.packageJson = this.fs.readJSON('package.json');
-
-    if (
-      !this.packageJson ||
-      !(this.packageJson.keywords && this.packageJson.keywords.includes('oclif-plugin'))
-    ) {
+  initializing() {
+    if (!this.canRunGenerator) {
       throw new CheckupError(
-        'Can only generate tasks in Checkup plugin directory',
+        `Can only generate tasks from inside a Checkup plugin directory`,
         `Run ${chalk.bold.white(
           'checkup generate task'
         )} from the root of a Checkup plugin or use the ${chalk.bold.white(
@@ -44,7 +40,9 @@ export default class TaskGenerator extends BaseGenerator {
         )} option to specify the path to a Checkup plugin`
       );
     }
+  }
 
+  async prompting() {
     this.headline(`${this.options.name}-task`);
 
     const defaults = {
@@ -65,9 +63,9 @@ export default class TaskGenerator extends BaseGenerator {
         {
           type: 'list',
           name: 'commandType',
-          message: 'Select the command type this task is to be run under.',
+          message: 'Select the command this task is to be run under.',
           default: 'info',
-          choices: ['info', 'migration', 'validate'],
+          choices: ['run', 'validate'],
         },
         {
           type: 'input',
@@ -96,14 +94,10 @@ export default class TaskGenerator extends BaseGenerator {
 
     const options = { ...this.options, _ };
 
-    if (
-      !this.fs.exists(
-        this.destinationPath(`src/hooks/register-${this.options.commandType}-tasks.${this._ext}`)
-      )
-    ) {
+    if (!this.fs.exists(this.destinationPath(`src/hooks/register-tasks.${this._ext}`))) {
       this.fs.copy(
         this.templatePath(`src/hooks/register-tasks.${this._ext}.ejs`),
-        this.destinationPath(`src/hooks/register-${this.options.commandType}-tasks.${this._ext}`)
+        this.destinationPath(`src/hooks/register-tasks.${this._ext}`)
       );
     }
 
@@ -123,9 +117,7 @@ export default class TaskGenerator extends BaseGenerator {
   }
 
   private _transformHooks() {
-    let hooksDestinationPath = this.destinationPath(
-      `src/hooks/register-${this.options.commandType}-tasks.${this._ext}`
-    );
+    let hooksDestinationPath = this.destinationPath(`src/hooks/register-tasks.${this._ext}`);
 
     let registerTasksSource = this.fs.read(hooksDestinationPath);
     let registerTaskStatement = t.expressionStatement(

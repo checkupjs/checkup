@@ -1,13 +1,14 @@
 import * as _ from 'lodash';
+import * as chalk from 'chalk';
 import * as t from '@babel/types';
 import * as recast from 'recast';
 
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import BaseGenerator from './base-generator';
+import BaseGenerator, { Works } from './base-generator';
 import { Options } from '../commands/generate';
 import { join } from 'path';
-import { AstTransformer } from '@checkup/core';
+import { AstTransformer, CheckupError } from '@checkup/core';
 
 interface ActionOptions extends Options {
   taskName: string;
@@ -16,10 +17,24 @@ interface ActionOptions extends Options {
 }
 
 export default class ActionsGenerator extends BaseGenerator {
+  works: Works = Works.InsidePlugin;
   answers!: Answers;
 
   constructor(args: any, public options: ActionOptions) {
     super(args, options);
+  }
+
+  initializing() {
+    if (!this.canRunGenerator) {
+      throw new CheckupError(
+        `Can only generate actions from inside a Checkup plugin directory`,
+        `Run ${chalk.bold.white(
+          'checkup generate actions'
+        )} from the root of a Checkup plugin or use the ${chalk.bold.white(
+          '--path'
+        )} option to specify the path to a Checkup plugin`
+      );
+    }
   }
 
   async prompting() {

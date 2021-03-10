@@ -37,8 +37,8 @@ describe('cli-test', () => {
        checkup <command> [options]
 
       Commands:
-        checkup run <paths> [options]                  Runs configured checkup tasks  [aliases: r]
-        checkup generate <generator> <name> [options]  Runs a generator to scaffold Checkup code  [aliases: g]
+        checkup run <paths> [options]  Runs configured checkup tasks  [aliases: r]
+        checkup generate               Runs a generator to scaffold Checkup code  [aliases: g]
 
       Options:
         --help     Show help  [boolean]
@@ -80,22 +80,19 @@ describe('cli-test', () => {
 
     expect(result.exitCode).toEqual(1);
     expect(result.stderr).toMatchInlineSnapshot(`
-      "checkup generate <generator> <name> [options]
+      "checkup generate
 
       Runs a generator to scaffold Checkup code
 
-      Positionals:
-        type  Type of generator to run  [choices: \\"config\\", \\"plugin\\", \\"task\\", \\"actions\\"]
-        name  Name of the entity (kebab-case)  [required]
+      Commands:
+        checkup generate plugin <name> [options]   Generates a checkup plugin project
+        checkup generate task <name> [options]     Generates a checkup task within a project
+        checkup generate actions <name> [options]  Generates checkup actions within a project
+        checkup generate config                    Generates a .checkuprc within a project
 
       Options:
-            --help      Show help  [boolean]
-            --version   Show version number  [boolean]
-        -d, --defaults  Use defaults for every setting  [boolean]
-            --force     Overwrite existing files  [boolean]
-        -p, --path      The path referring to the directory that the generator will run in  [default: \\".\\"]
-
-      Not enough non-option arguments: got 0, need at least 2"
+        --help     Show help  [boolean]
+        --version  Show version number  [boolean]"
     `);
   });
 

@@ -15,7 +15,7 @@ const VALID_GENERATORS = ['config', 'plugin', 'task', 'actions'];
 export interface Options {
   type: string;
   name: string;
-  path?: string;
+  path: string;
   defaults?: boolean;
   force?: boolean;
 }

@@ -19,7 +19,7 @@ export async function generatePlugin(
   prompts: Answers = {},
   tmp: string = createTmpDir()
 ) {
-  let mergedOptions = Object.assign({}, DEFAULT_OPTIONS, options);
+  let mergedOptions = Object.assign({ path: '.' }, DEFAULT_OPTIONS, options);
   let mergedPrompts = Object.assign({}, DEFAULT_PROMPTS, prompts);
   let dir = await helpers
     .run(PluginGenerator, { namespace: 'checkup:plugin' })

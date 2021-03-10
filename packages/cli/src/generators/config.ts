@@ -1,16 +1,20 @@
 import * as chalk from 'chalk';
 
-import BaseGenerator from './base-generator';
+import BaseGenerator, { Works } from './base-generator';
 import { writeConfig, CheckupError } from '@checkup/core';
 
 export default class ConfigGenerator extends BaseGenerator {
-  async initializing() {
-    const existingConfig = this.fs.exists(this.destinationPath('.checkuprc'));
+  works: Works = Works.OutsideProject;
 
-    if (existingConfig) {
+  async initializing() {
+    if (!this.canRunGenerator) {
       throw new CheckupError(
-        'Checkup config file exists',
-        `Checkup config file found at ${chalk.bold.white(this.destinationRoot())}`
+        'Checkup config file exists in this directory',
+        `Checkup config file found at ${chalk.bold.white(
+          this.destinationRoot()
+        )}. You can only generate a ${chalk.bold.white(
+          '.checkuprc'
+        )} in a directory that doesn't contain one already.`
       );
     }
   }
