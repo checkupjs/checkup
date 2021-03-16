@@ -4,6 +4,7 @@ import { OutputFormat } from '@checkup/core';
 
 import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
+import { getReporter } from './reporters/get-reporter2';
 
 export async function run(argv: string[] = process.argv.slice(2)) {
   let parser = yargs
@@ -23,6 +24,8 @@ checkup <command> [options]`
           .positional('paths', {
             description: 'The paths or globs that checkup will operate on.',
             required: true,
+            array: true,
+            default: '.',
           })
           .options({
             'exclude-paths': {
@@ -88,20 +91,31 @@ checkup <command> [options]`
       },
       handler: async (argv: yargs.Arguments) => {
         let taskRunner = new CheckupTaskRunner({
-          paths: argv.paths as string[],
+          paths: (typeof argv.paths === 'string' ? [argv.paths] : argv.paths) as string[],
           excludePaths: argv.excludePaths as string[],
           config: argv.config as string,
           cwd: argv.cwd as string,
           categories: argv.category as string[],
+          format: argv.format as string,
           groups: argv.group as string[],
           tasks: argv.task as string[],
+          outputFile: argv.outputFile as string,
         });
 
         let spinner = ora().start('Checking up on your project');
 
-        await taskRunner.run();
+        let log = await taskRunner.run();
+
+        let reporter = getReporter({
+          cwd: argv.cwd as string,
+          verbose: argv.verbose as boolean,
+          format: argv.format as string,
+          outputFile: argv.outputFile as string,
+        });
 
         spinner.stop();
+
+        reporter.report(log);
       },
     })
     .command({

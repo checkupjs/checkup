@@ -45,3 +45,28 @@ export interface CheckupMetadata {
   analyzedFiles: string[];
   analyzedFilesCount: number;
 }
+export interface CheckupMetadata2 {
+  project: {
+    name: string;
+    version: string;
+    repository: RepositoryInfo;
+  };
+  cli: {
+    schema: number;
+    configHash: string;
+    config: CheckupConfig;
+    version: string;
+    args: {
+      paths: string[];
+    };
+    flags: {
+      config?: string;
+      tasks?: string[];
+      format: string;
+      outputFile?: string;
+      excludePaths?: string[];
+    };
+  };
+  analyzedFiles: string[];
+  analyzedFilesCount: number;
+}

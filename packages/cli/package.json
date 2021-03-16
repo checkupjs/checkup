@@ -30,6 +30,7 @@
     "p-map": "^4.0.0",
     "promise.hash.helper": "^1.0.7",
     "recast": "^0.20.4",
+    "resolve": "^1.20.0",
     "shorthash": "^0.0.2",
     "sloc": "^0.2.1",
     "strip-ansi": "^6.0.0",
@@ -38,6 +39,7 @@
     "v8-compile-cache": "^2.2.0",
     "wrap-ansi": "^7.0.0",
     "yargs": "^16.2.0",
+    "yargs-unparser": "^2.0.0",
     "yeoman-environment": "^2.10.3",
     "yeoman-generator": "^4.12.0"
   },

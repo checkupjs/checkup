@@ -12,3 +12,16 @@ export type RunFlags = {
   'exclude-paths': string[] | undefined;
   verbose: boolean;
 };
+
+export type RunOptions = {
+  cwd: string;
+  config?: string;
+  categories?: string[];
+  excludePaths?: string[];
+  format: string;
+  groups?: string[];
+  listTasks?: boolean;
+  outputFile: string;
+  paths: string[];
+  tasks?: string[];
+};
