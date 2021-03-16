@@ -106,9 +106,7 @@ async function getCheckupMetadata(taskContext: TaskContext2): Promise<CheckupMet
       config: taskContext.config,
       version: getVersion(),
       schema: 1,
-      args: {
-        paths: unparse(taskContext.options),
-      },
+      args: unparse(taskContext.options),
       flags: {
         config,
         tasks,
