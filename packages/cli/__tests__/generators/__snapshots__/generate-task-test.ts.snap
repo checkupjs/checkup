@@ -11,7 +11,17 @@ module.exports = class MyFooTask extends BaseTask {
 
 
   async run() {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -72,7 +82,17 @@ export default class MyFooTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -133,7 +153,17 @@ export default class MyFooTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -195,7 +225,17 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -257,7 +297,17 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -319,7 +369,17 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -381,7 +441,17 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -442,7 +512,17 @@ export default class MyFooTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -489,7 +569,17 @@ export default class MyBarTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "

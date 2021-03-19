@@ -19,6 +19,8 @@ const DEFAULT_TASK_OPTIONS = {
 
 const DEFAULT_PROMPTS = {
   typescript: true,
+  category: 'best practices',
+  group: '',
 };
 
 export async function generatePlugin(

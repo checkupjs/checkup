@@ -1,5 +1,10 @@
+import { join } from 'path';
+import { existsSync, unlinkSync } from 'fs';
 import * as execa from 'execa';
+import { trimCwd } from '@checkup/core';
 import { FakeProject } from './__utils__/fake-project';
+import { sarifLogMatcher } from './__utils__/sarif-match-object';
+import type { Log } from 'sarif';
 
 const ROOT = process.cwd();
 
@@ -91,7 +96,7 @@ describe('cli-test', () => {
   });
 
   it('should output checkup result', async () => {
-    let result = await run(['run', '.', '--cwd', project.baseDir]);
+    let result = await run(['run', '.']);
 
     let output = result.stdout.trim().split('\n');
     output[7] = '<outputPath>';
@@ -114,11 +119,11 @@ describe('cli-test', () => {
   it('should output list of available tasks', async () => {
     project.install();
     let pluginDir = await project.addPlugin(
-      { name: 'my-plugin', defaults: false },
+      { name: 'fake', defaults: false },
       { typescript: false }
     );
     await project.addTask(
-      { name: 'my-task', defaults: false },
+      { name: 'foo', defaults: false },
       { typescript: false, category: 'best practices' },
       pluginDir
     );
@@ -127,7 +132,7 @@ describe('cli-test', () => {
       $schema:
         'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
       excludePaths: [],
-      plugins: ['checkup-plugin-my-plugin'],
+      plugins: ['checkup-plugin-fake'],
       tasks: {},
     });
 
@@ -137,9 +142,162 @@ describe('cli-test', () => {
       "
       AVAILABLE TASKS
 
-        my-plugin/my-task
+        fake/foo
       "
     `);
+  });
+
+  it('should output checkup result in JSON', async () => {
+    let result = await run(['run', '.', '--format', 'json']);
+    let output = JSON.parse(trimCwd(result.stdout, project.baseDir)) as Log;
+
+    expect(output).toMatchObject(sarifLogMatcher);
+  });
+
+  it('should output a json file in a custom directory if the json format and output-file options are provided', async () => {
+    let result = await run([
+      'run',
+      '.',
+      '--format',
+      'json',
+      `--output-file`,
+      join(project.baseDir, 'my-checkup-file.json'),
+    ]);
+
+    let outputPath = result.stdout.trim();
+
+    expect(outputPath).toMatch(/^(.*)\/my-checkup-file.json/);
+    expect(existsSync(outputPath)).toEqual(true);
+
+    unlinkSync(outputPath);
+  });
+
+  it('should output checkup result in verbose mode', async () => {
+    let result = await run(['run', '.', '--verbose']);
+
+    expect(result.stdout).toMatchSnapshot();
+  });
+
+  it('should run a single task if the tasks option is specified with a single task', async () => {
+    project.install();
+    let pluginDir = await project.addPlugin(
+      { name: 'fake', defaults: false },
+      { typescript: false }
+    );
+    await project.addTask(
+      { name: 'file-count', defaults: false },
+      { typescript: false, category: 'best practices' },
+      pluginDir
+    );
+
+    project.addCheckupConfig({
+      $schema:
+        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
+      excludePaths: [],
+      plugins: ['checkup-plugin-fake'],
+      tasks: {},
+    });
+
+    let result = await run(['run', '.', '--task', 'fake/file-count', '--verbose']);
+
+    expect(result.stdout).toMatchSnapshot();
+  });
+
+  it('should run with timing if CHECKUP_TIMING=1', async () => {
+    project.install();
+    let pluginDir = await project.addPlugin(
+      { name: 'fake', defaults: false },
+      { typescript: false }
+    );
+    await project.addTask(
+      { name: 'file-count', defaults: false },
+      { typescript: false, category: 'best practices' },
+      pluginDir
+    );
+
+    project.addCheckupConfig({
+      $schema:
+        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
+      excludePaths: [],
+      plugins: ['checkup-plugin-fake'],
+      tasks: {},
+    });
+
+    let result = await run(['run', '.', '--task', 'fake/file-count', '--verbose'], {
+      env: {
+        CHECKUP_TIMING: '1',
+      },
+    });
+
+    expect(result.stdout).toContain('Task Timings');
+  });
+
+  it('should run multiple tasks if the tasks option is specified with multiple tasks', async () => {
+    project.install();
+    let pluginDir = await project.addPlugin(
+      { name: 'fake', defaults: false },
+      { typescript: false }
+    );
+    await project.addTask(
+      { name: 'file-count', defaults: false },
+      { typescript: false, category: 'best practices' },
+      pluginDir
+    );
+    await project.addTask(
+      { name: 'foo', defaults: false },
+      { typescript: false, category: 'best practices' },
+      pluginDir
+    );
+
+    project.addCheckupConfig({
+      $schema:
+        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
+      excludePaths: [],
+      plugins: ['checkup-plugin-fake'],
+      tasks: {},
+    });
+
+    let result = await run([
+      'run',
+      '.',
+      '--task',
+      'fake/file-count',
+      '--task',
+      'fake/foo',
+      '--verbose',
+    ]);
+
+    expect(result.stdout).toMatchSnapshot();
+  });
+
+  it('should run only one task if the category option is specified', async () => {
+    project.install();
+    let pluginDir = await project.addPlugin(
+      { name: 'fake', defaults: false },
+      { typescript: false }
+    );
+    await project.addTask(
+      { name: 'file-count', defaults: false },
+      { typescript: false, category: 'files' },
+      pluginDir
+    );
+    await project.addTask(
+      { name: 'foo', defaults: false },
+      { typescript: false, category: 'foos' },
+      pluginDir
+    );
+
+    project.addCheckupConfig({
+      $schema:
+        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
+      excludePaths: [],
+      plugins: ['checkup-plugin-fake'],
+      tasks: {},
+    });
+
+    let result = await run(['run', '.', '--category', 'files', '--verbose']);
+
+    expect(result.stdout).toMatchSnapshot();
   });
 
   function run(args: string[], options: execa.Options = {}) {

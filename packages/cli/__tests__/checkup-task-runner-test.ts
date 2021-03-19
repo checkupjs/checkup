@@ -1,7 +1,8 @@
-import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
-import CheckupTaskRunner from '../src/api/checkup-task-runner';
 import { BaseTask, Task, TaskContext, sarifBuilder } from '@checkup/core';
-import { Result } from 'sarif';
+import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
+import type { Result } from 'sarif';
+import CheckupTaskRunner from '../src/api/checkup-task-runner';
+import { sarifLogMatcher } from './__utils__/sarif-match-object';
 
 class FooTask extends BaseTask implements Task {
   taskName = 'foo';
@@ -72,78 +73,7 @@ describe('checkup-task-runner', () => {
       outputFile: '',
     });
 
-    expect(await taskRunner.run()).toMatchObject({
-      $schema: 'https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json',
-      properties: {
-        actions: [],
-        analyzedFiles: expect.any(Array),
-        analyzedFilesCount: 4,
-        cli: {
-          args: expect.any(Array),
-          config: {
-            $schema:
-              'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-            excludePaths: [],
-            plugins: [],
-            tasks: {},
-          },
-          configHash: expect.any(String),
-          flags: {
-            config: undefined,
-            excludePaths: undefined,
-            format: 'stdout',
-            outputFile: '',
-            tasks: undefined,
-          },
-          schema: 1,
-          version: '0.0.0',
-        },
-        project: {
-          name: 'checkup-app',
-          repository: {
-            activeDays: '0 days',
-            age: '0 days',
-            linesOfCode: {
-              total: 2,
-              types: expect.any(Array),
-            },
-            totalCommits: 0,
-            totalFiles: 0,
-          },
-          version: '0.0.0',
-        },
-        timings: {},
-      },
-      runs: [
-        {
-          invocations: [
-            {
-              arguments: expect.any(Array),
-              endTimeUtc: expect.any(String),
-              environmentVariables: {
-                cwd: expect.any(String),
-                format: 'stdout',
-                outputFile: '',
-              },
-              executionSuccessful: true,
-              startTimeUtc: expect.any(String),
-              toolExecutionNotifications: [],
-            },
-          ],
-          results: [],
-          tool: {
-            driver: {
-              informationUri: 'https://github.com/checkupjs/checkup',
-              language: 'en-US',
-              name: 'Checkup',
-              rules: [],
-              version: '0.0.0',
-            },
-          },
-        },
-      ],
-      version: '2.1.0',
-    });
+    expect(await taskRunner.run()).toMatchObject(sarifLogMatcher);
   });
 
   it('can execute configured tasks', async () => {
@@ -157,77 +87,6 @@ describe('checkup-task-runner', () => {
     taskRunner.tasks.registerTask(new FileCountTask(getTaskContext()));
     taskRunner.tasks.registerTask(new FooTask(getTaskContext()));
 
-    expect(await taskRunner.run()).toMatchObject({
-      $schema: 'https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json',
-      properties: {
-        actions: [],
-        analyzedFiles: expect.any(Array),
-        analyzedFilesCount: expect.any(Number),
-        cli: {
-          args: expect.any(Array),
-          config: {
-            $schema:
-              'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-            excludePaths: [],
-            plugins: [],
-            tasks: {},
-          },
-          configHash: expect.any(String),
-          flags: {
-            config: undefined,
-            excludePaths: undefined,
-            format: 'stdout',
-            outputFile: '',
-            tasks: undefined,
-          },
-          schema: 1,
-          version: '0.0.0',
-        },
-        project: {
-          name: 'checkup-app',
-          repository: {
-            activeDays: '0 days',
-            age: '0 days',
-            linesOfCode: {
-              total: 2,
-              types: expect.any(Array),
-            },
-            totalCommits: 0,
-            totalFiles: 0,
-          },
-          version: '0.0.0',
-        },
-        timings: {},
-      },
-      runs: [
-        {
-          invocations: [
-            {
-              arguments: expect.any(Array),
-              endTimeUtc: expect.any(String),
-              environmentVariables: {
-                cwd: expect.any(String),
-                format: 'stdout',
-                outputFile: '',
-              },
-              executionSuccessful: true,
-              startTimeUtc: expect.any(String),
-              toolExecutionNotifications: [],
-            },
-          ],
-          results: expect.any(Array),
-          tool: {
-            driver: {
-              informationUri: 'https://github.com/checkupjs/checkup',
-              language: 'en-US',
-              name: 'Checkup',
-              rules: expect.any(Array),
-              version: '0.0.0',
-            },
-          },
-        },
-      ],
-      version: '2.1.0',
-    });
+    expect(await taskRunner.run()).toMatchObject(sarifLogMatcher);
   });
 });

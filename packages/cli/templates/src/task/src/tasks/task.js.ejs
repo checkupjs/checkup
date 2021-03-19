@@ -10,6 +10,16 @@ module.exports = class <%- taskClass %> extends BaseTask {
 
 
   async run() {
-    return [];
+    return [
+      {
+        message: { text: `${this.taskName} result` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
