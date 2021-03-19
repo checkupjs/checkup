@@ -52,6 +52,10 @@ export default abstract class GeneratorBase extends Generator {
     return this.options.typescript ? 'ts' : 'js';
   }
 
+  protected get _dir() {
+    return this.options.typescript ? 'src' : 'lib';
+  }
+
   protected get canRunGenerator() {
     let isValidWorkContext: boolean = false;
 

@@ -4,13 +4,15 @@ import * as helpers from 'yeoman-test';
 import { resolve } from 'path';
 
 import ActionsGenerator from '../../src/generators/actions';
-import { generatePlugin } from '../__utils__/generate-plugin';
+import { generatePlugin } from '../__utils__/generator-utils';
 import { testRoot } from '@checkup/test-helpers';
 
 function assertActionsFiles(name: string, dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
 
-  expect(root.file(`src/actions/${name}-actions.${extension}`).contents).toMatchSnapshot();
+  expect(
+    root.file(`${extension === 'ts' ? 'src' : 'lib'}/actions/${name}-actions.${extension}`).contents
+  ).toMatchSnapshot();
 }
 
 describe('actions generator', () => {

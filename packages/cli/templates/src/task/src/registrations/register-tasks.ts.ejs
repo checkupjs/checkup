@@ -1,0 +1,7 @@
+import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+
+const register = async function({ context, tasks }: RegisterTaskArgs) {
+  let pluginName = getPluginName(__dirname);
+};
+
+export default register;

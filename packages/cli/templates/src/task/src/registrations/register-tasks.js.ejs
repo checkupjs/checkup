@@ -1,0 +1,7 @@
+const { getPluginName } = require('@checkup/core');
+
+const register = async function({ context, tasks }) {
+  let pluginName = getPluginName(__dirname);
+};
+
+exports.default = register;

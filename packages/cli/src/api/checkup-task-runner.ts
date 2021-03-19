@@ -24,7 +24,6 @@ import { join, dirname } from 'path';
 import { Log, Result } from 'sarif';
 import { getLog } from '../get-log2';
 import { TASK_ERRORS } from '../task-errors';
-import { reportAvailableTasks } from '../reporters/available-task-reporter';
 import TaskList from '../task-list';
 import { extendedError } from '../extended-error';
 import { getPackageJson } from '../utils/get-package-json';
@@ -41,6 +40,14 @@ const REGISTRATION_TYPES = new Map<string, object>([
   ['register-task-reporters', { registerTaskReporter }],
 ]);
 
+let __tasksForTesting: Set<Task> = new Set<Task>();
+
+export function _registerTaskForTesting(task: Task) {
+  __tasksForTesting.add(task);
+}
+export function _resetTasksForTesting() {
+  __tasksForTesting = new Set<Task>();
+}
 export default class CheckupTaskRunner {
   actions: Action[] = [];
   config!: CheckupConfig;
@@ -75,35 +82,33 @@ export default class CheckupTaskRunner {
 
   async run(): Promise<Log> {
     await this.loadConfig();
+    await this.forEachPlugin(REGISTRATION_TYPES);
+    await this.registerTasks();
 
-    await this.register();
+    await this.runTasks();
+    await this.runActions();
 
-    if (this.options.listTasks) {
-      this.printAvailableTasks();
-    } else {
-      await this.runTasks();
-      await this.runActions();
+    // TODO: This mechanism for getting a sarif log will change, and will
+    // instead be encapsulated in the SarifBuilder.
+    let log: Log = await getLog(
+      this.options,
+      this.taskContext,
+      this.taskResults,
+      this.actions,
+      this.taskErrors,
+      this.tasks,
+      this.executedTasks,
+      this.startTime
+    );
 
-      // TODO: This mechanism for getting a sarif log will change, and will
-      // instead be encapsulated in the SarifBuilder.
-      let log: Log = await getLog(
-        this.options,
-        this.taskContext,
-        this.taskResults,
-        this.actions,
-        this.taskErrors,
-        this.tasks,
-        this.executedTasks,
-        this.startTime
-      );
+    return log;
+  }
 
-      return log;
-    }
+  async getAvailableTasks() {
+    await this.loadConfig();
+    await this.registerTasks();
 
-    return {
-      version: '2.1.0',
-      runs: [],
-    };
+    return this.tasks.fullyQualifiedTaskNames;
   }
 
   private async runTasks() {
@@ -176,9 +181,7 @@ export default class CheckupTaskRunner {
     }
   }
 
-  protected async register() {
-    this.forEachPlugin(REGISTRATION_TYPES);
-
+  private async registerTasks() {
     let excludePaths = this.options.excludePaths || this.config.excludePaths;
 
     this.taskContext = Object.freeze({
@@ -194,9 +197,13 @@ export default class CheckupTaskRunner {
       ) as FilePathArray,
     });
 
-    this.forEachPlugin(
+    await this.forEachPlugin(
       new Map([['register-tasks', { context: this.taskContext, tasks: this.tasks }]])
     );
+
+    __tasksForTesting.forEach((task: Task) => {
+      this.tasks.registerTask(task);
+    });
   }
 
   private async forEachPlugin(registrationTypes: Map<string, object>) {
@@ -218,9 +225,5 @@ export default class CheckupTaskRunner {
         }
       }
     }
-  }
-
-  private printAvailableTasks() {
-    reportAvailableTasks(this.tasks);
   }
 }

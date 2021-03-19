@@ -70,16 +70,20 @@ export default class ActionsGenerator extends BaseGenerator {
   writing() {
     this.sourceRoot(join(__dirname, '../../templates/src/actions'));
 
-    if (!this.fs.exists(this.destinationPath(`src/hooks/register-actions.${this._ext}`))) {
+    if (
+      !this.fs.exists(
+        this.destinationPath(`${this._dir}/registrations/register-actions.${this._ext}`)
+      )
+    ) {
       this.fs.copy(
-        this.templatePath(`src/hooks/register-actions.${this._ext}.ejs`),
-        this.destinationPath(`src/hooks/register-actions.${this._ext}`)
+        this.templatePath(`src/registrations/register-actions.${this._ext}.ejs`),
+        this.destinationPath(`${this._dir}/registrations/register-actions.${this._ext}`)
       );
     }
 
     this.fs.copyTpl(
       this.templatePath(`src/actions/actions.${this._ext}.ejs`),
-      this.destinationPath(`src/actions/${this.options.name}-actions.${this._ext}`),
+      this.destinationPath(`${this._dir}/actions/${this.options.name}-actions.${this._ext}`),
       this.options
     );
 
@@ -87,7 +91,9 @@ export default class ActionsGenerator extends BaseGenerator {
   }
 
   private _transformHooks() {
-    let hooksDestinationPath = this.destinationPath(`src/hooks/register-actions.${this._ext}`);
+    let hooksDestinationPath = this.destinationPath(
+      `${this._dir}/registrations/register-actions.${this._ext}`
+    );
 
     let registerActionsSource = this.fs.read(hooksDestinationPath);
     let registerActionStatement = t.expressionStatement(

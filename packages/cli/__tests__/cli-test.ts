@@ -1,29 +1,28 @@
-import { CheckupProject } from '@checkup/test-helpers';
+import { join } from 'path';
 import * as execa from 'execa';
+import { CheckupProject } from '@checkup/test-helpers';
+import { generatePlugin, generateTask } from './__utils__/generator-utils';
+
+const ROOT = process.cwd();
+
+jest.setTimeout(100000);
 
 describe('cli-test', () => {
   let project: CheckupProject;
 
   beforeEach(function () {
-    project = new CheckupProject('checkup-app', '0.0.0', (project) => {
-      project.addDependency('react', '^15.0.0');
-      project.addDependency('react-dom', '^15.0.0');
-    });
+    project = new CheckupProject('checkup-app', '0.0.0', () => {});
     project.files['index.js'] = 'module.exports = {};';
     project.files['index.hbs'] = '<div>Checkup App</div>';
 
-    project.addCheckupConfig({
-      plugins: [],
-      tasks: {},
-    });
     project.writeSync();
     project.gitInit();
-    project.install();
     project.chdir();
   });
 
   afterEach(function () {
-    project.dispose();
+    process.chdir(ROOT);
+    // project.dispose();
   });
 
   it('outputs top level help', async () => {
@@ -54,9 +53,6 @@ describe('cli-test', () => {
       "checkup run <paths> [options]
 
       Runs configured checkup tasks
-
-      Positionals:
-        paths  The paths or globs that checkup will operate on.  [required]
 
       Options:
             --help           Show help  [boolean]
@@ -96,6 +92,60 @@ describe('cli-test', () => {
     `);
   });
 
+  it('should output checkup result', async () => {
+    let result = await run(['run', '.', '--cwd', project.baseDir]);
+
+    let output = result.stdout.trim().split('\n');
+    output[7] = '<outputPath>';
+
+    expect(output).toEqual([
+      'Checkup report generated for checkup-app v0.0.0 (3 files analyzed)',
+      '',
+      'This project is 0 days old, with 0 days active days, 0 commits and 0 files.',
+      '',
+      'Checkup ran the following task(s) successfully:',
+      '',
+      'Results have been saved to the following file:',
+      '<outputPath>',
+      '',
+      'checkup v0.0.0',
+      'config dd17cda1fc2eb2bc6bb5206b41fc1a84',
+    ]);
+  });
+
+  it('should output list of available tasks', async () => {
+    project.install();
+    let pluginDir = await generatePlugin(
+      { name: 'my-plugin', defaults: false },
+      { typescript: false },
+      join(project.baseDir, 'node_modules')
+    );
+    await generateTask(
+      { name: 'my-task', defaults: false },
+      { typescript: false, category: 'best practices' },
+      pluginDir
+    );
+
+    project.addCheckupConfig({
+      $schema:
+        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
+      excludePaths: [],
+      plugins: ['checkup-plugin-my-plugin'],
+      tasks: {},
+    });
+    project.install(pluginDir);
+
+    let result = await run(['run', '.', '--list-tasks']);
+
+    expect(result.stdout).toMatchInlineSnapshot(`
+      "
+      AVAILABLE TASKS
+
+        my-plugin/my-task
+      "
+    `);
+  });
+
   function run(args: string[], options: execa.Options = {}) {
     let defaults = {
       reject: false,
@@ -105,7 +155,7 @@ describe('cli-test', () => {
     return execa(
       process.execPath,
       [require.resolve('../bin/checkup.js'), ...args],
-      Object.assign(defaults, options)
+      Object.assign({}, defaults, options)
     );
   }
 });

@@ -5,7 +5,6 @@ import { CheckupConfig, mergeConfig, FilePathArray } from '@checkup/core';
 import { PackageJson } from 'type-fest';
 import Project from 'fixturify-project';
 import { execSync } from 'child_process';
-import { existsSync } from 'fs-extra';
 import { join, resolve } from 'path';
 import stringify from 'json-stable-stringify';
 
@@ -44,6 +43,8 @@ export default class CheckupFixturifyProject extends Project {
   addCheckupConfig(config: Partial<CheckupConfig> = {}) {
     this.files['.checkuprc'] = stringify(mergeConfig(config));
     this.files['.eslintrc.js'] = '';
+
+    this.writeSync();
   }
 
   /**
@@ -59,17 +60,13 @@ export default class CheckupFixturifyProject extends Project {
     }
   }
 
-  install() {
-    let cmd: string;
-
-    cmd = existsSync(join(this.baseDir, 'yarn.lock'))
-      ? 'yarn install --silent'
-      : 'npm install --loglevel error';
+  install(cwd = this.baseDir) {
+    let cmd: string = 'yarn install --silent';
 
     try {
-      execSync(cmd, { cwd: this.baseDir });
-    } catch {
-      throw new Error(`Couldn't install dependencies using ${cmd}`);
+      execSync(cmd, { cwd });
+    } catch (error) {
+      throw new Error(error);
     }
   }
 

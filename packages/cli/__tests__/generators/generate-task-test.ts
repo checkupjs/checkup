@@ -4,20 +4,25 @@ import * as helpers from 'yeoman-test';
 import { resolve } from 'path';
 
 import TaskGenerator from '../../src/generators/task';
-import { generatePlugin } from '../__utils__/generate-plugin';
+import { generatePlugin } from '../__utils__/generator-utils';
 import { testRoot } from '@checkup/test-helpers';
 
 function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
 
-  expect(root.file(`src/tasks/${name}-task.${extension}`).contents).toMatchSnapshot();
+  expect(
+    root.file(`${extension === 'ts' ? 'src' : 'lib'}/tasks/${name}-task.${extension}`).contents
+  ).toMatchSnapshot();
   expect(root.file(`__tests__/${name}-task-test.${extension}`).contents).toMatchSnapshot();
 }
 
 function assertPluginFiles(dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
 
-  expect(root.file(`src/hooks/register-tasks.${extension}`).contents).toMatchSnapshot();
+  expect(
+    root.file(`${extension === 'ts' ? 'src' : 'lib'}/registrations/register-tasks.${extension}`)
+      .contents
+  ).toMatchSnapshot();
 }
 
 describe('task generator', () => {

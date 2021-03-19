@@ -5,6 +5,7 @@ import { OutputFormat } from '@checkup/core';
 import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
 import { getReporter } from './reporters/get-reporter2';
+import { reportAvailableTasks } from './reporters/available-task-reporter2';
 
 export async function run(argv: string[] = process.argv.slice(2)) {
   let parser = yargs
@@ -20,74 +21,65 @@ checkup <command> [options]`
       aliases: ['r'],
       describe: 'Runs configured checkup tasks',
       builder: (yargs) => {
-        return yargs
-          .positional('paths', {
-            description: 'The paths or globs that checkup will operate on.',
-            required: true,
-            array: true,
-            default: '.',
-          })
-          .options({
-            'exclude-paths': {
-              alias: 'e',
-              description:
-                'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
-              multiple: true,
-            },
+        return yargs.options({
+          'exclude-paths': {
+            alias: 'e',
+            description:
+              'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
+            multiple: true,
+          },
 
-            config: {
-              alias: 'c',
-              description: 'Use this configuration, overriding .checkuprc if present.',
-            },
+          config: {
+            alias: 'c',
+            description: 'Use this configuration, overriding .checkuprc if present.',
+          },
 
-            cwd: {
-              alias: 'd',
-              description: 'The path referring to the root directory that Checkup will run in',
-              default: () => process.cwd(),
-            },
+          cwd: {
+            alias: 'd',
+            description: 'The path referring to the root directory that Checkup will run in',
+            default: () => process.cwd(),
+          },
 
-            category: {
-              description: 'Runs specific tasks specified by category. Can be used multiple times.',
-              multiple: true,
-              exclusive: ['group', 'task'],
-            },
+          category: {
+            description: 'Runs specific tasks specified by category. Can be used multiple times.',
+            multiple: true,
+            exclusive: ['group', 'task'],
+          },
 
-            group: {
-              description: 'Runs specific tasks specified by group. Can be used multiple times.',
-              multiple: true,
-              exclusive: ['category', 'task'],
-            },
+          group: {
+            description: 'Runs specific tasks specified by group. Can be used multiple times.',
+            multiple: true,
+            exclusive: ['category', 'task'],
+          },
 
-            task: {
-              alias: 't',
-              description:
-                'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
-              multiple: true,
-              exclusive: ['category', 'group'],
-            },
+          task: {
+            alias: 't',
+            description:
+              'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
+            multiple: true,
+            exclusive: ['category', 'group'],
+          },
 
-            format: {
-              alias: 'f',
-              options: [...Object.values(OutputFormat)],
-              default: 'stdout',
-              description: `The output format, one of ${[...Object.values(OutputFormat)].join(
-                ', '
-              )}`,
-            },
+          format: {
+            alias: 'f',
+            options: [...Object.values(OutputFormat)],
+            default: 'stdout',
+            description: `The output format, one of ${[...Object.values(OutputFormat)].join(', ')}`,
+          },
 
-            'output-file': {
-              alias: 'o',
-              default: '',
-              description:
-                'Specify file to write JSON output to. Requires the `--format` flag to be set to `json`',
-            },
+          'output-file': {
+            alias: 'o',
+            default: '',
+            description:
+              'Specify file to write JSON output to. Requires the `--format` flag to be set to `json`',
+          },
 
-            'list-tasks': {
-              alias: 'l',
-              description: 'List all available tasks to run.',
-              boolean: true,
-            },
-          });
+          'list-tasks': {
+            alias: 'l',
+            description: 'List all available tasks to run.',
+            boolean: true,
+          },
+        });
       },
       handler: async (argv: yargs.Arguments) => {
         let taskRunner = new CheckupTaskRunner({
@@ -102,20 +94,26 @@ checkup <command> [options]`
           outputFile: argv.outputFile as string,
         });
 
-        let spinner = ora().start('Checking up on your project');
+        if (argv.listTasks) {
+          let availableTasks = await taskRunner.getAvailableTasks();
 
-        let log = await taskRunner.run();
+          reportAvailableTasks(availableTasks);
+        } else {
+          let spinner = ora().start('Checking up on your project');
 
-        let reporter = getReporter({
-          cwd: argv.cwd as string,
-          verbose: argv.verbose as boolean,
-          format: argv.format as string,
-          outputFile: argv.outputFile as string,
-        });
+          let log = await taskRunner.run();
 
-        spinner.stop();
+          let reporter = getReporter({
+            cwd: argv.cwd as string,
+            verbose: argv.verbose as boolean,
+            format: argv.format as string,
+            outputFile: argv.outputFile as string,
+          });
 
-        reporter.report(log);
+          spinner.stop();
+
+          reporter.report(log);
+        }
       },
     })
     .command({

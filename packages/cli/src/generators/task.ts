@@ -94,16 +94,20 @@ export default class TaskGenerator extends BaseGenerator {
 
     const options = { ...this.options, _ };
 
-    if (!this.fs.exists(this.destinationPath(`src/hooks/register-tasks.${this._ext}`))) {
+    if (
+      !this.fs.exists(
+        this.destinationPath(`${this._dir}/registrations/register-tasks.${this._ext}`)
+      )
+    ) {
       this.fs.copy(
-        this.templatePath(`src/hooks/register-tasks.${this._ext}.ejs`),
-        this.destinationPath(`src/hooks/register-tasks.${this._ext}`)
+        this.templatePath(`src/registrations/register-tasks.${this._ext}.ejs`),
+        this.destinationPath(`${this._dir}/registrations/register-tasks.${this._ext}`)
       );
     }
 
     this.fs.copyTpl(
       this.templatePath(`src/tasks/task.${this._ext}.ejs`),
-      this.destinationPath(`src/tasks/${this.options.name}-task.${this._ext}`),
+      this.destinationPath(`${this._dir}/tasks/${this.options.name}-task.${this._ext}`),
       options
     );
 
@@ -117,7 +121,9 @@ export default class TaskGenerator extends BaseGenerator {
   }
 
   private _transformHooks() {
-    let hooksDestinationPath = this.destinationPath(`src/hooks/register-tasks.${this._ext}`);
+    let hooksDestinationPath = this.destinationPath(
+      `${this._dir}/registrations/register-tasks.${this._ext}`
+    );
 
     let registerTasksSource = this.fs.read(hooksDestinationPath);
     let registerTaskStatement = t.expressionStatement(
@@ -129,18 +135,27 @@ export default class TaskGenerator extends BaseGenerator {
       ])
     );
 
-    let newTaskImportSpecifier = t.importDefaultSpecifier(t.identifier(this.options.taskClass));
-    let tasksImportDeclaration: t.ImportDeclaration = t.importDeclaration(
-      [newTaskImportSpecifier],
-      t.stringLiteral(`../tasks/${this.options.name}-task`)
-    );
+    let importOrRequire: t.ImportDeclaration | t.VariableDeclaration;
+    let taskPath = `../tasks/${this.options.name}-task`;
+
+    if (this.options.typescript) {
+      let newTaskImportSpecifier = t.importDefaultSpecifier(t.identifier(this.options.taskClass));
+      importOrRequire = t.importDeclaration([newTaskImportSpecifier], t.stringLiteral(taskPath));
+    } else {
+      importOrRequire = t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.identifier(this.options.taskClass),
+          t.callExpression(t.identifier('require'), [t.stringLiteral(taskPath)])
+        ),
+      ]);
+    }
 
     let code = new AstTransformer(registerTasksSource, recast.parse, traverse, {
       parser: require('recast/parsers/typescript'),
     })
       .traverse({
         Program(path) {
-          path.node.body.splice(1, 0, tasksImportDeclaration);
+          path.node.body.splice(1, 0, importOrRequire);
         },
         BlockStatement(path) {
           path.node.body.push(registerTaskStatement);

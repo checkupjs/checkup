@@ -1,6 +1,6 @@
-import { BaseTask } from '@checkup/core';
+const { BaseTask } = require('@checkup/core');
 
-export default class <%- taskClass %> extends BaseTask {
+module.exports = class <%- taskClass %> extends BaseTask {
   taskName = '<%- name %>';
   taskDisplayName = '<%- _.startCase(name.split('-').join(' ')) %>';
   category = '<%- category %>';
