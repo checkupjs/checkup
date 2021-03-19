@@ -1,17 +1,15 @@
-import { join } from 'path';
 import * as execa from 'execa';
-import { CheckupProject } from '@checkup/test-helpers';
-import { generatePlugin, generateTask } from './__utils__/generator-utils';
+import { FakeProject } from './__utils__/fake-project';
 
 const ROOT = process.cwd();
 
 jest.setTimeout(100000);
 
 describe('cli-test', () => {
-  let project: CheckupProject;
+  let project: FakeProject;
 
   beforeEach(function () {
-    project = new CheckupProject('checkup-app', '0.0.0', () => {});
+    project = new FakeProject('checkup-app', '0.0.0', () => {});
     project.files['index.js'] = 'module.exports = {};';
     project.files['index.hbs'] = '<div>Checkup App</div>';
 
@@ -22,7 +20,7 @@ describe('cli-test', () => {
 
   afterEach(function () {
     process.chdir(ROOT);
-    // project.dispose();
+    project.dispose();
   });
 
   it('outputs top level help', async () => {
@@ -115,12 +113,11 @@ describe('cli-test', () => {
 
   it('should output list of available tasks', async () => {
     project.install();
-    let pluginDir = await generatePlugin(
+    let pluginDir = await project.addPlugin(
       { name: 'my-plugin', defaults: false },
-      { typescript: false },
-      join(project.baseDir, 'node_modules')
+      { typescript: false }
     );
-    await generateTask(
+    await project.addTask(
       { name: 'my-task', defaults: false },
       { typescript: false, category: 'best practices' },
       pluginDir
@@ -133,7 +130,6 @@ describe('cli-test', () => {
       plugins: ['checkup-plugin-my-plugin'],
       tasks: {},
     });
-    project.install(pluginDir);
 
     let result = await run(['run', '.', '--list-tasks']);
 
