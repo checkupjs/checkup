@@ -16,7 +16,15 @@ export default class AstTraverser<
   }
 
   private _parse(source: string): TAst {
-    return this.parser(source, this.parserOptions);
+    let ast: TAst;
+
+    try {
+      ast = this.parser(source, this.parserOptions);
+    } catch (error) {
+      throw new Error(error);
+    }
+
+    return ast;
   }
 
   traverse(visitors: TVisitors) {

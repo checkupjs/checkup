@@ -103,21 +103,36 @@ export default class ActionsGenerator extends BaseGenerator {
       ])
     );
 
-    let newActionImportSpecifier = t.importSpecifier(
-      t.identifier(`evaluate${this.options.pascalCaseName}Actions`),
-      t.identifier('evaluateActions')
-    );
-    let tasksImportDeclaration: t.ImportDeclaration = t.importDeclaration(
-      [newActionImportSpecifier],
-      t.stringLiteral(`../actions/${this.options.name}-actions`)
-    );
+    let importOrRequire: t.ImportDeclaration | t.VariableDeclaration;
+    let actionsPath = `../actions/${this.options.name}-actions`;
+    let actionsAlias = `evaluate${this.options.pascalCaseName}Actions`;
+
+    if (this.options.typescript) {
+      let newActionImportSpecifier = t.importSpecifier(
+        t.identifier(actionsAlias),
+        t.identifier('evaluateActions')
+      );
+      importOrRequire = t.importDeclaration(
+        [newActionImportSpecifier],
+        t.stringLiteral(actionsPath)
+      );
+    } else {
+      importOrRequire = t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.objectPattern([
+            t.objectProperty(t.identifier('evaluateActions'), t.identifier(actionsAlias)),
+          ]),
+          t.callExpression(t.identifier('require'), [t.stringLiteral(actionsPath)])
+        ),
+      ]);
+    }
 
     let code = new AstTransformer(registerActionsSource, recast.parse, traverse, {
       parser: require('recast/parsers/typescript'),
     })
       .traverse({
         Program(path) {
-          path.node.body.splice(1, 0, tasksImportDeclaration);
+          path.node.body.splice(1, 0, importOrRequire);
         },
         BlockStatement(path) {
           path.node.body.push(registerActionStatement);

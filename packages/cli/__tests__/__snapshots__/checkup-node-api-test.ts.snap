@@ -10,8 +10,8 @@ Object {
       ".eslintrc.js",
       "index.hbs",
       "index.js",
-      "package-lock.json",
       "package.json",
+      "yarn.lock",
     ],
     "analyzedFilesCount": 6,
     "cli": Object {

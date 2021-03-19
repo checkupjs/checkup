@@ -35,10 +35,7 @@ describe('checkup-task-runner', () => {
   let project: CheckupProject;
 
   beforeEach(function () {
-    project = new CheckupProject('checkup-app', '0.0.0', (project) => {
-      project.addDependency('react', '^15.0.0');
-      project.addDependency('react-dom', '^15.0.0');
-    });
+    project = new CheckupProject('checkup-app', '0.0.0', () => {});
     project.files['index.js'] = 'module.exports = {};';
     project.files['index.hbs'] = '<div>Checkup App</div>';
 
