@@ -89,39 +89,6 @@ export default abstract class GeneratorBase extends Generator {
     return isValidWorkContext;
   }
 
-  protected get canRunGenerator() {
-    let isValidWorkContext: boolean = false;
-
-    switch (this.works) {
-      case Works.InsideProject: {
-        isValidWorkContext = isInsideProject(this.path);
-        break;
-      }
-
-      case Works.OutsideProject: {
-        isValidWorkContext = isOutsideProject(this.path);
-        break;
-      }
-
-      case Works.InsidePlugin: {
-        isValidWorkContext = isInsidePlugin(this.path);
-        break;
-      }
-
-      case Works.OutsidePlugin: {
-        isValidWorkContext = isOutsidePlugin(this.path);
-        break;
-      }
-
-      default: {
-        isValidWorkContext = true;
-        break;
-      }
-    }
-
-    return isValidWorkContext;
-  }
-
   constructor(args: string | string[], options: Options) {
     super(args, options);
 
