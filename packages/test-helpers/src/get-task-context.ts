@@ -1,9 +1,10 @@
 import {
-  TaskContext,
   getRegisteredParsers,
   RunFlags,
   CheckupConfig,
   FilePathArray,
+  TaskContext2,
+  RunOptions,
 } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
@@ -12,24 +13,23 @@ import { CONFIG_SCHEMA_URL } from '@checkup/core';
 type TaskContextArgs = {
   cliArguments: string[];
   cliFlags: Partial<RunFlags>;
+  options: Partial<RunOptions>;
   config: Partial<CheckupConfig>;
   pkg: PackageJson;
   paths: FilePathArray;
 };
 
-const DEFAULT_FLAGS: RunFlags = {
-  version: undefined,
-  help: undefined,
+const DEFAULT_OPTIONS: RunOptions = {
+  paths: ['.'],
   config: undefined,
-  'exclude-paths': undefined,
+  excludePaths: undefined,
   cwd: process.cwd(),
-  category: undefined,
-  group: undefined,
-  task: undefined,
-  'list-tasks': false,
+  categories: undefined,
+  groups: undefined,
+  tasks: undefined,
+  listTasks: false,
   format: 'stdout',
-  'output-file': '',
-  verbose: false,
+  outputFile: '',
 };
 
 const DEFAULT_CONFIG: CheckupConfig = {
@@ -46,15 +46,13 @@ const DEFAULT_PACKAGE_JSON: PackageJson = {
 };
 
 export function getTaskContext({
-  cliArguments = [],
-  cliFlags,
+  options,
   config,
   pkg = DEFAULT_PACKAGE_JSON,
   paths = new FilePathArray(),
-}: Partial<TaskContextArgs> = {}): TaskContext {
+}: Partial<TaskContextArgs> = {}): TaskContext2 {
   return {
-    cliArguments,
-    cliFlags: Object.assign({}, DEFAULT_FLAGS, cliFlags),
+    options: Object.assign({}, DEFAULT_OPTIONS, options),
     parsers: getRegisteredParsers(),
     config: Object.assign({}, DEFAULT_CONFIG, config),
     pkg: pkg,

@@ -64,7 +64,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
   category = 'dependencies';
 
   async run(): Promise<Result[]> {
-    let outdatedDependencies = await getDependencies(this.context.cliFlags.cwd);
+    let outdatedDependencies = await getDependencies(this.context.options.cwd);
     let groupedDependencies = groupDataByField(outdatedDependencies, 'semverBump');
 
     return groupedDependencies.flatMap((dependencyGroup) =>

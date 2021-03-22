@@ -1,6 +1,6 @@
 import TaskList from '../src/task-list';
 import { getTaskContext } from '@checkup/test-helpers';
-import { BaseTask, Task, TaskContext } from '@checkup/core';
+import { BaseTask, Task, TaskContext2 } from '@checkup/core';
 
 import { Result } from 'sarif';
 const STABLE_ERROR = new Error('Something went wrong in this task');
@@ -11,7 +11,7 @@ class InsightsTaskHigh extends BaseTask implements Task {
   category = 'bar';
   group = 'group1';
 
-  constructor(context: TaskContext) {
+  constructor(context: TaskContext2) {
     super('fake', context);
   }
 
@@ -36,7 +36,7 @@ class InsightsTaskLow extends BaseTask implements Task {
   category = 'foo';
   group = 'group2';
 
-  constructor(context: TaskContext) {
+  constructor(context: TaskContext2) {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
@@ -60,7 +60,7 @@ class RecommendationsTaskHigh extends BaseTask implements Task {
 
   category = 'baz';
 
-  constructor(context: TaskContext) {
+  constructor(context: TaskContext2) {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
@@ -84,7 +84,7 @@ class RecommendationsTaskLow extends BaseTask implements Task {
 
   category = 'bar';
 
-  constructor(context: TaskContext) {
+  constructor(context: TaskContext2) {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
@@ -108,7 +108,7 @@ class MigrationTaskHigh extends BaseTask implements Task {
 
   category = 'foo';
 
-  constructor(context: TaskContext) {
+  constructor(context: TaskContext2) {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
@@ -132,7 +132,7 @@ class MigrationTaskLow extends BaseTask implements Task {
 
   category = 'baz';
 
-  constructor(context: TaskContext) {
+  constructor(context: TaskContext2) {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
@@ -156,7 +156,7 @@ class ErrorTask extends BaseTask implements Task {
 
   category = 'bar';
 
-  constructor(context: TaskContext) {
+  constructor(context: TaskContext2) {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
@@ -170,7 +170,7 @@ class TaskWithoutCategory extends BaseTask implements Task {
 
   category = '';
 
-  constructor(context: TaskContext) {
+  constructor(context: TaskContext2) {
     super('fake', context);
   }
 

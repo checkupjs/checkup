@@ -7,7 +7,7 @@ import { RunFlags, RunOptions } from './cli';
 import { Result } from 'sarif';
 
 export type RegisterTaskArgs = {
-  context: TaskContext;
+  context: TaskContext2;
   tasks: TaskList;
 };
 

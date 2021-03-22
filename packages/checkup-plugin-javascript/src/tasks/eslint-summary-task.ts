@@ -4,11 +4,11 @@ import {
   ESLintReport,
   Parser,
   Task,
-  TaskContext,
   bySeverity,
   groupDataByField,
   sarifBuilder,
   lintBuilder,
+  TaskContext2,
 } from '@checkup/core';
 import { join, resolve } from 'path';
 
@@ -38,14 +38,14 @@ export class EslintSummaryTask extends BaseTask implements Task {
 
   private _eslintParser: Parser<ESLintReport>;
 
-  constructor(pluginName: string, context: TaskContext) {
+  constructor(pluginName: string, context: TaskContext2) {
     super(pluginName, context);
 
     let createEslintParser = this.context.parsers.get('eslint')!;
 
     let eslintConfig: ESLintOptions = readEslintConfig(
       this.context.paths,
-      this.context.cliFlags.cwd,
+      this.context.options.cwd,
       this.context.pkg as PackageJsonWithEslint
     );
     this._eslintParser = createEslintParser(eslintConfig);
@@ -53,7 +53,7 @@ export class EslintSummaryTask extends BaseTask implements Task {
 
   async run(): Promise<Result[]> {
     let report = await this._eslintParser.execute(this.context.paths.filterByGlob('**/*.js'));
-    let transformedData = lintBuilder.toLintResults(report.results, this.context.cliFlags.cwd);
+    let transformedData = lintBuilder.toLintResults(report.results, this.context.options.cwd);
 
     let lintingErrors = groupDataByField(bySeverity(transformedData, 2), 'lintRuleId');
     let lintingWarnings = groupDataByField(bySeverity(transformedData, 1), 'lintRuleId');

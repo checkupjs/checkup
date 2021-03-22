@@ -1,12 +1,18 @@
 import * as Generator from 'yeoman-generator';
 import * as chalk from 'chalk';
 
-import { Options } from '../commands/generate';
-
 import { getVersion } from '../utils/get-version';
 import { resolve, join } from 'path';
 import { existsSync, mkdirSync } from 'fs';
 import { getPackageJson } from '../utils/get-package-json';
+
+export interface Options {
+  type: string;
+  name: string;
+  path: string;
+  defaults?: boolean;
+  force?: boolean;
+}
 
 export const enum Works {
   Everywhere,

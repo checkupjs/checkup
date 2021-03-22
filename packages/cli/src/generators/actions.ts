@@ -5,8 +5,7 @@ import * as recast from 'recast';
 
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import BaseGenerator, { Works } from './base-generator';
-import { Options } from '../commands/generate';
+import BaseGenerator, { Works, Options } from './base-generator';
 import { join } from 'path';
 import { AstTransformer, CheckupError } from '@checkup/core';
 

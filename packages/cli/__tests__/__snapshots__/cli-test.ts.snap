@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cli-test if excludePaths are provided by both the config and command line, use command line 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (4 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
+■ hbs (1)
+■ js (1)
+
+
+checkup v0.0.0
+config 0e3da47ee1e0a5e663465af5cc66cf37
+"
+`;
+
+exports[`cli-test if excludePaths are provided by both the config and command line, use command line 2`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (4 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
+■ js (2)
+
+
+checkup v0.0.0
+config 0e3da47ee1e0a5e663465af5cc66cf37
+"
+`;
+
+exports[`cli-test should run the tasks on the globs passed into checkup, if provided, instead of entire app 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (2 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
+■ hbs (2)
+
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+"
+`;
+
+exports[`cli-test should run the tasks on the globs passed into checkup, if provided, instead of entire app 2`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (6 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 5 lines of code
+■ js (3)
+■ hbs (2)
+
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+"
+`;
+
+exports[`cli-test should use the excludePaths provided by the command line 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (1 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+ 0 lines of code
+
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+"
+`;
+
+exports[`cli-test should use the excludePaths provided by the command line 2`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (2 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 1 lines of code
+■ js (1)
+
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+"
+`;
+
+exports[`cli-test should use the excludePaths provided by the config 1`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (4 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
+■ js (2)
+
+
+checkup v0.0.0
+config 0e3da47ee1e0a5e663465af5cc66cf37
+"
+`;
+
+exports[`cli-test should use the excludePaths provided by the config 2`] = `
+"
+Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
+
+This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+■ js (2)
+■ hbs (1)
+
+
+checkup v0.0.0
+config dd17cda1fc2eb2bc6bb5206b41fc1a84
+"
+`;

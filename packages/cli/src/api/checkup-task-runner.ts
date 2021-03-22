@@ -82,7 +82,7 @@ export default class CheckupTaskRunner {
 
   async run(): Promise<Log> {
     await this.loadConfig();
-    await this.forEachPlugin(REGISTRATION_TYPES);
+    await this.loadFromPlugin(REGISTRATION_TYPES);
     await this.registerTasks();
 
     await this.runTasks();
@@ -197,7 +197,7 @@ export default class CheckupTaskRunner {
       ) as FilePathArray,
     });
 
-    await this.forEachPlugin(
+    await this.loadFromPlugin(
       new Map([['register-tasks', { context: this.taskContext, tasks: this.tasks }]])
     );
 
@@ -206,7 +206,7 @@ export default class CheckupTaskRunner {
     });
   }
 
-  private async forEachPlugin(registrationTypes: Map<string, object>) {
+  private async loadFromPlugin(registrationTypes: Map<string, object>) {
     for (let pluginName of this.config.plugins) {
       this.debug('Loading plugin from %s', pluginName);
 

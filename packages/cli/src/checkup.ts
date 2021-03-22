@@ -32,6 +32,7 @@ checkup <command> [options]`
               description:
                 'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
               multiple: true,
+              array: true,
             },
 
             config: {

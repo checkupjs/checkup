@@ -25,7 +25,7 @@ describe('outdated-dependencies-task', () => {
     task = new OutdatedDependenciesTask(
       pluginName,
       getTaskContext({
-        cliFlags: { cwd: project.baseDir },
+        options: { cwd: project.baseDir },
         pkg: project.pkg,
       })
     );

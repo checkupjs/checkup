@@ -26,7 +26,7 @@ describe('ember-in-repo-addons-engines-task', () => {
       pluginName,
       getTaskContext({
         pkg: emberProject.pkg,
-        cliFlags: { cwd: emberProject.baseDir },
+        options: { cwd: emberProject.baseDir },
         paths: emberProject.filePaths,
       })
     ).run();

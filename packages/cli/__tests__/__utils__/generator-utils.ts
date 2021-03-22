@@ -11,13 +11,20 @@ const DEFAULT_PLUGIN_OPTIONS = {
   defaults: true,
 };
 
+const DEFAULT_PLUGIN_PROMPTS = {
+  typescript: true,
+  description: '',
+  author: '',
+  repository: '',
+};
+
 const DEFAULT_TASK_OPTIONS = {
   name: 'my-task',
   path: '.',
   defaults: true,
 };
 
-const DEFAULT_PROMPTS = {
+const DEFAULT_TASK_PROMPTS = {
   typescript: true,
   category: 'best practices',
   group: '',
@@ -29,7 +36,7 @@ export async function generatePlugin(
   tmp: string = createTmpDir()
 ) {
   let mergedOptions = Object.assign({ path: '.' }, DEFAULT_PLUGIN_OPTIONS, options);
-  let mergedPrompts = Object.assign({}, DEFAULT_PROMPTS, prompts);
+  let mergedPrompts = Object.assign({}, DEFAULT_PLUGIN_PROMPTS, prompts);
   let dir = await helpers
     .run(PluginGenerator, { namespace: 'checkup:plugin' })
     .cd(tmp)
@@ -47,7 +54,7 @@ export async function generateTask(
   tmp: string = createTmpDir()
 ) {
   let mergedOptions = Object.assign({}, DEFAULT_TASK_OPTIONS, options);
-  let mergedPrompts = Object.assign({}, DEFAULT_PROMPTS, prompts);
+  let mergedPrompts = Object.assign({}, DEFAULT_TASK_PROMPTS, prompts);
 
   return await helpers
     .run(TaskGenerator, { namespace: 'checkup:task' })

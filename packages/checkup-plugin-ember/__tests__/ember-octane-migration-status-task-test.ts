@@ -36,7 +36,7 @@ describe('ember-octane-migration-status-task', () => {
         const result = await new EmberOctaneMigrationStatusTask(
           pluginName,
           getTaskContext({
-            cliFlags: { cwd: project.baseDir },
+            options: { cwd: project.baseDir },
             paths: project.filePaths,
           })
         ).run();

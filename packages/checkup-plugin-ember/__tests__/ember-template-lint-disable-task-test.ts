@@ -32,7 +32,7 @@ describe('ember-template-lint-disable-task', () => {
       'internal',
       getTaskContext({
         paths: project.filePaths,
-        cliFlags: { cwd: project.baseDir },
+        options: { cwd: project.baseDir },
       })
     ).run();
 
@@ -125,7 +125,7 @@ describe('ember-template-lint-disable-task', () => {
       'internal',
       getTaskContext({
         paths: project.filePaths,
-        cliFlags: { cwd: project.baseDir },
+        options: { cwd: project.baseDir },
       })
     );
     const result = await task.run();
