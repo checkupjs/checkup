@@ -25,7 +25,7 @@ describe('cli-test', () => {
 
   afterEach(function () {
     process.chdir(ROOT);
-    project.dispose();
+    // project.dispose();
   });
 
   it('outputs top level help', async () => {
@@ -175,7 +175,21 @@ describe('cli-test', () => {
   it('should output checkup result in verbose mode', async () => {
     let result = await run(['run', '.', '--verbose']);
 
-    expect(result.stdout).toMatchSnapshot();
+    expect(result.stdout).toMatchInlineSnapshot(`
+      "
+      Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
+
+      This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
+      ■ hbs (1)
+      ■ js (1)
+
+
+      checkup v0.0.0
+      config dd17cda1fc2eb2bc6bb5206b41fc1a84
+      "
+    `);
   });
 
   it('should run a single task if the tasks option is specified with a single task', async () => {
@@ -200,7 +214,27 @@ describe('cli-test', () => {
 
     let result = await run(['run', '.', '--task', 'fake/file-count', '--verbose']);
 
-    expect(result.stdout).toMatchSnapshot();
+    expect(result.stdout).toMatchInlineSnapshot(`
+      "
+      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+
+      This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+      ■ js (2)
+      ■ hbs (1)
+
+      === Best Practices
+
+      File Count
+
+      ■ file-count result (1)
+
+
+      checkup v0.0.0
+      config 01f059d31fb4418b3792d2818b02a083
+      "
+    `);
   });
 
   it('should run with timing if CHECKUP_TIMING=1', async () => {
@@ -267,7 +301,31 @@ describe('cli-test', () => {
       '--verbose',
     ]);
 
-    expect(result.stdout).toMatchSnapshot();
+    expect(result.stdout).toMatchInlineSnapshot(`
+      "
+      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+
+      This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+      ■ js (2)
+      ■ hbs (1)
+
+      === Best Practices
+
+      File Count
+
+      ■ file-count result (1)
+
+      Foo
+
+      ■ foo result (1)
+
+
+      checkup v0.0.0
+      config 01f059d31fb4418b3792d2818b02a083
+      "
+    `);
   });
 
   it('should run only one task if the category option is specified', async () => {
@@ -297,7 +355,27 @@ describe('cli-test', () => {
 
     let result = await run(['run', '.', '--category', 'files', '--verbose']);
 
-    expect(result.stdout).toMatchSnapshot();
+    expect(result.stdout).toMatchInlineSnapshot(`
+      "
+      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+
+      This project is 0 days old, with 0 days active days, 0 commits and 0 files.
+
+      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
+      ■ js (2)
+      ■ hbs (1)
+
+      === Files
+
+      File Count
+
+      ■ file-count result (1)
+
+
+      checkup v0.0.0
+      config 01f059d31fb4418b3792d2818b02a083
+      "
+    `);
   });
 
   function run(args: string[], options: execa.Options = {}) {

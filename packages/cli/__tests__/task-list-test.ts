@@ -274,7 +274,21 @@ describe('TaskList', () => {
 
     let [result, errors] = await taskList.runTask('insights-task-high');
 
-    expect(result).toMatchSnapshot();
+    expect(result).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "message": Object {
+            "text": "hi",
+          },
+          "properties": Object {
+            "category": "bar",
+            "group": "group1",
+            "taskDisplayName": "Insights Task High",
+          },
+          "ruleId": "insights-task-high",
+        },
+      ]
+    `);
     expect(errors).toHaveLength(0);
   });
 
@@ -322,8 +336,32 @@ describe('TaskList', () => {
 
     let [results, errors] = await taskList.runTasks();
 
-    expect(results[0]).toMatchSnapshot();
-    expect(results[1]).toMatchSnapshot();
+    expect(results).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "message": Object {
+            "text": "hi",
+          },
+          "properties": Object {
+            "category": "foo",
+            "group": "group2",
+            "taskDisplayName": "Insights Task Low",
+          },
+          "ruleId": "insights-task-low",
+        },
+        Object {
+          "message": Object {
+            "text": "hi",
+          },
+          "properties": Object {
+            "category": "bar",
+            "group": "group1",
+            "taskDisplayName": "Insights Task High",
+          },
+          "ruleId": "insights-task-high",
+        },
+      ]
+    `);
     expect(errors).toHaveLength(0);
   });
 

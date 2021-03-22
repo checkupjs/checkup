@@ -17,10 +17,7 @@
       "**/lib/**": true
     },
     "typescript.tsdk": "node_modules/typescript/lib",
-    "editor.formatOnSave": true,
-    "cSpell.words": [
-      "unparser"
-    ]
+    "editor.formatOnSave": true
   },
   "files.associations": {}
 }
