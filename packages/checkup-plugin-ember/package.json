@@ -1,6 +1,6 @@
 {
   "name": "checkup-plugin-ember",
-  "description": "An oclif plugin for Ember project tasks",
+  "description": "A checkup plugin for Ember project tasks",
   "version": "0.13.2",
   "author": "Steve Calvert @scalvert",
   "bugs": "https://github.com/checkupjs/checkup/issues",
@@ -27,8 +27,7 @@
   ],
   "homepage": "https://github.com/checkupjs/checkup",
   "keywords": [
-    "checkup-plugin",
-    "oclif-plugin"
+    "checkup-plugin"
   ],
   "license": "MIT",
   "publishConfig": {

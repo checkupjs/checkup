@@ -1,6 +1,6 @@
 {
   "name": "checkup-plugin-javascript",
-  "description": "An oclif plugin for Javascript project tasks",
+  "description": "A checkup plugin for Javascript project tasks",
   "version": "0.13.2",
   "author": "Cara Kessler @carakessler",
   "bugs": "https://github.com/checkupjs/checkup/issues",
@@ -26,8 +26,7 @@
   ],
   "homepage": "https://github.com/checkupjs/checkup",
   "keywords": [
-    "checkup-plugin",
-    "oclif-plugin"
+    "checkup-plugin"
   ],
   "license": "MIT",
   "publishConfig": {
