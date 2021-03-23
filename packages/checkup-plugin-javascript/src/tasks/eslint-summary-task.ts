@@ -8,7 +8,7 @@ import {
   groupDataByField,
   sarifBuilder,
   lintBuilder,
-  TaskContext2,
+  TaskContext,
 } from '@checkup/core';
 import { join, resolve } from 'path';
 
@@ -38,7 +38,7 @@ export class EslintSummaryTask extends BaseTask implements Task {
 
   private _eslintParser: Parser<ESLintReport>;
 
-  constructor(pluginName: string, context: TaskContext2) {
+  constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
     let createEslintParser = this.context.parsers.get('eslint')!;

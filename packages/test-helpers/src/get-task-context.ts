@@ -3,7 +3,7 @@ import {
   RunFlags,
   CheckupConfig,
   FilePathArray,
-  TaskContext2,
+  TaskContext,
   RunOptions,
 } from '@checkup/core';
 
@@ -50,7 +50,7 @@ export function getTaskContext({
   config,
   pkg = DEFAULT_PACKAGE_JSON,
   paths = new FilePathArray(),
-}: Partial<TaskContextArgs> = {}): TaskContext2 {
+}: Partial<TaskContextArgs> = {}): TaskContext {
   return {
     options: Object.assign({}, DEFAULT_OPTIONS, options),
     parsers: getRegisteredParsers(),

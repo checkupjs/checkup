@@ -1,4 +1,4 @@
-import { BaseTask, Task, TaskContext2, sarifBuilder } from '@checkup/core';
+import { BaseTask, Task, TaskContext, sarifBuilder } from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import type { Result } from 'sarif';
 import CheckupTaskRunner from '../src/api/checkup-task-runner';
@@ -10,7 +10,7 @@ class FooTask extends BaseTask implements Task {
   category = 'fake1';
   group = 'group1';
 
-  constructor(context: TaskContext2) {
+  constructor(context: TaskContext) {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
@@ -24,7 +24,7 @@ class FileCountTask extends BaseTask implements Task {
   category = 'fake2';
   group = 'group2';
 
-  constructor(context: TaskContext2) {
+  constructor(context: TaskContext) {
     super('fake', context);
   }
   async run(): Promise<Result[]> {

@@ -7,7 +7,7 @@ import { RunOptions } from './cli';
 import { Result } from 'sarif';
 
 export type RegisterTaskArgs = {
-  context: TaskContext2;
+  context: TaskContext;
   tasks: TaskList;
 };
 
@@ -57,7 +57,7 @@ export type TaskError = {
   taskName: TaskName;
   error: Error;
 };
-export interface TaskContext2 {
+export interface TaskContext {
   readonly options: RunOptions;
   readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
   readonly config: CheckupConfig;

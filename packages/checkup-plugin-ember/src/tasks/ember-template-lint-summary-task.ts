@@ -2,7 +2,7 @@ import {
   BaseTask,
   LintResult,
   Task,
-  TaskContext2,
+  TaskContext,
   TemplateLinter,
   TemplateLintMessage,
   TemplateLintReport,
@@ -22,7 +22,7 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
 
   private templateLinter: TemplateLinter;
 
-  constructor(pluginName: string, context: TaskContext2) {
+  constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
     let createEmberTemplateLintParser = this.context.parsers.get('ember-template-lint')!;

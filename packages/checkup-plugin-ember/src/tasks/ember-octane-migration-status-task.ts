@@ -13,7 +13,7 @@ import {
   TemplateLintResult,
   groupDataByField,
   lintBuilder,
-  TaskContext2,
+  TaskContext,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -111,7 +111,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
   private eslintParser: Parser<ESLintReport>;
   private templateLinter: TemplateLinter;
 
-  constructor(pluginName: string, context: TaskContext2) {
+  constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
     let createEslintParser = this.context.parsers.get('eslint')!;

@@ -6,7 +6,7 @@ import {
   LintResult,
   sarifBuilder,
   lintBuilder,
-  TaskContext2,
+  TaskContext,
 } from '@checkup/core';
 import { EMBER_TEST_TYPES } from '../utils/lint-configs';
 import { Result } from 'sarif';
@@ -20,7 +20,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   private eslintParser: Parser<ESLintReport>;
   private testFiles: string[];
 
-  constructor(pluginName: string, context: TaskContext2) {
+  constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
     let createEslintParser = this.context.parsers.get('eslint')!;

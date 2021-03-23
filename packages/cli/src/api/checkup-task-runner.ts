@@ -12,7 +12,7 @@ import {
   RunOptions,
   Task,
   TaskError,
-  TaskContext2,
+  TaskContext,
   ui,
   registerParser,
   registerActions,
@@ -59,7 +59,7 @@ export default class CheckupTaskRunner {
   tasks: TaskList = new TaskList();
   taskResults: Result[] = [];
   taskErrors: TaskError[] = [];
-  taskContext!: TaskContext2;
+  taskContext!: TaskContext;
 
   get taskFilterType() {
     if (this.options.tasks !== undefined) {

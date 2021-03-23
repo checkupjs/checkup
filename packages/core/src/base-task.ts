@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 
-import { TaskName, TaskContext2 } from './types/tasks';
+import { TaskName, TaskContext } from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
@@ -10,7 +10,7 @@ export default abstract class BaseTask {
   abstract taskDisplayName: string;
   abstract category: string;
   group?: string;
-  context: TaskContext2;
+  context: TaskContext;
   debug: debug.Debugger;
 
   _pluginName: string;
@@ -18,7 +18,7 @@ export default abstract class BaseTask {
   _enabled!: boolean;
   _enabledViaConfig!: boolean;
 
-  constructor(pluginName: string, context: TaskContext2) {
+  constructor(pluginName: string, context: TaskContext) {
     this._pluginName = getShorthandName(pluginName);
     this.context = context;
 

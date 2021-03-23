@@ -1,7 +1,7 @@
 import { getTaskContext } from '@checkup/test-helpers';
 
 import BaseTask from '../src/base-task';
-import { TaskContext2 } from '../src/types/tasks';
+import { TaskContext } from '../src/types/tasks';
 
 class FakeTask extends BaseTask {
   taskName = 'my-fake';
@@ -11,7 +11,7 @@ class FakeTask extends BaseTask {
 
 describe('BaseTask', () => {
   it('creates a task with correct defaults set', () => {
-    let context: TaskContext2 = getTaskContext();
+    let context: TaskContext = getTaskContext();
 
     let fakeTask = new FakeTask('fake', context);
 
@@ -21,7 +21,7 @@ describe('BaseTask', () => {
   });
 
   it('creates a disabled task if config is set to "off"', () => {
-    let context: TaskContext2 = getTaskContext({
+    let context: TaskContext = getTaskContext({
       config: {
         plugins: [],
         tasks: {
@@ -36,7 +36,7 @@ describe('BaseTask', () => {
   });
 
   it('creates a task with custom config values', () => {
-    let context: TaskContext2 = getTaskContext({
+    let context: TaskContext = getTaskContext({
       config: {
         plugins: [],
         tasks: {
