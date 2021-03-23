@@ -22,7 +22,7 @@ import * as debug from 'debug';
 import * as resolve from 'resolve';
 import { join, dirname } from 'path';
 import { Log, Result } from 'sarif';
-import { getLog } from '../get-log2';
+import { getLog } from '../get-log';
 import { TASK_ERRORS } from '../task-errors';
 import TaskList from '../task-list';
 import { extendedError } from '../extended-error';

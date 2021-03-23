@@ -1,25 +1,46 @@
 import {
   Action,
   CheckupConfig,
-  CheckupMetadata,
   trimAllCwd,
   Task,
-  TaskContext,
+  TaskContext2,
+  CheckupMetadata2,
+  TaskError,
+  RunOptions,
+  sarifBuilder,
 } from '@checkup/core';
 import * as crypto from 'crypto';
 import * as stringify from 'json-stable-stringify';
+import * as unparse from 'yargs-unparser';
 import { Invocation, Log, ReportingDescriptor, Result } from 'sarif';
 import { getVersion } from './utils/get-version';
 import { getRepositoryInfo } from './utils/repository';
 import TaskList from './task-list';
 
+function getInvocation(options: RunOptions, errors: TaskError[], startTime: string): Invocation {
+  return {
+    arguments: unparse(options),
+    executionSuccessful: true,
+    endTimeUtc: new Date().toJSON(),
+    environmentVariables: {
+      cwd: options.cwd,
+      outputFile: options.outputFile,
+      format: options.format,
+    },
+    toolExecutionNotifications: sarifBuilder.notifications.fromTaskErrors(errors),
+    startTimeUtc: startTime,
+  };
+}
+
 export async function getLog(
-  taskContext: TaskContext,
+  options: RunOptions,
+  taskContext: TaskContext2,
   taskResults: Result[],
   actions: Action[],
-  invocation: Invocation,
+  errors: TaskError[],
   taskList: TaskList,
-  executedTasks: Task[]
+  executedTasks: Task[],
+  startTime: string
 ): Promise<Log> {
   let checkupMetadata = await getCheckupMetadata(taskContext);
 
@@ -30,7 +51,7 @@ export async function getLog(
     runs: [
       {
         results: taskResults,
-        invocations: [invocation],
+        invocations: [getInvocation(options, errors, startTime)],
         tool: {
           driver: {
             name: 'Checkup',
@@ -66,12 +87,12 @@ function getConfigHash(checkupConfig: CheckupConfig) {
   return crypto.createHash('md5').update(configAsJson).digest('hex');
 }
 
-async function getCheckupMetadata(taskContext: TaskContext): Promise<CheckupMetadata> {
+async function getCheckupMetadata(taskContext: TaskContext2): Promise<CheckupMetadata2> {
   let package_ = taskContext.pkg;
-  let repositoryInfo = await getRepositoryInfo(taskContext.cliFlags.cwd, taskContext.paths);
+  let repositoryInfo = await getRepositoryInfo(taskContext.options.cwd, taskContext.paths);
 
-  let { config, task, format } = taskContext.cliFlags;
-  let analyzedFiles = trimAllCwd(taskContext.paths, taskContext.cliFlags.cwd);
+  let { config, tasks, format } = taskContext.options;
+  let analyzedFiles = trimAllCwd(taskContext.paths, taskContext.options.cwd);
 
   return {
     project: {
@@ -85,15 +106,13 @@ async function getCheckupMetadata(taskContext: TaskContext): Promise<CheckupMeta
       config: taskContext.config,
       version: getVersion(),
       schema: 1,
-      args: {
-        paths: taskContext.cliArguments,
-      },
+      args: unparse(taskContext.options),
       flags: {
         config,
-        task,
+        tasks,
         format,
-        outputFile: taskContext.cliFlags['output-file'],
-        excludePaths: taskContext.cliFlags['exclude-paths'],
+        outputFile: taskContext.options.outputFile,
+        excludePaths: taskContext.options.excludePaths,
       },
     },
 

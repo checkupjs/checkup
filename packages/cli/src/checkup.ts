@@ -4,8 +4,8 @@ import { OutputFormat } from '@checkup/core';
 
 import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
-import { getReporter } from './reporters/get-reporter2';
-import { reportAvailableTasks } from './reporters/available-task-reporter2';
+import { getReporter } from './reporters/get-reporter';
+import { reportAvailableTasks } from './reporters/available-task-reporter';
 
 let coerceToArray = (arg: string | string[]) => {
   return typeof arg === 'string' ? [arg] : arg;

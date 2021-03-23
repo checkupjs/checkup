@@ -13,27 +13,36 @@ import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
 import { Invocation, Log, Notification, Result, Run } from 'sarif';
 import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './reporter-utils';
+import { ReportOptions } from './get-reporter';
 
-export function report(result: Log) {
-  let metaData = result.properties as CheckupMetadata;
+export default class VerboseConsoleReporter {
+  options: ReportOptions;
 
-  renderInfo(metaData);
-  renderLinesOfCode(metaData);
-
-  result.runs.forEach((run: Run) => {
-    renderTaskResults(run.results);
-    run.invocations?.forEach((invocation: Invocation) => {
-      renderErrors(invocation.toolExecutionNotifications);
-    });
-  });
-
-  renderActions(result.properties?.actions);
-
-  if (process.env.CHECKUP_TIMING === '1') {
-    renderTimings(result.properties?.timings);
+  constructor(options: ReportOptions) {
+    this.options = options;
   }
 
-  renderCLIInfo(metaData);
+  report(result: Log) {
+    let metaData = result.properties as CheckupMetadata;
+
+    renderInfo(metaData);
+    renderLinesOfCode(metaData);
+
+    result.runs.forEach((run: Run) => {
+      renderTaskResults(run.results);
+      run.invocations?.forEach((invocation: Invocation) => {
+        renderErrors(invocation.toolExecutionNotifications);
+      });
+    });
+
+    renderActions(result.properties?.actions);
+
+    if (process.env.CHECKUP_TIMING === '1') {
+      renderTimings(result.properties?.timings);
+    }
+
+    renderCLIInfo(metaData);
+  }
 }
 
 function renderTaskResults(pluginTaskResults: Result[] | undefined): void {
