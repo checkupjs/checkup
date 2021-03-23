@@ -4,7 +4,7 @@
   "version": "0.13.2",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bin": {
-    "checkup": "./bin/run"
+    "checkup": "./bin/checkup.js"
   },
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
@@ -12,10 +12,7 @@
     "@babel/traverse": "^7.12.12",
     "@babel/types": "7.12.13",
     "@checkup/core": "0.13.2",
-    "@oclif/command": "^1",
-    "@oclif/config": "^1",
     "@oclif/errors": "^1.3.4",
-    "@oclif/plugin-help": "^3",
     "chalk": "^4.0.0",
     "clean-stack": "^3.0.1",
     "convert-hrtime": "^3.0.0",
@@ -45,7 +42,6 @@
   },
   "devDependencies": {
     "@checkup/test-helpers": "0.13.2",
-    "@oclif/dev-cli": "^1",
     "@types/sarif": "^2.1.3",
     "@types/sloc": "^0.2.0",
     "@types/yeoman-environment": "^2.3.3",
@@ -64,23 +60,17 @@
   ],
   "homepage": "https://github.com/checkupjs/checkup",
   "keywords": [
-    "oclif"
+    "checkup"
   ],
   "license": "MIT",
   "main": "lib/index.js",
-  "oclif": {
-    "commands": "./lib/commands",
-    "bin": "checkup"
-  },
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
     "build": "tsc --build",
-    "prepack": "oclif-dev readme",
-    "test": "jest --runInBand --no-cache",
-    "version": "oclif-dev readme && git add README.md"
+    "test": "jest --runInBand --no-cache"
   },
   "types": "lib/index.d.ts"
 }
