@@ -7,10 +7,6 @@ import Generator from './api/generator';
 import { getReporter } from './reporters/get-reporter';
 import { reportAvailableTasks } from './reporters/available-task-reporter';
 
-let coerceToArray = (arg: string | string[]) => {
-  return typeof arg === 'string' ? [arg] : arg;
-};
-
 export async function run(argv: string[] = process.argv.slice(2)) {
   let parser = yargs
     .scriptName('checkup')
@@ -25,73 +21,69 @@ checkup <command> [options]`
       aliases: ['r'],
       describe: 'Runs configured checkup tasks',
       builder: (yargs) => {
-        return yargs
-          .options({
-            'exclude-paths': {
-              alias: 'e',
-              description:
-                'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
-              multiple: true,
-              array: true,
-            },
+        return yargs.options({
+          'exclude-paths': {
+            alias: 'e',
+            description:
+              'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
+            multiple: true,
+            array: true,
+          },
 
-            config: {
-              alias: 'c',
-              description: 'Use this configuration, overriding .checkuprc if present.',
-            },
+          config: {
+            alias: 'c',
+            description: 'Use this configuration, overriding .checkuprc if present.',
+          },
 
-            cwd: {
-              alias: 'd',
-              description: 'The path referring to the root directory that Checkup will run in',
-              default: () => process.cwd(),
-            },
+          cwd: {
+            alias: 'd',
+            description: 'The path referring to the root directory that Checkup will run in',
+            default: () => process.cwd(),
+          },
 
-            category: {
-              description: 'Runs specific tasks specified by category. Can be used multiple times.',
-              multiple: true,
-              exclusive: ['group', 'task'],
-            },
+          category: {
+            description: 'Runs specific tasks specified by category. Can be used multiple times.',
+            exclusive: ['group', 'task'],
+            multiple: true,
+            array: true,
+          },
 
-            group: {
-              description: 'Runs specific tasks specified by group. Can be used multiple times.',
-              multiple: true,
-              exclusive: ['category', 'task'],
-            },
+          group: {
+            description: 'Runs specific tasks specified by group. Can be used multiple times.',
+            exclusive: ['category', 'task'],
+            multiple: true,
+            array: true,
+          },
 
-            task: {
-              alias: 't',
-              description:
-                'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
-              multiple: true,
-              exclusive: ['category', 'group'],
-            },
+          task: {
+            alias: 't',
+            description:
+              'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
+            exclusive: ['category', 'group'],
+            multiple: true,
+            array: true,
+          },
 
-            format: {
-              alias: 'f',
-              options: [...Object.values(OutputFormat)],
-              default: 'stdout',
-              description: `The output format, one of ${[...Object.values(OutputFormat)].join(
-                ', '
-              )}`,
-            },
+          format: {
+            alias: 'f',
+            options: [...Object.values(OutputFormat)],
+            default: 'stdout',
+            description: `The output format, one of ${[...Object.values(OutputFormat)].join(', ')}`,
+          },
 
-            'output-file': {
-              alias: 'o',
-              default: '',
-              description:
-                'Specify file to write JSON output to. Requires the `--format` flag to be set to `json`',
-            },
+          'output-file': {
+            alias: 'o',
+            default: '',
+            description:
+              'Specify file to write JSON output to. Requires the `--format` flag to be set to `json`',
+          },
 
-            'list-tasks': {
-              alias: 'l',
-              description: 'List all available tasks to run.',
-              boolean: true,
-            },
-          })
-          .coerce('paths', coerceToArray)
-          .coerce('task', coerceToArray)
-          .coerce('category', coerceToArray)
-          .coerce('group', coerceToArray);
+          'list-tasks': {
+            alias: 'l',
+            description: 'List all available tasks to run.',
+            boolean: true,
+          },
+        });
       },
       handler: async (argv: yargs.Arguments) => {
         let taskRunner = new CheckupTaskRunner({
