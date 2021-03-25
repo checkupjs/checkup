@@ -85,6 +85,17 @@
       }
     },
     {
+      "files": ["packages/checkup-plugin-ember/__tests__/eslint-rule-tests/test-types.test.js"],
+      "rules": {
+        "node/no-extraneous-require": [
+          "error",
+          {
+            "allowModules": ["eslint"]
+          }
+        ]
+      }
+    },
+    {
       "files": ["packages/core/src/**/*.ts"],
       "rules": {
         "node/no-extraneous-import": [

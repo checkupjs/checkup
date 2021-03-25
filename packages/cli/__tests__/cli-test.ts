@@ -26,7 +26,7 @@ describe('cli-test', () => {
 
   afterEach(function () {
     process.chdir(ROOT);
-    // project.dispose();
+    project.dispose();
   });
 
   it('outputs top level help', async () => {
