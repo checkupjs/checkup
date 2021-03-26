@@ -1,4 +1,4 @@
-import { Action, CheckupMetadata2, ui } from '@checkup/core';
+import { Action, CheckupMetadata, ui } from '@checkup/core';
 import { yellow, bold } from 'chalk';
 
 export function renderActions(actions: Action[]): void {
@@ -11,7 +11,7 @@ export function renderActions(actions: Action[]): void {
   }
 }
 
-export function renderInfo(info: CheckupMetadata2) {
+export function renderInfo(info: CheckupMetadata) {
   let { analyzedFilesCount } = info;
   let { name, version, repository } = info.project;
 
@@ -35,7 +35,7 @@ export function renderInfo(info: CheckupMetadata2) {
   ui.blankLine();
 }
 
-export function renderLinesOfCode(info: CheckupMetadata2) {
+export function renderLinesOfCode(info: CheckupMetadata) {
   let { repository } = info.project;
 
   ui.sectionedBar(
@@ -49,7 +49,7 @@ export function renderLinesOfCode(info: CheckupMetadata2) {
   ui.blankLine();
 }
 
-export function renderCLIInfo(info: CheckupMetadata2) {
+export function renderCLIInfo(info: CheckupMetadata) {
   let { version: cliVersion, configHash } = info.cli;
 
   ui.dimmed(`checkup v${cliVersion}`);

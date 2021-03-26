@@ -4,7 +4,7 @@ import {
   trimAllCwd,
   Task,
   TaskContext,
-  CheckupMetadata2,
+  CheckupMetadata,
   TaskError,
   RunOptions,
   sarifBuilder,
@@ -87,7 +87,7 @@ function getConfigHash(checkupConfig: CheckupConfig) {
   return crypto.createHash('md5').update(configAsJson).digest('hex');
 }
 
-async function getCheckupMetadata(taskContext: TaskContext): Promise<CheckupMetadata2> {
+async function getCheckupMetadata(taskContext: TaskContext): Promise<CheckupMetadata> {
   let package_ = taskContext.pkg;
   let repositoryInfo = await getRepositoryInfo(taskContext.options.cwd, taskContext.paths);
 

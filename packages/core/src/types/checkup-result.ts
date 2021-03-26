@@ -20,7 +20,7 @@ export type RepositoryInfo = {
   };
 };
 
-export interface CheckupMetadata2 {
+export interface CheckupMetadata {
   project: {
     name: string;
     version: string;

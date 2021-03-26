@@ -1,4 +1,4 @@
-import { CheckupMetadata2, ui } from '@checkup/core';
+import { CheckupMetadata, ui } from '@checkup/core';
 import { Log } from 'sarif';
 import { renderActions, renderCLIInfo, renderInfo } from './reporter-utils';
 import { writeOutputFile } from './sarif-file-writer';
@@ -15,7 +15,7 @@ export default class ConsoleReporter {
   report(result: Log) {
     let { cwd } = this.options;
     let { rules } = result.runs[0].tool.driver;
-    let metaData = result.properties as CheckupMetadata2;
+    let metaData = result.properties as CheckupMetadata;
 
     renderInfo(metaData);
 
