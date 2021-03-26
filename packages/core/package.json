@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",
-    "@types/eslint": "^7.2.2",
+    "@types/eslint": "^7.2.7",
     "@types/resolve": "^1.17.1",
     "@types/wrap-ansi": "^3.0.0",
     "eslint-plugin-jest": "^24.1.3"
