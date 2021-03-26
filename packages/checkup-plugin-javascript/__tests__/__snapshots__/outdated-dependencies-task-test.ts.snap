@@ -13,7 +13,7 @@ Array [
         Object {
           "homepage": "https://reactjs.org/",
           "installed": "16.0.0",
-          "latest": "17.0.1",
+          "latest": "17.0.2",
           "packageJsonVersion": "16.0.0",
           "packageName": "react",
           "semverBump": "major",
