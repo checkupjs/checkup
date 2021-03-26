@@ -31,6 +31,7 @@ class EmberTemplateLintParser implements Parser<TemplateLintReport> {
       let messages: TemplateLintMessage[] = this.engine.verify({
         source: template,
         moduleId: path,
+        filePath: path,
       });
 
       return {
