@@ -1,6 +1,6 @@
 import {
   CheckupError,
-  CheckupMetadata,
+  CheckupMetadata2,
   getRegisteredTaskReporters,
   ui,
   groupDataByField,
@@ -23,7 +23,7 @@ export default class VerboseConsoleReporter {
   }
 
   report(result: Log) {
-    let metaData = result.properties as CheckupMetadata;
+    let metaData = result.properties as CheckupMetadata2;
 
     renderInfo(metaData);
     renderLinesOfCode(metaData);

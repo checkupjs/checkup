@@ -64,9 +64,9 @@ describe('cli-test', () => {
         -e, --exclude-paths  Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.  [array]
         -c, --config         Use this configuration, overriding .checkuprc if present.
         -d, --cwd            The path referring to the root directory that Checkup will run in  [default: (default)]
-            --category       Runs specific tasks specified by category. Can be used multiple times.
-            --group          Runs specific tasks specified by group. Can be used multiple times.
-        -t, --task           Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.
+            --category       Runs specific tasks specified by category. Can be used multiple times.  [array]
+            --group          Runs specific tasks specified by group. Can be used multiple times.  [array]
+        -t, --task           Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.  [array]
         -f, --format         The output format, one of stdout, json  [default: \\"stdout\\"]
         -o, --output-file    Specify file to write JSON output to. Requires the \`--format\` flag to be set to \`json\`  [default: \\"\\"]
         -l, --list-tasks     List all available tasks to run.  [boolean]
