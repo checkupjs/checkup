@@ -36,7 +36,7 @@ Array [
         Object {
           "homepage": "https://ember-cli.com/",
           "installed": "3.20.0",
-          "latest": "3.25.2",
+          "latest": "3.25.3",
           "packageJsonVersion": "3.20.0",
           "packageName": "ember-cli",
           "semverBump": "minor",

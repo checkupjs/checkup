@@ -1,13 +1,16 @@
+import { ui } from '@checkup/core';
+import { bold } from 'chalk';
+
 export function reportAvailableTasks(availableTasks: string[]) {
-  console.log();
-  console.log('AVAILABLE TASKS');
-  console.log();
+  ui.blankLine();
+  ui.log(bold.white('AVAILABLE TASKS'));
+  ui.blankLine();
   if (availableTasks.length > 0) {
     availableTasks.forEach((taskName) => {
-      console.log(`  ${taskName}`);
+      ui.log(`  ${taskName}`);
     });
   } else {
-    console.log(`  No tasks found`);
+    ui.log(`  No tasks found`);
   }
-  console.log();
+  ui.blankLine();
 }
