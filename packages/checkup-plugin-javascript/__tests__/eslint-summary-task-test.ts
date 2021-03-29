@@ -43,7 +43,7 @@ describe('eslint-summary-task', () => {
     task = new EslintSummaryTask(
       pluginName,
       getTaskContext({
-        cliFlags: { cwd: project.baseDir },
+        options: { cwd: project.baseDir },
         pkg: project.pkg,
         paths: project.filePaths.filter((path) => path.includes('included-path')) as FilePathArray,
         config: {

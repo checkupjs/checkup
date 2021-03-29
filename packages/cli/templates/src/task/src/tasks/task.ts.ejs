@@ -10,6 +10,16 @@ export default class <%- taskClass %> extends BaseTask implements Task {
   <%_ } _%>
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: `${this.taskName} result` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }

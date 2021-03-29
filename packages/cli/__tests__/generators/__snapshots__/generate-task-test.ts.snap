@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`task generator generates correct files with JavaScript 1`] = `
-"import { BaseTask } from '@checkup/core';
+"const { BaseTask } = require('@checkup/core');
 
-export default class MyFooTask extends BaseTask {
+module.exports = class MyFooTask extends BaseTask {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
   category = 'foo';
@@ -11,7 +11,17 @@ export default class MyFooTask extends BaseTask {
 
 
   async run() {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -49,16 +59,16 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with JavaScript 3`] = `
-"import { Hook } from '@oclif/config';
-import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName } from '@checkup/core';
+"const { getPluginName } = require('@checkup/core');
 
-const hook = async function({ context, tasks }) {
+const MyFooTask = require('../tasks/my-foo-task');
+
+const register = async function({ context, tasks }) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
-export default hook;
+exports.default = register;
 "
 `;
 
@@ -72,7 +82,17 @@ export default class MyFooTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -110,16 +130,16 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults 3`] = `
-"import { Hook } from '@oclif/config';
-import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+import MyFooTask from '../tasks/my-foo-task';
+
+const register = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
-export default hook;
+export default register;
 "
 `;
 
@@ -133,7 +153,17 @@ export default class MyFooTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -171,16 +201,16 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults in custom path 3`] = `
-"import { Hook } from '@oclif/config';
-import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+import MyFooTask from '../tasks/my-foo-task';
+
+const register = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
-export default hook;
+export default register;
 "
 `;
 
@@ -195,7 +225,17 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -233,16 +273,16 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with category 3`] = `
-"import { Hook } from '@oclif/config';
-import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+import MyFooTask from '../tasks/my-foo-task';
+
+const register = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
-export default hook;
+export default register;
 "
 `;
 
@@ -257,7 +297,17 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -295,16 +345,16 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with commandType 3`] = `
-"import { Hook } from '@oclif/config';
-import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+import MyFooTask from '../tasks/my-foo-task';
+
+const register = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
-export default hook;
+export default register;
 "
 `;
 
@@ -319,7 +369,17 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -357,16 +417,16 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with group 3`] = `
-"import { Hook } from '@oclif/config';
-import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+import MyFooTask from '../tasks/my-foo-task';
+
+const register = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
-export default hook;
+export default register;
 "
 `;
 
@@ -381,7 +441,17 @@ export default class MyFooTask extends BaseTask implements Task {
   group = 'bar';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -419,16 +489,16 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with typescript 3`] = `
-"import { Hook } from '@oclif/config';
-import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+import MyFooTask from '../tasks/my-foo-task';
+
+const register = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
 };
 
-export default hook;
+export default register;
 "
 `;
 
@@ -442,7 +512,17 @@ export default class MyFooTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -489,7 +569,17 @@ export default class MyBarTask extends BaseTask implements Task {
   category = '';
 
   async run(): Promise<Result[]> {
-    return [];
+    return [
+      {
+        message: { text: \`\${this.taskName} result\` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }
 "
@@ -527,17 +617,18 @@ describe('my-bar-task', () => {
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 5`] = `
-"import { Hook } from '@oclif/config';
-import MyBarTask from '../tasks/my-bar-task';
-import MyFooTask from '../tasks/my-foo-task';
-import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
-const hook: Hook<RegisterTaskArgs> = async function({ context, tasks }: RegisterTaskArgs) {
+import MyBarTask from '../tasks/my-bar-task';
+
+import MyFooTask from '../tasks/my-foo-task';
+
+const register = async function({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
   tasks.registerTask(new MyFooTask(pluginName, context));
   tasks.registerTask(new MyBarTask(pluginName, context));
 };
 
-export default hook;
+export default register;
 "
 `;

@@ -1,7 +1,7 @@
-import { TaskContext } from '../src/types/tasks';
 import { getTaskContext } from '@checkup/test-helpers';
 
 import BaseTask from '../src/base-task';
+import { TaskContext } from '../src/types/tasks';
 
 class FakeTask extends BaseTask {
   taskName = 'my-fake';

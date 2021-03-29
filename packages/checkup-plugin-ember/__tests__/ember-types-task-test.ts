@@ -58,7 +58,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
+      getTaskContext({ options: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
     expect(result).toMatchSnapshot();
@@ -78,7 +78,7 @@ describe('types-task', () => {
 
     const result = await new EmberTypesTask(
       pluginName,
-      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
+      getTaskContext({ options: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
     expect(result).toMatchSnapshot();

@@ -1,13 +1,11 @@
 {
   "name": "checkup-plugin-ember",
-  "description": "An oclif plugin for Ember project tasks",
+  "description": "A checkup plugin for Ember project tasks",
   "version": "0.13.2",
   "author": "Steve Calvert @scalvert",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@checkup/core": "^0.13.2",
-    "@oclif/command": "^1",
-    "@oclif/config": "^1",
     "babel-eslint": "^10.1.0",
     "debug": "^4.3.1",
     "ember-template-recast": "^5.0.1",
@@ -17,7 +15,6 @@
   },
   "devDependencies": {
     "@checkup/test-helpers": "^0.13.2",
-    "@oclif/dev-cli": "^1",
     "fixturify-project": "^2.1.0",
     "rimraf": "^3.0.2"
   },
@@ -26,33 +23,19 @@
   },
   "files": [
     "/lib",
-    "/oclif.manifest.json",
     "/yarn.lock"
   ],
   "homepage": "https://github.com/checkupjs/checkup",
   "keywords": [
-    "checkup-plugin",
-    "oclif-plugin"
+    "checkup-plugin"
   ],
   "license": "MIT",
-  "oclif": {
-    "devPlugins": [
-      "@oclif/plugin-help"
-    ],
-    "hooks": {
-      "register-tasks": "./lib/hooks/register-tasks",
-      "register-actions": "./lib/hooks/register-actions",
-      "register-task-reporter": "./lib/hooks/register-task-reporters"
-    }
-  },
   "publishConfig": {
     "access": "public"
   },
   "repository": "https://github.com/checkupjs/checkup",
   "scripts": {
     "build": "tsc --build",
-    "postpack": "rm -f oclif.manifest.json",
-    "prepack": "oclif-dev manifest",
     "test": "jest --no-cache",
     "version": "git add README.md"
   },

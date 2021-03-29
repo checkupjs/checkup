@@ -28,7 +28,7 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
     let createEmberTemplateLintParser = this.context.parsers.get('ember-template-lint')!;
 
     let resolvedTemplateLintConfigFile = join(
-      resolve(this.context.cliFlags.cwd),
+      resolve(this.context.options.cwd),
       '.template-lintrc.js'
     );
 
@@ -47,7 +47,7 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
       let messages = (<any>lintingResults.messages).map((lintMessage: TemplateLintMessage) => {
         return lintBuilder.toLintResult(
           lintMessage,
-          this.context.cliFlags.cwd,
+          this.context.options.cwd,
           lintingResults.filePath
         );
       });

@@ -5,8 +5,7 @@ import * as recast from 'recast';
 
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import BaseGenerator, { Works } from './base-generator';
-import { Options } from '../commands/generate';
+import BaseGenerator, { Works, Options } from './base-generator';
 import { join } from 'path';
 import { AstTransformer, CheckupError } from '@checkup/core';
 
@@ -70,16 +69,20 @@ export default class ActionsGenerator extends BaseGenerator {
   writing() {
     this.sourceRoot(join(__dirname, '../../templates/src/actions'));
 
-    if (!this.fs.exists(this.destinationPath(`src/hooks/register-actions.${this._ext}`))) {
+    if (
+      !this.fs.exists(
+        this.destinationPath(`${this._dir}/registrations/register-actions.${this._ext}`)
+      )
+    ) {
       this.fs.copy(
-        this.templatePath(`src/hooks/register-actions.${this._ext}.ejs`),
-        this.destinationPath(`src/hooks/register-actions.${this._ext}`)
+        this.templatePath(`src/registrations/register-actions.${this._ext}.ejs`),
+        this.destinationPath(`${this._dir}/registrations/register-actions.${this._ext}`)
       );
     }
 
     this.fs.copyTpl(
       this.templatePath(`src/actions/actions.${this._ext}.ejs`),
-      this.destinationPath(`src/actions/${this.options.name}-actions.${this._ext}`),
+      this.destinationPath(`${this._dir}/actions/${this.options.name}-actions.${this._ext}`),
       this.options
     );
 
@@ -87,7 +90,9 @@ export default class ActionsGenerator extends BaseGenerator {
   }
 
   private _transformHooks() {
-    let hooksDestinationPath = this.destinationPath(`src/hooks/register-actions.${this._ext}`);
+    let hooksDestinationPath = this.destinationPath(
+      `${this._dir}/registrations/register-actions.${this._ext}`
+    );
 
     let registerActionsSource = this.fs.read(hooksDestinationPath);
     let registerActionStatement = t.expressionStatement(
@@ -97,21 +102,36 @@ export default class ActionsGenerator extends BaseGenerator {
       ])
     );
 
-    let newActionImportSpecifier = t.importSpecifier(
-      t.identifier(`evaluate${this.options.pascalCaseName}Actions`),
-      t.identifier('evaluateActions')
-    );
-    let tasksImportDeclaration: t.ImportDeclaration = t.importDeclaration(
-      [newActionImportSpecifier],
-      t.stringLiteral(`../actions/${this.options.name}-actions`)
-    );
+    let importOrRequire: t.ImportDeclaration | t.VariableDeclaration;
+    let actionsPath = `../actions/${this.options.name}-actions`;
+    let actionsAlias = `evaluate${this.options.pascalCaseName}Actions`;
+
+    if (this.options.typescript) {
+      let newActionImportSpecifier = t.importSpecifier(
+        t.identifier(actionsAlias),
+        t.identifier('evaluateActions')
+      );
+      importOrRequire = t.importDeclaration(
+        [newActionImportSpecifier],
+        t.stringLiteral(actionsPath)
+      );
+    } else {
+      importOrRequire = t.variableDeclaration('const', [
+        t.variableDeclarator(
+          t.objectPattern([
+            t.objectProperty(t.identifier('evaluateActions'), t.identifier(actionsAlias)),
+          ]),
+          t.callExpression(t.identifier('require'), [t.stringLiteral(actionsPath)])
+        ),
+      ]);
+    }
 
     let code = new AstTransformer(registerActionsSource, recast.parse, traverse, {
       parser: require('recast/parsers/typescript'),
     })
       .traverse({
         Program(path) {
-          path.node.body.splice(1, 0, tasksImportDeclaration);
+          path.node.body.splice(1, 0, importOrRequire);
         },
         BlockStatement(path) {
           path.node.body.push(registerActionStatement);

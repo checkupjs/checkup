@@ -26,7 +26,7 @@ describe('dependencies-task', () => {
     const result = await new EmberDependenciesTask(
       pluginName,
       getTaskContext({
-        cliFlags: { cwd: emberProject.baseDir },
+        options: { cwd: emberProject.baseDir },
         pkg: emberProject.pkg,
         paths: emberProject.filePaths,
       })

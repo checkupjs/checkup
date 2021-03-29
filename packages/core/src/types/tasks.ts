@@ -3,7 +3,7 @@ import { PackageJson } from 'type-fest';
 
 import { CheckupConfig, TaskConfig } from './config';
 import { FilePathArray } from '../utils/file-path-array';
-import { RunFlags } from './cli';
+import { RunOptions } from './cli';
 import { Result } from 'sarif';
 
 export type RegisterTaskArgs = {
@@ -57,10 +57,8 @@ export type TaskError = {
   taskName: TaskName;
   error: Error;
 };
-
 export interface TaskContext {
-  readonly cliArguments: string[];
-  readonly cliFlags: RunFlags;
+  readonly options: RunOptions;
   readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
   readonly config: CheckupConfig;
   readonly pkg: PackageJson;

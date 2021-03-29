@@ -9,7 +9,6 @@ export {
   registerTaskReporter,
 } from './task-reporters/registered-task-reporters';
 
-export { loadPlugins } from './loaders/plugin-loader';
 export {
   readConfig,
   writeConfig,

@@ -96,13 +96,13 @@ export default class PluginGenerator extends BaseGenerator {
 
     this.fs.copyTpl(
       this.templatePath(`src/index.${this._ext}.ejs`),
-      this.destinationPath(`src/index.${this._ext}`),
+      this.destinationPath(`${this._dir}/index.${this._ext}`),
       this.options
     );
 
     this.fs.copyTpl(
       this.templatePath(`src/types/index.${this._ext}.ejs`),
-      this.destinationPath(`src/types/index.${this._ext}`),
+      this.destinationPath(`${this._dir}/types/index.${this._ext}`),
       this.options
     );
 
@@ -112,18 +112,18 @@ export default class PluginGenerator extends BaseGenerator {
     );
 
     this.fs.copy(
-      this.templatePath('src/hooks/.gitkeep'),
-      this.destinationPath('src/hooks/.gitkeep')
+      this.templatePath('src/registrations/.gitkeep'),
+      this.destinationPath(`${this._dir}/registrations/.gitkeep`)
     );
 
     this.fs.copy(
       this.templatePath('src/results/.gitkeep'),
-      this.destinationPath('src/results/.gitkeep')
+      this.destinationPath(`${this._dir}/results/.gitkeep`)
     );
 
     this.fs.copy(
       this.templatePath('src/tasks/.gitkeep'),
-      this.destinationPath('src/tasks/.gitkeep')
+      this.destinationPath(`${this._dir}/tasks/.gitkeep`)
     );
 
     this.fs.copyTpl(
@@ -155,6 +155,8 @@ export default class PluginGenerator extends BaseGenerator {
       this.destinationPath('README.md'),
       this.options
     );
+
+    this.yarnInstall();
   }
 
   _normalizeName(): void {

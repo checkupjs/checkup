@@ -1,20 +1,27 @@
-import { OutputFormat, RunFlags } from '@checkup/core';
-import { report as verboseConsoleReport } from './verbose-console-reporter';
-import { report as consoleReport } from './console-reporter';
-import { report as jsonReport } from './json-reporter';
+import { OutputFormat } from '@checkup/core';
+import VerboseConsoleReporter from './verbose-console-reporter';
+import ConsoleReporter from './console-reporter';
+import JsonReporter from './json-reporter';
 
-export function getReporter(runFlags: RunFlags) {
-  if (runFlags.verbose) {
-    return verboseConsoleReport;
+export interface ReportOptions {
+  cwd: string;
+  verbose: boolean;
+  format: string;
+  outputFile?: string;
+}
+
+export function getReporter(options: ReportOptions) {
+  if (options.verbose) {
+    return new VerboseConsoleReporter(options);
   }
 
-  switch (runFlags.format) {
+  switch (options.format) {
     case OutputFormat.stdout: {
-      return consoleReport;
+      return new ConsoleReporter(options);
     }
 
     case OutputFormat.json: {
-      return jsonReport;
+      return new JsonReporter(options);
     }
   }
 

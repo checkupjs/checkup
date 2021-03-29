@@ -44,7 +44,7 @@ describe('eslint-disable-task', () => {
       pluginName,
       getTaskContext({
         paths: project.filePaths,
-        cliFlags: { cwd: project.baseDir },
+        options: { cwd: project.baseDir },
       })
     ).run();
 
@@ -163,7 +163,7 @@ describe('eslint-disable-task', () => {
       pluginName,
       getTaskContext({
         paths: project.filePaths,
-        cliFlags: { cwd: project.baseDir },
+        options: { cwd: project.baseDir },
       })
     );
     const result = await task.run();

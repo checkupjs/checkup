@@ -17,7 +17,7 @@ export default class EslintDisableTask extends BaseTask implements Task {
 
   async run(): Promise<Result[]> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
-    let eslintDisables: LintResult[] = await getEslintDisables(jsPaths, this.context.cliFlags.cwd);
+    let eslintDisables: LintResult[] = await getEslintDisables(jsPaths, this.context.options.cwd);
 
     return sarifBuilder.fromLintResults(this, eslintDisables);
   }

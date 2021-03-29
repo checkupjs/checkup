@@ -14,7 +14,7 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
 
   async run(): Promise<Result[]> {
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
-    let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.cliFlags.cwd);
+    let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.options.cwd);
 
     return sarifBuilder.fromLintResults(this, templateLintDisables);
   }

@@ -69,10 +69,9 @@ export function readConfig(configPath: string) {
       );
     }
 
-    throw new CheckupError(
-      `Could not find a checkup config in the given path: ${configPath}.`,
-      `See ${CONFIG_DOCS_URL} for more info on how to setup a config.`
-    );
+    debug('Falling back to default config %O', DEFAULT_CONFIG);
+
+    config = DEFAULT_CONFIG;
   }
 
   debug(`Found config %O`, config);

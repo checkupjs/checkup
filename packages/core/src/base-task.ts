@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 
-import { TaskContext, TaskName } from './types/tasks';
+import { TaskName, TaskContext } from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
@@ -15,6 +15,7 @@ export default abstract class BaseTask {
 
   _pluginName: string;
   _config!: TaskConfig;
+  _enabled!: boolean;
   _enabledViaConfig!: boolean;
 
   constructor(pluginName: string, context: TaskContext) {
@@ -31,13 +32,18 @@ export default abstract class BaseTask {
   }
 
   get enabled() {
-    this._parseConfig();
+    if (this._enabled === undefined) {
+      this._parseConfig();
+      let enabledViaFlag =
+        this.context.options.tasks?.includes(this.fullyQualifiedTaskName) || false;
+      let enabled = this._enabledViaConfig || enabledViaFlag;
 
-    let enabledViaFlag = this.context.cliFlags.task?.includes(this.fullyQualifiedTaskName) || false;
-    let enabled = this._enabledViaConfig || enabledViaFlag;
+      this.debug('%s enabled: %s', this.fullyQualifiedTaskName, enabled);
 
-    this.debug('%s enabled: %s', this.fullyQualifiedTaskName, enabled);
-    return enabled;
+      this._enabled = enabled;
+    }
+
+    return this._enabled;
   }
 
   get fullyQualifiedTaskName() {

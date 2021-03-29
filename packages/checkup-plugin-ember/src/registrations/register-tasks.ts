@@ -1,4 +1,3 @@
-import { Hook } from '@oclif/config';
 import { getPluginName, RegisterTaskArgs } from '@checkup/core';
 
 import EmberDependenciesTask from '../tasks/ember-dependencies-task';
@@ -9,7 +8,7 @@ import EmberTemplateLintDisableTask from '../tasks/ember-template-lint-disable-t
 import EmberTemplateLintSummaryTask from '../tasks/ember-template-lint-summary-task';
 import EmberOctaneMigrationStatusTask from '../tasks/ember-octane-migration-status-task';
 
-const hook: Hook<RegisterTaskArgs> = async function ({ context, tasks }: RegisterTaskArgs) {
+const register = async function ({ context, tasks }: RegisterTaskArgs) {
   let pluginName = getPluginName(__dirname);
 
   tasks.registerTask(new EmberTypesTask(pluginName, context));
@@ -21,4 +20,4 @@ const hook: Hook<RegisterTaskArgs> = async function ({ context, tasks }: Registe
   tasks.registerTask(new EmberOctaneMigrationStatusTask(pluginName, context));
 };
 
-export default hook;
+export default register;

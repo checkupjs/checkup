@@ -3,7 +3,6 @@
 A checkup plugin for Ember project tasks
 
 ![CI Build](https://github.com/checkupjs/checkup/workflows/CI%20Build/badge.svg)
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/checkup-plugin-ember.svg)](https://npmjs.org/package/checkup-plugin-ember)
 [![Downloads/week](https://img.shields.io/npm/dw/checkup-plugin-ember.svg)](https://npmjs.org/package/checkup-plugin-ember)
 [![License](https://img.shields.io/npm/l/checkup-plugin-ember.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)

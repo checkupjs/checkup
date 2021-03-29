@@ -36,7 +36,7 @@ export interface CheckupMetadata {
     };
     flags: {
       config?: string;
-      task?: string[];
+      tasks?: string[];
       format: string;
       outputFile?: string;
       excludePaths?: string[];

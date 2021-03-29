@@ -1,6 +1,6 @@
-import { BaseTask } from '@checkup/core';
+const { BaseTask } = require('@checkup/core');
 
-export default class <%- taskClass %> extends BaseTask {
+module.exports = class <%- taskClass %> extends BaseTask {
   taskName = '<%- name %>';
   taskDisplayName = '<%- _.startCase(name.split('-').join(' ')) %>';
   category = '<%- category %>';
@@ -10,6 +10,16 @@ export default class <%- taskClass %> extends BaseTask {
 
 
   async run() {
-    return [];
+    return [
+      {
+        message: { text: `${this.taskName} result` },
+        occurrenceCount: 1,
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
   }
 }

@@ -1,13 +1,12 @@
 import { ui } from '@checkup/core';
 import { bold } from 'chalk';
-import TaskList from '../task-list';
 
-export function reportAvailableTasks(pluginTasks: TaskList) {
+export function reportAvailableTasks(availableTasks: string[]) {
   ui.blankLine();
   ui.log(bold.white('AVAILABLE TASKS'));
   ui.blankLine();
-  if (pluginTasks.size > 0) {
-    pluginTasks.fullyQualifiedTaskNames.forEach((taskName) => {
+  if (availableTasks.length > 0) {
+    availableTasks.forEach((taskName) => {
       ui.log(`  ${taskName}`);
     });
   } else {

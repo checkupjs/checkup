@@ -25,7 +25,7 @@ export default class EmberTypesTask extends BaseTask implements Task {
       let files = this.context.paths.filterByGlob(pattern.pattern);
       return sarifBuilder.fromLocations(
         this,
-        trimAllCwd(files, this.context.cliFlags.cwd),
+        trimAllCwd(files, this.context.options.cwd),
         pattern.patternName
       );
     });

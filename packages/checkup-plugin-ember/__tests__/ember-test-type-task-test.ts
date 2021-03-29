@@ -93,7 +93,7 @@ describe('ember-test-types-task', () => {
 
     const result = await new EmberTestTypesTask(
       pluginName,
-      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
+      getTaskContext({ options: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
     expect(result).toMatchSnapshot();
@@ -109,7 +109,7 @@ describe('ember-test-types-task', () => {
 
     const result = await new EmberTestTypesTask(
       pluginName,
-      getTaskContext({ cliFlags: { cwd: project.baseDir }, paths: project.filePaths })
+      getTaskContext({ options: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
     expect(result).toMatchSnapshot();
@@ -126,7 +126,7 @@ describe('ember-test-types-task', () => {
     const task = new EmberTestTypesTask(
       pluginName,
       getTaskContext({
-        cliFlags: { cwd: project.baseDir },
+        options: { cwd: project.baseDir },
         paths: project.filePaths,
         config: {
           tasks: {

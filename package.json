@@ -13,7 +13,7 @@
     "build": "tsc --build",
     "build:watch": "tsc --watch",
     "clean": "tsc --build --clean",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint .",
     "prepare": "yarn build",
     "test": "yarn workspaces run test"
   },
@@ -23,8 +23,8 @@
     }
   },
   "lint-staged": {
-    "packages/**/*.ts": [
-      "eslint --ext ts"
+    "packages/**/*.{js,json,ts,d.ts}": [
+      "eslint"
     ]
   },
   "devDependencies": {

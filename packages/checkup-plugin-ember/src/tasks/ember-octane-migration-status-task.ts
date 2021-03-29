@@ -7,13 +7,13 @@ import {
   ESLintResult,
   Parser,
   Task,
-  TaskContext,
   TemplateLintConfig,
   TemplateLinter,
   TemplateLintReport,
   TemplateLintResult,
   groupDataByField,
   lintBuilder,
+  TaskContext,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -129,7 +129,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
 
     return this.buildResult(
       [...esLintReport.results, ...templateLintReport.results],
-      this.context.cliFlags.cwd
+      this.context.options.cwd
     );
   }
 

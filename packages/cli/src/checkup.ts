@@ -4,6 +4,8 @@ import { OutputFormat } from '@checkup/core';
 
 import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
+import { getReporter } from './reporters/get-reporter';
+import { reportAvailableTasks } from './reporters/available-task-reporter';
 
 export async function run(argv: string[] = process.argv.slice(2)) {
   let parser = yargs
@@ -20,16 +22,13 @@ checkup <command> [options]`
       describe: 'Runs configured checkup tasks',
       builder: (yargs) => {
         return yargs
-          .positional('paths', {
-            description: 'The paths or globs that checkup will operate on.',
-            required: true,
-          })
           .options({
             'exclude-paths': {
               alias: 'e',
               description:
                 'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
               multiple: true,
+              array: true,
             },
 
             config: {
@@ -45,22 +44,25 @@ checkup <command> [options]`
 
             category: {
               description: 'Runs specific tasks specified by category. Can be used multiple times.',
-              multiple: true,
               exclusive: ['group', 'task'],
+              multiple: true,
+              array: true,
             },
 
             group: {
               description: 'Runs specific tasks specified by group. Can be used multiple times.',
-              multiple: true,
               exclusive: ['category', 'task'],
+              multiple: true,
+              array: true,
             },
 
             task: {
               alias: 't',
               description:
                 'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
-              multiple: true,
               exclusive: ['category', 'group'],
+              multiple: true,
+              array: true,
             },
 
             format: {
@@ -84,6 +86,9 @@ checkup <command> [options]`
               description: 'List all available tasks to run.',
               boolean: true,
             },
+          })
+          .coerce('paths', (arg: string | string[]) => {
+            return typeof arg === 'string' ? [arg] : arg;
           });
       },
       handler: async (argv: yargs.Arguments) => {
@@ -93,15 +98,32 @@ checkup <command> [options]`
           config: argv.config as string,
           cwd: argv.cwd as string,
           categories: argv.category as string[],
+          format: argv.format as string,
           groups: argv.group as string[],
           tasks: argv.task as string[],
+          outputFile: argv.outputFile as string,
         });
 
-        let spinner = ora().start('Checking up on your project');
+        if (argv.listTasks) {
+          let availableTasks = await taskRunner.getAvailableTasks();
 
-        await taskRunner.run();
+          reportAvailableTasks(availableTasks);
+        } else {
+          let spinner = ora().start('Checking up on your project');
 
-        spinner.stop();
+          let log = await taskRunner.run();
+
+          let reporter = getReporter({
+            cwd: argv.cwd as string,
+            verbose: argv.verbose as boolean,
+            format: argv.format as string,
+            outputFile: argv.outputFile as string,
+          });
+
+          spinner.stop();
+
+          reporter.report(log);
+        }
       },
     })
     .command({

@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 import { readJsonSync, writeJsonSync, writeFileSync } from 'fs-extra';
 import { createTmpDir } from '@checkup/test-helpers';
-import { DEFAULT_CONFIG } from '../src';
 import {
   getConfigPath,
   readConfig,
@@ -9,6 +8,7 @@ import {
   parseConfigTuple,
   getConfigPathFromOptions,
   CONFIG_SCHEMA_URL,
+  DEFAULT_CONFIG,
 } from '../src/config';
 
 const REMOTE_CONFIG = {
@@ -26,10 +26,8 @@ describe('config', () => {
       tmp = createTmpDir();
     });
 
-    it('throws if no checkup config found', () => {
-      expect(() => {
-        readConfig(tmp);
-      }).toThrow(`Could not find a checkup config in the given path: ${tmp}.`);
+    it('returns default config if no config is found', () => {
+      expect(readConfig(tmp)).toEqual(DEFAULT_CONFIG);
     });
 
     it('throws if config format is invalid', () => {
