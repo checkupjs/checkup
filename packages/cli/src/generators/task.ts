@@ -47,6 +47,8 @@ export default class TaskGenerator extends BaseGenerator {
     const defaults = {
       typescript: true,
       commandType: 'info',
+      category: '',
+      group: '',
     };
 
     if (this.options.defaults) {
