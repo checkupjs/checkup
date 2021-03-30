@@ -25,7 +25,6 @@ describe('plugin generator', () => {
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
-    expect(root.directory('src/registrations/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
@@ -46,7 +45,6 @@ describe('plugin generator', () => {
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
-    expect(root.directory('src/registrations/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
@@ -66,7 +64,6 @@ describe('plugin generator', () => {
     expect(root.file('jest.config.js').contents).toMatchSnapshot();
     expect(root.file('lib/index.js').contents).toMatchSnapshot();
     expect(root.file('lib/types/index.js').contents).toMatchSnapshot();
-    expect(root.directory('lib/registrations/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('lib/results').contents).toMatchSnapshot();
     expect(root.directory('lib/tasks').contents).toMatchSnapshot();
@@ -87,7 +84,6 @@ describe('plugin generator', () => {
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
-    expect(root.directory('src/registrations/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
@@ -110,7 +106,6 @@ describe('plugin generator', () => {
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
-    expect(root.directory('src/registrations/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();
@@ -141,7 +136,6 @@ describe('plugin generator', () => {
     expect(root.file('tsconfig.json').contents).toMatchSnapshot();
     expect(root.file('src/index.ts').contents).toMatchSnapshot();
     expect(root.file('src/types/index.ts').contents).toMatchSnapshot();
-    expect(root.directory('src/registrations/').contents).toMatchSnapshot();
     expect(root.directory('__tests__').contents).toMatchSnapshot();
     expect(root.directory('src/results').contents).toMatchSnapshot();
     expect(root.directory('src/tasks').contents).toMatchSnapshot();

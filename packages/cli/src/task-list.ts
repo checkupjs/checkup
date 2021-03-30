@@ -2,7 +2,7 @@ import * as debug from 'debug';
 import * as pMap from 'p-map';
 import * as convertHrtime from 'convert-hrtime';
 
-import { Task, TaskError, TaskName } from '@checkup/core';
+import { Task, TaskError, TaskName, RegisterableTaskList } from '@checkup/core';
 import { taskResultComparator } from './task-result-comparator';
 import { Result } from 'sarif';
 
@@ -13,7 +13,7 @@ export type TaskFinderResult = { tasksFound: Task[]; tasksNotFound: (TaskName | 
  *
  * Represents a collection of tasks to run.
  */
-export default class TaskList {
+export default class TaskListImpl implements RegisterableTaskList {
   private _categories: Map<string, Map<TaskName, Task>>;
   private _errors: TaskError[];
   private _timings: Record<TaskName, number>;

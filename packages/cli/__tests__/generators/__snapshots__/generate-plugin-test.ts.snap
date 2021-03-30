@@ -8,13 +8,10 @@ exports[`plugin generator generates plugin into existing directory with defaults
   \\"author\\": \\"\\",
   \\"dependencies\\": {
     \\"@checkup/core\\": \\"^0.0.1\\",
-    \\"@oclif/command\\": \\"^1\\",
-    \\"@oclif/config\\": \\"^1\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
     \\"@checkup/test-helpers\\": \\"^0.0.1\\",
-    \\"@oclif/dev-cli\\": \\"^1\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -34,32 +31,19 @@ exports[`plugin generator generates plugin into existing directory with defaults
     \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
-    \\"/lib\\",
-    \\"/oclif.manifest.json\\"
+    \\"/lib\\"
   ],
   \\"keywords\\": [
-    \\"checkup-plugin\\",
-    \\"oclif-plugin\\"
+    \\"checkup-plugin\\"
   ],
   \\"license\\": \\"MIT\\",
-  \\"oclif\\": {
-    \\"devPlugins\\": [
-      \\"@oclif/plugin-help\\"
-    ],
-    \\"hooks\\": {
-      \\"register-tasks\\": \\"./lib/hooks/register-tasks\\"
-    }
-  },
   \\"repository\\": \\"\\",
   \\"scripts\\": {
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"postpack\\": \\"rm -f oclif.manifest.json\\",
-    \\"prepack\\": \\"rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme\\",
     \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\",
-    \\"version\\": \\"oclif-dev readme && git add README.md\\"
+    \\"lint\\": \\"eslint . --cache --ext .ts\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
@@ -134,7 +118,6 @@ exports[`plugin generator generates plugin into existing directory with defaults
 
 Checkup plugin
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -192,9 +175,12 @@ exports[`plugin generator generates plugin into existing directory with defaults
 `;
 
 exports[`plugin generator generates plugin into existing directory with defaults 9`] = `
-"export default {};
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-export * from './types';
+export function register(args: RegistrationArgs) {
+  let pluginName = getPluginName(__dirname);
+  
+}
 "
 `;
 
@@ -218,12 +204,6 @@ Array [
 ]
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 14`] = `
-Array [
-  ".gitkeep",
-]
-`;
-
 exports[`plugin generator generates plugin with JavaScript defaults 1`] = `
 "{
   \\"name\\": \\"checkup-plugin-my-plugin\\",
@@ -231,13 +211,10 @@ exports[`plugin generator generates plugin with JavaScript defaults 1`] = `
   \\"version\\": \\"0.0.0\\",
   \\"author\\": \\"\\",
   \\"dependencies\\": {
-    \\"@checkup/core\\": \\"^0.13.2\\",
-    \\"@oclif/command\\": \\"^1\\",
-    \\"@oclif/config\\": \\"^1\\"
+    \\"@checkup/core\\": \\"^0.13.2\\"
   },
   \\"devDependencies\\": {
     \\"@checkup/test-helpers\\": \\"^0.13.2\\",
-    \\"@oclif/dev-cli\\": \\"^1\\",
     \\"eslint\\": \\"^7.5.0\\",
     \\"eslint-config-prettier\\": \\"^6.11.0\\",
     \\"eslint-plugin-jest\\": \\"^23.8.2\\",
@@ -250,29 +227,16 @@ exports[`plugin generator generates plugin with JavaScript defaults 1`] = `
     \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
-    \\"/lib\\",
-    \\"/oclif.manifest.json\\"
+    \\"/lib\\"
   ],
   \\"keywords\\": [
-    \\"checkup-plugin\\",
-    \\"oclif-plugin\\"
+    \\"checkup-plugin\\"
   ],
   \\"license\\": \\"MIT\\",
-  \\"oclif\\": {
-    \\"devPlugins\\": [
-      \\"@oclif/plugin-help\\"
-    ],
-    \\"hooks\\": {
-      \\"register-tasks\\": \\"./lib/hooks/register-tasks\\"
-    }
-  },
   \\"repository\\": \\"\\",
   \\"scripts\\": {
-    \\"postpack\\": \\"rm -f oclif.manifest.json\\",
-    \\"prepack\\": \\"oclif-dev manifest && oclif-dev readme\\",
     \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache\\",
-    \\"version\\": \\"oclif-dev readme && git add README.md\\"
+    \\"lint\\": \\"eslint . --cache\\"
   },
   \\"main\\": \\"lib/index.js\\"
 }
@@ -344,7 +308,6 @@ exports[`plugin generator generates plugin with JavaScript defaults 6`] = `
 
 Checkup plugin
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -382,7 +345,14 @@ exports[`plugin generator generates plugin with JavaScript defaults 7`] = `
 `;
 
 exports[`plugin generator generates plugin with JavaScript defaults 8`] = `
-"export default {};
+"let { getPluginName } = require('@checkup/core');
+
+module.exports = {
+  register: function(args) {
+    let pluginName = getPluginName(__dirname);
+    
+  }
+}
 "
 `;
 
@@ -406,12 +376,6 @@ Array [
 ]
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 13`] = `
-Array [
-  ".gitkeep",
-]
-`;
-
 exports[`plugin generator generates plugin with custom options 1`] = `
 "{
   \\"name\\": \\"checkup-plugin-my-plugin\\",
@@ -420,13 +384,10 @@ exports[`plugin generator generates plugin with custom options 1`] = `
   \\"author\\": \\"scalvert <steve.calvert@gmail.com>\\",
   \\"dependencies\\": {
     \\"@checkup/core\\": \\"^0.0.1\\",
-    \\"@oclif/command\\": \\"^1\\",
-    \\"@oclif/config\\": \\"^1\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
     \\"@checkup/test-helpers\\": \\"^0.0.1\\",
-    \\"@oclif/dev-cli\\": \\"^1\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -446,32 +407,19 @@ exports[`plugin generator generates plugin with custom options 1`] = `
     \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
-    \\"/lib\\",
-    \\"/oclif.manifest.json\\"
+    \\"/lib\\"
   ],
   \\"keywords\\": [
-    \\"checkup-plugin\\",
-    \\"oclif-plugin\\"
+    \\"checkup-plugin\\"
   ],
   \\"license\\": \\"MIT\\",
-  \\"oclif\\": {
-    \\"devPlugins\\": [
-      \\"@oclif/plugin-help\\"
-    ],
-    \\"hooks\\": {
-      \\"register-tasks\\": \\"./lib/hooks/register-tasks\\"
-    }
-  },
   \\"repository\\": \\"http://github.com/scalvert/checkup-plugin-my-plugin\\",
   \\"scripts\\": {
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"postpack\\": \\"rm -f oclif.manifest.json\\",
-    \\"prepack\\": \\"rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme\\",
     \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\",
-    \\"version\\": \\"oclif-dev readme && git add README.md\\"
+    \\"lint\\": \\"eslint . --cache --ext .ts\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
@@ -546,7 +494,6 @@ exports[`plugin generator generates plugin with custom options 6`] = `
 
 My custom plugin
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -604,9 +551,12 @@ exports[`plugin generator generates plugin with custom options 8`] = `
 `;
 
 exports[`plugin generator generates plugin with custom options 9`] = `
-"export default {};
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-export * from './types';
+export function register(args: RegistrationArgs) {
+  let pluginName = getPluginName(__dirname);
+  
+}
 "
 `;
 
@@ -630,12 +580,6 @@ Array [
 ]
 `;
 
-exports[`plugin generator generates plugin with custom options 14`] = `
-Array [
-  ".gitkeep",
-]
-`;
-
 exports[`plugin generator generates plugin with defaults 1`] = `
 "{
   \\"name\\": \\"checkup-plugin-my-plugin\\",
@@ -644,13 +588,10 @@ exports[`plugin generator generates plugin with defaults 1`] = `
   \\"author\\": \\"\\",
   \\"dependencies\\": {
     \\"@checkup/core\\": \\"^0.0.1\\",
-    \\"@oclif/command\\": \\"^1\\",
-    \\"@oclif/config\\": \\"^1\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
     \\"@checkup/test-helpers\\": \\"^0.0.1\\",
-    \\"@oclif/dev-cli\\": \\"^1\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -670,32 +611,19 @@ exports[`plugin generator generates plugin with defaults 1`] = `
     \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
-    \\"/lib\\",
-    \\"/oclif.manifest.json\\"
+    \\"/lib\\"
   ],
   \\"keywords\\": [
-    \\"checkup-plugin\\",
-    \\"oclif-plugin\\"
+    \\"checkup-plugin\\"
   ],
   \\"license\\": \\"MIT\\",
-  \\"oclif\\": {
-    \\"devPlugins\\": [
-      \\"@oclif/plugin-help\\"
-    ],
-    \\"hooks\\": {
-      \\"register-tasks\\": \\"./lib/hooks/register-tasks\\"
-    }
-  },
   \\"repository\\": \\"\\",
   \\"scripts\\": {
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"postpack\\": \\"rm -f oclif.manifest.json\\",
-    \\"prepack\\": \\"rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme\\",
     \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\",
-    \\"version\\": \\"oclif-dev readme && git add README.md\\"
+    \\"lint\\": \\"eslint . --cache --ext .ts\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
@@ -770,7 +698,6 @@ exports[`plugin generator generates plugin with defaults 6`] = `
 
 Checkup plugin
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -828,9 +755,12 @@ exports[`plugin generator generates plugin with defaults 8`] = `
 `;
 
 exports[`plugin generator generates plugin with defaults 9`] = `
-"export default {};
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-export * from './types';
+export function register(args: RegistrationArgs) {
+  let pluginName = getPluginName(__dirname);
+  
+}
 "
 `;
 
@@ -854,12 +784,6 @@ Array [
 ]
 `;
 
-exports[`plugin generator generates plugin with defaults 14`] = `
-Array [
-  ".gitkeep",
-]
-`;
-
 exports[`plugin generator generates plugin with defaults in custom path 1`] = `
 "{
   \\"name\\": \\"checkup-plugin-my-plugin\\",
@@ -868,13 +792,10 @@ exports[`plugin generator generates plugin with defaults in custom path 1`] = `
   \\"author\\": \\"\\",
   \\"dependencies\\": {
     \\"@checkup/core\\": \\"^0.0.1\\",
-    \\"@oclif/command\\": \\"^1\\",
-    \\"@oclif/config\\": \\"^1\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
     \\"@checkup/test-helpers\\": \\"^0.0.1\\",
-    \\"@oclif/dev-cli\\": \\"^1\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -894,32 +815,19 @@ exports[`plugin generator generates plugin with defaults in custom path 1`] = `
     \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
-    \\"/lib\\",
-    \\"/oclif.manifest.json\\"
+    \\"/lib\\"
   ],
   \\"keywords\\": [
-    \\"checkup-plugin\\",
-    \\"oclif-plugin\\"
+    \\"checkup-plugin\\"
   ],
   \\"license\\": \\"MIT\\",
-  \\"oclif\\": {
-    \\"devPlugins\\": [
-      \\"@oclif/plugin-help\\"
-    ],
-    \\"hooks\\": {
-      \\"register-tasks\\": \\"./lib/hooks/register-tasks\\"
-    }
-  },
   \\"repository\\": \\"\\",
   \\"scripts\\": {
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"postpack\\": \\"rm -f oclif.manifest.json\\",
-    \\"prepack\\": \\"rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme\\",
     \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\",
-    \\"version\\": \\"oclif-dev readme && git add README.md\\"
+    \\"lint\\": \\"eslint . --cache --ext .ts\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
@@ -994,7 +902,6 @@ exports[`plugin generator generates plugin with defaults in custom path 6`] = `
 
 Checkup plugin
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -1052,9 +959,12 @@ exports[`plugin generator generates plugin with defaults in custom path 8`] = `
 `;
 
 exports[`plugin generator generates plugin with defaults in custom path 9`] = `
-"export default {};
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-export * from './types';
+export function register(args: RegistrationArgs) {
+  let pluginName = getPluginName(__dirname);
+  
+}
 "
 `;
 
@@ -1078,12 +988,6 @@ Array [
 ]
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 14`] = `
-Array [
-  ".gitkeep",
-]
-`;
-
 exports[`plugin generator generates plugin with unmodified name with defaults 1`] = `
 "{
   \\"name\\": \\"checkup-plugin-foo\\",
@@ -1092,13 +996,10 @@ exports[`plugin generator generates plugin with unmodified name with defaults 1`
   \\"author\\": \\"\\",
   \\"dependencies\\": {
     \\"@checkup/core\\": \\"^0.0.1\\",
-    \\"@oclif/command\\": \\"^1\\",
-    \\"@oclif/config\\": \\"^1\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
     \\"@checkup/test-helpers\\": \\"^0.0.1\\",
-    \\"@oclif/dev-cli\\": \\"^1\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -1118,32 +1019,19 @@ exports[`plugin generator generates plugin with unmodified name with defaults 1`
     \\"node\\": \\">= 12.11.*\\"
   },
   \\"files\\": [
-    \\"/lib\\",
-    \\"/oclif.manifest.json\\"
+    \\"/lib\\"
   ],
   \\"keywords\\": [
-    \\"checkup-plugin\\",
-    \\"oclif-plugin\\"
+    \\"checkup-plugin\\"
   ],
   \\"license\\": \\"MIT\\",
-  \\"oclif\\": {
-    \\"devPlugins\\": [
-      \\"@oclif/plugin-help\\"
-    ],
-    \\"hooks\\": {
-      \\"register-tasks\\": \\"./lib/hooks/register-tasks\\"
-    }
-  },
   \\"repository\\": \\"\\",
   \\"scripts\\": {
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"postpack\\": \\"rm -f oclif.manifest.json\\",
-    \\"prepack\\": \\"rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme\\",
     \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\",
-    \\"version\\": \\"oclif-dev readme && git add README.md\\"
+    \\"lint\\": \\"eslint . --cache --ext .ts\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
@@ -1218,7 +1106,6 @@ exports[`plugin generator generates plugin with unmodified name with defaults 6`
 
 Checkup plugin
 
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
 [![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -1276,9 +1163,12 @@ exports[`plugin generator generates plugin with unmodified name with defaults 8`
 `;
 
 exports[`plugin generator generates plugin with unmodified name with defaults 9`] = `
-"export default {};
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-export * from './types';
+export function register(args: RegistrationArgs) {
+  let pluginName = getPluginName(__dirname);
+  
+}
 "
 `;
 
@@ -1297,12 +1187,6 @@ Array [
 `;
 
 exports[`plugin generator generates plugin with unmodified name with defaults 13`] = `
-Array [
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 14`] = `
 Array [
   ".gitkeep",
 ]

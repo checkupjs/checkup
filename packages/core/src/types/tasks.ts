@@ -57,6 +57,7 @@ export type TaskError = {
   taskName: TaskName;
   error: Error;
 };
+
 export interface TaskContext {
   readonly options: RunOptions;
   readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;

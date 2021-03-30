@@ -1,1 +1,8 @@
-export default {};
+let { getPluginName } = require('@checkup/core');
+
+module.exports = {
+  register: function(args) {
+    let pluginName = getPluginName(__dirname);
+    
+  }
+}

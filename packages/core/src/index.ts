@@ -1,7 +1,7 @@
 export { default as BaseTask } from './base-task';
 
-export { getRegisteredParsers, registerParser } from './parsers/registered-parsers';
 export { createParser as createEslintParser } from './parsers/eslint-parser';
+export { createParser as createEmberTemplateLintParser } from './parsers/ember-template-lint-parser';
 export { getRegisteredActions, registerActions } from './actions/registered-actions';
 export { default as ActionsEvaluator } from './actions/actions-evaluator';
 export {

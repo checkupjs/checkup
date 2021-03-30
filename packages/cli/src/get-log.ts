@@ -15,7 +15,7 @@ import * as unparse from 'yargs-unparser';
 import { Invocation, Log, ReportingDescriptor, Result } from 'sarif';
 import { getVersion } from './utils/get-version';
 import { getRepositoryInfo } from './utils/repository';
-import TaskList from './task-list';
+import TaskListImpl from './task-list';
 
 function getInvocation(options: RunOptions, errors: TaskError[], startTime: string): Invocation {
   return {
@@ -38,7 +38,7 @@ export async function getLog(
   taskResults: Result[],
   actions: Action[],
   errors: TaskError[],
-  taskList: TaskList,
+  taskList: TaskListImpl,
   executedTasks: Task[],
   startTime: string
 ): Promise<Log> {

@@ -5,7 +5,6 @@
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
-    "@oclif/config": "^1",
     "@oclif/errors": "^1.3.4",
     "@types/micromatch": "^4.0.1",
     "@types/sarif": "^2.1.3",

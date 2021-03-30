@@ -1,3 +1,6 @@
+import { Task, TaskContext, TaskName, TaskActionsEvaluator, TaskReporter } from './tasks';
+import { ParserName, CreateParser, ParserOptions, Parser, ParserReport } from './parsers';
+
 export type RunFlags = {
   version: void;
   help: void;
@@ -25,3 +28,25 @@ export type RunOptions = {
   paths: string[];
   tasks?: string[];
 };
+
+export interface RegistrationArgs {
+  context: TaskContext;
+  register: RegistrationProvider;
+}
+
+export interface RegistrationProvider {
+  actions(taskName: TaskName, evaluate: TaskActionsEvaluator): void;
+  parser(parserName: ParserName, parser: CreateParser<ParserOptions, Parser<ParserReport>>): void;
+  taskReporter(taskName: TaskName, report: TaskReporter): void;
+  task(task: Task): void;
+}
+
+export interface RegistrationProviderOptions {
+  registeredActions: Map<string, TaskActionsEvaluator>;
+  registeredParsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
+  registeredTaskReporters: Map<TaskName, TaskReporter>;
+  registeredTasks: RegisterableTaskList;
+}
+export interface RegisterableTaskList {
+  registerTask(task: Task): void;
+}
