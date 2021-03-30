@@ -118,7 +118,7 @@ describe('cli-test', () => {
   });
 
   it('should output list of available tasks', async () => {
-    project.install();
+    // project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
