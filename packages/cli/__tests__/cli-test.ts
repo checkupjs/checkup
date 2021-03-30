@@ -118,7 +118,6 @@ describe('cli-test', () => {
   });
 
   it('should output list of available tasks', async () => {
-    // project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -194,7 +193,6 @@ describe('cli-test', () => {
   });
 
   it('should run a single task if the tasks option is specified with a single task', async () => {
-    project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -217,7 +215,7 @@ describe('cli-test', () => {
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
-      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+      Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
       This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
@@ -239,7 +237,6 @@ describe('cli-test', () => {
   });
 
   it('should run with timing if CHECKUP_TIMING=1', async () => {
-    project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -268,7 +265,6 @@ describe('cli-test', () => {
   });
 
   it('should run multiple tasks if the tasks option is specified with multiple tasks', async () => {
-    project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -304,7 +300,7 @@ describe('cli-test', () => {
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
-      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+      Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
       This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
@@ -330,7 +326,6 @@ describe('cli-test', () => {
   });
 
   it('should run only one task if the category option is specified', async () => {
-    project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -358,7 +353,7 @@ describe('cli-test', () => {
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
-      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+      Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
       This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
@@ -380,7 +375,6 @@ describe('cli-test', () => {
   });
 
   it('should run multiple tasks if the category option is specified with multiple categories', async () => {
-    project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -408,7 +402,7 @@ describe('cli-test', () => {
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
-      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+      Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
       This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
@@ -436,7 +430,6 @@ describe('cli-test', () => {
   });
 
   it('should run only one task if the group option is specified', async () => {
-    project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -464,7 +457,7 @@ describe('cli-test', () => {
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
-      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+      Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
       This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
@@ -486,7 +479,6 @@ describe('cli-test', () => {
   });
 
   it('should run multiple tasks if the group option is specified with multiple groups', async () => {
-    project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -514,7 +506,7 @@ describe('cli-test', () => {
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
-      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+      Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
       This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
@@ -540,7 +532,6 @@ describe('cli-test', () => {
   });
 
   it('should run a task if its passed in via command line, even if it is turned "off" in config', async () => {
-    project.install();
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -563,13 +554,19 @@ describe('cli-test', () => {
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
-      Checkup report generated for checkup-app v0.0.0 (7 files analyzed)
+      Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
 
       This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
       ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
       ■ js (2)
       ■ hbs (1)
+
+      === Best Practices
+
+      File Count
+
+      ■ file-count result (1)
 
 
       checkup v0.0.0
