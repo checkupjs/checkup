@@ -2,11 +2,11 @@
 
 import { CheckupConfig, mergeConfig, FilePathArray } from '@checkup/core';
 
-import { PackageJson } from 'type-fest';
-import Project from 'fixturify-project';
-import { execSync } from 'child_process';
 import { join, resolve } from 'path';
+import { execSync } from 'child_process';
+import Project from 'fixturify-project';
 import stringify from 'json-stable-stringify';
+import type { PackageJson } from 'type-fest';
 
 const walkSync = require('walk-sync');
 
