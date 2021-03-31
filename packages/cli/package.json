@@ -61,6 +61,7 @@
     "execa": "^5.0.0",
     "yeoman-test": "^6.2.0"
   },
+  "type": "module",
   "engines": {
     "node": ">= 12.22.*"
   },

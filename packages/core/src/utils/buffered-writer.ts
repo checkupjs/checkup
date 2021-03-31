@@ -1,4 +1,4 @@
-import stripAnsi = require('strip-ansi');
+import stripAnsi from 'strip-ansi';
 import BaseOutputWriter from './base-output-writer';
 
 export default class BufferedWriter extends BaseOutputWriter {

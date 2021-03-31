@@ -25,6 +25,7 @@
     "tmp": "^0.2.1",
     "walk-sync": "^3.0.0"
   },
+  "type": "module",
   "engines": {
     "node": ">= 12.22.*"
   },
