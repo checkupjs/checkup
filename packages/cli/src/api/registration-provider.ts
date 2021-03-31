@@ -9,21 +9,15 @@ import {
   ParserReport,
   Task,
   RegistrationProvider,
+  RegistrationProviderOptions,
+  RegisterableTaskList,
 } from '@checkup/core';
-import TaskListImpl from '../task-list';
-
-export interface RegistrationProviderOptions {
-  registeredActions: Map<string, TaskActionsEvaluator>;
-  registeredParsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
-  registeredTaskReporters: Map<TaskName, TaskReporter>;
-  registeredTasks: TaskListImpl;
-}
 
 export default class PluginRegistrationProvider implements RegistrationProvider {
   registeredActions: Map<TaskName, TaskActionsEvaluator>;
   registeredParsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
   registeredTaskReporters: Map<string, TaskReporter>;
-  registeredTasks: TaskListImpl;
+  registeredTasks: RegisterableTaskList;
 
   constructor(options: RegistrationProviderOptions) {
     this.registeredActions = options.registeredActions;
