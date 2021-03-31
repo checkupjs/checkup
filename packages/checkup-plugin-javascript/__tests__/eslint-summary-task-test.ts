@@ -1,6 +1,5 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
-import {
-  EslintSummaryTask,
+import EslintSummaryTask, {
   readEslintConfig,
   ACCEPTED_ESLINT_CONFIG_FILES,
 } from '../src/tasks/eslint-summary-task';

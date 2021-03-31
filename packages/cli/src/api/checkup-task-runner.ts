@@ -6,7 +6,6 @@ import {
   getRegisteredActions,
   getConfigPathFromOptions,
   getConfigPath,
-  getRegisteredParsers,
   getFilePathsAsync,
   readConfig,
   RunOptions,
@@ -14,31 +13,28 @@ import {
   TaskError,
   TaskContext,
   ui,
-  registerParser,
-  registerActions,
-  registerTaskReporter,
+  TaskActionsEvaluator,
+  TaskName,
+  ParserName,
+  CreateParser,
+  ParserOptions,
+  Parser,
+  ParserReport,
+  TaskReporter,
+  createEslintParser,
+  createEmberTemplateLintParser,
+  RegistrationArgs,
 } from '@checkup/core';
 import * as debug from 'debug';
 import * as resolve from 'resolve';
-import { join, dirname } from 'path';
 import { Log, Result } from 'sarif';
+
 import { getLog } from '../get-log';
 import { TASK_ERRORS } from '../task-errors';
-import TaskList from '../task-list';
+import TaskListImpl from '../task-list';
 import { extendedError } from '../extended-error';
 import { getPackageJson } from '../utils/get-package-json';
-import { existsSync } from 'fs-extra';
-
-// TODO: The way this is done currently will change, since it was largely
-// built this way to accommodate oclif's dynamic loading. We will instead
-// register these types directly on the class without the module-scoped
-// registration, largely to accommodate mutliple instances of this class
-// being invoked simultaneously.
-const REGISTRATION_TYPES = new Map<string, object>([
-  ['register-parsers', { registerParser }],
-  ['register-actions', { registerActions }],
-  ['register-task-reporters', { registerTaskReporter }],
-]);
+import PluginRegistrationProvider from './registration-provider';
 
 let __tasksForTesting: Set<Task> = new Set<Task>();
 
@@ -56,10 +52,17 @@ export default class CheckupTaskRunner {
   options: RunOptions;
   plugins: [] = [];
   startTime: string = new Date().toJSON();
-  tasks: TaskList = new TaskList();
+  tasks: TaskListImpl = new TaskListImpl();
   taskResults: Result[] = [];
   taskErrors: TaskError[] = [];
   taskContext!: TaskContext;
+
+  registeredActions: Map<string, TaskActionsEvaluator> = new Map<TaskName, TaskActionsEvaluator>();
+  registeredParsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>> = new Map<
+    ParserName,
+    CreateParser<ParserOptions, Parser<ParserReport>>
+  >();
+  registeredTaskReporters: Map<string, TaskReporter> = new Map<TaskName, TaskReporter>();
 
   get taskFilterType() {
     if (this.options.tasks !== undefined) {
@@ -77,13 +80,14 @@ export default class CheckupTaskRunner {
     this.debug = debug('checkup');
     this.options = options;
 
+    this.registerParsers();
+
     this.debug('options %O', this.options);
   }
 
   async run(): Promise<Log> {
     await this.loadConfig();
-    await this.loadFromPlugin(REGISTRATION_TYPES);
-    await this.registerTasks();
+    await this.registerPlugins();
 
     await this.runTasks();
     await this.runActions();
@@ -106,7 +110,7 @@ export default class CheckupTaskRunner {
 
   async getAvailableTasks() {
     await this.loadConfig();
-    await this.registerTasks();
+    await this.registerPlugins();
 
     return this.tasks.fullyQualifiedTaskNames;
   }
@@ -181,15 +185,17 @@ export default class CheckupTaskRunner {
     }
   }
 
-  private async registerTasks() {
+  private registerParsers() {
+    this.registeredParsers.set('eslint', createEslintParser);
+    this.registeredParsers.set('ember-template-lint', createEmberTemplateLintParser);
+  }
+
+  private async registerPlugins() {
     let excludePaths = this.options.excludePaths || this.config.excludePaths;
 
     this.taskContext = Object.freeze({
       options: this.options,
-      // TODO: Remove - used for backwards compat with oclif version
-      cliFlags: this.options,
-      cliArgs: this.options,
-      parsers: getRegisteredParsers(),
+      parsers: this.registeredParsers,
       config: this.config,
       pkg: getPackageJson(this.options.cwd),
       paths: FilePathArray.from(
@@ -197,33 +203,28 @@ export default class CheckupTaskRunner {
       ) as FilePathArray,
     });
 
-    await this.loadFromPlugin(
-      new Map([['register-tasks', { context: this.taskContext, tasks: this.tasks }]])
-    );
+    await this.loadFromPlugin({
+      context: this.taskContext,
+      register: new PluginRegistrationProvider({
+        registeredActions: this.registeredActions,
+        registeredParsers: this.registeredParsers,
+        registeredTaskReporters: this.registeredTaskReporters,
+        registeredTasks: this.tasks,
+      }),
+    });
 
     __tasksForTesting.forEach((task: Task) => {
       this.tasks.registerTask(task);
     });
   }
 
-  private async loadFromPlugin(registrationTypes: Map<string, object>) {
+  private async loadFromPlugin(registrationArgs: RegistrationArgs) {
     for (let pluginName of this.config.plugins) {
       this.debug('Loading plugin from %s', pluginName);
 
-      for (let [registrationType, registrationArgs] of registrationTypes) {
-        // TODO: Move registrations to package entry point (index.js)
-        let pluginDir = dirname(resolve.sync(pluginName, { basedir: this.options.cwd }));
-        let registrationPath = join(pluginDir, 'registrations', `${registrationType}.js`);
+      let { register } = require(resolve.sync(pluginName, { basedir: this.options.cwd }));
 
-        if (existsSync(registrationPath)) {
-          let register = require(registrationPath).default;
-
-          await register(registrationArgs);
-
-          this.debug('registration type %s', registrationType);
-          this.debug('registration path %s', registrationPath);
-        }
-      }
+      await register(registrationArgs);
     }
   }
 }

@@ -69,17 +69,6 @@ export default class ActionsGenerator extends BaseGenerator {
   writing() {
     this.sourceRoot(join(__dirname, '../../templates/src/actions'));
 
-    if (
-      !this.fs.exists(
-        this.destinationPath(`${this._dir}/registrations/register-actions.${this._ext}`)
-      )
-    ) {
-      this.fs.copy(
-        this.templatePath(`src/registrations/register-actions.${this._ext}.ejs`),
-        this.destinationPath(`${this._dir}/registrations/register-actions.${this._ext}`)
-      );
-    }
-
     this.fs.copyTpl(
       this.templatePath(`src/actions/actions.${this._ext}.ejs`),
       this.destinationPath(`${this._dir}/actions/${this.options.name}-actions.${this._ext}`),
@@ -90,16 +79,20 @@ export default class ActionsGenerator extends BaseGenerator {
   }
 
   private _transformHooks() {
-    let hooksDestinationPath = this.destinationPath(
-      `${this._dir}/registrations/register-actions.${this._ext}`
-    );
+    let registrationDestinationPath = this.destinationPath(`${this._dir}/index.${this._ext}`);
 
-    let registerActionsSource = this.fs.read(hooksDestinationPath);
+    let registerActionsSource = this.fs.read(registrationDestinationPath);
     let registerActionStatement = t.expressionStatement(
-      t.callExpression(t.identifier('registerActions'), [
-        t.stringLiteral(this.options.taskName),
-        t.identifier(`evaluate${this.options.pascalCaseName}Actions`),
-      ])
+      t.callExpression(
+        t.memberExpression(
+          t.memberExpression(t.identifier('args'), t.identifier('register')),
+          t.identifier('actions')
+        ),
+        [
+          t.stringLiteral(this.options.taskName),
+          t.identifier(`evaluate${this.options.pascalCaseName}Actions`),
+        ]
+      )
     );
 
     let importOrRequire: t.ImportDeclaration | t.VariableDeclaration;
@@ -139,6 +132,6 @@ export default class ActionsGenerator extends BaseGenerator {
       })
       .generate();
 
-    this.fs.write(hooksDestinationPath, code);
+    this.fs.write(registrationDestinationPath, code);
   }
 }

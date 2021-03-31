@@ -1,10 +1,16 @@
 import {
-  getRegisteredParsers,
   RunFlags,
   CheckupConfig,
   FilePathArray,
   TaskContext,
   RunOptions,
+  ParserName,
+  CreateParser,
+  ParserOptions,
+  Parser,
+  ParserReport,
+  createEslintParser,
+  createEmberTemplateLintParser,
 } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
@@ -44,6 +50,17 @@ const DEFAULT_PACKAGE_JSON: PackageJson = {
   version: '0.0.0',
   keywords: [],
 };
+
+function getRegisteredParsers() {
+  let registeredParsers: Map<
+    ParserName,
+    CreateParser<ParserOptions, Parser<ParserReport>>
+  > = new Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>();
+  registeredParsers.set('eslint', createEslintParser);
+  registeredParsers.set('ember-template-lint', createEmberTemplateLintParser);
+
+  return registeredParsers;
+}
 
 export function getTaskContext({
   options,

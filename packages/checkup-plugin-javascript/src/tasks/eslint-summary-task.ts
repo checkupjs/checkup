@@ -31,7 +31,7 @@ export const ACCEPTED_ESLINT_CONFIG_FILES = [
   '.eslintrc',
 ];
 
-export class EslintSummaryTask extends BaseTask implements Task {
+export default class EslintSummaryTask extends BaseTask implements Task {
   taskName = 'eslint-summary';
   taskDisplayName = 'Eslint Summary';
   category = 'linting';

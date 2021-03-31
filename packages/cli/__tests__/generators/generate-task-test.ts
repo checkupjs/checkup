@@ -20,8 +20,7 @@ function assertPluginFiles(dir: string, extension: string = 'ts') {
   let root = testRoot(dir);
 
   expect(
-    root.file(`${extension === 'ts' ? 'src' : 'lib'}/registrations/register-tasks.${extension}`)
-      .contents
+    root.file(`${extension === 'ts' ? 'src' : 'lib'}/index.${extension}`).contents
   ).toMatchSnapshot();
 }
 

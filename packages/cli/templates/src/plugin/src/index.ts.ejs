@@ -1,3 +1,6 @@
-export default {};
+import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-export * from './types';
+export function register(args: RegistrationArgs) {
+  let pluginName = getPluginName(__dirname);
+  
+}

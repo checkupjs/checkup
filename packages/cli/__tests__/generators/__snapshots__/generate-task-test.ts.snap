@@ -59,16 +59,17 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with JavaScript 3`] = `
-"const { getPluginName } = require('@checkup/core');
+"let { getPluginName } = require('@checkup/core');
 
-const MyFooTask = require('../tasks/my-foo-task');
+const MyFooTask = require('./tasks/my-foo-task');
 
-const register = async function({ context, tasks }) {
-  let pluginName = getPluginName(__dirname);
-  tasks.registerTask(new MyFooTask(pluginName, context));
-};
+module.exports = {
+  register: function(args) {
+    let pluginName = getPluginName(__dirname);
 
-exports.default = register;
+    args.register.task(new MyFooTask(pluginName, args.context));
+  }
+}
 "
 `;
 
@@ -130,16 +131,15 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults 3`] = `
-"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from '../tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task';
 
-const register = async function({ context, tasks }: RegisterTaskArgs) {
+export function register(args: RegistrationArgs) {
   let pluginName = getPluginName(__dirname);
-  tasks.registerTask(new MyFooTask(pluginName, context));
-};
 
-export default register;
+  args.register.task(new MyFooTask(pluginName, args.context));
+}
 "
 `;
 
@@ -201,16 +201,15 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults in custom path 3`] = `
-"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from '../tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task';
 
-const register = async function({ context, tasks }: RegisterTaskArgs) {
+export function register(args: RegistrationArgs) {
   let pluginName = getPluginName(__dirname);
-  tasks.registerTask(new MyFooTask(pluginName, context));
-};
 
-export default register;
+  args.register.task(new MyFooTask(pluginName, args.context));
+}
 "
 `;
 
@@ -273,16 +272,15 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with category 3`] = `
-"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from '../tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task';
 
-const register = async function({ context, tasks }: RegisterTaskArgs) {
+export function register(args: RegistrationArgs) {
   let pluginName = getPluginName(__dirname);
-  tasks.registerTask(new MyFooTask(pluginName, context));
-};
 
-export default register;
+  args.register.task(new MyFooTask(pluginName, args.context));
+}
 "
 `;
 
@@ -345,16 +343,15 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with commandType 3`] = `
-"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from '../tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task';
 
-const register = async function({ context, tasks }: RegisterTaskArgs) {
+export function register(args: RegistrationArgs) {
   let pluginName = getPluginName(__dirname);
-  tasks.registerTask(new MyFooTask(pluginName, context));
-};
 
-export default register;
+  args.register.task(new MyFooTask(pluginName, args.context));
+}
 "
 `;
 
@@ -417,16 +414,15 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with group 3`] = `
-"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from '../tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task';
 
-const register = async function({ context, tasks }: RegisterTaskArgs) {
+export function register(args: RegistrationArgs) {
   let pluginName = getPluginName(__dirname);
-  tasks.registerTask(new MyFooTask(pluginName, context));
-};
 
-export default register;
+  args.register.task(new MyFooTask(pluginName, args.context));
+}
 "
 `;
 
@@ -489,16 +485,15 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates correct files with typescript 3`] = `
-"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from '../tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task';
 
-const register = async function({ context, tasks }: RegisterTaskArgs) {
+export function register(args: RegistrationArgs) {
   let pluginName = getPluginName(__dirname);
-  tasks.registerTask(new MyFooTask(pluginName, context));
-};
 
-export default register;
+  args.register.task(new MyFooTask(pluginName, args.context));
+}
 "
 `;
 
@@ -617,18 +612,17 @@ describe('my-bar-task', () => {
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 5`] = `
-"import { getPluginName, RegisterTaskArgs } from '@checkup/core';
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyBarTask from '../tasks/my-bar-task';
+import MyBarTask from './tasks/my-bar-task';
 
-import MyFooTask from '../tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task';
 
-const register = async function({ context, tasks }: RegisterTaskArgs) {
+export function register(args: RegistrationArgs) {
   let pluginName = getPluginName(__dirname);
-  tasks.registerTask(new MyFooTask(pluginName, context));
-  tasks.registerTask(new MyBarTask(pluginName, context));
-};
 
-export default register;
+  args.register.task(new MyFooTask(pluginName, args.context));
+  args.register.task(new MyBarTask(pluginName, args.context));
+}
 "
 `;

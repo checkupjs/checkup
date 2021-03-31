@@ -112,11 +112,6 @@ export default class PluginGenerator extends BaseGenerator {
     );
 
     this.fs.copy(
-      this.templatePath('src/registrations/.gitkeep'),
-      this.destinationPath(`${this._dir}/registrations/.gitkeep`)
-    );
-
-    this.fs.copy(
       this.templatePath('src/results/.gitkeep'),
       this.destinationPath(`${this._dir}/results/.gitkeep`)
     );

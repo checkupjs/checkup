@@ -15,6 +15,14 @@ function assertActionsFiles(name: string, dir: string, extension: string = 'ts')
   ).toMatchSnapshot();
 }
 
+function assertPluginFiles(dir: string, extension: string = 'ts') {
+  let root = testRoot(dir);
+
+  expect(
+    root.file(`${extension === 'ts' ? 'src' : 'lib'}/index.${extension}`).contents
+  ).toMatchSnapshot();
+}
+
 describe('actions generator', () => {
   it('generates correct files with TypeScript', async () => {
     let baseDir = await generatePlugin();
@@ -31,6 +39,7 @@ describe('actions generator', () => {
       });
 
     assertActionsFiles('my-foo', dir);
+    assertPluginFiles(dir);
   });
 
   it('generates correct files with TypeScript in custom path', async () => {
@@ -48,6 +57,7 @@ describe('actions generator', () => {
       });
 
     assertActionsFiles('my-foo', baseDir);
+    assertPluginFiles(baseDir);
   });
 
   it('generates multiple correct files with TypeScript', async () => {
@@ -78,6 +88,7 @@ describe('actions generator', () => {
 
     assertActionsFiles('my-foo', dir);
     assertActionsFiles('my-bar', dir);
+    assertPluginFiles(dir);
   });
 
   it('generates correct files with JavaScript', async () => {
@@ -98,5 +109,6 @@ describe('actions generator', () => {
       });
 
     assertActionsFiles('my-foo', dir, 'js');
+    assertPluginFiles(dir, 'js');
   });
 });

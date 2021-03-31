@@ -4,13 +4,10 @@
   "version": "0.0.0",
   "author": "<%- author %>",
   "dependencies": {
-    "@checkup/core": "^<%- checkupVersion %>",
-    "@oclif/command": "^1",
-    "@oclif/config": "^1"
+    "@checkup/core": "^<%- checkupVersion %>"
   },
   "devDependencies": {
     "@checkup/test-helpers": "^<%- checkupVersion %>",
-    "@oclif/dev-cli": "^1",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jest": "^23.8.2",
@@ -23,29 +20,16 @@
     "node": ">= 12.11.*"
   },
   "files": [
-    "/lib",
-    "/oclif.manifest.json"
+    "/lib"
   ],
   "keywords": [
-    "checkup-plugin",
-    "oclif-plugin"
+    "checkup-plugin"
   ],
   "license": "MIT",
-  "oclif": {
-    "devPlugins": [
-      "@oclif/plugin-help"
-    ],
-    "hooks": {
-      "register-tasks": "./lib/hooks/register-tasks"
-    }
-  },
   "repository": "<%- repository %>",
   "scripts": {
-    "postpack": "rm -f oclif.manifest.json",
-    "prepack": "oclif-dev manifest && oclif-dev readme",
     "test": "jest --no-cache",
-    "lint": "eslint . --cache",
-    "version": "oclif-dev readme && git add README.md"
+    "lint": "eslint . --cache"
   },
   "main": "lib/index.js"
 }

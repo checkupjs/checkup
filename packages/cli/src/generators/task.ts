@@ -95,17 +95,6 @@ export default class TaskGenerator extends BaseGenerator {
 
     const options = { ...this.options, _ };
 
-    if (
-      !this.fs.exists(
-        this.destinationPath(`${this._dir}/registrations/register-tasks.${this._ext}`)
-      )
-    ) {
-      this.fs.copy(
-        this.templatePath(`src/registrations/register-tasks.${this._ext}.ejs`),
-        this.destinationPath(`${this._dir}/registrations/register-tasks.${this._ext}`)
-      );
-    }
-
     this.fs.copyTpl(
       this.templatePath(`src/tasks/task.${this._ext}.ejs`),
       this.destinationPath(`${this._dir}/tasks/${this.options.name}-task.${this._ext}`),
@@ -118,26 +107,32 @@ export default class TaskGenerator extends BaseGenerator {
       options
     );
 
-    this._transformHooks();
+    this._addRegistration();
   }
 
-  private _transformHooks() {
-    let hooksDestinationPath = this.destinationPath(
-      `${this._dir}/registrations/register-tasks.${this._ext}`
-    );
+  private _addRegistration() {
+    let registrationDestinationPath = this.destinationPath(`${this._dir}/index.${this._ext}`);
 
-    let registerTasksSource = this.fs.read(hooksDestinationPath);
+    // builds a task source in the form of
+    // args.register.task(new FooTask(pluginName, args.context));
+    let registerTasksSource = this.fs.read(registrationDestinationPath);
     let registerTaskStatement = t.expressionStatement(
-      t.callExpression(t.memberExpression(t.identifier('tasks'), t.identifier('registerTask')), [
-        t.newExpression(t.identifier(this.options.taskClass), [
-          t.identifier('pluginName'),
-          t.identifier('context'),
-        ]),
-      ])
+      t.callExpression(
+        t.memberExpression(
+          t.memberExpression(t.identifier('args'), t.identifier('register')),
+          t.identifier('task')
+        ),
+        [
+          t.newExpression(t.identifier(this.options.taskClass), [
+            t.identifier('pluginName'),
+            t.memberExpression(t.identifier('args'), t.identifier('context')),
+          ]),
+        ]
+      )
     );
 
     let importOrRequire: t.ImportDeclaration | t.VariableDeclaration;
-    let taskPath = `../tasks/${this.options.name}-task`;
+    let taskPath = `./tasks/${this.options.name}-task`;
 
     if (this.options.typescript) {
       let newTaskImportSpecifier = t.importDefaultSpecifier(t.identifier(this.options.taskClass));
@@ -164,6 +159,6 @@ export default class TaskGenerator extends BaseGenerator {
       })
       .generate();
 
-    this.fs.write(hooksDestinationPath, code);
+    this.fs.write(registrationDestinationPath, code);
   }
 }
