@@ -1,13 +1,10 @@
 import { Log } from 'sarif';
 import { writeJsonSync, existsSync, mkdirpSync } from 'fs-extra';
 import { isAbsolute, dirname, resolve } from 'path';
-import { ui } from '@checkup/core';
+import { ui, todayFormat } from '@checkup/core';
 import { yellow } from 'chalk';
 
-const date = require('date-and-time');
-
-export const TODAY = date.format(new Date(), 'YYYY-MM-DD-HH_mm_ss');
-export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${TODAY}.sarif`;
+export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${todayFormat()}.sarif`;
 
 export function writeOutputFile(outputFile: string, cwd: string, result: Log) {
   let outputPath = getOutputPath(outputFile, cwd);

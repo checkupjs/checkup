@@ -40,8 +40,8 @@ describe('cli-test', () => {
        checkup <command> [options]
 
       Commands:
-        checkup run <paths> [options]  Runs configured checkup tasks  [aliases: r]
-        checkup generate               Runs a generator to scaffold Checkup code  [aliases: g]
+        checkup run [paths..] [options]  Runs configured checkup tasks  [aliases: r]
+        checkup generate                 Runs a generator to scaffold Checkup code  [aliases: g]
 
       Options:
         --help     Show help  [boolean]
@@ -54,7 +54,7 @@ describe('cli-test', () => {
 
     expect(result.exitCode).toEqual(1);
     expect(result.stderr).toMatchInlineSnapshot(`
-      "checkup run <paths> [options]
+      "checkup run [paths..] [options]
 
       Runs configured checkup tasks
 
@@ -69,9 +69,7 @@ describe('cli-test', () => {
         -t, --task           Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.  [array]
         -f, --format         The output format, one of stdout, json  [default: \\"stdout\\"]
         -o, --output-file    Specify file to write JSON output to. Requires the \`--format\` flag to be set to \`json\`  [default: \\"\\"]
-        -l, --list-tasks     List all available tasks to run.  [boolean]
-
-      Not enough non-option arguments: got 0, need at least 1"
+        -l, --list-tasks     List all available tasks to run.  [boolean]"
     `);
   });
 
@@ -136,7 +134,7 @@ describe('cli-test', () => {
       tasks: {},
     });
 
-    let result = await run(['run', '.', '--list-tasks']);
+    let result = await run(['run', '--list-tasks']);
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
@@ -621,15 +619,7 @@ describe('cli-test', () => {
     });
 
     project.writeSync();
-    let result = await run([
-      'run',
-      '**/*.hbs',
-      '**baz/**',
-      '--task',
-      'fake/file-count',
-      '--verbose',
-    ]);
-
+    let result = await run(['run', '**/*.hbs', '**baz/**', '--verbose']);
     let filtered = result.stdout;
 
     result = await run(['run', '.', '--verbose']);
@@ -725,7 +715,7 @@ describe('cli-test', () => {
 
     let result = await run(['run', '.', '--task', 'foo']);
 
-    expect(result.exitCode).toEqual(0);
+    expect(result.exitCode).toEqual(1);
     expect(result.stderr).toContain('Cannot find the foo task.');
   });
 

@@ -1,7 +1,5 @@
 import * as debug from 'debug';
-import { extendedError } from '../extended-error';
-import { CheckupError } from '@checkup/core';
-import chalk from 'chalk';
+import { CheckupError, ErrorKind } from '@checkup/core';
 import { createEnv } from 'yeoman-environment';
 import { join } from 'path';
 import { existsSync, rmdirSync } from 'fs-extra';
@@ -28,12 +26,7 @@ export default class Generator {
     this.debug('available generators', VALID_GENERATORS);
 
     if (!VALID_GENERATORS.includes(this.options.generator)) {
-      extendedError(
-        new CheckupError(
-          `No valid generator found for ${chalk.bold.white(this.options.generator)}`,
-          `Valid generators are ${chalk.bold.white(VALID_GENERATORS.join(', '))}`
-        )
-      );
+      new CheckupError(ErrorKind.GeneratorNotFound);
     }
 
     await this.generate(this.options.generator, {
@@ -69,11 +62,11 @@ export default class Generator {
         });
       });
     } catch (error) {
-      if (!(error instanceof CheckupError)) {
-        // eslint-disable-next-line no-ex-assign
-        error = new CheckupError(`Could not run the ${type} generator.`, error.message);
+      if (error instanceof CheckupError) {
+        throw error;
       }
-      extendedError(error);
+
+      throw new CheckupError(ErrorKind.Unknown, { error });
     }
   }
 }

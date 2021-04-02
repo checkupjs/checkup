@@ -1,17 +1,26 @@
 import * as Wrap from 'wrap-ansi';
-
-import { CLIError } from '@oclif/errors';
+import * as ci from 'ci-info';
+import { join } from 'path';
 import { red } from 'chalk';
+import { ErrorDetails, ErrorDetailOptions, ErrorKind, ERROR_BY_KIND } from './error-kind';
+import { todayFormat } from '../today-format';
+import { ensureDirSync, writeFileSync, readJsonSync } from 'fs-extra';
 
-export default class CheckupError extends CLIError {
-  constructor(
-    error: string | Error,
-    public callToAction: string,
-    options: { code?: string; exit?: number | false } = {}
-  ) {
-    super(error, options);
+const stripAnsi = require('strip-ansi');
+const clean = require('clean-stack');
+
+export default class CheckupError extends Error {
+  private details: ErrorDetails;
+  private options: ErrorDetailOptions;
+
+  constructor(kind: ErrorKind, options: ErrorDetailOptions = {}) {
+    let details = ERROR_BY_KIND[kind];
+
+    super(details.message(options));
 
     this.name = 'CheckupError';
+    this.details = details;
+    this.options = options;
 
     // prevent this class from appearing in the stack
     Error.captureStackTrace(this, CheckupError);
@@ -20,10 +29,40 @@ export default class CheckupError extends CLIError {
   render(): string {
     const wrap: typeof Wrap = require('wrap-ansi');
 
-    let output = `\n${red('Error')}: ${this.message}\n\n${this.callToAction}`;
+    process.exitCode = this.details.errorCode;
 
-    output = wrap(output, 80, { trim: false, hard: true });
+    let details: string[] = [];
 
-    return output;
+    details.push(`${red('Checkup Error')}: ${this.message}`);
+    details.push(`${this.details.callToAction(this.options)}`);
+
+    if (ci.isCI) {
+      return details.join('\n');
+    } else {
+      let logFilePath = this.writeErrorLog(details);
+
+      details.push(`Error details written to ${logFilePath}`);
+      return wrap(details.join('\n'), 80, { trim: false, hard: true });
+    }
+  }
+
+  writeErrorLog(details: string[]) {
+    let logFileName = `checkup-error-${todayFormat()}.log`;
+    let logPath = join(process.cwd(), '.checkup');
+    let logFilePath = join(logPath, logFileName);
+    let logOutput: string[] = [];
+    let version = readJsonSync(join(__dirname, '../../package.json')).version;
+
+    logOutput.push(`Checkup v${version}`);
+    logOutput.push('');
+    logOutput.push(stripAnsi(details.join('\n')));
+    logOutput.push('');
+    logOutput.push(clean(this.stack || 'No stack available'));
+
+    ensureDirSync(logPath);
+
+    writeFileSync(logFilePath, logOutput.join('\n'), { encoding: 'utf-8' });
+
+    return logFilePath;
   }
 }

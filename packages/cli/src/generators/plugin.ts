@@ -1,11 +1,9 @@
-import * as chalk from 'chalk';
-
 import { Answers } from 'inquirer';
 import BaseGenerator, { Works } from './base-generator';
 import { join } from 'path';
 import { readJsonSync } from 'fs-extra';
 import { readdirSync, existsSync } from 'fs';
-import { CheckupError } from '@checkup/core';
+import { CheckupError, ErrorKind } from '@checkup/core';
 
 const PLUGIN_DIR_PATTERN = /checkup-plugin-.*/;
 
@@ -25,10 +23,7 @@ export default class PluginGenerator extends BaseGenerator {
 
   initializing() {
     if (!this.canRunGenerator) {
-      throw new CheckupError(
-        `Can only generate plugins outside a Checkup plugin directory`,
-        `Run ${chalk.bold.white('checkup generate plugin')} from outside a Checkup plugin`
-      );
+      throw new CheckupError(ErrorKind.GeneratorPluginWorkContextNotValid);
     }
   }
 
@@ -36,10 +31,9 @@ export default class PluginGenerator extends BaseGenerator {
     this._normalizeName();
 
     if (existsSync(this._destinationPath) && readdirSync(this._destinationPath).length > 0) {
-      throw new CheckupError(
-        `Plugin destination ${chalk.bold.white(this._destinationPath)} is not empty`,
-        'Run the plugin generator in an empty directory'
-      );
+      throw new CheckupError(ErrorKind.GeneratorPluginDestinationNotEmpty, {
+        destinationPath: this._destinationPath,
+      });
     }
 
     this.headline(this.options.name);

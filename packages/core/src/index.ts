@@ -20,6 +20,7 @@ export {
   CONFIG_SCHEMA_URL,
 } from './config';
 
+export { ErrorKind, ErrorDetails, ERROR_BY_KIND } from './errors/error-kind';
 export { default as CheckupError } from './errors/checkup-error';
 
 export { default as AstTraverser } from './ast/ast-traverser';
@@ -38,6 +39,8 @@ export { toPercent, groupDataByField } from './data/formatters';
 export { trimCwd, trimAllCwd } from './data/path';
 export { lintBuilder } from './data/lint';
 export { sarifBuilder, NO_RESULTS_FOUND } from './data/sarif';
+
+export { todayFormat } from './today-format';
 
 export * from './types/cli';
 export * from './types/parsers';
