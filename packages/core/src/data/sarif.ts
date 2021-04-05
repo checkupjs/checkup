@@ -1,4 +1,4 @@
-import { LintResult, Task, TaskError } from '../types/tasks';
+import { LintResult, Task, TaskListError } from '../types/tasks';
 import { Result, Location, Notification } from 'sarif';
 
 export const NO_RESULTS_FOUND = 'No results found';
@@ -113,7 +113,7 @@ function fromData<T>(taskContext: SarifTaskIdentifier, data: T[], message: strin
   ];
 }
 
-export function fromTaskErrors(errors: TaskError[]): Notification[] {
+export function fromTaskErrors(errors: TaskListError[]): Notification[] {
   return errors.map((error) => {
     return {
       message: { text: error.error.message },

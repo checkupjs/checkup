@@ -1,4 +1,4 @@
-import { OutputFormat } from '@checkup/core';
+import { OutputFormat, ErrorKind, CheckupError } from '@checkup/core';
 import VerboseConsoleReporter from './verbose-console-reporter';
 import ConsoleReporter from './console-reporter';
 import JsonReporter from './json-reporter';
@@ -25,5 +25,8 @@ export function getReporter(options: ReportOptions) {
     }
   }
 
-  throw new Error('No reporter found.');
+  throw new CheckupError(ErrorKind.ReporterNotFound, {
+    format: options.format,
+    validFormats: [...Object.values(OutputFormat)],
+  });
 }

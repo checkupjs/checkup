@@ -2,7 +2,14 @@ import * as debug from 'debug';
 import * as pMap from 'p-map';
 import * as convertHrtime from 'convert-hrtime';
 
-import { Task, TaskError, TaskName, RegisterableTaskList } from '@checkup/core';
+import {
+  Task,
+  TaskListError,
+  TaskName,
+  RegisterableTaskList,
+  ErrorKind,
+  CheckupError,
+} from '@checkup/core';
 import { taskResultComparator } from './task-result-comparator';
 import { Result } from 'sarif';
 
@@ -15,7 +22,7 @@ export type TaskFinderResult = { tasksFound: Task[]; tasksNotFound: (TaskName | 
  */
 export default class TaskListImpl implements RegisterableTaskList {
   private _categories: Map<string, Map<TaskName, Task>>;
-  private _errors: TaskError[];
+  private _errors: TaskListError[];
   private _timings: Record<TaskName, number>;
   debug: debug.Debugger;
 
@@ -57,9 +64,9 @@ export default class TaskListImpl implements RegisterableTaskList {
    */
   registerTask(task: Task) {
     if (task.category === '') {
-      throw new Error(
-        `Task category can not be empty. Please add a category to ${task.fullyQualifiedTaskName}-task.`
-      );
+      throw new CheckupError(ErrorKind.TaskCategoryRequired, {
+        fullyQualifiedTaskName: task.fullyQualifiedTaskName,
+      });
     }
     let categoryMap = this.getByCategory(task.category);
     categoryMap!.set(task.taskName, task);
@@ -163,15 +170,15 @@ export default class TaskListImpl implements RegisterableTaskList {
    *
    * @method runTask
    * @param {TaskName} taskName
-   * @returns {Promise<[Result[], TaskError[]]>}
+   * @returns {Promise<[Result[], TaskListError[]]>}
    * @memberof TaskList
    */
-  async runTask(taskName: TaskName): Promise<[Result[] | undefined, TaskError[]]> {
+  async runTask(taskName: TaskName): Promise<[Result[] | undefined, TaskListError[]]> {
     let result: Result[] | undefined;
     let task: Task | undefined = this.find(taskName);
 
     if (task === undefined) {
-      throw new Error(`The ${taskName} task was not found`);
+      throw new CheckupError(ErrorKind.TasksNotFound);
     }
 
     this.debug('start %s run', task.fullyQualifiedTaskName);
@@ -191,10 +198,10 @@ export default class TaskListImpl implements RegisterableTaskList {
    * Runs all tasks that have been added to the task list.
    *
    * @method runTasks
-   * @returns {Promise<[Result[], TaskError[]]>}
+   * @returns {Promise<[Result[], TaskListError[]]>}
    * @memberof TaskList
    */
-  async runTasks(tasks?: Task[]): Promise<[Result[], TaskError[]]> {
+  async runTasks(tasks?: Task[]): Promise<[Result[], TaskListError[]]> {
     let results = await this.eachTask(async (task: Task) => {
       let result;
       this.debug('start %s run', task.fullyQualifiedTaskName);

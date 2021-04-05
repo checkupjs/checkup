@@ -210,9 +210,7 @@ describe('TaskList', () => {
 
     expect(() => {
       taskList.registerTask(taskWithoutCategory);
-    }).toThrow(
-      `Task category can not be empty. Please add a category to ${taskWithoutCategory.fullyQualifiedTaskName}-task.`
-    );
+    }).toThrow(`Task category cannot be empty.`);
   });
 
   it('hasTask returns false if no task exists with that name', () => {

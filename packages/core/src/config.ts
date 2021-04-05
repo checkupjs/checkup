@@ -91,7 +91,9 @@ export function writeConfig(dir: string, config: Partial<CheckupConfig> = {}) {
   let path = getConfigPath(dir);
 
   if (existsSync(path)) {
-    throw new Error(`There is already an existing config in ${dir}`);
+    throw new CheckupError(ErrorKind.ConfigFileExists, {
+      configDestination: dir,
+    });
   }
 
   try {

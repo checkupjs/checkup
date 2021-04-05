@@ -9,6 +9,7 @@ import {
   sarifBuilder,
   lintBuilder,
   TaskContext,
+  TaskError,
 } from '@checkup/core';
 import { join, resolve } from 'path';
 
@@ -43,7 +44,7 @@ export default class EslintSummaryTask extends BaseTask implements Task {
 
     let createEslintParser = this.context.parsers.get('eslint')!;
 
-    let eslintConfig: ESLintOptions = readEslintConfig(
+    let eslintConfig: ESLintOptions = this.readEslintConfig(
       this.context.paths,
       this.context.options.cwd,
       this.context.pkg as PackageJsonWithEslint
@@ -71,31 +72,29 @@ export default class EslintSummaryTask extends BaseTask implements Task {
 
     return [...errorsResult, ...warningsResult];
   }
-}
 
-export function readEslintConfig(
-  paths: string[],
-  basePath: string,
-  pkg: PackageJsonWithEslint
-): ESLintOptions {
-  let eslintConfigFile: string = '';
+  readEslintConfig(paths: string[], basePath: string, pkg: PackageJsonWithEslint): ESLintOptions {
+    let eslintConfigFile: string = '';
 
-  for (const acceptedConfigFile of ACCEPTED_ESLINT_CONFIG_FILES) {
-    let resolvedAcceptedConfigFile = join(resolve(basePath), acceptedConfigFile);
+    for (const acceptedConfigFile of ACCEPTED_ESLINT_CONFIG_FILES) {
+      let resolvedAcceptedConfigFile = join(resolve(basePath), acceptedConfigFile);
 
-    if (paths.includes(resolvedAcceptedConfigFile)) {
-      eslintConfigFile = readFileSync(resolvedAcceptedConfigFile, { encoding: 'utf8' });
-      break;
+      if (paths.includes(resolvedAcceptedConfigFile)) {
+        eslintConfigFile = readFileSync(resolvedAcceptedConfigFile, { encoding: 'utf8' });
+        break;
+      }
     }
-  }
 
-  if (eslintConfigFile) {
-    return eslintConfigFile as ESLintOptions;
-  } else if (pkg.eslintConfig !== null) {
-    return pkg.eslintConfig as ESLintOptions;
-  } else {
-    throw new Error(
-      'No eslint config found in root (in the form of .eslintrc.* or as an eslintConfig field in package.json)'
-    );
+    if (eslintConfigFile) {
+      return eslintConfigFile as ESLintOptions;
+    } else if (pkg.eslintConfig !== null) {
+      return pkg.eslintConfig as ESLintOptions;
+    } else {
+      throw new TaskError({
+        taskName: this.taskName,
+        taskErrorMessage:
+          'No eslint config found in root (in the form of .eslintrc.* or as an eslintConfig field in package.json)',
+      });
+    }
   }
 }
