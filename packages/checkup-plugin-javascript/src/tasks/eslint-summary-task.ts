@@ -1,3 +1,5 @@
+import { join, resolve } from 'path';
+import { readFileSync } from 'fs';
 import {
   BaseTask,
   ESLintOptions,
@@ -11,10 +13,8 @@ import {
   TaskContext,
   TaskError,
 } from '@checkup/core';
-import { join, resolve } from 'path';
 
 import { PackageJson } from 'type-fest';
-import { readFileSync } from 'fs';
 import { Result } from 'sarif';
 
 export type PackageJsonWithEslint = PackageJson & { eslintConfig: string };

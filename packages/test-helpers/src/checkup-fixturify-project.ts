@@ -1,9 +1,8 @@
 'use strict';
 
-import { CheckupConfig, mergeConfig, FilePathArray } from '@checkup/core';
-
 import { join, resolve } from 'path';
 import { execSync } from 'child_process';
+import { CheckupConfig, mergeConfig, FilePathArray } from '@checkup/core';
 import Project from 'fixturify-project';
 import stringify from 'json-stable-stringify';
 import type { PackageJson } from 'type-fest';

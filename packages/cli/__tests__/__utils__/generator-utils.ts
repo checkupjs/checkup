@@ -1,7 +1,7 @@
+import { join } from 'path';
 import * as helpers from 'yeoman-test';
 
 import { Answers } from 'inquirer';
-import { join } from 'path';
 import { createTmpDir } from '@checkup/test-helpers';
 import PluginGenerator from '../../src/generators/plugin';
 import TaskGenerator from '../../src/generators/task';

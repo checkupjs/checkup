@@ -1,8 +1,8 @@
 import { CheckupMetadata, ui } from '@checkup/core';
 import { Log } from 'sarif';
+import { success } from 'log-symbols';
 import { renderActions, renderCLIInfo, renderInfo } from './reporter-utils';
 import { writeOutputFile } from './sarif-file-writer';
-import { success } from 'log-symbols';
 import { ReportOptions } from './get-reporter';
 
 export default class ConsoleReporter {

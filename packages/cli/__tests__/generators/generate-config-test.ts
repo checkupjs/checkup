@@ -1,10 +1,10 @@
+import { join } from 'path';
+import { writeFileSync } from 'fs';
 import * as helpers from 'yeoman-test';
 
 import { createTmpDir, testRoot } from '@checkup/test-helpers';
 
 import ConfigGenerator from '../../src/generators/config';
-import { join } from 'path';
-import { writeFileSync } from 'fs';
 
 describe('config-init-generator', () => {
   it('should write a config', async () => {

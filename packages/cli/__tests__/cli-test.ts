@@ -3,9 +3,9 @@ import { existsSync, unlinkSync } from 'fs';
 import * as execa from 'execa';
 import * as stringify from 'json-stable-stringify';
 import { trimCwd } from '@checkup/core';
+import type { Log } from 'sarif';
 import { FakeProject } from './__utils__/fake-project';
 import { sarifLogMatcher } from './__utils__/sarif-match-object';
-import type { Log } from 'sarif';
 
 const ROOT = process.cwd();
 

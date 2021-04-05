@@ -1,12 +1,12 @@
+import { join, resolve } from 'path';
 import * as Ajv from 'ajv';
 import fetch from 'node-fetch';
 import * as tmp from 'tmp';
 import { existsSync, readJsonSync, writeJsonSync, writeJSON } from 'fs-extra';
-import { join, resolve } from 'path';
 
+import { white } from 'chalk';
 import { CheckupConfig, ConfigValue } from './types/config';
 import CheckupError from './errors/checkup-error';
-import { white } from 'chalk';
 import { normalizePackageName } from './utils/plugin-name';
 import { ErrorKind } from './errors/error-kind';
 

@@ -1,8 +1,8 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName, FilePathArray, Task } from '@checkup/core';
+import { Result, Location } from 'sarif';
 import TemplateLintSummaryTask from '../src/tasks/ember-template-lint-summary-task';
 import { evaluateActions } from '../src/actions/ember-template-lint-summary-actions';
-import { Result, Location } from 'sarif';
 
 describe('ember-emplate-lint-summary-task', () => {
   let project: CheckupProject;

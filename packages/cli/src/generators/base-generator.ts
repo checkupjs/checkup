@@ -1,9 +1,9 @@
+import { resolve, join } from 'path';
+import { existsSync, mkdirSync } from 'fs';
 import * as Generator from 'yeoman-generator';
 import * as chalk from 'chalk';
 
 import { getVersion } from '../utils/get-version';
-import { resolve, join } from 'path';
-import { existsSync, mkdirSync } from 'fs';
 import { getPackageJson } from '../utils/get-package-json';
 
 export interface Options {

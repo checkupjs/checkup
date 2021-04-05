@@ -1,10 +1,10 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
-import EslintSummaryTask, { ACCEPTED_ESLINT_CONFIG_FILES } from '../src/tasks/eslint-summary-task';
-import { evaluateActions } from '../src/actions/eslint-summary-actions';
 import { PackageJson } from 'type-fest';
 import { getPluginName, Task, FilePathArray } from '@checkup/core';
 
 import { Result, Location } from 'sarif';
+import { evaluateActions } from '../src/actions/eslint-summary-actions';
+import EslintSummaryTask, { ACCEPTED_ESLINT_CONFIG_FILES } from '../src/tasks/eslint-summary-task';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;

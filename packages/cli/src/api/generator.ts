@@ -1,7 +1,7 @@
+import { join } from 'path';
 import * as debug from 'debug';
 import { CheckupError, ErrorKind } from '@checkup/core';
 import { createEnv } from 'yeoman-environment';
-import { join } from 'path';
 import { existsSync, rmdirSync } from 'fs-extra';
 
 export type GenerateOptions = {

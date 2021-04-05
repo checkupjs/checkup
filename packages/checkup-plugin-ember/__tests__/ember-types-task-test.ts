@@ -1,7 +1,7 @@
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 
-import EmberTypesTask from '../src/tasks/ember-types-task';
 import { getPluginName } from '@checkup/core';
+import EmberTypesTask from '../src/tasks/ember-types-task';
 
 const TYPES = {
   components: {

@@ -10,8 +10,8 @@ import {
   ErrorKind,
   CheckupError,
 } from '@checkup/core';
-import { taskResultComparator } from './task-result-comparator';
 import { Result } from 'sarif';
+import { taskResultComparator } from './task-result-comparator';
 
 export type TaskFinderResult = { tasksFound: Task[]; tasksNotFound: (TaskName | string)[] };
 

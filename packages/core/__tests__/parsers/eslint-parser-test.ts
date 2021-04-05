@@ -1,5 +1,5 @@
-import { CLIEngine } from 'eslint';
 import { resolve } from 'path';
+import { CLIEngine } from 'eslint';
 import { createParser, ESLintParser } from '../../src/parsers/eslint-parser';
 import { ESLintOptions } from '../../src/types/parsers';
 

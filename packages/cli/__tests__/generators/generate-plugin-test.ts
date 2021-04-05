@@ -1,7 +1,7 @@
+import { join } from 'path';
 import { createTmpDir, testRoot } from '@checkup/test-helpers';
 
 import { generatePlugin } from '../__utils__/generator-utils';
-import { join } from 'path';
 
 describe('plugin generator', () => {
   let tmp: string;

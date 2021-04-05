@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { ProjectType } from '../types';
 import { PackageJson } from 'type-fest';
+import { ProjectType } from '../types';
 
 /**
  * Gets the current type of project, either App, Engine, or Addon

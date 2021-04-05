@@ -1,5 +1,5 @@
-import { LintResult, Task, TaskListError } from '../types/tasks';
 import { Result, Location, Notification } from 'sarif';
+import { LintResult, Task, TaskListError } from '../types/tasks';
 
 export const NO_RESULTS_FOUND = 'No results found';
 

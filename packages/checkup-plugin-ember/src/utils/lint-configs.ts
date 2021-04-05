@@ -1,5 +1,5 @@
-import { ESLintOptions } from '@checkup/core';
 import * as path from 'path';
+import { ESLintOptions } from '@checkup/core';
 
 // These options are taken from a default ember application build on top of ember-source 3.16.*
 export const EMBER_TEST_TYPES: ESLintOptions = {

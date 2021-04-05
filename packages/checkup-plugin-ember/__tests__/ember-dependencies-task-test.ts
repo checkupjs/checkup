@@ -1,7 +1,7 @@
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 
-import EmberDependenciesTask from '../src/tasks/ember-dependencies-task';
 import { getPluginName } from '@checkup/core';
+import EmberDependenciesTask from '../src/tasks/ember-dependencies-task';
 
 describe('dependencies-task', () => {
   let emberProject: EmberProject;

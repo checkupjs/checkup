@@ -1,6 +1,6 @@
+import { CLIEngine } from 'eslint';
 import { mergeLintConfig } from '../../src/utils/merge-lint-config';
 import { TemplateLintConfig } from '../../src/types/ember-template-lint';
-import { CLIEngine } from 'eslint';
 
 describe('mergeLintConfig', () => {
   describe('eslint', () => {
