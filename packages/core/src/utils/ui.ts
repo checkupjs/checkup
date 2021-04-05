@@ -2,6 +2,7 @@ import * as chalk from 'chalk';
 
 import { ux } from 'cli-ux';
 import { startCase } from 'lodash';
+import CheckupError from '../errors/checkup-error';
 
 type Segment = { title: string; count: number; color?: chalk.Chalk };
 
@@ -170,5 +171,15 @@ export const ui: typeof ux & { [key: string]: any } = Object.assign(ux, {
       return chalk.keyword(color);
     }
     return color;
+  },
+
+  error(error: string | Error | CheckupError) {
+    if (typeof error === 'string') {
+      error = new Error(error);
+    }
+
+    console.error(
+      error instanceof CheckupError ? error.render() : `\n${chalk.red('Error')} ${error.message}`
+    );
   },
 });

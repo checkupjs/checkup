@@ -8,6 +8,7 @@ import { CheckupConfig, ConfigValue } from './types/config';
 import CheckupError from './errors/checkup-error';
 import { white } from 'chalk';
 import { normalizePackageName } from './utils/plugin-name';
+import { ErrorKind } from './errors/error-kind';
 
 const debug = require('debug')('checkup:config');
 const schema = require('./schemas/config-schema.json');
@@ -63,10 +64,7 @@ export function readConfig(configPath: string) {
     if (error instanceof SyntaxError) {
       let hint = error.message.replace(/.*:\s(.*)/, '$1');
 
-      throw new CheckupError(
-        `The checkup config at ${configPath} contains invalid JSON.\nError: ${hint}`,
-        'Fix the syntax error in your .checkuprc before continuing.'
-      );
+      throw new CheckupError(ErrorKind.ConfigInvalidSyntax, { configPath, hint });
     }
 
     debug('Falling back to default config %O', DEFAULT_CONFIG);
@@ -110,14 +108,15 @@ export function validateConfig(config: CheckupConfig, configPath: string) {
   const validate = ajv.compile(schema);
 
   if (!validate(config)) {
-    let error = `\n\n${white.bold('Details')}: ${
+    let hint = `\n\n${white.bold('Details')}: ${
       (validate.errors && validate.errors.length > 0 && ajv.errorsText(validate.errors)) || ''
     }.`;
 
-    throw new CheckupError(
-      `Config in ${configPath} is invalid.${error}`,
-      `See ${CONFIG_DOCS_URL} for more information on correct config formats.`
-    );
+    throw new CheckupError(ErrorKind.ConfigInvalidSchema, {
+      configPath,
+      hint,
+      docsUrl: CONFIG_DOCS_URL,
+    });
   }
 }
 

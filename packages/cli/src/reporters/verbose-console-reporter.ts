@@ -8,6 +8,7 @@ import {
   sumOccurrences,
   reduceResults,
   renderEmptyResult,
+  ErrorKind,
 } from '@checkup/core';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
@@ -73,10 +74,7 @@ function getTaskReporter(taskResult: Result[]) {
   let reporter = registeredTaskReporters.get(taskName) || getReportComponent;
 
   if (typeof reporter === 'undefined') {
-    throw new CheckupError(
-      `Unable to find a console reporter for ${taskName}`,
-      'Add a console task reporter using a `register-task-reporter` hook'
-    );
+    throw new CheckupError(ErrorKind.TaskConsoleReporterNotFound, { taskName });
   }
 
   return reporter;

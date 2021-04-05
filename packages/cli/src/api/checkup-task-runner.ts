@@ -12,7 +12,6 @@ import {
   Task,
   TaskError,
   TaskContext,
-  ui,
   TaskActionsEvaluator,
   TaskName,
   ParserName,
@@ -24,15 +23,14 @@ import {
   createEslintParser,
   createEmberTemplateLintParser,
   RegistrationArgs,
+  ErrorKind,
 } from '@checkup/core';
 import * as debug from 'debug';
 import * as resolve from 'resolve';
 import { Log, Result } from 'sarif';
 
 import { getLog } from '../get-log';
-import { TASK_ERRORS } from '../task-errors';
 import TaskListImpl from '../task-list';
-import { extendedError } from '../extended-error';
 import { getPackageJson } from '../utils/get-package-json';
 import PluginRegistrationProvider from './registration-provider';
 
@@ -64,16 +62,22 @@ export default class CheckupTaskRunner {
   >();
   registeredTaskReporters: Map<string, TaskReporter> = new Map<TaskName, TaskReporter>();
 
-  get taskFilterType() {
+  get taskErrorKind() {
     if (this.options.tasks !== undefined) {
-      return 'task';
+      return ErrorKind.TasksNotFound;
     } else if (this.options.categories !== undefined) {
-      return 'category';
+      return ErrorKind.TaskCategoriesNotFound;
     } else if (this.options.groups !== undefined) {
-      return 'group';
+      return ErrorKind.TaskGroupsNotFound;
     }
 
-    return '';
+    return ErrorKind.None;
+  }
+
+  get hasTaskFilter() {
+    return [this.options.tasks, this.options.categories, this.options.groups].some(
+      (taskFilterType) => taskFilterType !== undefined
+    );
   }
 
   constructor(options: RunOptions) {
@@ -116,7 +120,7 @@ export default class CheckupTaskRunner {
   }
 
   private async runTasks() {
-    if (this.taskFilterType) {
+    if (this.hasTaskFilter) {
       let { tasksFound, tasksNotFound } = this.findTasks();
 
       if (tasksFound.length > 0) {
@@ -124,10 +128,7 @@ export default class CheckupTaskRunner {
       }
 
       if (tasksNotFound.length > 0) {
-        let error = TASK_ERRORS.get(this.taskFilterType)!;
-
-        extendedError(new CheckupError(error.message(tasksNotFound), error.callToAction));
-        ui.action.stop();
+        throw new CheckupError(this.taskErrorKind, { tasksNotFound });
       }
 
       this.executedTasks = tasksFound;
@@ -181,7 +182,11 @@ export default class CheckupTaskRunner {
         (await getConfigPathFromOptions(this.options.config)) || getConfigPath(this.options.cwd);
       this.config = readConfig(configPath);
     } catch (error) {
-      extendedError(error);
+      if (error instanceof CheckupError) {
+        throw error;
+      }
+
+      throw new CheckupError(ErrorKind.ConfigNotValid, { error });
     }
   }
 

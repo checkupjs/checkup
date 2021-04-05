@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-import * as chalk from 'chalk';
 import * as t from '@babel/types';
 import * as recast from 'recast';
 
@@ -7,7 +6,7 @@ import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
 import BaseGenerator, { Works, Options } from './base-generator';
 import { join } from 'path';
-import { AstTransformer, CheckupError } from '@checkup/core';
+import { AstTransformer, CheckupError, ErrorKind } from '@checkup/core';
 
 interface ActionOptions extends Options {
   taskName: string;
@@ -25,14 +24,7 @@ export default class ActionsGenerator extends BaseGenerator {
 
   initializing() {
     if (!this.canRunGenerator) {
-      throw new CheckupError(
-        `Can only generate actions from inside a Checkup plugin directory`,
-        `Run ${chalk.bold.white(
-          'checkup generate actions'
-        )} from the root of a Checkup plugin or use the ${chalk.bold.white(
-          '--path'
-        )} option to specify the path to a Checkup plugin`
-      );
+      throw new CheckupError(ErrorKind.GeneratorWorkContextNotValid, { type: 'actions' });
     }
   }
 

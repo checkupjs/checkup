@@ -1,6 +1,6 @@
 import * as yargs from 'yargs';
 import * as ora from 'ora';
-import { OutputFormat } from '@checkup/core';
+import { OutputFormat, ui } from '@checkup/core';
 
 import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
@@ -17,7 +17,7 @@ A health checkup for your project ✅
 checkup <command> [options]`
     )
     .command({
-      command: 'run <paths> [options]',
+      command: 'run [paths..] [options]',
       aliases: ['r'],
       describe: 'Runs configured checkup tasks',
       builder: (yargs) => {
@@ -104,13 +104,22 @@ checkup <command> [options]`
           outputFile: argv.outputFile as string,
         });
 
-        if (argv.listTasks) {
-          let availableTasks = await taskRunner.getAvailableTasks();
+        if (!argv.paths || (argv.paths as string[]).length === 0) {
+          if (argv.listTasks) {
+            let availableTasks = await taskRunner.getAvailableTasks();
 
-          reportAvailableTasks(availableTasks);
-        } else {
-          let spinner = ora().start('Checking up on your project');
+            reportAvailableTasks(availableTasks);
+          } else {
+            yargs.showHelp();
+            process.exitCode = 1;
+          }
 
+          return;
+        }
+
+        let spinner = ora().start('Checking up on your project');
+
+        try {
           let log = await taskRunner.run();
 
           let reporter = getReporter({
@@ -121,8 +130,12 @@ checkup <command> [options]`
           });
 
           spinner.stop();
-
           reporter.report(log);
+        } catch (error) {
+          spinner.stop();
+          ui.error(error);
+        } finally {
+          spinner.stop();
         }
       },
     })
@@ -198,8 +211,8 @@ checkup <command> [options]`
                 });
 
                 await generator.run();
-              } catch {
-                // already handled
+              } catch (error) {
+                ui.error(error);
               }
             },
           })
@@ -227,14 +240,18 @@ checkup <command> [options]`
                 });
             },
             handler: async (argv: yargs.Arguments) => {
-              let generator = new Generator({
-                path: argv.path as string,
-                generator: 'actions',
-                name: argv.name as string,
-                defaults: argv.defaults as boolean,
-              });
+              try {
+                let generator = new Generator({
+                  path: argv.path as string,
+                  generator: 'actions',
+                  name: argv.name as string,
+                  defaults: argv.defaults as boolean,
+                });
 
-              await generator.run();
+                await generator.run();
+              } catch (error) {
+                ui.error(error);
+              }
             },
           })
           .command({
@@ -250,14 +267,18 @@ checkup <command> [options]`
               });
             },
             handler: async (argv: yargs.Arguments) => {
-              let generator = new Generator({
-                path: argv.path as string,
-                generator: 'config',
-                name: 'config',
-                defaults: false,
-              });
+              try {
+                let generator = new Generator({
+                  path: argv.path as string,
+                  generator: 'config',
+                  name: 'config',
+                  defaults: false,
+                });
 
-              await generator.run();
+                await generator.run();
+              } catch (error) {
+                ui.error(error);
+              }
             },
           });
       },
@@ -266,6 +287,7 @@ checkup <command> [options]`
         process.exitCode = 1;
       },
     })
+    .showHelpOnFail(false)
     .wrap(yargs.terminalWidth())
     .help()
     .version();
