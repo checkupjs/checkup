@@ -26,7 +26,7 @@ export default class Generator {
     this.debug('available generators', VALID_GENERATORS);
 
     if (!VALID_GENERATORS.includes(this.options.generator)) {
-      new CheckupError(ErrorKind.GeneratorNotFound);
+      throw new CheckupError(ErrorKind.GeneratorNotFound);
     }
 
     await this.generate(this.options.generator, {
