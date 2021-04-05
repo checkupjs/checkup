@@ -14,6 +14,10 @@ export enum ErrorKind {
   TaskCategoriesNotFound,
   TaskGroupsNotFound,
   TaskConsoleReporterNotFound,
+  TaskError,
+  TaskCategoryRequired,
+
+  ReporterNotFound,
 
   GeneratorNotFound,
   GeneratorPluginWorkContextNotValid,
@@ -94,7 +98,28 @@ export const ERROR_BY_KIND: { [key: string]: ErrorDetails } = {
     message: (options: ErrorDetailOptions) =>
       `Unable to find a console reporter for ${options.taskName}`,
     callToAction: () => 'Add a console task reporter in the plugin index file',
-    errorCode: 10,
+    errorCode: 1,
+  },
+
+  [ErrorKind.TaskError]: {
+    message: (options: ErrorDetailOptions) => `${options.taskName} ran with problems.`,
+    callToAction: (options: ErrorDetailOptions) => options.taskErrorMessage,
+    errorCode: 1,
+  },
+
+  [ErrorKind.TaskCategoryRequired]: {
+    message: () => 'Task category cannot be empty.',
+    callToAction: (options: ErrorDetailOptions) =>
+      `Please add a category to ${options.fullyQualifiedTaskName}-task`,
+    errorCode: 1,
+  },
+
+  [ErrorKind.ReporterNotFound]: {
+    message: (options: ErrorDetailOptions) =>
+      `No valid format found for ${chalk.bold.white(options.format)}`,
+    callToAction: (options: ErrorDetailOptions) =>
+      `Valid formats are ${chalk.bold.white(options.validFormats.join(', '))}`,
+    errorCode: 1,
   },
 
   [ErrorKind.GeneratorNotFound]: {

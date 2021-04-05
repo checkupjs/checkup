@@ -22,6 +22,7 @@ export {
 
 export { ErrorKind, ErrorDetails, ERROR_BY_KIND } from './errors/error-kind';
 export { default as CheckupError } from './errors/checkup-error';
+export { default as TaskError } from './errors/task-error';
 
 export { default as AstTraverser } from './ast/ast-traverser';
 export { default as AstTransformer } from './ast/ast-transformer';

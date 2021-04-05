@@ -5,7 +5,7 @@ import {
   Task,
   TaskContext,
   CheckupMetadata,
-  TaskError,
+  TaskListError,
   RunOptions,
   sarifBuilder,
 } from '@checkup/core';
@@ -17,7 +17,11 @@ import { getVersion } from './utils/get-version';
 import { getRepositoryInfo } from './utils/repository';
 import TaskListImpl from './task-list';
 
-function getInvocation(options: RunOptions, errors: TaskError[], startTime: string): Invocation {
+function getInvocation(
+  options: RunOptions,
+  errors: TaskListError[],
+  startTime: string
+): Invocation {
   return {
     arguments: unparse(options),
     executionSuccessful: true,
@@ -37,7 +41,7 @@ export async function getLog(
   taskContext: TaskContext,
   taskResults: Result[],
   actions: Action[],
-  errors: TaskError[],
+  errors: TaskListError[],
   taskList: TaskListImpl,
   executedTasks: Task[],
   startTime: string

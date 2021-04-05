@@ -10,9 +10,9 @@ import {
   readConfig,
   RunOptions,
   Task,
-  TaskError,
   TaskContext,
   TaskActionsEvaluator,
+  TaskListError,
   TaskName,
   ParserName,
   CreateParser,
@@ -52,7 +52,7 @@ export default class CheckupTaskRunner {
   startTime: string = new Date().toJSON();
   tasks: TaskListImpl = new TaskListImpl();
   taskResults: Result[] = [];
-  taskErrors: TaskError[] = [];
+  taskErrors: TaskListError[] = [];
   taskContext!: TaskContext;
 
   registeredActions: Map<string, TaskActionsEvaluator> = new Map<TaskName, TaskActionsEvaluator>();

@@ -53,7 +53,7 @@ export interface Action {
   input: number;
 }
 
-export type TaskError = {
+export type TaskListError = {
   taskName: TaskName;
   error: Error;
 };

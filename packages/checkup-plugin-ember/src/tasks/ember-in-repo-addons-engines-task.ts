@@ -1,7 +1,7 @@
-import { Task, BaseTask, sarifBuilder } from '@checkup/core';
+import { Task, BaseTask, sarifBuilder, TaskError } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
-import { readJsonSync } from 'fs-extra';
+import { readJson } from 'fs-extra';
 
 import { Result } from 'sarif';
 
@@ -17,33 +17,36 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
 
     let packageJsonPaths: string[] = this.context.paths.filterByGlob('**/*package.json');
 
-    packageJsonPaths.forEach((pathName: string) => {
-      let packageJson: PackageJson = getPackageJson(pathName);
+    for (let pathName of packageJsonPaths) {
+      let packageJson: PackageJson = await this.getPackageJson(pathName);
 
       if (packageJson.keywords?.includes('ember-engine') && packageJson.name) {
         inRepoEngines.push(packageJson.name);
       } else if (packageJson.keywords?.includes('ember-addon') && packageJson.name) {
         inRepoAddons.push(packageJson.name);
       }
-    });
+    }
 
     return [
       ...sarifBuilder.fromLocations(this, inRepoAddons.sort(), 'in-repo addons'),
       ...sarifBuilder.fromLocations(this, inRepoEngines.sort(), 'in-repo engines'),
     ];
   }
-}
 
-function getPackageJson(packageJsonPath: string): PackageJson {
-  let package_ = {};
+  async getPackageJson(packageJsonPath: string): Promise<PackageJson> {
+    let package_ = {};
 
-  try {
-    package_ = readJsonSync(packageJsonPath);
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      throw new Error(`No package.json file detected at ${packageJsonPath}`);
+    try {
+      package_ = await readJson(packageJsonPath);
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        throw new TaskError({
+          taskName: this.taskName,
+          taskErrorMessage: `No package.json file detected at ${packageJsonPath}`,
+        });
+      }
     }
-  }
 
-  return package_;
+    return package_;
+  }
 }

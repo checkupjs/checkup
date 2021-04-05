@@ -194,7 +194,7 @@ describe('config', () => {
 
       expect(() => {
         writeConfig(tmp);
-      }).toThrow(`There is already an existing config in ${tmp}`);
+      }).toThrow(`Checkup config file exists in this directory`);
     });
 
     it('writes default config if no config is passed', () => {
