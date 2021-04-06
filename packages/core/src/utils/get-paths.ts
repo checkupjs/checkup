@@ -2,10 +2,10 @@ import { join, resolve } from 'path';
 import { existsSync, statSync } from 'fs';
 import { FilePathArray } from './file-path-array';
 
+const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
 const isGlob = require('is-glob');
 const micromatch = require('micromatch');
 const walkSync = require('walk-sync');
-const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
 
 const PATHS_TO_IGNORE: string[] = [
   '**/node_modules/**',

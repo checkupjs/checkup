@@ -1,9 +1,8 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName, Task } from '@checkup/core';
+import { Result } from 'sarif';
 import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task';
 import { evaluateActions } from '../src/actions/outdated-dependency-actions';
-
-import { Result } from 'sarif';
 
 // this test actually checks if dependencies are out of date, and will fail if new versions of react and react-dom are released.
 describe('outdated-dependencies-task', () => {

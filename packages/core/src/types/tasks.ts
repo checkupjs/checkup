@@ -1,10 +1,10 @@
-import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 import { PackageJson } from 'type-fest';
+import { Result } from 'sarif';
+import { FilePathArray } from '../utils/file-path-array';
+import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 
 import { CheckupConfig, TaskConfig } from './config';
-import { FilePathArray } from '../utils/file-path-array';
 import { RunOptions } from './cli';
-import { Result } from 'sarif';
 
 export type RegisterTaskArgs = {
   context: TaskContext;

@@ -2,10 +2,10 @@ import { join, dirname } from 'path';
 import * as helpers from 'yeoman-test';
 
 import { CheckupProject } from '@checkup/test-helpers';
-import { generatePlugin, generateTask } from './generator-utils';
 
 import type { Answers } from 'inquirer';
 import { mkdirp, symlink } from 'fs-extra';
+import { generatePlugin, generateTask } from './generator-utils';
 
 export class FakeProject extends CheckupProject {
   async addPlugin(options: helpers.Dictionary<any> = {}, prompts: Answers = {}) {

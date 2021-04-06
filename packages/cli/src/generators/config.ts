@@ -1,7 +1,7 @@
 import * as chalk from 'chalk';
 
-import BaseGenerator, { Works } from './base-generator';
 import { writeConfig, CheckupError, ErrorKind } from '@checkup/core';
+import BaseGenerator, { Works } from './base-generator';
 
 export default class ConfigGenerator extends BaseGenerator {
   works: Works = Works.OutsideProject;

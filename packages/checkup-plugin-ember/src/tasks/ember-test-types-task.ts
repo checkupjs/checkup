@@ -8,8 +8,8 @@ import {
   lintBuilder,
   TaskContext,
 } from '@checkup/core';
-import { EMBER_TEST_TYPES } from '../utils/lint-configs';
 import { Result } from 'sarif';
+import { EMBER_TEST_TYPES } from '../utils/lint-configs';
 
 export default class EmberTestTypesTask extends BaseTask implements Task {
   taskName = 'ember-test-types';

@@ -1,3 +1,4 @@
+import * as crypto from 'crypto';
 import {
   Action,
   CheckupConfig,
@@ -9,7 +10,6 @@ import {
   RunOptions,
   sarifBuilder,
 } from '@checkup/core';
-import * as crypto from 'crypto';
 import * as stringify from 'json-stable-stringify';
 import * as unparse from 'yargs-unparser';
 import { Invocation, Log, ReportingDescriptor, Result } from 'sarif';

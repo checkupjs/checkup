@@ -1,13 +1,13 @@
-import * as _ from 'lodash';
 import * as path from 'path';
+import * as _ from 'lodash';
 import * as t from '@babel/types';
 import * as recast from 'recast';
 
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import BaseGenerator, { Works, Options } from './base-generator';
 import { PackageJson } from 'type-fest';
 import { AstTransformer, CheckupError, ErrorKind } from '@checkup/core';
+import BaseGenerator, { Works, Options } from './base-generator';
 
 interface TaskOptions extends Options {
   taskClass: string;

@@ -1,8 +1,8 @@
+import { Result } from 'sarif';
 import { NO_RESULTS_FOUND } from '../data/sarif';
 import { groupDataByField } from '../data/formatters';
 import { reduceResults, sumOccurrences } from './sarif-utils';
 import { ui } from './ui';
-import { Result } from 'sarif';
 
 export function renderEmptyResult(taskResult: Result) {
   ui.value({

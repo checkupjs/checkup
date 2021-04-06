@@ -5,7 +5,7 @@
     "ecmaVersion": 2019,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "filenames", "jest", "prettier"],
+  "plugins": ["@typescript-eslint", "filenames", "jest", "import", "prettier"],
   "extends": [
     "eslint:recommended",
     "prettier",
@@ -13,7 +13,9 @@
     "plugin:jest/recommended",
     "plugin:jest/style",
     "plugin:node/recommended",
-    "plugin:unicorn/recommended"
+    "plugin:unicorn/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript"
   ],
   "settings": {
     "node": {
@@ -50,7 +52,14 @@
       {
         "allowModules": ["@checkup/core", "@checkup/test-helpers", "sarif"]
       }
-    ]
+    ],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["sarif"]
+      }
+    ],
+    "import/order": "error"
   },
   "overrides": [
     {

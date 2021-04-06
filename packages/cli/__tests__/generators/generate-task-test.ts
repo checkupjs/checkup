@@ -1,11 +1,11 @@
 /* eslint-disable jest/expect-expect */
 
-import * as helpers from 'yeoman-test';
 import { resolve } from 'path';
+import * as helpers from 'yeoman-test';
 
+import { testRoot } from '@checkup/test-helpers';
 import TaskGenerator from '../../src/generators/task';
 import { generatePlugin } from '../__utils__/generator-utils';
-import { testRoot } from '@checkup/test-helpers';
 
 function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
   let root = testRoot(dir);

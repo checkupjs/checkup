@@ -1,3 +1,4 @@
+import { join, resolve } from 'path';
 import {
   BaseTask,
   LintResult,
@@ -11,7 +12,6 @@ import {
   sarifBuilder,
   lintBuilder,
 } from '@checkup/core';
-import { join, resolve } from 'path';
 import { Result } from 'sarif';
 
 export default class TemplateLintSummaryTask extends BaseTask implements Task {

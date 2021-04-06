@@ -1,9 +1,9 @@
-import { Answers } from 'inquirer';
-import BaseGenerator, { Works } from './base-generator';
 import { join } from 'path';
-import { readJsonSync } from 'fs-extra';
 import { readdirSync, existsSync } from 'fs';
+import { readJsonSync } from 'fs-extra';
+import { Answers } from 'inquirer';
 import { CheckupError, ErrorKind } from '@checkup/core';
+import BaseGenerator, { Works } from './base-generator';
 
 const PLUGIN_DIR_PATTERN = /checkup-plugin-.*/;
 

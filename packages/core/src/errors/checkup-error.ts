@@ -1,10 +1,10 @@
+import { join } from 'path';
 import * as Wrap from 'wrap-ansi';
 import * as ci from 'ci-info';
-import { join } from 'path';
 import { red } from 'chalk';
-import { ErrorDetails, ErrorDetailOptions, ErrorKind, ERROR_BY_KIND } from './error-kind';
-import { todayFormat } from '../today-format';
 import { ensureDirSync, writeFileSync, readJsonSync } from 'fs-extra';
+import { todayFormat } from '../today-format';
+import { ErrorDetails, ErrorDetailOptions, ErrorKind, ERROR_BY_KIND } from './error-kind';
 
 const stripAnsi = require('strip-ansi');
 const clean = require('clean-stack');

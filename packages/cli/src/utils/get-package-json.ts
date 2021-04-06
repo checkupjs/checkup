@@ -1,5 +1,5 @@
-import { readJsonSync } from 'fs-extra';
 import { resolve, join } from 'path';
+import { readJsonSync } from 'fs-extra';
 import { PackageJson } from 'type-fest';
 
 /**

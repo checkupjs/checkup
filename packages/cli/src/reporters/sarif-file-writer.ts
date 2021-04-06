@@ -1,6 +1,6 @@
+import { isAbsolute, dirname, resolve } from 'path';
 import { Log } from 'sarif';
 import { writeJsonSync, existsSync, mkdirpSync } from 'fs-extra';
-import { isAbsolute, dirname, resolve } from 'path';
 import { ui, todayFormat } from '@checkup/core';
 import { yellow } from 'chalk';
 
