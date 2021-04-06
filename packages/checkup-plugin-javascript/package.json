@@ -5,7 +5,7 @@
   "author": "Cara Kessler @carakessler",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
-    "@babel/parser": "^7.12.7",
+    "@babel/parser": "^7.13.13",
     "@checkup/core": "^0.13.2",
     "ember-template-recast": "^5.0.1",
     "npm-check": "^5.9.2",
