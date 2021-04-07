@@ -56,7 +56,6 @@
     "release-it": "^14.2.2",
     "release-it-lerna-changelog": "^3.1.0",
     "release-it-yarn-workspaces": "^2.0.0",
-    "stdout-stderr": "^0.1.13",
     "ts-jest": "^25.5.1",
     "ts-node": "^9",
     "type-fest": "^0.20.2",
