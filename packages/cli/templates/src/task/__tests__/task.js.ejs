@@ -1,6 +1,6 @@
 <%_ const taskClass = `${_.upperFirst(_.camelCase(name))}Task` _%>
 <%_ const resultClass = `${taskClass}Result` _%>
-import { CheckupProject, stdout, getTaskContext } from '@checkup/test-helpers';
+import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import <%- taskClass %> from '../src/tasks/<%- name %>-task';
 
@@ -10,7 +10,7 @@ describe('<%- name %>-task', () => {
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', project => {
-      project.addDependency('ember-cli', '^3.15.0');
+      // add dependencies here
     });
 
     project.writeSync();
