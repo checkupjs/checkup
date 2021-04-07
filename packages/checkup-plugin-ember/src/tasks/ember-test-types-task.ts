@@ -14,6 +14,7 @@ import { EMBER_TEST_TYPES } from '../utils/lint-configs';
 export default class EmberTestTypesTask extends BaseTask implements Task {
   taskName = 'ember-test-types';
   taskDisplayName = 'Test Types';
+  description = 'Gets a breakdown of all test types in an Ember.js project';
   category = 'testing';
   group = 'ember';
 

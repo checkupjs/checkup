@@ -11,6 +11,7 @@ type Dependency = {
 export default class EmberDependenciesTask extends BaseTask implements Task {
   taskName = 'ember-dependencies';
   taskDisplayName = 'Ember Dependencies';
+  description = 'Finds Ember-specific dependencies and their versions in an Ember.js project';
   category = 'dependencies';
   group = 'ember';
 

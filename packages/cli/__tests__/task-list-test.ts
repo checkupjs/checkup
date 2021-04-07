@@ -8,6 +8,7 @@ const STABLE_ERROR = new Error('Something went wrong in this task');
 class InsightsTaskHigh extends BaseTask implements Task {
   taskName = 'insights-task-high';
   taskDisplayName = 'Insights Task High';
+  description = 'description';
   category = 'bar';
   group = 'group1';
 
@@ -33,6 +34,7 @@ class InsightsTaskHigh extends BaseTask implements Task {
 class InsightsTaskLow extends BaseTask implements Task {
   taskName = 'insights-task-low';
   taskDisplayName = 'Insights Task Low';
+  description = 'description';
   category = 'foo';
   group = 'group2';
 
@@ -57,7 +59,7 @@ class InsightsTaskLow extends BaseTask implements Task {
 class RecommendationsTaskHigh extends BaseTask implements Task {
   taskName = 'recommendations-task-high';
   taskDisplayName = 'Recommendations Task High';
-
+  description = 'description';
   category = 'baz';
 
   constructor(context: TaskContext) {
@@ -81,7 +83,7 @@ class RecommendationsTaskHigh extends BaseTask implements Task {
 class RecommendationsTaskLow extends BaseTask implements Task {
   taskName = 'recommendations-task-low';
   taskDisplayName = 'Recommendations Task Low';
-
+  description = 'description';
   category = 'bar';
 
   constructor(context: TaskContext) {
@@ -105,7 +107,7 @@ class RecommendationsTaskLow extends BaseTask implements Task {
 class MigrationTaskHigh extends BaseTask implements Task {
   taskName = 'migration-task-high';
   taskDisplayName = 'Migration Task High';
-
+  description = 'description';
   category = 'foo';
 
   constructor(context: TaskContext) {
@@ -129,7 +131,7 @@ class MigrationTaskHigh extends BaseTask implements Task {
 class MigrationTaskLow extends BaseTask implements Task {
   taskName = 'migration-task-low';
   taskDisplayName = 'Migration Task Low';
-
+  description = 'description';
   category = 'baz';
 
   constructor(context: TaskContext) {
@@ -153,7 +155,7 @@ class MigrationTaskLow extends BaseTask implements Task {
 class ErrorTask extends BaseTask implements Task {
   taskName = 'error-task';
   taskDisplayName = 'Error Task';
-
+  description = 'description';
   category = 'bar';
 
   constructor(context: TaskContext) {
@@ -167,7 +169,7 @@ class ErrorTask extends BaseTask implements Task {
 class TaskWithoutCategory extends BaseTask implements Task {
   taskName = 'task-without-category';
   taskDisplayName = 'Task Without Category';
-
+  description = 'description';
   category = '';
 
   constructor(context: TaskContext) {

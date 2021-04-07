@@ -17,6 +17,7 @@ const SEARCH_PATTERNS = [
 export default class EmberTypesTask extends BaseTask implements Task {
   taskName = 'ember-types';
   taskDisplayName = 'Ember Types';
+  description = 'Gets a breakdown of all Ember types in an Ember.js project';
   category = 'metrics';
   group = 'ember';
 

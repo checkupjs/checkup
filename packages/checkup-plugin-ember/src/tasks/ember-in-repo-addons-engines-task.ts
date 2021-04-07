@@ -8,6 +8,7 @@ import { Result } from 'sarif';
 export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Task {
   taskName = 'ember-in-repo-addons-engines';
   taskDisplayName = 'Ember In-Repo Addons / Engines';
+  description = 'Finds all in-repo engines and addons in an Ember.js project';
   category = 'metrics';
   group = 'ember';
 

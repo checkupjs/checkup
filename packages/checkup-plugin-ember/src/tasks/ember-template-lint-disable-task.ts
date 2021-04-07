@@ -9,6 +9,7 @@ const TEMPLATE_LINT_DISABLE = 'template-lint-disable';
 export default class EmberTemplateLintDisableTask extends BaseTask implements Task {
   taskName = 'ember-template-lint-disables';
   taskDisplayName = 'Number of template-lint-disable Usages';
+  description = 'Finds all disabled ember-template-lint rules in an Ember.js project';
   category = 'linting';
   group = 'disabled-lint-rules';
 

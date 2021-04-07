@@ -17,6 +17,7 @@ import { Result } from 'sarif';
 export default class TemplateLintSummaryTask extends BaseTask implements Task {
   taskName = 'ember-template-lint-summary';
   taskDisplayName = 'Template Lint Summary';
+  description = 'Gets a summary of all ember-template-lint results in an Ember.js project';
   category = 'linting';
   group = 'ember';
 

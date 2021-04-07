@@ -13,6 +13,7 @@
     "tslib": "^2"
   },
   "devDependencies": {
+    "@checkup/plugin": "^0.13.2",
     "@checkup/test-helpers": "^0.13.2",
     "fixturify-project": "^2.1.0",
     "rimraf": "^3.0.2"
@@ -36,7 +37,7 @@
   "scripts": {
     "build": "tsc --build",
     "test": "jest --no-cache",
-    "version": "git add README.md"
+    "docs:generate": "checkup-plugin docs"
   },
   "types": "lib/index.d.ts",
   "main": "lib/index.js"

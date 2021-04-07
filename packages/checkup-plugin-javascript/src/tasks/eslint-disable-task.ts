@@ -12,6 +12,7 @@ const ESLINT_DISABLE_REGEX = /^eslint-disable(?:-next-line|-line)*/gi;
 export default class EslintDisableTask extends BaseTask implements Task {
   taskName = 'eslint-disables';
   taskDisplayName = 'Number of eslint-disable Usages';
+  description = 'Finds all disabled eslint rules in a project';
   category = 'linting';
   group = 'disabled-lint-rules';
 
