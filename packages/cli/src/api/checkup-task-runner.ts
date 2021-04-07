@@ -33,15 +33,6 @@ import { getLog } from '../get-log';
 import TaskListImpl from '../task-list';
 import { getPackageJson } from '../utils/get-package-json';
 import PluginRegistrationProvider from './registration-provider';
-
-let __tasksForTesting: Set<Task> = new Set<Task>();
-
-export function _registerTaskForTesting(task: Task) {
-  __tasksForTesting.add(task);
-}
-export function _resetTasksForTesting() {
-  __tasksForTesting = new Set<Task>();
-}
 export default class CheckupTaskRunner {
   actions: Action[] = [];
   config!: CheckupConfig;
@@ -216,10 +207,6 @@ export default class CheckupTaskRunner {
         registeredTaskReporters: this.registeredTaskReporters,
         registeredTasks: this.tasks,
       }),
-    });
-
-    __tasksForTesting.forEach((task: Task) => {
-      this.tasks.registerTask(task);
     });
   }
 

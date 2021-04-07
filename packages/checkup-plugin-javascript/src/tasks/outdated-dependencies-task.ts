@@ -35,6 +35,7 @@ interface OutdatedDependency {
 export default class OutdatedDependenciesTask extends BaseTask implements Task {
   taskName = 'outdated-dependencies';
   taskDisplayName = 'Outdated Dependencies';
+  description = 'Gets a summary of all outdated dependencies in a project';
   category = 'dependencies';
 
   async run(): Promise<Result[]> {

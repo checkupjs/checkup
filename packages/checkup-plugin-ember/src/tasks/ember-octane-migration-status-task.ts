@@ -105,6 +105,8 @@ const CUSTOM_RULE_MESSAGES = {
 export default class EmberOctaneMigrationStatusTask extends BaseTask implements Task {
   taskName = 'ember-octane-migration-status';
   taskDisplayName = 'Ember Octane Migration Status';
+  description =
+    'Tracks the migration status when moving from Ember Classic to Ember Octane in an Ember.js project';
   category = 'migrations';
   group = 'ember';
 

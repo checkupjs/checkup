@@ -35,6 +35,7 @@ export const ACCEPTED_ESLINT_CONFIG_FILES = [
 export default class EslintSummaryTask extends BaseTask implements Task {
   taskName = 'eslint-summary';
   taskDisplayName = 'Eslint Summary';
+  description = 'Gets a summary of all eslint results in a project';
   category = 'linting';
 
   private _eslintParser: Parser<ESLintReport>;

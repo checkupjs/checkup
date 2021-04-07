@@ -31,6 +31,7 @@ export type TaskIdentifier = { taskName: string; taskDisplayName: string };
 export interface Task {
   taskName: TaskName;
   taskDisplayName: TaskName;
+  description: string;
   config: TaskConfig;
   category: string;
   group?: string;

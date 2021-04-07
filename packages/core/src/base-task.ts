@@ -8,6 +8,7 @@ import { parseConfigTuple } from './config';
 export default abstract class BaseTask {
   abstract taskName: TaskName;
   abstract taskDisplayName: string;
+  abstract description: string;
   abstract category: string;
   group?: string;
   context: TaskContext;

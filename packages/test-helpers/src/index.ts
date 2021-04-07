@@ -1,4 +1,3 @@
-export { stdout, stderr, clearStdout } from './stdout-stderr';
 export { createTmpDir } from './tmp-dir';
 export { testRoot } from './test-root';
 export { getTaskContext } from './get-task-context';

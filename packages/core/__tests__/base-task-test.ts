@@ -6,6 +6,7 @@ import { TaskContext } from '../src/types/tasks';
 class FakeTask extends BaseTask {
   taskName = 'my-fake';
   taskDisplayName = 'Fake';
+  description = 'description';
   category = 'foo';
 }
 

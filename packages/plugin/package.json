@@ -1,28 +1,23 @@
 {
-  "name": "@checkup/test-helpers",
-  "description": "Checkup's test helper library",
+  "name": "@checkup/plugin",
+  "description": "Checkup plugin utility library",
   "version": "0.13.2",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bugs": "https://github.com/checkupjs/checkup/issues",
-  "dependencies": {
-    "@checkup/core": "0.13.2",
-    "@oclif/config": "^1.15.1",
-    "fixturify-project": "^2.1.0",
-    "handlebars": "^4.7.6",
-    "json-stable-stringify": "^1.0.1",
-    "tmp": "^0.2.1",
-    "walk-sync": "^2.2.0"
-  },
   "engines": {
     "node": ">= 12.11.*"
   },
   "files": [
+    "/bin",
     "/lib",
-    "/static"
+    "/templates"
   ],
   "homepage": "https://github.com/checkupjs/checkup",
   "license": "MIT",
   "main": "lib/index.js",
+  "bin": {
+    "checkup-plugin": "./bin/checkup-plugin.js"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -31,5 +26,12 @@
     "build": "tsc --build",
     "test": "jest --passWithNoTests --no-cache"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "dependencies": {
+    "@babel/traverse": "^7.12.12",
+    "@babel/types": "7.12.13",
+    "@checkup/core": "^0.13.2",
+    "fs-extra": "^9.1.0",
+    "recast": "^0.20.4"
+  }
 }

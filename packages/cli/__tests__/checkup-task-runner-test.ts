@@ -7,6 +7,7 @@ import { sarifLogMatcher } from './__utils__/sarif-match-object';
 class FooTask extends BaseTask implements Task {
   taskName = 'foo';
   taskDisplayName = 'Foo Task';
+  description = 'description';
   category = 'fake1';
   group = 'group1';
 
@@ -21,6 +22,7 @@ class FooTask extends BaseTask implements Task {
 class FileCountTask extends BaseTask implements Task {
   taskName = 'file-count';
   taskDisplayName = 'File Count Task';
+  description = 'description';
   category = 'fake2';
   group = 'group2';
 
