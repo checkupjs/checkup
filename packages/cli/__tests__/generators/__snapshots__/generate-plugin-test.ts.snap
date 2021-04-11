@@ -7,11 +7,12 @@ exports[`plugin generator generates plugin into existing directory with defaults
   \\"version\\": \\"0.0.0\\",
   \\"author\\": \\"\\",
   \\"dependencies\\": {
-    \\"@checkup/core\\": \\"^0.0.1\\",
+    \\"@checkup/core\\": \\"^1.0.0-beta.0\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
-    \\"@checkup/test-helpers\\": \\"^0.0.1\\",
+    \\"@checkup/plugin\\": \\"^1.0.0-beta.0\\",
+    \\"@checkup/test-helpers\\": \\"^1.0.0-beta.0\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -42,8 +43,9 @@ exports[`plugin generator generates plugin into existing directory with defaults
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\"
+    \\"docs:generate\\": \\"checkup-plugin docs\\",
+    \\"lint\\": \\"eslint . --cache --ext .ts\\",
+    \\"test\\": \\"jest --no-cache\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
@@ -211,10 +213,10 @@ exports[`plugin generator generates plugin with JavaScript defaults 1`] = `
   \\"version\\": \\"0.0.0\\",
   \\"author\\": \\"\\",
   \\"dependencies\\": {
-    \\"@checkup/core\\": \\"^0.13.2\\"
+    \\"@checkup/core\\": \\"^1.0.0-beta.0\\"
   },
   \\"devDependencies\\": {
-    \\"@checkup/test-helpers\\": \\"^0.13.2\\",
+    \\"@checkup/test-helpers\\": \\"^1.0.0-beta.0\\",
     \\"eslint\\": \\"^7.5.0\\",
     \\"eslint-config-prettier\\": \\"^6.11.0\\",
     \\"eslint-plugin-jest\\": \\"^23.8.2\\",
@@ -235,8 +237,8 @@ exports[`plugin generator generates plugin with JavaScript defaults 1`] = `
   \\"license\\": \\"MIT\\",
   \\"repository\\": \\"\\",
   \\"scripts\\": {
-    \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache\\"
+    \\"lint\\": \\"eslint . --cache\\",
+    \\"test\\": \\"jest --no-cache\\"
   },
   \\"main\\": \\"lib/index.js\\"
 }
@@ -383,11 +385,12 @@ exports[`plugin generator generates plugin with custom options 1`] = `
   \\"version\\": \\"0.0.0\\",
   \\"author\\": \\"scalvert <steve.calvert@gmail.com>\\",
   \\"dependencies\\": {
-    \\"@checkup/core\\": \\"^0.0.1\\",
+    \\"@checkup/core\\": \\"^1.0.0-beta.0\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
-    \\"@checkup/test-helpers\\": \\"^0.0.1\\",
+    \\"@checkup/plugin\\": \\"^1.0.0-beta.0\\",
+    \\"@checkup/test-helpers\\": \\"^1.0.0-beta.0\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -418,8 +421,9 @@ exports[`plugin generator generates plugin with custom options 1`] = `
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\"
+    \\"docs:generate\\": \\"checkup-plugin docs\\",
+    \\"lint\\": \\"eslint . --cache --ext .ts\\",
+    \\"test\\": \\"jest --no-cache\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
@@ -587,11 +591,12 @@ exports[`plugin generator generates plugin with defaults 1`] = `
   \\"version\\": \\"0.0.0\\",
   \\"author\\": \\"\\",
   \\"dependencies\\": {
-    \\"@checkup/core\\": \\"^0.0.1\\",
+    \\"@checkup/core\\": \\"^1.0.0-beta.0\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
-    \\"@checkup/test-helpers\\": \\"^0.0.1\\",
+    \\"@checkup/plugin\\": \\"^1.0.0-beta.0\\",
+    \\"@checkup/test-helpers\\": \\"^1.0.0-beta.0\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -622,8 +627,9 @@ exports[`plugin generator generates plugin with defaults 1`] = `
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\"
+    \\"docs:generate\\": \\"checkup-plugin docs\\",
+    \\"lint\\": \\"eslint . --cache --ext .ts\\",
+    \\"test\\": \\"jest --no-cache\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
@@ -791,11 +797,12 @@ exports[`plugin generator generates plugin with defaults in custom path 1`] = `
   \\"version\\": \\"0.0.0\\",
   \\"author\\": \\"\\",
   \\"dependencies\\": {
-    \\"@checkup/core\\": \\"^0.0.1\\",
+    \\"@checkup/core\\": \\"^1.0.0-beta.0\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
-    \\"@checkup/test-helpers\\": \\"^0.0.1\\",
+    \\"@checkup/plugin\\": \\"^1.0.0-beta.0\\",
+    \\"@checkup/test-helpers\\": \\"^1.0.0-beta.0\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -826,8 +833,9 @@ exports[`plugin generator generates plugin with defaults in custom path 1`] = `
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\"
+    \\"docs:generate\\": \\"checkup-plugin docs\\",
+    \\"lint\\": \\"eslint . --cache --ext .ts\\",
+    \\"test\\": \\"jest --no-cache\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
@@ -995,11 +1003,12 @@ exports[`plugin generator generates plugin with unmodified name with defaults 1`
   \\"version\\": \\"0.0.0\\",
   \\"author\\": \\"\\",
   \\"dependencies\\": {
-    \\"@checkup/core\\": \\"^0.0.1\\",
+    \\"@checkup/core\\": \\"^1.0.0-beta.0\\",
     \\"tslib\\": \\"^1\\"
   },
   \\"devDependencies\\": {
-    \\"@checkup/test-helpers\\": \\"^0.0.1\\",
+    \\"@checkup/plugin\\": \\"^1.0.0-beta.0\\",
+    \\"@checkup/test-helpers\\": \\"^1.0.0-beta.0\\",
     \\"@types/jest\\": \\"^25.1.3\\",
     \\"@types/node\\": \\"^13\\",
     \\"@typescript-eslint/eslint-plugin\\": \\"^3.5.0\\",
@@ -1030,8 +1039,9 @@ exports[`plugin generator generates plugin with unmodified name with defaults 1`
     \\"build\\": \\"yarn clean && tsc\\",
     \\"build:watch\\": \\"yarn build -w\\",
     \\"clean\\": \\"rm -rf lib\\",
-    \\"test\\": \\"jest --no-cache\\",
-    \\"lint\\": \\"eslint . --cache --ext .ts\\"
+    \\"docs:generate\\": \\"checkup-plugin docs\\",
+    \\"lint\\": \\"eslint . --cache --ext .ts\\",
+    \\"test\\": \\"jest --no-cache\\"
   },
   \\"types\\": \\"lib/index.d.ts\\",
   \\"main\\": \\"lib/index.js\\"
