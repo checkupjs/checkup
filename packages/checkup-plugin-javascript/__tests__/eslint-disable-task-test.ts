@@ -55,32 +55,6 @@ describe('eslint-disable-task', () => {
             Object {
               "physicalLocation": Object {
                 "artifactLocation": Object {
-                  "uri": "decorator.js",
-                },
-                "region": Object {
-                  "startColumn": 6,
-                  "startLine": 2,
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "eslint-disable usages",
-          },
-          "occurrenceCount": 1,
-          "properties": Object {
-            "category": "linting",
-            "group": "disabled-lint-rules",
-            "lintRuleId": "no-eslint-disable",
-            "taskDisplayName": "Number of eslint-disable Usages",
-          },
-          "ruleId": "eslint-disables",
-        },
-        Object {
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
                   "uri": "index.js",
                 },
                 "region": Object {
@@ -138,6 +112,32 @@ describe('eslint-disable-task', () => {
                 "region": Object {
                   "startColumn": 4,
                   "startLine": 3,
+                },
+              },
+            },
+          ],
+          "message": Object {
+            "text": "eslint-disable usages",
+          },
+          "occurrenceCount": 1,
+          "properties": Object {
+            "category": "linting",
+            "group": "disabled-lint-rules",
+            "lintRuleId": "no-eslint-disable",
+            "taskDisplayName": "Number of eslint-disable Usages",
+          },
+          "ruleId": "eslint-disables",
+        },
+        Object {
+          "locations": Array [
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "decorator.js",
+                },
+                "region": Object {
+                  "startColumn": 6,
+                  "startLine": 2,
                 },
               },
             },
