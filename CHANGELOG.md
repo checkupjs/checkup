@@ -22,6 +22,75 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.0 (2021-04-11)
+
+#### :boom: Breaking Change
+* `cli`, `test-helpers`
+  * [#924](https://github.com/checkupjs/checkup/pull/924) Removes unused APIs ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#909](https://github.com/checkupjs/checkup/pull/909) Moving registration to index ([@scalvert](https://github.com/scalvert))
+  * [#900](https://github.com/checkupjs/checkup/pull/900) Part 3 of moving off oclif to vanilla CLI ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-javascript`, `core`
+  * [#903](https://github.com/checkupjs/checkup/pull/903) Include `filePath` as part of `ember-template-lint-parser`, update `ember-template-lint` ([@brendenpalmer](https://github.com/brendenpalmer))
+* `checkup-plugin-javascript`, `cli`
+  * [#895](https://github.com/checkupjs/checkup/pull/895) Part 2 of moving off oclif to vanilla CLI ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-javascript`, `cli`, `test-helpers`
+  * [#891](https://github.com/checkupjs/checkup/pull/891) Part 1 of moving off oclif to vanilla CLI ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#887](https://github.com/checkupjs/checkup/pull/887) Merging info and migration commands ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`
+  * [#853](https://github.com/checkupjs/checkup/pull/853) Phase 2: Adding new sub-command: migration ([@scalvert](https://github.com/scalvert))
+* `cli`
+  * [#851](https://github.com/checkupjs/checkup/pull/851) Phase 1 - Commands refactor ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `plugin`, `test-helpers`
+  * [#923](https://github.com/checkupjs/checkup/pull/923) Adding new checkup package to provide plugin utils. Generates docs ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#911](https://github.com/checkupjs/checkup/pull/911) Adds TaskError class to provide to task implementers ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-javascript`, `cli`
+  * [#895](https://github.com/checkupjs/checkup/pull/895) Part 2 of moving off oclif to vanilla CLI ([@scalvert](https://github.com/scalvert))
+* `cli`
+  * [#857](https://github.com/checkupjs/checkup/pull/857) Update generators to work with new commands ([@scalvert](https://github.com/scalvert))
+  * [#851](https://github.com/checkupjs/checkup/pull/851) Phase 1 - Commands refactor ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`
+  * [#853](https://github.com/checkupjs/checkup/pull/853) Phase 2: Adding new sub-command: migration ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `cli`, `core`
+  * [#910](https://github.com/checkupjs/checkup/pull/910) Fixes CLI error handling by standardizing within the yargs handlers ([@scalvert](https://github.com/scalvert))
+  * [#856](https://github.com/checkupjs/checkup/pull/856) [bugfix] Get paths updates ([@carakessler](https://github.com/carakessler))
+* `core`
+  * [#864](https://github.com/checkupjs/checkup/pull/864) Fixing task config overrides merging correctly ([@scalvert](https://github.com/scalvert))
+* `cli`
+  * [#849](https://github.com/checkupjs/checkup/pull/849) Only conditionally show total results in verbose-reporter ([@carakessler](https://github.com/carakessler))
+
+#### :memo: Documentation
+* `checkup-plugin-ember-octane`, `checkup-plugin-ember`, `checkup-plugin-javascript`
+  * [#854](https://github.com/checkupjs/checkup/pull/854) Fix minor styling issues in plugin READMEs ([@tylerbecks](https://github.com/tylerbecks))
+
+#### :house: Internal
+* Other
+  * [#915](https://github.com/checkupjs/checkup/pull/915) Removes chai, which is unused ([@scalvert](https://github.com/scalvert))
+* `cli`
+  * [#914](https://github.com/checkupjs/checkup/pull/914) Removes yeoman output in tests ([@scalvert](https://github.com/scalvert))
+  * [#906](https://github.com/checkupjs/checkup/pull/906) Fixes verbose output when using generator utils in tests ([@scalvert](https://github.com/scalvert))
+* `cli`, `test-helpers`
+  * [#907](https://github.com/checkupjs/checkup/pull/907) Speeds up tests by using local link to @checkup/core in generated plugins ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-javascript`, `cli`, `test-helpers`
+  * [#891](https://github.com/checkupjs/checkup/pull/891) Part 1 of moving off oclif to vanilla CLI ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#881](https://github.com/checkupjs/checkup/pull/881) Removing `output-map` from verbose-console-reporter ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 6
+- Brenden Palmer ([@brendenpalmer](https://github.com/brendenpalmer))
+- Chad Hietala ([@chadhietala](https://github.com/chadhietala))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- Tyler Becks ([@tylerbecks](https://github.com/tylerbecks))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v0.13.2 (2021-01-14)
 
 #### :rocket: Enhancement
