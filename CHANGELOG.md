@@ -22,6 +22,22 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.1 (2021-04-13)
+
+#### :bug: Bug Fix
+* `cli`
+  * [#930](https://github.com/checkupjs/checkup/pull/930) Exporting task runner as public API ([@scalvert](https://github.com/scalvert))
+  * [#926](https://github.com/checkupjs/checkup/pull/926) Correctly generates plugins with latest package versions ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#929](https://github.com/checkupjs/checkup/pull/929) Removing all relics of oclif ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v1.0.0-beta.0 (2021-04-11)
 
 #### :boom: Breaking Change
