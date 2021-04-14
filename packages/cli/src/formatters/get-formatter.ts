@@ -1,7 +1,7 @@
 import { OutputFormat, ErrorKind, CheckupError } from '@checkup/core';
-import VerboseConsoleReporter from './verbose-console-reporter';
-import ConsoleReporter from './console-reporter';
-import JsonReporter from './json-reporter';
+import VerboseFormatter from './verbose';
+import SummaryFormatter from './summary';
+import JsonFormatter from './json';
 
 export interface ReportOptions {
   cwd: string;
@@ -10,22 +10,22 @@ export interface ReportOptions {
   outputFile?: string;
 }
 
-export function getReporter(options: ReportOptions) {
+export function getFormatter(options: ReportOptions) {
   if (options.verbose) {
-    return new VerboseConsoleReporter(options);
+    return new VerboseFormatter(options);
   }
 
   switch (options.format) {
     case OutputFormat.stdout: {
-      return new ConsoleReporter(options);
+      return new SummaryFormatter(options);
     }
 
     case OutputFormat.json: {
-      return new JsonReporter(options);
+      return new JsonFormatter(options);
     }
   }
 
-  throw new CheckupError(ErrorKind.ReporterNotFound, {
+  throw new CheckupError(ErrorKind.FormatterNotFound, {
     format: options.format,
     validFormats: [...Object.values(OutputFormat)],
   });

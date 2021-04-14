@@ -1,6 +1,6 @@
 import { renderLintingSummaryResult } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function report(taskResults: Result[]) {
+export function format(taskResults: Result[]) {
   renderLintingSummaryResult(taskResults);
 }

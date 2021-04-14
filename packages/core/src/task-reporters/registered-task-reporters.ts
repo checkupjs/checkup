@@ -1,11 +1,11 @@
-import { TaskName, TaskReporter } from '../types/tasks';
+import { TaskName, TaskFormatter } from '../types/tasks';
 
-const registeredTaskReporters = new Map<TaskName, TaskReporter>();
+const registeredTaskReporters = new Map<TaskName, TaskFormatter>();
 
 export function getRegisteredTaskReporters() {
   return registeredTaskReporters;
 }
 
-export function registerTaskReporter(taskName: TaskName, report: TaskReporter) {
+export function registerTaskReporter(taskName: TaskName, report: TaskFormatter) {
   registeredTaskReporters.set(taskName, report);
 }

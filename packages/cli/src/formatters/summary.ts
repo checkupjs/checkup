@@ -1,18 +1,18 @@
 import { CheckupMetadata, ui } from '@checkup/core';
 import { Log } from 'sarif';
 import { success } from 'log-symbols';
-import { renderActions, renderCLIInfo, renderInfo } from './reporter-utils';
+import { renderActions, renderCLIInfo, renderInfo } from './formatter-utils';
 import { writeOutputFile } from './sarif-file-writer';
-import { ReportOptions } from './get-reporter';
+import { ReportOptions } from './get-formatter';
 
-export default class ConsoleReporter {
+export default class SummaryFormatter {
   options: ReportOptions;
 
   constructor(options: ReportOptions) {
     this.options = options;
   }
 
-  report(result: Log) {
+  format(result: Log) {
     let { cwd } = this.options;
     let { rules } = result.runs[0].tool.driver;
     let metaData = result.properties as CheckupMetadata;

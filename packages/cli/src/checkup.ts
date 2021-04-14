@@ -4,8 +4,8 @@ import { OutputFormat, ui } from '@checkup/core';
 
 import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
-import { getReporter } from './reporters/get-reporter';
-import { reportAvailableTasks } from './reporters/available-task-reporter';
+import { getFormatter } from './formatters/get-formatter';
+import { reportAvailableTasks } from './formatters/available-tasks';
 
 export async function run(argv: string[] = process.argv.slice(2)) {
   let parser = yargs
@@ -122,7 +122,7 @@ checkup <command> [options]`
         try {
           let log = await taskRunner.run();
 
-          let reporter = getReporter({
+          let formatter = getFormatter({
             cwd: argv.cwd as string,
             verbose: argv.verbose as boolean,
             format: argv.format as string,
@@ -130,7 +130,7 @@ checkup <command> [options]`
           });
 
           spinner.stop();
-          reporter.report(log);
+          formatter.format(log);
         } catch (error) {
           spinner.stop();
           ui.error(error);
