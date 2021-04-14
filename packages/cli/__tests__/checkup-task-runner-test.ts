@@ -55,14 +55,12 @@ describe('checkup-task-runner', () => {
     let taskRunner = new CheckupTaskRunner({
       paths: [],
       cwd: '.',
-      format: 'stdout',
       outputFile: '',
     });
 
     expect(taskRunner.options).toEqual({
       paths: [],
       cwd: '.',
-      format: 'stdout',
       outputFile: '',
     });
   });
@@ -71,7 +69,6 @@ describe('checkup-task-runner', () => {
     let taskRunner = new CheckupTaskRunner({
       paths: [],
       cwd: project.baseDir,
-      format: 'stdout',
       outputFile: '',
     });
 
@@ -82,7 +79,6 @@ describe('checkup-task-runner', () => {
     let taskRunner = new CheckupTaskRunner({
       paths: ['.'],
       cwd: project.baseDir,
-      format: 'stdout',
       outputFile: '',
     });
 

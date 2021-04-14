@@ -98,7 +98,6 @@ checkup <command> [options]`
           config: argv.config as string,
           cwd: argv.cwd as string,
           categories: argv.category as string[],
-          format: argv.format as string,
           groups: argv.group as string[],
           tasks: argv.task as string[],
           outputFile: argv.outputFile as string,

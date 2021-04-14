@@ -5,7 +5,7 @@ export const sarifLogMatcher = {
     analyzedFiles: expect.any(Array),
     analyzedFilesCount: expect.any(Number),
     cli: {
-      args: expect.any(Array),
+      options: expect.any(Array),
       config: {
         $schema:
           'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
@@ -14,7 +14,6 @@ export const sarifLogMatcher = {
         tasks: {},
       },
       configHash: expect.any(String),
-      flags: expect.any(Object),
       schema: 1,
       version: '0.0.0',
     },
@@ -40,11 +39,6 @@ export const sarifLogMatcher = {
         {
           arguments: expect.any(Array),
           endTimeUtc: expect.any(String),
-          environmentVariables: {
-            cwd: expect.any(String),
-            format: expect.stringMatching(/stdout|json/),
-            outputFile: '',
-          },
           executionSuccessful: true,
           startTimeUtc: expect.any(String),
           toolExecutionNotifications: [],

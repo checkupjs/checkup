@@ -34,7 +34,6 @@ const DEFAULT_OPTIONS: RunOptions = {
   groups: undefined,
   tasks: undefined,
   listTasks: false,
-  format: 'stdout',
   outputFile: '',
 };
 

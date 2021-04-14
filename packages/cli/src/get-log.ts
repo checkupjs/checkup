@@ -26,11 +26,6 @@ function getInvocation(
     arguments: unparse(options),
     executionSuccessful: true,
     endTimeUtc: new Date().toJSON(),
-    environmentVariables: {
-      cwd: options.cwd,
-      outputFile: options.outputFile,
-      format: options.format,
-    },
     toolExecutionNotifications: sarifBuilder.notifications.fromTaskErrors(errors),
     startTimeUtc: startTime,
   };
@@ -94,8 +89,6 @@ function getConfigHash(checkupConfig: CheckupConfig) {
 async function getCheckupMetadata(taskContext: TaskContext): Promise<CheckupMetadata> {
   let package_ = taskContext.pkg;
   let repositoryInfo = await getRepositoryInfo(taskContext.options.cwd, taskContext.paths);
-
-  let { config, tasks, format } = taskContext.options;
   let analyzedFiles = trimAllCwd(taskContext.paths, taskContext.options.cwd);
 
   return {
@@ -110,14 +103,7 @@ async function getCheckupMetadata(taskContext: TaskContext): Promise<CheckupMeta
       config: taskContext.config,
       version: getVersion(),
       schema: 1,
-      args: unparse(taskContext.options),
-      flags: {
-        config,
-        tasks,
-        format,
-        outputFile: taskContext.options.outputFile,
-        excludePaths: taskContext.options.excludePaths,
-      },
+      options: unparse(taskContext.options),
     },
 
     analyzedFiles,
