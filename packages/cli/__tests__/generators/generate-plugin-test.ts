@@ -6,6 +6,52 @@ import { generatePlugin } from '../__utils__/generator-utils';
 describe('plugin generator', () => {
   let tmp: string;
 
+  let expectedTsPackageJsonObject = {
+    name: expect.any(String),
+    description: expect.any(String),
+    version: expect.any(String),
+    author: expect.any(String),
+    dependencies: {
+      '@checkup/core': expect.any(String),
+      tslib: expect.any(String),
+    },
+    devDependencies: {
+      '@checkup/plugin': expect.any(String),
+      '@checkup/test-helpers': expect.any(String),
+      '@types/jest': expect.any(String),
+      '@types/node': expect.any(String),
+      '@typescript-eslint/eslint-plugin': expect.any(String),
+      '@typescript-eslint/parser': expect.any(String),
+      eslint: expect.any(String),
+      'eslint-config-prettier': expect.any(String),
+      'eslint-plugin-jest': expect.any(String),
+      'eslint-plugin-node': expect.any(String),
+      'eslint-plugin-prettier': expect.any(String),
+      jest: expect.any(String),
+      prettier: expect.any(String),
+      'ts-jest': expect.any(String),
+      'ts-node': expect.any(String),
+      typescript: expect.any(String),
+    },
+    engines: {
+      node: expect.any(String),
+    },
+    files: ['/lib'],
+    keywords: ['checkup-plugin'],
+    license: 'MIT',
+    repository: expect.any(String),
+    scripts: {
+      build: 'yarn clean && tsc',
+      'build:watch': 'yarn build -w',
+      clean: 'rm -rf lib',
+      'docs:generate': 'checkup-plugin docs',
+      lint: 'eslint . --cache --ext .ts',
+      test: 'jest --no-cache',
+    },
+    types: 'lib/index.d.ts',
+    main: 'lib/index.js',
+  };
+
   beforeEach(() => {
     tmp = createTmpDir();
   });
@@ -15,7 +61,10 @@ describe('plugin generator', () => {
 
     let root = testRoot(dir);
 
-    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(JSON.parse(root.file('package.json').contents)).toMatchObject(
+      expectedTsPackageJsonObject
+    );
+
     expect(root.file('.eslintignore').contents).toMatchSnapshot();
     expect(root.file('.eslintrc').contents).toMatchSnapshot();
     expect(root.file('.gitignore').contents).toMatchSnapshot();
@@ -35,7 +84,9 @@ describe('plugin generator', () => {
 
     let root = testRoot(dir);
 
-    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(JSON.parse(root.file('package.json').contents)).toMatchObject(
+      expectedTsPackageJsonObject
+    );
     expect(root.file('.eslintignore').contents).toMatchSnapshot();
     expect(root.file('.eslintrc').contents).toMatchSnapshot();
     expect(root.file('.gitignore').contents).toMatchSnapshot();
@@ -55,7 +106,38 @@ describe('plugin generator', () => {
 
     let root = testRoot(dir);
 
-    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(JSON.parse(root.file('package.json').contents)).toMatchObject({
+      name: expect.any(String),
+      description: expect.any(String),
+      version: expect.any(String),
+      author: expect.any(String),
+      dependencies: {
+        '@checkup/core': expect.any(String),
+      },
+      devDependencies: {
+        '@checkup/test-helpers': expect.any(String),
+        eslint: expect.any(String),
+        'eslint-config-prettier': expect.any(String),
+        'eslint-plugin-jest': expect.any(String),
+        'eslint-plugin-node': expect.any(String),
+        'eslint-plugin-prettier': expect.any(String),
+        jest: expect.any(String),
+        prettier: expect.any(String),
+      },
+      engines: {
+        node: expect.any(String),
+      },
+      files: ['/lib'],
+      keywords: ['checkup-plugin'],
+      license: 'MIT',
+      repository: expect.any(String),
+      scripts: {
+        lint: 'eslint . --cache',
+        test: 'jest --no-cache',
+      },
+      main: 'lib/index.js',
+    });
+
     expect(root.file('.eslintignore').contents).toMatchSnapshot();
     expect(root.file('.eslintrc').contents).toMatchSnapshot();
     expect(root.file('.gitignore').contents).toMatchSnapshot();
@@ -74,7 +156,9 @@ describe('plugin generator', () => {
 
     let root = testRoot(dir);
 
-    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(JSON.parse(root.file('package.json').contents)).toMatchObject(
+      expectedTsPackageJsonObject
+    );
     expect(root.file('.eslintignore').contents).toMatchSnapshot();
     expect(root.file('.eslintrc').contents).toMatchSnapshot();
     expect(root.file('.gitignore').contents).toMatchSnapshot();
@@ -96,7 +180,9 @@ describe('plugin generator', () => {
 
     let root = testRoot(existingDir);
 
-    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(JSON.parse(root.file('package.json').contents)).toMatchObject(
+      expectedTsPackageJsonObject
+    );
     expect(root.file('.eslintignore').contents).toMatchSnapshot();
     expect(root.file('.eslintrc').contents).toMatchSnapshot();
     expect(root.file('.gitignore').contents).toMatchSnapshot();
@@ -126,7 +212,9 @@ describe('plugin generator', () => {
 
     let root = testRoot(dir);
 
-    expect(root.file('package.json').contents).toMatchSnapshot();
+    expect(JSON.parse(root.file('package.json').contents)).toMatchObject(
+      expectedTsPackageJsonObject
+    );
     expect(root.file('.eslintignore').contents).toMatchSnapshot();
     expect(root.file('.eslintrc').contents).toMatchSnapshot();
     expect(root.file('.gitignore').contents).toMatchSnapshot();
