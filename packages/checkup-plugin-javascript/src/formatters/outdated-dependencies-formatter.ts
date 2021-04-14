@@ -1,7 +1,7 @@
 import { NO_RESULTS_FOUND, sumOccurrences, ui, renderEmptyResult } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function report(taskResults: Result[]) {
+export function format(taskResults: Result[]) {
   ui.section(taskResults[0].properties?.taskDisplayName, () => {
     ui.sectionedBar(
       taskResults.map((result: Result) => {

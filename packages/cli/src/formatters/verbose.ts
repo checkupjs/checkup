@@ -13,17 +13,17 @@ import {
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
 import { Invocation, Log, Notification, Result, Run } from 'sarif';
-import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './reporter-utils';
-import { ReportOptions } from './get-reporter';
+import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './formatter-utils';
+import { ReportOptions } from './get-formatter';
 
-export default class VerboseConsoleReporter {
+export default class VerboseFormatter {
   options: ReportOptions;
 
   constructor(options: ReportOptions) {
     this.options = options;
   }
 
-  report(result: Log) {
+  format(result: Log) {
     let metaData = result.properties as CheckupMetadata;
 
     renderInfo(metaData);

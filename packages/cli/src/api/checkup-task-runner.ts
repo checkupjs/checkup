@@ -19,7 +19,7 @@ import {
   ParserOptions,
   Parser,
   ParserReport,
-  TaskReporter,
+  TaskFormatter,
   createEslintParser,
   createEmberTemplateLintParser,
   RegistrationArgs,
@@ -51,7 +51,7 @@ export default class CheckupTaskRunner {
     ParserName,
     CreateParser<ParserOptions, Parser<ParserReport>>
   >();
-  registeredTaskReporters: Map<string, TaskReporter> = new Map<TaskName, TaskReporter>();
+  registeredTaskReporters: Map<string, TaskFormatter> = new Map<TaskName, TaskFormatter>();
 
   get taskErrorKind() {
     if (this.options.tasks !== undefined) {

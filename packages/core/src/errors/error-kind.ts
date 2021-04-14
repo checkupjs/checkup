@@ -17,7 +17,7 @@ export enum ErrorKind {
   TaskError,
   TaskCategoryRequired,
 
-  ReporterNotFound,
+  FormatterNotFound,
 
   GeneratorNotFound,
   GeneratorPluginWorkContextNotValid,
@@ -114,7 +114,7 @@ export const ERROR_BY_KIND: { [key: string]: ErrorDetails } = {
     errorCode: 1,
   },
 
-  [ErrorKind.ReporterNotFound]: {
+  [ErrorKind.FormatterNotFound]: {
     message: (options: ErrorDetailOptions) =>
       `No valid format found for ${chalk.bold.white(options.format)}`,
     callToAction: (options: ErrorDetailOptions) =>

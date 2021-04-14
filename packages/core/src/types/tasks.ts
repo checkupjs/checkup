@@ -11,15 +11,9 @@ export type RegisterTaskArgs = {
   tasks: TaskList;
 };
 
-export type RegisterActionsArgs = {
-  registerActions: (taskName: TaskName, evaluate: TaskActionsEvaluator) => void;
-};
 export type TaskActionsEvaluator = (taskResults: Result[], taskConfig: TaskConfig) => Action[];
 
-export type RegisterTaskReporterArgs = {
-  registerTaskReporter: (taskName: TaskName, report: TaskReporter) => void;
-};
-export type TaskReporter = (taskResults: Result[]) => void;
+export type TaskFormatter = (taskResults: Result[]) => void;
 
 interface TaskList {
   registerTask(task: Task): void;

@@ -8,7 +8,7 @@ import {
 } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function report(taskResults: Result[]) {
+export function format(taskResults: Result[]) {
   let groupedTaskResults = groupDataByField(taskResults, 'message.text');
 
   ui.section(taskResults[0].properties?.taskDisplayName, () => {

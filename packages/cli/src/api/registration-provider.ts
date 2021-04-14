@@ -1,7 +1,7 @@
 import {
   TaskName,
   TaskActionsEvaluator,
-  TaskReporter,
+  TaskFormatter,
   ParserName,
   CreateParser,
   ParserOptions,
@@ -16,7 +16,7 @@ import {
 export default class PluginRegistrationProvider implements RegistrationProvider {
   registeredActions: Map<TaskName, TaskActionsEvaluator>;
   registeredParsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
-  registeredTaskReporters: Map<string, TaskReporter>;
+  registeredTaskReporters: Map<string, TaskFormatter>;
   registeredTasks: RegisterableTaskList;
 
   constructor(options: RegistrationProviderOptions) {
@@ -34,7 +34,7 @@ export default class PluginRegistrationProvider implements RegistrationProvider 
     this.registeredParsers.set(parserName, parser);
   }
 
-  taskReporter(taskName: TaskName, report: TaskReporter): void {
+  taskFormatter(taskName: TaskName, report: TaskFormatter): void {
     this.registeredTaskReporters.set(taskName, report);
   }
 
