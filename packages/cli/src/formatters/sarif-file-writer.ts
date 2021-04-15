@@ -6,19 +6,19 @@ import { yellow } from 'chalk';
 
 export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${todayFormat()}.sarif`;
 
-export function writeOutputFile(outputFile: string, cwd: string, result: Log) {
-  let outputPath = getOutputPath(outputFile, cwd);
+export function writeOutputFile(
+  result: Log,
+  cwd: string,
+  outputFile: string = DEFAULT_OUTPUT_FILENAME
+) {
+  let outputPath = getOutputPath(cwd, outputFile);
 
   writeJsonSync(outputPath, result);
 
   ui.log(yellow(outputPath));
 }
 
-export function getOutputPath(outputFile: string, cwd: string = '') {
-  if (/{default}/.test(outputFile)) {
-    outputFile = outputFile.replace('{default}', DEFAULT_OUTPUT_FILENAME);
-  }
-
+export function getOutputPath(cwd: string = '', outputFile: string) {
   let outputPath = isAbsolute(outputFile)
     ? outputFile
     : resolve(cwd, outputFile || `${DEFAULT_OUTPUT_FILENAME}.sarif`);

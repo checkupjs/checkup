@@ -16,7 +16,7 @@ import { Invocation, Log, Notification, Result, Run } from 'sarif';
 import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './formatter-utils';
 import { ReportOptions } from './get-formatter';
 
-export default class VerboseFormatter {
+export default class PrettyFormatter {
   options: ReportOptions;
 
   constructor(options: ReportOptions) {

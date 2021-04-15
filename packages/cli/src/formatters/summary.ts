@@ -29,7 +29,7 @@ export default class SummaryFormatter {
 
     ui.blankLine();
     ui.log('Results have been saved to the following file:');
-    writeOutputFile('{default}', cwd, result);
+    writeOutputFile(result, cwd, this.options.outputFile);
 
     renderActions(result.properties?.actions);
 

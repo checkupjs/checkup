@@ -68,7 +68,7 @@ checkup <command> [options]`
             format: {
               alias: 'f',
               options: [...Object.values(OutputFormat)],
-              default: 'stdout',
+              default: 'summary',
               description: `The output format, one of ${[...Object.values(OutputFormat)].join(
                 ', '
               )}`,
@@ -77,8 +77,7 @@ checkup <command> [options]`
             'output-file': {
               alias: 'o',
               default: '',
-              description:
-                'Specify file to write JSON output to. Requires the `--format` flag to be set to `json`',
+              description: 'Specify file to write JSON output to.',
             },
 
             'list-tasks': {
@@ -123,7 +122,6 @@ checkup <command> [options]`
 
           let formatter = getFormatter({
             cwd: argv.cwd as string,
-            verbose: argv.verbose as boolean,
             format: argv.format as string,
             outputFile: argv.outputFile as string,
           });
