@@ -1,3 +1,4 @@
+import { RunOptions } from './cli';
 import { CheckupConfig } from './config';
 
 export type IndexableObject = { [key: string]: any };
@@ -31,16 +32,7 @@ export interface CheckupMetadata {
     configHash: string;
     config: CheckupConfig;
     version: string;
-    args: {
-      paths: string[];
-    };
-    flags: {
-      config?: string;
-      tasks?: string[];
-      format: string;
-      outputFile?: string;
-      excludePaths?: string[];
-    };
+    options: RunOptions;
   };
   analyzedFiles: string[];
   analyzedFilesCount: number;

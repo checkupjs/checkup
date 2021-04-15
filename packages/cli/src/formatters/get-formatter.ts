@@ -11,22 +11,23 @@ export interface ReportOptions {
 }
 
 export function getFormatter(options: ReportOptions) {
-  if (options.verbose) {
-    return new VerboseFormatter(options);
-  }
+  let mergedOptions = Object.assign({}, { format: 'stdout' }, options);
 
-  switch (options.format) {
+  switch (mergedOptions.format) {
     case OutputFormat.stdout: {
-      return new SummaryFormatter(options);
+      if (mergedOptions.verbose) {
+        return new VerboseFormatter(mergedOptions);
+      }
+      return new SummaryFormatter(mergedOptions);
     }
 
     case OutputFormat.json: {
-      return new JsonFormatter(options);
+      return new JsonFormatter(mergedOptions);
     }
   }
 
   throw new CheckupError(ErrorKind.FormatterNotFound, {
-    format: options.format,
+    format: mergedOptions.format,
     validFormats: [...Object.values(OutputFormat)],
   });
 }
