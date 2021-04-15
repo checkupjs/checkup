@@ -67,7 +67,7 @@ export default class CheckupTaskRunner {
 
   get hasTaskFilter() {
     return [this.options.tasks, this.options.categories, this.options.groups].some(
-      (taskFilterType) => taskFilterType !== undefined
+      (taskFilterType) => taskFilterType !== undefined && taskFilterType.length > 0
     );
   }
 
@@ -130,11 +130,11 @@ export default class CheckupTaskRunner {
   }
 
   private findTasks() {
-    if (this.options.tasks !== undefined) {
+    if (this.options.tasks !== undefined && this.options.tasks.length > 0) {
       return this.tasks.findAllByTaskName(...this.options.tasks);
-    } else if (this.options.categories !== undefined) {
+    } else if (this.options.categories !== undefined && this.options.categories.length > 0) {
       return this.tasks.findAllByCategory(...this.options.categories);
-    } else if (this.options.groups !== undefined) {
+    } else if (this.options.groups !== undefined && this.options.groups.length > 0) {
       return this.tasks.findAllByGroup(...this.options.groups);
     }
 
