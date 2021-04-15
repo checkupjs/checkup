@@ -2,7 +2,6 @@ import { BaseTask, Task, TaskContext, sarifBuilder } from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import type { Result } from 'sarif';
 import CheckupTaskRunner from '../src/api/checkup-task-runner';
-import { sarifLogMatcher } from './__utils__/sarif-match-object';
 
 class FooTask extends BaseTask implements Task {
   taskName = 'foo';
@@ -72,7 +71,9 @@ describe('checkup-task-runner', () => {
       outputFile: '',
     });
 
-    expect(await taskRunner.run()).toMatchObject(sarifLogMatcher);
+    let result = await taskRunner.run();
+
+    expect(result).toMatchSarifLog();
   });
 
   it('can execute configured tasks', async () => {
@@ -85,6 +86,8 @@ describe('checkup-task-runner', () => {
     taskRunner.tasks.registerTask(new FileCountTask(getTaskContext()));
     taskRunner.tasks.registerTask(new FooTask(getTaskContext()));
 
-    expect(await taskRunner.run()).toMatchObject(sarifLogMatcher);
+    let result = await taskRunner.run();
+
+    expect(result).toMatchSarifLog();
   });
 });

@@ -5,7 +5,6 @@ import * as stringify from 'json-stable-stringify';
 import { trimCwd } from '@checkup/core';
 import type { Log } from 'sarif';
 import { FakeProject } from './__utils__/fake-project';
-import { sarifLogMatcher } from './__utils__/sarif-match-object';
 
 const ROOT = process.cwd();
 
@@ -149,7 +148,7 @@ describe('cli-test', () => {
     let result = await run(['run', '.', '--format', 'json']);
     let output = JSON.parse(trimCwd(result.stdout, project.baseDir)) as Log;
 
-    expect(output).toMatchObject(sarifLogMatcher);
+    expect(output).toMatchSarifLog();
   });
 
   it('should output a json file in a custom directory if the json format and output-file options are provided', async () => {
