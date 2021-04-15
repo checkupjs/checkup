@@ -62,8 +62,9 @@ export interface TaskContext {
 }
 
 export enum OutputFormat {
-  stdout = 'stdout',
+  summary = 'summary',
   json = 'json',
+  pretty = 'pretty',
 }
 
 export interface LintResult {

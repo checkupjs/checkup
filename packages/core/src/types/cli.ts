@@ -13,7 +13,6 @@ export type RunFlags = {
   format: string;
   'output-file': string;
   'exclude-paths': string[] | undefined;
-  verbose: boolean;
 };
 
 export type RunOptions = {

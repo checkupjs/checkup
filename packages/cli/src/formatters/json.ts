@@ -12,7 +12,7 @@ export default class JsonFormatter {
 
   format(result: Log) {
     if (this.options.outputFile) {
-      writeOutputFile(this.options.outputFile, this.options.cwd, result);
+      writeOutputFile(result, this.options.cwd, this.options.outputFile);
     } else {
       ui.styledJSON(result);
     }

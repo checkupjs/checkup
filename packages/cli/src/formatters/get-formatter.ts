@@ -1,24 +1,24 @@
 import { OutputFormat, ErrorKind, CheckupError } from '@checkup/core';
-import VerboseFormatter from './verbose';
+import PrettyFormatter from './pretty';
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
 export interface ReportOptions {
   cwd: string;
-  verbose: boolean;
   format: string;
   outputFile?: string;
 }
 
 export function getFormatter(options: ReportOptions) {
-  let mergedOptions = Object.assign({}, { format: 'stdout' }, options);
+  let mergedOptions = Object.assign({}, { format: 'summary' }, options);
 
   switch (mergedOptions.format) {
-    case OutputFormat.stdout: {
-      if (mergedOptions.verbose) {
-        return new VerboseFormatter(mergedOptions);
-      }
+    case OutputFormat.summary: {
       return new SummaryFormatter(mergedOptions);
+    }
+
+    case OutputFormat.pretty: {
+      return new PrettyFormatter(mergedOptions);
     }
 
     case OutputFormat.json: {

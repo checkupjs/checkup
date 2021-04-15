@@ -33,7 +33,7 @@ export { ui } from './utils/ui';
 export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
 export { sumOccurrences, reduceResults } from './utils/sarif-utils';
-export { renderEmptyResult, renderLintingSummaryResult } from './utils/verbose-reporter-utils';
+export { renderEmptyResult, renderLintingSummaryResult } from './utils/pretty-formatter-utils';
 
 export { byRuleId, byRuleIds, bySeverity } from './data/filters';
 export { toPercent, groupDataByField } from './data/formatters';

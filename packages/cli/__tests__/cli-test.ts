@@ -67,8 +67,8 @@ describe('cli-test', () => {
             --category       Runs specific tasks specified by category. Can be used multiple times.  [array]
             --group          Runs specific tasks specified by group. Can be used multiple times.  [array]
         -t, --task           Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.  [array]
-        -f, --format         The output format, one of stdout, json  [default: \\"stdout\\"]
-        -o, --output-file    Specify file to write JSON output to. Requires the \`--format\` flag to be set to \`json\`  [default: \\"\\"]
+        -f, --format         The output format, one of summary, json, pretty  [default: \\"summary\\"]
+        -o, --output-file    Specify file to write JSON output to.  [default: \\"\\"]
         -l, --list-tasks     List all available tasks to run.  [boolean]"
     `);
   });
@@ -170,8 +170,21 @@ describe('cli-test', () => {
     unlinkSync(outputPath);
   });
 
-  it('should output checkup result in verbose mode', async () => {
-    let result = await run(['run', '.', '--verbose']);
+  it('should output a json file in a custom directory if the summary format and output-file options are provided', async () => {
+    let result = await run([
+      'run',
+      '.',
+      `--output-file`,
+      join(project.baseDir, 'my-checkup-file.sarif'),
+    ]);
+
+    let summaryOutput = result.stdout.trim();
+
+    expect(summaryOutput).toContain('my-checkup-file.sarif');
+  });
+
+  it('should output checkup result in pretty mode', async () => {
+    let result = await run(['run', '.', '--format', 'pretty']);
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
@@ -209,7 +222,7 @@ describe('cli-test', () => {
       tasks: {},
     });
 
-    let result = await run(['run', '.', '--task', 'fake/file-count', '--verbose']);
+    let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'pretty']);
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
@@ -253,7 +266,7 @@ describe('cli-test', () => {
       tasks: {},
     });
 
-    let result = await run(['run', '.', '--task', 'fake/file-count', '--verbose'], {
+    let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'pretty'], {
       env: {
         CHECKUP_TIMING: '1',
       },
@@ -293,7 +306,8 @@ describe('cli-test', () => {
       'fake/file-count',
       '--task',
       'fake/foo',
-      '--verbose',
+      '--format',
+      'pretty',
     ]);
 
     expect(result.stdout).toMatchInlineSnapshot(`
@@ -347,7 +361,7 @@ describe('cli-test', () => {
       tasks: {},
     });
 
-    let result = await run(['run', '.', '--category', 'files', '--verbose']);
+    let result = await run(['run', '.', '--category', 'files', '--format', 'pretty']);
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
@@ -396,7 +410,16 @@ describe('cli-test', () => {
       tasks: {},
     });
 
-    let result = await run(['run', '.', '--category', 'files', '--category', 'foos', '--verbose']);
+    let result = await run([
+      'run',
+      '.',
+      '--category',
+      'files',
+      '--category',
+      'foos',
+      '--format',
+      'pretty',
+    ]);
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
@@ -451,7 +474,7 @@ describe('cli-test', () => {
       tasks: {},
     });
 
-    let result = await run(['run', '.', '--group', 'group1', '--verbose']);
+    let result = await run(['run', '.', '--group', 'group1', '--format', 'pretty']);
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
@@ -500,7 +523,16 @@ describe('cli-test', () => {
       tasks: {},
     });
 
-    let result = await run(['run', '.', '--group', 'group1', '--group', 'group2', '--verbose']);
+    let result = await run([
+      'run',
+      '.',
+      '--group',
+      'group1',
+      '--group',
+      'group2',
+      '--format',
+      'pretty',
+    ]);
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
@@ -548,7 +580,7 @@ describe('cli-test', () => {
       tasks: { 'fake/file-count': 'off' },
     });
 
-    let result = await run(['run', '.', '--task', 'fake/file-count', '--verbose']);
+    let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'pretty']);
 
     expect(result.stdout).toMatchInlineSnapshot(`
       "
@@ -584,7 +616,8 @@ describe('cli-test', () => {
       '.',
       '--config',
       join(anotherProject.baseDir, '.checkuprc'),
-      '--verbose',
+      '--format',
+      'pretty',
     ]);
 
     expect(result.stdout).toMatchInlineSnapshot(`
@@ -619,10 +652,10 @@ describe('cli-test', () => {
     });
 
     project.writeSync();
-    let result = await run(['run', '**/*.hbs', '**baz/**', '--verbose']);
+    let result = await run(['run', '**/*.hbs', '**baz/**', '--format', 'pretty']);
     let filtered = result.stdout;
 
-    result = await run(['run', '.', '--verbose']);
+    result = await run(['run', '.', '--format', 'pretty']);
 
     let unfiltered = result.stdout;
 
@@ -636,13 +669,13 @@ describe('cli-test', () => {
     project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
     project.writeSync();
 
-    let result = await run(['run', '.', '--verbose']);
+    let result = await run(['run', '.', '--format', 'pretty']);
     let filtered = result.stdout;
 
     project.addCheckupConfig({ excludePaths: [] });
     project.writeSync();
 
-    result = await run(['run', '.', '--verbose']);
+    result = await run(['run', '.', '--format', 'pretty']);
     let unFiltered = result.stdout;
 
     expect(filtered).toMatchSnapshot();
@@ -652,13 +685,21 @@ describe('cli-test', () => {
   });
 
   it('should use the excludePaths provided by the command line', async () => {
-    let result = await run(['run', '.', '--exclude-paths', '**/*.hbs', '**/*.js', '--verbose']);
+    let result = await run([
+      'run',
+      '.',
+      '--exclude-paths',
+      '**/*.hbs',
+      '**/*.js',
+      '--format',
+      'pretty',
+    ]);
 
     let hbsJsFiltered = result.stdout;
 
     expect(hbsJsFiltered).toMatchSnapshot();
 
-    result = await run(['run', '.', '--exclude-paths', '**/*.hbs', '--verbose']);
+    result = await run(['run', '.', '--exclude-paths', '**/*.hbs', '--format', 'pretty']);
 
     let hbsFiltered = result.stdout;
     expect(hbsFiltered).toMatchSnapshot();
@@ -669,13 +710,13 @@ describe('cli-test', () => {
     project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
     project.writeSync();
 
-    let result = await run(['run', '.', '--exclude-paths', '**/*.js', '--verbose']);
+    let result = await run(['run', '.', '--exclude-paths', '**/*.js', '--format', 'pretty']);
 
     let jsFiltered = result.stdout;
 
     expect(jsFiltered).toMatchSnapshot();
 
-    result = await run(['run', '.', '--verbose']);
+    result = await run(['run', '.', '--format', 'pretty']);
 
     let hbsFiltered = result.stdout;
     expect(hbsFiltered).toMatchSnapshot();
