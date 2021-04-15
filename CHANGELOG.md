@@ -22,6 +22,26 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.3 (2021-04-15)
+
+#### :boom: Breaking Change
+* `cli`, `core`
+  * [#939](https://github.com/checkupjs/checkup/pull/939) Refactor format options to align more closely with formatters ([@carakessler](https://github.com/carakessler))
+* `cli`, `core`, `test-helpers`
+  * [#935](https://github.com/checkupjs/checkup/pull/935) Removes format from RunOptions to clean up Node API ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#934](https://github.com/checkupjs/checkup/pull/934) Rename reporters to formatters and associated types/code ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `cli`
+  * [#936](https://github.com/checkupjs/checkup/pull/936) Ensures that empty array values are treated as undefined for task runs ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v1.0.0-beta.2 (2021-04-14)
 
 #### :bug: Bug Fix
