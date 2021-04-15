@@ -3,15 +3,18 @@ import {
   NO_RESULTS_FOUND,
   reduceResults,
   sumOccurrences,
-  ui,
+  ConsoleWriter,
   renderEmptyResult,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
 export function format(taskResults: Result[]) {
-  ui.section(taskResults[0].properties?.taskDisplayName, () => {
-    ui.log(`${ui.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`);
-    ui.blankLine();
+  let consoleWriter = new ConsoleWriter();
+  consoleWriter.section(taskResults[0].properties?.taskDisplayName, () => {
+    consoleWriter.log(
+      `${consoleWriter.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`
+    );
+    consoleWriter.blankLine();
 
     let groupedTaskResults = groupDataByField(taskResults, 'properties.resultGroup');
 
@@ -20,18 +23,19 @@ export function format(taskResults: Result[]) {
         groupDataByField(resultGroup, 'properties.lintRuleId')
       );
 
-      ui.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
-      ui.valuesList(
+      consoleWriter.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
+      consoleWriter.valuesList(
         groupedTaskResultsByLintRuleId.map((result) => {
-          if (result.message.text === NO_RESULTS_FOUND) {
-            renderEmptyResult(result);
-          } else {
-            return { title: result.properties?.lintRuleId, count: result.occurrenceCount };
-          }
+          return result.message.text === NO_RESULTS_FOUND
+            ? renderEmptyResult(result)
+            : {
+                title: result.properties?.lintRuleId as string,
+                count: result.occurrenceCount as number,
+              };
         }),
         'violations'
       );
-      ui.blankLine();
+      consoleWriter.blankLine();
     });
   });
 }

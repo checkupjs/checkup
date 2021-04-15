@@ -266,7 +266,7 @@ describe('cli-test', () => {
       tasks: {},
     });
 
-    let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'pretty'], {
+    let result = await run(['run', '.', '--format', 'pretty'], {
       env: {
         CHECKUP_TIMING: '1',
       },

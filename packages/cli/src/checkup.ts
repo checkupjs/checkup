@@ -1,6 +1,6 @@
 import * as yargs from 'yargs';
 import * as ora from 'ora';
-import { OutputFormat, ui } from '@checkup/core';
+import { OutputFormat, ConsoleWriter } from '@checkup/core';
 
 import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
@@ -8,6 +8,8 @@ import { getFormatter } from './formatters/get-formatter';
 import { reportAvailableTasks } from './formatters/available-tasks';
 
 export async function run(argv: string[] = process.argv.slice(2)) {
+  let consoleWriter = new ConsoleWriter();
+
   let parser = yargs
     .scriptName('checkup')
     .usage(
@@ -130,7 +132,7 @@ checkup <command> [options]`
           formatter.format(log);
         } catch (error) {
           spinner.stop();
-          ui.error(error);
+          consoleWriter.error(error);
         } finally {
           spinner.stop();
         }
@@ -209,7 +211,7 @@ checkup <command> [options]`
 
                 await generator.run();
               } catch (error) {
-                ui.error(error);
+                consoleWriter.error(error);
               }
             },
           })
@@ -247,7 +249,7 @@ checkup <command> [options]`
 
                 await generator.run();
               } catch (error) {
-                ui.error(error);
+                consoleWriter.error(error);
               }
             },
           })
@@ -274,7 +276,7 @@ checkup <command> [options]`
 
                 await generator.run();
               } catch (error) {
-                ui.error(error);
+                consoleWriter.error(error);
               }
             },
           });

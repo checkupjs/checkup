@@ -1,5 +1,5 @@
 import { Log } from 'sarif';
-import { ui } from '@checkup/core';
+import { ConsoleWriter } from '@checkup/core';
 import { writeOutputFile } from './sarif-file-writer';
 import { ReportOptions } from './get-formatter';
 
@@ -11,10 +11,12 @@ export default class JsonFormatter {
   }
 
   format(result: Log) {
+    let consoleWriter = new ConsoleWriter();
+
     if (this.options.outputFile) {
       writeOutputFile(result, this.options.cwd, this.options.outputFile);
     } else {
-      ui.styledJSON(result);
+      consoleWriter.styledJSON(result);
     }
   }
 }

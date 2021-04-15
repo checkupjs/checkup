@@ -2,7 +2,7 @@ import {
   CheckupError,
   CheckupMetadata,
   getRegisteredTaskReporters,
-  ui,
+  ConsoleWriter,
   groupDataByField,
   NO_RESULTS_FOUND,
   sumOccurrences,
@@ -16,6 +16,7 @@ import { Invocation, Log, Notification, Result, Run } from 'sarif';
 import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './formatter-utils';
 import { ReportOptions } from './get-formatter';
 
+const consoleWriter = new ConsoleWriter();
 export default class PrettyFormatter {
   options: ReportOptions;
 
@@ -56,7 +57,7 @@ function renderTaskResults(pluginTaskResults: Result[] | undefined): void {
       let taskCategory = taskResultGroup[0].properties?.category;
 
       if (taskCategory !== currentCategory) {
-        ui.categoryHeader(startCase(taskCategory));
+        consoleWriter.categoryHeader(startCase(taskCategory));
         currentCategory = taskCategory;
       }
 
@@ -65,7 +66,7 @@ function renderTaskResults(pluginTaskResults: Result[] | undefined): void {
       reporter(taskResultGroup);
     });
   }
-  ui.blankLine();
+  consoleWriter.blankLine();
 }
 
 function getTaskReporter(taskResult: Result[]) {
@@ -83,20 +84,20 @@ function getTaskReporter(taskResult: Result[]) {
 function getReportComponent(taskResults: Result[]) {
   const groupedTaskResults = reduceResults(groupDataByField(taskResults, 'message.text'));
 
-  ui.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
+  consoleWriter.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
     const totalResults = sumOccurrences(groupedTaskResults);
     const numberOfBulletPoints = groupedTaskResults.length;
 
     if (numberOfBulletPoints > 1) {
-      ui.log(`Total: ${totalResults}`);
+      consoleWriter.log(`Total: ${totalResults}`);
     }
 
     groupedTaskResults.forEach((result) => {
       if (result.message.text === NO_RESULTS_FOUND) {
         renderEmptyResult(result);
       } else {
-        ui.value({
-          title: result.message.text || result.ruleId,
+        consoleWriter.value({
+          title: result.message.text || (result.ruleId as string),
           count: result?.occurrenceCount || Number.NaN,
         });
       }
@@ -106,14 +107,14 @@ function getReportComponent(taskResults: Result[]) {
 
 function renderErrors(notifications: Notification[] | undefined) {
   if (notifications && notifications.length > 0) {
-    ui.table(
+    consoleWriter.table(
       notifications.map((notification) => {
-        return {
-          taskName: notification.associatedRule?.id,
-          stack: cleanStack(notification.properties?.fullError || ''),
-        };
+        return [
+          notification.associatedRule?.id as string,
+          cleanStack(notification.properties?.fullError || ''),
+        ];
       }),
-      { taskName: {}, stack: { header: 'Error' } }
+      ['Task Name', 'Error']
     );
   }
 }
@@ -121,22 +122,18 @@ function renderErrors(notifications: Notification[] | undefined) {
 function renderTimings(timings: Record<string, number>) {
   let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
 
-  ui.categoryHeader('Task Timings');
-  ui.table(
+  consoleWriter.categoryHeader('Task Timings');
+
+  consoleWriter.table(
     Object.keys(timings)
-      .map((taskName) => {
-        return {
-          taskName,
-          time: timings[taskName],
-          relative: `${((timings[taskName] * 100) / total).toFixed(1)}%`,
-        };
-      })
-      .sort((a, b) => b.time - a.time),
-    {
-      taskName: {},
-      timeFormatted: { header: 'Time', get: (row) => `${row.time.toFixed(1)}s` },
-      relative: {},
-    }
+      .map((taskName) => [
+        taskName,
+        Number.parseFloat(timings[taskName].toFixed(2)),
+        `${((timings[taskName] * 100) / total).toFixed(1)}%`,
+      ])
+      .sort((a, b) => (b[1] as number) - (a[1] as number)),
+    ['Task Name', 'Time (sec)', 'Relative']
   );
-  ui.blankLine();
+
+  consoleWriter.blankLine();
 }

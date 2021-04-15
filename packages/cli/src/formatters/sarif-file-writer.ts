@@ -1,10 +1,11 @@
 import { isAbsolute, dirname, resolve } from 'path';
 import { Log } from 'sarif';
 import { writeJsonSync, existsSync, mkdirpSync } from 'fs-extra';
-import { ui, todayFormat } from '@checkup/core';
+import { ConsoleWriter, todayFormat } from '@checkup/core';
 import { yellow } from 'chalk';
 
 export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${todayFormat()}.sarif`;
+const consoleWriter = new ConsoleWriter();
 
 export function writeOutputFile(
   result: Log,
@@ -15,7 +16,7 @@ export function writeOutputFile(
 
   writeJsonSync(outputPath, result);
 
-  ui.log(yellow(outputPath));
+  consoleWriter.log(yellow(outputPath));
 }
 
 export function getOutputPath(cwd: string = '', outputFile: string) {

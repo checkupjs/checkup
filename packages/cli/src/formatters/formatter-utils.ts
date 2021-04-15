@@ -1,13 +1,15 @@
-import { Action, CheckupMetadata, ui } from '@checkup/core';
+import { Action, CheckupMetadata, ConsoleWriter } from '@checkup/core';
 import { yellow, bold } from 'chalk';
+
+let consoleWriter = new ConsoleWriter();
 
 export function renderActions(actions: Action[]): void {
   if (actions && actions.length > 0) {
-    ui.categoryHeader('Actions');
+    consoleWriter.categoryHeader('Actions');
     actions.forEach((action: Action) => {
-      ui.log(`${yellow('■')} ${bold(action.summary)} (${action.details})`);
+      consoleWriter.log(`${yellow('■')} ${bold(action.summary)} (${action.details})`);
     });
-    ui.blankLine();
+    consoleWriter.blankLine();
   }
 }
 
@@ -17,28 +19,32 @@ export function renderInfo(info: CheckupMetadata) {
 
   let analyzedFilesMessage =
     repository.totalFiles !== analyzedFilesCount
-      ? ` (${ui.emphasize(`${analyzedFilesCount} files`)} analyzed)`
+      ? ` (${consoleWriter.emphasize(`${analyzedFilesCount} files`)} analyzed)`
       : '';
 
-  ui.blankLine();
-  ui.log(
-    `Checkup report generated for ${ui.emphasize(`${name} v${version}`)}${analyzedFilesMessage}`
+  consoleWriter.blankLine();
+  consoleWriter.log(
+    `Checkup report generated for ${consoleWriter.emphasize(
+      `${name} v${version}`
+    )}${analyzedFilesMessage}`
   );
-  ui.blankLine();
-  ui.log(
-    `This project is ${ui.emphasize(`${repository.age} old`)}, with ${ui.emphasize(
+  consoleWriter.blankLine();
+  consoleWriter.log(
+    `This project is ${consoleWriter.emphasize(
+      `${repository.age} old`
+    )}, with ${consoleWriter.emphasize(
       `${repository.activeDays} active days`
-    )}, ${ui.emphasize(`${repository.totalCommits} commits`)} and ${ui.emphasize(
-      `${repository.totalFiles} files`
-    )}.`
+    )}, ${consoleWriter.emphasize(
+      `${repository.totalCommits} commits`
+    )} and ${consoleWriter.emphasize(`${repository.totalFiles} files`)}.`
   );
-  ui.blankLine();
+  consoleWriter.blankLine();
 }
 
 export function renderLinesOfCode(info: CheckupMetadata) {
   let { repository } = info.project;
 
-  ui.sectionedBar(
+  consoleWriter.sectionedBar(
     repository.linesOfCode.types.map((type) => {
       return { title: type.extension, count: type.total };
     }),
@@ -46,13 +52,13 @@ export function renderLinesOfCode(info: CheckupMetadata) {
     'lines of code'
   );
 
-  ui.blankLine();
+  consoleWriter.blankLine();
 }
 
 export function renderCLIInfo(info: CheckupMetadata) {
   let { version: cliVersion, configHash } = info.cli;
 
-  ui.dimmed(`checkup v${cliVersion}`);
-  ui.dimmed(`config ${configHash}`);
-  ui.blankLine();
+  consoleWriter.dimmed(`checkup v${cliVersion}`);
+  consoleWriter.dimmed(`config ${configHash}`);
+  consoleWriter.blankLine();
 }
