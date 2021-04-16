@@ -29,7 +29,7 @@ export { default as AstTransformer } from './ast/ast-transformer';
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { exec } from './utils/exec';
-export { ui } from './utils/ui';
+export { ConsoleWriter } from './utils/console-writer';
 export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
 export { sumOccurrences, reduceResults } from './utils/sarif-utils';

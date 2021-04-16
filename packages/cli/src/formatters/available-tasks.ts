@@ -1,16 +1,17 @@
-import { ui } from '@checkup/core';
-import { bold } from 'chalk';
+import { ConsoleWriter } from '@checkup/core';
 
 export function reportAvailableTasks(availableTasks: string[]) {
-  ui.blankLine();
-  ui.log(bold.white('AVAILABLE TASKS'));
-  ui.blankLine();
+  let consoleWriter = new ConsoleWriter();
+
+  consoleWriter.blankLine();
+  consoleWriter.log(consoleWriter.emphasize('AVAILABLE TASKS'));
+  consoleWriter.blankLine();
   if (availableTasks.length > 0) {
     availableTasks.forEach((taskName) => {
-      ui.log(`  ${taskName}`);
+      consoleWriter.log(`  ${taskName}`);
     });
   } else {
-    ui.log(`  No tasks found`);
+    consoleWriter.log(`  No tasks found`);
   }
-  ui.blankLine();
+  consoleWriter.blankLine();
 }

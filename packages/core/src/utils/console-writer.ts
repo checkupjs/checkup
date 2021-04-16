@@ -1,8 +1,8 @@
 import * as chalk from 'chalk';
-
-import { ux } from 'cli-ux';
 import { startCase } from 'lodash';
 import CheckupError from '../errors/checkup-error';
+
+const tableBuilder = require('cli-table3');
 
 type Segment = { title: string; count: number; color?: chalk.Chalk };
 
@@ -43,67 +43,98 @@ export function calculateSectionBar(
   };
 }
 
-export const ui: typeof ux & { [key: string]: any } = Object.assign(ux, {
+export class ConsoleWriter {
   blankLine() {
     process.stdout.write('\n');
-  },
+  }
 
   clearScreen() {
     process.stdout.write('\u001B[2J');
-  },
+  }
 
   clearLine() {
     process.stdout.write('\u001B[0f');
-  },
+  }
 
   categoryHeader(header: string) {
-    ui.styledHeader(header);
-    ui.blankLine();
-  },
+    process.stdout.write(chalk.dim('=== ') + chalk.bold(header) + '\n');
+    this.blankLine();
+  }
 
   sectionHeader(header: string) {
     process.stdout.write(this.emphasize(`${chalk.underline(startCase(header))}\n`));
-    ui.blankLine();
-  },
+    this.blankLine();
+  }
 
-  section(header: string, contents: () => void) {
-    ui.sectionHeader(header);
-    contents();
-    ui.blankLine();
-  },
+  section(header: string | undefined, contents: () => void) {
+    if (header) {
+      this.sectionHeader(header);
+      contents();
+      this.blankLine();
+    }
+  }
 
   subHeader(header: string) {
     process.stdout.write(`${chalk.underline(startCase(header))}\n`);
-    ui.blankLine();
-  },
+    this.blankLine();
+  }
 
-  subSection(header: string, contents: () => void) {
-    ui.subHeader(header);
-    contents();
-    ui.blankLine();
-  },
+  log(value: string) {
+    process.stdout.write(value);
+    this.blankLine();
+  }
 
   dimmed(format: string) {
-    ui.log(chalk.dim(format));
-  },
+    this.log(chalk.dim(format));
+  }
 
   emphasize(format: string) {
     return chalk.bold(format);
-  },
+  }
 
   bar(title: string, complete: number, total: number, unit: string = '', maximum: number = 50) {
     const barTick = '■';
     const barSegment = Math.ceil(total / maximum);
     const completedSegments = Math.ceil(complete / barSegment);
     const incompleteSegments = maximum - completedSegments;
-    const bar = `${ui.randomColor()(barTick.repeat(completedSegments))}${chalk.grey(
+    const bar = `${this.randomColor()(barTick.repeat(completedSegments))}${chalk.grey(
       barTick.repeat(Math.max(0, incompleteSegments))
     )}`;
 
-    ui.log(title);
-    ui.log(`${bar} ${complete.toLocaleString()}${unit}`);
-    ui.blankLine();
-  },
+    this.log(title);
+    this.log(`${bar} ${complete.toLocaleString()}${unit}`);
+    this.blankLine();
+  }
+
+  table(rows: (string | number)[][], headers: string[]) {
+    const table = new tableBuilder({
+      head: headers.map((header) => this.emphasize(chalk.white(header))),
+      chars: {
+        top: '',
+        'top-mid': '',
+        'top-left': '',
+        'top-right': '',
+        bottom: '',
+        'bottom-mid': '',
+        'bottom-left': '',
+        'bottom-right': '',
+        left: '',
+        'left-mid': '',
+        mid: '',
+        'mid-mid': '',
+        right: '',
+        'right-mid': '',
+        middle: ' ',
+      },
+      style: { 'padding-left': 0, 'padding-right': 0 },
+    });
+
+    rows.forEach((row) => {
+      table.push(row);
+    });
+
+    this.log(table.toString());
+  }
 
   sectionedBar(segments: Segment[], total: number, unit: string = '', width: number = 50) {
     const barTick = '■';
@@ -128,50 +159,55 @@ export const ui: typeof ux & { [key: string]: any } = Object.assign(ux, {
       });
     }
 
-    ui.log(`${bar} ${total.toLocaleString()} ${unit}`);
+    this.log(`${bar} ${total.toLocaleString()} ${unit}`);
     completedSegments.map((segment) =>
-      ui.log(`${segment.color!(barTick)} ${segment.title} (${segment.count.toLocaleString()})`)
+      this.log(`${segment.color!(barTick)} ${segment.title} (${segment.count.toLocaleString()})`)
     );
-  },
+  }
 
   valuesList(
     values: { title: string; count: number }[],
     unit: string = '',
-    color: chalk.Chalk = ui.randomColor()
+    color: chalk.Chalk = this.randomColor()
   ) {
     values.forEach((value) => {
-      ui.value(value, unit, color);
+      this.value(value, unit, color);
     });
-  },
+  }
+
+  styledJSON(object: any) {
+    const json = JSON.stringify(object, undefined, 2);
+    this.log(json);
+  }
 
   value(
     value: { title: string; count: number },
     unit: string = '',
-    color: chalk.Chalk = ui.randomColor()
+    color: chalk.Chalk = this.randomColor()
   ) {
-    ui.log(
+    this.log(
       `${color('■')} ${value.title} (${value.count.toLocaleString()}${unit ? ' ' + unit : ''})`
     );
-  },
+  }
 
   randomColor() {
     const colors = this.colors();
     return colors[Math.floor(Math.random() * colors.length)];
-  },
+  }
 
   colors(range: number = 70) {
     const ANSI_CODE_START = 33;
 
     // eslint-disable-next-line unicorn/no-useless-undefined
     return new Array(range).fill(undefined).map((_, i) => chalk.ansi256(i + ANSI_CODE_START));
-  },
+  }
 
   getColor(color: string | chalk.Chalk) {
     if (typeof color === 'string') {
       return chalk.keyword(color);
     }
     return color;
-  },
+  }
 
   error(error: string | Error | CheckupError) {
     if (typeof error === 'string') {
@@ -181,5 +217,5 @@ export const ui: typeof ux & { [key: string]: any } = Object.assign(ux, {
     console.error(
       error instanceof CheckupError ? error.render() : `\n${chalk.red('Error')} ${error.message}`
     );
-  },
-});
+  }
+}
