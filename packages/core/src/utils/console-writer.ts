@@ -1,8 +1,7 @@
 import * as chalk from 'chalk';
 import { startCase } from 'lodash';
+import CliTable3 = require('cli-table3');
 import CheckupError from '../errors/checkup-error';
-
-const tableBuilder = require('cli-table3');
 
 type Segment = { title: string; count: number; color?: chalk.Chalk };
 
@@ -43,26 +42,39 @@ export function calculateSectionBar(
   };
 }
 
+function writeToConsole(text: string) {
+  process.stdout.write(text);
+}
+
 export class ConsoleWriter {
+  outputString: string;
+  write: Function;
+
+  constructor(outputTo: 'console' | 'file' = 'console') {
+    this.outputString = '';
+    this.write =
+      outputTo === 'file' ? (content: string) => (this.outputString += content) : writeToConsole;
+  }
+
   blankLine() {
-    process.stdout.write('\n');
+    this.write('\n');
   }
 
   clearScreen() {
-    process.stdout.write('\u001B[2J');
+    this.write('\u001B[2J');
   }
 
   clearLine() {
-    process.stdout.write('\u001B[0f');
+    this.write('\u001B[0f');
   }
 
   categoryHeader(header: string) {
-    process.stdout.write(chalk.dim('=== ') + chalk.bold(header) + '\n');
+    this.write(chalk.dim('=== ') + chalk.bold(header) + '\n');
     this.blankLine();
   }
 
   sectionHeader(header: string) {
-    process.stdout.write(this.emphasize(`${chalk.underline(startCase(header))}\n`));
+    this.write(this.emphasize(`${chalk.underline(startCase(header))}\n`));
     this.blankLine();
   }
 
@@ -75,12 +87,12 @@ export class ConsoleWriter {
   }
 
   subHeader(header: string) {
-    process.stdout.write(`${chalk.underline(startCase(header))}\n`);
+    this.write(`${chalk.underline(startCase(header))}\n`);
     this.blankLine();
   }
 
   log(value: string) {
-    process.stdout.write(value);
+    this.write(value);
     this.blankLine();
   }
 
@@ -107,7 +119,7 @@ export class ConsoleWriter {
   }
 
   table(rows: (string | number)[][], headers: string[]) {
-    const table = new tableBuilder({
+    const table = new CliTable3({
       head: headers.map((header) => this.emphasize(chalk.white(header))),
       chars: {
         top: '',

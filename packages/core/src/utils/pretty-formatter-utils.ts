@@ -11,8 +11,7 @@ export function renderEmptyResult(taskResult: Result) {
   };
 }
 
-export function renderLintingSummaryResult(taskResults: Result[]) {
-  let consoleWriter = new ConsoleWriter();
+export function renderLintingSummaryResult(taskResults: Result[], consoleWriter: ConsoleWriter) {
   let groupedTaskResultsByType = groupDataByField(taskResults, 'properties.type');
 
   consoleWriter.section(taskResults[0].properties?.taskDisplayName, () => {

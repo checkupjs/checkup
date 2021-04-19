@@ -1,9 +1,7 @@
 import { Action, CheckupMetadata, ConsoleWriter } from '@checkup/core';
 import { yellow, bold } from 'chalk';
 
-let consoleWriter = new ConsoleWriter();
-
-export function renderActions(actions: Action[]): void {
+export function renderActions(actions: Action[], consoleWriter: ConsoleWriter): void {
   if (actions && actions.length > 0) {
     consoleWriter.categoryHeader('Actions');
     actions.forEach((action: Action) => {
@@ -13,7 +11,7 @@ export function renderActions(actions: Action[]): void {
   }
 }
 
-export function renderInfo(info: CheckupMetadata) {
+export function renderInfo(info: CheckupMetadata, consoleWriter: ConsoleWriter) {
   let { analyzedFilesCount } = info;
   let { name, version, repository } = info.project;
 
@@ -41,7 +39,7 @@ export function renderInfo(info: CheckupMetadata) {
   consoleWriter.blankLine();
 }
 
-export function renderLinesOfCode(info: CheckupMetadata) {
+export function renderLinesOfCode(info: CheckupMetadata, consoleWriter: ConsoleWriter) {
   let { repository } = info.project;
 
   consoleWriter.sectionedBar(
@@ -55,7 +53,7 @@ export function renderLinesOfCode(info: CheckupMetadata) {
   consoleWriter.blankLine();
 }
 
-export function renderCLIInfo(info: CheckupMetadata) {
+export function renderCLIInfo(info: CheckupMetadata, consoleWriter: ConsoleWriter) {
   let { version: cliVersion, configHash } = info.cli;
 
   consoleWriter.dimmed(`checkup v${cliVersion}`);

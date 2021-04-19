@@ -1,22 +1,22 @@
 import { Log } from 'sarif';
 import { ConsoleWriter } from '@checkup/core';
-import { writeOutputFile } from './sarif-file-writer';
+import { writeSarifFile } from './file-writer';
 import { ReportOptions } from './get-formatter';
 
 export default class JsonFormatter {
   options: ReportOptions;
+  consoleWriter: ConsoleWriter;
 
   constructor(options: ReportOptions) {
     this.options = options;
+    this.consoleWriter = new ConsoleWriter();
   }
 
   format(result: Log) {
-    let consoleWriter = new ConsoleWriter();
-
     if (this.options.outputFile) {
-      writeOutputFile(result, this.options.cwd, this.options.outputFile);
+      writeSarifFile(result, this.options.cwd, this.options.outputFile);
     } else {
-      consoleWriter.styledJSON(result);
+      this.consoleWriter.styledJSON(result);
     }
   }
 }

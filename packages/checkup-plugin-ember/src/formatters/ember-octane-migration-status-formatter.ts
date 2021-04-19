@@ -8,8 +8,7 @@ import {
 } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[]) {
-  let consoleWriter = new ConsoleWriter();
+export function format(taskResults: Result[], consoleWriter: ConsoleWriter) {
   consoleWriter.section(taskResults[0].properties?.taskDisplayName, () => {
     consoleWriter.log(
       `${consoleWriter.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`

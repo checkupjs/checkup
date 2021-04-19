@@ -8,9 +8,8 @@ import {
 } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[]) {
+export function format(taskResults: Result[], consoleWriter: ConsoleWriter) {
   let groupedTaskResults = groupDataByField(taskResults, 'message.text');
-  let consoleWriter = new ConsoleWriter();
 
   consoleWriter.section(taskResults[0].properties?.taskDisplayName, () => {
     groupedTaskResults.forEach((resultGroup: Result[]) => {

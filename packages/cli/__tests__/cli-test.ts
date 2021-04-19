@@ -162,9 +162,22 @@ describe('cli-test', () => {
       join(project.baseDir, 'my-checkup-file.json'),
     ]);
 
-    let outputPath = result.stdout.trim();
+    let output = result.stdout.trim();
+    let outputPath = output.split(':')[1].trim(); // output will be a string followed by ':' then the file path
 
     expect(outputPath).toMatch(/^(.*)\/my-checkup-file.json/);
+    expect(existsSync(outputPath)).toEqual(true);
+
+    unlinkSync(outputPath);
+  });
+
+  it('should output a txt file in a custom directory if the pretty format and output-file options are provided', async () => {
+    let result = await run(['run', '.', '--format', 'pretty', `--output-file`, 'my-checkup-file']);
+
+    let output = result.stdout.trim();
+    let outputPath = output.split(':')[1].trim(); // output will be a string followed by ':' then the file path
+
+    expect(outputPath).toMatch(/^(.*)\/my-checkup-file.txt/);
     expect(existsSync(outputPath)).toEqual(true);
 
     unlinkSync(outputPath);
