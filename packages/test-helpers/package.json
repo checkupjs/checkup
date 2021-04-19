@@ -6,6 +6,7 @@
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@checkup/core": "1.0.0-beta.2",
+    "@microsoft/jest-sarif": "https://gitpkg.now.sh/microsoft/sarif-js-sdk/packages/jest-sarif?main",
     "fixturify-project": "^2.1.0",
     "handlebars": "^4.7.6",
     "json-stable-stringify": "^1.0.1",
