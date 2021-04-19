@@ -45,36 +45,34 @@ export default class PluginGenerator extends BaseGenerator {
       repository: '',
     };
 
-    if (this.options.defaults) {
-      this.answers = defaults;
-    } else {
-      this.answers = await this.prompt([
-        {
-          type: 'confirm',
-          name: 'typescript',
-          message: 'TypeScript',
-          default: () => true,
-        },
-        {
-          type: 'input',
-          name: 'description',
-          message: 'Description',
-          default: 'Checkup plugin',
-        },
-        {
-          type: 'input',
-          name: 'author',
-          message: 'Author',
-          default: '',
-        },
-        {
-          type: 'input',
-          name: 'repository',
-          message: 'Repository',
-          default: '',
-        },
-      ]);
-    }
+    this.answers = this.options.defaults
+      ? defaults
+      : await this.prompt([
+          {
+            type: 'confirm',
+            name: 'typescript',
+            message: 'TypeScript',
+            default: () => true,
+          },
+          {
+            type: 'input',
+            name: 'description',
+            message: 'Description',
+            default: 'Checkup plugin',
+          },
+          {
+            type: 'input',
+            name: 'author',
+            message: 'Author',
+            default: '',
+          },
+          {
+            type: 'input',
+            name: 'repository',
+            message: 'Repository',
+            default: '',
+          },
+        ]);
 
     const checkupVersion = readJsonSync(join(__dirname, '../../package.json')).version;
     this.options.checkupVersion = checkupVersion;

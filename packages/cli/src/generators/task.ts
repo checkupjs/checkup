@@ -43,36 +43,34 @@ export default class TaskGenerator extends BaseGenerator {
       group: '',
     };
 
-    if (this.options.defaults) {
-      this.answers = defaults;
-    } else {
-      this.answers = await this.prompt([
-        {
-          type: 'confirm',
-          name: 'typescript',
-          message: 'TypeScript',
-          default: () => true,
-        },
-        {
-          type: 'list',
-          name: 'commandType',
-          message: 'Select the command this task is to be run under.',
-          default: 'info',
-          choices: ['run', 'validate'],
-        },
-        {
-          type: 'input',
-          name: 'category',
-          message: `Enter a task category. (Categories are used to group similar tasks together to help organize the results. eg: 'best practices', 'testing', etc.)`,
-        },
-        {
-          type: 'input',
-          name: 'group',
-          message: `(optional) Enter a task group. (Groups allow you to further group like tasks under categories)`,
-          optional: true,
-        },
-      ]);
-    }
+    this.answers = this.options.defaults
+      ? defaults
+      : await this.prompt([
+          {
+            type: 'confirm',
+            name: 'typescript',
+            message: 'TypeScript',
+            default: () => true,
+          },
+          {
+            type: 'list',
+            name: 'commandType',
+            message: 'Select the command this task is to be run under.',
+            default: 'info',
+            choices: ['run', 'validate'],
+          },
+          {
+            type: 'input',
+            name: 'category',
+            message: `Enter a task category. (Categories are used to group similar tasks together to help organize the results. eg: 'best practices', 'testing', etc.)`,
+          },
+          {
+            type: 'input',
+            name: 'group',
+            message: `(optional) Enter a task group. (Groups allow you to further group like tasks under categories)`,
+            optional: true,
+          },
+        ]);
 
     this.options.pascalCaseName = _.upperFirst(_.camelCase(this.options.name));
     this.options.taskClass = `${this.options.pascalCaseName}Task`;

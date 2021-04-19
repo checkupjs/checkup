@@ -92,6 +92,8 @@ export default class TaskListImpl implements RegisterableTaskList {
     taskName: TaskName,
     predicate: (task: Task) => boolean = (task) => task.taskName === taskName
   ): Task | undefined {
+    // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193
+    // eslint-disable-next-line unicorn/no-array-callback-reference
     return this.getTasks().find(predicate);
   }
 

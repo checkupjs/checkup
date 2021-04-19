@@ -108,32 +108,6 @@ describe('eslint-disable-task', () => {
           },
           "ruleId": "eslint-disables",
         },
-        Object {
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "index.js",
-                },
-                "region": Object {
-                  "startColumn": 19,
-                  "startLine": 5,
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "eslint-disable usages",
-          },
-          "occurrenceCount": 1,
-          "properties": Object {
-            "category": "linting",
-            "group": "disabled-lint-rules",
-            "lintRuleId": "no-eslint-disable",
-            "taskDisplayName": "Number of eslint-disable Usages",
-          },
-          "ruleId": "eslint-disables",
-        },
       ]
     `);
   });
@@ -154,10 +128,10 @@ describe('eslint-disable-task', () => {
     expect(actions![0]).toMatchInlineSnapshot(`
       Object {
         "defaultThreshold": 2,
-        "details": "3 usages of eslint-disable",
-        "input": 3,
+        "details": "2 usages of eslint-disable",
+        "input": 2,
         "items": Array [
-          "Total eslint-disable usages: 3",
+          "Total eslint-disable usages: 2",
         ],
         "name": "reduce-eslint-disable-usages",
         "summary": "Reduce number of eslint-disable usages",

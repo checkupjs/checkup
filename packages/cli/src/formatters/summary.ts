@@ -17,7 +17,7 @@ export default class SummaryFormatter {
   }
 
   format(result: Log) {
-    let { cwd } = this.options;
+    let { cwd, outputFile } = this.options;
     let { rules } = result.runs[0].tool.driver;
     let metaData = result.properties as CheckupMetadata;
 
@@ -31,7 +31,7 @@ export default class SummaryFormatter {
         this.consoleWriter.log(`${success} ${taskName}`);
       });
 
-    writeResultFile(result, cwd, this.options.outputFile);
+    writeResultFile(result, cwd, outputFile);
 
     renderActions(result.properties?.actions, this.formatArgs);
 

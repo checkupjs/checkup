@@ -47,7 +47,7 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
 
       return {
         visitComment: function (path: any) {
-          if (path.value.value.trim().match(ESLINT_DISABLE_REGEX)) {
+          if (ESLINT_DISABLE_REGEX.test(path.value.value.trim())) {
             self.add(path.value);
           }
 

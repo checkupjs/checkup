@@ -12,8 +12,8 @@ export function renderActions(actions: Action[], formatArgs: FormatArgs): void {
 }
 
 export function renderInfo(info: CheckupMetadata, formatArgs: FormatArgs) {
-  let { analyzedFilesCount } = info;
-  let { name, version, repository } = info.project;
+  let { analyzedFilesCount, project } = info;
+  let { name, version, repository } = project;
 
   let analyzedFilesMessage =
     repository.totalFiles !== analyzedFilesCount

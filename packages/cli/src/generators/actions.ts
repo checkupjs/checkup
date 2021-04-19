@@ -35,23 +35,21 @@ export default class ActionsGenerator extends BaseGenerator {
       typescript: true,
     };
 
-    if (this.options.defaults) {
-      this.answers = defaults;
-    } else {
-      this.answers = await this.prompt([
-        {
-          type: 'confirm',
-          name: 'typescript',
-          message: 'TypeScript',
-          default: () => true,
-        },
-        {
-          type: 'input',
-          name: 'taskName',
-          message: `Enter the task name that these actions will be associated with (the string value in the taskName property of the task class).`,
-        },
-      ]);
-    }
+    this.answers = this.options.defaults
+      ? defaults
+      : await this.prompt([
+          {
+            type: 'confirm',
+            name: 'typescript',
+            message: 'TypeScript',
+            default: () => true,
+          },
+          {
+            type: 'input',
+            name: 'taskName',
+            message: `Enter the task name that these actions will be associated with (the string value in the taskName property of the task class).`,
+          },
+        ]);
 
     this.options.taskName = this.answers.taskName;
     this.options.pascalCaseName = _.upperFirst(_.camelCase(this.options.name));
