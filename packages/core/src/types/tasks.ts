@@ -1,11 +1,10 @@
 import { PackageJson } from 'type-fest';
 import { Result } from 'sarif';
 import { FilePathArray } from '../utils/file-path-array';
-import { ConsoleWriter } from '../utils/console-writer';
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 
 import { CheckupConfig, TaskConfig } from './config';
-import { RunOptions } from './cli';
+import { RunOptions, FormatArgs } from './cli';
 
 export type RegisterTaskArgs = {
   context: TaskContext;
@@ -14,7 +13,7 @@ export type RegisterTaskArgs = {
 
 export type TaskActionsEvaluator = (taskResults: Result[], taskConfig: TaskConfig) => Action[];
 
-export type TaskFormatter = (taskResults: Result[], consoleWriter: ConsoleWriter) => void;
+export type TaskFormatter = (taskResults: Result[], formatArgs: FormatArgs) => void;
 
 interface TaskList {
   registerTask(task: Task): void;

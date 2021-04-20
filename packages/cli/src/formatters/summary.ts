@@ -1,17 +1,19 @@
-import { CheckupMetadata, ConsoleWriter } from '@checkup/core';
+import { CheckupMetadata, ConsoleWriter, FormatArgs } from '@checkup/core';
 import { Log } from 'sarif';
 import { success } from 'log-symbols';
 import { renderActions, renderCLIInfo, renderInfo } from './formatter-utils';
-import { writeSarifFile } from './file-writer';
+import { writeResultFile } from './file-writer';
 import { ReportOptions } from './get-formatter';
 
 export default class SummaryFormatter {
   options: ReportOptions;
   consoleWriter: ConsoleWriter;
+  formatArgs: FormatArgs;
 
   constructor(options: ReportOptions) {
     this.options = options;
     this.consoleWriter = new ConsoleWriter();
+    this.formatArgs = { writer: this.consoleWriter };
   }
 
   format(result: Log) {
@@ -19,7 +21,7 @@ export default class SummaryFormatter {
     let { rules } = result.runs[0].tool.driver;
     let metaData = result.properties as CheckupMetadata;
 
-    renderInfo(metaData, this.consoleWriter);
+    renderInfo(metaData, this.formatArgs);
 
     this.consoleWriter.log('Checkup ran the following task(s) successfully:');
     rules!
@@ -29,12 +31,12 @@ export default class SummaryFormatter {
         this.consoleWriter.log(`${success} ${taskName}`);
       });
 
-    writeSarifFile(result, cwd, this.options.outputFile);
+    writeResultFile(result, cwd, this.options.outputFile);
 
-    renderActions(result.properties?.actions, this.consoleWriter);
+    renderActions(result.properties?.actions, this.formatArgs);
 
     this.consoleWriter.blankLine();
 
-    renderCLIInfo(metaData, this.consoleWriter);
+    renderCLIInfo(metaData, this.formatArgs);
   }
 }

@@ -9,27 +9,30 @@ import {
   reduceResults,
   renderEmptyResult,
   ErrorKind,
+  FormatArgs,
 } from '@checkup/core';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
 import { Invocation, Log, Notification, Result, Run } from 'sarif';
 import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './formatter-utils';
 import { ReportOptions } from './get-formatter';
-import { writeTxtFile } from './file-writer';
+import { writeResultFile } from './file-writer';
 export default class PrettyFormatter {
   options: ReportOptions;
   consoleWriter: ConsoleWriter;
+  formatArgs: FormatArgs;
 
   constructor(options: ReportOptions) {
     this.options = options;
     this.consoleWriter = new ConsoleWriter(options.outputFile !== '' ? 'file' : 'console');
+    this.formatArgs = { writer: this.consoleWriter };
   }
 
   format(result: Log) {
     let metaData = result.properties as CheckupMetadata;
 
-    renderInfo(metaData, this.consoleWriter);
-    renderLinesOfCode(metaData, this.consoleWriter);
+    renderInfo(metaData, this.formatArgs);
+    renderLinesOfCode(metaData, this.formatArgs);
 
     result.runs.forEach((run: Run) => {
       this.renderTaskResults(run.results);
@@ -38,16 +41,16 @@ export default class PrettyFormatter {
       });
     });
 
-    renderActions(result.properties?.actions, this.consoleWriter);
+    renderActions(result.properties?.actions, this.formatArgs);
 
     if (process.env.CHECKUP_TIMING === '1') {
       this.renderTimings(result.properties?.timings);
     }
 
-    renderCLIInfo(metaData, this.consoleWriter);
+    renderCLIInfo(metaData, this.formatArgs);
 
     if (this.options.outputFile) {
-      writeTxtFile(this.consoleWriter.outputString, this.options.cwd, this.options.outputFile);
+      writeResultFile(this.consoleWriter.outputString, this.options.cwd, this.options.outputFile);
     }
   }
 
@@ -67,7 +70,7 @@ export default class PrettyFormatter {
 
         let reporter = this.getTaskReporter(taskResultGroup);
 
-        reporter(taskResultGroup, this.consoleWriter);
+        reporter(taskResultGroup, this.formatArgs);
       });
     }
     this.consoleWriter.blankLine();

@@ -1,23 +1,23 @@
 import {
+  FormatArgs,
   groupDataByField,
   NO_RESULTS_FOUND,
   reduceResults,
-  sumOccurrences,
-  ConsoleWriter,
   renderEmptyResult,
+  sumOccurrences,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[], consoleWriter: ConsoleWriter) {
+export function format(taskResults: Result[], formatArgs: FormatArgs) {
   let groupedTaskResults = groupDataByField(taskResults, 'message.text');
 
-  consoleWriter.section(taskResults[0].properties?.taskDisplayName, () => {
+  formatArgs.writer.section(taskResults[0].properties?.taskDisplayName, () => {
     groupedTaskResults.forEach((resultGroup: Result[]) => {
       let groupedTaskResultsByMethod = reduceResults(
         groupDataByField(resultGroup, 'properties.method')
       );
-      consoleWriter.subHeader(groupedTaskResultsByMethod[0].message.text as string);
-      consoleWriter.valuesList(
+      formatArgs.writer.subHeader(groupedTaskResultsByMethod[0].message.text as string);
+      formatArgs.writer.valuesList(
         groupedTaskResultsByMethod.map((result) => {
           return result.message.text === NO_RESULTS_FOUND
             ? renderEmptyResult(result)
@@ -27,11 +27,11 @@ export function format(taskResults: Result[], consoleWriter: ConsoleWriter) {
               };
         })
       );
-      consoleWriter.blankLine();
+      formatArgs.writer.blankLine();
     });
 
-    consoleWriter.subHeader('tests by type');
-    consoleWriter.sectionedBar(
+    formatArgs.writer.subHeader('tests by type');
+    formatArgs.writer.sectionedBar(
       groupedTaskResults.map((results: Result[]) => {
         return {
           title: results[0].message.text || '',

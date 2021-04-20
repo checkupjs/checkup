@@ -1,3 +1,4 @@
+import { ConsoleWriter } from '../utils/console-writer';
 import { Task, TaskContext, TaskName, TaskActionsEvaluator, TaskFormatter } from './tasks';
 import { ParserName, CreateParser, ParserOptions, Parser, ParserReport } from './parsers';
 
@@ -47,4 +48,8 @@ export interface RegistrationProviderOptions {
 }
 export interface RegisterableTaskList {
   registerTask(task: Task): void;
+}
+
+export interface FormatArgs {
+  writer: ConsoleWriter;
 }

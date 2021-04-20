@@ -163,7 +163,7 @@ describe('cli-test', () => {
     ]);
 
     let output = result.stdout.trim();
-    let outputPath = output.split(':')[1].trim(); // output will be a string followed by ':' then the file path
+    let outputPath = output.split('\n')[1]; // output will be a string followed by newline then the file path
 
     expect(outputPath).toMatch(/^(.*)\/my-checkup-file.json/);
     expect(existsSync(outputPath)).toEqual(true);
@@ -175,7 +175,7 @@ describe('cli-test', () => {
     let result = await run(['run', '.', '--format', 'pretty', `--output-file`, 'my-checkup-file']);
 
     let output = result.stdout.trim();
-    let outputPath = output.split(':')[1].trim(); // output will be a string followed by ':' then the file path
+    let outputPath = output.split('\n')[1]; // output will be a string followed by newline then the file path
 
     expect(outputPath).toMatch(/^(.*)\/my-checkup-file.txt/);
     expect(existsSync(outputPath)).toEqual(true);

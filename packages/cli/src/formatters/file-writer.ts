@@ -1,6 +1,6 @@
 import { isAbsolute, dirname, resolve, extname } from 'path';
 import { Log } from 'sarif';
-import { writeJsonSync, existsSync, mkdirpSync, writeFileSync } from 'fs-extra';
+import { existsSync, mkdirpSync, writeFileSync, writeJsonSync } from 'fs-extra';
 import { ConsoleWriter, todayFormat } from '@checkup/core';
 import { yellow } from 'chalk';
 
@@ -9,28 +9,19 @@ const stripAnsi = require('strip-ansi');
 export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${todayFormat()}`;
 const consoleWriter = new ConsoleWriter();
 
-export function writeSarifFile(
-  result: Log,
+export function writeResultFile(
+  result: Log | string,
   cwd: string,
   outputFile: string = DEFAULT_OUTPUT_FILENAME
 ) {
-  let outputPath = getOutputPath(cwd, outputFile, 'sarif');
+  let fileType: 'sarif' | 'txt' = typeof result === 'string' ? 'txt' : 'sarif';
+  let outputPath = getOutputPath(cwd, outputFile, fileType);
 
-  writeJsonSync(outputPath, result);
-
-  consoleWriter.blankLine();
-  consoleWriter.log('Results have been saved to the following file:');
-  consoleWriter.log(yellow(outputPath));
-}
-
-export function writeTxtFile(
-  result: string,
-  cwd: string,
-  outputFile: string = DEFAULT_OUTPUT_FILENAME
-) {
-  let outputPath = getOutputPath(cwd, outputFile, 'txt');
-
-  writeFileSync(outputPath, stripAnsi(result));
+  if (fileType === 'txt') {
+    writeFileSync(outputPath, stripAnsi(result));
+  } else {
+    writeJsonSync(outputPath, result);
+  }
 
   consoleWriter.blankLine();
   consoleWriter.log('Results have been saved to the following file:');

@@ -1,6 +1,6 @@
 import { Log } from 'sarif';
 import { ConsoleWriter } from '@checkup/core';
-import { writeSarifFile } from './file-writer';
+import { writeResultFile } from './file-writer';
 import { ReportOptions } from './get-formatter';
 
 export default class JsonFormatter {
@@ -14,7 +14,7 @@ export default class JsonFormatter {
 
   format(result: Log) {
     if (this.options.outputFile) {
-      writeSarifFile(result, this.options.cwd, this.options.outputFile);
+      writeResultFile(result, this.options.cwd, this.options.outputFile);
     } else {
       this.consoleWriter.styledJSON(result);
     }

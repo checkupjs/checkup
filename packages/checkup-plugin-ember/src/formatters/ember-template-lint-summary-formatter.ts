@@ -1,6 +1,6 @@
-import { ConsoleWriter, renderLintingSummaryResult } from '@checkup/core';
+import { FormatArgs, renderLintingSummaryResult } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[], consoleWriter: ConsoleWriter) {
-  renderLintingSummaryResult(taskResults, consoleWriter);
+export function format(taskResults: Result[], formatArgs: FormatArgs) {
+  renderLintingSummaryResult(taskResults, formatArgs);
 }

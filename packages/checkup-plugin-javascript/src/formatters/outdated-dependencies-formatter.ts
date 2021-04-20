@@ -1,9 +1,9 @@
-import { NO_RESULTS_FOUND, sumOccurrences, ConsoleWriter, renderEmptyResult } from '@checkup/core';
+import { NO_RESULTS_FOUND, sumOccurrences, renderEmptyResult, FormatArgs } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[], consoleWriter: ConsoleWriter) {
-  consoleWriter.section(taskResults[0].properties?.taskDisplayName, () => {
-    consoleWriter.sectionedBar(
+export function format(taskResults: Result[], formatArgs: FormatArgs) {
+  formatArgs.writer.section(taskResults[0].properties?.taskDisplayName, () => {
+    formatArgs.writer.sectionedBar(
       taskResults.map((result: Result) => {
         return result.message.text === NO_RESULTS_FOUND
           ? renderEmptyResult(result)

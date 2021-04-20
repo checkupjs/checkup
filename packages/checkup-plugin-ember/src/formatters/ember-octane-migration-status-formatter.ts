@@ -3,17 +3,17 @@ import {
   NO_RESULTS_FOUND,
   reduceResults,
   sumOccurrences,
-  ConsoleWriter,
+  FormatArgs,
   renderEmptyResult,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[], consoleWriter: ConsoleWriter) {
-  consoleWriter.section(taskResults[0].properties?.taskDisplayName, () => {
-    consoleWriter.log(
-      `${consoleWriter.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`
+export function format(taskResults: Result[], formatArgs: FormatArgs) {
+  formatArgs.writer.section(taskResults[0].properties?.taskDisplayName, () => {
+    formatArgs.writer.log(
+      `${formatArgs.writer.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`
     );
-    consoleWriter.blankLine();
+    formatArgs.writer.blankLine();
 
     let groupedTaskResults = groupDataByField(taskResults, 'properties.resultGroup');
 
@@ -22,8 +22,8 @@ export function format(taskResults: Result[], consoleWriter: ConsoleWriter) {
         groupDataByField(resultGroup, 'properties.lintRuleId')
       );
 
-      consoleWriter.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
-      consoleWriter.valuesList(
+      formatArgs.writer.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
+      formatArgs.writer.valuesList(
         groupedTaskResultsByLintRuleId.map((result) => {
           return result.message.text === NO_RESULTS_FOUND
             ? renderEmptyResult(result)
@@ -34,7 +34,7 @@ export function format(taskResults: Result[], consoleWriter: ConsoleWriter) {
         }),
         'violations'
       );
-      consoleWriter.blankLine();
+      formatArgs.writer.blankLine();
     });
   });
 }
