@@ -146,6 +146,8 @@ export default class CheckupTaskRunner {
       let evaluators = getRegisteredActions();
 
       for (let [taskName, evaluator] of evaluators) {
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193
+        // eslint-disable-next-line unicorn/no-array-callback-reference
         let task = this.tasks.find(taskName);
 
         let taskResult = this.taskResults.filter((result: Result) => {

@@ -33,8 +33,10 @@ export default class CheckupError extends Error {
 
     let details: string[] = [];
 
-    details.push(`${red('Checkup Error')}: ${this.message}`);
-    details.push(`${this.details.callToAction(this.options)}`);
+    details.push(
+      `${red('Checkup Error')}: ${this.message}`,
+      `${this.details.callToAction(this.options)}`
+    );
 
     if (ci.isCI) {
       return details.join('\n');
@@ -53,11 +55,13 @@ export default class CheckupError extends Error {
     let logOutput: string[] = [];
     let version = readJsonSync(join(__dirname, '../../package.json')).version;
 
-    logOutput.push(`Checkup v${version}`);
-    logOutput.push('');
-    logOutput.push(stripAnsi(details.join('\n')));
-    logOutput.push('');
-    logOutput.push(clean(this.stack || 'No stack available'));
+    logOutput.push(
+      `Checkup v${version}`,
+      '',
+      stripAnsi(details.join('\n')),
+      '',
+      clean(this.stack || 'No stack available')
+    );
 
     ensureDirSync(logPath);
 

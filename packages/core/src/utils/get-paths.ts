@@ -113,10 +113,8 @@ function resolveFilePaths(filePaths: string[], basePath: string): FilePathArray 
   return new FilePathArray(...filePaths);
 }
 
-if (require.main === module) {
-  if (!isMainThread) {
-    parentPort.postMessage(
-      getFilePaths(workerData.basePath, workerData.globsOrPaths, workerData.excludePaths)
-    );
-  }
+if (require.main === module && !isMainThread) {
+  parentPort.postMessage(
+    getFilePaths(workerData.basePath, workerData.globsOrPaths, workerData.excludePaths)
+  );
 }

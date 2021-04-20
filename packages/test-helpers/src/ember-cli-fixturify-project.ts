@@ -65,7 +65,7 @@ export default class EmberCLIFixturifyProject extends CheckupFixturifyProject {
     addon.paths = addon.paths || [];
     const addonPath = `lib/${name}`;
 
-    if (addon.paths.find((path: string) => path.toLowerCase() === addonPath.toLowerCase())) {
+    if (addon.paths.some((path: string) => path.toLowerCase() === addonPath.toLowerCase())) {
       throw new Error(`project: ${this.name} already contains the in-repo-addon: ${name}`);
     }
 

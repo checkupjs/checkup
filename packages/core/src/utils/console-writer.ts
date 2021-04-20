@@ -210,8 +210,7 @@ export class ConsoleWriter {
   colors(range: number = 70) {
     const ANSI_CODE_START = 33;
 
-    // eslint-disable-next-line unicorn/no-useless-undefined
-    return new Array(range).fill(undefined).map((_, i) => chalk.ansi256(i + ANSI_CODE_START));
+    return Array.from({ length: range }).map((_, i) => chalk.ansi256(i + ANSI_CODE_START));
   }
 
   getColor(color: string | chalk.Chalk) {
