@@ -236,7 +236,7 @@ describe('TaskList', () => {
 
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
-    expect(taskList.find('foo')).toBeUndefined();
+    expect(taskList.findTask('foo')).toBeUndefined();
   });
 
   it('findTask returns task instance if task exists with that name', () => {
@@ -244,7 +244,7 @@ describe('TaskList', () => {
 
     taskList.registerTask(new InsightsTaskHigh(getTaskContext()));
 
-    expect(taskList.find('insights-task-high')).toBeDefined();
+    expect(taskList.findTask('insights-task-high')).toBeDefined();
   });
 
   it('findAllByTaskName returns task instances if tasks exists with that name', () => {
