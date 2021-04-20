@@ -15,6 +15,15 @@ describe('consoleWriter', function () {
       mockStdout.stop();
     });
 
+    it('should append to outputString if the file option is set', function () {
+      let consoleWriterToFile = new ConsoleWriter('file');
+
+      consoleWriterToFile.log('whatever');
+
+      expect(mockStdout.output).toEqual('');
+      expect(consoleWriterToFile.outputString.trim()).toEqual('whatever');
+    });
+
     it('should write a blankLine()', function () {
       consoleWriter.blankLine();
       expect(mockStdout.output).toMatchInlineSnapshot(`
@@ -95,11 +104,10 @@ describe('consoleWriter', function () {
         ],
         ['fruits', 'veggies', 'carbs']
       );
-      expect(mockStdout.output).toMatchInlineSnapshot(`
+      expect(mockStdout.output.trim()).toMatchInlineSnapshot(`
         "fruits veggies carbs
         apples peas    bread
-        grapes carrots rice 
-        "
+        grapes carrots rice"
       `);
     });
 
@@ -111,11 +119,10 @@ describe('consoleWriter', function () {
         ],
         50
       );
-      expect(mockStdout.output).toMatchInlineSnapshot(`
+      expect(mockStdout.output.trim()).toMatchInlineSnapshot(`
         "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 50 
         ■ tables (39)
-        ■ books (36)
-        "
+        ■ books (36)"
       `);
     });
 
@@ -143,11 +150,6 @@ describe('consoleWriter', function () {
         }
         "
       `);
-    });
-
-    it('should write an error()', function () {
-      consoleWriter.error({ name: 'BROKEN!', message: 'something broke' });
-      expect(mockStdout.output).toMatchInlineSnapshot(`""`);
     });
   });
 

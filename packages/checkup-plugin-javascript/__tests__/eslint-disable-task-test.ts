@@ -12,7 +12,6 @@ describe('eslint-disable-task', () => {
     project = new CheckupProject('foo', '0.0.0');
     project.files['index.js'] = `
     // eslint-disable-line no-eval
-    /* eslint-disable */
 
     function foo(obj) { // adding this here because without babel parser, recast fails on this
       return {     // eslint-disable-line
@@ -48,8 +47,41 @@ describe('eslint-disable-task', () => {
       })
     ).run();
 
-    expect(result.sort()).toMatchInlineSnapshot(`
+    expect(
+      result.sort((a, b) =>
+        (a.locations?.[0]?.physicalLocation?.region?.startColumn || 0) >
+        (b.locations?.[0]?.physicalLocation?.region?.startColumn || 0)
+          ? 1
+          : -1
+      )
+    ).toMatchInlineSnapshot(`
       Array [
+        Object {
+          "locations": Array [
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "index.js",
+                },
+                "region": Object {
+                  "startColumn": 4,
+                  "startLine": 2,
+                },
+              },
+            },
+          ],
+          "message": Object {
+            "text": "eslint-disable usages",
+          },
+          "occurrenceCount": 1,
+          "properties": Object {
+            "category": "linting",
+            "group": "disabled-lint-rules",
+            "lintRuleId": "no-eslint-disable",
+            "taskDisplayName": "Number of eslint-disable Usages",
+          },
+          "ruleId": "eslint-disables",
+        },
         Object {
           "locations": Array [
             Object {
@@ -85,59 +117,7 @@ describe('eslint-disable-task', () => {
                 },
                 "region": Object {
                   "startColumn": 19,
-                  "startLine": 6,
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "eslint-disable usages",
-          },
-          "occurrenceCount": 1,
-          "properties": Object {
-            "category": "linting",
-            "group": "disabled-lint-rules",
-            "lintRuleId": "no-eslint-disable",
-            "taskDisplayName": "Number of eslint-disable Usages",
-          },
-          "ruleId": "eslint-disables",
-        },
-        Object {
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "index.js",
-                },
-                "region": Object {
-                  "startColumn": 4,
-                  "startLine": 2,
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "eslint-disable usages",
-          },
-          "occurrenceCount": 1,
-          "properties": Object {
-            "category": "linting",
-            "group": "disabled-lint-rules",
-            "lintRuleId": "no-eslint-disable",
-            "taskDisplayName": "Number of eslint-disable Usages",
-          },
-          "ruleId": "eslint-disables",
-        },
-        Object {
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "index.js",
-                },
-                "region": Object {
-                  "startColumn": 4,
-                  "startLine": 3,
+                  "startLine": 5,
                 },
               },
             },
@@ -174,10 +154,10 @@ describe('eslint-disable-task', () => {
     expect(actions![0]).toMatchInlineSnapshot(`
       Object {
         "defaultThreshold": 2,
-        "details": "4 usages of eslint-disable",
-        "input": 4,
+        "details": "3 usages of eslint-disable",
+        "input": 3,
         "items": Array [
-          "Total eslint-disable usages: 4",
+          "Total eslint-disable usages: 3",
         ],
         "name": "reduce-eslint-disable-usages",
         "summary": "Reduce number of eslint-disable usages",
