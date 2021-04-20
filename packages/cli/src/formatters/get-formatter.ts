@@ -5,7 +5,7 @@ import JsonFormatter from './json';
 
 export interface ReportOptions {
   cwd: string;
-  format: string;
+  format: OutputFormat;
   outputFile?: string;
 }
 

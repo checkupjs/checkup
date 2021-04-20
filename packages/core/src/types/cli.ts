@@ -2,20 +2,6 @@ import { ConsoleWriter } from '../utils/console-writer';
 import { Task, TaskContext, TaskName, TaskActionsEvaluator, TaskFormatter } from './tasks';
 import { ParserName, CreateParser, ParserOptions, Parser, ParserReport } from './parsers';
 
-export type RunFlags = {
-  version: void;
-  help: void;
-  config: string | undefined;
-  cwd: string;
-  category: string[] | undefined;
-  group: string[] | undefined;
-  task: string[] | undefined;
-  'list-tasks': boolean;
-  format: string;
-  'output-file': string;
-  'exclude-paths': string[] | undefined;
-};
-
 export type RunOptions = {
   cwd: string;
   config?: string;
@@ -23,7 +9,6 @@ export type RunOptions = {
   excludePaths?: string[];
   groups?: string[];
   listTasks?: boolean;
-  outputFile: string;
   paths: string[];
   tasks?: string[];
 };
