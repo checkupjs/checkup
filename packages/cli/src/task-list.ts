@@ -79,7 +79,7 @@ export default class TaskListImpl implements RegisterableTaskList {
    * @param taskName The name of the task to check for existence of
    */
   hasTask(taskName: TaskName): boolean {
-    return this.find(taskName) !== undefined;
+    return this.findTask(taskName) !== undefined;
   }
 
   /**
@@ -88,13 +88,11 @@ export default class TaskListImpl implements RegisterableTaskList {
    * @method findTask
    * @param taskName The name of the task to find
    */
-  find(
+  findTask(
     taskName: TaskName,
     predicate: (task: Task) => boolean = (task) => task.taskName === taskName
   ): Task | undefined {
-    // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/1193
-    // eslint-disable-next-line unicorn/no-array-callback-reference
-    return this.getTasks().find(predicate);
+    return this.getTasks().find((task) => predicate(task));
   }
 
   /**
@@ -177,7 +175,7 @@ export default class TaskListImpl implements RegisterableTaskList {
    */
   async runTask(taskName: TaskName): Promise<[Result[] | undefined, TaskListError[]]> {
     let result: Result[] | undefined;
-    let task: Task | undefined = this.find(taskName);
+    let task: Task | undefined = this.findTask(taskName);
 
     if (task === undefined) {
       throw new CheckupError(ErrorKind.TasksNotFound);
