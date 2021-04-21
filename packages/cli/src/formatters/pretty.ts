@@ -24,7 +24,7 @@ export default class PrettyFormatter {
 
   constructor(options: ReportOptions) {
     this.options = options;
-    this.consoleWriter = new ConsoleWriter(options.outputFile !== '' ? 'file' : 'console');
+    this.consoleWriter = new ConsoleWriter(options.outputFile ? 'file' : 'console');
     this.formatArgs = { writer: this.consoleWriter };
   }
 
