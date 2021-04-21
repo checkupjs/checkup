@@ -1,7 +1,7 @@
 {
   "name": "@checkup/cli",
   "description": "A health checkup for your project",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bin": {
     "checkup": "./bin/checkup.js"
@@ -11,7 +11,7 @@
     "@babel/parser": "^7.13.13",
     "@babel/traverse": "^7.12.12",
     "@babel/types": "7.13.14",
-    "@checkup/core": "1.0.0-beta.3",
+    "@checkup/core": "1.0.0-beta.4",
     "chalk": "^4.0.0",
     "clean-stack": "^3.0.1",
     "convert-hrtime": "^3.0.0",
@@ -40,7 +40,7 @@
     "yeoman-generator": "^4.12.0"
   },
   "devDependencies": {
-    "@checkup/test-helpers": "1.0.0-beta.3",
+    "@checkup/test-helpers": "1.0.0-beta.4",
     "@types/sarif": "^2.1.3",
     "@types/sloc": "^0.2.0",
     "@types/yeoman-environment": "^2.3.3",

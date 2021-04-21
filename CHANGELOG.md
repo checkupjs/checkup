@@ -22,6 +22,29 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.4 (2021-04-21)
+
+#### :boom: Breaking Change
+* `cli`, `core`, `test-helpers`
+  * [#944](https://github.com/checkupjs/checkup/pull/944) Removing output-file from CheckupTaskRunner ([@carakessler](https://github.com/carakessler))
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#941](https://github.com/checkupjs/checkup/pull/941) Adding functionality for pretty formatter to write to a file ([@carakessler](https://github.com/carakessler))
+
+#### :house: Internal
+* `cli`, `core`, `test-helpers`
+  * [#944](https://github.com/checkupjs/checkup/pull/944) Removing output-file from CheckupTaskRunner ([@carakessler](https://github.com/carakessler))
+* `cli`
+  * [#943](https://github.com/checkupjs/checkup/pull/943) Renaming find to findTask to fix static analysis issue ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#940](https://github.com/checkupjs/checkup/pull/940) Pulling out cli-ux ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v1.0.0-beta.3 (2021-04-15)
 
 #### :boom: Breaking Change
