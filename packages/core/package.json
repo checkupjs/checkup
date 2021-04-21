@@ -1,7 +1,7 @@
 {
   "name": "@checkup/core",
   "description": "Checkup's core library",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
