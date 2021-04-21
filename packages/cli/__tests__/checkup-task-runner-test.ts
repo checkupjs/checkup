@@ -55,13 +55,11 @@ describe('checkup-task-runner', () => {
     let taskRunner = new CheckupTaskRunner({
       paths: [],
       cwd: '.',
-      outputFile: '',
     });
 
     expect(taskRunner.options).toEqual({
       paths: [],
       cwd: '.',
-      outputFile: '',
     });
   });
 
@@ -69,7 +67,6 @@ describe('checkup-task-runner', () => {
     let taskRunner = new CheckupTaskRunner({
       paths: [],
       cwd: project.baseDir,
-      outputFile: '',
     });
 
     expect(await taskRunner.run()).toMatchObject(sarifLogMatcher);
@@ -79,7 +76,6 @@ describe('checkup-task-runner', () => {
     let taskRunner = new CheckupTaskRunner({
       paths: ['.'],
       cwd: project.baseDir,
-      outputFile: '',
     });
 
     taskRunner.tasks.registerTask(new FileCountTask(getTaskContext()));

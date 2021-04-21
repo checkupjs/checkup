@@ -1,5 +1,4 @@
 import {
-  RunFlags,
   CheckupConfig,
   FilePathArray,
   TaskContext,
@@ -18,7 +17,6 @@ import { CONFIG_SCHEMA_URL } from '@checkup/core';
 
 type TaskContextArgs = {
   cliArguments: string[];
-  cliFlags: Partial<RunFlags>;
   options: Partial<RunOptions>;
   config: Partial<CheckupConfig>;
   pkg: PackageJson;
@@ -34,7 +32,6 @@ const DEFAULT_OPTIONS: RunOptions = {
   groups: undefined,
   tasks: undefined,
   listTasks: false,
-  outputFile: '',
 };
 
 const DEFAULT_CONFIG: CheckupConfig = {

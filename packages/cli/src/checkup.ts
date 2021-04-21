@@ -101,7 +101,6 @@ checkup <command> [options]`
           categories: argv.category as string[],
           groups: argv.group as string[],
           tasks: argv.task as string[],
-          outputFile: argv.outputFile as string,
         });
 
         if (!argv.paths || (argv.paths as string[]).length === 0) {
@@ -124,7 +123,7 @@ checkup <command> [options]`
 
           let formatter = getFormatter({
             cwd: argv.cwd as string,
-            format: argv.format as string,
+            format: argv.format as OutputFormat,
             outputFile: argv.outputFile as string,
           });
 
