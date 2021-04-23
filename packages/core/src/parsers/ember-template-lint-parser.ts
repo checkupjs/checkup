@@ -27,21 +27,21 @@ class EmberTemplateLintParser implements Parser<TemplateLintReport> {
       template: fs.readFileSync(path, { encoding: 'utf8' }),
     }));
 
-    let results: TemplateLintResult[] = await Promise.all(
-      sources.map(async ({ path, template }) => {
-        let messages: TemplateLintMessage[] = await this.engine.verify({
-          source: template,
-          filePath: path,
-        });
+    let results: TemplateLintResult[] = [];
 
-        return {
-          messages,
-          errorCount: messages.length,
-          filePath: path,
-          source: template,
-        };
-      })
-    );
+    for (let { path, template } of sources) {
+      let messages: TemplateLintMessage[] = await this.engine.verify({
+        source: template,
+        filePath: path,
+      });
+
+      results.push({
+        messages,
+        errorCount: messages.length,
+        filePath: path,
+        source: template,
+      });
+    }
 
     let errorCount = results
       .map(({ errorCount }) => errorCount)
