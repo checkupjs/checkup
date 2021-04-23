@@ -1,7 +1,7 @@
 {
   "name": "@checkup/plugin",
   "description": "Checkup plugin utility library",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "engines": {
@@ -30,7 +30,7 @@
   "dependencies": {
     "@babel/traverse": "^7.12.12",
     "@babel/types": "7.13.14",
-    "@checkup/core": "^1.0.0-beta.5",
+    "@checkup/core": "^1.0.0-beta.6",
     "fs-extra": "^9.1.0",
     "recast": "^0.20.4"
   }

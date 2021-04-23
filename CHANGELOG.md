@@ -22,6 +22,16 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.6 (2021-04-23)
+
+#### :bug: Bug Fix
+* `core`
+  * [#955](https://github.com/checkupjs/checkup/pull/955) Fixes loop in ember-template-lint-parser ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.0.0-beta.5 (2021-04-21)
 
 #### :bug: Bug Fix
