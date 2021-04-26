@@ -22,6 +22,16 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.7 (2021-04-26)
+
+#### :bug: Bug Fix
+* `cli`
+  * [#956](https://github.com/checkupjs/checkup/pull/956) Fixes paths parsing to include multiple paths ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.0.0-beta.6 (2021-04-23)
 
 #### :bug: Bug Fix
