@@ -19,82 +19,78 @@ A health checkup for your project ✅
 checkup <command> [options]`
     )
     .command({
-      command: 'run [paths..] [options]',
+      command: 'run',
       aliases: ['r'],
       describe: 'Runs configured checkup tasks',
       builder: (yargs) => {
-        return yargs
-          .options({
-            'exclude-paths': {
-              alias: 'e',
-              description:
-                'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
-              multiple: true,
-              array: true,
-            },
+        return yargs.usage('run [paths..] [options]').options({
+          'exclude-paths': {
+            alias: 'e',
+            description:
+              'Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.',
+            multiple: true,
+            array: true,
+          },
 
-            config: {
-              alias: 'c',
-              description: 'Use this configuration, overriding .checkuprc if present.',
-            },
+          config: {
+            alias: 'c',
+            description: 'Use this configuration, overriding .checkuprc if present.',
+          },
 
-            cwd: {
-              alias: 'd',
-              description: 'The path referring to the root directory that Checkup will run in',
-              default: () => process.cwd(),
-            },
+          cwd: {
+            alias: 'd',
+            description: 'The path referring to the root directory that Checkup will run in',
+            default: () => process.cwd(),
+          },
 
-            category: {
-              description: 'Runs specific tasks specified by category. Can be used multiple times.',
-              exclusive: ['group', 'task'],
-              multiple: true,
-              array: true,
-            },
+          category: {
+            description: 'Runs specific tasks specified by category. Can be used multiple times.',
+            exclusive: ['group', 'task'],
+            multiple: true,
+            array: true,
+          },
 
-            group: {
-              description: 'Runs specific tasks specified by group. Can be used multiple times.',
-              exclusive: ['category', 'task'],
-              multiple: true,
-              array: true,
-            },
+          group: {
+            description: 'Runs specific tasks specified by group. Can be used multiple times.',
+            exclusive: ['category', 'task'],
+            multiple: true,
+            array: true,
+          },
 
-            task: {
-              alias: 't',
-              description:
-                'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
-              exclusive: ['category', 'group'],
-              multiple: true,
-              array: true,
-            },
+          task: {
+            alias: 't',
+            description:
+              'Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.',
+            exclusive: ['category', 'group'],
+            multiple: true,
+            array: true,
+          },
 
-            format: {
-              alias: 'f',
-              options: [...Object.values(OutputFormat)],
-              default: 'summary',
-              description: `The output format, one of ${[...Object.values(OutputFormat)].join(
-                ', '
-              )}`,
-            },
+          format: {
+            alias: 'f',
+            options: [...Object.values(OutputFormat)],
+            default: 'summary',
+            description: `The output format, one of ${[...Object.values(OutputFormat)].join(', ')}`,
+          },
 
-            'output-file': {
-              alias: 'o',
-              default: '',
-              description: 'Specify file to write JSON output to.',
-            },
+          'output-file': {
+            alias: 'o',
+            default: '',
+            description: 'Specify file to write JSON output to.',
+          },
 
-            'list-tasks': {
-              alias: 'l',
-              description: 'List all available tasks to run.',
-              boolean: true,
-            },
-          })
-          .coerce('paths', (arg: string | string[]) => {
-            return typeof arg === 'string' ? [arg] : arg;
-          });
+          'list-tasks': {
+            alias: 'l',
+            description: 'List all available tasks to run.',
+            boolean: true,
+          },
+        });
       },
       handler: async (argv: yargs.Arguments) => {
+        let paths = argv._.slice(1);
+
         let taskRunner = new CheckupTaskRunner({
-          paths: argv.paths as string[],
+          paths,
           excludePaths: argv.excludePaths as string[],
           config: argv.config as string,
           cwd: argv.cwd as string,
@@ -103,7 +99,7 @@ checkup <command> [options]`
           tasks: argv.task as string[],
         });
 
-        if (!argv.paths || (argv.paths as string[]).length === 0) {
+        if (!paths || paths.length === 0) {
           if (argv.listTasks) {
             let availableTasks = await taskRunner.getAvailableTasks();
 
