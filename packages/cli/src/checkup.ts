@@ -23,7 +23,7 @@ checkup <command> [options]`
       aliases: ['r'],
       describe: 'Runs configured checkup tasks',
       builder: (yargs) => {
-        return yargs.usage('run [paths..] [options]').options({
+        return yargs.usage('checkup run [paths..] [options]').options({
           'exclude-paths': {
             alias: 'e',
             description:

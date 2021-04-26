@@ -33,12 +33,13 @@ config 0e3da47ee1e0a5e663465af5cc66cf37
 
 exports[`cli-test should run the tasks on the globs passed into checkup, if provided, instead of entire app 1`] = `
 "
-Checkup report generated for checkup-app v0.0.0 (2 files analyzed)
+Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
 
 This project is 0 days old, with 0 days active days, 0 commits and 0 files.
 
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
 ■ hbs (2)
+■ js (1)
 
 
 checkup v0.0.0

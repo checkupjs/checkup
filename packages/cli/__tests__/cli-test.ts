@@ -40,8 +40,8 @@ describe('cli-test', () => {
        checkup <command> [options]
 
       Commands:
-        checkup run [paths..] [options]  Runs configured checkup tasks  [aliases: r]
-        checkup generate                 Runs a generator to scaffold Checkup code  [aliases: g]
+        checkup run       Runs configured checkup tasks  [aliases: r]
+        checkup generate  Runs a generator to scaffold Checkup code  [aliases: g]
 
       Options:
         --help     Show help  [boolean]
@@ -55,8 +55,6 @@ describe('cli-test', () => {
     expect(result.exitCode).toEqual(1);
     expect(result.stderr).toMatchInlineSnapshot(`
       "checkup run [paths..] [options]
-
-      Runs configured checkup tasks
 
       Options:
             --help           Show help  [boolean]
