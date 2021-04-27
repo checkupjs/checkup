@@ -14,7 +14,7 @@
     "@checkup/core": "1.0.0-beta.7",
     "chalk": "^4.0.0",
     "clean-stack": "^3.0.1",
-    "convert-hrtime": "^3.0.0",
+    "convert-hrtime": "^5.0.0",
     "debug": "^4.3.1",
     "fs-extra": "^9.1.0",
     "inquirer": "^8.0.0",
