@@ -65,7 +65,9 @@ describe('eslint-summary-task', () => {
   });
 
   it('summarizes eslint and outputs to JSON', async () => {
-    expect(result).toMatchSnapshot();
+    for (let r of result) {
+      expect(r).toBeValidSarifFor('result');
+    }
   });
 
   it('only lints the files passed in via paths array', async () => {

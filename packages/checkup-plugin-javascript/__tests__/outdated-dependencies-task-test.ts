@@ -36,7 +36,9 @@ describe('outdated-dependencies-task', () => {
   });
 
   it('detects outdated dependencies as JSON', async () => {
-    expect(result).toMatchSnapshot();
+    for (let r of result) {
+      expect(r).toBeValidSarifFor('result');
+    }
   });
 
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
