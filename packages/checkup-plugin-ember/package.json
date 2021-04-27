@@ -16,7 +16,7 @@
   "devDependencies": {
     "@checkup/plugin": "^1.0.0-beta.7",
     "@checkup/test-helpers": "^1.0.0-beta.7",
-    "fixturify-project": "^2.1.0",
+    "fixturify-project": "^2.1.1",
     "rimraf": "^3.0.2"
   },
   "engines": {
