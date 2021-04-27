@@ -73,7 +73,7 @@ describe('checkup-task-runner', () => {
 
     let result = await taskRunner.run();
 
-    expect(result).toMatchSarifLog();
+    expect(result).toBeValidSarifLog();
   });
 
   it('can execute configured tasks', async () => {
@@ -88,6 +88,6 @@ describe('checkup-task-runner', () => {
 
     let result = await taskRunner.run();
 
-    expect(result).toMatchSarifLog();
+    expect(result).toBeValidSarifLog();
   });
 });

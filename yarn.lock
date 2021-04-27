@@ -565,9 +565,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@microsoft/jest-sarif@https://gitpkg.now.sh/microsoft/sarif-js-sdk/packages/jest-sarif?main":
-  version "0.0.1"
-  resolved "https://gitpkg.now.sh/microsoft/sarif-js-sdk/packages/jest-sarif?main#5fc374000d043b7c2c77e97664efc24f55f3fdc3"
+"@microsoft/jest-sarif@^1.0.0-beta.0":
+  version "1.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/jest-sarif/-/jest-sarif-1.0.0-beta.0.tgz#bf817c5931635bd90274c4eb20aad7db1ac17601"
+  integrity sha512-A1fOhPd6Ic5iDk4F9YPw1qNB4XF+7+IviR7xl8r2F6QzQkx5cpY9LsGk2rExiFIEcBbjpVnSmwWGBukASkiQ9A==
   dependencies:
     ajv "^6.12.6"
     chalk "^4.1.0"

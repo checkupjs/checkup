@@ -15,7 +15,7 @@
   "devDependencies": {
     "@checkup/plugin": "^1.0.0-beta.2",
     "@checkup/test-helpers": "^1.0.0-beta.2",
-    "@microsoft/jest-sarif": "https://gitpkg.now.sh/microsoft/sarif-js-sdk/packages/jest-sarif?main",
+    "@microsoft/jest-sarif": "^1.0.0-beta.0",
     "fixturify-project": "^2.1.0",
     "rimraf": "^3.0.2"
   },

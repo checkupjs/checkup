@@ -36,88 +36,9 @@ describe('ember-template-lint-disable-task', () => {
       })
     ).run();
 
-    expect(result).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "index.hbs",
-                },
-                "region": Object {
-                  "startColumn": 4,
-                  "startLine": 2,
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "ember-template-lint-disable usages",
-          },
-          "occurrenceCount": 1,
-          "properties": Object {
-            "category": "linting",
-            "group": "disabled-lint-rules",
-            "lintRuleId": "no-ember-template-lint-disable",
-            "taskDisplayName": "Number of template-lint-disable Usages",
-          },
-          "ruleId": "ember-template-lint-disables",
-        },
-        Object {
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "index.hbs",
-                },
-                "region": Object {
-                  "startColumn": 6,
-                  "startLine": 5,
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "ember-template-lint-disable usages",
-          },
-          "occurrenceCount": 1,
-          "properties": Object {
-            "category": "linting",
-            "group": "disabled-lint-rules",
-            "lintRuleId": "no-ember-template-lint-disable",
-            "taskDisplayName": "Number of template-lint-disable Usages",
-          },
-          "ruleId": "ember-template-lint-disables",
-        },
-        Object {
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "index.hbs",
-                },
-                "region": Object {
-                  "startColumn": 4,
-                  "startLine": 9,
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "ember-template-lint-disable usages",
-          },
-          "occurrenceCount": 1,
-          "properties": Object {
-            "category": "linting",
-            "group": "disabled-lint-rules",
-            "lintRuleId": "no-ember-template-lint-disable",
-            "taskDisplayName": "Number of template-lint-disable Usages",
-          },
-          "ruleId": "ember-template-lint-disables",
-        },
-      ]
-    `);
+    for (let r of result) {
+      expect(r).toBeValidSarifFor('result');
+    }
   });
 
   it('returns action item if there are more than 2 instances of template-lint-disable', async () => {

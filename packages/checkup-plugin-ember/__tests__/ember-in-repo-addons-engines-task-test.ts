@@ -31,6 +31,8 @@ describe('ember-in-repo-addons-engines-task', () => {
       })
     ).run();
 
-    expect(result).toMatchSnapshot();
+    for (let r of result) {
+      expect(r).toBeValidSarifFor('result');
+    }
   });
 });

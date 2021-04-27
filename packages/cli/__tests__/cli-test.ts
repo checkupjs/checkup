@@ -148,7 +148,7 @@ describe('cli-test', () => {
     let result = await run(['run', '.', '--format', 'json']);
     let output = JSON.parse(trimCwd(result.stdout, project.baseDir)) as Log;
 
-    expect(output).toMatchSarifLog();
+    expect(output).toBeValidSarifLog();
   });
 
   it('should output a json file in a custom directory if the json format and output-file options are provided', async () => {
