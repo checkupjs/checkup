@@ -15,6 +15,9 @@ export default class CheckupError extends Error {
 
   constructor(kind: ErrorKind, options: ErrorDetailOptions = {}) {
     let details = ERROR_BY_KIND[kind];
+    if (!details) {
+      throw new Error(`ErrorKind provided missing from ERROR_BY_KIND map: ${ErrorKind}`)
+    }
 
     super(details.message(options));
 
