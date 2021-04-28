@@ -1,11 +1,13 @@
 'use strict';
 
-import { join, resolve } from 'path';
+import { join, resolve, dirname } from 'path';
 import { execSync } from 'child_process';
 import { CheckupConfig, mergeConfig, FilePathArray } from '@checkup/core';
+import * as fixturify from 'fixturify';
 import Project from 'fixturify-project';
 import stringify from 'json-stable-stringify';
 import type { PackageJson } from 'type-fest';
+import { symlinkSync, mkdirpSync } from 'fs-extra';
 
 const walkSync = require('walk-sync');
 
@@ -29,10 +31,21 @@ export default class CheckupFixturifyProject extends Project {
     });
   }
 
+  write(dirJSON: fixturify.DirJSON) {
+    Object.assign(this.files, dirJSON);
+    this.writeSync();
+  }
+
   writeSync() {
     super.writeSync(...arguments);
     this._hasWritten = true;
   }
+
+  symlinkPackage(source: string, target: string) {
+    mkdirpSync(dirname(target));
+    symlinkSync(source, target);
+  }
+
   /**
    * Add a checkup config file to the project
    *

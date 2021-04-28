@@ -3,17 +3,17 @@ import {
   NO_RESULTS_FOUND,
   reduceResults,
   sumOccurrences,
-  FormatArgs,
+  FormatterArgs,
   renderEmptyResult,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[], formatArgs: FormatArgs) {
-  formatArgs.writer.section(taskResults[0].properties?.taskDisplayName, () => {
-    formatArgs.writer.log(
-      `${formatArgs.writer.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`
+export function format(taskResults: Result[], args: FormatterArgs) {
+  args.writer.section(taskResults[0].properties?.taskDisplayName, () => {
+    args.writer.log(
+      `${args.writer.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`
     );
-    formatArgs.writer.blankLine();
+    args.writer.blankLine();
 
     let groupedTaskResults = groupDataByField(taskResults, 'properties.resultGroup');
 
@@ -22,8 +22,8 @@ export function format(taskResults: Result[], formatArgs: FormatArgs) {
         groupDataByField(resultGroup, 'properties.lintRuleId')
       );
 
-      formatArgs.writer.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
-      formatArgs.writer.valuesList(
+      args.writer.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
+      args.writer.valuesList(
         groupedTaskResultsByLintRuleId.map((result) => {
           return result.message.text === NO_RESULTS_FOUND
             ? renderEmptyResult(result)
@@ -34,7 +34,7 @@ export function format(taskResults: Result[], formatArgs: FormatArgs) {
         }),
         'violations'
       );
-      formatArgs.writer.blankLine();
+      args.writer.blankLine();
     });
   });
 }

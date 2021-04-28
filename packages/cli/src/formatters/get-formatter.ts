@@ -1,16 +1,22 @@
-import { OutputFormat, ErrorKind, CheckupError } from '@checkup/core';
+import { createRequire } from 'module';
+import { join } from 'path';
+import {
+  OutputFormat,
+  ErrorKind,
+  CheckupError,
+  ConsoleWriter,
+  FormatterOptions,
+} from '@checkup/core';
 import PrettyFormatter from './pretty';
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
-export interface ReportOptions {
-  cwd: string;
-  format: OutputFormat;
-  outputFile?: string;
-}
-
-export function getFormatter(options: ReportOptions) {
-  let mergedOptions = Object.assign({}, { format: 'summary' }, options);
+export function getFormatter(options: FormatterOptions) {
+  let mergedOptions = Object.assign(
+    {},
+    { format: 'summary', writer: new ConsoleWriter(options.outputFile ? 'file' : 'console') },
+    options
+  );
 
   switch (mergedOptions.format) {
     case OutputFormat.summary: {
@@ -24,10 +30,19 @@ export function getFormatter(options: ReportOptions) {
     case OutputFormat.json: {
       return new JsonFormatter(mergedOptions);
     }
-  }
+    default: {
+      try {
+        const CustomFormatter = createRequire(join(options.cwd, '__placeholder__.js'))(
+          options.format
+        );
 
-  throw new CheckupError(ErrorKind.FormatterNotFound, {
-    format: mergedOptions.format,
-    validFormats: [...Object.values(OutputFormat)],
-  });
+        return new CustomFormatter(mergedOptions);
+      } catch {
+        throw new CheckupError(ErrorKind.FormatterNotFound, {
+          format: mergedOptions.format,
+          validFormats: [...Object.values(OutputFormat)],
+        });
+      }
+    }
+  }
 }

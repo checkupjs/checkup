@@ -4,7 +4,7 @@ import { FilePathArray } from '../utils/file-path-array';
 import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 
 import { CheckupConfig, TaskConfig } from './config';
-import { RunOptions, FormatArgs } from './cli';
+import { RunOptions, FormatterArgs } from './cli';
 
 export type RegisterTaskArgs = {
   context: TaskContext;
@@ -13,7 +13,7 @@ export type RegisterTaskArgs = {
 
 export type TaskActionsEvaluator = (taskResults: Result[], taskConfig: TaskConfig) => Action[];
 
-export type TaskFormatter = (taskResults: Result[], formatArgs: FormatArgs) => void;
+export type TaskFormatter = (taskResults: Result[], args: FormatterArgs) => void;
 
 interface TaskList {
   registerTask(task: Task): void;

@@ -2,37 +2,31 @@ import {
   CheckupError,
   CheckupMetadata,
   getRegisteredTaskReporters,
-  ConsoleWriter,
   groupDataByField,
   NO_RESULTS_FOUND,
   sumOccurrences,
   reduceResults,
   renderEmptyResult,
   ErrorKind,
-  FormatArgs,
+  FormatterArgs,
 } from '@checkup/core';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
 import { Invocation, Log, Notification, Result, Run } from 'sarif';
 import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './formatter-utils';
-import { ReportOptions } from './get-formatter';
 import { writeResultFile } from './file-writer';
 export default class PrettyFormatter {
-  options: ReportOptions;
-  consoleWriter: ConsoleWriter;
-  formatArgs: FormatArgs;
+  args: FormatterArgs;
 
-  constructor(options: ReportOptions) {
-    this.options = options;
-    this.consoleWriter = new ConsoleWriter(options.outputFile ? 'file' : 'console');
-    this.formatArgs = { writer: this.consoleWriter };
+  constructor(args: FormatterArgs) {
+    this.args = args;
   }
 
   format(result: Log) {
     let metaData = result.properties as CheckupMetadata;
 
-    renderInfo(metaData, this.formatArgs);
-    renderLinesOfCode(metaData, this.formatArgs);
+    renderInfo(metaData, this.args);
+    renderLinesOfCode(metaData, this.args);
 
     result.runs.forEach((run: Run) => {
       this.renderTaskResults(run.results);
@@ -41,16 +35,16 @@ export default class PrettyFormatter {
       });
     });
 
-    renderActions(result.properties?.actions, this.formatArgs);
+    renderActions(result.properties?.actions, this.args);
 
     if (process.env.CHECKUP_TIMING === '1') {
       this.renderTimings(result.properties?.timings);
     }
 
-    renderCLIInfo(metaData, this.formatArgs);
+    renderCLIInfo(metaData, this.args);
 
-    if (this.options.outputFile) {
-      writeResultFile(this.consoleWriter.outputString, this.options.cwd, this.options.outputFile);
+    if (this.args.outputFile) {
+      writeResultFile(this.args.writer.outputString, this.args.cwd, this.args.outputFile);
     }
   }
 
@@ -64,16 +58,16 @@ export default class PrettyFormatter {
         let taskCategory = taskResultGroup[0].properties?.category;
 
         if (taskCategory !== currentCategory) {
-          this.consoleWriter.categoryHeader(startCase(taskCategory));
+          this.args.writer.categoryHeader(startCase(taskCategory));
           currentCategory = taskCategory;
         }
 
         let reporter = this.getTaskReporter(taskResultGroup);
 
-        reporter(taskResultGroup, this.formatArgs);
+        reporter(taskResultGroup, this.args);
       });
     }
-    this.consoleWriter.blankLine();
+    this.args.writer.blankLine();
   }
 
   getTaskReporter(taskResult: Result[]) {
@@ -91,19 +85,19 @@ export default class PrettyFormatter {
   getReportComponent(taskResults: Result[]) {
     const groupedTaskResults = reduceResults(groupDataByField(taskResults, 'message.text'));
 
-    this.consoleWriter.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
+    this.args.writer.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
       const totalResults = sumOccurrences(groupedTaskResults);
       const numberOfBulletPoints = groupedTaskResults.length;
 
       if (numberOfBulletPoints > 1) {
-        this.consoleWriter.log(`Total: ${totalResults}`);
+        this.args.writer.log(`Total: ${totalResults}`);
       }
 
       groupedTaskResults.forEach((result) => {
         if (result.message.text === NO_RESULTS_FOUND) {
           renderEmptyResult(result);
         } else {
-          this.consoleWriter.value({
+          this.args.writer.value({
             title: result.message.text || (result.ruleId as string),
             count: result?.occurrenceCount || Number.NaN,
           });
@@ -114,7 +108,7 @@ export default class PrettyFormatter {
 
   renderErrors(notifications: Notification[] | undefined) {
     if (notifications && notifications.length > 0) {
-      this.consoleWriter.table(
+      this.args.writer.table(
         notifications.map((notification) => {
           return [
             notification.associatedRule?.id as string,
@@ -129,9 +123,9 @@ export default class PrettyFormatter {
   renderTimings(timings: Record<string, number>) {
     let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
 
-    this.consoleWriter.categoryHeader('Task Timings');
+    this.args.writer.categoryHeader('Task Timings');
 
-    this.consoleWriter.table(
+    this.args.writer.table(
       Object.keys(timings)
         .map((taskName) => [
           taskName,
@@ -142,6 +136,6 @@ export default class PrettyFormatter {
       ['Task Name', 'Time (sec)', 'Relative']
     );
 
-    this.consoleWriter.blankLine();
+    this.args.writer.blankLine();
   }
 }
