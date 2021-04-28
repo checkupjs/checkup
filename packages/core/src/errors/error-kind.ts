@@ -33,7 +33,7 @@ export interface ErrorDetails {
 
 export type ErrorDetailOptions = Record<string, any> & { error?: Error };
 
-export const ERROR_BY_KIND: { [key: string]: ErrorDetails } = {
+export const ERROR_BY_KIND: { [Key in ErrorKind]?: ErrorDetails } = {
   [ErrorKind.ConfigNotValid]: {
     message: () => `Configuration not valid`,
     callToAction: () =>
