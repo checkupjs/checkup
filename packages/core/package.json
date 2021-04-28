@@ -7,7 +7,7 @@
   "dependencies": {
     "@types/micromatch": "^4.0.1",
     "@types/sarif": "^2.1.3",
-    "ajv": "^6.12.6",
+    "ajv": "^8.2.0",
     "chalk": "^4.0.0",
     "ci-info": "^3.1.1",
     "clean-stack": "^3.0.1",
