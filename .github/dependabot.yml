@@ -1,0 +1,90 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: eslint-plugin-ember
+    versions:
+    - "^9.0.0"
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.37
+    - 14.14.41
+    - 15.0.0
+  - dependency-name: "@babel/traverse"
+    versions:
+    - 7.13.15
+  - dependency-name: ajv
+    versions:
+    - 8.1.0
+  - dependency-name: eslint-plugin-unicorn
+    versions:
+    - 25.0.1
+  - dependency-name: release-it
+    versions:
+    - 14.5.1
+    - 14.6.1
+  - dependency-name: "@types/eslint"
+    versions:
+    - 7.2.6
+    - 7.2.7
+    - 7.2.8
+    - 7.2.9
+  - dependency-name: type-fest
+    versions:
+    - 1.0.1
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+    - 4.0.2
+  - dependency-name: "@types/yeoman-generator"
+    versions:
+    - 4.11.3
+  - dependency-name: "@oclif/config"
+    versions:
+    - 1.17.0
+  - dependency-name: "@oclif/dev-cli"
+    versions:
+    - 1.26.0
+  - dependency-name: "@babel/parser"
+    versions:
+    - 7.12.16
+    - 7.12.17
+    - 7.13.0
+    - 7.13.10
+    - 7.13.11
+    - 7.13.12
+    - 7.13.4
+    - 7.13.9
+  - dependency-name: chai
+    versions:
+    - 4.3.0
+    - 4.3.1
+    - 4.3.3
+    - 4.3.4
+  - dependency-name: "@types/resolve"
+    versions:
+    - 1.19.0
+    - 1.20.0
+  - dependency-name: "@typescript-eslint/parser"
+    versions:
+    - 4.15.0
+  - dependency-name: ember-template-lint
+    versions:
+    - 2.17.0
+    - 2.18.0
+  - dependency-name: eslint-plugin-ember
+    versions:
+    - 10.1.2
+  - dependency-name: "@types/yeoman-environment"
+    versions:
+    - 2.10.2
+  - dependency-name: "@types/fs-extra"
+    versions:
+    - 9.0.6
+  - dependency-name: "@babel/types"
+    versions:
+    - 7.12.12
