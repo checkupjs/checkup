@@ -12,7 +12,7 @@
     "ci-info": "^3.1.1",
     "clean-stack": "^3.0.1",
     "cli-table3": "^0.6.0",
-    "date-and-time": "^0.14.2",
+    "date-and-time": "^1.0.0",
     "debug": "^4.3.1",
     "deepmerge": "^4.2.2",
     "ember-template-lint": "^3.2.0",
