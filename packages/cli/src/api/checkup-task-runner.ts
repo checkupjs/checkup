@@ -170,8 +170,9 @@ export default class CheckupTaskRunner {
 
     try {
       configPath =
-        (await getConfigPathFromOptions(this.options.config)) || getConfigPath(this.options.cwd);
-      this.config = readConfig(configPath);
+        (await getConfigPathFromOptions(this.options.configPath)) ||
+        getConfigPath(this.options.cwd);
+      this.config = this.options.config || readConfig(configPath);
     } catch (error) {
       if (error instanceof CheckupError) {
         throw error;
