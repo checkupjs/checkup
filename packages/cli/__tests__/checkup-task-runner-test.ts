@@ -53,19 +53,16 @@ describe('checkup-task-runner', () => {
 
   it('can instantiate with options', () => {
     let taskRunner = new CheckupTaskRunner({
-      paths: [],
       cwd: '.',
     });
 
     expect(taskRunner.options).toEqual({
-      paths: [],
       cwd: '.',
     });
   });
 
   it('can return a default SARIF file when no plugins are loaded', async () => {
     let taskRunner = new CheckupTaskRunner({
-      paths: [],
       cwd: project.baseDir,
     });
 
@@ -74,7 +71,6 @@ describe('checkup-task-runner', () => {
 
   it('can execute configured tasks', async () => {
     let taskRunner = new CheckupTaskRunner({
-      paths: ['.'],
       cwd: project.baseDir,
     });
 
