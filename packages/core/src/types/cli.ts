@@ -1,5 +1,12 @@
 import { ConsoleWriter } from '../utils/console-writer';
-import { Task, TaskContext, TaskName, TaskActionsEvaluator, TaskFormatter } from './tasks';
+import {
+  Task,
+  TaskContext,
+  TaskName,
+  TaskActionsEvaluator,
+  TaskFormatter,
+  OutputFormat,
+} from './tasks';
 import { ParserName, CreateParser, ParserOptions, Parser, ParserReport } from './parsers';
 
 export type RunOptions = {
@@ -35,6 +42,10 @@ export interface RegisterableTaskList {
   registerTask(task: Task): void;
 }
 
-export interface FormatArgs {
-  writer: ConsoleWriter;
+export interface FormatterOptions {
+  cwd: string;
+  format: OutputFormat;
+  outputFile?: string;
 }
+
+export type FormatterArgs = FormatterOptions & { writer: ConsoleWriter };

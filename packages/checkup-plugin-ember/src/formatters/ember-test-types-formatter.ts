@@ -1,5 +1,5 @@
 import {
-  FormatArgs,
+  FormatterArgs,
   groupDataByField,
   NO_RESULTS_FOUND,
   reduceResults,
@@ -8,16 +8,16 @@ import {
 } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[], formatArgs: FormatArgs) {
+export function format(taskResults: Result[], args: FormatterArgs) {
   let groupedTaskResults = groupDataByField(taskResults, 'message.text');
 
-  formatArgs.writer.section(taskResults[0].properties?.taskDisplayName, () => {
+  args.writer.section(taskResults[0].properties?.taskDisplayName, () => {
     groupedTaskResults.forEach((resultGroup: Result[]) => {
       let groupedTaskResultsByMethod = reduceResults(
         groupDataByField(resultGroup, 'properties.method')
       );
-      formatArgs.writer.subHeader(groupedTaskResultsByMethod[0].message.text as string);
-      formatArgs.writer.valuesList(
+      args.writer.subHeader(groupedTaskResultsByMethod[0].message.text as string);
+      args.writer.valuesList(
         groupedTaskResultsByMethod.map((result) => {
           return result.message.text === NO_RESULTS_FOUND
             ? renderEmptyResult(result)
@@ -27,11 +27,11 @@ export function format(taskResults: Result[], formatArgs: FormatArgs) {
               };
         })
       );
-      formatArgs.writer.blankLine();
+      args.writer.blankLine();
     });
 
-    formatArgs.writer.subHeader('tests by type');
-    formatArgs.writer.sectionedBar(
+    args.writer.subHeader('tests by type');
+    args.writer.sectionedBar(
       groupedTaskResults.map((results: Result[]) => {
         return {
           title: results[0].message.text || '',

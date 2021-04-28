@@ -1,22 +1,19 @@
 import { Log } from 'sarif';
-import { ConsoleWriter } from '@checkup/core';
+import { FormatterArgs } from '@checkup/core';
 import { writeResultFile } from './file-writer';
-import { ReportOptions } from './get-formatter';
 
 export default class JsonFormatter {
-  options: ReportOptions;
-  consoleWriter: ConsoleWriter;
+  args: FormatterArgs;
 
-  constructor(options: ReportOptions) {
-    this.options = options;
-    this.consoleWriter = new ConsoleWriter();
+  constructor(options: FormatterArgs) {
+    this.args = options;
   }
 
   format(result: Log) {
-    if (this.options.outputFile) {
-      writeResultFile(result, this.options.cwd, this.options.outputFile);
+    if (this.args.outputFile) {
+      writeResultFile(result, this.args.cwd, this.args.outputFile);
     } else {
-      this.consoleWriter.styledJSON(result);
+      this.args.writer.styledJSON(result);
     }
   }
 }

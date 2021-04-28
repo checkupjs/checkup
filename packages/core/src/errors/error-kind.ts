@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 
 export enum ErrorKind {
   None,
@@ -118,7 +118,9 @@ export const ERROR_BY_KIND: { [Key in ErrorKind]?: ErrorDetails } = {
     message: (options: ErrorDetailOptions) =>
       `No valid format found for ${chalk.bold.white(options.format)}`,
     callToAction: (options: ErrorDetailOptions) =>
-      `Valid formats are ${chalk.bold.white(options.validFormats.join(', '))}`,
+      `Valid formats are ${chalk.bold.white(
+        options.validFormats.join(', ')
+      )}, or provide a custom formatter.`,
     errorCode: 1,
   },
 

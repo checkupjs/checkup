@@ -1,42 +1,37 @@
-import { CheckupMetadata, ConsoleWriter, FormatArgs } from '@checkup/core';
+import { CheckupMetadata, FormatterArgs } from '@checkup/core';
 import { Log } from 'sarif';
 import { success } from 'log-symbols';
 import { renderActions, renderCLIInfo, renderInfo } from './formatter-utils';
 import { writeResultFile } from './file-writer';
-import { ReportOptions } from './get-formatter';
 
 export default class SummaryFormatter {
-  options: ReportOptions;
-  consoleWriter: ConsoleWriter;
-  formatArgs: FormatArgs;
+  args: FormatterArgs;
 
-  constructor(options: ReportOptions) {
-    this.options = options;
-    this.consoleWriter = new ConsoleWriter();
-    this.formatArgs = { writer: this.consoleWriter };
+  constructor(args: FormatterArgs) {
+    this.args = args;
   }
 
   format(result: Log) {
-    let { cwd, outputFile } = this.options;
     let { rules } = result.runs[0].tool.driver;
     let metaData = result.properties as CheckupMetadata;
 
-    renderInfo(metaData, this.formatArgs);
+    renderInfo(metaData, this.args);
 
-    this.consoleWriter.log('Checkup ran the following task(s) successfully:');
+    this.args.writer.log('Checkup ran the following task(s) successfully:');
+
     rules!
       .map((rule) => rule.id)
       .sort()
       .forEach((taskName) => {
-        this.consoleWriter.log(`${success} ${taskName}`);
+        this.args.writer.log(`${success} ${taskName}`);
       });
 
-    writeResultFile(result, cwd, outputFile);
+    writeResultFile(result, this.args.cwd, this.args.outputFile);
 
-    renderActions(result.properties?.actions, this.formatArgs);
+    renderActions(result.properties?.actions, this.args);
 
-    this.consoleWriter.blankLine();
+    this.args.writer.blankLine();
 
-    renderCLIInfo(metaData, this.formatArgs);
+    renderCLIInfo(metaData, this.args);
   }
 }
