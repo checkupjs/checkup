@@ -36,6 +36,7 @@ checkup <command> [options]`
             alias: 'c',
             description:
               'Use the configuration found at this path, overriding .checkuprc if present.',
+            default: '.checkuprc',
           },
 
           config: {
