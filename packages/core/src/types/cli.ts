@@ -16,7 +16,7 @@ export type RunOptions = {
   excludePaths?: string[];
   groups?: string[];
   listTasks?: boolean;
-  paths: string[];
+  paths?: string[];
   tasks?: string[];
 };
 

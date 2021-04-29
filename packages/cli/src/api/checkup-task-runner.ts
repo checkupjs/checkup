@@ -195,7 +195,7 @@ export default class CheckupTaskRunner {
       config: this.config,
       pkg: getPackageJson(this.options.cwd),
       paths: FilePathArray.from(
-        await getFilePathsAsync(this.options.cwd, this.options.paths, excludePaths)
+        await getFilePathsAsync(this.options.cwd, this.options.paths || ['.'], excludePaths)
       ) as FilePathArray,
     });
 
