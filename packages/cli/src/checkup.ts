@@ -90,7 +90,7 @@ checkup <command> [options]`
         let paths = argv._.slice(1);
 
         let taskRunner = new CheckupTaskRunner({
-          paths: paths || ['.'],
+          paths: paths as string[],
           excludePaths: argv.excludePaths as string[],
           config: argv.config as string,
           cwd: argv.cwd as string,
