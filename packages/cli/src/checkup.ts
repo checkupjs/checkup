@@ -1,6 +1,6 @@
 import * as yargs from 'yargs';
 import * as ora from 'ora';
-import { OutputFormat, ConsoleWriter } from '@checkup/core';
+import { OutputFormat, ConsoleWriter, CheckupConfig } from '@checkup/core';
 
 import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
@@ -32,8 +32,14 @@ checkup <command> [options]`
             array: true,
           },
 
-          config: {
+          'config-path': {
             alias: 'c',
+            description:
+              'Use the configuration found at this path, overriding .checkuprc if present.',
+            default: '.checkuprc',
+          },
+
+          config: {
             description: 'Use this configuration, overriding .checkuprc if present.',
           },
 
@@ -92,7 +98,8 @@ checkup <command> [options]`
         let taskRunner = new CheckupTaskRunner({
           paths: paths as string[],
           excludePaths: argv.excludePaths as string[],
-          config: argv.config as string,
+          config: argv.config as CheckupConfig,
+          configPath: argv.configPath as string,
           cwd: argv.cwd as string,
           categories: argv.category as string[],
           groups: argv.group as string[],

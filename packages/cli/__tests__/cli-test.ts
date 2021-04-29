@@ -62,7 +62,8 @@ describe('cli-test', () => {
             --help           Show help  [boolean]
             --version        Show version number  [boolean]
         -e, --exclude-paths  Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.  [array]
-        -c, --config         Use this configuration, overriding .checkuprc if present.
+        -c, --config-path    Use the configuration found at this path, overriding .checkuprc if present.  [default: \\".checkuprc\\"]
+            --config         Use this configuration, overriding .checkuprc if present.
         -d, --cwd            The path referring to the root directory that Checkup will run in  [default: (default)]
             --category       Runs specific tasks specified by category. Can be used multiple times.  [array]
             --group          Runs specific tasks specified by group. Can be used multiple times.  [array]
@@ -709,7 +710,7 @@ describe('cli-test', () => {
     let result = await run([
       'run',
       '.',
-      '--config',
+      '--config-path',
       join(anotherProject.baseDir, '.checkuprc'),
       '--format',
       'pretty',
