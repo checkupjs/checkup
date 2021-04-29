@@ -33,7 +33,7 @@
     "@types/fs-extra": "^9.0.11",
     "@types/jest": "^26.0.20",
     "@types/json-stable-stringify": "^1.0.32",
-    "@types/lodash": "^4.14.165",
+    "@types/lodash": "^4.14.168",
     "@types/node": "^15",
     "@types/node-fetch": "^2.5.7",
     "@types/tmp": "^0.2.0",
