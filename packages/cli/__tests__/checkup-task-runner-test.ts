@@ -9,7 +9,6 @@ import {
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import type { Result } from 'sarif';
 import CheckupTaskRunner from '../src/api/checkup-task-runner';
-import { sarifLogMatcher } from './__utils__/sarif-match-object';
 
 class FooTask extends BaseTask implements Task {
   taskName = 'foo';
@@ -73,7 +72,7 @@ describe('checkup-task-runner', () => {
       cwd: project.baseDir,
     });
 
-    expect(await taskRunner.run()).toMatchObject(sarifLogMatcher);
+    expect(await taskRunner.run()).toBeValidSarifLog();
   });
 
   it('can execute configured tasks', async () => {
@@ -84,7 +83,7 @@ describe('checkup-task-runner', () => {
     taskRunner.tasks.registerTask(new FileCountTask(getTaskContext()));
     taskRunner.tasks.registerTask(new FooTask(getTaskContext()));
 
-    expect(await taskRunner.run()).toMatchObject(sarifLogMatcher);
+    expect(await taskRunner.run()).toBeValidSarifLog();
   });
 
   it('can use a config that is passed in inline', async () => {

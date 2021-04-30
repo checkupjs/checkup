@@ -1,6 +1,6 @@
+import '@microsoft/jest-sarif';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
-
 import EmberTestTypesTask from '../src/tasks/ember-test-types-task';
 import { evaluateActions } from '../src/actions/ember-test-types-actions';
 
@@ -91,12 +91,14 @@ describe('ember-test-types-task', () => {
 
     project.writeSync();
 
-    const result = await new EmberTestTypesTask(
+    const results = await new EmberTestTypesTask(
       pluginName,
       getTaskContext({ options: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    expect(result).toMatchSnapshot();
+    for (let result of results) {
+      expect(result).toBeValidSarifFor('result');
+    }
   });
 
   it('returns all the test types found in the app and outputs to json', async () => {
@@ -107,12 +109,14 @@ describe('ember-test-types-task', () => {
 
     project.writeSync();
 
-    const result = await new EmberTestTypesTask(
+    const results = await new EmberTestTypesTask(
       pluginName,
       getTaskContext({ options: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    expect(result).toMatchSnapshot();
+    for (let result of results) {
+      expect(result).toBeValidSarifFor('result');
+    }
   });
 
   it('returns action item if more than 1% of your tests are skipped and if your ratio of application tests is not matching threshold', async () => {

@@ -1,3 +1,4 @@
+import '@microsoft/jest-sarif';
 import { getPluginName } from '@checkup/core';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 import EmberInRepoAddonEnginesTask from '../src/tasks/ember-in-repo-addons-engines-task';
@@ -22,7 +23,7 @@ describe('ember-in-repo-addons-engines-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new EmberInRepoAddonEnginesTask(
+    const results = await new EmberInRepoAddonEnginesTask(
       pluginName,
       getTaskContext({
         pkg: emberProject.pkg,
@@ -31,6 +32,8 @@ describe('ember-in-repo-addons-engines-task', () => {
       })
     ).run();
 
-    expect(result).toMatchSnapshot();
+    for (let result of results) {
+      expect(result).toBeValidSarifFor('result');
+    }
   });
 });

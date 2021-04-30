@@ -1,3 +1,4 @@
+import '@microsoft/jest-sarif';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName, FilePathArray, Task } from '@checkup/core';
 import { Result, Location } from 'sarif';
@@ -8,7 +9,7 @@ describe('ember-emplate-lint-summary-task', () => {
   let project: CheckupProject;
   let pluginName = getPluginName(__dirname);
   let task: Task;
-  let result: Result[];
+  let results: Result[];
 
   beforeAll(async () => {
     project = new CheckupProject('checkup-app', '0.0.0');
@@ -55,7 +56,7 @@ describe('ember-emplate-lint-summary-task', () => {
         },
       })
     );
-    result = await task.run();
+    results = await task.run();
   });
 
   afterAll(() => {
@@ -63,11 +64,13 @@ describe('ember-emplate-lint-summary-task', () => {
   });
 
   it('summarizes eslint and outputs to JSON', async () => {
-    expect(result).toMatchSnapshot();
+    for (let result of results) {
+      expect(result).toBeValidSarifFor('result');
+    }
   });
 
   it('only lints the files passed in via paths array', async () => {
-    let excludedPathsResults = result.filter(
+    let excludedPathsResults = results.filter(
       (resultData: Result) =>
         (
           resultData.locations?.filter((fileLocation: Location) => {
@@ -76,7 +79,7 @@ describe('ember-emplate-lint-summary-task', () => {
         ).length > 0
     );
 
-    let includedPathsResults = result.filter(
+    let includedPathsResults = results.filter(
       (resultData: Result) =>
         (
           resultData.locations?.filter((fileLocation: Location) => {
@@ -90,7 +93,7 @@ describe('ember-emplate-lint-summary-task', () => {
   });
 
   it('returns correct action items if there are too many warnings or errors', async () => {
-    let actions = evaluateActions(result, task.config);
+    let actions = evaluateActions(results, task.config);
 
     expect(actions).toHaveLength(2);
     expect(actions).toMatchInlineSnapshot(`

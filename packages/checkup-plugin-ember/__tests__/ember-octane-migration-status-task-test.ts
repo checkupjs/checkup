@@ -1,5 +1,5 @@
+import '@microsoft/jest-sarif';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
-
 import { getPluginName } from '@checkup/core';
 import EmberOctaneMigrationStatusTask from '../src/tasks/ember-octane-migration-status-task';
 
@@ -33,7 +33,7 @@ describe('ember-octane-migration-status-task', () => {
       test(`detects octane migration status for ${testConfig.variant} ${type} and outputs to json`, async () => {
         testConfig.setup(project, type);
 
-        const result = await new EmberOctaneMigrationStatusTask(
+        const results = await new EmberOctaneMigrationStatusTask(
           pluginName,
           getTaskContext({
             options: { cwd: project.baseDir },
@@ -41,7 +41,9 @@ describe('ember-octane-migration-status-task', () => {
           })
         ).run();
 
-        expect(result).toMatchSnapshot();
+        for (let result of results) {
+          expect(result).toBeValidSarifFor('result');
+        }
       });
     });
   });

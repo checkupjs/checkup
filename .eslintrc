@@ -49,7 +49,12 @@
     "unicorn/no-process-exit": "off",
     "unicorn/no-this-assignment": "off",
     "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }],
-    "node/no-extraneous-import": ["error"],
+    "node/no-extraneous-import": [
+      "error",
+      {
+        "allowModules": ["@microsoft/jest-sarif"]
+      }
+    ],
     "node/no-missing-import": [
       "error",
       {
@@ -65,15 +70,6 @@
     "import/order": "error"
   },
   "overrides": [
-    {
-      "files": ["packages/**/__tests__/**/*.ts", "packages/test-helpers/**/*.ts"],
-      "env": {
-        "jest": true
-      },
-      "rules": {
-        "node/no-extraneous-import": "off"
-      }
-    },
     {
       "files": ["packages/checkup-plugin-ember/src/**/*.ts", "packages/cli/src/**/*.ts"],
       "rules": {
@@ -116,6 +112,15 @@
             "allowModules": ["@babel/types", "@babel/traverse"]
           }
         ]
+      }
+    },
+    {
+      "files": ["packages/**/__tests__/**/*.ts", "packages/test-helpers/**/*.ts"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "node/no-extraneous-import": "off"
       }
     }
   ]
