@@ -29,7 +29,7 @@
   "types": "lib/index.d.ts",
   "dependencies": {
     "@babel/traverse": "^7.13.17",
-    "@babel/types": "7.13.14",
+    "@babel/types": "7.13.17",
     "@checkup/core": "^1.0.0-beta.7",
     "fs-extra": "^9.1.0",
     "recast": "^0.20.4"
