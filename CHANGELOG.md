@@ -22,6 +22,33 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.8 (2021-04-30)
+
+#### :boom: Breaking Change
+* `cli`, `core`
+  * [#963](https://github.com/checkupjs/checkup/pull/963) Adding support to pass in a config inline to checkup ([@carakessler](https://github.com/carakessler))
+
+#### :rocket: Enhancement
+* `cli`, `core`
+  * [#963](https://github.com/checkupjs/checkup/pull/963) Adding support to pass in a config inline to checkup ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#961](https://github.com/checkupjs/checkup/pull/961) Adds ability to specify custom formatters ([@scalvert](https://github.com/scalvert))
+* `core`
+  * [#957](https://github.com/checkupjs/checkup/pull/957) Improve type definition for error kind map ([@evansolomon](https://github.com/evansolomon))
+
+#### :house: Internal
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`
+  * [#983](https://github.com/checkupjs/checkup/pull/983) Adding @microsoft/jest-sarif for log/result validation ([@scalvert](https://github.com/scalvert))
+* `core`
+  * [#957](https://github.com/checkupjs/checkup/pull/957) Improve type definition for error kind map ([@evansolomon](https://github.com/evansolomon))
+
+#### Committers: 4
+- Evan Solomon ([@evansolomon](https://github.com/evansolomon))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+- [@dependabot-preview[bot]](https://github.com/apps/dependabot-preview)
+
+
 ## v1.0.0-beta.7 (2021-04-26)
 
 #### :bug: Bug Fix
