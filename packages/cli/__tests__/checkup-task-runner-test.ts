@@ -1,4 +1,11 @@
-import { BaseTask, Task, TaskContext, sarifBuilder } from '@checkup/core';
+import {
+  BaseTask,
+  Task,
+  TaskContext,
+  sarifBuilder,
+  DEFAULT_CONFIG,
+  CheckupConfig,
+} from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import type { Result } from 'sarif';
 import CheckupTaskRunner from '../src/api/checkup-task-runner';
@@ -53,19 +60,16 @@ describe('checkup-task-runner', () => {
 
   it('can instantiate with options', () => {
     let taskRunner = new CheckupTaskRunner({
-      paths: [],
       cwd: '.',
     });
 
     expect(taskRunner.options).toEqual({
-      paths: [],
       cwd: '.',
     });
   });
 
   it('can return a default SARIF file when no plugins are loaded', async () => {
     let taskRunner = new CheckupTaskRunner({
-      paths: [],
       cwd: project.baseDir,
     });
 
@@ -74,7 +78,6 @@ describe('checkup-task-runner', () => {
 
   it('can execute configured tasks', async () => {
     let taskRunner = new CheckupTaskRunner({
-      paths: ['.'],
       cwd: project.baseDir,
     });
 
@@ -82,5 +85,27 @@ describe('checkup-task-runner', () => {
     taskRunner.tasks.registerTask(new FooTask(getTaskContext()));
 
     expect(await taskRunner.run()).toMatchObject(sarifLogMatcher);
+  });
+
+  it('can use a config that is passed in inline', async () => {
+    let config: CheckupConfig = DEFAULT_CONFIG;
+    let excludedExtension = 'hbs';
+    config.excludePaths = [`**/*.${excludedExtension}`];
+
+    let taskRunner = new CheckupTaskRunner({
+      paths: ['.'],
+      cwd: project.baseDir,
+      config,
+    });
+
+    taskRunner.tasks.registerTask(new FileCountTask(getTaskContext()));
+    taskRunner.tasks.registerTask(new FooTask(getTaskContext()));
+
+    let results = await taskRunner.run();
+    let excludedPathResults = results.properties?.analyzedFiles.filter(
+      (file: string) => file.split('.')[1] === excludedExtension
+    );
+
+    expect(excludedPathResults).toHaveLength(0);
   });
 });

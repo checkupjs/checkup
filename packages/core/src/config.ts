@@ -26,13 +26,13 @@ export const DEFAULT_CONFIG: CheckupConfig = {
   tasks: {},
 };
 
-export function getConfigPath(path: string = '') {
-  return join(resolve(path), '.checkuprc');
+export function getConfigPath(cwd: string = '', configPath: string = '.checkuprc') {
+  return join(resolve(cwd), configPath);
 }
 
-export async function getConfigPathFromOptions(configPath: string | undefined) {
+export async function getConfigPathFromOptions(configPath: string | undefined, cwd: string = '') {
   if (!configPath) {
-    return;
+    return '';
   }
 
   if (configPath.startsWith('http')) {
@@ -43,7 +43,7 @@ export async function getConfigPathFromOptions(configPath: string | undefined) {
 
     return filePath.name;
   } else {
-    configPath;
+    return getConfigPath(cwd, configPath);
   }
 }
 
@@ -59,7 +59,7 @@ export function readConfig(configPath: string) {
   debug(`Reading config from ${configPath}`);
 
   try {
-    config = readJsonSync(resolve(configPath || getConfigPath()));
+    config = readJsonSync(resolve(configPath));
   } catch (error) {
     if (error instanceof SyntaxError) {
       let hint = error.message.replace(/.*:\s(.*)/, '$1');

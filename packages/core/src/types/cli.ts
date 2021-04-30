@@ -8,15 +8,17 @@ import {
   OutputFormat,
 } from './tasks';
 import { ParserName, CreateParser, ParserOptions, Parser, ParserReport } from './parsers';
+import { CheckupConfig } from './config';
 
 export type RunOptions = {
   cwd: string;
-  config?: string;
+  config?: CheckupConfig;
+  configPath?: string;
   categories?: string[];
   excludePaths?: string[];
   groups?: string[];
   listTasks?: boolean;
-  paths: string[];
+  paths?: string[];
   tasks?: string[];
 };
 

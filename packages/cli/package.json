@@ -9,7 +9,7 @@
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@babel/parser": "^7.13.13",
-    "@babel/traverse": "^7.12.12",
+    "@babel/traverse": "^7.13.17",
     "@babel/types": "7.13.14",
     "@checkup/core": "1.0.0-beta.7",
     "chalk": "^4.0.0",
@@ -32,7 +32,7 @@
     "strip-ansi": "^6.0.0",
     "tmp": "^0.2.1",
     "tslib": "^2",
-    "v8-compile-cache": "^2.2.0",
+    "v8-compile-cache": "^2.3.0",
     "wrap-ansi": "^7.0.0",
     "yargs": "^16.2.0",
     "yargs-unparser": "^2.0.0",
