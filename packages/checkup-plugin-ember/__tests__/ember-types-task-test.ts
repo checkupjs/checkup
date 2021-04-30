@@ -56,12 +56,14 @@ describe('types-task', () => {
 
     project.writeSync();
 
-    const result = await new EmberTypesTask(
+    const results = await new EmberTypesTask(
       pluginName,
       getTaskContext({ options: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    expect(result).toMatchSnapshot();
+    for (let result of results) {
+      expect(result).toBeValidSarifFor('result');
+    }
   });
 
   it('returns all the types (including nested) found in the app and outputs to JSON', async () => {
@@ -76,11 +78,13 @@ describe('types-task', () => {
 
     project.writeSync();
 
-    const result = await new EmberTypesTask(
+    const results = await new EmberTypesTask(
       pluginName,
       getTaskContext({ options: { cwd: project.baseDir }, paths: project.filePaths })
     ).run();
 
-    expect(result).toMatchSnapshot();
+    for (let result of results) {
+      expect(result).toBeValidSarifFor('result');
+    }
   });
 });

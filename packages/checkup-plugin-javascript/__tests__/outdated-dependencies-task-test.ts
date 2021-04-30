@@ -1,3 +1,4 @@
+import '@microsoft/jest-sarif';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName, Task } from '@checkup/core';
 import { Result } from 'sarif';
@@ -9,7 +10,7 @@ describe('outdated-dependencies-task', () => {
   let project: CheckupProject;
   let pluginName = getPluginName(__dirname);
   let task: Task;
-  let result: Result[];
+  let results: Result[];
 
   beforeAll(async () => {
     project = new CheckupProject('checkup-app', '0.0.0', (project) => {
@@ -28,7 +29,8 @@ describe('outdated-dependencies-task', () => {
         pkg: project.pkg,
       })
     );
-    result = await task.run();
+
+    results = await task.run();
   });
 
   afterAll(() => {
@@ -36,11 +38,13 @@ describe('outdated-dependencies-task', () => {
   });
 
   it('detects outdated dependencies as JSON', async () => {
-    expect(result).toMatchSnapshot();
+    for (let result of results) {
+      expect(result).toBeValidSarifFor('result');
+    }
   });
 
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
-    let actions = evaluateActions(result, task.config);
+    let actions = evaluateActions(results, task.config);
 
     expect(actions).toHaveLength(3);
     expect(actions).toMatchInlineSnapshot(`

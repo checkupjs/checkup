@@ -1,3 +1,4 @@
+import '@microsoft/jest-sarif';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 
 import { getPluginName } from '@checkup/core';
@@ -23,7 +24,7 @@ describe('dependencies-task', () => {
   });
 
   it('detects Ember dependencies as JSON', async () => {
-    const result = await new EmberDependenciesTask(
+    const results = await new EmberDependenciesTask(
       pluginName,
       getTaskContext({
         options: { cwd: emberProject.baseDir },
@@ -32,6 +33,8 @@ describe('dependencies-task', () => {
       })
     ).run();
 
-    expect(result).toMatchSnapshot();
+    for (let result of results) {
+      expect(result).toBeValidSarifFor('result');
+    }
   });
 });

@@ -1,6 +1,6 @@
+import '@microsoft/jest-sarif';
 import { getPluginName } from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
-
 import EslintDisableTask from '../src/tasks/eslint-disable-task';
 import { evaluateActions } from '../src/actions/eslint-disable-actions';
 
@@ -39,7 +39,7 @@ describe('eslint-disable-task', () => {
   });
 
   it('returns all the types found in the app and outputs to json', async () => {
-    const result = await new EslintDisableTask(
+    const results = await new EslintDisableTask(
       pluginName,
       getTaskContext({
         paths: project.filePaths,
@@ -47,69 +47,9 @@ describe('eslint-disable-task', () => {
       })
     ).run();
 
-    expect(
-      result.sort((a, b) =>
-        (a.locations?.[0]?.physicalLocation?.region?.startColumn || 0) >
-        (b.locations?.[0]?.physicalLocation?.region?.startColumn || 0)
-          ? 1
-          : -1
-      )
-    ).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "index.js",
-                },
-                "region": Object {
-                  "startColumn": 4,
-                  "startLine": 2,
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "eslint-disable usages",
-          },
-          "occurrenceCount": 1,
-          "properties": Object {
-            "category": "linting",
-            "group": "disabled-lint-rules",
-            "lintRuleId": "no-eslint-disable",
-            "taskDisplayName": "Number of eslint-disable Usages",
-          },
-          "ruleId": "eslint-disables",
-        },
-        Object {
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "decorator.js",
-                },
-                "region": Object {
-                  "startColumn": 6,
-                  "startLine": 2,
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "eslint-disable usages",
-          },
-          "occurrenceCount": 1,
-          "properties": Object {
-            "category": "linting",
-            "group": "disabled-lint-rules",
-            "lintRuleId": "no-eslint-disable",
-            "taskDisplayName": "Number of eslint-disable Usages",
-          },
-          "ruleId": "eslint-disables",
-        },
-      ]
-    `);
+    for (let result of results) {
+      expect(result).toBeValidSarifFor('result');
+    }
   });
 
   it('returns actions if there are more than 2 instances of eslint-disable', async () => {
