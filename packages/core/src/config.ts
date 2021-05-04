@@ -26,16 +26,12 @@ export const DEFAULT_CONFIG: CheckupConfig = {
   tasks: {},
 };
 
-export function getConfigPath(cwd: string = '', configPath: string = '.checkuprc') {
+export function resolveConfigPath(cwd: string = '', configPath: string = '.checkuprc') {
   return join(resolve(cwd), configPath);
 }
 
-export async function getConfigPathFromOptions(configPath: string | undefined, cwd: string = '') {
-  if (!configPath) {
-    return '';
-  }
-
-  if (configPath.startsWith('http')) {
+export async function getConfigPath(configPath: string | undefined, cwd: string = '') {
+  if (configPath && configPath.startsWith('http')) {
     const contents = await downloadFile(configPath);
     const filePath = tmp.fileSync();
 
@@ -43,7 +39,7 @@ export async function getConfigPathFromOptions(configPath: string | undefined, c
 
     return filePath.name;
   } else {
-    return getConfigPath(cwd, configPath);
+    return resolveConfigPath(cwd, configPath);
   }
 }
 
@@ -88,7 +84,7 @@ export function mergeConfig(config: Partial<CheckupConfig>) {
 }
 
 export function writeConfig(dir: string, config: Partial<CheckupConfig> = {}) {
-  let path = getConfigPath(dir);
+  let path = resolveConfigPath(dir);
 
   if (existsSync(path)) {
     throw new CheckupError(ErrorKind.ConfigFileExists, {

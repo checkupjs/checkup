@@ -12,8 +12,8 @@ export {
 export {
   readConfig,
   writeConfig,
+  resolveConfigPath,
   getConfigPath,
-  getConfigPathFromOptions,
   mergeConfig,
   parseConfigTuple,
   DEFAULT_CONFIG,

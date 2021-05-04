@@ -2,11 +2,11 @@ import fetch from 'node-fetch';
 import { readJsonSync, writeJsonSync, writeFileSync } from 'fs-extra';
 import { createTmpDir } from '@checkup/test-helpers';
 import {
-  getConfigPath,
+  resolveConfigPath,
   readConfig,
   writeConfig,
   parseConfigTuple,
-  getConfigPathFromOptions,
+  getConfigPath,
   CONFIG_SCHEMA_URL,
   DEFAULT_CONFIG,
 } from '../src/config';
@@ -31,7 +31,7 @@ describe('config', () => {
     });
 
     it('throws if config format is invalid', () => {
-      let configPath = getConfigPath(tmp);
+      let configPath = resolveConfigPath(tmp);
       writeJsonSync(configPath, {
         plugins: [],
         task: {},
@@ -43,7 +43,7 @@ describe('config', () => {
     });
 
     it('throws if JSON is invalid', () => {
-      let configPath = getConfigPath(tmp);
+      let configPath = resolveConfigPath(tmp);
       writeFileSync(
         configPath,
         `{
@@ -60,7 +60,7 @@ describe('config', () => {
     });
 
     it('throws if invalid paths are passed in via config', () => {
-      let configPath = getConfigPath(tmp);
+      let configPath = resolveConfigPath(tmp);
       writeJsonSync(configPath, {
         plugins: [],
         tasks: {},
@@ -80,12 +80,18 @@ describe('config', () => {
     });
 
     it('can load a config from an HTTP endpoint', async () => {
-      let configPath = await getConfigPathFromOptions(
+      let configPath = await getConfigPath(
         'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/__tests__/__fixtures__/.checkuprc.json'
       );
       let config = readConfig(configPath!);
 
       expect(config).toEqual(REMOTE_CONFIG);
+    });
+
+    it('returns default config path if it is not defined', async () => {
+      let configPath = await getConfigPath(undefined, tmp);
+
+      expect(configPath).toBe(`${tmp}/.checkuprc`);
     });
 
     it('throws if config with invalid task config string value set invalid string', () => {
