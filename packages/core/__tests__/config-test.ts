@@ -89,10 +89,9 @@ describe('config', () => {
     });
 
     it('returns default config path if it is not defined', async () => {
-      // eslint-disable-next-line unicorn/no-useless-undefined
-      let configPath = await getConfigPath(undefined);
+      let configPath = await getConfigPath(undefined, tmp);
 
-      expect(configPath).toBe(`${process.cwd()}/.checkuprc`);
+      expect(configPath).toBe(`${tmp}/.checkuprc`);
     });
 
     it('throws if config with invalid task config string value set invalid string', () => {
