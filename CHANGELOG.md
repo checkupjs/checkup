@@ -22,6 +22,16 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.9 (2021-05-04)
+
+#### :bug: Bug Fix
+* `cli`, `core`
+  * [#986](https://github.com/checkupjs/checkup/pull/986) Fix checkup config resolution regression with cwd config paths. ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 1
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v1.0.0-beta.8 (2021-04-30)
 
 #### :boom: Breaking Change
