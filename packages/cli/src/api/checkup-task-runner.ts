@@ -4,7 +4,7 @@ import {
   CheckupConfig,
   FilePathArray,
   getRegisteredActions,
-  getConfigPathFromOptions,
+  getConfigPath,
   getFilePathsAsync,
   readConfig,
   RunOptions,
@@ -166,7 +166,7 @@ export default class CheckupTaskRunner {
 
   private async loadConfig() {
     try {
-      let configPath = await getConfigPathFromOptions(this.options.configPath, this.options.cwd);
+      let configPath = await getConfigPath(this.options.configPath, this.options.cwd);
       this.config = this.options.config || readConfig(configPath);
     } catch (error) {
       if (error instanceof CheckupError) {
