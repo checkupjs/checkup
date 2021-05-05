@@ -9,7 +9,7 @@
 
 > :warning: Checkup is pre-release and still in active development.
 
-Checkup allows you to ask questions and get answers that can help drive maintenance decisions. It runs **tasks** to provide information about key characteristics of your codebase. Task results are output as [SARIF](https://sarifweb.azurewebsites.net/), which provides a consistent schema for data processing, and can be integrated into your development workflow through IDE integrations.
+Checkup allows you to ask _questions_ and get _answers_ that can help drive maintenance decisions. It runs **tasks** to gather information about the craftsmanship and quality of your codebase. Task results are output as [SARIF](https://sarifweb.azurewebsites.net/), which provides a consistent schema for data processing, and can be integrated into your development workflow through IDE integrations.
 
 ![Checkup sample output](docs/checkup-output.png)
 
@@ -22,6 +22,7 @@ Tasks can gather information about
 - test health
 - API compatability
 - API migration status
+- anything else you can dream up :bulb:
 
 ## Features
 
