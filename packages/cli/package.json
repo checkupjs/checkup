@@ -44,7 +44,7 @@
     "@types/sarif": "^2.1.3",
     "@types/sloc": "^0.2.0",
     "@types/yeoman-environment": "^2.3.3",
-    "@types/yeoman-generator": "^3.1.4",
+    "@types/yeoman-generator": "^4.11.4",
     "execa": "^5.0.0",
     "yeoman-test": "^3.0.0"
   },
