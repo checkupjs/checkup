@@ -207,10 +207,12 @@ export default class CheckupTaskRunner {
   }
 
   private async loadFromPlugin(registrationArgs: RegistrationArgs) {
+    let pluginsLocation = this.options.pluginBaseDir || this.options.cwd;
+
     for (let pluginName of this.config.plugins) {
       this.debug('Loading plugin from %s', pluginName);
 
-      let { register } = require(resolve.sync(pluginName, { basedir: this.options.cwd }));
+      let { register } = require(resolve.sync(pluginName, { basedir: pluginsLocation }));
 
       await register(registrationArgs);
     }
