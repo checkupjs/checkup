@@ -212,7 +212,7 @@ export default class CheckupTaskRunner {
     for (let pluginName of this.config.plugins) {
       this.debug('Loading plugin from %s', pluginName);
 
-      let { register } = require(resolve.sync(pluginName, { basedir: pluginsLocation }));
+      let { register } = require(resolve.sync(pluginName, { basedir: pluginBaseDir }));
 
       await register(registrationArgs);
     }
