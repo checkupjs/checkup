@@ -22,6 +22,16 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.10 (2021-05-12)
+
+#### :memo: Documentation
+* [#987](https://github.com/checkupjs/checkup/pull/987) Updates the README to clarify the value prop ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v1.0.0-beta.9 (2021-05-04)
 
 #### :bug: Bug Fix
