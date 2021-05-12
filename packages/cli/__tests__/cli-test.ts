@@ -28,7 +28,7 @@ describe('cli-test', () => {
 
   afterEach(function () {
     process.chdir(ROOT);
-    project.dispose();
+    // project.dispose();
   });
 
   it('outputs top level help', async () => {
@@ -872,7 +872,6 @@ describe('cli-test', () => {
       actualPluginDir
     );
     newProject.writeSync();
-    newProject.gitInit();
 
     project.addCheckupConfig({
       $schema:
@@ -885,6 +884,7 @@ describe('cli-test', () => {
 
     let result = await run(['run', '.', '--plugin-base-dir', newProject.baseDir]);
     expect(result.exitCode).toEqual(0);
+    expect(result.stdout).toMatch('✔ foo');
   });
 
   function run(args: string[], options: execa.Options = {}) {
