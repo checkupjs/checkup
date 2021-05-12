@@ -207,7 +207,7 @@ export default class CheckupTaskRunner {
   }
 
   private async loadFromPlugin(registrationArgs: RegistrationArgs) {
-    let pluginsLocation = this.options.pluginBaseDir || this.options.cwd;
+    let pluginBaseDir = this.options.pluginBaseDir || this.options.cwd;
 
     for (let pluginName of this.config.plugins) {
       this.debug('Loading plugin from %s', pluginName);
