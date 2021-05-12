@@ -20,6 +20,7 @@ export type RunOptions = {
   listTasks?: boolean;
   paths?: string[];
   tasks?: string[];
+  pluginBaseDir?: string;
 };
 
 export interface RegistrationArgs {

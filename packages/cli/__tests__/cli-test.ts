@@ -59,18 +59,19 @@ describe('cli-test', () => {
       "checkup run [paths..] [options]
 
       Options:
-            --help           Show help  [boolean]
-            --version        Show version number  [boolean]
-        -e, --exclude-paths  Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.  [array]
-        -c, --config-path    Use the configuration found at this path, overriding .checkuprc if present.  [default: \\".checkuprc\\"]
-            --config         Use this configuration, overriding .checkuprc if present.
-        -d, --cwd            The path referring to the root directory that Checkup will run in  [default: (default)]
-            --category       Runs specific tasks specified by category. Can be used multiple times.  [array]
-            --group          Runs specific tasks specified by group. Can be used multiple times.  [array]
-        -t, --task           Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.  [array]
-        -f, --format         The output format, one of summary, json, pretty  [default: \\"summary\\"]
-        -o, --output-file    Specify file to write JSON output to.  [default: \\"\\"]
-        -l, --list-tasks     List all available tasks to run.  [boolean]"
+            --help             Show help  [boolean]
+            --version          Show version number  [boolean]
+        -e, --exclude-paths    Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.  [array]
+        -c, --config-path      Use the configuration found at this path, overriding .checkuprc if present.  [default: \\".checkuprc\\"]
+            --config           Use this configuration, overriding .checkuprc if present.
+        -d, --cwd              The path referring to the root directory that Checkup will run in  [default: (default)]
+            --category         Runs specific tasks specified by category. Can be used multiple times.  [array]
+            --group            Runs specific tasks specified by group. Can be used multiple times.  [array]
+        -t, --task             Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.  [array]
+        -f, --format           The output format, one of summary, json, pretty  [default: \\"summary\\"]
+        -o, --output-file      Specify file to write JSON output to.  [default: \\"\\"]
+        -l, --list-tasks       List all available tasks to run.  [boolean]
+        -p, --plugin-base-dir  The base directory where Checkup will load the plugins from. Defaults to cwd."
     `);
   });
 
@@ -854,6 +855,36 @@ describe('cli-test', () => {
 
     expect(result.exitCode).toEqual(1);
     expect(result.stderr).toContain('Cannot find the foo task.');
+  });
+
+  it('can load plugins from pluginBaseDir, if provided', async () => {
+    let newProject = new FakeProject('random-app', '0.0.0', () => {});
+    newProject.files['index.js'] = 'module.exports = {};';
+    newProject.files['index.hbs'] = '<div>Random App</div>';
+    newProject.chdir();
+    let actualPluginDir = await newProject.addPlugin(
+      { name: 'fake', defaults: false },
+      { typescript: false }
+    );
+    await newProject.addTask(
+      { name: 'foo', defaults: false },
+      { typescript: false, category: 'best practices', group: 'none' },
+      actualPluginDir
+    );
+    newProject.writeSync();
+
+    project.addCheckupConfig({
+      $schema:
+        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
+      excludePaths: [],
+      plugins: ['checkup-plugin-fake'],
+      tasks: {},
+    });
+    project.chdir();
+
+    let result = await run(['run', '.', '--plugin-base-dir', newProject.baseDir]);
+    expect(result.exitCode).toEqual(0);
+    expect(result.stdout).toMatch('✔ foo');
   });
 
   function run(args: string[], options: execa.Options = {}) {

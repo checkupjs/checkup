@@ -90,6 +90,12 @@ checkup <command> [options]`
             description: 'List all available tasks to run.',
             boolean: true,
           },
+
+          'plugin-base-dir': {
+            alias: 'p',
+            description:
+              'The base directory where Checkup will load the plugins from. Defaults to cwd.',
+          },
         });
       },
       handler: async (argv: yargs.Arguments) => {
@@ -104,6 +110,7 @@ checkup <command> [options]`
           categories: argv.category as string[],
           groups: argv.group as string[],
           tasks: argv.task as string[],
+          pluginBaseDir: argv['plugin-base-dir'] as string,
         });
 
         if (!paths || paths.length === 0) {
