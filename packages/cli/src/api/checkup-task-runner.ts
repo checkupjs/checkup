@@ -30,7 +30,7 @@ import { Log, Result } from 'sarif';
 
 import { getLog } from '../get-log';
 import TaskListImpl from '../task-list';
-import { getPackageJson } from '../utils/get-package-json';
+import { getPackageJson, getPackageJsonSource } from '../utils/get-package-json';
 import PluginRegistrationProvider from './registration-provider';
 export default class CheckupTaskRunner {
   actions: Action[] = [];
@@ -190,6 +190,7 @@ export default class CheckupTaskRunner {
       parsers: this.registeredParsers,
       config: this.config,
       pkg: getPackageJson(this.options.cwd),
+      pkgSource: getPackageJsonSource(this.options.cwd),
       paths: FilePathArray.from(
         await getFilePathsAsync(this.options.cwd, this.options.paths || ['.'], excludePaths)
       ) as FilePathArray,

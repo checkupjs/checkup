@@ -69,6 +69,8 @@ export function getTaskContext({
     parsers: getRegisteredParsers(),
     config: Object.assign({}, DEFAULT_CONFIG, config),
     pkg: pkg,
+    // eslint-disable-next-line unicorn/no-null
+    pkgSource: JSON.stringify(pkg, null, 2),
     paths: paths,
   };
 }
