@@ -1,8 +1,5 @@
 import { join } from 'path';
-import { BaseTask, Task, AstTraverser } from '@checkup/core';
-import { File, Node } from '@babel/types';
-import * as parser from '@babel/parser';
-import traverse, { TraverseOptions } from '@babel/traverse';
+import { BaseTask, Task, JsonTraverser } from '@checkup/core';
 import { Result } from 'sarif';
 
 type Dependency = {
@@ -54,7 +51,6 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
   }
 
   getDependencies() {
-    let packageJsonContents = `module.exports = ${this.context.pkgSource}`;
     class DependenciesAccumulator {
       dependencies: Set<Dependency>;
 
@@ -97,13 +93,9 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
         };
       }
     }
+
     let dependencyAccumulator = new DependenciesAccumulator();
-    let astTraverser = new AstTraverser<
-      File,
-      TraverseOptions<Node>,
-      typeof parser.parse,
-      typeof traverse
-    >(packageJsonContents, parser.parse, traverse);
+    let astTraverser = new JsonTraverser(this.context.pkgSource);
 
     astTraverser.traverse(dependencyAccumulator.visitors);
 
