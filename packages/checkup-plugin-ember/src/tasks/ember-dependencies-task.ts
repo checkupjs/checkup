@@ -2,13 +2,13 @@ import { join } from 'path';
 import { BaseTask, Task, JsonTraverser } from '@checkup/core';
 import { Result } from 'sarif';
 
-type Dependency = {
+interface Dependency {
   packageName: string;
   version: string;
   type: 'dependency' | 'devDependency';
   startLine: number;
   startColumn: number;
-};
+}
 
 export default class EmberDependenciesTask extends BaseTask implements Task {
   taskName = 'ember-dependencies';

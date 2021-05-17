@@ -1,9 +1,10 @@
+import { join } from 'path';
 import * as npmCheck from 'npm-check';
 
-import { BaseTask, Task, groupDataByField, sarifBuilder, TaskError } from '@checkup/core';
+import { BaseTask, Task, TaskError, JsonTraverser } from '@checkup/core';
 import { Result } from 'sarif';
 
-export type Dependency = {
+export type NpmDependency = {
   moduleName: string;
   homepage: string;
   regError: string | undefined;
@@ -23,15 +24,14 @@ export type Dependency = {
   unused: boolean;
 };
 
-interface OutdatedDependency {
+interface Dependency {
   packageName: string;
-  packageJsonVersion: string;
-  homepage: string;
-  latest: string;
-  installed: string;
-  wanted: string;
-  semverBump: string;
+  version: string;
+  type: 'dependency' | 'devDependency';
+  startLine: number;
+  startColumn: number;
 }
+
 export default class OutdatedDependenciesTask extends BaseTask implements Task {
   taskName = 'outdated-dependencies';
   taskDisplayName = 'Outdated Dependencies';
@@ -39,17 +39,51 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
   category = 'dependencies';
 
   async run(): Promise<Result[]> {
-    let outdatedDependencies = await this.getDependencies(this.context.options.cwd);
-    let groupedDependencies = groupDataByField(outdatedDependencies, 'semverBump');
+    let dependencies = [...this.getDependencies()];
+    let outdatedDependencies = await this.getOutdatedDependencies(this.context.options.cwd);
 
-    return groupedDependencies.flatMap((dependencyGroup) =>
-      sarifBuilder.fromData(this, dependencyGroup, dependencyGroup[0].semverBump)
-    );
+    return outdatedDependencies.map((dependency: NpmDependency) => {
+      let dependencySourceInfo = dependencies.find(
+        (depencencyInfo) => depencencyInfo.packageName === dependency.moduleName
+      ) || {
+        startLine: 0,
+        startColumn: 0,
+      };
+
+      return {
+        ruleId: this.taskName,
+        message: {
+          text: `Outdated ${dependency.bump} version of ${dependency.moduleName}. Installed: ${dependency.installed}. Latest: ${dependency.latest}.`,
+        },
+        kind: 'review',
+        level: getLevel(dependency.bump),
+        locations: [
+          {
+            physicalLocation: {
+              artifactLocation: {
+                uri: join(this.context.options.cwd, 'package.json'),
+              },
+              region: {
+                startLine: dependencySourceInfo.startLine,
+                startColumn: dependencySourceInfo.startColumn,
+              },
+            },
+          },
+        ],
+        properties: {
+          packageName: dependency.moduleName,
+          packageVersion: dependency.packageJson,
+          installed: dependency.installed,
+          latest: dependency.latest,
+          wanted: dependency.packageWanted,
+          type: dependency.devDependency ? 'devDependency' : 'dependency',
+        },
+      };
+    });
   }
 
-  async getDependencies(path: string): Promise<OutdatedDependency[]> {
+  async getOutdatedDependencies(path: string): Promise<NpmDependency[]> {
     let result;
-    let packages;
 
     try {
       result = await npmCheck({ cwd: path });
@@ -60,18 +94,71 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
       });
     }
 
-    packages = result.get('packages').map((pkg: Dependency) => {
-      return {
-        packageName: pkg.moduleName,
-        packageJsonVersion: pkg.packageJson,
-        homepage: pkg.homepage,
-        latest: pkg.latest,
-        installed: pkg.installed,
-        wanted: pkg.packageWanted,
-        semverBump: pkg.bump === null ? 'current' : pkg.bump,
-      };
-    });
+    return result.get('packages');
+  }
 
-    return packages;
+  getDependencies() {
+    class DependenciesAccumulator {
+      dependencies: Set<Dependency>;
+
+      constructor() {
+        this.dependencies = new Set();
+      }
+
+      get visitors() {
+        let self = this;
+        return {
+          ObjectProperty(path: any) {
+            let node: any = path.node;
+            if (node.key.value === 'dependencies' && node.value.properties) {
+              for (let property of node.value.properties) {
+                self.dependencies.add({
+                  packageName: property.key.value,
+                  version: property.value.value,
+                  type: 'dependency',
+                  startLine: property.loc.start.line,
+                  startColumn: property.loc.start.column,
+                });
+              }
+            }
+            if (node.key.value === 'devDependencies' && node.value.properties) {
+              for (let property of node.value.properties) {
+                self.dependencies.add({
+                  packageName: property.key.value,
+                  version: property.value.value,
+                  type: 'devDependency',
+                  startLine: property.loc.start.line,
+                  startColumn: property.loc.start.column,
+                });
+              }
+            }
+          },
+        };
+      }
+    }
+
+    let dependencyAccumulator = new DependenciesAccumulator();
+    let astTraverser = new JsonTraverser(this.context.pkgSource);
+
+    astTraverser.traverse(dependencyAccumulator.visitors);
+
+    return dependencyAccumulator.dependencies;
+  }
+}
+
+function getLevel(semverBump: string): Result.level {
+  switch (semverBump) {
+    case 'major': {
+      return 'error';
+    }
+    case 'minor': {
+      return 'warning';
+    }
+    case 'patch': {
+      return 'note';
+    }
+    default: {
+      return 'none';
+    }
   }
 }
