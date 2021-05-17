@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { BaseTask, Task, AstTraverser, ErrorKind } from '@checkup/core';
+import { BaseTask, Task, AstTraverser } from '@checkup/core';
 import { File, Node } from '@babel/types';
 import * as parser from '@babel/parser';
 import traverse, { TraverseOptions } from '@babel/traverse';
@@ -27,7 +27,7 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
       return {
         ruleId: this.taskName,
         message: {
-          text: `Ember dependency result for ${dependency.packageName}`,
+          text: `Ember dependency information for ${dependency.packageName}`,
         },
         kind: 'review',
         level: 'note',
@@ -44,6 +44,11 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
             },
           },
         ],
+        properties: {
+          packageName: dependency.packageName,
+          version: dependency.version,
+          type: dependency.type,
+        },
       };
     });
   }
