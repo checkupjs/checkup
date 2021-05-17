@@ -1,5 +1,5 @@
 import * as recast from 'recast';
-import * as t from '@babel/types';
+import { File } from '@babel/types';
 import traverse, { TraverseOptions } from '@babel/traverse';
 
 import AstTraverser from './ast-traverser';
@@ -17,7 +17,7 @@ type BabelTraverse = typeof traverse;
  *              .generate();
  */
 export default class AstTransformer extends AstTraverser<
-  t.File,
+  File,
   TraverseOptions,
   RecastParse,
   BabelTraverse
