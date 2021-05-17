@@ -58,6 +58,7 @@ export interface TaskContext {
   readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
   readonly config: CheckupConfig;
   readonly pkg: PackageJson;
+  readonly pkgSource: string;
   readonly paths: FilePathArray;
 }
 
