@@ -44,7 +44,6 @@ describe('outdated-dependencies-task', () => {
   });
 
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
-    debugger;
     let actions = evaluateActions(results, task.config);
 
     expect(actions).toHaveLength(3);
