@@ -3,7 +3,7 @@ import * as parser from '@babel/parser';
 import traverse, { TraverseOptions } from '@babel/traverse';
 import AstTraverser from './ast-traverser';
 
-export default class BabelTraverser extends AstTraverser<
+export default class JavaScriptTraverser extends AstTraverser<
   File,
   TraverseOptions<Node>,
   typeof parser.parse,
