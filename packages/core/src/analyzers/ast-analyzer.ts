@@ -29,7 +29,5 @@ export default class AstAnalyzer<
 
   analyze(visitors: TVisitors) {
     this.traverser(this.ast, visitors);
-
-    return this;
   }
 }

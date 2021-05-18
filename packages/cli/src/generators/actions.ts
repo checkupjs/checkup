@@ -109,18 +109,20 @@ export default class ActionsGenerator extends BaseGenerator {
       ]);
     }
 
-    let code = new AstTransformer(registerActionsSource, recast.parse, traverse, {
+    let transformer = new AstTransformer(registerActionsSource, recast.parse, traverse, {
       parser: require('recast/parsers/typescript'),
-    })
-      .analyze({
-        Program(path) {
-          path.node.body.splice(1, 0, importOrRequire);
-        },
-        BlockStatement(path) {
-          path.node.body.push(registerActionStatement);
-        },
-      })
-      .generate();
+    });
+
+    transformer.analyze({
+      Program(path) {
+        path.node.body.splice(1, 0, importOrRequire);
+      },
+      BlockStatement(path) {
+        path.node.body.push(registerActionStatement);
+      },
+    });
+
+    let code = transformer.generate();
 
     this.fs.write(registrationDestinationPath, code);
   }

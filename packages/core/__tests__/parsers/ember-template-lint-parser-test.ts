@@ -1,19 +1,16 @@
-import {
-  createParser,
-  EmberTemplateLintParser,
-} from '../../src/parsers/ember-template-lint-parser';
 import { TemplateLintConfig } from '../../src/types/ember-template-lint';
+import EmberTemplateLintAnalyzer from '../../src/analyzers/ember-template-lint-analyzer';
 
 const TemplateLinter = require('ember-template-lint');
 
-describe('ember-template-lint-parser', () => {
-  it('can create an eslint parser', () => {
+describe('ember-template-lint-analyzer', () => {
+  it('can create an ember-template-lint analyzer', () => {
     let config: TemplateLintConfig = {};
 
-    let parser: EmberTemplateLintParser = createParser(config) as EmberTemplateLintParser;
+    let analyzer: EmberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(config);
 
-    expect(parser.engine).toBeInstanceOf(TemplateLinter);
-    expect(Object.keys(parser.engine.config)).toMatchInlineSnapshot(`
+    expect(analyzer.engine).toBeInstanceOf(TemplateLinter);
+    expect(Object.keys(analyzer.engine.config)).toMatchInlineSnapshot(`
       Array [
         "rules",
         "pending",
@@ -28,17 +25,17 @@ describe('ember-template-lint-parser', () => {
     `);
   });
 
-  it('can create an eslint parser with custom rule configuration', () => {
+  it('can create an ember-template-lint parser with custom rule configuration', () => {
     let config: TemplateLintConfig = {
       rules: {
         'block-indentation': ['error', 6],
       },
     };
 
-    let parser: EmberTemplateLintParser = createParser(config) as EmberTemplateLintParser;
-    let optionsForRule = parser.engine.config.rules['block-indentation'];
+    let analyzer: EmberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(config);
+    let optionsForRule = analyzer.engine.config.rules['block-indentation'];
 
-    expect(parser.engine).toBeInstanceOf(TemplateLinter);
+    expect(analyzer.engine).toBeInstanceOf(TemplateLinter);
     expect(optionsForRule).toMatchInlineSnapshot(`
       Object {
         "config": 6,
