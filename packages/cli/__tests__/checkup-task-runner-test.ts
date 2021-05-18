@@ -1,11 +1,4 @@
-import {
-  BaseTask,
-  Task,
-  TaskContext,
-  sarifBuilder,
-  DEFAULT_CONFIG,
-  CheckupConfig,
-} from '@checkup/core';
+import { BaseTask, Task, TaskContext, DEFAULT_CONFIG, CheckupConfig } from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import type { Result } from 'sarif';
 import CheckupTaskRunner from '../src/api/checkup-task-runner';
@@ -21,7 +14,18 @@ class FooTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return sarifBuilder.fromData(this, [], 'hi');
+    return [
+      {
+        message: { text: 'hi' },
+        ruleId: this.taskName,
+        occurrenceCount: 1,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+          group: this.group,
+        },
+      },
+    ];
   }
 }
 
@@ -36,7 +40,18 @@ class FileCountTask extends BaseTask implements Task {
     super('fake', context);
   }
   async run(): Promise<Result[]> {
-    return sarifBuilder.fromData(this, [], 'hi');
+    return [
+      {
+        message: { text: 'hi' },
+        ruleId: this.taskName,
+        occurrenceCount: 1,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+          group: this.group,
+        },
+      },
+    ];
   }
 }
 

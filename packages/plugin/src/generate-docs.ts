@@ -3,7 +3,7 @@ import * as recast from 'recast';
 import { ensureDir, readdir, readFile, existsSync, writeFile } from 'fs-extra';
 import * as t from '@babel/types';
 import traverse, { TraverseOptions } from '@babel/traverse';
-import { getPluginName, AstAnalyzer, getShorthandName } from '@checkup/core';
+import { getPluginName, AstAnalyzer, getShorthandName, TypeScriptAnalyzer } from '@checkup/core';
 
 type RecastParse = typeof recast.parse;
 type BabelTraverse = typeof traverse;
@@ -51,14 +51,7 @@ export async function generate(baseDir: string = process.cwd()) {
     let taskName: string = '';
     let taskDescription: string = '';
 
-    new AstAnalyzer<t.File, TraverseOptions, RecastParse, BabelTraverse>(
-      taskSource,
-      recast.parse,
-      traverse,
-      {
-        parser: require('recast/parsers/typescript'),
-      }
-    ).analyze({
+    new TypeScriptAnalyzer(taskSource).analyze({
       AssignmentExpression({ node }) {
         if (isProperty(node, 'taskName')) {
           taskName = getValue(node);

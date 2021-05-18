@@ -5,8 +5,8 @@ import { ESLintOptions } from '../../src/types/analyzers';
 
 const SIMPLE_FILE_PATH = resolve('..', '__fixtures__/simple.js');
 
-describe('eslint-parser', () => {
-  it('can create an eslint parser', () => {
+describe('eslint-analyzer', () => {
+  it('can create an eslint analyzer', () => {
     let config: ESLintOptions = {
       parser: 'babel-eslint',
       parserOptions: {
@@ -39,7 +39,7 @@ describe('eslint-parser', () => {
     `);
   });
 
-  it('can create an eslint parser with custom rule configuration', () => {
+  it('can create an eslint analyzer with custom rule configuration', () => {
     let config: ESLintOptions = {
       parser: 'babel-eslint',
       parserOptions: {

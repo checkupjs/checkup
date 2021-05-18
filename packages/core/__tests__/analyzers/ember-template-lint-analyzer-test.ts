@@ -25,7 +25,7 @@ describe('ember-template-lint-analyzer', () => {
     `);
   });
 
-  it('can create an ember-template-lint parser with custom rule configuration', () => {
+  it('can create an ember-template-lint analyzer with custom rule configuration', () => {
     let config: TemplateLintConfig = {
       rules: {
         'block-indentation': ['error', 6],
