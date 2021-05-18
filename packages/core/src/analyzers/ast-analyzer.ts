@@ -1,7 +1,10 @@
+type ParserWithOptions<TAst> = (source: string, parserOptions?: any) => TAst;
+type Parser<TAst> = (source: string) => TAst;
+
 export default class AstAnalyzer<
   TAst,
   TVisitors,
-  TParse extends (source: string, parserOptions?: any) => TAst,
+  TParse extends Parser<TAst> | ParserWithOptions<TAst>,
   TTraverse extends (ast: TAst, visitors: TVisitors) => any
 > {
   ast: TAst;
