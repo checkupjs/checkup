@@ -28,6 +28,7 @@
     "recast": "^0.20.4",
     "resolve": "^1.19.0",
     "strip-ansi": "^6.0.0",
+    "stylelint": "^13.13.1",
     "tmp": "^0.2.1",
     "type-fest": "^1.0.2",
     "walk-sync": "^2.2.0",
@@ -37,6 +38,7 @@
     "@types/chalk": "^2.2.0",
     "@types/eslint": "^7.2.2",
     "@types/resolve": "^1.20.0",
+    "@types/stylelint": "^9.10.1",
     "@types/wrap-ansi": "^3.0.0",
     "eslint-plugin-jest": "^24.1.3"
   },
