@@ -3,8 +3,8 @@ import { existsSync, mkdirSync } from 'fs';
 import * as Generator from 'yeoman-generator';
 import * as chalk from 'chalk';
 
+import { getPackageJson } from '@checkup/core';
 import { getVersion } from '../utils/get-version';
-import { getPackageJson } from '../utils/get-package-json';
 
 export interface Options {
   type: string;
