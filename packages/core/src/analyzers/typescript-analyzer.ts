@@ -4,7 +4,7 @@ import traverse, { TraverseOptions } from '@babel/traverse';
 
 import AstTraverser from '../ast/ast-traverser';
 
-export default class TypeScriptTraverser extends AstTraverser<
+export default class TypeScriptAnalyzer extends AstTraverser<
   File,
   TraverseOptions,
   typeof recast.parse,

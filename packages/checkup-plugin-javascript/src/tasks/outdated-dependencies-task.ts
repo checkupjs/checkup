@@ -1,7 +1,7 @@
 import { join } from 'path';
 import * as npmCheck from 'npm-check';
 
-import { BaseTask, Task, TaskError, JsonTraverser } from '@checkup/core';
+import { BaseTask, Task, TaskError, JsonAnalyzer } from '@checkup/core';
 import { Result } from 'sarif';
 
 export type NpmDependency = {
@@ -138,7 +138,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
     }
 
     let dependencyAccumulator = new DependenciesAccumulator();
-    let astTraverser = new JsonTraverser(this.context.pkgSource);
+    let astTraverser = new JsonAnalyzer(this.context.pkgSource);
 
     astTraverser.traverse(dependencyAccumulator.visitors);
 
