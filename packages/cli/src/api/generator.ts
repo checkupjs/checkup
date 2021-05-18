@@ -44,7 +44,7 @@ export default class Generator {
     env.register(require.resolve(`../generators/${type}`), `checkup:${type}`);
 
     try {
-      await new Promise((resolve, reject) => {
+      await new Promise<void>((resolve, reject) => {
         env.run(`checkup:${type}`, generatorOptions, (err: Error | null) => {
           if (err) {
             reject(err);
