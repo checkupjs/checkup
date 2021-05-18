@@ -11,6 +11,7 @@ import {
   bySeverity,
   sarifBuilder,
   lintBuilder,
+  EmberTemplateLintAnalyzer,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -21,25 +22,25 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
   category = 'linting';
   group = 'ember';
 
-  private templateLinter: TemplateLinter;
+  private emberTemplateLintAnalyzer: TemplateLinter;
 
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
-
-    let createEmberTemplateLintParser = this.context.parsers.get('ember-template-lint')!;
 
     let resolvedTemplateLintConfigFile = join(
       resolve(this.context.options.cwd),
       '.template-lintrc.js'
     );
 
-    this.templateLinter = createEmberTemplateLintParser(require(resolvedTemplateLintConfigFile));
+    this.emberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(
+      require(resolvedTemplateLintConfigFile)
+    );
   }
 
   private async runTemplateLint(): Promise<TemplateLintReport> {
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
 
-    return this.templateLinter.execute(hbsPaths);
+    return this.emberTemplateLintAnalyzer.analyze(hbsPaths);
   }
 
   async run(): Promise<Result[]> {

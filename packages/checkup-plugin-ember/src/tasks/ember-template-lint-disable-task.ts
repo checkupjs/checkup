@@ -1,4 +1,4 @@
-import { Task, BaseTask, LintResult, trimCwd, AstTraverser, sarifBuilder } from '@checkup/core';
+import { Task, BaseTask, LintResult, trimCwd, AstAnalyzer, sarifBuilder } from '@checkup/core';
 import { Result } from 'sarif';
 
 const fs = require('fs');
@@ -61,9 +61,9 @@ async function getTemplateLintDisables(filePaths: string[], cwd: string) {
     filePaths.map((filePath) => {
       return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
         let accumulator = new TemplateLintDisableAccumulator(filePath);
-        let astTraverser = new AstTraverser(fileContents, parse, traverse);
+        let analyzer = new AstAnalyzer(fileContents, parse, traverse);
 
-        astTraverser.traverse(accumulator.visitors);
+        analyzer.analyze(accumulator.visitors);
         data.push(...accumulator.data);
       });
     })

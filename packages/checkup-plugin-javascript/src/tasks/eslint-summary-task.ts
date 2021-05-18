@@ -4,7 +4,7 @@ import {
   BaseTask,
   ESLintOptions,
   ESLintReport,
-  Parser,
+  LintAnalyzer,
   Task,
   bySeverity,
   groupDataByField,
@@ -12,6 +12,7 @@ import {
   lintBuilder,
   TaskContext,
   TaskError,
+  ESLintAnalyzer,
 } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
@@ -38,23 +39,21 @@ export default class EslintSummaryTask extends BaseTask implements Task {
   description = 'Gets a summary of all eslint results in a project';
   category = 'linting';
 
-  private _eslintParser: Parser<ESLintReport>;
+  private analyzer: LintAnalyzer<ESLintReport>;
 
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
-
-    let createEslintParser = this.context.parsers.get('eslint')!;
 
     let eslintConfig: ESLintOptions = this.readEslintConfig(
       this.context.paths,
       this.context.options.cwd,
       this.context.pkg as PackageJsonWithEslint
     );
-    this._eslintParser = createEslintParser(eslintConfig);
+    this.analyzer = new ESLintAnalyzer(eslintConfig);
   }
 
   async run(): Promise<Result[]> {
-    let report = await this._eslintParser.execute(this.context.paths.filterByGlob('**/*.js'));
+    let report = await this.analyzer.analyze(this.context.paths.filterByGlob('**/*.js'));
     let transformedData = lintBuilder.toLintResults(report.results, this.context.options.cwd);
 
     let lintingErrors = groupDataByField(bySeverity(transformedData, 2), 'lintRuleId');

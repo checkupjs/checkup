@@ -13,14 +13,7 @@ import {
   TaskActionsEvaluator,
   TaskListError,
   TaskName,
-  ParserName,
-  CreateParser,
-  ParserOptions,
-  Parser,
-  ParserReport,
   TaskFormatter,
-  createEslintParser,
-  createEmberTemplateLintParser,
   RegistrationArgs,
   ErrorKind,
 } from '@checkup/core';
@@ -46,10 +39,6 @@ export default class CheckupTaskRunner {
   taskContext!: TaskContext;
 
   registeredActions: Map<string, TaskActionsEvaluator> = new Map<TaskName, TaskActionsEvaluator>();
-  registeredParsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>> = new Map<
-    ParserName,
-    CreateParser<ParserOptions, Parser<ParserReport>>
-  >();
   registeredTaskReporters: Map<string, TaskFormatter> = new Map<TaskName, TaskFormatter>();
 
   get taskErrorKind() {
@@ -73,8 +62,6 @@ export default class CheckupTaskRunner {
   constructor(options: RunOptions) {
     this.debug = debug('checkup');
     this.options = options;
-
-    this.registerParsers();
 
     this.debug('options %O', this.options);
   }
@@ -177,17 +164,11 @@ export default class CheckupTaskRunner {
     }
   }
 
-  private registerParsers() {
-    this.registeredParsers.set('eslint', createEslintParser);
-    this.registeredParsers.set('ember-template-lint', createEmberTemplateLintParser);
-  }
-
   private async registerPlugins() {
     let excludePaths = this.options.excludePaths || this.config.excludePaths;
 
     this.taskContext = Object.freeze({
       options: this.options,
-      parsers: this.registeredParsers,
       config: this.config,
       pkg: getPackageJson(this.options.cwd),
       pkgSource: getPackageJsonSource(this.options.cwd),
@@ -200,7 +181,6 @@ export default class CheckupTaskRunner {
       context: this.taskContext,
       register: new PluginRegistrationProvider({
         registeredActions: this.registeredActions,
-        registeredParsers: this.registeredParsers,
         registeredTaskReporters: this.registeredTaskReporters,
         registeredTasks: this.tasks,
       }),

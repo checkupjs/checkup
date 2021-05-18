@@ -1,7 +1,6 @@
 import { PackageJson } from 'type-fest';
 import { Result } from 'sarif';
 import { FilePathArray } from '../utils/file-path-array';
-import { CreateParser, Parser, ParserName, ParserOptions, ParserReport } from './parsers';
 
 import { CheckupConfig, TaskConfig } from './config';
 import { RunOptions, FormatterArgs } from './cli';
@@ -55,7 +54,6 @@ export type TaskListError = {
 
 export interface TaskContext {
   readonly options: RunOptions;
-  readonly parsers: Map<ParserName, CreateParser<ParserOptions, Parser<ParserReport>>>;
   readonly config: CheckupConfig;
   readonly pkg: PackageJson;
   readonly pkgSource: string;

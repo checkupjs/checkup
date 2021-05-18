@@ -1,4 +1,4 @@
-import { Task, BaseTask, trimCwd, LintResult, AstTraverser, sarifBuilder } from '@checkup/core';
+import { Task, BaseTask, trimCwd, LintResult, AstAnalyzer, sarifBuilder } from '@checkup/core';
 
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
@@ -61,7 +61,7 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
     filePaths.map((filePath) => {
       return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
         let accumulator = new ESLintDisableAccumulator(filePath);
-        let astTraverser = new AstTraverser<t.File, Visitor<any>, typeof parse, typeof visit>(
+        let analyzer = new AstAnalyzer<t.File, Visitor<any>, typeof parse, typeof visit>(
           fileContents,
           parse,
           visit,
@@ -70,7 +70,7 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
           }
         );
 
-        astTraverser.traverse(accumulator.visitors);
+        analyzer.analyze(accumulator.visitors);
         data.push(...accumulator.data);
       });
     })

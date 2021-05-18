@@ -1,4 +1,4 @@
-import { ESLintMessage, ESLintResult } from '../types/parsers';
+import { ESLintMessage, ESLintResult } from '../types/analyzers';
 import { LintResult } from '../types/tasks';
 import { TemplateLintMessage, TemplateLintResult } from '../types/ember-template-lint';
 import { trimCwd } from './path';

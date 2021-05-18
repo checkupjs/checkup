@@ -1,9 +1,9 @@
 import { File, Node } from '@babel/types';
 import * as parser from '@babel/parser';
 import traverse, { TraverseOptions } from '@babel/traverse';
-import AstTraverser from './ast-traverser';
+import AstAnalyzer from './ast-analyzer';
 
-export default class BabelTraverser extends AstTraverser<
+export default class JavaScriptAnalyzer extends AstAnalyzer<
   File,
   TraverseOptions<Node>,
   typeof parser.parse,

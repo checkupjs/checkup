@@ -136,18 +136,20 @@ export default class TaskGenerator extends BaseGenerator {
       ]);
     }
 
-    let code = new AstTransformer(registerTasksSource, recast.parse, traverse, {
+    let transformer = new AstTransformer(registerTasksSource, recast.parse, traverse, {
       parser: require('recast/parsers/typescript'),
-    })
-      .traverse({
-        Program(path) {
-          path.node.body.splice(1, 0, importOrRequire);
-        },
-        BlockStatement(path) {
-          path.node.body.push(registerTaskStatement);
-        },
-      })
-      .generate();
+    });
+
+    transformer.analyze({
+      Program(path) {
+        path.node.body.splice(1, 0, importOrRequire);
+      },
+      BlockStatement(path) {
+        path.node.body.push(registerTaskStatement);
+      },
+    });
+
+    let code = transformer.generate();
 
     this.fs.write(registrationDestinationPath, code);
   }

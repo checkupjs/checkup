@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 
-import { CreateParser, Parser } from '../types/parsers';
 import {
   TemplateLintConfig,
   TemplateLintMessage,
@@ -12,16 +11,20 @@ import { mergeLintConfig } from '../utils/merge-lint-config';
 
 const TemplateLinter = require('ember-template-lint');
 
-class EmberTemplateLintParser implements Parser<TemplateLintReport> {
+export default class EmberTemplateLintAnalyzer {
   engine: typeof TemplateLinter;
 
-  constructor(config: TemplateLintConfig) {
+  constructor(config: TemplateLintConfig, taskConfig?: TaskConfig) {
+    if (taskConfig && taskConfig.emberTemplateLintConfig) {
+      config = mergeLintConfig(config, taskConfig.emberTemplateLintConfig);
+    }
+
     this.engine = new TemplateLinter({
       config,
     });
   }
 
-  async execute(paths: string[]): Promise<TemplateLintReport> {
+  async analyze(paths: string[]): Promise<TemplateLintReport> {
     let sources = paths.map((path) => ({
       path,
       template: fs.readFileSync(path, { encoding: 'utf8' }),
@@ -53,16 +56,3 @@ class EmberTemplateLintParser implements Parser<TemplateLintReport> {
     };
   }
 }
-
-let createParser: CreateParser<TemplateLintConfig, Parser<TemplateLintReport>> = function (
-  config: TemplateLintConfig,
-  taskConfig?: TaskConfig
-) {
-  if (taskConfig && taskConfig.emberTemplateLintConfig) {
-    config = mergeLintConfig(config, taskConfig.emberTemplateLintConfig);
-  }
-
-  return new EmberTemplateLintParser(config);
-};
-
-export { createParser, EmberTemplateLintParser };

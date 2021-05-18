@@ -2,7 +2,7 @@ import * as recast from 'recast';
 import { File } from '@babel/types';
 import traverse, { TraverseOptions } from '@babel/traverse';
 
-import AstTraverser from './ast-traverser';
+import AstAnalyzer from '../analyzers/ast-analyzer';
 
 type RecastParse = typeof recast.parse;
 type BabelTraverse = typeof traverse;
@@ -16,7 +16,7 @@ type BabelTraverse = typeof traverse;
  *              .traverse(visitors)
  *              .generate();
  */
-export default class AstTransformer extends AstTraverser<
+export default class AstTransformer extends AstAnalyzer<
   File,
   TraverseOptions,
   RecastParse,

@@ -1,12 +1,12 @@
 import { resolve } from 'path';
 import { CLIEngine } from 'eslint';
-import { createParser, ESLintParser } from '../../src/parsers/eslint-parser';
-import { ESLintOptions } from '../../src/types/parsers';
+import ESLintAnalyzer from '../../src/analyzers/eslint-analyzer';
+import { ESLintOptions } from '../../src/types/analyzers';
 
 const SIMPLE_FILE_PATH = resolve('..', '__fixtures__/simple.js');
 
-describe('eslint-parser', () => {
-  it('can create an eslint parser', () => {
+describe('eslint-analyzer', () => {
+  it('can create an eslint analyzer', () => {
     let config: ESLintOptions = {
       parser: 'babel-eslint',
       parserOptions: {
@@ -19,10 +19,10 @@ describe('eslint-parser', () => {
       envs: ['browser'],
     };
 
-    let parser: ESLintParser = createParser(config) as ESLintParser;
-    let configForFile = parser.engine.getConfigForFile(SIMPLE_FILE_PATH);
+    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(config);
+    let configForFile = analyzer.engine.getConfigForFile(SIMPLE_FILE_PATH);
 
-    expect(parser.engine).toBeInstanceOf(CLIEngine);
+    expect(analyzer.engine).toBeInstanceOf(CLIEngine);
     expect(Object.keys(configForFile)).toMatchInlineSnapshot(`
       Array [
         "env",
@@ -39,7 +39,7 @@ describe('eslint-parser', () => {
     `);
   });
 
-  it('can create an eslint parser with custom rule configuration', () => {
+  it('can create an eslint analyzer with custom rule configuration', () => {
     let config: ESLintOptions = {
       parser: 'babel-eslint',
       parserOptions: {
@@ -60,10 +60,10 @@ describe('eslint-parser', () => {
       },
     };
 
-    let parser: ESLintParser = createParser(config) as ESLintParser;
-    let configForFile = parser.engine.getConfigForFile(SIMPLE_FILE_PATH);
+    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(config);
+    let configForFile = analyzer.engine.getConfigForFile(SIMPLE_FILE_PATH);
 
-    expect(parser.engine).toBeInstanceOf(CLIEngine);
+    expect(analyzer.engine).toBeInstanceOf(CLIEngine);
     expect(configForFile.rules!['no-tabs']).toMatchInlineSnapshot(`
       Array [
         "error",

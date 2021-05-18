@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { BaseTask, Task, JsonTraverser } from '@checkup/core';
+import { BaseTask, Task, JsonAnalyzer } from '@checkup/core';
 import { Result } from 'sarif';
 
 interface Dependency {
@@ -95,9 +95,9 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
     }
 
     let dependencyAccumulator = new DependenciesAccumulator();
-    let astTraverser = new JsonTraverser(this.context.pkgSource);
+    let analyzer = new JsonAnalyzer(this.context.pkgSource);
 
-    astTraverser.traverse(dependencyAccumulator.visitors);
+    analyzer.analyze(dependencyAccumulator.visitors);
 
     return dependencyAccumulator.dependencies;
   }

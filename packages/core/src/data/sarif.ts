@@ -23,7 +23,7 @@ function fromLintResults(
     return buildEmptyResult(taskContext);
   }
 
-  // When files disable lint rules that are not defined in the context of our Task's parser, it adds a lintResult
+  // When files disable lint rules that are not defined in the context of our Task's analyzer, it adds a lintResult
   // that indicates that the rule was not found. Since this is not an actual error || warning, we filter them out
   const lintRuleNotDefinedRegex = new RegExp('Definition for rule .* was not found');
 
@@ -84,35 +84,6 @@ function fromLocations(
   });
 }
 
-/**
- * Builds SARIF Results from a list of properties.
- *
- * @param taskContext {Task} This is used to set Task properties on the Result
- * @param key {string} An identifier used to help identify the result
- * @param data {Array<string | object>} The raw data used to derive the result's count
- */
-function fromData<T>(taskContext: SarifTaskIdentifier, data: T[], message: string): Result[] {
-  if (data.length === 0) {
-    return buildEmptyResult(taskContext, message);
-  }
-
-  return [
-    {
-      message: { text: message },
-      ruleId: taskContext.taskName,
-      occurrenceCount: data.length,
-      properties: {
-        data: data,
-        ...{
-          taskDisplayName: taskContext.taskDisplayName,
-          category: taskContext.category,
-          group: taskContext.group,
-        },
-      },
-    },
-  ];
-}
-
 export function fromTaskErrors(errors: TaskListError[]): Notification[] {
   return errors.map((error) => {
     return {
@@ -128,7 +99,6 @@ export function fromTaskErrors(errors: TaskListError[]): Notification[] {
 export const sarifBuilder = {
   fromLintResults,
   fromLocations,
-  fromData,
   notifications: {
     fromTaskErrors,
   },

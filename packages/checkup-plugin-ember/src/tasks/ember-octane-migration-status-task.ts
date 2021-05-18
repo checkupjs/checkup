@@ -5,7 +5,7 @@ import {
   ESLintOptions,
   ESLintReport,
   ESLintResult,
-  Parser,
+  LintAnalyzer,
   Task,
   TemplateLintConfig,
   TemplateLinter,
@@ -14,6 +14,8 @@ import {
   groupDataByField,
   lintBuilder,
   TaskContext,
+  ESLintAnalyzer,
+  EmberTemplateLintAnalyzer,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -110,17 +112,17 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
   category = 'migrations';
   group = 'ember';
 
-  private eslintParser: Parser<ESLintReport>;
-  private templateLinter: TemplateLinter;
+  private eslintAnalyzer: LintAnalyzer<ESLintReport>;
+  private emberTemplateLintAnalyzer: TemplateLinter;
 
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
-    let createEslintParser = this.context.parsers.get('eslint')!;
-    let createEmberTemplateLintParser = this.context.parsers.get('ember-template-lint')!;
-
-    this.eslintParser = createEslintParser(OCTANE_ES_LINT_CONFIG, this.config);
-    this.templateLinter = createEmberTemplateLintParser(OCTANE_TEMPLATE_LINT_CONFIG, this.config);
+    this.eslintAnalyzer = new ESLintAnalyzer(OCTANE_ES_LINT_CONFIG, this.config);
+    this.emberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(
+      OCTANE_TEMPLATE_LINT_CONFIG,
+      this.config
+    );
   }
 
   async run(): Promise<Result[]> {
@@ -138,13 +140,13 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
   private async runEsLint(): Promise<ESLintReport> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
 
-    return this.eslintParser.execute(jsPaths);
+    return this.eslintAnalyzer.analyze(jsPaths);
   }
 
   private async runTemplateLint(): Promise<TemplateLintReport> {
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
 
-    return this.templateLinter.execute(hbsPaths);
+    return this.emberTemplateLintAnalyzer.analyze(hbsPaths);
   }
 
   buildResult(results: (ESLintResult | TemplateLintResult)[], cwd: string): Result[] {
