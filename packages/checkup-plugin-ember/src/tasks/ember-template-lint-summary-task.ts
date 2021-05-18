@@ -11,7 +11,7 @@ import {
   bySeverity,
   sarifBuilder,
   lintBuilder,
-  ESLintAnalyzer,
+  EmberTemplateLintAnalyzer,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -32,7 +32,9 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
       '.template-lintrc.js'
     );
 
-    this.emberTemplateLintAnalyzer = new ESLintAnalyzer(require(resolvedTemplateLintConfigFile));
+    this.emberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(
+      require(resolvedTemplateLintConfigFile)
+    );
   }
 
   private async runTemplateLint(): Promise<TemplateLintReport> {
