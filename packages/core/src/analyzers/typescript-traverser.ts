@@ -2,7 +2,7 @@ import * as recast from 'recast';
 import { File } from '@babel/types';
 import traverse, { TraverseOptions } from '@babel/traverse';
 
-import AstTraverser from './ast-traverser';
+import AstTraverser from '../ast/ast-traverser';
 
 export default class TypeScriptTraverser extends AstTraverser<
   File,

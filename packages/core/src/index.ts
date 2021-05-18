@@ -25,8 +25,11 @@ export { default as CheckupError } from './errors/checkup-error';
 export { default as TaskError } from './errors/task-error';
 
 export { default as AstTraverser } from './ast/ast-traverser';
-export { default as JsonTraverser } from './ast/json-traverser';
 export { default as AstTransformer } from './ast/ast-transformer';
+
+export { default as JavaScriptTraverser } from './analyzers/javascript-traverser';
+export { default as TypeScriptTraverser } from './analyzers/typescript-traverser';
+export { default as JsonTraverser } from './analyzers/json-traverser';
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { exec } from './utils/exec';
