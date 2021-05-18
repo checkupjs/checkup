@@ -1,4 +1,4 @@
-export default class AstTraverser<
+export default class AstAnalyzer<
   TAst,
   TVisitors,
   TParse extends (source: string, parserOptions?: any) => TAst,
@@ -27,7 +27,7 @@ export default class AstTraverser<
     return ast;
   }
 
-  traverse(visitors: TVisitors) {
+  analyze(visitors: TVisitors) {
     this.traverser(this.ast, visitors);
 
     return this;

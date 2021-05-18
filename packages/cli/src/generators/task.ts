@@ -139,7 +139,7 @@ export default class TaskGenerator extends BaseGenerator {
     let code = new AstTransformer(registerTasksSource, recast.parse, traverse, {
       parser: require('recast/parsers/typescript'),
     })
-      .traverse({
+      .analyze({
         Program(path) {
           path.node.body.splice(1, 0, importOrRequire);
         },

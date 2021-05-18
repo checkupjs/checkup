@@ -24,9 +24,9 @@ export { ErrorKind, ErrorDetails, ERROR_BY_KIND } from './errors/error-kind';
 export { default as CheckupError } from './errors/checkup-error';
 export { default as TaskError } from './errors/task-error';
 
-export { default as AstTraverser } from './ast/ast-traverser';
 export { default as AstTransformer } from './ast/ast-transformer';
 
+export { default as AstAnalyzer } from './analyzers/ast-analyzer';
 export { default as JavaScriptAnalyzer } from './analyzers/javascript-analyzer';
 export { default as TypeScriptAnalyzer } from './analyzers/typescript-analyzer';
 export { default as JsonAnalyzer } from './analyzers/json-analyzer';

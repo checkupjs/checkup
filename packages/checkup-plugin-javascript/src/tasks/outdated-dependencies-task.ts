@@ -138,9 +138,9 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
     }
 
     let dependencyAccumulator = new DependenciesAccumulator();
-    let astTraverser = new JsonAnalyzer(this.context.pkgSource);
+    let analyzer = new JsonAnalyzer(this.context.pkgSource);
 
-    astTraverser.traverse(dependencyAccumulator.visitors);
+    analyzer.analyze(dependencyAccumulator.visitors);
 
     return dependencyAccumulator.dependencies;
   }
