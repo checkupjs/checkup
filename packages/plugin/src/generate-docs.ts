@@ -1,12 +1,7 @@
 import { join, extname, parse } from 'path';
-import * as recast from 'recast';
 import { ensureDir, readdir, readFile, existsSync, writeFile } from 'fs-extra';
 import * as t from '@babel/types';
-import traverse, { TraverseOptions } from '@babel/traverse';
-import { getPluginName, AstAnalyzer, getShorthandName, TypeScriptAnalyzer } from '@checkup/core';
-
-type RecastParse = typeof recast.parse;
-type BabelTraverse = typeof traverse;
+import { getPluginName, getShorthandName, TypeScriptAnalyzer } from '@checkup/core';
 
 function getDocsFile(docsFilePath: string) {
   if (existsSync(docsFilePath)) {

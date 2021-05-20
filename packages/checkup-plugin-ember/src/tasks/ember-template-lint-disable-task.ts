@@ -1,8 +1,13 @@
-import { Task, BaseTask, LintResult, trimCwd, AstAnalyzer, sarifBuilder } from '@checkup/core';
+import { promises } from 'fs';
+import {
+  Task,
+  BaseTask,
+  LintResult,
+  trimCwd,
+  sarifBuilder,
+  HandlebarsAnalyzer,
+} from '@checkup/core';
 import { Result } from 'sarif';
-
-const fs = require('fs');
-const { parse, traverse } = require('ember-template-recast');
 
 const TEMPLATE_LINT_DISABLE = 'template-lint-disable';
 
@@ -59,9 +64,9 @@ async function getTemplateLintDisables(filePaths: string[], cwd: string) {
 
   await Promise.all(
     filePaths.map((filePath) => {
-      return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
+      return promises.readFile(filePath, 'utf8').then((source: string) => {
         let accumulator = new TemplateLintDisableAccumulator(filePath);
-        let analyzer = new AstAnalyzer(fileContents, parse, traverse);
+        let analyzer = new HandlebarsAnalyzer(source);
 
         analyzer.analyze(accumulator.visitors);
         data.push(...accumulator.data);
