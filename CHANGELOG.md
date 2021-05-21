@@ -22,6 +22,34 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.11 (2021-05-21)
+
+#### :boom: Breaking Change
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `plugin`, `test-helpers`
+  * [#999](https://github.com/checkupjs/checkup/pull/999) Standardize analyzers ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`
+  * [#997](https://github.com/checkupjs/checkup/pull/997) Part 2: Ensure results adhere to SARIF specifications ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `cli`, `core`, `test-helpers`
+  * [#996](https://github.com/checkupjs/checkup/pull/996) Part 1: Ensure results adhere to SARIF specifications ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `cli`
+  * [#1009](https://github.com/checkupjs/checkup/pull/1009) Allows for loading plugins from arbitrary directories using `--plugin-base-dir` ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `core`, `plugin`
+  * [#1006](https://github.com/checkupjs/checkup/pull/1006) Adding handlebars analyzer ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#1003](https://github.com/checkupjs/checkup/pull/1003) Creates DependencyAnalyzer for use in multiple tasks ([@scalvert](https://github.com/scalvert))
+* `core`
+  * [#1001](https://github.com/checkupjs/checkup/pull/1001) Adds new analyzer: stylelint ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* [#1000](https://github.com/checkupjs/checkup/pull/1000) Removes husky-install from prepare script ([@scalvert](https://github.com/scalvert))
+* [#998](https://github.com/checkupjs/checkup/pull/998) Fixing husky ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.0.0-beta.10 (2021-05-12)
 
 #### :memo: Documentation
