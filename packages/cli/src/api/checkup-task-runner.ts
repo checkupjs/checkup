@@ -1,3 +1,4 @@
+import { join } from 'path';
 import {
   Action,
   CheckupError,
@@ -192,10 +193,23 @@ export default class CheckupTaskRunner {
     let pluginBaseDir = this.options.pluginBaseDir || this.options.cwd;
 
     for (let pluginName of this.config.plugins) {
-      this.debug('Loading plugin from %s', pluginName);
+      let pluginDir;
 
-      let { register } = require(resolve.sync(pluginName, { basedir: pluginBaseDir }));
+      try {
+        // We first attempt to resolve from a node_modules location, which is either
+        // the project's node_modules directory or an alternative location that contains
+        // a node_modules.
+        pluginDir = resolve.sync(pluginName, { basedir: pluginBaseDir });
+      } catch {
+        // If we're trying to load from a pluginBaseDir that doesn't contain a node_modules,
+        // we assume we're trying to load plugins from a simple directory, and therefore
+        // simply require the entry point file.
+        pluginDir = join(pluginBaseDir, pluginName);
+      }
 
+      this.debug('Loading plugin from %s', pluginDir);
+
+      let { register } = require(pluginDir);
       await register(registrationArgs);
     }
   }
