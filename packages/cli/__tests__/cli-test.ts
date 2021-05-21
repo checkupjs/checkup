@@ -129,11 +129,7 @@ describe('cli-test', () => {
     );
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
-      tasks: {},
     });
 
     let result = await run(['run', '--list-tasks']);
@@ -238,11 +234,7 @@ describe('cli-test', () => {
       );
 
       project.addCheckupConfig({
-        $schema:
-          'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-        excludePaths: [],
         plugins: ['checkup-plugin-fake'],
-        tasks: {},
       });
 
       project.write({
@@ -279,11 +271,7 @@ describe('cli-test', () => {
       );
 
       project.addCheckupConfig({
-        $schema:
-          'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-        excludePaths: [],
         plugins: ['checkup-plugin-fake'],
-        tasks: {},
       });
 
       let fixturePath = resolve(__dirname, '__fixtures__', 'checkup-formatter-test');
@@ -312,11 +300,7 @@ describe('cli-test', () => {
     );
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
-      tasks: {},
     });
 
     let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'pretty']);
@@ -356,11 +340,7 @@ describe('cli-test', () => {
     );
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
-      tasks: {},
     });
 
     let result = await run(['run', '.', '--format', 'pretty'], {
@@ -389,11 +369,7 @@ describe('cli-test', () => {
     );
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
-      tasks: {},
     });
 
     let result = await run([
@@ -451,11 +427,7 @@ describe('cli-test', () => {
     );
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
-      tasks: {},
     });
 
     let result = await run(['run', '.', '--category', 'files', '--format', 'pretty']);
@@ -500,11 +472,7 @@ describe('cli-test', () => {
     );
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
-      tasks: {},
     });
 
     let result = await run([
@@ -564,11 +532,7 @@ describe('cli-test', () => {
     );
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
-      tasks: {},
     });
 
     let result = await run(['run', '.', '--group', 'group1', '--format', 'pretty']);
@@ -613,11 +577,7 @@ describe('cli-test', () => {
     );
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
-      tasks: {},
     });
 
     let result = await run([
@@ -670,9 +630,6 @@ describe('cli-test', () => {
     );
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
       tasks: { 'fake/file-count': 'off' },
     });
@@ -857,7 +814,7 @@ describe('cli-test', () => {
     expect(result.stderr).toContain('Cannot find the foo task.');
   });
 
-  it('can load plugins from pluginBaseDir, if provided', async () => {
+  it('can load plugins from pluginBaseDir with a node_modules', async () => {
     let newProject = new FakeProject('random-app', '0.0.0', () => {});
     newProject.files['index.js'] = 'module.exports = {};';
     newProject.files['index.hbs'] = '<div>Random App</div>';
@@ -874,15 +831,76 @@ describe('cli-test', () => {
     newProject.writeSync();
 
     project.addCheckupConfig({
-      $schema:
-        'https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json',
-      excludePaths: [],
       plugins: ['checkup-plugin-fake'],
-      tasks: {},
     });
     project.chdir();
 
     let result = await run(['run', '.', '--plugin-base-dir', newProject.baseDir]);
+    expect(result.exitCode).toEqual(0);
+    expect(result.stdout).toMatch('✔ foo');
+  });
+
+  it('can load plugins from nested (non-node_modules) pluginBaseDir', async () => {
+    project.addCheckupConfig({
+      plugins: ['checkup-plugin-nested'],
+    });
+
+    project.write({
+      lib: {
+        'checkup-plugin-nested': {
+          'index.js': `
+const FooTask = require('./tasks/foo-task');
+module.exports = {
+  register: function(args) {
+    let pluginName = 'checkup-plugin-nested';
+
+    args.register.task(new FooTask(pluginName, args.context));
+  }
+}
+`,
+          'package.json': `{
+  "name": "checkup-plugin-nested",
+  "description": "",
+  "version": "0.0.1",
+  "dependencies": {
+    "@checkup/core": "*"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "checkup-plugin"
+  ]
+}
+`,
+          tasks: {
+            'foo-task.js': `const { BaseTask } = require('@checkup/core');
+
+module.exports = class FooTask extends BaseTask {
+  taskName = 'foo';
+  taskDisplayName = 'Foo';
+  category = 'best practices';
+
+  async run() {
+    return [
+      {
+        message: { text: 'foo' },
+        ruleId: this.taskName,
+        properties: {
+          taskDisplayName: this.taskDisplayName,
+          category: this.category,
+        },
+      },
+    ];
+  }
+}
+`,
+          },
+        },
+      },
+    });
+
+    project.symlinkCorePackage();
+
+    let result = await run(['run', '.', '--plugin-base-dir', join(project.baseDir, 'lib')]);
     expect(result.exitCode).toEqual(0);
     expect(result.stdout).toMatch('✔ foo');
   });
