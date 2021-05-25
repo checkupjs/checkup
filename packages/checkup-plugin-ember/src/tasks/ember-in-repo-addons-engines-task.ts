@@ -1,4 +1,4 @@
-import { Task, BaseTask, sarifBuilder, TaskError } from '@checkup/core';
+import { Task, BaseTask, TaskError } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { readJson } from 'fs-extra';
@@ -13,25 +13,33 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
   group = 'ember';
 
   async run(): Promise<Result[]> {
-    let inRepoAddons: string[] = [];
-    let inRepoEngines: string[] = [];
+    let results: Result[] = [];
 
     let packageJsonPaths: string[] = this.context.paths.filterByGlob('**/*package.json');
 
     for (let pathName of packageJsonPaths) {
       let packageJson: PackageJson = await this.getPackageJson(pathName);
+      let isEngine = packageJson.keywords?.includes('ember-engine') && packageJson.name;
+      let isAddon = packageJson.keywords?.includes('ember-addon') && packageJson.name;
 
-      if (packageJson.keywords?.includes('ember-engine') && packageJson.name) {
-        inRepoEngines.push(packageJson.name);
-      } else if (packageJson.keywords?.includes('ember-addon') && packageJson.name) {
-        inRepoAddons.push(packageJson.name);
+      if (isEngine || isAddon) {
+        results.push({
+          ruleId: this.taskName,
+          message: {
+            text: `${packageJson.name} Ember ${isEngine ? 'engine' : 'addon'} found.`,
+          },
+          kind: 'review',
+          level: 'note',
+          properties: {
+            taskDisplayName: this.taskDisplayName,
+            category: this.category,
+            group: this.group,
+          },
+        });
       }
     }
 
-    return [
-      ...sarifBuilder.fromLocations(this, inRepoAddons.sort(), 'in-repo addons'),
-      ...sarifBuilder.fromLocations(this, inRepoEngines.sort(), 'in-repo engines'),
-    ];
+    return results;
   }
 
   async getPackageJson(packageJsonPath: string): Promise<PackageJson> {
