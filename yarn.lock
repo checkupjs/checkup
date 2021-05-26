@@ -3403,6 +3403,13 @@ ejs@^3.0.1:
   dependencies:
     jake "^10.6.1"
 
+ejs@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/ejs/-/ejs-3.1.6.tgz#5bfd0a0689743bb5268b3550cceeebbc1702822a"
+  integrity sha512-9lt9Zse4hPucPkoP7FHDF0LQAlGyF9JVpnClFLFH3aSSbxmyoqINRpp/9wePWJTUl4KOQwRL72Iw3InHPDkoGw==
+  dependencies:
+    jake "^10.6.1"
+
 electron-to-chromium@^1.3.723:
   version "1.3.736"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.736.tgz#f632d900a1f788dab22fec9c62ec5c9c8f0c4052"
@@ -4588,7 +4595,7 @@ globals@^12.1.0:
   dependencies:
     type-fest "^0.8.1"
 
-globby@11.0.3, globby@^11.0.1, globby@^11.0.3:
+globby@11.0.3, globby@^11.0.1, globby@^11.0.2, globby@^11.0.3:
   version "11.0.3"
   resolved "https://registry.yarnpkg.com/globby/-/globby-11.0.3.tgz#9b1f0cb523e171dd1ad8c7b2a9fb4b644b9593cb"
   integrity sha512-ffdmosjA807y7+lA1NM0jELARVmYul/715xiILEjo3hBLPTcirgQNnXECn5g3mtR8TOLCVbkfua1Hpen25/Xcg==
@@ -6730,6 +6737,19 @@ mem-fs-editor@^7.0.1:
     through2 "^3.0.1"
     vinyl "^2.2.0"
 
+mem-fs-editor@^8.0.0:
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/mem-fs-editor/-/mem-fs-editor-8.1.2.tgz#475cbaeeb917d162a949e9d4b6049f688e422ec4"
+  integrity sha512-owE6PKMRegrYb37Lsar3yLSwK9wLGvHkNIOzBO3ycFeoOwshdF8j593EqjU7ucFAf3ZvcFVwfpo8Q8LqgFQg0A==
+  dependencies:
+    commondir "^1.0.1"
+    deep-extend "^0.6.0"
+    ejs "^3.1.6"
+    globby "^11.0.2"
+    isbinaryfile "^4.0.0"
+    multimatch "^5.0.0"
+    normalize-path "^3.0.0"
+
 mem-fs@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mem-fs/-/mem-fs-1.2.0.tgz#5f29b2d02a5875cd14cd836c388385892d556cde"
@@ -6998,6 +7018,17 @@ multimatch@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/multimatch/-/multimatch-4.0.0.tgz#8c3c0f6e3e8449ada0af3dd29efb491a375191b3"
   integrity sha512-lDmx79y1z6i7RNx0ZGCPq1bzJ6ZoDDKbvh7jxr9SJcWLkShMzXrHbYVpTdnhNM5MXpDUxCQ4DgqVttVXlBgiBQ==
+  dependencies:
+    "@types/minimatch" "^3.0.3"
+    array-differ "^3.0.0"
+    array-union "^2.1.0"
+    arrify "^2.0.1"
+    minimatch "^3.0.4"
+
+multimatch@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/multimatch/-/multimatch-5.0.0.tgz#932b800963cea7a31a033328fa1e0c3a1874dbe6"
+  integrity sha512-ypMKuglUrZUD99Tk2bUQ+xNQj43lPEfAeX2o9cTteAmShXy2VHDJpuwu1o0xqoKCt9jLVAvwyFKdLTPXKAfJyA==
   dependencies:
     "@types/minimatch" "^3.0.3"
     array-differ "^3.0.0"
@@ -8737,7 +8768,7 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
-shelljs@0.8.4, shelljs@^0.8.3, shelljs@^0.8.4:
+shelljs@0.8.4, shelljs@^0.8.3:
   version "0.8.4"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.8.4.tgz#de7684feeb767f8716b326078a8a00875890e3c2"
   integrity sha512-7gk3UZ9kOfPLIAbslLzyWeGiEqx9e3rxwZM0KE6EL8GlGwjym9Mrlx5/p33bWTu9YG6vcS4MBxYZDHYr5lr8BQ==
@@ -10348,40 +10379,6 @@ yeoman-environment@^2.10.3, yeoman-environment@^2.9.5:
     untildify "^3.0.3"
     yeoman-generator "^4.8.2"
 
-yeoman-generator@^4.11.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/yeoman-generator/-/yeoman-generator-4.13.0.tgz#a6caeed8491fceea1f84f53e31795f25888b4672"
-  integrity sha512-f2/5N5IR3M2Ozm+QocvZQudlQITv2DwI6Mcxfy7R7gTTzaKgvUpgo/pQMJ+WQKm0KN0YMWCFOZpj0xFGxevc1w==
-  dependencies:
-    async "^2.6.2"
-    chalk "^2.4.2"
-    cli-table "^0.3.1"
-    cross-spawn "^6.0.5"
-    dargs "^6.1.0"
-    dateformat "^3.0.3"
-    debug "^4.1.1"
-    diff "^4.0.1"
-    error "^7.0.2"
-    find-up "^3.0.0"
-    github-username "^3.0.0"
-    istextorbinary "^2.5.1"
-    lodash "^4.17.11"
-    make-dir "^3.0.0"
-    mem-fs-editor "^7.0.1"
-    minimist "^1.2.5"
-    pretty-bytes "^5.2.0"
-    read-chunk "^3.2.0"
-    read-pkg-up "^5.0.0"
-    rimraf "^2.6.3"
-    run-async "^2.0.0"
-    semver "^7.2.1"
-    shelljs "^0.8.4"
-    text-table "^0.2.0"
-    through2 "^3.0.1"
-  optionalDependencies:
-    grouped-queue "^1.1.0"
-    yeoman-environment "^2.9.5"
-
 yeoman-generator@^4.12.0, yeoman-generator@^4.8.2:
   version "4.12.0"
   resolved "https://registry.yarnpkg.com/yeoman-generator/-/yeoman-generator-4.12.0.tgz#512e783a38b004c49265e71826a09ff7f1939f4b"
@@ -10416,16 +10413,15 @@ yeoman-generator@^4.12.0, yeoman-generator@^4.8.2:
     grouped-queue "^1.1.0"
     yeoman-environment "^2.9.5"
 
-yeoman-test@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/yeoman-test/-/yeoman-test-3.0.0.tgz#18c10b7dc7b4c3716f7795301fae6feb42f48fb7"
-  integrity sha512-L8+m6u3enXxL2czVAN/+M2oCuVgDuNqAlegY4+RcO4xD8Fd9/9hdMfoMd83YtVXNUBJvvMdYBRSYj4kd7nsp3A==
+yeoman-test@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/yeoman-test/-/yeoman-test-5.1.0.tgz#c4b8ff11176f599db0eb2e1be41d3701934def8f"
+  integrity sha512-lcXcNRleJrIhohoKcRwmj9i8JO0lsYTySprwCfgZV1THeHJRqUsBEhHVgMr7DVB+coMoIkxk99wpn/bsOvpz4w==
   dependencies:
     inquirer "^7.3.3"
     lodash "^4.17.19"
+    mem-fs-editor "^8.0.0"
     sinon "^9.0.2"
-    yeoman-environment "^2.10.3"
-    yeoman-generator "^4.11.0"
 
 yn@3.1.1:
   version "3.1.1"
