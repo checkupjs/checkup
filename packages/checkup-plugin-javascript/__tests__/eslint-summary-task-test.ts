@@ -109,6 +109,7 @@ describe('eslint-summary-task', () => {
           ],
           "name": "reduce-eslint-errors",
           "summary": "Reduce number of eslint errors",
+          "taskName": "eslint-summary",
         },
         Object {
           "defaultThreshold": 20,
@@ -119,6 +120,7 @@ describe('eslint-summary-task', () => {
           ],
           "name": "reduce-eslint-warnings",
           "summary": "Reduce number of eslint warnings",
+          "taskName": "eslint-summary",
         },
       ]
     `);

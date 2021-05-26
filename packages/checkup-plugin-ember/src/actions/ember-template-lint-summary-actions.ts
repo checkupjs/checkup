@@ -11,6 +11,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let warningCount = sumOccurrences(warnings);
 
   actionsEvaluator.add({
+    taskName: 'ember-template-lint-summary',
     name: 'reduce-template-lint-errors',
     summary: 'Reduce number of template-lint errors',
     details: `${errorCount} total errors`,
@@ -20,6 +21,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   });
 
   actionsEvaluator.add({
+    taskName: 'ember-template-lint-summary',
     name: 'reduce-template-lint-warnings',
     summary: 'Reduce number of template-lin warnings',
     details: `${warningCount} total warnings`,

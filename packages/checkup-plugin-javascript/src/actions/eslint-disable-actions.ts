@@ -6,6 +6,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let eslintDisableUsages = sumOccurrences(taskResults);
 
   actionsEvaluator.add({
+    taskName: 'eslint-disable',
     name: 'reduce-eslint-disable-usages',
     summary: 'Reduce number of eslint-disable usages',
     details: `${eslintDisableUsages} usages of eslint-disable`,

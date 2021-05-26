@@ -167,6 +167,7 @@ describe('ember-test-types-task', () => {
           ],
           "name": "reduce-skipped-tests",
           "summary": "Reduce number of skipped tests",
+          "taskName": "ember-test-types",
         },
       ]
     `);

@@ -2,6 +2,7 @@ import * as crypto from 'crypto';
 import {
   Action,
   CheckupConfig,
+  getRepositoryInfo,
   trimAllCwd,
   Task,
   TaskContext,
@@ -13,9 +14,8 @@ import {
 import * as stringify from 'json-stable-stringify';
 import * as unparse from 'yargs-unparser';
 import { Invocation, Log, ReportingDescriptor, Result } from 'sarif';
-import { getVersion } from './utils/get-version';
-import { getRepositoryInfo } from './utils/repository';
 import TaskListImpl from './task-list';
+import { getVersion } from './utils/get-version';
 
 function getInvocation(
   options: RunOptions,

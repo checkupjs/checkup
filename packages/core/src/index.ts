@@ -39,8 +39,11 @@ export { ConsoleWriter } from './utils/console-writer';
 export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
 export { sumOccurrences, reduceResults } from './utils/sarif-utils';
+export { default as SarifLogBuilder } from './data/sarif-log-builder';
+export { default as CheckupLogBuilder } from './data/checkup-log-builder';
 export { renderEmptyResult, renderLintingSummaryResult } from './utils/pretty-formatter-utils';
 export { getPackageJson, getPackageJsonSource } from './utils/get-package-json';
+export { getRepositoryInfo } from './utils/repository';
 
 export { byRuleId, byRuleIds, bySeverity } from './data/filters';
 export { toPercent, groupDataByField } from './data/formatters';

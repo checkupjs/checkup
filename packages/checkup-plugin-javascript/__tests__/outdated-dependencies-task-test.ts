@@ -56,6 +56,7 @@ describe('outdated-dependencies-task', () => {
           "items": Array [],
           "name": "reduce-outdated-major-dependencies",
           "summary": "Update outdated major versions",
+          "taskName": "outdated-dependencies",
         },
         Object {
           "defaultThreshold": 0.05,
@@ -64,6 +65,7 @@ describe('outdated-dependencies-task', () => {
           "items": Array [],
           "name": "reduce-outdated-minor-dependencies",
           "summary": "Update outdated minor versions",
+          "taskName": "outdated-dependencies",
         },
         Object {
           "defaultThreshold": 0.2,
@@ -72,6 +74,7 @@ describe('outdated-dependencies-task', () => {
           "items": Array [],
           "name": "reduce-outdated-dependencies",
           "summary": "Update outdated versions",
+          "taskName": "outdated-dependencies",
         },
       ]
     `);
