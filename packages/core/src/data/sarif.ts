@@ -6,19 +6,6 @@ export const NO_RESULTS_FOUND = 'No results found';
 type SarifTaskIdentifier = Pick<Task, 'taskName' | 'taskDisplayName' | 'category' | 'group'>;
 
 /**
- *
- *
- * @param result Builds a SARIF Result
- */
-function buildResult(result: Result): Result {
-  if (!result.message) {
-    throw new Error('You must provide a SARIF.Result with a required message object.');
-  }
-
-  return result;
-}
-
-/**
  * Builds SARIF Results from a list of LintResults.
  *
  * @param taskContext {Task} This is used to set Task properties on the Result
@@ -110,7 +97,6 @@ export function fromTaskErrors(errors: TaskListError[]): Notification[] {
 }
 
 export const builder = {
-  buildResult,
   fromLintResults,
   fromLocations,
   notifications: {
