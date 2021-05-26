@@ -46,7 +46,7 @@
     "@types/yeoman-environment": "^2.3.3",
     "@types/yeoman-generator": "^4.11.4",
     "execa": "^5.0.0",
-    "yeoman-test": "^3.0.0"
+    "yeoman-test": "^6.1.0"
   },
   "engines": {
     "node": ">= 12.11.*"
