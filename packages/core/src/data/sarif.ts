@@ -96,7 +96,7 @@ export function fromTaskErrors(errors: TaskListError[]): Notification[] {
   });
 }
 
-export const sarifBuilder = {
+export const builder = {
   fromLintResults,
   fromLocations,
   notifications: {

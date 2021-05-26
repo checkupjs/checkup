@@ -46,7 +46,7 @@ export { byRuleId, byRuleIds, bySeverity } from './data/filters';
 export { toPercent, groupDataByField } from './data/formatters';
 export { trimCwd, trimAllCwd } from './data/path';
 export { lintBuilder } from './data/lint';
-export { sarifBuilder, NO_RESULTS_FOUND } from './data/sarif';
+export { builder as sarifBuilder, NO_RESULTS_FOUND } from './data/sarif';
 
 export { todayFormat } from './today-format';
 
