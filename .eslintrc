@@ -41,6 +41,7 @@
     "@typescript-eslint/no-unused-vars-experimental": "error",
     "no-global-assign": ["error", { "exceptions": ["console"] }],
     "unicorn/no-reduce": "off",
+    "unicorn/no-null": "off",
     "unicorn/no-array-reduce": "off",
     "unicorn/no-array-for-each": "off",
     "unicorn/prevent-abbreviations": "off",

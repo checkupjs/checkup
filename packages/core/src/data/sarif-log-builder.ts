@@ -1,19 +1,36 @@
-import { Log, Run, ReportingDescriptor, Result } from 'sarif';
-import { builder } from './sarif';
+import {
+  Log,
+  Run,
+  ReportingDescriptor,
+  Result,
+  Address,
+  Artifact,
+  ArtifactLocation,
+  Conversion,
+  ExternalPropertyFileReferences,
+  Graph,
+  Invocation,
+  LogicalLocation,
+  PropertyBag,
+  RunAutomationDetails,
+  SpecialLocations,
+  ThreadFlowLocation,
+  Tool,
+  ToolComponent,
+  VersionControlDetails,
+  WebRequest,
+  WebResponse,
+} from 'sarif';
+import ow from 'ow';
+import { SetRequired } from 'type-fest';
 
-const RUN_DEFAULTS = {
-  tool: {
-    driver: {
-      name: 'checkup',
-      language: 'en-US',
-      informationUri: 'https://github.com/checkupjs/checkup',
-    },
-  },
-};
+type RequiredRun = SetRequired<Run, 'tool' | 'results'>;
+type RequiredResult = SetRequired<Result, 'message' | 'ruleId' | 'kind' | 'level'>;
 
 export class SarifLogBuilder {
   log: Log;
   runs: Run[];
+  currentRun!: RequiredRun;
   rules: ReportingDescriptor[];
   results: Result[];
 
@@ -27,32 +44,108 @@ export class SarifLogBuilder {
       runs: this.runs,
     };
 
+    // A sarifLog object SHALL contain a property named runs (§3.13.4)
     this.addRun();
   }
 
-  // eslint-disable-next-line unicorn/no-object-as-default-parameter
-  addRun(run: Run = { tool: { driver: { name: 'checkup' } } }) {
-    this.runs.push({
-      ...RUN_DEFAULTS,
-      ...{
-        tool: {
-          driver: {
-            rules: this.rules,
-          },
-        },
-        results: this.results,
-      },
-      ...run,
-    });
+  addRun(run: RequiredRun = new RunBuilder()) {
+    this.currentRun = run;
+    this.runs.push(run);
   }
 
   addRule(rule: ReportingDescriptor) {
-    if (!this.rules.find((r) => r.id === rule.id)) {
-      this.rules.push(rule);
+    let ruleIndex = -1;
+    let rules = this.currentRun.tool.driver.rules;
+
+    ow(
+      rule,
+      ow.object.partialShape({
+        id: ow.string,
+      })
+    );
+
+    if (rules) {
+      ruleIndex = rules.findIndex((r) => r.id === rule.id);
+
+      if (ruleIndex !== -1) {
+        return ruleIndex;
+      }
+
+      return rules.push(rule) - 1;
     }
+
+    return ruleIndex;
   }
 
-  addResult(result: Result) {
-    this.results.push(builder.buildResult(result));
+  addResult<TResult extends RequiredResult>(
+    result: TResult,
+    ruleMetadata?: Omit<ReportingDescriptor, 'id'>
+  ) {
+    ow(
+      result,
+      ow.object.partialShape({
+        message: ow.object.hasKeys('text'),
+        ruleId: ow.string,
+        level: ow.string,
+        kind: ow.string,
+      })
+    );
+
+    const ruleIndex = this.addRule({
+      id: result.ruleId,
+      ...ruleMetadata,
+    });
+
+    if (ruleIndex !== -1) {
+      result.ruleIndex = ruleIndex;
+    }
+
+    this.currentRun.results.push(result);
+  }
+
+  toJson() {
+    return JSON.stringify(this.log, null, 2);
+  }
+}
+
+class RunBuilder implements RequiredRun {
+  addresses?: Address[] | undefined;
+  artifacts?: Artifact[] | undefined;
+  automationDetails?: RunAutomationDetails | undefined;
+  baselineGuid?: string | undefined;
+  columnKind?: Run.columnKind | undefined;
+  conversion?: Conversion | undefined;
+  defaultEncoding?: string | undefined;
+  defaultSourceLanguage?: string | undefined;
+  externalPropertyFileReferences?: ExternalPropertyFileReferences | undefined;
+  graphs?: Graph[] | undefined;
+  invocations?: Invocation[] | undefined;
+  language?: string | undefined;
+  logicalLocations?: LogicalLocation[] | undefined;
+  newlineSequences?: string[] | undefined;
+  originalUriBaseIds?: { [key: string]: ArtifactLocation } | undefined;
+  policies?: ToolComponent[] | undefined;
+  redactionTokens?: string[] | undefined;
+  results: Result[] = [];
+  runAggregates?: RunAutomationDetails[] | undefined;
+  specialLocations?: SpecialLocations | undefined;
+  taxonomies?: ToolComponent[] | undefined;
+  tool: Tool;
+  threadFlowLocations?: ThreadFlowLocation[] | undefined;
+  translations?: ToolComponent[] | undefined;
+  versionControlProvenance?: VersionControlDetails[] | undefined;
+  webRequests?: WebRequest[] | undefined;
+  webResponses?: WebResponse[] | undefined;
+  properties?: PropertyBag | undefined;
+
+  constructor() {
+    this.tool = {
+      driver: {
+        name: 'checkup',
+        language: 'en-US',
+        informationUri: 'https://github.com/checkupjs/checkup',
+        rules: [],
+      },
+    };
   }
 }
