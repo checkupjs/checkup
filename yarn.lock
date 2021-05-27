@@ -3688,24 +3688,7 @@ ember-template-lint@^3.2.0:
     v8-compile-cache "^2.3.0"
     yargs "^16.2.0"
 
-ember-template-recast@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-5.0.1.tgz#c5d9e7208bf629ee368a3792328f245f3c651003"
-  integrity sha512-MtjyYtr5jnE72i/jVkI3m2QOdozglLwXS3HN74Ge9cm7dz5GoDszVvUksyj/9xqpIP31LMXjs2bZetRGvinU1Q==
-  dependencies:
-    "@glimmer/reference" "^0.65.0"
-    "@glimmer/syntax" "^0.65.0"
-    "@glimmer/validator" "^0.65.0"
-    async-promise-queue "^1.0.5"
-    colors "^1.4.0"
-    commander "^6.2.0"
-    globby "^11.0.1"
-    ora "^5.1.0"
-    slash "^3.0.0"
-    tmp "^0.2.1"
-    workerpool "^6.0.3"
-
-ember-template-recast@^5.0.3:
+ember-template-recast@^5.0.1, ember-template-recast@^5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/ember-template-recast/-/ember-template-recast-5.0.3.tgz#79df27a70bdce7be17f14db13886afde1e9d02d6"
   integrity sha512-qsJYQhf29Dk6QMfviXhUPE+byMOs6iRQxUDHgkj8yqjeppvjHaFG96hZi/NAXJTm/M7o3PpfF5YlmeaKtI9UeQ==
@@ -7956,7 +7939,7 @@ optionator@^0.9.1:
     type-check "^0.4.0"
     word-wrap "^1.2.3"
 
-ora@5.4.0, ora@^5.1.0, ora@^5.3.0, ora@^5.4.0:
+ora@5.4.0, ora@^5.3.0, ora@^5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/ora/-/ora-5.4.0.tgz#42eda4855835b9cd14d33864c97a3c95a3f56bf4"
   integrity sha512-1StwyXQGoU6gdjYkyVcqOLnVlbKj+6yPNNOxJVgpt9t4eksKjiriiHuxktLYkgllwk+D6MbC4ihH84L1udRXPg==
@@ -10892,11 +10875,6 @@ wordwrap@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=
-
-workerpool@^6.0.3:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/workerpool/-/workerpool-6.0.3.tgz#3f80ba4d914fe7bb8d933628c26e5d7ff820c703"
-  integrity sha512-meU8ZzO+ipcx/njxtKUcbu2K95085q5WYDo8fR6PMW3hCY4driteIsNsEowYV7dzOtvq0HotUKsReJkK8gKXgg==
 
 workerpool@^6.1.4:
   version "6.1.4"
