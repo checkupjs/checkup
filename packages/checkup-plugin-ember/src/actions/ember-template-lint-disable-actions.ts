@@ -6,6 +6,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let templateLintDisableUsages = sumOccurrences(taskResults);
 
   actionsEvaluator.add({
+    taskName: 'ember-template-lint-disable',
     name: 'reduce-template-lint-disable-usages',
     summary: 'Reduce number of template-lint-disable usages',
     details: `${templateLintDisableUsages} usages of template-lint-disable`,

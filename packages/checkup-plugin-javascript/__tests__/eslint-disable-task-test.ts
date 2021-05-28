@@ -75,6 +75,7 @@ describe('eslint-disable-task', () => {
         ],
         "name": "reduce-eslint-disable-usages",
         "summary": "Reduce number of eslint-disable usages",
+        "taskName": "eslint-disable",
       }
     `);
   });

@@ -22,6 +22,7 @@
     "eslint": "^7.16.0",
     "fs-extra": "^9.1.0",
     "globby": "^11.0.1",
+    "json-stable-stringify": "^1.0.1",
     "is-glob": "^4.0.1",
     "lodash": "^4.17.21",
     "micromatch": "^4.0.2",
@@ -29,14 +30,17 @@
     "npm-check": "^5.9.2",
     "ow": "^0.23.0",
     "pkg-up": "^3.1.0",
+    "promise.hash.helper": "^1.0.7",
     "recast": "^0.20.4",
     "resolve": "^1.19.0",
+    "sloc": "^0.2.1",
     "strip-ansi": "^6.0.0",
     "stylelint": "^13.13.1",
     "tmp": "^0.2.1",
     "type-fest": "^1.0.2",
     "walk-sync": "^2.2.0",
-    "wrap-ansi": "^7.0.0"
+    "wrap-ansi": "^7.0.0",
+    "yargs-unparser": "^2.0.0"
   },
   "devDependencies": {
     "@types/chalk": "^2.2.0",

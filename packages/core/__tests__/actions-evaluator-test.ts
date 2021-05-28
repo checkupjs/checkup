@@ -5,6 +5,7 @@ describe('actions-evaluator', () => {
     let actionsEvaluator = new ActionsEvaluator();
 
     actionsEvaluator.add({
+      taskName: 'foo-task',
       name: 'foo',
       summary: 'Remove exessive foos',
       details: '`${count} foos too many`',
@@ -20,6 +21,7 @@ describe('actions-evaluator', () => {
     let actionsEvaluator = new ActionsEvaluator();
 
     actionsEvaluator.add({
+      taskName: 'foo-task',
       name: 'foo',
       summary: 'Remove exessive foos',
       details: '`${count} foos too many`',
@@ -41,6 +43,7 @@ describe('actions-evaluator', () => {
     let actionsEvaluator = new ActionsEvaluator();
 
     actionsEvaluator.add({
+      taskName: 'foo-task',
       name: 'foo',
       summary: 'Remove exessive foos',
       details: '`${count} foos too many`',
@@ -62,6 +65,7 @@ describe('actions-evaluator', () => {
     let actionsEvaluator = new ActionsEvaluator();
 
     actionsEvaluator.add({
+      taskName: 'foo-task',
       name: 'foo',
       summary: 'Remove exessive foos',
       details: '`${count} foos too many`',
@@ -83,6 +87,7 @@ describe('actions-evaluator', () => {
     let actionsEvaluator = new ActionsEvaluator();
 
     actionsEvaluator.add({
+      taskName: 'foo-task',
       name: 'foo',
       summary: 'Remove exessive foos',
       details: '`${count} foos too many`',
@@ -104,6 +109,7 @@ describe('actions-evaluator', () => {
     let actionsEvaluator = new ActionsEvaluator();
 
     actionsEvaluator.add({
+      taskName: 'foo-task',
       name: 'foo',
       summary: 'Remove exessive foos',
       details: '`${count} foos too many`',

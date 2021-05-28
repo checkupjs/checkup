@@ -107,6 +107,7 @@ describe('ember-emplate-lint-summary-task', () => {
           ],
           "name": "reduce-template-lint-errors",
           "summary": "Reduce number of template-lint errors",
+          "taskName": "ember-template-lint-summary",
         },
         Object {
           "defaultThreshold": 20,
@@ -117,6 +118,7 @@ describe('ember-emplate-lint-summary-task', () => {
           ],
           "name": "reduce-template-lint-warnings",
           "summary": "Reduce number of template-lin warnings",
+          "taskName": "ember-template-lint-summary",
         },
       ]
     `);

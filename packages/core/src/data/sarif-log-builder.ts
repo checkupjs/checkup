@@ -11,6 +11,7 @@ import {
   Graph,
   Invocation,
   LogicalLocation,
+  Notification,
   PropertyBag,
   RunAutomationDetails,
   SpecialLocations,
@@ -27,10 +28,10 @@ import { SetRequired } from 'type-fest';
 type RequiredRun = SetRequired<Run, 'tool' | 'results'>;
 type RequiredResult = SetRequired<Result, 'message' | 'ruleId' | 'kind' | 'level'>;
 
-export class SarifLogBuilder {
+export default class SarifLogBuilder {
   log: Log;
   runs: Run[];
-  currentRun!: RequiredRun;
+  currentRun!: RunBuilder;
   rules: ReportingDescriptor[];
   results: Result[];
 
@@ -48,7 +49,7 @@ export class SarifLogBuilder {
     this.addRun();
   }
 
-  addRun(run: RequiredRun = new RunBuilder()) {
+  addRun(run: RunBuilder = new RunBuilder()) {
     this.currentRun = run;
     this.runs.push(run);
   }
@@ -103,6 +104,21 @@ export class SarifLogBuilder {
     this.currentRun.results.push(result);
   }
 
+  addInvocation(invocation: Invocation) {
+    this.currentRun.currentInvocation = invocation;
+    this.currentRun.invocations?.push(invocation);
+  }
+
+  addToolExecutionNotification(notification: Notification) {
+    let notifications = this.currentRun.currentInvocation.toolExecutionNotifications;
+
+    if (!notifications) {
+      this.currentRun.currentInvocation.toolExecutionNotifications = notifications = [];
+    }
+
+    notifications.push(notification);
+  }
+
   toJson() {
     return JSON.stringify(this.log, null, 2);
   }
@@ -138,6 +154,8 @@ class RunBuilder implements RequiredRun {
   webResponses?: WebResponse[] | undefined;
   properties?: PropertyBag | undefined;
 
+  currentInvocation!: Invocation;
+
   constructor() {
     this.tool = {
       driver: {
@@ -147,5 +165,7 @@ class RunBuilder implements RequiredRun {
         rules: [],
       },
     };
+
+    this.invocations = [];
   }
 }

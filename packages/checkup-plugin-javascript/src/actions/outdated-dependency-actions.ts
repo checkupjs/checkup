@@ -12,6 +12,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
   actionsEvaluator.add({
+    taskName: 'outdated-dependencies',
     name: 'reduce-outdated-major-dependencies',
     summary: 'Update outdated major versions',
     details: `${outdatedDependencies.major} major versions outdated`,
@@ -20,6 +21,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
     input: outdatedDependencies.major / totalDependencies,
   });
   actionsEvaluator.add({
+    taskName: 'outdated-dependencies',
     name: 'reduce-outdated-minor-dependencies',
     summary: 'Update outdated minor versions',
     details: `${outdatedDependencies.minor} minor versions outdated`,
@@ -28,6 +30,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
     input: outdatedDependencies.minor / totalDependencies,
   });
   actionsEvaluator.add({
+    taskName: 'outdated-dependencies',
     name: 'reduce-outdated-dependencies',
     summary: 'Update outdated versions',
     details: `${toPercent(

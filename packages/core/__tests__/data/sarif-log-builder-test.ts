@@ -1,5 +1,5 @@
 import '@microsoft/jest-sarif';
-import { SarifLogBuilder } from '../../src/data/sarif-log-builder';
+import SarifLogBuilder from '../../src/data/sarif-log-builder';
 
 describe('sarif-builder', () => {
   it('builds a default SARIF builder log', () => {
@@ -10,6 +10,7 @@ describe('sarif-builder', () => {
         "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
         "runs": Array [
           RunBuilder {
+            "invocations": Array [],
             "results": Array [],
             "tool": Object {
               "driver": Object {
@@ -69,6 +70,7 @@ describe('sarif-builder', () => {
         "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
         "runs": Array [
           RunBuilder {
+            "invocations": Array [],
             "results": Array [
               Object {
                 "kind": "fail",
@@ -125,6 +127,7 @@ describe('sarif-builder', () => {
         "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
         "runs": Array [
           RunBuilder {
+            "invocations": Array [],
             "results": Array [
               Object {
                 "kind": "fail",

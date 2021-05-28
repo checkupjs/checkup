@@ -11,6 +11,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let warningCount = sumOccurrences(warnings);
 
   actionsEvaluator.add({
+    taskName: 'eslint-summary',
     name: 'reduce-eslint-errors',
     summary: 'Reduce number of eslint errors',
     details: `${errorCount} total errors`,
@@ -20,6 +21,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   });
 
   actionsEvaluator.add({
+    taskName: 'eslint-summary',
     name: 'reduce-eslint-warnings',
     summary: 'Reduce number of eslint warnings',
     details: `${warningCount} total warnings`,

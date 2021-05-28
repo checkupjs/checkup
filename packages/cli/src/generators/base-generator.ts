@@ -4,8 +4,8 @@ import * as Generator from 'yeoman-generator';
 import * as chalk from 'chalk';
 
 import { getPackageJson } from '@checkup/core';
-import { getVersion } from '../utils/get-version';
 
+let VERSION = require('../../package.json');
 export interface Options {
   type: string;
   name: string;
@@ -108,6 +108,6 @@ export default abstract class GeneratorBase extends Generator {
   }
 
   headline(name: string) {
-    this.log(`Generating ${chalk.bold.white(name)} ${chalk.dim(`(checkup v${getVersion()})`)}`);
+    this.log(`Generating ${chalk.bold.white(name)} ${chalk.dim(`(checkup v${VERSION})`)}`);
   }
 }

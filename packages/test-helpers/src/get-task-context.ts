@@ -1,7 +1,15 @@
-import { CheckupConfig, FilePathArray, TaskContext, RunOptions } from '@checkup/core';
+import {
+  CheckupConfig,
+  FilePathArray,
+  TaskContext,
+  RunOptions,
+  CheckupLogBuilder,
+  CONFIG_SCHEMA_URL,
+  TaskListError,
+  Action,
+} from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
-import { CONFIG_SCHEMA_URL } from '@checkup/core';
 
 type TaskContextArgs = {
   cliArguments: string[];
@@ -41,11 +49,21 @@ export function getTaskContext({
   pkg = DEFAULT_PACKAGE_JSON,
   paths = new FilePathArray(),
 }: Partial<TaskContextArgs> = {}): TaskContext {
+  let opts = Object.assign({}, DEFAULT_OPTIONS, options) as RunOptions;
+  let c = Object.assign({}, DEFAULT_CONFIG, config) as CheckupConfig;
+
   return {
-    options: Object.assign({}, DEFAULT_OPTIONS, options),
-    config: Object.assign({}, DEFAULT_CONFIG, config),
+    options: opts,
+    config: c,
+    log: new CheckupLogBuilder({
+      packageName: pkg.name ?? '',
+      packageVersion: pkg.version ?? '',
+      config: c,
+      options: opts,
+      actions: [] as Action[],
+      errors: [] as TaskListError[],
+    }),
     pkg: pkg,
-    // eslint-disable-next-line unicorn/no-null
     pkgSource: JSON.stringify(pkg, null, 2),
     paths: paths,
   };

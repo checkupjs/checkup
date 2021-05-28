@@ -65,6 +65,7 @@ describe('ember-template-lint-disable-task', () => {
           ],
           "name": "reduce-template-lint-disable-usages",
           "summary": "Reduce number of template-lint-disable usages",
+          "taskName": "ember-template-lint-disable",
         },
       ]
     `);

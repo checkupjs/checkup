@@ -1,5 +1,8 @@
 import { extname } from 'path';
-import { exec, FilePathArray, RepositoryInfo, groupDataByField } from '@checkup/core';
+import { groupDataByField } from '../data/formatters';
+import { RepositoryInfo } from '../types/checkup-result';
+import { exec } from './exec';
+import { FilePathArray } from './file-path-array';
 
 const fs = require('fs');
 const sloc = require('sloc');

@@ -3,6 +3,7 @@ import {
   Action,
   CheckupError,
   CheckupConfig,
+  ErrorKind,
   FilePathArray,
   getRegisteredActions,
   getConfigPath,
@@ -18,30 +19,34 @@ import {
   TaskName,
   TaskFormatter,
   RegistrationArgs,
-  ErrorKind,
+  CheckupLogBuilder,
 } from '@checkup/core';
 import * as debug from 'debug';
 import * as resolve from 'resolve';
 import { Log, Result } from 'sarif';
 
+import { PackageJson } from 'type-fest';
 import { getLog } from '../get-log';
 import TaskListImpl from '../task-list';
 import PluginRegistrationProvider from './registration-provider';
 export default class CheckupTaskRunner {
-  actions: Action[] = [];
+  actions: Action[];
   config!: CheckupConfig;
   debug: debug.Debugger;
   executedTasks!: Task[];
   options: RunOptions;
-  plugins: [] = [];
+  plugins: [];
+  // TODO: remove when moving to CheckupLogBuilder
   startTime: string = new Date().toJSON();
-  tasks: TaskListImpl = new TaskListImpl();
-  taskResults: Result[] = [];
-  taskErrors: TaskListError[] = [];
+  tasks: TaskListImpl;
+  taskResults: Result[];
+  taskErrors: TaskListError[];
   taskContext!: TaskContext;
-
+  log: CheckupLogBuilder;
   registeredActions: Map<string, TaskActionsEvaluator> = new Map<TaskName, TaskActionsEvaluator>();
   registeredTaskReporters: Map<string, TaskFormatter> = new Map<TaskName, TaskFormatter>();
+  pkg: PackageJson;
+  pkgSource: string;
 
   get taskErrorKind() {
     if (this.options.tasks !== undefined) {
@@ -63,7 +68,23 @@ export default class CheckupTaskRunner {
 
   constructor(options: RunOptions) {
     this.debug = debug('checkup');
+
+    this.actions = [];
+    this.plugins = [];
+    this.tasks = new TaskListImpl();
+    this.taskResults = [];
+    this.taskErrors = [];
     this.options = options;
+    this.pkg = getPackageJson(this.options.cwd);
+    this.pkgSource = getPackageJsonSource(this.options.cwd);
+    this.log = new CheckupLogBuilder({
+      packageName: this.pkg.name || '',
+      packageVersion: this.pkg.version || '',
+      config: this.config,
+      options: this.options,
+      actions: this.actions,
+      errors: this.taskErrors,
+    });
 
     this.debug('options %O', this.options);
   }
@@ -168,15 +189,18 @@ export default class CheckupTaskRunner {
 
   private async registerPlugins() {
     let excludePaths = this.options.excludePaths || this.config.excludePaths;
+    let paths = FilePathArray.from(
+      await getFilePathsAsync(this.options.cwd, this.options.paths || ['.'], excludePaths)
+    ) as FilePathArray;
 
+    this.log.args.paths = paths;
     this.taskContext = Object.freeze({
       options: this.options,
       config: this.config,
-      pkg: getPackageJson(this.options.cwd),
-      pkgSource: getPackageJsonSource(this.options.cwd),
-      paths: FilePathArray.from(
-        await getFilePathsAsync(this.options.cwd, this.options.paths || ['.'], excludePaths)
-      ) as FilePathArray,
+      log: this.log,
+      pkg: this.pkg,
+      pkgSource: this.pkgSource,
+      paths,
     });
 
     await this.loadFromPlugin({

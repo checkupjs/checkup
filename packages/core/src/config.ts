@@ -1,7 +1,9 @@
 import { join, resolve } from 'path';
+import * as crypto from 'crypto';
 import * as Ajv from 'ajv';
 import fetch from 'node-fetch';
 import * as tmp from 'tmp';
+import * as stringify from 'json-stable-stringify';
 import { existsSync, readJsonSync, writeJsonSync, writeJSON } from 'fs-extra';
 
 import { white } from 'chalk';
@@ -131,4 +133,10 @@ export function parseConfigTuple<T>(configValue: ConfigValue<T> | undefined): [b
   }
 
   return [enabled, value];
+}
+
+export function getConfigHash(checkupConfig: CheckupConfig) {
+  let configAsJson = stringify(checkupConfig);
+
+  return crypto.createHash('md5').update(configAsJson).digest('hex');
 }
