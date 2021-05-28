@@ -2,7 +2,7 @@ import { PackageJson } from 'type-fest';
 import { Result } from 'sarif';
 import { FilePathArray } from '../utils/file-path-array';
 
-import SarifLogBuilder from '../data/sarif-log-builder';
+import CheckupLogBuilder from '../data/checkup-log-builder';
 import { CheckupConfig, TaskConfig } from './config';
 import { RunOptions, FormatterArgs } from './cli';
 
@@ -57,7 +57,7 @@ export type TaskListError = {
 export interface TaskContext {
   readonly options: RunOptions;
   readonly config: CheckupConfig;
-  readonly log: SarifLogBuilder;
+  readonly log: CheckupLogBuilder;
   readonly pkg: PackageJson;
   readonly pkgSource: string;
   readonly paths: FilePathArray;
