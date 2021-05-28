@@ -2,7 +2,7 @@ import { Notification, StackFrame } from 'sarif';
 import * as unparse from 'yargs-unparser';
 import { getConfigHash } from '../config';
 import { RunOptions } from '../types/cli';
-import { TaskContext, TaskListError, Action } from '../types/tasks';
+import { TaskListError, Action } from '../types/tasks';
 import { getVersion } from '../utils/get-version';
 import { getRepositoryInfo } from '../utils/repository';
 import { FilePathArray } from '../utils/file-path-array';
@@ -34,10 +34,12 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
     this.addRun();
   }
 
-  async annotate(taskContext: TaskContext) {
+  async annotate() {
+    let paths = this.args.paths ?? new FilePathArray();
     let cwd = this.args.options.cwd;
-    let repositoryInfo = await getRepositoryInfo(cwd, taskContext.paths);
-    let analyzedFiles = trimAllCwd(taskContext.paths, cwd);
+    let config = this.args.config;
+    let repositoryInfo = await getRepositoryInfo(cwd, paths);
+    let analyzedFiles = trimAllCwd(paths, cwd);
 
     this.addInvocation({
       executionSuccessful: true,
@@ -52,14 +54,14 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
 
     this.currentRun.tool.driver.properties = {
       project: {
-        name: taskContext.pkg.name || '',
-        version: taskContext.pkg.version || '',
+        name: this.args.packageName || '',
+        version: this.args.packageVersion || '',
         repository: repositoryInfo,
       },
 
       cli: {
-        configHash: getConfigHash(taskContext.config),
-        config: taskContext.config,
+        configHash: getConfigHash(config),
+        config: config,
         version: getVersion(cwd),
         schema: 1,
       },
