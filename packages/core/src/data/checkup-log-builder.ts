@@ -11,7 +11,7 @@ import extractStack from '../utils/extract-stack';
 import SarifLogBuilder from './sarif-log-builder';
 import { trimAllCwd } from './path';
 
-interface LogBuilderArgs {
+export interface CheckupLogBuilderArgs {
   packageName: string;
   packageVersion: string;
   config: CheckupConfig;
@@ -22,10 +22,10 @@ interface LogBuilderArgs {
 }
 
 export default class CheckupLogBuilder extends SarifLogBuilder {
-  args: LogBuilderArgs;
+  args: CheckupLogBuilderArgs;
   startTime: string;
 
-  constructor(args: LogBuilderArgs) {
+  constructor(args: CheckupLogBuilderArgs) {
     super();
 
     this.args = args;
@@ -71,7 +71,7 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
     };
   }
 
-  private buildExecptionNotifications(): Notification[] {
+  buildExecptionNotifications(): Notification[] {
     return this.args.errors.map((error) => {
       let stackFrames: StackFrame[] = extractStack.lines(error.error).map((line) => {
         return { module: line };
@@ -93,7 +93,7 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
     });
   }
 
-  private buildActionNotifications(): Notification[] {
+  buildActionNotifications(): Notification[] {
     return this.args.actions.map((action) => {
       return {
         message: { text: action.details },

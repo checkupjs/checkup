@@ -1,7 +1,6 @@
 import { PackageJson } from 'type-fest';
 import { Result } from 'sarif';
 import { FilePathArray } from '../utils/file-path-array';
-
 import CheckupLogBuilder from '../data/checkup-log-builder';
 import { CheckupConfig, TaskConfig } from './config';
 import { RunOptions, FormatterArgs } from './cli';
