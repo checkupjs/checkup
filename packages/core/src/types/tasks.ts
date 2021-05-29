@@ -1,5 +1,5 @@
 import { PackageJson } from 'type-fest';
-import { Result } from 'sarif';
+import { PropertyBag, Result } from 'sarif';
 import { FilePathArray } from '../utils/file-path-array';
 import CheckupLogBuilder from '../data/checkup-log-builder';
 import { CheckupConfig, TaskConfig } from './config';
@@ -21,6 +21,15 @@ interface TaskList {
 export type TaskName = string;
 export type TaskIdentifier = { taskName: string; taskDisplayName: string };
 
+export type TaskResultKind = Result.kind;
+export type TaskResultLevel = Result.level;
+export type TaskResultLocation = {
+  uri: string;
+  startColumn: number;
+  startLine: number;
+};
+export type TaskResultProperties = PropertyBag;
+
 export interface Task {
   taskName: TaskName;
   taskDisplayName: TaskName;
@@ -33,6 +42,14 @@ export interface Task {
   readonly enabled: boolean;
 
   run: () => Promise<Result[]>;
+
+  addResult: (
+    messageText: string,
+    kind: TaskResultKind,
+    level: TaskResultLevel,
+    location?: TaskResultLocation,
+    properties?: TaskResultProperties
+  ) => void;
 }
 
 export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
@@ -56,7 +73,7 @@ export type TaskListError = {
 export interface TaskContext {
   readonly options: RunOptions;
   readonly config: CheckupConfig;
-  readonly log: CheckupLogBuilder;
+  readonly logBuilder: CheckupLogBuilder;
   readonly pkg: PackageJson;
   readonly pkgSource: string;
   readonly paths: FilePathArray;

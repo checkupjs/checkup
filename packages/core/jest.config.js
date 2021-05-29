@@ -15,5 +15,5 @@ module.exports = {
     },
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  testPathIgnorePatterns: ['/__fixtures__/'],
+  testPathIgnorePatterns: ['/__fixtures__/', '/__utils__/'],
 };

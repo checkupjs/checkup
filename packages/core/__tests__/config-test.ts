@@ -1,6 +1,5 @@
 import fetch from 'node-fetch';
 import { readJsonSync, writeJsonSync, writeFileSync } from 'fs-extra';
-import { createTmpDir } from '@checkup/test-helpers';
 import {
   resolveConfigPath,
   readConfig,
@@ -10,6 +9,7 @@ import {
   CONFIG_SCHEMA_URL,
   DEFAULT_CONFIG,
 } from '../src/config';
+import { createTmpDir } from './__utils__/tmp-dir';
 
 const REMOTE_CONFIG = {
   $schema: CONFIG_SCHEMA_URL,

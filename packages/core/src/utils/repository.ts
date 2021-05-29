@@ -27,13 +27,13 @@ const ACTIVE_DAYS = `git log --pretty='format: %ai' $1 | cut -d ' ' -f 2 | sort 
 /**
  * @param path
  */
-export function getRepositoryInfo(rootPath: string, paths: FilePathArray): Promise<RepositoryInfo> {
+export function getRepositoryInfo(baseDir: string, paths: FilePathArray): Promise<RepositoryInfo> {
   return hash({
-    totalCommits: exec(COMMIT_COUNT, { cwd: rootPath }, 0, Number),
-    totalFiles: exec(FILE_COUNT, { cwd: rootPath }, 0, Number),
-    age: exec(REPO_AGE, { cwd: rootPath }, '0 days'),
-    activeDays: exec(ACTIVE_DAYS, { cwd: rootPath }, '0 days'),
-    linesOfCode: getLinesOfCode(rootPath, paths),
+    totalCommits: exec(COMMIT_COUNT, { cwd: baseDir }, 0, Number),
+    totalFiles: exec(FILE_COUNT, { cwd: baseDir }, 0, Number),
+    age: exec(REPO_AGE, { cwd: baseDir }, '0 days'),
+    activeDays: exec(ACTIVE_DAYS, { cwd: baseDir }, '0 days'),
+    linesOfCode: getLinesOfCode(baseDir, paths),
   });
 }
 

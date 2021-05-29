@@ -55,7 +55,7 @@ export function getTaskContext({
   return {
     options: opts,
     config: c,
-    log: new CheckupLogBuilder({
+    logBuilder: new CheckupLogBuilder({
       packageName: pkg.name ?? '',
       packageVersion: pkg.version ?? '',
       config: c,
