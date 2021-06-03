@@ -104,7 +104,7 @@ export default abstract class BaseTask {
     level: TaskResultLevel,
     location?: TaskResultLocation,
     properties?: TaskResultProperties
-  ) {
+  ): RequiredResult {
     let result: RequiredResult = {
       message: {
         text: messageText,
@@ -136,5 +136,7 @@ export default abstract class BaseTask {
     }
 
     this.context.logBuilder.addResult(result);
+
+    return result;
   }
 }

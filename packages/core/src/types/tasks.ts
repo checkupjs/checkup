@@ -4,6 +4,7 @@ import { FilePathArray } from '../utils/file-path-array';
 import CheckupLogBuilder from '../data/checkup-log-builder';
 import { CheckupConfig, TaskConfig } from './config';
 import { RunOptions, FormatterArgs } from './cli';
+import { RequiredResult } from './checkup-log';
 
 export type RegisterTaskArgs = {
   context: TaskContext;
@@ -49,7 +50,7 @@ export interface Task {
     level: TaskResultLevel,
     location?: TaskResultLocation,
     properties?: TaskResultProperties
-  ) => void;
+  ) => RequiredResult;
 }
 
 export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
