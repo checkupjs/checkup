@@ -56,7 +56,7 @@ export interface Task {
     level: TaskResultLevel,
     options?: TaskResultOptions
   ) => RequiredResult;
-  ) => void;
+  ) => RequiredResult;
 }
 
 export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
