@@ -1,5 +1,5 @@
+import '@microsoft/jest-sarif';
 import { getTaskContext } from '@checkup/test-helpers';
-
 import BaseTask from '../src/base-task';
 import { TaskContext } from '../src/types/tasks';
 
@@ -58,6 +58,46 @@ describe('BaseTask', () => {
     let fakeTask = new FakeTask('fake', context);
 
     fakeTask.addResult('The is a fake message', 'informational', 'note');
+
+    let run = fakeTask.context.logBuilder.currentRunBuilder.run;
+
+    expect(run.tool.driver.rules).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "id": "my-fake",
+        },
+      ]
+    `);
+    expect(run.results).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "kind": "informational",
+          "level": "note",
+          "message": Object {
+            "text": "The is a fake message",
+          },
+          "properties": Object {
+            "category": "foo",
+            "taskDisplayName": "Fake",
+          },
+          "ruleId": "my-fake",
+          "ruleIndex": 0,
+        },
+      ]
+    `);
+    for (let result of run.results) {
+      expect(result).toBeValidSarifFor('result');
+    }
+  });
+
+  it('can add a result with location.uri to the SARIF log', () => {
+    let context: TaskContext = getTaskContext();
+
+    let fakeTask = new FakeTask('fake', context);
+
+    fakeTask.addResult('The is a fake message', 'informational', 'note', {
+      location: { uri: 'path/to/file.js' },
+    });
 
     let run = fakeTask.context.logBuilder.currentRunBuilder.run;
 

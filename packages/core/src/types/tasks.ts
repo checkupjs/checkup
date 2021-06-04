@@ -26,10 +26,14 @@ export type TaskResultKind = Result.kind;
 export type TaskResultLevel = Result.level;
 export type TaskResultLocation = {
   uri: string;
-  startColumn: number;
-  startLine: number;
+  startColumn?: number;
+  startLine?: number;
 };
 export type TaskResultProperties = PropertyBag;
+export type TaskResultOptions = {
+  location?: TaskResultLocation;
+  properties?: TaskResultProperties;
+};
 
 export interface Task {
   taskName: TaskName;
@@ -48,8 +52,7 @@ export interface Task {
     messageText: string,
     kind: TaskResultKind,
     level: TaskResultLevel,
-    location?: TaskResultLocation,
-    properties?: TaskResultProperties
+    options?: TaskResultOptions
   ) => RequiredResult;
 }
 

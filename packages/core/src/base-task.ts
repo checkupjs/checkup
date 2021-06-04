@@ -1,12 +1,13 @@
 import * as debug from 'debug';
 
+import { Location } from 'sarif';
+import { SetRequired } from 'type-fest';
 import {
   TaskName,
   TaskContext,
   TaskResultLevel,
   TaskResultKind,
-  TaskResultLocation,
-  TaskResultProperties,
+  TaskResultOptions,
 } from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
@@ -102,8 +103,7 @@ export default abstract class BaseTask {
     messageText: string,
     kind: TaskResultKind,
     level: TaskResultLevel,
-    location?: TaskResultLocation,
-    properties?: TaskResultProperties
+    options?: TaskResultOptions
   ): RequiredResult {
     let result: RequiredResult = {
       message: {
@@ -115,24 +115,26 @@ export default abstract class BaseTask {
       properties: {
         taskDisplayName: this.taskDisplayName,
         category: this.category,
-        ...properties,
+        ...options?.properties,
       },
     };
 
-    if (location) {
-      result.locations = [
-        {
-          physicalLocation: {
-            artifactLocation: {
-              uri: location.uri,
-            },
-            region: {
-              startLine: location.startLine,
-              startColumn: location.startColumn,
-            },
+    if (options?.location) {
+      let locationOptions = options?.location;
+      let location: SetRequired<Location, 'physicalLocation'> = {
+        physicalLocation: {
+          artifactLocation: {
+            uri: locationOptions.uri,
           },
         },
-      ];
+      };
+
+      if (locationOptions.startLine && locationOptions.startColumn) {
+        location.physicalLocation.region = {
+          startLine: locationOptions.startLine,
+          startColumn: locationOptions.startColumn,
+        };
+      }
     }
 
     this.context.logBuilder.addResult(result);
