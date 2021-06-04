@@ -1,6 +1,5 @@
-import { promises } from 'fs';
+import * as fs from 'fs';
 import { Task, BaseTask, trimCwd, LintResult, AstAnalyzer, sarifBuilder } from '@checkup/core';
-
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
 import { Visitor } from 'ast-types';
@@ -58,7 +57,7 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
 
   await Promise.all(
     filePaths.map((filePath) => {
-      return promises.readFile(filePath, 'utf8').then((fileContents: string) => {
+      return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
         let accumulator = new ESLintDisableAccumulator(filePath);
         let analyzer = new AstAnalyzer<t.File, Visitor<any>, typeof parse, typeof visit>(
           fileContents,

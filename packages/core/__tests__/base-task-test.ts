@@ -258,6 +258,13 @@ describe('BaseTask', () => {
       Array [
         Object {
           "id": "my-fake",
+          "properties": Object {
+            "category": "foo",
+            "taskDisplayName": "Fake",
+          },
+          "shortDescription": Object {
+            "text": "description",
+          },
         },
       ]
     `);
@@ -268,10 +275,6 @@ describe('BaseTask', () => {
           "level": "note",
           "message": Object {
             "text": "The is a fake message",
-          },
-          "properties": Object {
-            "category": "foo",
-            "taskDisplayName": "Fake",
           },
           "ruleId": "my-fake",
           "ruleIndex": 0,

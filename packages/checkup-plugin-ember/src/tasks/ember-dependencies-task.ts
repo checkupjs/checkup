@@ -21,15 +21,17 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
           'review',
           'note',
           {
-            uri: join(this.context.options.cwd, 'package.json'),
-            startLine: dependency.startLine,
-            startColumn: dependency.startColumn,
-          },
-          {
-            packageName: dependency.packageName,
-            packageVersion: dependency.packageVersion,
-            latestVersion: dependency.latestVersion,
-            type: dependency.type,
+            location: {
+              uri: join(this.context.options.cwd, 'package.json'),
+              startLine: dependency.startLine,
+              startColumn: dependency.startColumn,
+            },
+            properties: {
+              packageName: dependency.packageName,
+              packageVersion: dependency.packageVersion,
+              latestVersion: dependency.latestVersion,
+              type: dependency.type,
+            },
           }
         );
       });

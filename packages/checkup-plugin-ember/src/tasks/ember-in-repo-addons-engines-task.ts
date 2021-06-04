@@ -27,7 +27,12 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
           this.addResult(
             `${packageJson.name} Ember ${isEngine ? 'engine' : 'addon'} found.`,
             'review',
-            'note'
+            'note',
+            {
+              location: {
+                uri: pathName,
+              },
+            }
           )
         );
       }
