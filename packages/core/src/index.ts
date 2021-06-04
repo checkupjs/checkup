@@ -53,10 +53,11 @@ export { default as CheckupLogBuilder } from './data/checkup-log-builder';
 
 export { todayFormat } from './today-format';
 
-export * from './types/cli';
 export * from './types/analyzers';
-export * from './types/dependency';
-export * from './types/tasks';
-export * from './types/config';
+export * from './types/checkup-log';
 export * from './types/checkup-result';
+export * from './types/cli';
+export * from './types/config';
+export * from './types/dependency';
 export * from './types/ember-template-lint';
+export * from './types/tasks';

@@ -42,7 +42,7 @@ export default class CheckupTaskRunner {
   taskResults: Result[];
   taskErrors: TaskListError[];
   taskContext!: TaskContext;
-  log: CheckupLogBuilder;
+  logBuilder: CheckupLogBuilder;
   registeredActions: Map<string, TaskActionsEvaluator> = new Map<TaskName, TaskActionsEvaluator>();
   registeredTaskReporters: Map<string, TaskFormatter> = new Map<TaskName, TaskFormatter>();
   pkg: PackageJson;
@@ -77,7 +77,7 @@ export default class CheckupTaskRunner {
     this.options = options;
     this.pkg = getPackageJson(this.options.cwd);
     this.pkgSource = getPackageJsonSource(this.options.cwd);
-    this.log = new CheckupLogBuilder({
+    this.logBuilder = new CheckupLogBuilder({
       packageName: this.pkg.name || '',
       packageVersion: this.pkg.version || '',
       config: this.config,
@@ -193,11 +193,11 @@ export default class CheckupTaskRunner {
       await getFilePathsAsync(this.options.cwd, this.options.paths || ['.'], excludePaths)
     ) as FilePathArray;
 
-    this.log.args.paths = paths;
+    this.logBuilder.args.paths = paths;
     this.taskContext = Object.freeze({
       options: this.options,
       config: this.config,
-      log: this.log,
+      logBuilder: this.logBuilder,
       pkg: this.pkg,
       pkgSource: this.pkgSource,
       paths,

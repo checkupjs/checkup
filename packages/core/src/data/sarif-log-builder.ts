@@ -1,37 +1,11 @@
-import {
-  Log,
-  Run,
-  ReportingDescriptor,
-  Result,
-  Address,
-  Artifact,
-  ArtifactLocation,
-  Conversion,
-  ExternalPropertyFileReferences,
-  Graph,
-  Invocation,
-  LogicalLocation,
-  Notification,
-  PropertyBag,
-  RunAutomationDetails,
-  SpecialLocations,
-  ThreadFlowLocation,
-  Tool,
-  ToolComponent,
-  VersionControlDetails,
-  WebRequest,
-  WebResponse,
-} from 'sarif';
+import { Log, Run, ReportingDescriptor, Result, Invocation, Notification } from 'sarif';
 import ow from 'ow';
-import { SetRequired } from 'type-fest';
-
-type RequiredRun = SetRequired<Run, 'tool' | 'results'>;
-type RequiredResult = SetRequired<Result, 'message' | 'ruleId' | 'kind' | 'level'>;
+import { RequiredResult, RequiredRun } from '../types/checkup-log';
 
 export default class SarifLogBuilder {
   log: Log;
   runs: Run[];
-  currentRun!: RunBuilder;
+  currentRunBuilder!: RunBuilder;
   rules: ReportingDescriptor[];
   results: Result[];
 
@@ -44,19 +18,16 @@ export default class SarifLogBuilder {
       $schema: 'https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json',
       runs: this.runs,
     };
-
-    // A sarifLog object SHALL contain a property named runs (§3.13.4)
-    this.addRun();
   }
 
   addRun(run: RunBuilder = new RunBuilder()) {
-    this.currentRun = run;
-    this.runs.push(run);
+    this.currentRunBuilder = run;
+    this.runs.push(run.run);
   }
 
   addRule(rule: ReportingDescriptor) {
     let ruleIndex = -1;
-    let rules = this.currentRun.tool.driver.rules;
+    let rules = this.currentRunBuilder.run.tool.driver.rules;
 
     ow(
       rule,
@@ -101,19 +72,19 @@ export default class SarifLogBuilder {
       result.ruleIndex = ruleIndex;
     }
 
-    this.currentRun.results.push(result);
+    this.currentRunBuilder.run.results.push(result);
   }
 
   addInvocation(invocation: Invocation) {
-    this.currentRun.currentInvocation = invocation;
-    this.currentRun.invocations?.push(invocation);
+    this.currentRunBuilder.currentInvocation = invocation;
+    this.currentRunBuilder.run.invocations?.push(invocation);
   }
 
   addToolExecutionNotification(notification: Notification) {
-    let notifications = this.currentRun.currentInvocation.toolExecutionNotifications;
+    let notifications = this.currentRunBuilder.currentInvocation.toolExecutionNotifications;
 
     if (!notifications) {
-      this.currentRun.currentInvocation.toolExecutionNotifications = notifications = [];
+      this.currentRunBuilder.currentInvocation.toolExecutionNotifications = notifications = [];
     }
 
     notifications.push(notification);
@@ -124,48 +95,22 @@ export default class SarifLogBuilder {
   }
 }
 
-class RunBuilder implements RequiredRun {
-  addresses?: Address[] | undefined;
-  artifacts?: Artifact[] | undefined;
-  automationDetails?: RunAutomationDetails | undefined;
-  baselineGuid?: string | undefined;
-  columnKind?: Run.columnKind | undefined;
-  conversion?: Conversion | undefined;
-  defaultEncoding?: string | undefined;
-  defaultSourceLanguage?: string | undefined;
-  externalPropertyFileReferences?: ExternalPropertyFileReferences | undefined;
-  graphs?: Graph[] | undefined;
-  invocations?: Invocation[] | undefined;
-  language?: string | undefined;
-  logicalLocations?: LogicalLocation[] | undefined;
-  newlineSequences?: string[] | undefined;
-  originalUriBaseIds?: { [key: string]: ArtifactLocation } | undefined;
-  policies?: ToolComponent[] | undefined;
-  redactionTokens?: string[] | undefined;
-  results: Result[] = [];
-  runAggregates?: RunAutomationDetails[] | undefined;
-  specialLocations?: SpecialLocations | undefined;
-  taxonomies?: ToolComponent[] | undefined;
-  tool: Tool;
-  threadFlowLocations?: ThreadFlowLocation[] | undefined;
-  translations?: ToolComponent[] | undefined;
-  versionControlProvenance?: VersionControlDetails[] | undefined;
-  webRequests?: WebRequest[] | undefined;
-  webResponses?: WebResponse[] | undefined;
-  properties?: PropertyBag | undefined;
-
+class RunBuilder {
+  run: RequiredRun;
   currentInvocation!: Invocation;
 
   constructor() {
-    this.tool = {
-      driver: {
-        name: 'checkup',
-        language: 'en-US',
-        informationUri: 'https://github.com/checkupjs/checkup',
-        rules: [],
+    this.run = {
+      tool: {
+        driver: {
+          name: 'checkup',
+          language: 'en-US',
+          informationUri: 'https://github.com/checkupjs/checkup',
+          rules: [],
+        },
       },
+      results: [],
+      invocations: [],
     };
-
-    this.invocations = [];
   }
 }

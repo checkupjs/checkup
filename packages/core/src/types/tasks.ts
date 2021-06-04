@@ -1,9 +1,10 @@
-import { PackageJson } from 'type-fest';
-import { Result } from 'sarif';
+import { PackageJson, SetOptional } from 'type-fest';
+import { PropertyBag, ReportingDescriptor, Result } from 'sarif';
 import { FilePathArray } from '../utils/file-path-array';
 import CheckupLogBuilder from '../data/checkup-log-builder';
 import { CheckupConfig, TaskConfig } from './config';
 import { RunOptions, FormatterArgs } from './cli';
+import { RequiredResult } from './checkup-log';
 
 export type RegisterTaskArgs = {
   context: TaskContext;
@@ -21,6 +22,21 @@ interface TaskList {
 export type TaskName = string;
 export type TaskIdentifier = { taskName: string; taskDisplayName: string };
 
+export type TaskResultKind = Result.kind;
+export type TaskResultLevel = Result.level;
+export type TaskResultLocation = {
+  uri: string;
+  startColumn?: number;
+  startLine?: number;
+};
+export type TaskResultProperties = PropertyBag;
+export type TaskRule = SetOptional<ReportingDescriptor, 'id'>;
+export type TaskResultOptions = {
+  location?: TaskResultLocation;
+  properties?: TaskResultProperties;
+  rule?: TaskRule;
+};
+
 export interface Task {
   taskName: TaskName;
   taskDisplayName: TaskName;
@@ -33,6 +49,13 @@ export interface Task {
   readonly enabled: boolean;
 
   run: () => Promise<Result[]>;
+
+  addResult: (
+    messageText: string,
+    kind: TaskResultKind,
+    level: TaskResultLevel,
+    options?: TaskResultOptions
+  ) => RequiredResult;
 }
 
 export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
@@ -56,7 +79,7 @@ export type TaskListError = {
 export interface TaskContext {
   readonly options: RunOptions;
   readonly config: CheckupConfig;
-  readonly log: CheckupLogBuilder;
+  readonly logBuilder: CheckupLogBuilder;
   readonly pkg: PackageJson;
   readonly pkgSource: string;
   readonly paths: FilePathArray;

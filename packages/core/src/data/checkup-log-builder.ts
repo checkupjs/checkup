@@ -1,25 +1,13 @@
-import { Notification, StackFrame } from 'sarif';
+import { StackFrame } from 'sarif';
 import * as unparse from 'yargs-unparser';
 import { getConfigHash } from '../config';
-import { RunOptions } from '../types/cli';
-import { TaskListError, Action } from '../types/tasks';
 import { getVersion } from '../utils/get-version';
 import { getRepositoryInfo } from '../utils/repository';
 import { FilePathArray } from '../utils/file-path-array';
-import { CheckupConfig } from '../types/config';
 import extractStack from '../utils/extract-stack';
+import { CheckupLogBuilderArgs } from '../types/checkup-log';
 import SarifLogBuilder from './sarif-log-builder';
 import { trimAllCwd } from './path';
-
-export interface CheckupLogBuilderArgs {
-  packageName: string;
-  packageVersion: string;
-  config: CheckupConfig;
-  options: RunOptions;
-  actions: Action[];
-  errors: TaskListError[];
-  paths?: FilePathArray;
-}
 
 export default class CheckupLogBuilder extends SarifLogBuilder {
   args: CheckupLogBuilderArgs;
@@ -35,24 +23,27 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
   }
 
   async annotate() {
+    this.addInvocation({
+      executionSuccessful: true,
+      arguments: unparse(this.args.options),
+      startTimeUtc: this.startTime,
+      endTimeUtc: new Date().toJSON(),
+    });
+
+    await this.addCheckupMetadata();
+
+    this.addExecptionNotifications();
+    this.addActionNotifications();
+  }
+
+  async addCheckupMetadata() {
     let paths = this.args.paths ?? new FilePathArray();
     let cwd = this.args.options.cwd;
     let config = this.args.config;
     let repositoryInfo = await getRepositoryInfo(cwd, paths);
     let analyzedFiles = trimAllCwd(paths, cwd);
 
-    this.addInvocation({
-      executionSuccessful: true,
-      arguments: unparse(this.args.options),
-      startTimeUtc: this.startTime,
-      endTimeUtc: new Date().toJSON(),
-      toolExecutionNotifications: [
-        ...this.buildExecptionNotifications(),
-        ...this.buildActionNotifications(),
-      ],
-    });
-
-    this.currentRun.tool.driver.properties = {
+    this.currentRunBuilder.run.tool.driver.properties = {
       project: {
         name: this.args.packageName || '',
         version: this.args.packageVersion || '',
@@ -71,13 +62,13 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
     };
   }
 
-  buildExecptionNotifications(): Notification[] {
-    return this.args.errors.map((error) => {
+  addExecptionNotifications(): void {
+    this.args.errors.forEach((error) => {
       let stackFrames: StackFrame[] = extractStack.lines(error.error).map((line) => {
         return { module: line };
       });
 
-      return {
+      this.addToolExecutionNotification({
         message: { text: `${error.taskName} generated an error during execution` },
         level: 'error',
         associatedRule: {
@@ -89,19 +80,19 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
             frames: stackFrames,
           },
         },
-      };
+      });
     });
   }
 
-  buildActionNotifications(): Notification[] {
-    return this.args.actions.map((action) => {
-      return {
+  addActionNotifications(): void {
+    this.args.actions.forEach((action) => {
+      this.addToolExecutionNotification({
         message: { text: action.details },
         level: 'warning',
         associatedRule: {
           id: action.taskName,
         },
-      };
+      });
     });
   }
 }

@@ -1,10 +1,21 @@
 import * as debug from 'debug';
 
-import { TaskName, TaskContext } from './types/tasks';
+import { Location } from 'sarif';
+import { SetRequired } from 'type-fest';
+import {
+  TaskName,
+  TaskContext,
+  TaskResultLevel,
+  TaskResultKind,
+  TaskResultOptions,
+  TaskRule,
+} from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
 import { parseConfigTuple } from './config';
+import { RequiredResult } from './types/checkup-log';
+import CheckupLogBuilder from './data/checkup-log-builder';
 export default abstract class BaseTask {
   abstract taskName: TaskName;
   abstract taskDisplayName: string;
@@ -18,20 +29,30 @@ export default abstract class BaseTask {
   _config!: TaskConfig;
   _enabled!: boolean;
   _enabledViaConfig!: boolean;
+  _logBuilder: CheckupLogBuilder;
 
   constructor(pluginName: string, context: TaskContext) {
     this._pluginName = getShorthandName(pluginName);
     this.context = context;
+    this._logBuilder = context.logBuilder;
 
     this.debug = debug('checkup:task');
   }
 
+  /**
+   * An object containing optional configuration for this Task. Tasks can be
+   * configured in the .checkuprc file.
+   */
   get config() {
     this._parseConfig();
 
     return this._config;
   }
 
+  /**
+   * A boolean indicating whether this task is enabled or not. Tasks can be
+   * enabled by specifically configuring them in the .checkuprc file.
+   */
   get enabled() {
     if (this._enabled === undefined) {
       this._parseConfig();
@@ -47,6 +68,11 @@ export default abstract class BaseTask {
     return this._enabled;
   }
 
+  /**
+   * The fully qualified name for this task, in the format
+   *
+   * <pluginName>/<taskName>
+   */
   get fullyQualifiedTaskName() {
     return `${this._pluginName}/${this.taskName}`;
   }
@@ -66,5 +92,80 @@ export default abstract class BaseTask {
     this._config = taskConfig;
 
     this.debug('%s task config: %O', this.fullyQualifiedTaskName, this._config);
+  }
+
+  /**
+   * Adds a result object to the Checkup output. Result objects are {@link https://docs.oasis-open.org/sarif/sarif/v2.1.0/csprd01/sarif-v2.1.0-csprd01.html#_Toc10541076|SARIF Result} format.
+   *
+   * @param messageText A non-empty string containing a plain text message
+   * @param kind One of a fixed set of strings that specify the nature of the result
+   * @param level One of a fixed set of strings that specify the severity level of the result
+   * @param location Specifies a location where the result occurred
+   * @param properties A property bag named properties, which stores additional values on the result
+   */
+  addResult(
+    messageText: string,
+    kind: TaskResultKind,
+    level: TaskResultLevel,
+    options?: TaskResultOptions
+  ): RequiredResult {
+    let ruleId = this._addRule(options?.rule);
+
+    let result: RequiredResult = {
+      message: {
+        text: messageText,
+      },
+      ruleId,
+      kind,
+      level,
+    };
+
+    if (options?.properties) {
+      result.properties = options.properties;
+    }
+
+    if (options?.location) {
+      let locationOptions = options?.location;
+      let location: SetRequired<Location, 'physicalLocation'> = {
+        physicalLocation: {
+          artifactLocation: {
+            uri: locationOptions.uri,
+          },
+        },
+      };
+
+      if (locationOptions.startLine && locationOptions.startColumn) {
+        location.physicalLocation.region = {
+          startLine: locationOptions.startLine,
+          startColumn: locationOptions.startColumn,
+        };
+      }
+
+      result.locations = [location];
+    }
+
+    this._logBuilder.addResult(result);
+
+    return result;
+  }
+
+  private _addRule(rule?: TaskRule) {
+    let taskRule;
+    let ruleProps = {
+      id: this.taskName,
+      shortDescription: {
+        text: this.description,
+      },
+      properties: {
+        taskDisplayName: this.taskDisplayName,
+        category: this.category,
+      },
+    };
+
+    taskRule = Object.assign({}, ruleProps, rule);
+
+    this._logBuilder.addRule(taskRule);
+
+    return taskRule.id;
   }
 }
