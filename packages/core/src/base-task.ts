@@ -135,6 +135,8 @@ export default abstract class BaseTask {
           startColumn: locationOptions.startColumn,
         };
       }
+
+      result.locations = [location];
     }
 
     this.context.logBuilder.addResult(result);

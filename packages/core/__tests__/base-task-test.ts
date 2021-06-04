@@ -113,6 +113,68 @@ describe('BaseTask', () => {
         Object {
           "kind": "informational",
           "level": "note",
+          "locations": Array [
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "path/to/file.js",
+                },
+              },
+            },
+          ],
+          "message": Object {
+            "text": "The is a fake message",
+          },
+          "properties": Object {
+            "category": "foo",
+            "taskDisplayName": "Fake",
+          },
+          "ruleId": "my-fake",
+          "ruleIndex": 0,
+        },
+      ]
+    `);
+    for (let result of run.results) {
+      expect(result).toBeValidSarifFor('result');
+    }
+  });
+
+  it('can add a result with location to the SARIF log', () => {
+    let context: TaskContext = getTaskContext();
+
+    let fakeTask = new FakeTask('fake', context);
+
+    fakeTask.addResult('The is a fake message', 'informational', 'note', {
+      location: { uri: 'path/to/file.js', startLine: 1, startColumn: 1 },
+    });
+
+    let run = fakeTask.context.logBuilder.currentRunBuilder.run;
+
+    expect(run.tool.driver.rules).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "id": "my-fake",
+        },
+      ]
+    `);
+    expect(run.results).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "kind": "informational",
+          "level": "note",
+          "locations": Array [
+            Object {
+              "physicalLocation": Object {
+                "artifactLocation": Object {
+                  "uri": "path/to/file.js",
+                },
+                "region": Object {
+                  "startColumn": 1,
+                  "startLine": 1,
+                },
+              },
+            },
+          ],
           "message": Object {
             "text": "The is a fake message",
           },
