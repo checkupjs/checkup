@@ -1,5 +1,5 @@
-import { PackageJson } from 'type-fest';
-import { PropertyBag, Result } from 'sarif';
+import { PackageJson, SetOptional } from 'type-fest';
+import { PropertyBag, ReportingDescriptor, Result } from 'sarif';
 import { FilePathArray } from '../utils/file-path-array';
 import CheckupLogBuilder from '../data/checkup-log-builder';
 import { CheckupConfig, TaskConfig } from './config';
@@ -30,9 +30,11 @@ export type TaskResultLocation = {
   startLine?: number;
 };
 export type TaskResultProperties = PropertyBag;
+export type TaskRule = SetOptional<ReportingDescriptor, 'id'>;
 export type TaskResultOptions = {
   location?: TaskResultLocation;
   properties?: TaskResultProperties;
+  rule?: TaskRule;
 };
 
 export interface Task {

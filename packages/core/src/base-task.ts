@@ -8,12 +8,14 @@ import {
   TaskResultLevel,
   TaskResultKind,
   TaskResultOptions,
+  TaskRule,
 } from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
 import { getShorthandName } from './utils/plugin-name';
 import { parseConfigTuple } from './config';
 import { RequiredResult } from './types/checkup-log';
+import CheckupLogBuilder from './data/checkup-log-builder';
 export default abstract class BaseTask {
   abstract taskName: TaskName;
   abstract taskDisplayName: string;
@@ -27,10 +29,12 @@ export default abstract class BaseTask {
   _config!: TaskConfig;
   _enabled!: boolean;
   _enabledViaConfig!: boolean;
+  _logBuilder: CheckupLogBuilder;
 
   constructor(pluginName: string, context: TaskContext) {
     this._pluginName = getShorthandName(pluginName);
     this.context = context;
+    this._logBuilder = context.logBuilder;
 
     this.debug = debug('checkup:task');
   }
@@ -105,19 +109,20 @@ export default abstract class BaseTask {
     level: TaskResultLevel,
     options?: TaskResultOptions
   ): RequiredResult {
+    let ruleId = this._addRule(options?.rule);
+
     let result: RequiredResult = {
       message: {
         text: messageText,
       },
-      ruleId: this.taskName,
+      ruleId,
       kind,
       level,
-      properties: {
-        taskDisplayName: this.taskDisplayName,
-        category: this.category,
-        ...options?.properties,
-      },
     };
+
+    if (options?.properties) {
+      result.properties = options.properties;
+    }
 
     if (options?.location) {
       let locationOptions = options?.location;
@@ -139,8 +144,28 @@ export default abstract class BaseTask {
       result.locations = [location];
     }
 
-    this.context.logBuilder.addResult(result);
+    this._logBuilder.addResult(result);
 
     return result;
+  }
+
+  private _addRule(rule?: TaskRule) {
+    let taskRule;
+    let ruleProps = {
+      id: this.taskName,
+      shortDescription: {
+        text: this.description,
+      },
+      properties: {
+        taskDisplayName: this.taskDisplayName,
+        category: this.category,
+      },
+    };
+
+    taskRule = Object.assign({}, ruleProps, rule);
+
+    this._logBuilder.addRule(taskRule);
+
+    return taskRule.id;
   }
 }
