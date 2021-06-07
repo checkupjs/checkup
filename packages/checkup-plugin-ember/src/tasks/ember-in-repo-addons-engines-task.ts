@@ -13,8 +13,6 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
   group = 'ember';
 
   async run(): Promise<Result[]> {
-    let results: Result[] = [];
-
     let packageJsonPaths: string[] = this.context.paths.filterByGlob('**/*package.json');
 
     for (let pathName of packageJsonPaths) {
@@ -23,22 +21,20 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
       let isAddon = packageJson.keywords?.includes('ember-addon') && packageJson.name;
 
       if (isEngine || isAddon) {
-        results.push(
-          this.addResult(
-            `${packageJson.name} Ember ${isEngine ? 'engine' : 'addon'} found.`,
-            'review',
-            'note',
-            {
-              location: {
-                uri: pathName,
-              },
-            }
-          )
+        this.addResult(
+          `${packageJson.name} Ember ${isEngine ? 'engine' : 'addon'} found.`,
+          'review',
+          'note',
+          {
+            location: {
+              uri: pathName,
+            },
+          }
         );
       }
     }
 
-    return results;
+    return this.results;
   }
 
   async getPackageJson(packageJsonPath: string): Promise<PackageJson> {

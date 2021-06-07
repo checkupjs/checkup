@@ -13,10 +13,10 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
     let analyzer = new DependencyAnalyzer(this.context.options.cwd);
     let dependencies = await analyzer.analyze();
 
-    return dependencies
+    dependencies
       .filter((dependency) => isEmberDependency(dependency.packageName))
-      .map((dependency) => {
-        return this.addResult(
+      .forEach((dependency) => {
+        this.addResult(
           `Ember dependency information for ${dependency.packageName}`,
           'review',
           'note',
@@ -35,6 +35,8 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
           }
         );
       });
+
+    return this.results;
   }
 }
 

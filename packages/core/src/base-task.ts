@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 
-import { Location } from 'sarif';
+import { Location, Result } from 'sarif';
 import { SetRequired } from 'type-fest';
 import {
   TaskName,
@@ -24,6 +24,7 @@ export default abstract class BaseTask {
   group?: string;
   context: TaskContext;
   debug: debug.Debugger;
+  results: Result[];
 
   _pluginName: string;
   _config!: TaskConfig;
@@ -32,8 +33,9 @@ export default abstract class BaseTask {
   _logBuilder: CheckupLogBuilder;
 
   constructor(pluginName: string, context: TaskContext) {
-    this._pluginName = getShorthandName(pluginName);
     this.context = context;
+    this.results = [];
+    this._pluginName = getShorthandName(pluginName);
     this._logBuilder = context.logBuilder;
 
     this.debug = debug('checkup:task');
@@ -145,6 +147,7 @@ export default abstract class BaseTask {
     }
 
     this._logBuilder.addResult(result);
+    this.results.push(result);
 
     return result;
   }

@@ -42,6 +42,7 @@ export interface Task {
   taskDisplayName: TaskName;
   description: string;
   config: TaskConfig;
+  results: Result[];
   category: string;
   group?: string;
 

@@ -44,6 +44,8 @@ describe('ember-octane-migration-status-task', () => {
         for (let result of results) {
           expect(result).toBeValidSarifFor('result');
         }
+
+        expect(results).toMatchSnapshot();
       });
     });
   });
@@ -110,12 +112,11 @@ function createNonOctaneProject(project: EmberProject, type: string) {
         `,
         'other-service.js': `
         import Service from '@ember/service';
-        import
 
         export default class OtherService {
-          dog: 'rover';
+          dog = 'rover';
 
-          bigDog: computed('dog', function() {
+          bigDog = computed('dog', function() {
             return 'big' + this.dog;
           });
 
