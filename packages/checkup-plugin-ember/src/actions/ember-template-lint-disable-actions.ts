@@ -1,9 +1,9 @@
-import { ActionsEvaluator, TaskConfig, sumOccurrences } from '@checkup/core';
+import { ActionsEvaluator, TaskConfig } from '@checkup/core';
 import { Result } from 'sarif';
 
 export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
-  let templateLintDisableUsages = sumOccurrences(taskResults);
+  let templateLintDisableUsages = taskResults.length;
 
   actionsEvaluator.add({
     taskName: 'ember-template-lint-disable',

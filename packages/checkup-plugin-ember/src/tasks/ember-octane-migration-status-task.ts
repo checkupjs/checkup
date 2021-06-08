@@ -213,7 +213,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
 
       this.addResult(
         `Octane | ${ruleMetadata.feature} : ${ruleMetadata.message}. More info: ${ruleMetadata.helpUri}`,
-        'open',
+        'review',
         'warning',
         {
           location: {

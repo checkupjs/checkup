@@ -3,7 +3,7 @@
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to json 1`] = `
 Array [
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -25,7 +25,7 @@ Array [
     "ruleIndex": 0,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -47,7 +47,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -69,7 +69,7 @@ Array [
     "ruleIndex": 2,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -91,7 +91,7 @@ Array [
     "ruleIndex": 0,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -113,7 +113,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -135,7 +135,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -157,7 +157,7 @@ Array [
     "ruleIndex": 0,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -179,7 +179,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -201,7 +201,7 @@ Array [
     "ruleIndex": 2,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -223,7 +223,7 @@ Array [
     "ruleIndex": 0,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -245,7 +245,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -267,7 +267,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -289,7 +289,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -311,7 +311,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -333,7 +333,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -355,7 +355,7 @@ Array [
     "ruleIndex": 3,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -377,7 +377,7 @@ Array [
     "ruleIndex": 3,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -399,7 +399,7 @@ Array [
     "ruleIndex": 4,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -421,7 +421,7 @@ Array [
     "ruleIndex": 4,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -443,7 +443,7 @@ Array [
     "ruleIndex": 5,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -465,7 +465,7 @@ Array [
     "ruleIndex": 3,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -487,7 +487,7 @@ Array [
     "ruleIndex": 4,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -509,7 +509,7 @@ Array [
     "ruleIndex": 3,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -536,7 +536,7 @@ Array [
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane app and outputs to json 1`] = `
 Array [
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -558,7 +558,7 @@ Array [
     "ruleIndex": 0,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -580,7 +580,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -602,7 +602,7 @@ Array [
     "ruleIndex": 2,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -624,7 +624,7 @@ Array [
     "ruleIndex": 0,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -646,7 +646,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -668,7 +668,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -690,7 +690,7 @@ Array [
     "ruleIndex": 0,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -712,7 +712,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -734,7 +734,7 @@ Array [
     "ruleIndex": 2,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -756,7 +756,7 @@ Array [
     "ruleIndex": 0,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -778,7 +778,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -800,7 +800,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -822,7 +822,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -844,7 +844,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -866,7 +866,7 @@ Array [
     "ruleIndex": 1,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -888,7 +888,7 @@ Array [
     "ruleIndex": 3,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -910,7 +910,7 @@ Array [
     "ruleIndex": 3,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -932,7 +932,7 @@ Array [
     "ruleIndex": 4,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -954,7 +954,7 @@ Array [
     "ruleIndex": 4,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -976,7 +976,7 @@ Array [
     "ruleIndex": 5,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -998,7 +998,7 @@ Array [
     "ruleIndex": 3,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -1020,7 +1020,7 @@ Array [
     "ruleIndex": 4,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
@@ -1042,7 +1042,7 @@ Array [
     "ruleIndex": 3,
   },
   Object {
-    "kind": "open",
+    "kind": "review",
     "level": "warning",
     "locations": Array [
       Object {
