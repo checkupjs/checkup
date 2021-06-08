@@ -1,14 +1,14 @@
-import { ActionsEvaluator, TaskConfig, sumOccurrences } from '@checkup/core';
+import { ActionsEvaluator, TaskConfig } from '@checkup/core';
 import { Result } from 'sarif';
 
 export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
-  let errors = taskResults.filter((result: Result) => result.properties?.type === 'error')!;
-  let warnings = taskResults.filter((result: Result) => result.properties?.type === 'warning')!;
+  let errors = taskResults.filter((result: Result) => result.level === 'error')!;
+  let warnings = taskResults.filter((result: Result) => result.level === 'warning')!;
 
-  let errorCount = sumOccurrences(errors);
-  let warningCount = sumOccurrences(warnings);
+  let errorCount = errors.length;
+  let warningCount = warnings.length;
 
   actionsEvaluator.add({
     taskName: 'eslint-summary',

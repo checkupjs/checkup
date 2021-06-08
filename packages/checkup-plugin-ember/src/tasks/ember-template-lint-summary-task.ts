@@ -38,8 +38,8 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
   }
 
   async run(): Promise<Result[]> {
-    let templateLintReport = await this.runTemplateLint();
-    let results = this.flattenLintResults(templateLintReport.results);
+    let report = await this.runTemplateLint();
+    let results = this.flattenLintResults(report.results);
 
     results.forEach((result) => {
       this.addResult(result.message, 'review', result.severity === 2 ? 'error' : 'warning', {

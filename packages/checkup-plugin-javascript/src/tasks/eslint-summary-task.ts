@@ -6,10 +6,6 @@ import {
   ESLintReport,
   LintAnalyzer,
   Task,
-  bySeverity,
-  groupDataByField,
-  sarifBuilder,
-  lintBuilder,
   TaskContext,
   TaskError,
   ESLintAnalyzer,
@@ -54,23 +50,19 @@ export default class EslintSummaryTask extends BaseTask implements Task {
 
   async run(): Promise<Result[]> {
     let report = await this.analyzer.analyze(this.context.paths.filterByGlob('**/*.js'));
-    let transformedData = lintBuilder.toLintResults(report.results, this.context.options.cwd);
+    let results = this.flattenLintResults(report.results);
 
-    let lintingErrors = groupDataByField(bySeverity(transformedData, 2), 'lintRuleId');
-    let lintingWarnings = groupDataByField(bySeverity(transformedData, 1), 'lintRuleId');
-
-    let errorsResult = lintingErrors.flatMap((lintingError) => {
-      return sarifBuilder.fromLintResults(this, lintingError, {
-        type: 'error',
-      });
-    });
-    let warningsResult = lintingWarnings.flatMap((lintingWarning) => {
-      return sarifBuilder.fromLintResults(this, lintingWarning, {
-        type: 'warning',
+    results.forEach((result) => {
+      this.addResult(result.message, 'review', result.severity === 2 ? 'error' : 'warning', {
+        location: {
+          uri: result.filePath,
+          startColumn: result.column,
+          startLine: result.line,
+        },
       });
     });
 
-    return [...errorsResult, ...warningsResult];
+    return this.results;
   }
 
   readEslintConfig(paths: string[], basePath: string, pkg: PackageJsonWithEslint): ESLintOptions {
