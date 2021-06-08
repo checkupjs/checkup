@@ -1,12 +1,5 @@
 import * as fs from 'fs';
-import {
-  Task,
-  BaseTask,
-  trimCwd,
-  NormalizedLintResult,
-  AstAnalyzer,
-  sarifBuilder,
-} from '@checkup/core';
+import { Task, BaseTask, trimCwd, NormalizedLintResult, AstAnalyzer } from '@checkup/core';
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
 import { Visitor } from 'ast-types';
@@ -28,7 +21,17 @@ export default class EslintDisableTask extends BaseTask implements Task {
       this.context.options.cwd
     );
 
-    return sarifBuilder.fromLintResults(this, eslintDisables);
+    eslintDisables.forEach((disable) => {
+      this.addResult(disable.message, 'review', 'note', {
+        location: {
+          uri: disable.filePath,
+          startColumn: disable.column,
+          startLine: disable.line,
+        },
+      });
+    });
+
+    return this.results;
   }
 }
 
