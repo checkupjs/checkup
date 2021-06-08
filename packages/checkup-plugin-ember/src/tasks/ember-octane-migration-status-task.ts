@@ -2,17 +2,15 @@ import {
   BaseTask,
   ESLintOptions,
   ESLintReport,
-  ESLintResult,
   LintAnalyzer,
   Task,
   TemplateLintConfig,
   TemplateLinter,
   TemplateLintReport,
-  TemplateLintResult,
-  lintBuilder,
   TaskContext,
   ESLintAnalyzer,
   EmberTemplateLintAnalyzer,
+  NormalizedLintResult,
   LintResult,
 } from '@checkup/core';
 import kebabCase = require('lodash.kebabcase');
@@ -191,10 +189,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
       this.runTemplateLint(),
     ]);
 
-    return this.buildResult(
-      [...esLintReport.results, ...templateLintReport.results],
-      this.context.options.cwd
-    );
+    return this.buildResults([...esLintReport.results, ...templateLintReport.results]);
   }
 
   private runEsLint(): Promise<ESLintReport> {
@@ -209,10 +204,10 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
     return this.emberTemplateLintAnalyzer.analyze(hbsPaths);
   }
 
-  buildResult(results: (ESLintResult | TemplateLintResult)[], cwd: string): Result[] {
-    let rawData = lintBuilder.toLintResults(results, cwd);
+  buildResults(results: LintResult[]): Result[] {
+    let rawData = this.flattenLintResults(results);
 
-    rawData.forEach((lintResult: LintResult) => {
+    rawData.forEach((lintResult: NormalizedLintResult) => {
       let ruleId = lintResult.lintRuleId ?? '';
       let ruleMetadata = RULE_METADATA[ruleId];
 

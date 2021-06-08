@@ -1,7 +1,7 @@
 import { join, resolve } from 'path';
 import {
   BaseTask,
-  LintResult,
+  NormalizedLintResult,
   Task,
   TaskContext,
   TemplateLinter,
@@ -56,7 +56,7 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
       resultDataItems.push(...messages);
 
       return resultDataItems;
-    }, [] as LintResult[]);
+    }, [] as NormalizedLintResult[]);
 
     let lintingErrors = groupDataByField(bySeverity(lintResults, 2), 'lintRuleId');
     let lintingWarnings = groupDataByField(bySeverity(lintResults, 1), 'lintRuleId');

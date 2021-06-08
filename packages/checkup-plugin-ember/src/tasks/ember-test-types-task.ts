@@ -3,7 +3,7 @@ import {
   ESLintReport,
   LintAnalyzer,
   BaseTask,
-  LintResult,
+  NormalizedLintResult,
   sarifBuilder,
   lintBuilder,
   TaskContext,
@@ -41,7 +41,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   }
 
   buildResult(report: ESLintReport, cwd: string): Result[] {
-    let testTypes: { [key: string]: LintResult[] } = {};
+    let testTypes: { [key: string]: NormalizedLintResult[] } = {};
     report.results.forEach((esLintResult) => {
       let testType: string = '';
       let method: string = '';

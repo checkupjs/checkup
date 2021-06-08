@@ -1,5 +1,12 @@
 import * as fs from 'fs';
-import { Task, BaseTask, trimCwd, LintResult, AstAnalyzer, sarifBuilder } from '@checkup/core';
+import {
+  Task,
+  BaseTask,
+  trimCwd,
+  NormalizedLintResult,
+  AstAnalyzer,
+  sarifBuilder,
+} from '@checkup/core';
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
 import { Visitor } from 'ast-types';
@@ -16,17 +23,20 @@ export default class EslintDisableTask extends BaseTask implements Task {
 
   async run(): Promise<Result[]> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
-    let eslintDisables: LintResult[] = await getEslintDisables(jsPaths, this.context.options.cwd);
+    let eslintDisables: NormalizedLintResult[] = await getEslintDisables(
+      jsPaths,
+      this.context.options.cwd
+    );
 
     return sarifBuilder.fromLintResults(this, eslintDisables);
   }
 }
 
 async function getEslintDisables(filePaths: string[], cwd: string) {
-  let data: LintResult[] = [];
+  let data: NormalizedLintResult[] = [];
 
   class ESLintDisableAccumulator {
-    data: LintResult[] = [];
+    data: NormalizedLintResult[] = [];
 
     constructor(private filePath: string) {}
 

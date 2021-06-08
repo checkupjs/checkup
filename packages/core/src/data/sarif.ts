@@ -1,5 +1,5 @@
 import { Result, Location, Notification } from 'sarif';
-import { LintResult, Task, TaskListError } from '../types/tasks';
+import { NormalizedLintResult, Task, TaskListError } from '../types/tasks';
 
 export const NO_RESULTS_FOUND = 'No results found';
 
@@ -9,13 +9,13 @@ type SarifTaskIdentifier = Pick<Task, 'taskName' | 'taskDisplayName' | 'category
  * Builds SARIF Results from a list of LintResults.
  *
  * @param taskContext {Task} This is used to set Task properties on the Result
- * @param lintResults {LintResult[]} The LintResults used to create Result
+ * @param lintResults {NormalizedLintResult[]} The LintResults used to create Result
  * @param [additionalData] {Object} Any additional data to be put into the properties bag
  * @param [customMessages] {Record<string, string>} Custom messages to be rendered for each lintRule
  */
 function fromLintResults(
   taskContext: SarifTaskIdentifier,
-  lintResults: LintResult[],
+  lintResults: NormalizedLintResult[],
   additionalData: object = {},
   customMessages: Record<string, string> = {}
 ): Result[] {
@@ -122,10 +122,10 @@ function buildEmptyResult(taskContext: SarifTaskIdentifier, consoleMessage?: str
 }
 
 /**
- * @param lintResult {LintResult}
+ * @param lintResult {NormalizedLintResult}
  * @returns Location[]
  */
-function buildLocationDataFromLintResult(lintResult: LintResult): Location[] {
+function buildLocationDataFromLintResult(lintResult: NormalizedLintResult): Location[] {
   const location: Location = {
     physicalLocation: {
       artifactLocation: {

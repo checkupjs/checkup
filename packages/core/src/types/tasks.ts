@@ -92,7 +92,7 @@ export enum OutputFormat {
   pretty = 'pretty',
 }
 
-export interface LintResult {
+export interface NormalizedLintResult {
   filePath: string;
   lintRuleId: string | null;
   message: string;

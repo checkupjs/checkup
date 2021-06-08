@@ -2,7 +2,7 @@ import { promises } from 'fs';
 import {
   Task,
   BaseTask,
-  LintResult,
+  NormalizedLintResult,
   trimCwd,
   sarifBuilder,
   HandlebarsAnalyzer,
@@ -27,10 +27,10 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
 }
 
 async function getTemplateLintDisables(filePaths: string[], cwd: string) {
-  let data: LintResult[] = [];
+  let data: NormalizedLintResult[] = [];
 
   class TemplateLintDisableAccumulator {
-    data: LintResult[] = [];
+    data: NormalizedLintResult[] = [];
 
     constructor(private filePath: string) {}
 

@@ -1,14 +1,13 @@
-import { ESLintMessage, ESLintResult } from '../types/analyzers';
-import { LintResult } from '../types/tasks';
-import { TemplateLintMessage, TemplateLintResult } from '../types/ember-template-lint';
+import { LintMessage, LintResult } from '../types/analyzers';
+import { NormalizedLintResult } from '../types/tasks';
 import { trimCwd } from './path';
 
 export function toLintResult(
-  message: ESLintMessage | TemplateLintMessage,
+  message: LintMessage,
   cwd: string,
   filePath: string,
   additionalData: object = {}
-): LintResult {
+): NormalizedLintResult {
   return {
     filePath: trimCwd(filePath, cwd),
     lintRuleId: getLintRuleId(message),
@@ -20,20 +19,15 @@ export function toLintResult(
   };
 }
 
-export function toLintResults(
-  results: (ESLintResult | TemplateLintResult)[],
-  cwd: string
-): LintResult[] {
+export function toLintResults(results: LintResult[], cwd: string): NormalizedLintResult[] {
   return results.reduce((transformed, lintingResults) => {
-    const messages = (<any>lintingResults.messages).map(
-      (lintMessage: ESLintMessage | TemplateLintMessage) => {
-        return toLintResult(lintMessage, cwd, lintingResults.filePath);
-      }
-    );
+    const messages = (<any>lintingResults.messages).map((lintMessage: LintMessage) => {
+      return toLintResult(lintMessage, cwd, lintingResults.filePath);
+    });
     transformed.push(...messages);
 
     return transformed;
-  }, [] as LintResult[]);
+  }, [] as NormalizedLintResult[]);
 }
 
 export const lintBuilder = {

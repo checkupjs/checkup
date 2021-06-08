@@ -9,6 +9,7 @@ import {
   TaskResultKind,
   TaskResultOptions,
   TaskRule,
+  NormalizedLintResult,
 } from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
@@ -16,6 +17,9 @@ import { getShorthandName } from './utils/plugin-name';
 import { parseConfigTuple } from './config';
 import { RequiredResult } from './types/checkup-log';
 import CheckupLogBuilder from './data/checkup-log-builder';
+import { toLintResults } from './data/lint';
+import { LintResult } from './types/analyzers';
+
 export default abstract class BaseTask {
   abstract taskName: TaskName;
   abstract taskDisplayName: string;
@@ -150,6 +154,18 @@ export default abstract class BaseTask {
     this.results.push(result);
 
     return result;
+  }
+
+  /**
+   * Takes an array of nested lint results, ones that contain a top-level object and a messages array representing
+   * each result found for a file, and flattens them into an array of non-nested objects. This allows for easier
+   * processing into SARIF result objects.
+   *
+   * @param results An array of lint results
+   * @returns An array of normalized lint results
+   */
+  flattenLintResults(results: LintResult[]): NormalizedLintResult[] {
+    return toLintResults(results, this.context.options.cwd);
   }
 
   private _addRule(rule?: TaskRule) {
