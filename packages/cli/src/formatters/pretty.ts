@@ -3,7 +3,6 @@ import {
   CheckupMetadata,
   getRegisteredTaskReporters,
   groupDataByField,
-  NO_RESULTS_FOUND,
   sumOccurrences,
   reduceResults,
   renderEmptyResult,
@@ -94,7 +93,7 @@ export default class PrettyFormatter {
       }
 
       groupedTaskResults.forEach((result) => {
-        if (result.message.text === NO_RESULTS_FOUND) {
+        if (result.message.text === 'No results found') {
           renderEmptyResult(result);
         } else {
           this.args.writer.value({

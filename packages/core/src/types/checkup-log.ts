@@ -16,4 +16,5 @@ export interface CheckupLogBuilderArgs {
   actions: Action[];
   errors: TaskListError[];
   paths?: FilePathArray;
+  taskTimings: Record<string, number>;
 }

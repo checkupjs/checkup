@@ -1,3 +1,4 @@
+import { Log } from 'sarif';
 import { ConsoleWriter } from '../utils/console-writer';
 import {
   Task,
@@ -39,7 +40,13 @@ export interface RegistrationProviderOptions {
   registeredTasks: RegisterableTaskList;
 }
 export interface RegisterableTaskList {
+  timings: Record<TaskName, number>;
   registerTask(task: Task): void;
+}
+
+export interface Formatter {
+  new (args: FormatterArgs): void;
+  format(result: Log): void;
 }
 
 export interface FormatterOptions {

@@ -1,5 +1,4 @@
 import { Result } from 'sarif';
-import { NO_RESULTS_FOUND } from '../data/sarif';
 import { groupDataByField } from '../data/formatters';
 import { FormatterArgs } from '../types/cli';
 import { reduceResults, sumOccurrences } from './sarif-utils';
@@ -26,7 +25,7 @@ export function renderLintingSummaryResult(taskResults: Result[], args: Formatte
         );
         args.writer.valuesList(
           groupedTaskResultsByLintRule.map((result) => {
-            return result.message.text === NO_RESULTS_FOUND
+            return result.message.text === 'No results found'
               ? renderEmptyResult(result)
               : {
                   title: result.properties?.lintRuleId,

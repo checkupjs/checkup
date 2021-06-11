@@ -59,6 +59,7 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
 
       analyzedFiles,
       analyzedFilesCount: analyzedFiles.length,
+      timings: this.args.taskTimings,
     };
   }
 

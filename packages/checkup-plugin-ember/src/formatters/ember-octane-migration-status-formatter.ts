@@ -1,6 +1,5 @@
 import {
   groupDataByField,
-  NO_RESULTS_FOUND,
   reduceResults,
   sumOccurrences,
   FormatterArgs,
@@ -25,7 +24,7 @@ export function format(taskResults: Result[], args: FormatterArgs) {
       args.writer.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
       args.writer.valuesList(
         groupedTaskResultsByLintRuleId.map((result) => {
-          return result.message.text === NO_RESULTS_FOUND
+          return result.message.text === 'No results found'
             ? renderEmptyResult(result)
             : {
                 title: result.properties?.lintRuleId as string,

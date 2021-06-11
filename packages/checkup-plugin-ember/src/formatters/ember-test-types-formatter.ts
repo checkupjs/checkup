@@ -1,7 +1,6 @@
 import {
   FormatterArgs,
   groupDataByField,
-  NO_RESULTS_FOUND,
   reduceResults,
   renderEmptyResult,
   sumOccurrences,
@@ -19,7 +18,7 @@ export function format(taskResults: Result[], args: FormatterArgs) {
       args.writer.subHeader(groupedTaskResultsByMethod[0].message.text as string);
       args.writer.valuesList(
         groupedTaskResultsByMethod.map((result) => {
-          return result.message.text === NO_RESULTS_FOUND
+          return result.message.text === 'No results found'
             ? renderEmptyResult(result)
             : {
                 title: result.properties?.method as string,
