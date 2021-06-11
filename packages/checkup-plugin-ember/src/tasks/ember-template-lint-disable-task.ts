@@ -1,12 +1,5 @@
 import { promises } from 'fs';
-import {
-  Task,
-  BaseTask,
-  LintResult,
-  trimCwd,
-  sarifBuilder,
-  HandlebarsAnalyzer,
-} from '@checkup/core';
+import { Task, BaseTask, NormalizedLintResult, trimCwd, HandlebarsAnalyzer } from '@checkup/core';
 import { Result } from 'sarif';
 
 const TEMPLATE_LINT_DISABLE = 'template-lint-disable';
@@ -22,15 +15,25 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.options.cwd);
 
-    return sarifBuilder.fromLintResults(this, templateLintDisables);
+    templateLintDisables.forEach((disable) => {
+      this.addResult(disable.message, 'review', 'note', {
+        location: {
+          uri: disable.filePath,
+          startColumn: disable.column,
+          startLine: disable.line,
+        },
+      });
+    });
+
+    return this.results;
   }
 }
 
 async function getTemplateLintDisables(filePaths: string[], cwd: string) {
-  let data: LintResult[] = [];
+  let data: NormalizedLintResult[] = [];
 
   class TemplateLintDisableAccumulator {
-    data: LintResult[] = [];
+    data: NormalizedLintResult[] = [];
 
     constructor(private filePath: string) {}
 

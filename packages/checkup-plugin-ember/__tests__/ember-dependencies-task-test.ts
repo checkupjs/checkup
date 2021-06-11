@@ -23,7 +23,7 @@ describe('dependencies-task', () => {
     emberProject.dispose();
   });
 
-  it('detects Ember dependencies as JSON', async () => {
+  it('produces valid SARIF for detected dependencies', async () => {
     const results = await new EmberDependenciesTask(
       pluginName,
       getTaskContext({

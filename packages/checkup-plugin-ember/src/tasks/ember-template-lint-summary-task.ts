@@ -1,16 +1,10 @@
 import { join, resolve } from 'path';
 import {
   BaseTask,
-  LintResult,
   Task,
   TaskContext,
   TemplateLinter,
-  TemplateLintMessage,
   TemplateLintReport,
-  groupDataByField,
-  bySeverity,
-  sarifBuilder,
-  lintBuilder,
   EmberTemplateLintAnalyzer,
 } from '@checkup/core';
 import { Result } from 'sarif';
@@ -44,35 +38,19 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
   }
 
   async run(): Promise<Result[]> {
-    let templateLintReport = await this.runTemplateLint();
-    let lintResults = templateLintReport.results.reduce((resultDataItems, lintingResults) => {
-      let messages = (<any>lintingResults.messages).map((lintMessage: TemplateLintMessage) => {
-        return lintBuilder.toLintResult(
-          lintMessage,
-          this.context.options.cwd,
-          lintingResults.filePath
-        );
-      });
-      resultDataItems.push(...messages);
+    let report = await this.runTemplateLint();
+    let results = this.flattenLintResults(report.results);
 
-      return resultDataItems;
-    }, [] as LintResult[]);
-
-    let lintingErrors = groupDataByField(bySeverity(lintResults, 2), 'lintRuleId');
-    let lintingWarnings = groupDataByField(bySeverity(lintResults, 1), 'lintRuleId');
-
-    let errorsResult = lintingErrors.flatMap((lintingError) => {
-      return sarifBuilder.fromLintResults(this, lintingError, {
-        type: 'error',
+    results.forEach((result) => {
+      this.addResult(result.message, 'review', result.severity === 2 ? 'error' : 'warning', {
+        location: {
+          uri: result.filePath,
+          startColumn: result.column,
+          startLine: result.line,
+        },
       });
     });
 
-    let warningsResult = lintingWarnings.flatMap((lintingWarning) => {
-      return sarifBuilder.fromLintResults(this, lintingWarning, {
-        type: 'warning',
-      });
-    });
-
-    return [...errorsResult, ...warningsResult];
+    return this.results;
   }
 }

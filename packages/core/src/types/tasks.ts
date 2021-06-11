@@ -42,6 +42,7 @@ export interface Task {
   taskDisplayName: TaskName;
   description: string;
   config: TaskConfig;
+  results: Result[];
   category: string;
   group?: string;
 
@@ -91,7 +92,7 @@ export enum OutputFormat {
   pretty = 'pretty',
 }
 
-export interface LintResult {
+export interface NormalizedLintResult {
   filePath: string;
   lintRuleId: string | null;
   message: string;

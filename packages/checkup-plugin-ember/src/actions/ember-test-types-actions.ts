@@ -1,14 +1,13 @@
-import { ActionsEvaluator, toPercent, TaskConfig, sumOccurrences } from '@checkup/core';
+import { ActionsEvaluator, toPercent, TaskConfig } from '@checkup/core';
 import { Result } from 'sarif';
 
 export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
-  let totalSkippedTests = sumOccurrences(
-    taskResults.filter((taskResult) => taskResult.properties?.method === 'skip')
-  );
-
-  let totalTests = sumOccurrences(taskResults);
+  let totalSkippedTests = taskResults.filter(
+    (taskResult) => taskResult.properties?.testMethod === 'skip'
+  ).length;
+  let totalTests = taskResults.length;
 
   actionsEvaluator.add({
     taskName: 'ember-test-types',

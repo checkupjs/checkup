@@ -12,41 +12,32 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
     let analyzer = new DependencyAnalyzer(this.context.options.cwd);
     let dependencies = await analyzer.analyze();
 
-    return dependencies
+    dependencies
       .filter((dependency) => {
         return ['major', 'minor', 'patch'].includes(dependency.semverBump);
       })
-      .map((dependency) => {
-        return {
-          ruleId: this.taskName,
-          message: {
-            text: `Outdated ${dependency.semverBump} version of ${dependency.packageName}. Installed: ${dependency.installedVersion}. Latest: ${dependency.latestVersion}.`,
-          },
-          kind: 'review',
-          level: getLevel(dependency.semverBump),
-          locations: [
-            {
-              physicalLocation: {
-                artifactLocation: {
-                  uri: join(this.context.options.cwd, 'package.json'),
-                },
-                region: {
-                  startLine: dependency.startLine,
-                  startColumn: dependency.startColumn,
-                },
-              },
+      .forEach((dependency) => {
+        this.addResult(
+          `Outdated ${dependency.semverBump} version of ${dependency.packageName}. Installed: ${dependency.installedVersion}. Latest: ${dependency.latestVersion}.`,
+          'review',
+          getLevel(dependency.semverBump),
+          {
+            location: {
+              uri: join(this.context.options.cwd, 'package.json'),
+              startColumn: dependency.startColumn,
+              startLine: dependency.startLine,
             },
-          ],
-          properties: {
-            taskDisplayName: this.taskDisplayName,
-            category: this.category,
-            packageName: dependency.packageName,
-            packageVersion: dependency.packageVersion,
-            latestVersion: dependency.latestVersion,
-            type: dependency.type,
-          },
-        };
+            properties: {
+              packageName: dependency.packageName,
+              packageVersion: dependency.packageVersion,
+              latestVersion: dependency.latestVersion,
+              type: dependency.type,
+            },
+          }
+        );
       });
+
+    return this.results;
   }
 }
 

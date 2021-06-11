@@ -1,16 +1,32 @@
+import { join } from 'path';
 import {
   Task,
   ESLintReport,
   LintAnalyzer,
   BaseTask,
-  LintResult,
-  sarifBuilder,
-  lintBuilder,
   TaskContext,
   ESLintAnalyzer,
+  ESLintOptions,
 } from '@checkup/core';
 import { Result } from 'sarif';
-import { EMBER_TEST_TYPES } from '../utils/lint-configs';
+
+export const EMBER_TEST_TYPES: ESLintOptions = {
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    ecmaFeatures: {
+      legacyDecorators: true,
+    },
+  },
+  plugins: ['ember'],
+  envs: ['browser'],
+  rules: {
+    'test-types': 'error',
+  },
+  rulePaths: [join(__dirname, '../eslint/rules')],
+  useEslintrc: false,
+};
 
 export default class EmberTestTypesTask extends BaseTask implements Task {
   taskName = 'ember-test-types';
@@ -33,46 +49,32 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   async run(): Promise<Result[]> {
     let esLintReport = await this.runEsLint();
 
-    return this.buildResult(esLintReport, this.context.options.cwd);
+    return this.buildResult(esLintReport);
   }
 
   private async runEsLint(): Promise<ESLintReport> {
     return this.eslintAnalyzer.analyze(this.testFiles);
   }
 
-  buildResult(report: ESLintReport, cwd: string): Result[] {
-    let testTypes: { [key: string]: LintResult[] } = {};
-    report.results.forEach((esLintResult) => {
-      let testType: string = '';
-      let method: string = '';
+  buildResult(report: ESLintReport): Result[] {
+    let results = this.flattenLintResults(report.results);
 
-      if (esLintResult.messages.length === 0) {
-        return;
-      }
+    results.forEach((result) => {
+      let [testType, method] = result.message.split('|');
 
-      esLintResult.messages
-        .filter((message) => message.ruleId === 'test-types')
-        .forEach((lintMessage) => {
-          [testType, method] = lintMessage.message.split('|');
-          lintMessage.message = testType;
-          let lintResult = lintBuilder.toLintResult(lintMessage, cwd, esLintResult.filePath, {
-            method,
-          });
-          let testCategory = `${testType}_${method}`;
-          if (testTypes[testCategory] === undefined) {
-            testTypes[testCategory] = [];
-          }
-
-          testTypes[testCategory].push(lintResult);
-        });
-
-      return testTypes;
-    });
-
-    return Object.keys(testTypes).flatMap((key) => {
-      return sarifBuilder.fromLintResults(this, testTypes[key], {
-        method: testTypes[key][0].method,
+      this.addResult(`${testType} test found using ${method}`, 'informational', 'note', {
+        location: {
+          uri: result.filePath,
+          startColumn: result.column,
+          startLine: result.line,
+        },
+        properties: {
+          testType,
+          testMethod: method,
+        },
       });
     });
+
+    return this.results;
   }
 }

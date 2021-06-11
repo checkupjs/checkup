@@ -1,4 +1,4 @@
-import { Task, BaseTask, trimAllCwd, sarifBuilder } from '@checkup/core';
+import { Task, BaseTask, trimCwd } from '@checkup/core';
 import { Result } from 'sarif';
 
 const SEARCH_PATTERNS = [
@@ -22,15 +22,27 @@ export default class EmberTypesTask extends BaseTask implements Task {
   group = 'ember';
 
   async run(): Promise<Result[]> {
-    let types = SEARCH_PATTERNS.flatMap((pattern) => {
+    SEARCH_PATTERNS.map((pattern) => {
       let files = this.context.paths.filterByGlob(pattern.pattern);
-      return sarifBuilder.fromLocations(
-        this,
-        trimAllCwd(files, this.context.options.cwd),
-        pattern.patternName
-      );
+
+      files.forEach((file: string) => {
+        let uri = trimCwd(file, this.context.options.cwd);
+        this.addResult(
+          `Located ${pattern.patternName.slice(
+            0,
+            Math.max(0, pattern.patternName.length - 1)
+          )} at ${uri}`,
+          'informational',
+          'note',
+          {
+            location: {
+              uri,
+            },
+          }
+        );
+      });
     });
 
-    return types;
+    return this.results;
   }
 }
