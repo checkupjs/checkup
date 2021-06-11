@@ -224,6 +224,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
           rule: {
             id: `${this.taskName}-${kebabCase(ruleMetadata.feature)}`,
             properties: {
+              parentRuleID: this.taskName,
               taskDisplayName: `Ember Octane Migration | ${ruleMetadata.feature}`,
             },
           },

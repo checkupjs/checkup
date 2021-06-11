@@ -62,6 +62,7 @@ export function getTaskContext({
       options: opts,
       actions: [] as Action[],
       errors: [] as TaskListError[],
+      taskTimings: {},
     }),
     pkg: pkg,
     pkgSource: JSON.stringify(pkg, null, 2),

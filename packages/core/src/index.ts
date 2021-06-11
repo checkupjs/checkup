@@ -47,7 +47,6 @@ export { byRuleId, byRuleIds, bySeverity } from './data/filters';
 export { toPercent, groupDataByField } from './data/formatters';
 export { trimCwd, trimAllCwd } from './data/path';
 export { lintBuilder } from './data/lint';
-export { builder as sarifBuilder, NO_RESULTS_FOUND } from './data/sarif';
 export { default as SarifLogBuilder } from './data/sarif-log-builder';
 export { default as CheckupLogBuilder } from './data/checkup-log-builder';
 

@@ -26,7 +26,6 @@ import * as resolve from 'resolve';
 import { Log, Result } from 'sarif';
 
 import { PackageJson } from 'type-fest';
-import { getLog } from '../get-log';
 import TaskListImpl from '../task-list';
 import PluginRegistrationProvider from './registration-provider';
 export default class CheckupTaskRunner {
@@ -84,6 +83,7 @@ export default class CheckupTaskRunner {
       options: this.options,
       actions: this.actions,
       errors: this.taskErrors,
+      taskTimings: this.tasks.timings,
     });
 
     this.debug('options %O', this.options);
@@ -96,20 +96,7 @@ export default class CheckupTaskRunner {
     await this.runTasks();
     await this.runActions();
 
-    // TODO: This mechanism for getting a sarif log will change, and will
-    // instead be encapsulated in the SarifBuilder.
-    let log: Log = await getLog(
-      this.options,
-      this.taskContext,
-      this.taskResults,
-      this.actions,
-      this.taskErrors,
-      this.tasks,
-      this.executedTasks,
-      this.startTime
-    );
-
-    return log;
+    return this.logBuilder.log;
   }
 
   async getAvailableTasks() {
