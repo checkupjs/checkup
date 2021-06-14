@@ -1,5 +1,6 @@
 import { Log } from 'sarif';
 import { ConsoleWriter } from '../utils/console-writer';
+import CheckupLogParser from '../data/checkup-log-parser';
 import {
   Task,
   TaskContext,
@@ -46,13 +47,17 @@ export interface RegisterableTaskList {
 
 export interface Formatter {
   new (args: FormatterArgs): void;
-  format(result: Log): void;
+  format(): void;
 }
 
 export interface FormatterOptions {
   cwd: string;
   format: OutputFormat;
   outputFile?: string;
+  log: Log;
 }
 
-export type FormatterArgs = FormatterOptions & { writer: ConsoleWriter };
+export type FormatterArgs = FormatterOptions & {
+  writer: ConsoleWriter;
+  logParser: CheckupLogParser;
+};

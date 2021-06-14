@@ -4,6 +4,7 @@ import {
   OutputFormat,
   ErrorKind,
   CheckupError,
+  CheckupLogParser,
   ConsoleWriter,
   FormatterOptions,
 } from '@checkup/core';
@@ -14,7 +15,11 @@ import JsonFormatter from './json';
 export function getFormatter(options: FormatterOptions) {
   let mergedOptions = Object.assign(
     {},
-    { format: 'summary', writer: new ConsoleWriter(options.outputFile ? 'file' : 'console') },
+    {
+      format: 'summary',
+      writer: new ConsoleWriter(options.outputFile ? 'file' : 'console'),
+      logParser: new CheckupLogParser(options.log),
+    },
     options
   );
 

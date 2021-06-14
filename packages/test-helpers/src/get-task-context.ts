@@ -5,8 +5,6 @@ import {
   RunOptions,
   CheckupLogBuilder,
   CONFIG_SCHEMA_URL,
-  TaskListError,
-  Action,
 } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
@@ -52,20 +50,25 @@ export function getTaskContext({
   let opts = Object.assign({}, DEFAULT_OPTIONS, options) as RunOptions;
   let c = Object.assign({}, DEFAULT_CONFIG, config) as CheckupConfig;
 
-  return {
+  let taskContext = {
     options: opts,
     config: c,
     logBuilder: new CheckupLogBuilder({
-      packageName: pkg.name ?? '',
-      packageVersion: pkg.version ?? '',
-      config: c,
+      analyzedPackageJson: {
+        name: pkg.name ?? '',
+        version: pkg.version ?? '',
+      },
       options: opts,
-      actions: [] as Action[],
-      errors: [] as TaskListError[],
-      taskTimings: {},
     }),
     pkg: pkg,
     pkgSource: JSON.stringify(pkg, null, 2),
     paths: paths,
   };
+
+  taskContext.logBuilder.config;
+  taskContext.logBuilder.actions = [];
+  taskContext.logBuilder.errors = [];
+  taskContext.logBuilder.timings = {};
+
+  return taskContext;
 }

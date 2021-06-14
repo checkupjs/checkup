@@ -77,13 +77,8 @@ export default class CheckupTaskRunner {
     this.pkg = getPackageJson(this.options.cwd);
     this.pkgSource = getPackageJsonSource(this.options.cwd);
     this.logBuilder = new CheckupLogBuilder({
-      packageName: this.pkg.name || '',
-      packageVersion: this.pkg.version || '',
-      config: this.config,
+      analyzedPackageJson: this.pkg,
       options: this.options,
-      actions: this.actions,
-      errors: this.taskErrors,
-      taskTimings: this.tasks.timings,
     });
 
     this.debug('options %O', this.options);
@@ -95,6 +90,13 @@ export default class CheckupTaskRunner {
 
     await this.runTasks();
     await this.runActions();
+
+    await this.logBuilder.annotate({
+      config: this.config,
+      actions: this.actions,
+      errors: this.taskErrors,
+      timings: this.tasks.timings,
+    });
 
     return this.logBuilder.log;
   }
