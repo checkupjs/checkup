@@ -1,9 +1,7 @@
 import {
   CheckupError,
-  CheckupMetadata,
   getRegisteredTaskReporters,
   groupDataByField,
-  sumOccurrences,
   reduceResults,
   renderEmptyResult,
   ErrorKind,
@@ -11,9 +9,10 @@ import {
 } from '@checkup/core';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
-import { Invocation, Log, Notification, Result, Run } from 'sarif';
+import { Notification, Result } from 'sarif';
 import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './formatter-utils';
 import { writeResultFile } from './file-writer';
+
 export default class PrettyFormatter {
   args: FormatterArgs;
 
@@ -21,23 +20,20 @@ export default class PrettyFormatter {
     this.args = args;
   }
 
-  format(result: Log) {
-    let metaData = result.properties as CheckupMetadata;
+  format() {
+    let run = this.args.logParser.run;
+    let metaData = this.args.logParser.metaData;
 
     renderInfo(metaData, this.args);
     renderLinesOfCode(metaData, this.args);
 
-    result.runs.forEach((run: Run) => {
-      this.renderTaskResults(run.results);
-      run.invocations?.forEach((invocation: Invocation) => {
-        this.renderErrors(invocation.toolExecutionNotifications);
-      });
-    });
+    this.renderTaskResults(run.results);
+    this.renderErrors(this.args.logParser.exceptions);
 
-    renderActions(result.properties?.actions, this.args);
+    renderActions(this.args.logParser.actions, this.args);
 
     if (process.env.CHECKUP_TIMING === '1') {
-      this.renderTimings(result.properties?.timings);
+      this.renderTimings(this.args.logParser.timings);
     }
 
     renderCLIInfo(metaData, this.args);
@@ -47,30 +43,29 @@ export default class PrettyFormatter {
     }
   }
 
-  renderTaskResults(pluginTaskResults: Result[] | undefined): void {
+  renderTaskResults(results: Result[] | undefined): void {
     let currentCategory = '';
 
-    if (pluginTaskResults) {
-      let groupedTaskResults = groupDataByField(pluginTaskResults, 'ruleId');
+    if (results) {
+      let resultsByRule = this.args.logParser.resultsByRule;
 
-      groupedTaskResults?.forEach((taskResultGroup: Result[]) => {
-        let taskCategory = taskResultGroup[0].properties?.category;
+      resultsByRule.forEach(({ rule, results }) => {
+        let category = rule.properties?.category;
 
-        if (taskCategory !== currentCategory) {
-          this.args.writer.categoryHeader(startCase(taskCategory));
-          currentCategory = taskCategory;
+        if (category !== currentCategory) {
+          this.args.writer.categoryHeader(startCase(category));
+          currentCategory = category;
         }
 
-        let reporter = this.getTaskReporter(taskResultGroup);
+        let reporter = this.getTaskReporter(rule.id);
 
-        reporter(taskResultGroup, this.args);
+        reporter(results, this.args);
       });
     }
     this.args.writer.blankLine();
   }
 
-  getTaskReporter(taskResult: Result[]) {
-    let taskName = taskResult[0].ruleId as string;
+  getTaskReporter(taskName: string) {
     let registeredTaskReporters = getRegisteredTaskReporters();
     let reporter = registeredTaskReporters.get(taskName) || this.getReportComponent.bind(this);
 
@@ -85,10 +80,9 @@ export default class PrettyFormatter {
     const groupedTaskResults = reduceResults(groupDataByField(taskResults, 'message.text'));
 
     this.args.writer.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
-      const totalResults = sumOccurrences(groupedTaskResults);
-      const numberOfBulletPoints = groupedTaskResults.length;
+      const totalResults = groupedTaskResults.length;
 
-      if (numberOfBulletPoints > 1) {
+      if (totalResults > 1) {
         this.args.writer.log(`Total: ${totalResults}`);
       }
 
@@ -111,7 +105,7 @@ export default class PrettyFormatter {
         notifications.map((notification) => {
           return [
             notification.associatedRule?.id as string,
-            cleanStack(notification.properties?.fullError || ''),
+            cleanStack(notification.exception?.stack?.frames.join('\n') || ''),
           ];
         }),
         ['Task Name', 'Error']

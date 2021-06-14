@@ -135,10 +135,11 @@ checkup <command> [options]`
             cwd: argv.cwd as string,
             format: argv.format as OutputFormat,
             outputFile: argv.outputFile as string,
+            log,
           });
 
           spinner.stop();
-          formatter.format(log);
+          formatter.format();
         } catch (error) {
           spinner.stop();
           consoleWriter.error(error);

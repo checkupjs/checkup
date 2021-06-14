@@ -10,13 +10,50 @@ export default class CheckupLogParser {
 
   constructor(private log: Log) {}
 
+  get run() {
+    return this.log.runs[0];
+  }
+
+  get rules() {
+    return this.run.tool.driver.rules || [];
+  }
+
+  get invocation() {
+    return this.run.invocations![0];
+  }
+
+  get metaData() {
+    let run = this.run;
+
+    return run.tool.driver.properties?.checkup;
+  }
+
+  get timings() {
+    return this.metaData.timings;
+  }
+
+  get actions() {
+    return (
+      this.invocation.toolExecutionNotifications?.filter(
+        (notification) => notification.level === 'warning'
+      ) || []
+    );
+  }
+
+  get exceptions() {
+    return (
+      this.invocation.toolExecutionNotifications?.filter(
+        (notification) => notification.level === 'error'
+      ) || []
+    );
+  }
+
   get resultsByRule() {
     if (!this._resultsByRule) {
       let resultsByRule = new Map();
-      let run = this.log.runs[0];
-      let rules = run.tool.driver.rules!;
+      let rules = this.rules;
 
-      run.results?.forEach((result) => {
+      this.run.results?.forEach((result) => {
         if (!resultsByRule.has(result.ruleId)) {
           resultsByRule.set(result.ruleId, {
             rule: rules[result.ruleIndex!],
@@ -31,12 +68,17 @@ export default class CheckupLogParser {
     return this._resultsByRule;
   }
 
-  get rulesByParentRuleID() {
-    let rulesByParent = new Map();
+  get rulesByParentRule() {
+    let rulesByParent = new Map<string, RuleResults[]>();
 
-    for (let [ruleID, ruleResult] of this.resultsByRule) {
-      if (ruleResult.rule.properties?.parentRuleID) {
-        rulesByParent.set(ruleID, ruleResult);
+    for (let ruleResult of this.resultsByRule.values()) {
+      let parentRuleID = ruleResult.rule.properties?.parentRuleID;
+      if (parentRuleID) {
+        if (!rulesByParent.has(parentRuleID)) {
+          rulesByParent.set(parentRuleID, []);
+        }
+
+        rulesByParent.get(parentRuleID)?.push(ruleResult);
       }
     }
 

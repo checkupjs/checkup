@@ -49,6 +49,7 @@ export { trimCwd, trimAllCwd } from './data/path';
 export { lintBuilder } from './data/lint';
 export { default as SarifLogBuilder } from './data/sarif-log-builder';
 export { default as CheckupLogBuilder } from './data/checkup-log-builder';
+export { default as CheckupLogParser } from './data/checkup-log-parser';
 
 export { todayFormat } from './today-format';
 

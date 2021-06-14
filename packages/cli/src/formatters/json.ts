@@ -1,4 +1,3 @@
-import { Log } from 'sarif';
 import { FormatterArgs } from '@checkup/core';
 import { writeResultFile } from './file-writer';
 
@@ -9,11 +8,13 @@ export default class JsonFormatter {
     this.args = options;
   }
 
-  format(result: Log) {
+  format() {
+    let log = this.args.log;
+
     if (this.args.outputFile) {
-      writeResultFile(result, this.args.cwd, this.args.outputFile);
+      writeResultFile(log, this.args.cwd, this.args.outputFile);
     } else {
-      this.args.writer.styledJSON(result);
+      this.args.writer.styledJSON(log);
     }
   }
 }

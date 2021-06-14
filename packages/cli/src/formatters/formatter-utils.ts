@@ -1,18 +1,19 @@
-import { Action, CheckupMetadata, FormatterArgs } from '@checkup/core';
-import { yellow, bold } from 'chalk';
+import { Notification } from 'sarif';
+import { CheckupMetadata, FormatterArgs } from '@checkup/core';
+import { yellow } from 'chalk';
 
-export function renderActions(actions: Action[], args: FormatterArgs): void {
+export function renderActions(actions: Notification[], args: FormatterArgs): void {
   if (actions && actions.length > 0) {
     args.writer.categoryHeader('Actions');
-    actions.forEach((action: Action) => {
-      args.writer.log(`${yellow('■')} ${bold(action.summary)} (${action.details})`);
+    actions.forEach((action: Notification) => {
+      args.writer.log(`${yellow('■')} ${action.message.text}`);
     });
     args.writer.blankLine();
   }
 }
 
-export function renderInfo(info: CheckupMetadata, args: FormatterArgs) {
-  let { analyzedFilesCount, project } = info;
+export function renderInfo(metadata: CheckupMetadata, args: FormatterArgs) {
+  let { analyzedFilesCount, project } = metadata;
   let { name, version, repository } = project;
 
   let analyzedFilesMessage =
@@ -53,10 +54,10 @@ export function renderLinesOfCode(info: CheckupMetadata, args: FormatterArgs) {
   args.writer.blankLine();
 }
 
-export function renderCLIInfo(info: CheckupMetadata, args: FormatterArgs) {
-  let { version: cliVersion, configHash } = info.cli;
+export function renderCLIInfo(metadata: CheckupMetadata, args: FormatterArgs) {
+  let { version, configHash } = metadata.cli;
 
-  args.writer.dimmed(`checkup v${cliVersion}`);
+  args.writer.dimmed(`checkup v${version}`);
   args.writer.dimmed(`config ${configHash}`);
   args.writer.blankLine();
 }
