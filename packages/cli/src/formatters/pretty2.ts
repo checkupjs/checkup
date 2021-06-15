@@ -5,6 +5,7 @@ import {
   FormatterArgs,
   BaseOutputWriter,
 } from '@checkup/core';
+import { yellow } from 'chalk';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
 import BaseFormatter from './base-formatter';
@@ -92,10 +93,14 @@ export default class PrettyFormatter extends BaseFormatter<BaseOutputWriter> imp
   }
 
   writeResultsToFile() {
-    writeResultFile(
+    let resultsFilePath = writeResultFile(
       (<BufferedWriter>this.writer).outputString,
       this.args.cwd,
       this.args.outputFile
     );
+
+    this.writer.blankLine();
+    this.writer.log('Results have been saved to the following file:');
+    this.writer.log(yellow(resultsFilePath));
   }
 }
