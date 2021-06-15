@@ -1,36 +1,39 @@
-import { FormatterArgs } from '@checkup/core';
+import { ConsoleWriter, Formatter, FormatterArgs } from '@checkup/core';
 import { success } from 'log-symbols';
-import { renderActions, renderCLIInfo, renderInfo } from './formatter-utils';
 import { writeResultFile } from './file-writer';
+import BaseFormatter from './base-formatter';
 
-export default class SummaryFormatter {
-  args: FormatterArgs;
-
+export default class SummaryFormatter extends BaseFormatter<ConsoleWriter> implements Formatter {
   constructor(args: FormatterArgs) {
-    this.args = args;
+    super(args);
+
+    this.writer = new ConsoleWriter();
   }
 
   format() {
-    let log = this.args.log;
-    let logParser = this.args.logParser;
+    let { rules } = this.args.logParser;
 
-    renderInfo(logParser.metaData, this.args);
+    this.renderMetadata();
 
-    this.args.writer.log('Checkup ran the following task(s) successfully:');
+    this.writer.log('Checkup ran the following task(s) successfully:');
 
-    logParser.rules
+    rules
       .map((rule) => rule.id)
       .sort()
       .forEach((taskName) => {
-        this.args.writer.log(`${success} ${taskName}`);
+        this.writer.log(`${success} ${taskName}`);
       });
 
-    writeResultFile(log, this.args.cwd, this.args.outputFile);
+    this.writeResultsToFile();
 
-    renderActions(logParser.actions, this.args);
+    this.renderActions();
 
-    this.args.writer.blankLine();
+    this.writer.blankLine();
 
-    renderCLIInfo(logParser.metaData, this.args);
+    this.renderCLIInfo();
+  }
+
+  writeResultsToFile() {
+    writeResultFile(this.args.logParser.log, this.args.cwd, this.args.outputFile);
   }
 }

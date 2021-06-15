@@ -35,7 +35,9 @@ export { default as DependencyAnalyzer } from './analyzers/dependency-analyzer';
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { exec } from './utils/exec';
-export { ConsoleWriter } from './utils/console-writer';
+export { default as ConsoleWriter } from './utils/console-writer';
+export { default as BufferedWriter } from './utils/buffered-writer';
+export { default as BaseOutputWriter } from './utils/base-output-writer';
 export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
 export { sumOccurrences, reduceResults } from './utils/sarif-utils';
