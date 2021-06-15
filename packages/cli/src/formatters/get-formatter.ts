@@ -5,10 +5,9 @@ import {
   ErrorKind,
   CheckupError,
   CheckupLogParser,
-  ConsoleWriter,
   FormatterOptions,
 } from '@checkup/core';
-import PrettyFormatter from './pretty';
+import PrettyFormatter from './pretty2';
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
@@ -17,7 +16,6 @@ export function getFormatter(options: FormatterOptions) {
     {},
     {
       format: 'summary',
-      writer: new ConsoleWriter(options.outputFile ? 'file' : 'console'),
       logParser: new CheckupLogParser(options.log),
     },
     options

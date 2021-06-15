@@ -2,17 +2,15 @@ import {
   groupDataByField,
   reduceResults,
   sumOccurrences,
-  FormatterArgs,
   renderEmptyResult,
+  BaseOutputWriter,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[], args: FormatterArgs) {
-  args.writer.section(taskResults[0].properties?.taskDisplayName, () => {
-    args.writer.log(
-      `${args.writer.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`
-    );
-    args.writer.blankLine();
+export function format(taskResults: Result[], writer: BaseOutputWriter) {
+  writer.section(taskResults[0].properties?.taskDisplayName, () => {
+    writer.log(`${writer.emphasize('Octane Violations')}: ${sumOccurrences(taskResults)}`);
+    writer.blankLine();
 
     let groupedTaskResults = groupDataByField(taskResults, 'properties.resultGroup');
 
@@ -21,8 +19,8 @@ export function format(taskResults: Result[], args: FormatterArgs) {
         groupDataByField(resultGroup, 'properties.lintRuleId')
       );
 
-      args.writer.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
-      args.writer.valuesList(
+      writer.subHeader(groupedTaskResultsByLintRuleId[0].properties?.resultGroup);
+      writer.valuesList(
         groupedTaskResultsByLintRuleId.map((result) => {
           return result.message.text === 'No results found'
             ? renderEmptyResult(result)
@@ -33,7 +31,7 @@ export function format(taskResults: Result[], args: FormatterArgs) {
         }),
         'violations'
       );
-      args.writer.blankLine();
+      writer.blankLine();
     });
   });
 }

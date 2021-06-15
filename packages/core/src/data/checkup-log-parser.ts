@@ -8,7 +8,11 @@ type RuleResults = {
 export default class CheckupLogParser {
   _resultsByRule!: Map<string, RuleResults>;
 
-  constructor(private log: Log) {}
+  constructor(private _log: Log) {}
+
+  get log() {
+    return this._log;
+  }
 
   get run() {
     return this.log.runs[0];
@@ -16,6 +20,14 @@ export default class CheckupLogParser {
 
   get rules() {
     return this.run.tool.driver.rules || [];
+  }
+
+  get results() {
+    return this.run.results || [];
+  }
+
+  get hasResults() {
+    return this.results.length > 0;
   }
 
   get invocation() {
@@ -50,18 +62,20 @@ export default class CheckupLogParser {
 
   get resultsByRule() {
     if (!this._resultsByRule) {
-      let resultsByRule = new Map();
+      this._resultsByRule = new Map();
       let rules = this.rules;
 
       this.run.results?.forEach((result) => {
-        if (!resultsByRule.has(result.ruleId)) {
-          resultsByRule.set(result.ruleId, {
+        let ruleId = result.ruleId!;
+
+        if (!this._resultsByRule.has(ruleId)) {
+          this._resultsByRule.set(ruleId, {
             rule: rules[result.ruleIndex!],
             results: [],
           });
         }
 
-        resultsByRule.get(result.ruleId).results.push(result);
+        this._resultsByRule.get(ruleId)!.results.push(result);
       });
     }
 
