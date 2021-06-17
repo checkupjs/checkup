@@ -5,6 +5,13 @@ import { CONFIG_SCHEMA_URL } from '../../src/config';
 import CheckupLogBuilder from '../../src/data/checkup-log-builder';
 import { CheckupLogBuilderArgs } from '../../src/types/checkup-log';
 
+const DEFAULT_CONFIG = {
+  $schema: CONFIG_SCHEMA_URL,
+  excludePaths: [],
+  plugins: [],
+  tasks: {},
+};
+
 describe('checkup-log-builder-test', () => {
   let tmp: string;
 
@@ -18,9 +25,17 @@ describe('checkup-log-builder-test', () => {
   });
 
   it('builds a default Checkup log', async () => {
-    let builder = getCheckupLogBuilder({ options: { cwd: tmp } });
+    let builder = getCheckupLogBuilder({
+      options: { cwd: tmp },
+      analyzedPackageJson: { name: 'fake-package', version: '0.0.0' },
+    });
 
-    await builder.annotate();
+    await builder.annotate({
+      config: DEFAULT_CONFIG,
+      actions: [],
+      errors: [],
+      timings: {},
+    });
 
     // arguments are non-deterministic, so we nuke them
     builder.currentRunBuilder.currentInvocation.arguments = [];
@@ -89,14 +104,7 @@ function getCheckupLogBuilder(args: Partial<CheckupLogBuilderArgs> = {}) {
   let defaults: CheckupLogBuilderArgs = Object.assign(
     {},
     {
-      packageName: 'fake-package',
-      packageVersion: '0.0.0',
-      config: {
-        $schema: CONFIG_SCHEMA_URL,
-        excludePaths: [],
-        plugins: [],
-        tasks: {},
-      },
+      analyzedPackageJson: {},
       options: {
         paths: ['.'],
         config: undefined,
@@ -107,8 +115,6 @@ function getCheckupLogBuilder(args: Partial<CheckupLogBuilderArgs> = {}) {
         tasks: undefined,
         listTasks: false,
       },
-      actions: [],
-      errors: [],
     },
     args
   );
