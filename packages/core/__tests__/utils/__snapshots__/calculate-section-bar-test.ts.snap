@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`consoleWriter calculateSectionBar should calculateSectionBar segments correctly 1`] = `
+exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 1`] = `
 Object {
   "completedSegments": Array [
     Object {
@@ -18,7 +18,7 @@ Object {
 }
 `;
 
-exports[`consoleWriter calculateSectionBar should calculateSectionBar segments correctly 3`] = `
+exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 3`] = `
 Object {
   "completedSegments": Array [
     Object {
@@ -36,7 +36,7 @@ Object {
 }
 `;
 
-exports[`consoleWriter calculateSectionBar should calculateSectionBar segments correctly 4`] = `
+exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 4`] = `
 Object {
   "completedSegments": Array [
     Object {
@@ -59,7 +59,7 @@ Object {
 }
 `;
 
-exports[`consoleWriter calculateSectionBar should calculateSectionBar segments correctly 5`] = `
+exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 5`] = `
 Object {
   "completedSegments": Array [
     Object {
@@ -82,7 +82,7 @@ Object {
 }
 `;
 
-exports[`consoleWriter calculateSectionBar should calculateSectionBar segments correctly 6`] = `
+exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 6`] = `
 Object {
   "completedSegments": Array [
     Object {

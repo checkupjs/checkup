@@ -94,7 +94,7 @@ export default class PrettyFormatter extends BaseFormatter<BaseOutputWriter> imp
 
   writeResultsToFile() {
     let resultsFilePath = writeResultFile(
-      (<BufferedWriter>this.writer).outputString,
+      (<BufferedWriter>this.writer).buffer,
       this.args.cwd,
       this.args.outputFile
     );

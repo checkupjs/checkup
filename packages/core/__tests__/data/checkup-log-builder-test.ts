@@ -60,32 +60,35 @@ describe('checkup-log-builder-test', () => {
                 "language": "en-US",
                 "name": "checkup",
                 "properties": Object {
-                  "analyzedFiles": FilePathArray [],
-                  "analyzedFilesCount": 0,
-                  "cli": Object {
-                    "config": Object {
-                      "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-                      "excludePaths": Array [],
-                      "plugins": Array [],
-                      "tasks": Object {},
-                    },
-                    "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
-                    "schema": 1,
-                    "version": "0.0.0",
-                  },
-                  "project": Object {
-                    "name": "fake-package",
-                    "repository": Object {
-                      "activeDays": "0 days",
-                      "age": "0 days",
-                      "linesOfCode": Object {
-                        "total": 0,
-                        "types": Array [],
+                  "checkup": Object {
+                    "analyzedFiles": FilePathArray [],
+                    "analyzedFilesCount": 0,
+                    "cli": Object {
+                      "config": Object {
+                        "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+                        "excludePaths": Array [],
+                        "plugins": Array [],
+                        "tasks": Object {},
                       },
-                      "totalCommits": 0,
-                      "totalFiles": 0,
+                      "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
+                      "schema": 1,
+                      "version": "0.0.0",
                     },
-                    "version": "0.0.0",
+                    "project": Object {
+                      "name": "fake-package",
+                      "repository": Object {
+                        "activeDays": "0 days",
+                        "age": "0 days",
+                        "linesOfCode": Object {
+                          "total": 0,
+                          "types": Array [],
+                        },
+                        "totalCommits": 0,
+                        "totalFiles": 0,
+                      },
+                      "version": "0.0.0",
+                    },
+                    "timings": Object {},
                   },
                 },
                 "rules": Array [],
