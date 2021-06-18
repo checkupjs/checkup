@@ -1,3 +1,4 @@
+import '@microsoft/jest-sarif';
 import { BaseTask, Task, TaskContext, DEFAULT_CONFIG, CheckupConfig } from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import type { Result } from 'sarif';
@@ -115,8 +116,9 @@ describe('checkup-task-runner', () => {
     taskRunner.tasks.registerTask(new FileCountTask(getTaskContext()));
     taskRunner.tasks.registerTask(new FooTask(getTaskContext()));
 
-    let results = await taskRunner.run();
-    let excludedPathResults = results.properties?.analyzedFiles.filter(
+    let log = await taskRunner.run();
+    let analyzedFiles = log.runs[0]?.tool.driver.properties?.checkup.analyzedFiles;
+    let excludedPathResults = analyzedFiles.filter(
       (file: string) => file.split('.')[1] === excludedExtension
     );
 
