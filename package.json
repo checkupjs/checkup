@@ -39,7 +39,7 @@
     "@types/node-fetch": "^2.5.10",
     "@types/tmp": "^0.2.0",
     "@types/yeoman-assert": "^3.1.1",
-    "@types/yeoman-test": "^2.0.5",
+    "@types/yeoman-test": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.24.0",
     "eslint": "^7.16.0",
