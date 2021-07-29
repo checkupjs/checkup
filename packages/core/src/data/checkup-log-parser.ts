@@ -1,4 +1,5 @@
 import { Log, ReportingDescriptor, Result } from 'sarif';
+import { TaskName } from '../types/tasks';
 
 type RuleResults = {
   rule: ReportingDescriptor;
@@ -6,7 +7,7 @@ type RuleResults = {
 };
 
 export default class CheckupLogParser {
-  _resultsByRule!: Map<string, RuleResults>;
+  _resultsByRule!: Map<TaskName, RuleResults>;
 
   constructor(private _log: Log) {}
 
