@@ -1,0 +1,1 @@
+import '@microsoft/jest-sarif';

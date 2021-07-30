@@ -1,0 +1,24 @@
+{
+  "name": "checkup-formatter-pretty",
+  "version": "1.0.0",
+  "description": "Checkup formatter pretty library",
+  "bugs": "https://github.com/checkupjs/checkup/issues",
+  "repository": "https://github.com/checkupjs/checkup",
+  "license": "MIT",
+  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "test": "jest --no-cache"
+  },
+  "dependencies": {
+    "ink": "^3.0.9",
+    "react": "^17.0.2"
+  },
+  "engines": {
+    "node": ">= 12.11.*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
