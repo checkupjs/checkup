@@ -1,0 +1,18 @@
+{
+    "extends": "../../tsconfig-base.json",
+    "compilerOptions": {
+      "outDir": "lib",
+      "jsx": "react",
+      "allowJs": true,
+      "rootDir": "src"
+    },
+    "references": [
+      {
+        "path": "../core"
+      },
+      {
+        "path": "../test-helpers"
+      }
+    ],
+    "include": ["src/**/*"]
+  }
