@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
-import { Box } from 'ink';
-import { ScalarDict } from '../types/components';
+import { Box, Text } from 'ink';
 
-export const Table: FC<{ data: ScalarDict }> = ({ data }) => {
-  return <Box>{data}</Box>;
+export const Table: FC<{ data: any }> = () => {
+  return (
+    <Box>
+      <Text>I am a table</Text>
+    </Box>
+  );
 };
