@@ -12,7 +12,10 @@
     "test": "jest --no-cache"
   },
   "dependencies": {
+    "@checkup/core": "1.0.0-beta.11",
+    "@types/react": "^17.0.15",
     "ink": "^3.0.9",
+    "ink-table": "^3.0.0",
     "react": "^17.0.2"
   },
   "engines": {
@@ -20,5 +23,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.15"
   }
 }
