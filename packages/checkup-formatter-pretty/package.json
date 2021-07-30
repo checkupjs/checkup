@@ -9,7 +9,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc --build",
-    "test": "jest --no-cache"
+    "test": "jest  --passWithNoTests --no-cache"
   },
   "dependencies": {
     "@checkup/core": "1.0.0-beta.11",

@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
-import { Box } from 'ink';
+import { Box, Text } from 'ink';
 
-export const List: FC = ({ children }) => {
-  return <Box flexDirection="column">{children}</Box>;
+export const List: FC = () => {
+  return (
+    <Box>
+      <Text>I am a list</Text>
+    </Box>
+  );
 };
