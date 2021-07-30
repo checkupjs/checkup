@@ -19,7 +19,7 @@
   ],
   "settings": {
     "node": {
-      "tryExtensions": [".js", ".json", ".d.ts", ".ts"],
+      "tryExtensions": [".js", ".json", ".d.ts", ".ts", ".tsx"],
 
       "convertPath": [
         {
@@ -124,5 +124,9 @@
         "node/no-extraneous-import": "off"
       }
     }
-  ]
+  ],
+  "globals": {
+    "React": true,
+    "JSX": true
+  }
 }
