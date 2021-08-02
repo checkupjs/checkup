@@ -4,7 +4,8 @@
     "outDir": "lib",
     "jsx": "react",
     "allowJs": true,
-    "rootDir": "src"
+    "rootDir": "src",
+    "esModuleInterop": true
   },
   "references": [
     {
