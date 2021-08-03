@@ -7,6 +7,6 @@ import Pretty from '../src/pretty';
 describe('dependencies-task', () => {
   it('can generate tsx', async () => {
     const { stdout } = render(<Pretty data={['table', 'list']} />);
-    expect(stdout.lastFrame()).toMatchInlineSnapshot(`"I am a table helloI am a list hello"`);
+    expect(stdout.lastFrame()).toMatchInlineSnapshot(`"I am a table hello"`);
   });
 });
