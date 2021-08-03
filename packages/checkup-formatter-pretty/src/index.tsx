@@ -10,7 +10,7 @@ class PrettyFormatter implements Formatter {
   async format() {
     let data: string[] = ['table', 'list'];
 
-    let app = render(React.createElement(Pretty, { data }));
+    let app = render(<Pretty data={data} />);
 
     await app.waitUntilExit();
   }

@@ -10,3 +10,7 @@ export function getComponents(): Map<string, FunctionComponent<{ data: any }>> {
     ['listItem', ListItem],
   ]);
 }
+
+export { List } from './list';
+export { Table } from './table';
+export { ListItem } from './list-item';
