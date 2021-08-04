@@ -144,69 +144,61 @@ describe('cli-test', () => {
     `);
   });
 
-  describe('formatters', () => {
-    it('should output checkup result in JSON', async () => {
-      let result = await run(['run', '.', '--format', 'json']);
-      let output = JSON.parse(trimCwd(result.stdout, project.baseDir)) as Log;
+  it('should output checkup result in JSON', async () => {
+    let result = await run(['run', '.', '--format', 'json']);
+    let output = JSON.parse(trimCwd(result.stdout, project.baseDir)) as Log;
 
-      expect(output).toBeValidSarifLog();
-    });
+    expect(output).toBeValidSarifLog();
+  });
 
-    it('should output a json file in a custom directory if the json format and output-file options are provided', async () => {
-      let result = await run([
-        'run',
-        '.',
-        '--format',
-        'json',
-        `--output-file`,
-        join(project.baseDir, 'my-checkup-file.json'),
-      ]);
+  it('should output a json file in a custom directory if the json format and output-file options are provided', async () => {
+    let result = await run([
+      'run',
+      '.',
+      '--format',
+      'json',
+      `--output-file`,
+      join(project.baseDir, 'my-checkup-file.json'),
+    ]);
 
-      let output = result.stdout.trim();
-      let outputPath = output.split('\n')[1]; // output will be a string followed by newline then the file path
+    let output = result.stdout.trim();
+    let outputPath = output.split('\n')[1]; // output will be a string followed by newline then the file path
 
-      expect(outputPath).toMatch(/^(.*)\/my-checkup-file.json/);
-      expect(existsSync(outputPath)).toEqual(true);
+    expect(outputPath).toMatch(/^(.*)\/my-checkup-file.json/);
+    expect(existsSync(outputPath)).toEqual(true);
 
-      unlinkSync(outputPath);
-    });
+    unlinkSync(outputPath);
+  });
 
-    it('should output a txt file in a custom directory if the pretty format and output-file options are provided', async () => {
-      let result = await run([
-        'run',
-        '.',
-        '--format',
-        'pretty',
-        `--output-file`,
-        'my-checkup-file',
-      ]);
+  it('should output a txt file in a custom directory if the pretty format and output-file options are provided', async () => {
+    let result = await run(['run', '.', '--format', 'pretty', `--output-file`, 'my-checkup-file']);
 
-      let output = result.stdout.trim();
-      let outputPath = output.split('\n')[1]; // output will be a string followed by newline then the file path
+    let output = result.stdout.trim();
+    let outputPath = output.split('\n')[1]; // output will be a string followed by newline then the file path
 
-      expect(outputPath).toMatch(/^(.*)\/my-checkup-file.txt/);
-      expect(existsSync(outputPath)).toEqual(true);
+    expect(outputPath).toMatch(/^(.*)\/my-checkup-file.txt/);
+    expect(existsSync(outputPath)).toEqual(true);
 
-      unlinkSync(outputPath);
-    });
+    unlinkSync(outputPath);
+  });
 
-    it('should output a json file in a custom directory if the summary format and output-file options are provided', async () => {
-      let result = await run([
-        'run',
-        '.',
-        `--output-file`,
-        join(project.baseDir, 'my-checkup-file.sarif'),
-      ]);
+  it('should output a json file in a custom directory if the summary format and output-file options are provided', async () => {
+    let result = await run([
+      'run',
+      '.',
+      `--output-file`,
+      join(project.baseDir, 'my-checkup-file.sarif'),
+    ]);
 
-      let summaryOutput = result.stdout.trim();
+    let summaryOutput = result.stdout.trim();
 
-      expect(summaryOutput).toContain('my-checkup-file.sarif');
-    });
+    expect(summaryOutput).toContain('my-checkup-file.sarif');
+  });
 
-    it('should output checkup result in pretty mode', async () => {
-      let result = await run(['run', '.', '--format', 'pretty']);
+  it('should output checkup result in pretty mode', async () => {
+    let result = await run(['run', '.', '--format', 'pretty']);
 
-      expect(result.stdout).toMatchInlineSnapshot(`
+    expect(result.stdout).toMatchInlineSnapshot(`
         "
         Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
 
@@ -221,25 +213,25 @@ describe('cli-test', () => {
         config dd17cda1fc2eb2bc6bb5206b41fc1a84
         "
       `);
+  });
+
+  it('should be able to load relative formatter', async function () {
+    let pluginDir = await project.addPlugin(
+      { name: 'fake', defaults: false },
+      { typescript: false }
+    );
+    await project.addTask(
+      { name: 'foo', defaults: false },
+      { typescript: false, category: 'best practices', group: 'none' },
+      pluginDir
+    );
+
+    project.addCheckupConfig({
+      plugins: ['checkup-plugin-fake'],
     });
 
-    it('should be able to load relative formatter', async function () {
-      let pluginDir = await project.addPlugin(
-        { name: 'fake', defaults: false },
-        { typescript: false }
-      );
-      await project.addTask(
-        { name: 'foo', defaults: false },
-        { typescript: false, category: 'best practices', group: 'none' },
-        pluginDir
-      );
-
-      project.addCheckupConfig({
-        plugins: ['checkup-plugin-fake'],
-      });
-
-      project.write({
-        'custom-formatter.js': `
+    project.write({
+      'custom-formatter.js': `
               class CustomFormatter {
                 constructor(args) {
                   this.args = args;
@@ -252,41 +244,40 @@ describe('cli-test', () => {
 
               module.exports = CustomFormatter;
             `,
-      });
-
-      let result = await run(['run', '.', '--format', './custom-formatter.js']);
-
-      expect(result.stdout).toMatchInlineSnapshot(`"Custom Formatter output"`);
-      expect(result.exitCode).toEqual(0);
     });
 
-    it('should be able to load formatter from node_modules', async function () {
-      let pluginDir = await project.addPlugin(
-        { name: 'fake', defaults: false },
-        { typescript: false }
-      );
-      await project.addTask(
-        { name: 'foo', defaults: false },
-        { typescript: false, category: 'best practices', group: 'none' },
-        pluginDir
-      );
+    let result = await run(['run', '.', '--format', './custom-formatter.js']);
 
-      project.addCheckupConfig({
-        plugins: ['checkup-plugin-fake'],
-      });
+    expect(result.stdout).toMatchInlineSnapshot(`"Custom Formatter output"`);
+    expect(result.exitCode).toEqual(0);
+  });
 
-      let fixturePath = resolve(__dirname, '__fixtures__', 'checkup-formatter-test');
-      let formatterDirPath = join(project.baseDir, 'node_modules', 'checkup-formatter-test');
+  it('should be able to load formatter from node_modules', async function () {
+    let pluginDir = await project.addPlugin(
+      { name: 'fake', defaults: false },
+      { typescript: false }
+    );
+    await project.addTask(
+      { name: 'foo', defaults: false },
+      { typescript: false, category: 'best practices', group: 'none' },
+      pluginDir
+    );
 
-      mkdirSync(formatterDirPath);
-      copyFileSync(join(fixturePath, 'index.js'), join(formatterDirPath, 'index.js'));
-      copyFileSync(join(fixturePath, 'package.json'), join(formatterDirPath, 'package.json'));
-
-      let result = await run(['run', '.', '--format', 'checkup-formatter-test']);
-
-      expect(result.stdout).toMatchInlineSnapshot(`"Custom formatter output"`);
-      expect(result.exitCode).toEqual(0);
+    project.addCheckupConfig({
+      plugins: ['checkup-plugin-fake'],
     });
+
+    let fixturePath = resolve(__dirname, '__fixtures__', 'checkup-formatter-test');
+    let formatterDirPath = join(project.baseDir, 'node_modules', 'checkup-formatter-test');
+
+    mkdirSync(formatterDirPath);
+    copyFileSync(join(fixturePath, 'index.js'), join(formatterDirPath, 'index.js'));
+    copyFileSync(join(fixturePath, 'package.json'), join(formatterDirPath, 'package.json'));
+
+    let result = await run(['run', '.', '--format', 'checkup-formatter-test']);
+
+    expect(result.stdout).toMatchInlineSnapshot(`"Custom formatter output"`);
+    expect(result.exitCode).toEqual(0);
   });
 
   it.skip('should run a single task if the tasks option is specified with a single task', async () => {
