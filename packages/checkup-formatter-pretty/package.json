@@ -19,14 +19,14 @@
     "ink-task-list": "^1.1.0",
     "react": "^17.0.2"
   },
+  "devDependencies": {
+    "@types/react": "^17.0.15",
+    "ink-testing-library": "^2.1.0"
+  },
   "engines": {
     "node": ">= 12.11.*"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "@types/react": "^17.0.15",
-    "ink-testing-library": "^2.1.0"
   }
 }

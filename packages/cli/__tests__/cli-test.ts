@@ -14,7 +14,7 @@ const ROOT = process.cwd();
 
 jest.setTimeout(500_000);
 
-describe.skip('cli-test', () => {
+describe('cli-test', () => {
   let project: FakeProject;
 
   beforeEach(function () {
