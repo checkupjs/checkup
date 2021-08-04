@@ -7,7 +7,7 @@ import {
   CheckupLogParser,
   FormatterOptions,
 } from '@checkup/core';
-import PrettyFormatter from './pretty2';
+import PrettyFormatter from './pretty';
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
