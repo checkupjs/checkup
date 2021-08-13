@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import { Box, Text, Newline } from 'ink';
-import { Log, Result } from 'sarif';
-import { CheckupMetadata } from '@checkup/core';
+import { Result } from 'sarif';
+import { CheckupLogParser, CheckupMetadata } from '@checkup/core';
 import { List } from './components/list';
 import { BarData } from './types';
 import { Bar } from './components/bar';
 import { getComponents } from './components/index';
 
-const PrettyFormatter: FC<{ result: Log }> = ({ result }) => {
-  let metaData = result.properties as CheckupMetadata;
-  let taskResults: Result[] = result.runs[0].results!;
+const PrettyFormatter: FC<CheckupLogParser> = (logParser: CheckupLogParser) => {
+  let metaData = logParser.metaData;
+  let taskResults: Result[] = logParser.run.results!;
 
   return (
     <>

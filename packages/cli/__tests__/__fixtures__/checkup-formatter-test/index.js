@@ -1,11 +1,11 @@
 class CustomFormatter {
-  constructor(args = {}) {
-    this.args = args;
+  constructor(options = {}) {
+    this.options = options;
   }
 
-  format(results) {
-    this.args.writer.log('Custom formatter output');
-    this.args.writer.log(results);
+  format(logParser) {
+    this.options.writer.log('Custom formatter output');
+    this.options.writer.log(logParser.log);
   }
 }
 
