@@ -3,7 +3,6 @@
   "references": [
     { "path": "./packages/cli" },
     { "path": "./packages/core" },
-    { "path": "./packages/checkup-formatter-pretty" },
     { "path": "./packages/checkup-plugin-ember" },
     { "path": "./packages/checkup-plugin-javascript" },
     { "path": "./packages/plugin" },
