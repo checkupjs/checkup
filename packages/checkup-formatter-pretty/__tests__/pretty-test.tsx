@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import stripAnsi from 'strip-ansi';
+import { CheckupLogParser } from '@checkup/core';
 import PrettyFormatter from '../src/pretty-formatter';
 import { result } from './__fixtures__/checkup-result';
 
 describe('Test Pretty component', () => {
   it('can generate Pretty component', async () => {
-    const { stdout } = render(<PrettyFormatter result={result} />);
+    const logParser = new CheckupLogParser(result);
+    const { stdout } = render(<PrettyFormatter logParser={logParser} />);
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
       "Checkup report generated for pemberly-example-web v0.0.0  (0 files analyzed)
       This project is 5 years old, with 458 active days, 850 commits and 389 files

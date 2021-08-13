@@ -233,12 +233,12 @@ describe('cli-test', () => {
     project.write({
       'custom-formatter.js': `
               class CustomFormatter {
-                constructor(args) {
-                  this.args = args;
+                constructor(options) {
+                  this.options = options;
                 }
 
-                format(result) {
-                  this.args.writer.log('Custom Formatter output');
+                format(logParser) {
+                  this.options.writer.log('Custom Formatter output');
                 }
               }
 
