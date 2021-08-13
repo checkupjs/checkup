@@ -5,10 +5,12 @@ import {
   reduceResults,
   renderEmptyResult,
   ErrorKind,
-  FormatterArgs,
   ConsoleWriter,
   BufferedWriter,
   BaseOutputWriter,
+  FormatterOptions,
+  CheckupLogParser,
+  RuleResults,
 } from '@checkup/core';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
@@ -17,44 +19,45 @@ import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './f
 import { writeResultFile } from './file-writer';
 
 export default class PrettyFormatter {
-  args: FormatterArgs;
+  options: FormatterOptions;
   writer: BaseOutputWriter;
 
-  constructor(args: FormatterArgs) {
-    this.args = args;
+  constructor(options: FormatterOptions) {
+    this.options = options;
 
-    this.writer = this.args.outputFile ? new BufferedWriter() : new ConsoleWriter();
+    this.writer = this.options.outputFile ? new BufferedWriter() : new ConsoleWriter();
   }
 
-  format() {
-    let run = this.args.logParser.run;
-    let metaData = this.args.logParser.metaData;
+  format(logParser: CheckupLogParser) {
+    let metaData = logParser.metaData;
 
     renderInfo(metaData, this.writer);
     renderLinesOfCode(metaData, this.writer);
 
-    this.renderTaskResults(run.results);
-    this.renderErrors(this.args.logParser.exceptions);
+    this.renderTaskResults(logParser.resultsByRule);
+    this.renderErrors(logParser.exceptions);
 
-    renderActions(this.args.logParser.actions, this.writer);
+    renderActions(logParser.actions, this.writer);
 
     if (process.env.CHECKUP_TIMING === '1') {
-      this.renderTimings(this.args.logParser.timings);
+      this.renderTimings(logParser.timings);
     }
 
     renderCLIInfo(metaData, this.writer);
 
-    if (this.args.outputFile) {
-      writeResultFile((<BufferedWriter>this.writer).buffer, this.args.cwd, this.args.outputFile);
+    if (this.options.outputFile) {
+      writeResultFile(
+        (<BufferedWriter>this.writer).buffer,
+        this.options.cwd,
+        this.options.outputFile
+      );
     }
   }
 
-  renderTaskResults(results: Result[] | undefined): void {
+  renderTaskResults(resultsByRule: Map<string, RuleResults> | undefined): void {
     let currentCategory = '';
 
-    if (results) {
-      let resultsByRule = this.args.logParser.resultsByRule;
-
+    if (resultsByRule) {
       resultsByRule.forEach(({ rule, results }) => {
         let category = rule.properties?.category;
 

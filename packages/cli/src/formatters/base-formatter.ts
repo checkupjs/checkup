@@ -1,14 +1,14 @@
-import { BaseOutputWriter, FormatterArgs } from '@checkup/core';
+import { BaseOutputWriter, FormatterOptions, CheckupMetadata } from '@checkup/core';
 import { Notification } from 'sarif';
 import { yellow } from 'chalk';
 
 export default abstract class BaseFormatter<T extends BaseOutputWriter> {
   writer!: T;
 
-  constructor(public args: FormatterArgs) {}
+  constructor(public options: FormatterOptions) {}
 
-  renderMetadata() {
-    let { analyzedFilesCount, project } = this.args.logParser.metaData;
+  renderMetadata(metaData: CheckupMetadata) {
+    let { analyzedFilesCount, project } = metaData;
     let { name, version, repository } = project;
 
     let analyzedFilesMessage =
@@ -35,9 +35,7 @@ export default abstract class BaseFormatter<T extends BaseOutputWriter> {
     this.writer.blankLine();
   }
 
-  renderActions(): void {
-    let actions = this.args.logParser.actions;
-
+  renderActions(actions: Notification[]): void {
     if (actions && actions.length > 0) {
       this.writer.categoryHeader('Actions');
       actions.forEach((action: Notification) => {
@@ -47,8 +45,8 @@ export default abstract class BaseFormatter<T extends BaseOutputWriter> {
     }
   }
 
-  renderCLIInfo() {
-    let { version, configHash } = this.args.logParser.metaData.cli;
+  renderCLIInfo(metadata: CheckupMetadata) {
+    let { version, configHash } = metadata.cli;
 
     this.writer.dimmed(`checkup v${version}`);
     this.writer.dimmed(`config ${configHash}`);

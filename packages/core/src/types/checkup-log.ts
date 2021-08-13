@@ -1,5 +1,5 @@
 import { PackageJson, SetRequired } from 'type-fest';
-import { Run, Result } from 'sarif';
+import { Run, Result, ReportingDescriptor } from 'sarif';
 import { RunOptions } from '../types/cli';
 import { TaskListError, Action } from '../types/tasks';
 import { CheckupConfig } from '../types/config';
@@ -13,6 +13,11 @@ export interface CheckupLogBuilderArgs {
   options: RunOptions;
   paths?: FilePathArray;
 }
+
+export type RuleResults = {
+  rule: ReportingDescriptor;
+  results: Result[];
+};
 
 export interface AnnotationArgs {
   config: CheckupConfig;

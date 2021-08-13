@@ -6,7 +6,9 @@ import {
   CheckupError,
   CheckupLogParser,
   FormatterOptions,
+  FormatterCtor,
 } from '@checkup/core';
+import { Log } from 'sarif';
 import PrettyFormatter from './pretty';
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
@@ -16,22 +18,25 @@ export function getFormatter(options: FormatterOptions) {
     {},
     {
       format: 'summary',
-      logParser: new CheckupLogParser(options.log),
     },
     options
   );
+  let Formatter: FormatterCtor;
 
   switch (mergedOptions.format) {
     case OutputFormat.summary: {
-      return new SummaryFormatter(mergedOptions);
+      Formatter = SummaryFormatter;
+      break;
     }
 
     case OutputFormat.pretty: {
-      return new PrettyFormatter(mergedOptions);
+      Formatter = PrettyFormatter;
+      break;
     }
 
     case OutputFormat.json: {
-      return new JsonFormatter(mergedOptions);
+      Formatter = JsonFormatter;
+      break;
     }
     default: {
       try {
@@ -39,7 +44,8 @@ export function getFormatter(options: FormatterOptions) {
           options.format
         );
 
-        return new CustomFormatter(mergedOptions);
+        Formatter = CustomFormatter;
+        break;
       } catch {
         throw new CheckupError(ErrorKind.FormatterNotFound, {
           format: mergedOptions.format,
@@ -48,4 +54,13 @@ export function getFormatter(options: FormatterOptions) {
       }
     }
   }
+
+  return {
+    format(log: Log) {
+      let formatter = new Formatter(mergedOptions);
+      let logParser = new CheckupLogParser(log);
+
+      return formatter.format(logParser);
+    },
+  };
 }

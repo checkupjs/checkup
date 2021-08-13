@@ -1,20 +1,21 @@
-import { ConsoleWriter, Formatter, FormatterArgs } from '@checkup/core';
+import { CheckupLogParser, ConsoleWriter, Formatter, FormatterOptions } from '@checkup/core';
 import { success } from 'log-symbols';
 import { yellow } from 'chalk';
+import { Log } from 'sarif';
 import { writeResultFile } from './file-writer';
 import BaseFormatter from './base-formatter';
 
 export default class SummaryFormatter extends BaseFormatter<ConsoleWriter> implements Formatter {
-  constructor(args: FormatterArgs) {
-    super(args);
+  constructor(options: FormatterOptions) {
+    super(options);
 
     this.writer = new ConsoleWriter();
   }
 
-  format() {
-    let { rules } = this.args.logParser;
+  format(logParser: CheckupLogParser) {
+    let { rules, metaData, log, actions } = logParser;
 
-    this.renderMetadata();
+    this.renderMetadata(metaData);
     this.writer.log('Checkup ran the following task(s) successfully:');
 
     rules
@@ -24,18 +25,14 @@ export default class SummaryFormatter extends BaseFormatter<ConsoleWriter> imple
         this.writer.log(`${success} ${taskName}`);
       });
 
-    this.writeResultsToFile();
-    this.renderActions();
+    this.writeResultsToFile(log);
+    this.renderActions(actions);
     this.writer.blankLine();
-    this.renderCLIInfo();
+    this.renderCLIInfo(metaData);
   }
 
-  writeResultsToFile() {
-    let resultsFilePath = writeResultFile(
-      this.args.logParser.log,
-      this.args.cwd,
-      this.args.outputFile
-    );
+  writeResultsToFile(log: Log) {
+    let resultsFilePath = writeResultFile(log, this.options.cwd, this.options.outputFile);
 
     this.writer.blankLine();
     this.writer.log('Results have been saved to the following file:');

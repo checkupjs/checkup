@@ -1,27 +1,30 @@
-import { ConsoleWriter, Formatter, FormatterArgs } from '@checkup/core';
+import { CheckupLogParser, ConsoleWriter, Formatter, FormatterOptions } from '@checkup/core';
 import { yellow } from 'chalk';
+import { Log } from 'sarif';
 import { writeResultFile } from './file-writer';
 
 export default class JsonFormatter implements Formatter {
-  args: FormatterArgs;
+  options: FormatterOptions;
   writer: ConsoleWriter;
 
-  constructor(options: FormatterArgs) {
-    this.args = options;
+  constructor(options: FormatterOptions) {
+    this.options = options;
 
     this.writer = new ConsoleWriter();
   }
 
-  format() {
-    if (this.args.outputFile) {
-      this.writeResultsToFile();
+  format(logParser: CheckupLogParser) {
+    let log = logParser.log;
+
+    if (this.options.outputFile) {
+      this.writeResultsToFile(log);
     } else {
-      this.writer.styledJSON(this.args.log);
+      this.writer.styledJSON(log);
     }
   }
 
-  writeResultsToFile() {
-    let resultFilePath = writeResultFile(this.args.log, this.args.cwd, this.args.outputFile);
+  writeResultsToFile(log: Log) {
+    let resultFilePath = writeResultFile(log, this.options.cwd, this.options.outputFile);
 
     this.writer.blankLine();
     this.writer.log('Results have been saved to the following file:');

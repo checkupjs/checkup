@@ -1,4 +1,3 @@
-import { Log } from 'sarif';
 import CheckupLogParser from '../data/checkup-log-parser';
 import {
   Task,
@@ -45,16 +44,15 @@ export interface RegisterableTaskList {
 }
 
 export interface Formatter {
-  format(): void;
+  format(logParser: CheckupLogParser): void;
+}
+
+export interface FormatterCtor {
+  new (options: FormatterOptions): Formatter;
 }
 
 export interface FormatterOptions {
   cwd: string;
   format: OutputFormat;
   outputFile?: string;
-  log: Log;
 }
-
-export type FormatterArgs = FormatterOptions & {
-  logParser: CheckupLogParser;
-};
