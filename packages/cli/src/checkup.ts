@@ -22,7 +22,7 @@ checkup <command> [options]`
       command: 'run',
       aliases: ['r'],
       describe: 'Runs configured checkup tasks',
-      builder: (yargs) => {
+      builder: (yargs: any) => {
         return yargs.usage('checkup run [paths..] [options]').options({
           'exclude-paths': {
             alias: 'e',
@@ -135,11 +135,10 @@ checkup <command> [options]`
             cwd: argv.cwd as string,
             format: argv.format as OutputFormat,
             outputFile: argv.outputFile as string,
-            log,
           });
 
           spinner.stop();
-          formatter.format();
+          formatter.format(log);
         } catch (error) {
           spinner.stop();
           consoleWriter.error(error);

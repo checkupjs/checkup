@@ -1,10 +1,6 @@
-import { Log, ReportingDescriptor, Result } from 'sarif';
+import { Log } from 'sarif';
+import { RuleResults } from '../types/checkup-log';
 import { TaskName } from '../types/tasks';
-
-type RuleResults = {
-  rule: ReportingDescriptor;
-  results: Result[];
-};
 
 export default class CheckupLogParser {
   _resultsByRule!: Map<TaskName, RuleResults>;
@@ -61,7 +57,7 @@ export default class CheckupLogParser {
     );
   }
 
-  get resultsByRule() {
+  get resultsByRule(): Map<string, RuleResults> {
     if (!this._resultsByRule) {
       this._resultsByRule = new Map();
       let rules = this.rules;
