@@ -8,10 +8,13 @@ describe('Test Bar component', () => {
   it('can generate bar component', async () => {
     const data: BarData = {
       name: 'test-item',
-      number: 10,
+      value: 10,
+      total: 20,
     };
 
     const { lastFrame } = render(<Bar data={data}></Bar>);
-    expect(stripAnsi(lastFrame()!)).toMatchInlineSnapshot(`"■■■■■■■■■■ test-item (10)"`);
+    expect(stripAnsi(lastFrame()!)).toMatchInlineSnapshot(
+      `"■■■■■■■■■■■■■■■■■■■■■■■■■ test-item (10)"`
+    );
   });
 });
