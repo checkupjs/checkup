@@ -1,7 +1,7 @@
 module.exports = {
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js', 'json', 'tsx'],
-  transform: { '^.+\\.(ts|js)x?$': 'ts-jest' },
+  transform: { '^.+\\.(ts)x?$': 'ts-jest' },
   coverageReporters: ['lcov', 'text-summary'],
   // collectCoverage: !!process.env.CI,
   collectCoverageFrom: ['src/**/*.ts'],
