@@ -1,4 +1,5 @@
 export interface BarData {
   name: string;
-  number: number;
+  value: number;
+  total: number;
 }
