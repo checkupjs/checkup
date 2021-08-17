@@ -77,13 +77,14 @@ class PrettyFormatter {
     );
   };
 
-  render() {
+  format(logParser: CheckupLogParser) {
     let MetaData = this.MetaData;
     let TaskResults = this.TaskResults;
+    let { metaData } = logParser;
 
     render(
       <>
-        <MetaData metaData={this.metaData} />
+        <MetaData metaData={metaData} />
         <Newline />
         <TaskResults taskResults={this.taskResults} />
       </>
