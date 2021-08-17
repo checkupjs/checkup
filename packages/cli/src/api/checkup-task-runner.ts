@@ -85,6 +85,7 @@ export default class CheckupTaskRunner {
   }
 
   async run(): Promise<Log> {
+    debugger;
     await this.loadConfig();
     await this.registerPlugins();
 

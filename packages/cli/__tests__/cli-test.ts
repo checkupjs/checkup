@@ -29,7 +29,7 @@ describe('cli-test', () => {
 
   afterEach(function () {
     process.chdir(ROOT);
-    // project.dispose();
+    project.dispose();
   });
 
   it('outputs top level help', async () => {
@@ -245,9 +245,8 @@ describe('cli-test', () => {
               module.exports = CustomFormatter;
             `,
     });
-
+    debugger;
     let result = await run(['run', '.', '--format', './custom-formatter.js']);
-
     expect(result.stdout).toMatchInlineSnapshot(`"Custom Formatter output"`);
     expect(result.exitCode).toEqual(0);
   });
