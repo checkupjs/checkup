@@ -9,7 +9,6 @@ import { reportAvailableTasks } from './formatters/available-tasks';
 
 export async function run(argv: string[] = process.argv.slice(2)) {
   let consoleWriter = new ConsoleWriter();
-  debugger;
   let parser = yargs
     .scriptName('checkup')
     .usage(
@@ -114,7 +113,6 @@ checkup <command> [options]`
         });
 
         if (!paths || paths.length === 0) {
-          debugger;
           if (argv.listTasks) {
             let availableTasks = await taskRunner.getAvailableTasks();
 
@@ -130,9 +128,8 @@ checkup <command> [options]`
         let spinner = ora().start('Checking up on your project');
 
         try {
-          debugger;
           let log = await taskRunner.run();
-          debugger;
+
           let formatter = getFormatter({
             cwd: argv.cwd as string,
             format: argv.format as OutputFormat,
@@ -141,7 +138,6 @@ checkup <command> [options]`
 
           spinner.stop();
           formatter.format(log);
-          debugger;
         } catch (error) {
           spinner.stop();
           consoleWriter.error(error);
