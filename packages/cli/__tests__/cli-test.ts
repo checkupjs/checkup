@@ -14,7 +14,7 @@ const ROOT = process.cwd();
 
 jest.setTimeout(100000);
 
-describe('cli-test', () => {
+describe.skip('cli-test', () => {
   let project: FakeProject;
 
   beforeEach(function () {
@@ -245,7 +245,7 @@ describe('cli-test', () => {
               module.exports = CustomFormatter;
             `,
     });
-    debugger;
+
     let result = await run(['run', '.', '--format', './custom-formatter.js']);
     expect(result.stdout).toMatchInlineSnapshot(`"Custom Formatter output"`);
     expect(result.exitCode).toEqual(0);
