@@ -1,20 +1,20 @@
 import React, { FC } from 'react';
 import { Box, Text, Newline, render } from 'ink';
-import { Result } from 'sarif';
-import { CheckupLogParser, CheckupMetadata } from '@checkup/core';
+import { Result, Log } from 'sarif';
+import { CheckupLogParser, CheckupMetadata, Formatter, FormatterOptions } from '@checkup/core';
+// eslint-disable-next-line node/no-unpublished-import
+import { writeResultFile } from '../../cli/src/formatters/file-writer';
 import { List } from './components/list';
 import { BarData } from './types';
 import { Bar } from './components/bar';
 import { getComponents } from './components/index';
 
-class PrettyFormatter {
-  constructor(logParser: CheckupLogParser) {
-    this.metaData = logParser.metaData;
-    this.taskResults = logParser.run.results!;
-  }
+class PrettyFormatter implements Formatter {
+  options: FormatterOptions;
 
-  metaData: CheckupMetadata;
-  taskResults: Result[];
+  constructor(options: FormatterOptions) {
+    this.options = options;
+  }
 
   MetaData: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
     let { analyzedFilesCount, project } = metaData;
@@ -80,27 +80,38 @@ class PrettyFormatter {
   format(logParser: CheckupLogParser) {
     let MetaData = this.MetaData;
     let TaskResults = this.TaskResults;
-    let { metaData } = logParser;
+    let taskResults = logParser.run.results!;
+    let { metaData, log } = logParser;
 
     render(
       <>
         <MetaData metaData={metaData} />
         <Newline />
-        <TaskResults taskResults={this.taskResults} />
+        <TaskResults taskResults={taskResults} />
       </>
     );
+
+    if (this.options.outputFile) {
+      this.writeResultsToFile(log);
+    }
+  }
+
+  writeResultsToFile(log: Log) {
+    writeResultFile(log, this.options.cwd, this.options.outputFile);
   }
 
   // for pretty-test only
-  test() {
+  test(logParser: CheckupLogParser) {
     let MetaData = this.MetaData;
     let TaskResults = this.TaskResults;
+    let taskResults = logParser.run.results!;
+    let { metaData } = logParser;
 
     return (
       <>
-        <MetaData metaData={this.metaData} />
+        <MetaData metaData={metaData} />
         <Newline />
-        <TaskResults taskResults={this.taskResults} />
+        <TaskResults taskResults={taskResults} />
       </>
     );
   }

@@ -4,11 +4,14 @@
     "outDir": "lib",
     "jsx": "react",
     "rootDir": "src",
-    "esModuleInterop": true
+    "esModuleInterop": true,
   },
   "references": [
     {
-      "path": "../core"
+      "path": "../core",
+    },
+    {
+      "path": "../cli",
     }
   ],
   "include": ["src/**/*"]
