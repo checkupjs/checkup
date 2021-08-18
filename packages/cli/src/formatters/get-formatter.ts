@@ -9,8 +9,6 @@ import {
   FormatterCtor,
 } from '@checkup/core';
 import { Log } from 'sarif';
-// eslint-disable-next-line node/no-extraneous-import
-import { PrettyFormatter } from 'checkup-formatter-pretty';
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
@@ -27,11 +25,6 @@ export function getFormatter(options: FormatterOptions) {
   switch (mergedOptions.format) {
     case OutputFormat.summary: {
       Formatter = SummaryFormatter;
-      break;
-    }
-
-    case OutputFormat.pretty: {
-      Formatter = PrettyFormatter;
       break;
     }
 

@@ -13,7 +13,7 @@ import { FakeProject } from './__utils__/fake-project';
 
 const ROOT = process.cwd();
 
-jest.setTimeout(100000);
+jest.setTimeout(500_000);
 
 describe('cli-test', () => {
   let project: FakeProject;
@@ -30,7 +30,7 @@ describe('cli-test', () => {
 
   afterEach(function () {
     process.chdir(ROOT);
-    project.dispose();
+    // project.dispose();
   });
 
   it('outputs top level help', async () => {
@@ -171,8 +171,20 @@ describe('cli-test', () => {
     unlinkSync(outputPath);
   });
 
-  it.skip('should output a txt file in a custom directory if the pretty format and output-file options are provided', async () => {
-    let result = await run(['run', '.', '--format', 'pretty', `--output-file`, 'my-checkup-file']);
+  it('should output a txt file in a custom directory if the pretty format and output-file options are provided', async () => {
+    project.symlinkPackage(
+      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
+      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
+    );
+
+    let result = await run([
+      'run',
+      '.',
+      '--format',
+      'checkup-formatter-pretty',
+      `--output-file`,
+      'my-checkup-file',
+    ]);
 
     let output = result.stdout.trim();
     let outputPath = output.split('\n')[1]; // output will be a string followed by newline then the file path
@@ -312,7 +324,6 @@ describe('cli-test', () => {
       File Count
 
       ■ file-count result (1)
-
 
       checkup v0.0.0
       config 01f059d31fb4418b3792d2818b02a083

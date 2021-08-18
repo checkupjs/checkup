@@ -14,47 +14,47 @@ Checkup aims to provide you with insights into your codebase. You can see things
 
 # Key Ideas
 
-## Provide Project Information
+- **Provide Project Information**
 
 Knowledge is power. Checkup wants to give you constant insights into the current and historical state of your codebase.
 
-## Provide Health Checkups
+- **Provide Health Checkups**
 
-Balancing priorities in technical teams can be a challenge; there's always trade-offs. Checkup wants to provide health checks on your project to ensure that it's adhering to required standards (whatever those may be!).
+  Balancing priorities in technical teams can be a challenge; there's always trade-offs. Checkup wants to provide health checks on your project to ensure that it's adhering to required standards (whatever those may be!).
 
-## Allow for Extensibility
+- **Allow for Extensibility**
 
-Checkup wants to provide a mechanism to customize the data you want to gather within the codebase. This will allow consumers more control over what they want to track based on what it means to them.
+  Checkup wants to provide a mechanism to customize the data you want to gather within the codebase. This will allow consumers more control over what they want to track based on what it means to them.
 
-## Help Quantify the Cost of Migrations
+- **Help Quantify the Cost of Migrations**
 
-A healthy codebase is in constant flux as new libraries and APIs are moved out and brought in. While this is a signal of active investment in your codebase, it can also feel like they code never 'settles'. Checkup won't change this, but it _will_ help monitor migrations as they progress, making them feel more finite. Additionally, charting the progress of those migrations can help with estimating overall duration and costs.
+  A healthy codebase is in constant flux as new libraries and APIs are moved out and brought in. While this is a signal of active investment in your codebase, it can also feel like they code never 'settles'. Checkup won't change this, but it _will_ help monitor migrations as they progress, making them feel more finite. Additionally, charting the progress of those migrations can help with estimating overall duration and costs.
 
-## Features
+- **Features**
 
-1. The cli supports configurability and the dynamic nature of all possible use cases
+    1. The cli supports configurability and the dynamic nature of all possible use cases
 
-- Consumers can add a configuration directly to their repository
-- External configuration can be provided that can be used for 1..n repositories
-- Checkup will provide example configs (and/or generators to help create a config)
-- There will be a single location for configuration to serve the entire application
+        - Consumers can add a configuration directly to their repository
+        - External configuration can be provided that can be used for 1..n repositories
+        - Checkup will provide example configs (and/or generators to help create a config)
+        - There will be a single location for configuration to serve the entire application
 
-2. A mechanism to create custom tasks && plugins and to plug them into the cli
+    2. A mechanism to create custom tasks && plugins and to plug them into the cli
 
-- Checkup will provide:
-  - Generators to assist in the creation of new tasks && plugins
-  - A testing framework for tasks (required)
-  - Documentation for tasks (required)
-- Schema for prioritization of tasks
-- [optional enhancement] Nested plugins
+        - Checkup will provide:
+          - Generators to assist in the creation of new tasks && plugins
+          - A testing framework for tasks (required)
+          - Documentation for tasks (required)
+        - Schema for prioritization of tasks
+        - [optional enhancement] Nested plugins
 
-3. A public API (to run checkup programmatically)
-4. A reporting mechanism to display data in a consumable way
+    3. A public API (to run checkup programmatically)
+    4. A reporting mechanism to display data in a consumable way
 
-- The reporting will offer multiple levels of abstraction (full detail, roll-up, summary)
-- The ability to display in JSON, PDF, HTML, console output (potentially separate reporting modules for each)
-- [optional enhancement] A plug and playable reporting module system, that will allow users to swap out default report for a more customized experience
-- [optional enhancement] A generator that creates a reporting scaffold to allow for simple customization of reporting
+        - The reporting will offer multiple levels of abstraction (full detail, roll-up, summary)
+        - The ability to display in JSON, PDF, HTML, console output (potentially separate reporting modules for each)
+        - [optional enhancement] A plug and playable reporting module system, that will allow users to swap out default report for a more customized experience
+        - [optional enhancement] A generator that creates a reporting scaffold to allow for simple customization of reporting
 
 # Detailed Design
 
