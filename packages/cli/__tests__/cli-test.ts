@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-focused-tests */
 /* eslint-disable jest/no-disabled-tests */
 import '@microsoft/jest-sarif';
 import { join, resolve } from 'path';
@@ -14,7 +15,6 @@ const ROOT = process.cwd();
 
 jest.setTimeout(500_000);
 
-// eslint-disable-next-line jest/no-focused-tests
 describe('cli-test', () => {
   let project: FakeProject;
 
