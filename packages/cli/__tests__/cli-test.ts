@@ -14,6 +14,7 @@ const ROOT = process.cwd();
 
 jest.setTimeout(500_000);
 
+// eslint-disable-next-line jest/no-focused-tests
 describe('cli-test', () => {
   let project: FakeProject;
 
@@ -52,7 +53,7 @@ describe('cli-test', () => {
     `);
   });
 
-  it.skip('outputs help for run command', async () => {
+  it('outputs help for run command', async () => {
     let result = await run(['run']);
 
     expect(result.exitCode).toEqual(1);
@@ -76,7 +77,7 @@ describe('cli-test', () => {
     `);
   });
 
-  it.skip('outputs help for generate command', async () => {
+  it('outputs help for generate command', async () => {
     let result = await run(['generate']);
 
     expect(result.exitCode).toEqual(1);
@@ -97,7 +98,7 @@ describe('cli-test', () => {
     `);
   });
 
-  it.skip('should output checkup result', async () => {
+  it('should output checkup result', async () => {
     let result = await run(['run', '.']);
 
     let output = result.stdout.trim().split('\n');
@@ -118,7 +119,7 @@ describe('cli-test', () => {
     ]);
   });
 
-  it.skip('should output list of available tasks', async () => {
+  it('should output list of available tasks', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -144,14 +145,14 @@ describe('cli-test', () => {
     `);
   });
 
-  it.skip('should output checkup result in JSON', async () => {
+  it('should output checkup result in JSON', async () => {
     let result = await run(['run', '.', '--format', 'json']);
     let output = JSON.parse(trimCwd(result.stdout, project.baseDir)) as Log;
 
     expect(output).toBeValidSarifLog();
   });
 
-  it.skip('should output a json file in a custom directory if the json format and output-file options are provided', async () => {
+  it('should output a json file in a custom directory if the json format and output-file options are provided', async () => {
     let result = await run([
       'run',
       '.',
@@ -182,7 +183,7 @@ describe('cli-test', () => {
     unlinkSync(outputPath);
   });
 
-  it.skip('should output a json file in a custom directory if the summary format and output-file options are provided', async () => {
+  it('should output a json file in a custom directory if the summary format and output-file options are provided', async () => {
     let result = await run([
       'run',
       '.',
@@ -195,7 +196,7 @@ describe('cli-test', () => {
     expect(summaryOutput).toContain('my-checkup-file.sarif');
   });
 
-  it.skip('should output checkup result in pretty mode', async () => {
+  it('should output checkup result in pretty mode', async () => {
     let result = await run(['run', '.', '--format', 'pretty']);
 
     expect(result.stdout).toMatchInlineSnapshot(`
@@ -318,7 +319,7 @@ describe('cli-test', () => {
     `);
   });
 
-  it.skip('should run with timing if CHECKUP_TIMING=1', async () => {
+  it('should run with timing if CHECKUP_TIMING=1', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -682,7 +683,7 @@ describe('cli-test', () => {
     anotherProject.dispose();
   });
 
-  it.skip('should run the tasks on the globs passed into checkup, if provided, instead of entire app', async () => {
+  it('should run the tasks on the globs passed into checkup, if provided, instead of entire app', async () => {
     project.files = Object.assign(project.files, {
       foo: {
         'index.hbs': '{{!-- i should todo: write code --}}',
@@ -709,7 +710,7 @@ describe('cli-test', () => {
     expect(filtered).not.toStrictEqual(unfiltered);
   });
 
-  it.skip('should use the excludePaths provided by the config', async () => {
+  it('should use the excludePaths provided by the config', async () => {
     project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
     project.writeSync();
 
@@ -728,7 +729,7 @@ describe('cli-test', () => {
     expect(filtered).not.toStrictEqual(unFiltered);
   });
 
-  it.skip('should use the excludePaths provided by the command line', async () => {
+  it('should use the excludePaths provided by the command line', async () => {
     let result = await run([
       'run',
       '.',
@@ -750,7 +751,7 @@ describe('cli-test', () => {
     expect(hbsJsFiltered).not.toStrictEqual(hbsFiltered);
   });
 
-  it.skip('if excludePaths are provided by both the config and command line, use command line', async () => {
+  it('if excludePaths are provided by both the config and command line, use command line', async () => {
     project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
     project.writeSync();
 
@@ -768,7 +769,7 @@ describe('cli-test', () => {
     expect(jsFiltered).not.toStrictEqual(hbsFiltered);
   });
 
-  it.skip('should correctly report error when config contains invalid key', async () => {
+  it('should correctly report error when config contains invalid key', async () => {
     project.files['.checkuprc'] = stringify({
       plugins: [],
       task: {},
@@ -781,7 +782,7 @@ describe('cli-test', () => {
     expect(result.stderr).toContain(`data should have required property 'tasks'`);
   });
 
-  it.skip('should correctly report error when config contains invalid value', async () => {
+  it('should correctly report error when config contains invalid value', async () => {
     project.files['.checkuprc'] = stringify({
       plugins: [],
       tasks: [],
@@ -794,7 +795,7 @@ describe('cli-test', () => {
     expect(result.stderr).toContain('data.tasks should be object');
   });
 
-  it.skip('should correctly report error if task not found', async () => {
+  it('should correctly report error if task not found', async () => {
     project.addCheckupConfig();
     project.writeSync();
 
@@ -804,7 +805,8 @@ describe('cli-test', () => {
     expect(result.stderr).toContain('Cannot find the foo task.');
   });
 
-  it.skip('can load plugins from pluginBaseDir with a node_modules', async () => {
+  // eslint-disable-next-line jest/no-focused-tests
+  it('can load plugins from pluginBaseDir with a node_modules', async () => {
     let newProject = new FakeProject('random-app', '0.0.0', () => {});
     newProject.files['index.js'] = 'module.exports = {};';
     newProject.files['index.hbs'] = '<div>Random App</div>';
@@ -821,16 +823,17 @@ describe('cli-test', () => {
     newProject.writeSync();
 
     project.addCheckupConfig({
-      plugins: ['checkup-plugin-fake'],
+      plugins: ['fake'],
     });
-    project.chdir();
 
+    project.chdir();
     let result = await run(['run', '.', '--plugin-base-dir', newProject.baseDir]);
+
     expect(result.exitCode).toEqual(0);
     expect(result.stdout).toMatch('✔ foo');
   });
 
-  it.skip('can load plugins from nested (non-node_modules) pluginBaseDir', async () => {
+  it('can load plugins from nested (non-node_modules) pluginBaseDir', async () => {
     project.addCheckupConfig({
       plugins: ['checkup-plugin-nested'],
     });

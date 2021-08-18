@@ -98,6 +98,14 @@ export default class CheckupTaskRunner {
       timings: this.tasks.timings,
     });
 
+    this.executedTasks.map((task) => {
+      this.logBuilder.addRule({
+        id: task.taskName,
+        shortDescription: { text: task.taskDisplayName },
+        properties: { enabled: task.enabled, group: task.group, category: task.category },
+      });
+    });
+
     return this.logBuilder.log;
   }
 
@@ -204,7 +212,6 @@ export default class CheckupTaskRunner {
 
   private async loadFromPlugin(registrationArgs: RegistrationArgs) {
     let pluginBaseDir = this.options.pluginBaseDir || this.options.cwd;
-
     for (let pluginName of this.config.plugins) {
       let pluginDir;
 
