@@ -18,7 +18,8 @@
       "checkup-plugin-ember": ["./packages/checkup-plugin-ember/lib/index.d.ts"],
       "checkup-plugin-javascript": ["./packages/checkup-plugin-javascript/lib/index.d.ts"],
       "*": ["./types/*"]
-    }
+    },
+    "typeRoots": ["node_modules/@types"]
   },
   "exclude": ["**/node_modules/**"]
 }
