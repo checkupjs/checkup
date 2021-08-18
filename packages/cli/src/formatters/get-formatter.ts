@@ -9,7 +9,6 @@ import {
   FormatterCtor,
 } from '@checkup/core';
 import { Log } from 'sarif';
-// eslint-disable-next-line node/no-extraneous-import
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 

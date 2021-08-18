@@ -3,15 +3,14 @@
   "compilerOptions": {
     "outDir": "lib",
     "jsx": "react",
-    "rootDir": "src",
-    "esModuleInterop": true,
+    "rootDir": "src"
   },
   "references": [
     {
-      "path": "../core",
+      "path": "../core"
     },
     {
-      "path": "../cli",
+      "path": "../cli"
     }
   ],
   "include": ["src/**/*"]
