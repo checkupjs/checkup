@@ -142,10 +142,10 @@ const TaskResults: FC<{ taskResults: Map<string, RuleResults> | undefined }> = (
       <List>
         {results.map((result) => {
           return (
-            <>
+            <Box flexDirection="column" key={result.category}>
               <Text>=== {result['category']}</Text>
               <Component data={result['tableData']} />
-            </>
+            </Box>
           );
         })}
       </List>
