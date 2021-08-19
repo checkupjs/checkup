@@ -15,7 +15,7 @@ type RuleResults = {
   results: Result[];
 };
 
-interface UIData {
+interface TaskResultsData {
   tableData: any[];
   category: string;
 }
@@ -113,7 +113,7 @@ const TaskResults: FC<{ taskResults: Map<string, RuleResults> | undefined }> = (
     let componentsMap = getComponents();
     let Component = componentsMap['inkTable'];
 
-    let results: UIData[] = [];
+    let results: TaskResultsData[] = [];
     let index = -1;
 
     [...taskResults!.values()].forEach((taskResult) => {
