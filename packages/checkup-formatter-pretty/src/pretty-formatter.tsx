@@ -27,10 +27,10 @@ const PrettyFormatter: FC<{ logParser: CheckupLogParser }> = ({ logParser }) => 
   return (
     <>
       <MetaData metaData={metaData} />
-
       <Newline />
       <TaskResults taskResults={taskResults} />
       <Newline />
+      {process.env.CHECKUP_TIMING === '1' ? <RenderTiming timings={logParser.timings} /> : <></>}
       <CLIInfo metaData={metaData} />
     </>
   );
@@ -76,6 +76,30 @@ const MetaData: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
           })}
         </List>
       </Box>
+    </>
+  );
+};
+
+const RenderTiming: FC<{ timings: Record<string, number> }> = ({ timings }) => {
+  let componentsMap = getComponents();
+  let Component = componentsMap['inkTable'];
+  let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
+  let tableData: any[] = [];
+
+  Object.keys(timings).map((taskName) => {
+    let timing = Number.parseFloat(timings[taskName].toFixed(2));
+    let relavtive = `${((timings[taskName] * 100) / total).toFixed(1)}%`;
+    tableData.push({
+      'Task Name': taskName,
+      'Time (sec)': timing,
+      'Relative: ': relavtive,
+    });
+  });
+
+  return (
+    <>
+      <Text>Task Timings</Text>
+      <Component data={tableData} />
     </>
   );
 };
