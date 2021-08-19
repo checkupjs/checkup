@@ -8,9 +8,6 @@
   "references": [
     {
       "path": "../core"
-    },
-    {
-      "path": "../cli"
     }
   ],
   "include": ["src/**/*"]

@@ -1,21 +1,17 @@
 import { resolve } from 'path';
+import * as React from 'react';
 import { render } from 'ink-testing-library';
-import stripAnsi from 'strip-ansi';
 import { readJsonSync } from 'fs-extra';
-import { CheckupLogParser, OutputFormat } from '@checkup/core';
+import { CheckupLogParser } from '@checkup/core';
 import PrettyFormatter from '../src/pretty-formatter';
+
+const stripAnsi = require('strip-ansi');
 
 describe('Test Pretty component', () => {
   it('can generate Pretty component', async () => {
     const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
-    const options = {
-      cwd: '',
-      format: OutputFormat.pretty,
-    };
-    let prettyFormatter = new PrettyFormatter(options);
-
-    const { stdout } = render(prettyFormatter.test(logParser));
+    const { stdout } = render(<PrettyFormatter logParser={logParser} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
       "Checkup report generated for travis v0.0.1  (1797 files analyzed)

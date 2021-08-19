@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
-import stripAnsi from 'strip-ansi';
 import { Table } from '../src/components/table';
+
+const stripAnsi = require('strip-ansi');
 
 describe('Test table component', () => {
   it('can generate table component', async () => {

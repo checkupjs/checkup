@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import * as React from 'react';
+import { FC } from 'react';
 import { Box } from 'ink';
 import { default as InkTable } from 'ink-table';
 

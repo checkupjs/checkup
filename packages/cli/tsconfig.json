@@ -15,6 +15,9 @@
       "path": "../checkup-plugin-javascript"
     },
     {
+      "path": "../checkup-formatter-pretty"
+    },
+    {
       "path": "../test-helpers"
     },
   ],

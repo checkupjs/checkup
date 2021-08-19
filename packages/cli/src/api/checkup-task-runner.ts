@@ -98,14 +98,6 @@ export default class CheckupTaskRunner {
       timings: this.tasks.timings,
     });
 
-    this.executedTasks.map((task) => {
-      this.logBuilder.addRule({
-        id: task.taskName,
-        shortDescription: { text: task.taskDisplayName },
-        properties: { enabled: task.enabled, group: task.group, category: task.category },
-      });
-    });
-
     return this.logBuilder.log;
   }
 
