@@ -64,14 +64,24 @@ const MetaData: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
         <Newline />
         <Text>lines of code {repository.linesOfCode.total}</Text>
         <List>
-          {repository.linesOfCode.types.map((type) => {
-            let barData: BarData = {
-              name: type.extension,
-              value: type.total,
-              total: repository.linesOfCode.total,
-            };
-            return <Bar key={type.extension} data={barData} />;
-          })}
+          {repository.linesOfCode.types
+            .sort((a, b) => {
+              if (a.total > b.total) {
+                return -1;
+              } else if (a.total === b.total) {
+                return a.extension > b.extension ? 1 : -1;
+              } else {
+                return 1;
+              }
+            })
+            .map((type) => {
+              let barData: BarData = {
+                name: type.extension,
+                value: type.total,
+                total: repository.linesOfCode.total,
+              };
+              return <Bar key={type.extension} data={barData} />;
+            })}
         </List>
       </Box>
     </>
