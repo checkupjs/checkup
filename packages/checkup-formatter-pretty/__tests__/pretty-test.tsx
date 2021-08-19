@@ -27,11 +27,16 @@ describe('Test Pretty component', () => {
       ■ html (201)
 
 
+      === metrics
       ┌─────────────┬───────────────┐
       │ ruleId      │ result(value) │
       ├─────────────┼───────────────┤
       │ ember-types │ 810           │
-      └─────────────┴───────────────┘"
+      └─────────────┴───────────────┘
+
+
+      checkup v1.0.0-beta.11
+      config 7bca477eada135bcfae0876e271fff89"
     `);
   });
 });
