@@ -1,77 +1,80 @@
 import {
   CheckupError,
-  CheckupMetadata,
   getRegisteredTaskReporters,
   groupDataByField,
-  NO_RESULTS_FOUND,
-  sumOccurrences,
   reduceResults,
   renderEmptyResult,
   ErrorKind,
-  FormatterArgs,
+  ConsoleWriter,
+  BufferedWriter,
+  BaseOutputWriter,
+  FormatterOptions,
+  CheckupLogParser,
+  RuleResults,
 } from '@checkup/core';
 import * as cleanStack from 'clean-stack';
 import { startCase } from 'lodash';
-import { Invocation, Log, Notification, Result, Run } from 'sarif';
+import { Notification, Result } from 'sarif';
 import { renderActions, renderCLIInfo, renderInfo, renderLinesOfCode } from './formatter-utils';
 import { writeResultFile } from './file-writer';
-export default class PrettyFormatter {
-  args: FormatterArgs;
 
-  constructor(args: FormatterArgs) {
-    this.args = args;
+export default class PrettyFormatter {
+  options: FormatterOptions;
+  writer: BaseOutputWriter;
+
+  constructor(options: FormatterOptions) {
+    this.options = options;
+
+    this.writer = this.options.outputFile ? new BufferedWriter() : new ConsoleWriter();
   }
 
-  format(result: Log) {
-    let metaData = result.properties as CheckupMetadata;
+  format(logParser: CheckupLogParser) {
+    let metaData = logParser.metaData;
 
-    renderInfo(metaData, this.args);
-    renderLinesOfCode(metaData, this.args);
+    renderInfo(metaData, this.writer);
+    renderLinesOfCode(metaData, this.writer);
 
-    result.runs.forEach((run: Run) => {
-      this.renderTaskResults(run.results);
-      run.invocations?.forEach((invocation: Invocation) => {
-        this.renderErrors(invocation.toolExecutionNotifications);
-      });
-    });
+    this.renderTaskResults(logParser.resultsByRule);
+    this.renderErrors(logParser.exceptions);
 
-    renderActions(result.properties?.actions, this.args);
+    renderActions(logParser.actions, this.writer);
 
     if (process.env.CHECKUP_TIMING === '1') {
-      this.renderTimings(result.properties?.timings);
+      this.renderTimings(logParser.timings);
     }
 
-    renderCLIInfo(metaData, this.args);
+    renderCLIInfo(metaData, this.writer);
 
-    if (this.args.outputFile) {
-      writeResultFile(this.args.writer.outputString, this.args.cwd, this.args.outputFile);
+    if (this.options.outputFile) {
+      writeResultFile(
+        (<BufferedWriter>this.writer).buffer,
+        this.options.cwd,
+        this.options.outputFile
+      );
     }
   }
 
-  renderTaskResults(pluginTaskResults: Result[] | undefined): void {
+  renderTaskResults(resultsByRule: Map<string, RuleResults> | undefined): void {
     let currentCategory = '';
 
-    if (pluginTaskResults) {
-      let groupedTaskResults = groupDataByField(pluginTaskResults, 'ruleId');
+    if (resultsByRule) {
+      resultsByRule.forEach(({ rule, results }) => {
+        let category = rule.properties?.category;
 
-      groupedTaskResults?.forEach((taskResultGroup: Result[]) => {
-        let taskCategory = taskResultGroup[0].properties?.category;
-
-        if (taskCategory !== currentCategory) {
-          this.args.writer.categoryHeader(startCase(taskCategory));
-          currentCategory = taskCategory;
+        if (category !== currentCategory) {
+          this.writer.categoryHeader(startCase(category));
+          currentCategory = category;
         }
 
-        let reporter = this.getTaskReporter(taskResultGroup);
+        let reporter = this.getTaskReporter(rule.id);
 
-        reporter(taskResultGroup, this.args);
+        reporter(results, this.writer);
       });
     }
-    this.args.writer.blankLine();
+    this.writer.blankLine();
   }
 
-  getTaskReporter(taskResult: Result[]) {
-    let taskName = taskResult[0].ruleId as string;
+  getTaskReporter(taskName: string) {
     let registeredTaskReporters = getRegisteredTaskReporters();
     let reporter = registeredTaskReporters.get(taskName) || this.getReportComponent.bind(this);
 
@@ -85,19 +88,18 @@ export default class PrettyFormatter {
   getReportComponent(taskResults: Result[]) {
     const groupedTaskResults = reduceResults(groupDataByField(taskResults, 'message.text'));
 
-    this.args.writer.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
-      const totalResults = sumOccurrences(groupedTaskResults);
-      const numberOfBulletPoints = groupedTaskResults.length;
+    this.writer.section(groupedTaskResults[0].properties?.taskDisplayName, () => {
+      const totalResults = groupedTaskResults.length;
 
-      if (numberOfBulletPoints > 1) {
-        this.args.writer.log(`Total: ${totalResults}`);
+      if (totalResults > 1) {
+        this.writer.log(`Total: ${totalResults}`);
       }
 
       groupedTaskResults.forEach((result) => {
-        if (result.message.text === NO_RESULTS_FOUND) {
+        if (result.message.text === 'No results found') {
           renderEmptyResult(result);
         } else {
-          this.args.writer.value({
+          this.writer.value({
             title: result.message.text || (result.ruleId as string),
             count: result?.occurrenceCount || Number.NaN,
           });
@@ -108,11 +110,11 @@ export default class PrettyFormatter {
 
   renderErrors(notifications: Notification[] | undefined) {
     if (notifications && notifications.length > 0) {
-      this.args.writer.table(
+      this.writer.table(
         notifications.map((notification) => {
           return [
             notification.associatedRule?.id as string,
-            cleanStack(notification.properties?.fullError || ''),
+            cleanStack(notification.exception?.stack?.frames.join('\n') || ''),
           ];
         }),
         ['Task Name', 'Error']
@@ -123,9 +125,9 @@ export default class PrettyFormatter {
   renderTimings(timings: Record<string, number>) {
     let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
 
-    this.args.writer.categoryHeader('Task Timings');
+    this.writer.categoryHeader('Task Timings');
 
-    this.args.writer.table(
+    this.writer.table(
       Object.keys(timings)
         .map((taskName) => [
           taskName,
@@ -136,6 +138,6 @@ export default class PrettyFormatter {
       ['Task Name', 'Time (sec)', 'Relative']
     );
 
-    this.args.writer.blankLine();
+    this.writer.blankLine();
   }
 }

@@ -4,31 +4,33 @@ import {
   OutputFormat,
   ErrorKind,
   CheckupError,
-  ConsoleWriter,
+  CheckupLogParser,
   FormatterOptions,
+  FormatterCtor,
 } from '@checkup/core';
-import PrettyFormatter from './pretty';
+import { Log } from 'sarif';
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
 export function getFormatter(options: FormatterOptions) {
   let mergedOptions = Object.assign(
     {},
-    { format: 'summary', writer: new ConsoleWriter(options.outputFile ? 'file' : 'console') },
+    {
+      format: 'summary',
+    },
     options
   );
+  let Formatter: FormatterCtor;
 
   switch (mergedOptions.format) {
     case OutputFormat.summary: {
-      return new SummaryFormatter(mergedOptions);
-    }
-
-    case OutputFormat.pretty: {
-      return new PrettyFormatter(mergedOptions);
+      Formatter = SummaryFormatter;
+      break;
     }
 
     case OutputFormat.json: {
-      return new JsonFormatter(mergedOptions);
+      Formatter = JsonFormatter;
+      break;
     }
     default: {
       try {
@@ -36,7 +38,8 @@ export function getFormatter(options: FormatterOptions) {
           options.format
         );
 
-        return new CustomFormatter(mergedOptions);
+        Formatter = CustomFormatter;
+        break;
       } catch {
         throw new CheckupError(ErrorKind.FormatterNotFound, {
           format: mergedOptions.format,
@@ -45,4 +48,13 @@ export function getFormatter(options: FormatterOptions) {
       }
     }
   }
+
+  return {
+    format(log: Log) {
+      let formatter = new Formatter(mergedOptions);
+      let logParser = new CheckupLogParser(log);
+
+      return formatter.format(logParser);
+    },
+  };
 }

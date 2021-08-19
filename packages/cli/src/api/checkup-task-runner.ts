@@ -26,7 +26,6 @@ import * as resolve from 'resolve';
 import { Log, Result } from 'sarif';
 
 import { PackageJson } from 'type-fest';
-import { getLog } from '../get-log';
 import TaskListImpl from '../task-list';
 import PluginRegistrationProvider from './registration-provider';
 export default class CheckupTaskRunner {
@@ -78,12 +77,8 @@ export default class CheckupTaskRunner {
     this.pkg = getPackageJson(this.options.cwd);
     this.pkgSource = getPackageJsonSource(this.options.cwd);
     this.logBuilder = new CheckupLogBuilder({
-      packageName: this.pkg.name || '',
-      packageVersion: this.pkg.version || '',
-      config: this.config,
+      analyzedPackageJson: this.pkg,
       options: this.options,
-      actions: this.actions,
-      errors: this.taskErrors,
     });
 
     this.debug('options %O', this.options);
@@ -96,20 +91,14 @@ export default class CheckupTaskRunner {
     await this.runTasks();
     await this.runActions();
 
-    // TODO: This mechanism for getting a sarif log will change, and will
-    // instead be encapsulated in the SarifBuilder.
-    let log: Log = await getLog(
-      this.options,
-      this.taskContext,
-      this.taskResults,
-      this.actions,
-      this.taskErrors,
-      this.tasks,
-      this.executedTasks,
-      this.startTime
-    );
+    await this.logBuilder.annotate({
+      config: this.config,
+      actions: this.actions,
+      errors: this.taskErrors,
+      timings: this.tasks.timings,
+    });
 
-    return log;
+    return this.logBuilder.log;
   }
 
   async getAvailableTasks() {
@@ -215,7 +204,6 @@ export default class CheckupTaskRunner {
 
   private async loadFromPlugin(registrationArgs: RegistrationArgs) {
     let pluginBaseDir = this.options.pluginBaseDir || this.options.cwd;
-
     for (let pluginName of this.config.plugins) {
       let pluginDir;
 

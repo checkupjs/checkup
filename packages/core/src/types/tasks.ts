@@ -2,8 +2,9 @@ import { PackageJson, SetOptional } from 'type-fest';
 import { PropertyBag, ReportingDescriptor, Result } from 'sarif';
 import { FilePathArray } from '../utils/file-path-array';
 import CheckupLogBuilder from '../data/checkup-log-builder';
+import BaseOutputWriter from '../utils/base-output-writer';
 import { CheckupConfig, TaskConfig } from './config';
-import { RunOptions, FormatterArgs } from './cli';
+import { RunOptions } from './cli';
 import { RequiredResult } from './checkup-log';
 
 export type RegisterTaskArgs = {
@@ -13,7 +14,7 @@ export type RegisterTaskArgs = {
 
 export type TaskActionsEvaluator = (taskResults: Result[], taskConfig: TaskConfig) => Action[];
 
-export type TaskFormatter = (taskResults: Result[], args: FormatterArgs) => void;
+export type TaskFormatter = (taskResults: Result[], writer: BaseOutputWriter) => void;
 
 interface TaskList {
   registerTask(task: Task): void;

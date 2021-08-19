@@ -8,19 +8,18 @@
   "plugins": ["@typescript-eslint", "filenames", "jest", "import", "prettier"],
   "extends": [
     "eslint:recommended",
-    "prettier",
-    "prettier/@typescript-eslint",
     "plugin:jest/recommended",
     "plugin:jest/style",
     "plugin:node/recommended",
     "plugin:unicorn/recommended",
     "plugin:import/errors",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "prettier",
+    "prettier/@typescript-eslint"
   ],
   "settings": {
     "node": {
-      "tryExtensions": [".js", ".json", ".d.ts", ".ts"],
-
+      "tryExtensions": [".js", ".json", ".d.ts", ".ts", ".tsx"],
       "convertPath": [
         {
           "include": ["packages/**/src/**/*.ts"],
@@ -59,13 +58,19 @@
     "node/no-missing-import": [
       "error",
       {
-        "allowModules": ["@checkup/core", "@checkup/test-helpers", "sarif"]
+        "allowModules": ["@checkup/core", "@checkup/test-helpers", "sarif", "ink-testing-library"]
+      }
+    ],
+    "node/no-unpublished-import": [
+      "error",
+      {
+        "allowModules": ["ink-testing-library"]
       }
     ],
     "import/no-unresolved": [
       "error",
       {
-        "ignore": ["sarif"]
+        "ignore": ["sarif", "ink-testing-library"]
       }
     ],
     "import/order": "error"
@@ -124,5 +129,9 @@
         "node/no-extraneous-import": "off"
       }
     }
-  ]
+  ],
+  "globals": {
+    "React": true,
+    "JSX": true
+  }
 }

@@ -1,4 +1,4 @@
-import { ConsoleWriter } from '../utils/console-writer';
+import CheckupLogParser from '../data/checkup-log-parser';
 import {
   Task,
   TaskContext,
@@ -39,7 +39,16 @@ export interface RegistrationProviderOptions {
   registeredTasks: RegisterableTaskList;
 }
 export interface RegisterableTaskList {
+  timings: Record<TaskName, number>;
   registerTask(task: Task): void;
+}
+
+export interface Formatter {
+  format(logParser: CheckupLogParser): void;
+}
+
+export interface FormatterCtor {
+  new (options: FormatterOptions): Formatter;
 }
 
 export interface FormatterOptions {
@@ -47,5 +56,3 @@ export interface FormatterOptions {
   format: OutputFormat;
   outputFile?: string;
 }
-
-export type FormatterArgs = FormatterOptions & { writer: ConsoleWriter };

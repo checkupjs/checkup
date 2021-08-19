@@ -1,37 +1,41 @@
-import { CheckupMetadata, FormatterArgs } from '@checkup/core';
-import { Log } from 'sarif';
+import { CheckupLogParser, ConsoleWriter, Formatter, FormatterOptions } from '@checkup/core';
 import { success } from 'log-symbols';
-import { renderActions, renderCLIInfo, renderInfo } from './formatter-utils';
+import { yellow } from 'chalk';
+import { Log } from 'sarif';
 import { writeResultFile } from './file-writer';
+import BaseFormatter from './base-formatter';
 
-export default class SummaryFormatter {
-  args: FormatterArgs;
+export default class SummaryFormatter extends BaseFormatter<ConsoleWriter> implements Formatter {
+  constructor(options: FormatterOptions) {
+    super(options);
 
-  constructor(args: FormatterArgs) {
-    this.args = args;
+    this.writer = new ConsoleWriter();
   }
 
-  format(result: Log) {
-    let { rules } = result.runs[0].tool.driver;
-    let metaData = result.properties as CheckupMetadata;
+  format(logParser: CheckupLogParser) {
+    let { rules, metaData, log, actions } = logParser;
 
-    renderInfo(metaData, this.args);
+    this.renderMetadata(metaData);
+    this.writer.log('Checkup ran the following task(s) successfully:');
 
-    this.args.writer.log('Checkup ran the following task(s) successfully:');
-
-    rules!
+    rules
       .map((rule) => rule.id)
       .sort()
       .forEach((taskName) => {
-        this.args.writer.log(`${success} ${taskName}`);
+        this.writer.log(`${success} ${taskName}`);
       });
 
-    writeResultFile(result, this.args.cwd, this.args.outputFile);
+    this.writeResultsToFile(log);
+    this.renderActions(actions);
+    this.writer.blankLine();
+    this.renderCLIInfo(metaData);
+  }
 
-    renderActions(result.properties?.actions, this.args);
+  writeResultsToFile(log: Log) {
+    let resultsFilePath = writeResultFile(log, this.options.cwd, this.options.outputFile);
 
-    this.args.writer.blankLine();
-
-    renderCLIInfo(metaData, this.args);
+    this.writer.blankLine();
+    this.writer.log('Results have been saved to the following file:');
+    this.writer.log(yellow(resultsFilePath));
   }
 }

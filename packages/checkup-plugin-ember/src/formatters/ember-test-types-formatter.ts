@@ -1,25 +1,24 @@
 import {
-  FormatterArgs,
+  BaseOutputWriter,
   groupDataByField,
-  NO_RESULTS_FOUND,
   reduceResults,
   renderEmptyResult,
   sumOccurrences,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
-export function format(taskResults: Result[], args: FormatterArgs) {
+export function format(taskResults: Result[], writer: BaseOutputWriter) {
   let groupedTaskResults = groupDataByField(taskResults, 'message.text');
 
-  args.writer.section(taskResults[0].properties?.taskDisplayName, () => {
+  writer.section(taskResults[0].properties?.taskDisplayName, () => {
     groupedTaskResults.forEach((resultGroup: Result[]) => {
       let groupedTaskResultsByMethod = reduceResults(
         groupDataByField(resultGroup, 'properties.method')
       );
-      args.writer.subHeader(groupedTaskResultsByMethod[0].message.text as string);
-      args.writer.valuesList(
+      writer.subHeader(groupedTaskResultsByMethod[0].message.text as string);
+      writer.valuesList(
         groupedTaskResultsByMethod.map((result) => {
-          return result.message.text === NO_RESULTS_FOUND
+          return result.message.text === 'No results found'
             ? renderEmptyResult(result)
             : {
                 title: result.properties?.method as string,
@@ -27,11 +26,11 @@ export function format(taskResults: Result[], args: FormatterArgs) {
               };
         })
       );
-      args.writer.blankLine();
+      writer.blankLine();
     });
 
-    args.writer.subHeader('tests by type');
-    args.writer.sectionedBar(
+    writer.subHeader('tests by type');
+    writer.sectionedBar(
       groupedTaskResults.map((results: Result[]) => {
         return {
           title: results[0].message.text || '',

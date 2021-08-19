@@ -5,6 +5,13 @@ import { CONFIG_SCHEMA_URL } from '../../src/config';
 import CheckupLogBuilder from '../../src/data/checkup-log-builder';
 import { CheckupLogBuilderArgs } from '../../src/types/checkup-log';
 
+const DEFAULT_CONFIG = {
+  $schema: CONFIG_SCHEMA_URL,
+  excludePaths: [],
+  plugins: [],
+  tasks: {},
+};
+
 describe('checkup-log-builder-test', () => {
   let tmp: string;
 
@@ -18,9 +25,17 @@ describe('checkup-log-builder-test', () => {
   });
 
   it('builds a default Checkup log', async () => {
-    let builder = getCheckupLogBuilder({ options: { cwd: tmp } });
+    let builder = getCheckupLogBuilder({
+      options: { cwd: tmp },
+      analyzedPackageJson: { name: 'fake-package', version: '0.0.0' },
+    });
 
-    await builder.annotate();
+    await builder.annotate({
+      config: DEFAULT_CONFIG,
+      actions: [],
+      errors: [],
+      timings: {},
+    });
 
     // arguments are non-deterministic, so we nuke them
     builder.currentRunBuilder.currentInvocation.arguments = [];
@@ -45,32 +60,35 @@ describe('checkup-log-builder-test', () => {
                 "language": "en-US",
                 "name": "checkup",
                 "properties": Object {
-                  "analyzedFiles": FilePathArray [],
-                  "analyzedFilesCount": 0,
-                  "cli": Object {
-                    "config": Object {
-                      "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-                      "excludePaths": Array [],
-                      "plugins": Array [],
-                      "tasks": Object {},
-                    },
-                    "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
-                    "schema": 1,
-                    "version": "0.0.0",
-                  },
-                  "project": Object {
-                    "name": "fake-package",
-                    "repository": Object {
-                      "activeDays": "0 days",
-                      "age": "0 days",
-                      "linesOfCode": Object {
-                        "total": 0,
-                        "types": Array [],
+                  "checkup": Object {
+                    "analyzedFiles": FilePathArray [],
+                    "analyzedFilesCount": 0,
+                    "cli": Object {
+                      "config": Object {
+                        "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+                        "excludePaths": Array [],
+                        "plugins": Array [],
+                        "tasks": Object {},
                       },
-                      "totalCommits": 0,
-                      "totalFiles": 0,
+                      "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
+                      "schema": 1,
+                      "version": "0.0.0",
                     },
-                    "version": "0.0.0",
+                    "project": Object {
+                      "name": "fake-package",
+                      "repository": Object {
+                        "activeDays": "0 days",
+                        "age": "0 days",
+                        "linesOfCode": Object {
+                          "total": 0,
+                          "types": Array [],
+                        },
+                        "totalCommits": 0,
+                        "totalFiles": 0,
+                      },
+                      "version": "0.0.0",
+                    },
+                    "timings": Object {},
                   },
                 },
                 "rules": Array [],
@@ -89,14 +107,7 @@ function getCheckupLogBuilder(args: Partial<CheckupLogBuilderArgs> = {}) {
   let defaults: CheckupLogBuilderArgs = Object.assign(
     {},
     {
-      packageName: 'fake-package',
-      packageVersion: '0.0.0',
-      config: {
-        $schema: CONFIG_SCHEMA_URL,
-        excludePaths: [],
-        plugins: [],
-        tasks: {},
-      },
+      analyzedPackageJson: {},
       options: {
         paths: ['.'],
         config: undefined,
@@ -107,8 +118,6 @@ function getCheckupLogBuilder(args: Partial<CheckupLogBuilderArgs> = {}) {
         tasks: undefined,
         listTasks: false,
       },
-      actions: [],
-      errors: [],
     },
     args
   );

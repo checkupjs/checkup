@@ -35,7 +35,9 @@ export { default as DependencyAnalyzer } from './analyzers/dependency-analyzer';
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
 export { exec } from './utils/exec';
-export { ConsoleWriter } from './utils/console-writer';
+export { default as ConsoleWriter } from './utils/console-writer';
+export { default as BufferedWriter } from './utils/buffered-writer';
+export { default as BaseOutputWriter } from './utils/base-output-writer';
 export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
 export { sumOccurrences, reduceResults } from './utils/sarif-utils';
@@ -47,9 +49,9 @@ export { byRuleId, byRuleIds, bySeverity } from './data/filters';
 export { toPercent, groupDataByField } from './data/formatters';
 export { trimCwd, trimAllCwd } from './data/path';
 export { lintBuilder } from './data/lint';
-export { builder as sarifBuilder, NO_RESULTS_FOUND } from './data/sarif';
 export { default as SarifLogBuilder } from './data/sarif-log-builder';
 export { default as CheckupLogBuilder } from './data/checkup-log-builder';
+export { default as CheckupLogParser } from './data/checkup-log-parser';
 
 export { todayFormat } from './today-format';
 

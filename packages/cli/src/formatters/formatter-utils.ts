@@ -1,48 +1,45 @@
-import { Action, CheckupMetadata, FormatterArgs } from '@checkup/core';
-import { yellow, bold } from 'chalk';
+import { Notification } from 'sarif';
+import { CheckupMetadata, ConsoleWriter } from '@checkup/core';
+import { yellow } from 'chalk';
 
-export function renderActions(actions: Action[], args: FormatterArgs): void {
+export function renderActions(actions: Notification[], writer: ConsoleWriter): void {
   if (actions && actions.length > 0) {
-    args.writer.categoryHeader('Actions');
-    actions.forEach((action: Action) => {
-      args.writer.log(`${yellow('■')} ${bold(action.summary)} (${action.details})`);
+    writer.categoryHeader('Actions');
+    actions.forEach((action: Notification) => {
+      writer.log(`${yellow('■')} ${action.message.text}`);
     });
-    args.writer.blankLine();
+    writer.blankLine();
   }
 }
 
-export function renderInfo(info: CheckupMetadata, args: FormatterArgs) {
-  let { analyzedFilesCount, project } = info;
+export function renderInfo(metadata: CheckupMetadata, writer: ConsoleWriter) {
+  let { analyzedFilesCount, project } = metadata;
   let { name, version, repository } = project;
 
   let analyzedFilesMessage =
     repository.totalFiles !== analyzedFilesCount
-      ? ` (${args.writer.emphasize(`${analyzedFilesCount} files`)} analyzed)`
+      ? ` (${writer.emphasize(`${analyzedFilesCount} files`)} analyzed)`
       : '';
 
-  args.writer.blankLine();
-  args.writer.log(
-    `Checkup report generated for ${args.writer.emphasize(
-      `${name} v${version}`
-    )}${analyzedFilesMessage}`
+  writer.blankLine();
+  writer.log(
+    `Checkup report generated for ${writer.emphasize(`${name} v${version}`)}${analyzedFilesMessage}`
   );
-  args.writer.blankLine();
-  args.writer.log(
-    `This project is ${args.writer.emphasize(
-      `${repository.age} old`
-    )}, with ${args.writer.emphasize(
+  writer.blankLine();
+  writer.log(
+    `This project is ${writer.emphasize(`${repository.age} old`)}, with ${writer.emphasize(
       `${repository.activeDays} active days`
-    )}, ${args.writer.emphasize(`${repository.totalCommits} commits`)} and ${args.writer.emphasize(
+    )}, ${writer.emphasize(`${repository.totalCommits} commits`)} and ${writer.emphasize(
       `${repository.totalFiles} files`
     )}.`
   );
-  args.writer.blankLine();
+  writer.blankLine();
 }
 
-export function renderLinesOfCode(info: CheckupMetadata, args: FormatterArgs) {
+export function renderLinesOfCode(info: CheckupMetadata, writer: ConsoleWriter) {
   let { repository } = info.project;
 
-  args.writer.sectionedBar(
+  writer.sectionedBar(
     repository.linesOfCode.types.map((type) => {
       return { title: type.extension, count: type.total };
     }),
@@ -50,13 +47,13 @@ export function renderLinesOfCode(info: CheckupMetadata, args: FormatterArgs) {
     'lines of code'
   );
 
-  args.writer.blankLine();
+  writer.blankLine();
 }
 
-export function renderCLIInfo(info: CheckupMetadata, args: FormatterArgs) {
-  let { version: cliVersion, configHash } = info.cli;
+export function renderCLIInfo(metadata: CheckupMetadata, writer: ConsoleWriter) {
+  let { version, configHash } = metadata.cli;
 
-  args.writer.dimmed(`checkup v${cliVersion}`);
-  args.writer.dimmed(`config ${configHash}`);
-  args.writer.blankLine();
+  writer.dimmed(`checkup v${version}`);
+  writer.dimmed(`config ${configHash}`);
+  writer.blankLine();
 }

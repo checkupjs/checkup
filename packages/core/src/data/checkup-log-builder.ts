@@ -1,16 +1,23 @@
 import { StackFrame } from 'sarif';
 import * as unparse from 'yargs-unparser';
-import { getConfigHash } from '../config';
+import { DEFAULT_CONFIG, getConfigHash } from '../config';
 import { getVersion } from '../utils/get-version';
 import { getRepositoryInfo } from '../utils/repository';
 import { FilePathArray } from '../utils/file-path-array';
 import extractStack from '../utils/extract-stack';
-import { CheckupLogBuilderArgs } from '../types/checkup-log';
+import { AnnotationArgs, CheckupLogBuilderArgs } from '../types/checkup-log';
+import { CheckupConfig } from '../types/config';
+import { Action, TaskListError } from '../types/tasks';
 import SarifLogBuilder from './sarif-log-builder';
 import { trimAllCwd } from './path';
 
 export default class CheckupLogBuilder extends SarifLogBuilder {
   args: CheckupLogBuilderArgs;
+  config: CheckupConfig = DEFAULT_CONFIG;
+  actions: Action[] = [];
+  errors: TaskListError[] = [];
+  timings: Record<string, number> = {};
+
   startTime: string;
 
   constructor(args: CheckupLogBuilderArgs) {
@@ -22,7 +29,18 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
     this.addRun();
   }
 
-  async annotate() {
+  /**
+   * Annotates the log with any data that is acquired via dynamic invocations.
+   * This supplements the data acquired statically, and populated in the constructor.
+   */
+  async annotate(annotations: AnnotationArgs) {
+    ({
+      config: this.config,
+      actions: this.actions,
+      errors: this.errors,
+      timings: this.timings,
+    } = annotations);
+
     this.addInvocation({
       executionSuccessful: true,
       arguments: unparse(this.args.options),
@@ -39,31 +57,34 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
   async addCheckupMetadata() {
     let paths = this.args.paths ?? new FilePathArray();
     let cwd = this.args.options.cwd;
-    let config = this.args.config;
+    let config = this.config;
     let repositoryInfo = await getRepositoryInfo(cwd, paths);
     let analyzedFiles = trimAllCwd(paths, cwd);
 
     this.currentRunBuilder.run.tool.driver.properties = {
-      project: {
-        name: this.args.packageName || '',
-        version: this.args.packageVersion || '',
-        repository: repositoryInfo,
-      },
+      checkup: {
+        project: {
+          name: this.args.analyzedPackageJson.name || '',
+          version: this.args.analyzedPackageJson.version || '',
+          repository: repositoryInfo,
+        },
 
-      cli: {
-        configHash: getConfigHash(config),
-        config: config,
-        version: getVersion(cwd),
-        schema: 1,
-      },
+        cli: {
+          configHash: getConfigHash(config),
+          config,
+          version: getVersion(),
+          schema: 1,
+        },
 
-      analyzedFiles,
-      analyzedFilesCount: analyzedFiles.length,
+        analyzedFiles,
+        analyzedFilesCount: analyzedFiles.length,
+        timings: this.timings,
+      },
     };
   }
 
   addExecptionNotifications(): void {
-    this.args.errors.forEach((error) => {
+    this.errors.forEach((error) => {
       let stackFrames: StackFrame[] = extractStack.lines(error.error).map((line) => {
         return { module: line };
       });
@@ -85,12 +106,17 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
   }
 
   addActionNotifications(): void {
-    this.args.actions.forEach((action) => {
+    this.actions.forEach((action) => {
       this.addToolExecutionNotification({
-        message: { text: action.details },
+        message: { text: `${action.summary} (${action.details})` },
         level: 'warning',
         associatedRule: {
           id: action.taskName,
+        },
+        properties: {
+          name: action.name,
+          summary: action.summary,
+          details: action.details,
         },
       });
     });

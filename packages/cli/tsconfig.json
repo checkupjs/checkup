@@ -2,7 +2,7 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "outDir": "lib",
-    "rootDir": "src"
+    "rootDir": "src",
   },
   "references": [
     {
@@ -15,8 +15,11 @@
       "path": "../checkup-plugin-javascript"
     },
     {
+      "path": "../checkup-formatter-pretty"
+    },
+    {
       "path": "../test-helpers"
-    }
+    },
   ],
   "include": ["src/**/*"]
 }

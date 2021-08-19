@@ -9,7 +9,6 @@ import { reportAvailableTasks } from './formatters/available-tasks';
 
 export async function run(argv: string[] = process.argv.slice(2)) {
   let consoleWriter = new ConsoleWriter();
-
   let parser = yargs
     .scriptName('checkup')
     .usage(
@@ -22,7 +21,7 @@ checkup <command> [options]`
       command: 'run',
       aliases: ['r'],
       describe: 'Runs configured checkup tasks',
-      builder: (yargs) => {
+      builder: (yargs: any) => {
         return yargs.usage('checkup run [paths..] [options]').options({
           'exclude-paths': {
             alias: 'e',
