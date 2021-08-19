@@ -173,7 +173,7 @@ describe('cli-test', () => {
     unlinkSync(outputPath);
   });
 
-  it('should output a txt file in a custom directory if the pretty format and output-file options are provided', async () => {
+  it.skip('should output a txt file in a custom directory if the pretty format and output-file options are provided', async () => {
     project.symlinkPackage(
       join(__dirname, '..', '..', 'checkup-formatter-pretty'),
       join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
