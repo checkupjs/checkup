@@ -3,8 +3,6 @@ import { FC } from 'react';
 import { Box, Text, Newline } from 'ink';
 import { Result, ReportingDescriptor } from 'sarif';
 import { CheckupLogParser, CheckupMetadata } from '@checkup/core';
-// eslint-disable-next-line node/no-unpublished-import
-// import { writeResultFile } from '../../cli/src/formatters/file-writer';
 import { List } from './components/list';
 import { BarData } from './types';
 import { Bar } from './components/bar';
