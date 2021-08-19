@@ -299,7 +299,7 @@ describe.only('cli-test', () => {
     expect(result.exitCode).toEqual(0);
   });
 
-  it('should run a single task if the tasks option is specified with a single task', async () => {
+  it.only('should run a single task if the tasks option is specified with a single task', async () => {
     project.symlinkPackage(
       join(__dirname, '..', '..', 'checkup-formatter-pretty'),
       join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
@@ -328,9 +328,9 @@ describe.only('cli-test', () => {
       'checkup-formatter-pretty',
     ]);
 
-    expect(stripAnsi(result.stdout)).toMatchInlineSnapshot(`
+    expect(result.stdout).toMatchInlineSnapshot(`
       "
-      Checkup report generated for checkup-app v0.0.0  (5 files analyzed)
+      [2K[1A[2K[GCheckup report generated for checkup-app v0.0.0  (5 files analyzed)
       This project is 0 days old, with 0 days active days, 0 commits and 0 files
 
 
