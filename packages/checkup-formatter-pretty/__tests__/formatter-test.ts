@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser, FormatterOptions } from '@checkup/core';
+const stripAnsi = require('strip-ansi');
 
 enum OutputFormat {
   summary = 'summary',
@@ -22,26 +23,26 @@ describe('Test Pretty formatter', () => {
 
     const result = await formatter.format(logParser);
 
-    expect(result).toMatchInlineSnapshot(`
+    expect(stripAnsi(result)).toMatchInlineSnapshot(`
       "Checkup report generated for travis v0.0.1  (1797 files analyzed)
       This project is 9 years old, with 1448 active days, 5983 commits and 1667 files
 
 
       lines of code 101513
-      [38;2;232;92;245m■■■■■■■■■■■■■■■■■■■■■■■■■ js (49161)[39m
-      [38;2;211;226;41m■■■■■■■■■■■■ svg (24112)[39m
-      [38;2;238;228;150m■■■■■■■■ scss (14936)[39m
-      [38;2;170;221;51m■■■■■■■ hbs (12464)[39m
-      [38;2;138;136;134m■ rb (639)[39m
-      [38;2;54;62;181m■ html (201)[39m
+      ■■■■■■■■■■■■■■■■■■■■■■■■■ js (49161)
+      ■■■■■■■■■■■■ svg (24112)
+      ■■■■■■■■ scss (14936)
+      ■■■■■■■ hbs (12464)
+      ■ rb (639)
+      ■ html (201)
 
 
       === metrics
-      [1m┌[22m[1m─────────────[22m[1m┬[22m[1m───────────────[22m[1m┐[22m
-      [1m│[22m[1m[34m ruleId      [22m[39m[1m│[22m[1m[34m result(value) [22m[39m[1m│[22m
-      [1m├[22m[1m─────────────[22m[1m┼[22m[1m───────────────[22m[1m┤[22m
-      [1m│[22m ember-types [1m│[22m 810           [1m│[22m
-      [1m└[22m[1m─────────────[22m[1m┴[22m[1m───────────────[22m[1m┘[22m
+      ┌─────────────┬───────────────┐
+      │ ruleId      │ result(value) │
+      ├─────────────┼───────────────┤
+      │ ember-types │ 810           │
+      └─────────────┴───────────────┘
 
 
       checkup v1.0.0-beta.11
