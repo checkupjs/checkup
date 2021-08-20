@@ -14,12 +14,13 @@
   "dependencies": {
     "@checkup/core": "1.0.0-beta.11",
     "@types/react": "^17.0.15",
+    "events": "^3.3.0",
+    "fs-extra": "^10.0.0",
     "ink": "^3.0.9",
     "ink-table": "^3.0.0",
     "ink-task-list": "^1.1.0",
     "react": "^17.0.2",
-    "strip-ansi": "^6.0.0",
-    "fs-extra": "^10.0.0"
+    "strip-ansi": "^6.0.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.12",
