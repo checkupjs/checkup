@@ -34,6 +34,7 @@ class PrettyFormatter implements Formatter {
   format(logParser: CheckupLogParser) {
     const stdout = new Stdout();
     console.log('Before render:', stdout);
+    console.log('render function from ink:', render.toString());
     render(React.createElement(pretty, { logParser }), { stdout: stdout as any });
     console.log('After render:', stdout);
     return stdout.lastFrame();
