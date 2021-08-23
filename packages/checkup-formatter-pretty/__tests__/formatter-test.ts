@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser, FormatterOptions } from '@checkup/core';
 import PrettyFormatter from '../src/index';
+const console = require('console');
 const stripAnsi = require('strip-ansi');
 
 enum OutputFormat {
@@ -22,6 +23,9 @@ describe('Test Pretty formatter', () => {
     let formatter = new PrettyFormatter(options);
 
     const result = formatter.format(logParser);
+
+    console.log('!!!!!');
+    console.log('result:', result);
 
     expect(stripAnsi(result)).toMatchInlineSnapshot(`
       "Checkup report generated for travis v0.0.1  (1797 files analyzed)

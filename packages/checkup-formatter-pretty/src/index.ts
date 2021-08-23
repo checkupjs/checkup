@@ -2,8 +2,8 @@ import { EventEmitter } from 'events';
 import * as React from 'react';
 import { render } from 'ink';
 import { CheckupLogParser, Formatter, FormatterOptions } from '@checkup/core';
-
 import { default as pretty } from './pretty-formatter';
+const console = require('console');
 
 class Stdout extends EventEmitter {
   get columns() {
@@ -33,6 +33,7 @@ class PrettyFormatter implements Formatter {
   format(logParser: CheckupLogParser) {
     const stdout = new Stdout();
     render(React.createElement(pretty, { logParser }), { stdout: stdout as any });
+    console.log('lastFrame:', stdout.lastFrame());
     return stdout.lastFrame();
   }
 }
