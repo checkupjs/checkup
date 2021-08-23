@@ -1,8 +1,9 @@
 import { EventEmitter } from 'events';
 import * as React from 'react';
 import { render } from 'ink';
-import { CheckupLogParser, Formatter, FormatterOptions } from '@checkup/core';
+import { CheckupLogParser, Formatter } from '@checkup/core';
 import { default as pretty } from './pretty-formatter';
+import { Options } from './types';
 const console = require('console');
 
 class Stdout extends EventEmitter {
@@ -24,9 +25,9 @@ class Stdout extends EventEmitter {
 }
 
 class PrettyFormatter implements Formatter {
-  options: FormatterOptions;
+  options: Options;
 
-  constructor(options: FormatterOptions) {
+  constructor(options: Options) {
     this.options = options;
   }
 

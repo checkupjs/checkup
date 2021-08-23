@@ -3,3 +3,9 @@ export interface BarData {
   value: number;
   total: number;
 }
+
+export interface Options {
+  cwd: string;
+  format: string;
+  outputFile?: string;
+}

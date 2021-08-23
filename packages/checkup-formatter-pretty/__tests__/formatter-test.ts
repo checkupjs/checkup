@@ -1,22 +1,17 @@
 import { resolve } from 'path';
 import { readJsonSync } from 'fs-extra';
-import { CheckupLogParser, FormatterOptions } from '@checkup/core';
+import { CheckupLogParser } from '@checkup/core';
 import PrettyFormatter from '../src/index';
+import { Options } from '../src/types';
 const stripAnsi = require('strip-ansi');
-
-enum OutputFormat {
-  summary = 'summary',
-  json = 'json',
-  pretty = 'pretty',
-}
 
 describe('Test Pretty formatter', () => {
   it('can generate string from format', async () => {
     const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
-    const options: FormatterOptions = {
+    const options: Options = {
       cwd: '',
-      format: OutputFormat.pretty,
+      format: 'checkup-formatter-pretty',
     };
 
     let formatter = new PrettyFormatter(options);
