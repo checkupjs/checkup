@@ -31,3 +31,5 @@ jobs:
         run: yarn build
       - name: test
         run: yarn test
+        env:
+          ACTIONS_STEP_DEBUG: true

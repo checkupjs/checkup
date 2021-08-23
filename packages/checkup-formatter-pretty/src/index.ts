@@ -37,4 +37,4 @@ class PrettyFormatter implements Formatter {
   }
 }
 
-export = PrettyFormatter;
+export default PrettyFormatter;
