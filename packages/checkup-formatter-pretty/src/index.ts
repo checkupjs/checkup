@@ -3,6 +3,7 @@ import * as React from 'react';
 import { render as inkRender } from 'ink';
 import { Instance as InkInstance } from 'ink';
 import { ReactElement } from 'react';
+import { render as inkTestRender } from 'ink-testing-library';
 import { CheckupLogParser, Formatter } from '@checkup/core';
 import { default as pretty } from './pretty-formatter';
 import { Options } from './types';
@@ -13,15 +14,9 @@ interface Instance {
 }
 
 class Stdout extends EventEmitter {
-  get columns() {
-    return 100;
-  }
-
-  readonly frames: string[] = [];
   private _lastFrame?: string;
 
   write = (frame: string) => {
-    this.frames.push(frame);
     this._lastFrame = frame;
   };
 
@@ -35,12 +30,11 @@ const instances: InkInstance[] = [];
 const render = (tree: ReactElement): Instance => {
   const stdout = new Stdout();
   const instance = inkRender(tree, { stdout: stdout as any });
-
+  // console.log('In render function: instance:', instance);
+  // console.log('In render function: stdout:', stdout);
   instances.push(instance);
 
-  return {
-    stdout,
-  };
+  return { stdout };
 };
 
 class PrettyFormatter implements Formatter {
@@ -52,8 +46,14 @@ class PrettyFormatter implements Formatter {
 
   format(logParser: CheckupLogParser) {
     const { stdout } = render(React.createElement(pretty, { logParser }));
-    console.log('After render:', stdout);
+    // console.log('After render:', stdout);
     return stdout.lastFrame();
+  }
+
+  testRender(logParser: CheckupLogParser) {
+    const { lastFrame } = inkTestRender(React.createElement(pretty, { logParser }));
+    const result = lastFrame();
+    return result;
   }
 }
 
