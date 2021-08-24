@@ -1,10 +1,16 @@
 import { EventEmitter } from 'events';
 import * as React from 'react';
-import { render } from 'ink';
+import { render as inkRender } from 'ink';
+import { Instance as InkInstance } from 'ink';
+import { ReactElement } from 'react';
 import { CheckupLogParser, Formatter } from '@checkup/core';
 import { default as pretty } from './pretty-formatter';
 import { Options } from './types';
 const console = require('console');
+
+interface Instance {
+  stdout: Stdout;
+}
 
 class Stdout extends EventEmitter {
   get columns() {
@@ -24,6 +30,19 @@ class Stdout extends EventEmitter {
   };
 }
 
+const instances: InkInstance[] = [];
+
+const render = (tree: ReactElement): Instance => {
+  const stdout = new Stdout();
+  const instance = inkRender(tree, { stdout: stdout as any });
+
+  instances.push(instance);
+
+  return {
+    stdout,
+  };
+};
+
 class PrettyFormatter implements Formatter {
   options: Options;
 
@@ -32,10 +51,7 @@ class PrettyFormatter implements Formatter {
   }
 
   format(logParser: CheckupLogParser) {
-    const stdout = new Stdout();
-    console.log('Before render:', stdout);
-    console.log('render function from ink:', render.toString());
-    render(React.createElement(pretty, { logParser }), { stdout: stdout as any });
+    const { stdout } = render(React.createElement(pretty, { logParser }));
     console.log('After render:', stdout);
     return stdout.lastFrame();
   }
