@@ -22,19 +22,19 @@ class Stdout extends EventEmitter {
   };
 }
 
-class Stderr extends EventEmitter {
-  readonly frames: string[] = [];
-  private _lastFrame?: string;
+// class Stderr extends EventEmitter {
+//   readonly frames: string[] = [];
+//   private _lastFrame?: string;
 
-  write = (frame: string) => {
-    this.frames.push(frame);
-    this._lastFrame = frame;
-  };
+//   write = (frame: string) => {
+//     this.frames.push(frame);
+//     this._lastFrame = frame;
+//   };
 
-  lastFrame = () => {
-    return this._lastFrame;
-  };
-}
+//   lastFrame = () => {
+//     return this._lastFrame;
+//   };
+// }
 
 // class Stdin extends EventEmitter {
 //   isTTY = true;
@@ -65,7 +65,7 @@ interface Instance {
   unmount: () => void;
   cleanup: () => void;
   stdout: Stdout;
-  stderr: Stderr;
+  // stderr: Stderr;
   // stdin: Stdin;
   frames: string[];
   lastFrame: () => string | undefined;
@@ -75,12 +75,12 @@ const instances: InkInstance[] = [];
 
 export const render = (tree: ReactElement): Instance => {
   const stdout = new Stdout();
-  const stderr = new Stderr();
+  // const stderr = new Stderr();
   // const stdin = new Stdin();
 
   const instance = inkRender(tree, {
     stdout: stdout as any,
-    stderr: stderr as any,
+    // stderr: stderr as any,
     // stdin: stdin as any,
     debug: true,
     exitOnCtrlC: false,
@@ -94,7 +94,7 @@ export const render = (tree: ReactElement): Instance => {
     unmount: instance.unmount,
     cleanup: instance.cleanup,
     stdout,
-    stderr,
+    // stderr,
     // stdin,
     frames: stdout.frames,
     lastFrame: stdout.lastFrame,
