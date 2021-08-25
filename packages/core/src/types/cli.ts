@@ -1,5 +1,12 @@
 import CheckupLogParser from '../data/checkup-log-parser';
-import { Task, TaskContext, TaskName, TaskActionsEvaluator, TaskFormatter } from './tasks';
+import {
+  Task,
+  TaskContext,
+  TaskName,
+  TaskActionsEvaluator,
+  TaskFormatter,
+  OutputFormat,
+} from './tasks';
 import { CheckupConfig } from './config';
 
 export type RunOptions = {
@@ -46,6 +53,6 @@ export interface FormatterCtor {
 
 export interface FormatterOptions {
   cwd: string;
-  format: string;
+  format: OutputFormat | string;
   outputFile?: string;
 }
