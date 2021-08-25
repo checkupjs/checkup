@@ -9,10 +9,6 @@ import { Options } from './types';
 import { default as pretty } from './pretty-formatter';
 
 class Stdout extends EventEmitter {
-  get columns() {
-    return 100;
-  }
-
   readonly frames: string[] = [];
   private _lastFrame?: string;
 
@@ -40,29 +36,29 @@ class Stderr extends EventEmitter {
   };
 }
 
-class Stdin extends EventEmitter {
-  isTTY = true;
+// class Stdin extends EventEmitter {
+//   isTTY = true;
 
-  write = (data: string) => {
-    this.emit('data', data);
-  };
+//   write = (data: string) => {
+//     this.emit('data', data);
+//   };
 
-  setEncoding() {
-    // Do nothing
-  }
+//   setEncoding() {
+//     // Do nothing
+//   }
 
-  setRawMode() {
-    // Do nothing
-  }
+//   setRawMode() {
+//     // Do nothing
+//   }
 
-  resume() {
-    // Do nothing
-  }
+//   resume() {
+//     // Do nothing
+//   }
 
-  pause() {
-    // Do nothing
-  }
-}
+//   pause() {
+//     // Do nothing
+//   }
+// }
 
 interface Instance {
   rerender: (tree: ReactElement) => void;
@@ -70,7 +66,7 @@ interface Instance {
   cleanup: () => void;
   stdout: Stdout;
   stderr: Stderr;
-  stdin: Stdin;
+  // stdin: Stdin;
   frames: string[];
   lastFrame: () => string | undefined;
 }
@@ -80,12 +76,12 @@ const instances: InkInstance[] = [];
 export const render = (tree: ReactElement): Instance => {
   const stdout = new Stdout();
   const stderr = new Stderr();
-  const stdin = new Stdin();
+  // const stdin = new Stdin();
 
   const instance = inkRender(tree, {
     stdout: stdout as any,
     stderr: stderr as any,
-    stdin: stdin as any,
+    // stdin: stdin as any,
     debug: true,
     exitOnCtrlC: false,
     patchConsole: false,
@@ -99,7 +95,7 @@ export const render = (tree: ReactElement): Instance => {
     cleanup: instance.cleanup,
     stdout,
     stderr,
-    stdin,
+    // stdin,
     frames: stdout.frames,
     lastFrame: stdout.lastFrame,
   };
