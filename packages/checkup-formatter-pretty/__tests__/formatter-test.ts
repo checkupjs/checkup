@@ -41,7 +41,8 @@ describe('Test Pretty formatter', () => {
 
 
       checkup v1.0.0-beta.11
-      config 7bca477eada135bcfae0876e271fff89"
+      config 7bca477eada135bcfae0876e271fff89
+      "
     `);
   });
 });

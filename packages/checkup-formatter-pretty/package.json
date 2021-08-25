@@ -17,6 +17,7 @@
     "events": "^3.3.0",
     "fs-extra": "^10.0.0",
     "ink": "^3.0.9",
+    "ink-render-string": "^0.0.4",
     "ink-table": "^3.0.0",
     "ink-task-list": "^1.1.0",
     "react": "^17.0.2",
