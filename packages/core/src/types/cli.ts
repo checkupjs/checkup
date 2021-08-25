@@ -1,12 +1,5 @@
 import CheckupLogParser from '../data/checkup-log-parser';
-import {
-  Task,
-  TaskContext,
-  TaskName,
-  TaskActionsEvaluator,
-  TaskFormatter,
-  OutputFormat,
-} from './tasks';
+import { Task, TaskContext, TaskName, TaskActionsEvaluator, TaskFormatter } from './tasks';
 import { CheckupConfig } from './config';
 
 export type RunOptions = {
