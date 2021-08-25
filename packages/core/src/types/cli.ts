@@ -53,6 +53,6 @@ export interface FormatterCtor {
 
 export interface FormatterOptions {
   cwd: string;
-  format: OutputFormat;
+  format: string;
   outputFile?: string;
 }

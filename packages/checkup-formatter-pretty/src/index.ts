@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { render } from 'ink-render-string';
-import { CheckupLogParser, Formatter } from '@checkup/core';
-import { Options } from './types';
+import { CheckupLogParser, Formatter, FormatterOptions } from '@checkup/core';
 import { default as pretty } from './pretty-formatter';
 
 class PrettyFormatter implements Formatter {
-  options: Options;
+  options: FormatterOptions;
 
-  constructor(options: Options) {
+  constructor(options: FormatterOptions) {
     this.options = options;
   }
 
