@@ -3,7 +3,6 @@ import * as React from 'react';
 // import { render } from 'ink-render-string';
 import { CheckupLogParser, Formatter } from '@checkup/core';
 import { render as inkRender } from 'ink';
-// import { Instance as InkInstance } from 'ink';
 import { ReactElement } from 'react';
 import { Options } from './types';
 import { default as pretty } from './pretty-formatter';
@@ -22,19 +21,15 @@ class Stdout extends EventEmitter {
   };
 }
 
-// const instances: InkInstance[] = [];
-
 export const render = (tree: ReactElement): string => {
   const stdout = new Stdout();
 
   inkRender(tree, {
     stdout: stdout as any,
-    debug: true,
-    exitOnCtrlC: false,
-    patchConsole: false,
+    // debug: true,
+    // exitOnCtrlC: false,
+    // patchConsole: false,
   });
-
-  // instances.push(instance);
 
   return stdout.lastFrame() || 'stdout.lastFrame() is undefined';
 };
