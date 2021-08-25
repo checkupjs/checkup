@@ -22,24 +22,19 @@ class Stdout extends EventEmitter {
   };
 }
 
-interface Instance {
-  // rerender: (tree: ReactElement) => void;
-  // unmount: () => void;
-  // cleanup: () => void;
-  stdout: Stdout;
-  frames: string[];
-  lastFrame: () => string | undefined;
-}
+// interface Instance {
+//   // stdout: Stdout;
+//   // frames: string[];
+//   lastFrame: () => string | undefined;
+// }
 
 const instances: InkInstance[] = [];
 
-export const render = (tree: ReactElement): Instance => {
+export const render = (tree: ReactElement): string => {
   const stdout = new Stdout();
 
   const instance = inkRender(tree, {
     stdout: stdout as any,
-    // stderr: stderr as any,
-    // stdin: stdin as any,
     debug: true,
     exitOnCtrlC: false,
     patchConsole: false,
@@ -47,16 +42,7 @@ export const render = (tree: ReactElement): Instance => {
 
   instances.push(instance);
 
-  return {
-    // rerender: instance.rerender,
-    // unmount: instance.unmount,
-    // cleanup: instance.cleanup,
-    stdout,
-    // stderr,
-    // stdin,
-    frames: stdout.frames,
-    lastFrame: stdout.lastFrame,
-  };
+  return stdout.lastFrame() || 'stdout.lastFrame() is undefined';
 };
 
 class PrettyFormatter implements Formatter {
@@ -67,9 +53,9 @@ class PrettyFormatter implements Formatter {
   }
 
   format(logParser: CheckupLogParser): string {
-    const { stdout } = render(React.createElement(pretty, { logParser }));
+    const result = render(React.createElement(pretty, { logParser }));
 
-    return stdout.lastFrame() || 'stdout.lastFrame() is undefined';
+    return result;
   }
 }
 
