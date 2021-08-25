@@ -18,31 +18,6 @@ describe('Test Pretty formatter', () => {
 
     const result = formatter.format(logParser);
 
-    expect(stripAnsi(result)).toMatchInlineSnapshot(`
-      "Checkup report generated for travis v0.0.1  (1797 files analyzed)
-      This project is 9 years old, with 1448 active days, 5983 commits and 1667 files
-
-
-      lines of code 101513
-      ■■■■■■■■■■■■■■■■■■■■■■■■■ js (49161)
-      ■■■■■■■■■■■■ svg (24112)
-      ■■■■■■■■ scss (14936)
-      ■■■■■■■ hbs (12464)
-      ■ rb (639)
-      ■ html (201)
-
-
-      === metrics
-      ┌─────────────┬───────────────┐
-      │ ruleId      │ result(value) │
-      ├─────────────┼───────────────┤
-      │ ember-types │ 810           │
-      └─────────────┴───────────────┘
-
-
-      checkup v1.0.0-beta.11
-      config 7bca477eada135bcfae0876e271fff89
-      "
-    `);
+    expect(stripAnsi(result)).toContain(`Checkup report generated for travis v0.0.1`);
   });
 });
