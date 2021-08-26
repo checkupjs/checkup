@@ -11,9 +11,7 @@ class PrettyFormatter implements Formatter {
   }
 
   format(logParser: CheckupLogParser): string {
-    const result = render(React.createElement(pretty, { logParser }));
-
-    return result;
+    return render(React.createElement(pretty, { logParser }));
   }
 }
 
