@@ -4,12 +4,12 @@ import { List } from './list';
 import { ListItem } from './list-item';
 
 export function getComponents(): Record<string, any> {
-  const componentsMap = {
-    table: Table,
-    list: List,
-    inkTable: InkTable,
-    listItem: ListItem,
-  };
+  const componentsMap = new Map();
+
+  componentsMap.set('table', Table);
+  componentsMap.set('list', List);
+  componentsMap.set('inkTable', InkTable);
+  componentsMap.set('listItem', ListItem);
 
   return componentsMap;
 }

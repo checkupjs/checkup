@@ -19,7 +19,7 @@ class PrettyFormatter implements Formatter {
     this.options = options;
     if (this.options.componentName) {
       let componentsMap = getComponents();
-      this.component = componentsMap[this.options.componentName];
+      this.component = componentsMap.get(this.options.componentName);
     } else {
       this.component = InkTable;
     }
