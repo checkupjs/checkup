@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Box, Text, Newline } from 'ink';
 import { Result, ReportingDescriptor } from 'sarif';
-import { CheckupLogParser, CheckupMetadata } from '@checkup/core';
+import { CheckupLogParser, CheckupMetadata, TaskName } from '@checkup/core';
 import { default as InkTable } from 'ink-table';
 import { List } from './components/list';
 import { BarData } from './types';
 import { Bar } from './components/bar';
+import { registeredComponents } from './component-provider';
 
 type RuleResults = {
   rule: ReportingDescriptor;
@@ -17,10 +18,7 @@ interface TaskResultsData {
   category: string;
 }
 
-const PrettyFormatter: React.FC<{ logParser: CheckupLogParser; component: any }> = ({
-  logParser,
-  component,
-}) => {
+const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
   let metaData: CheckupMetadata = logParser.metaData;
   let taskResults: Map<string, RuleResults> | undefined = logParser.resultsByRule;
 
@@ -28,7 +26,7 @@ const PrettyFormatter: React.FC<{ logParser: CheckupLogParser; component: any }>
     <>
       <MetaData metaData={metaData} />
       <Newline />
-      <TaskResults taskResults={taskResults} Component={component} />
+      <TaskResults taskResults={taskResults} />
       <Newline />
       {process.env.CHECKUP_TIMING === '1' ? <RenderTiming timings={logParser.timings} /> : <></>}
       <CLIInfo metaData={metaData} />
@@ -113,44 +111,27 @@ const RenderTiming: React.FC<{ timings: Record<string, number> }> = ({ timings }
 };
 
 const TaskResults: React.FC<{
-  taskResults: Map<string, RuleResults> | undefined;
-  Component: any;
-}> = ({ taskResults, Component }) => {
-  let currentCategory = '';
+  taskResults: Map<TaskName, RuleResults> | undefined;
+}> = ({ taskResults }) => {
+  let r: { Component: React.FC<any>; taskResult: RuleResults }[] = [];
 
   if (taskResults!.size > 0) {
-    let results: TaskResultsData[] = [];
-    let index = -1;
-
     [...taskResults!.values()].forEach((taskResult) => {
-      let taskCategory = taskResult!.rule?.properties?.category;
-      if (taskCategory !== currentCategory) {
-        currentCategory = taskCategory;
-        index += 1;
-        results[index] = {
-          category: currentCategory,
-          tableData: [
-            {
-              ruleId: taskResult!.rule?.id,
-              'result(value)': taskResult.results.length,
-            },
-          ],
-        };
-      } else {
-        results[index].tableData.push({
-          ruleId: taskResult!.rule?.id,
-          'result(value)': taskResult.results.length,
-        });
-      }
+      let taskProps = taskResult!.rule?.properties!;
+      let componentName = taskProps.component;
+
+      r.push({
+        Component: registeredComponents.get(componentName ?? 'table')!,
+        taskResult,
+      });
     });
 
     return (
       <List>
-        {results.map((result) => {
+        {r.map(({ Component, taskResult }) => {
           return (
-            <Box flexDirection="column" key={result.category}>
-              <Text>=== {result['category']}</Text>
-              <Component data={result['tableData']} />
+            <Box flexDirection="column" key={taskResult.rule.id}>
+              <Component results={taskResult.results} />
             </Box>
           );
         })}

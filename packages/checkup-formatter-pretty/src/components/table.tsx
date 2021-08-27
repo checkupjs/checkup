@@ -1,1 +1,1 @@
-export { default as Table } from 'ink-table';
+// export { default as Table } from 'ink-table';

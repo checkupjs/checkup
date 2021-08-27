@@ -22,3 +22,7 @@ export function registerDefaultComponents(): Map<string, React.FC> {
 }
 
 registerDefaultComponents();
+
+export function registerCustomComponent(componentName: string, component: React.FC) {
+  registeredComponents.set(componentName, component);
+}

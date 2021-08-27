@@ -7,9 +7,7 @@ import {
   ErrorKind,
   CheckupError,
 } from '@checkup/core';
-import { default as InkTable } from 'ink-table';
 import { default as pretty } from './pretty-formatter';
-import { registeredComponents } from './component-provider';
 
 class PrettyFormatter implements Formatter {
   options: FormatterOptions;
@@ -17,14 +15,11 @@ class PrettyFormatter implements Formatter {
 
   constructor(options: FormatterOptions) {
     this.options = options;
-    this.component = this.options.componentName
-      ? registeredComponents.get(this.options.componentName)
-      : InkTable;
   }
 
-  format(logParser: CheckupLogParser, component: any = this.component): string {
+  format(logParser: CheckupLogParser): string {
     try {
-      const result = render(React.createElement(pretty, { logParser, component }));
+      const result = render(React.createElement(pretty, { logParser }));
 
       if (result.includes('ERROR')) {
         throw result;
@@ -40,3 +35,5 @@ class PrettyFormatter implements Formatter {
 }
 
 export default PrettyFormatter;
+
+export { registerCustomComponent } from './component-provider';
