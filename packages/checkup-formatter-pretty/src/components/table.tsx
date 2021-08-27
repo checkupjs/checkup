@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { FC } from 'react';
 import { Box } from 'ink';
 import { default as InkTable } from 'ink-table';
 
@@ -16,7 +15,7 @@ interface Result extends ScalarDict {
   ruleId: string;
 }
 
-export const Table: FC<{ data: any[] }> = ({ data }) => {
+export const Table: React.FC<{ data: any[] }> = ({ data }) => {
   const tableData = data.map((item) => {
     const result: Result = {
       taskName: item.properties.taskDisplayName,

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { FC } from 'react';
 import { Box, Text, Newline } from 'ink';
 import { Result, ReportingDescriptor } from 'sarif';
 import { CheckupLogParser, CheckupMetadata } from '@checkup/core';
@@ -18,7 +17,7 @@ interface TaskResultsData {
   category: string;
 }
 
-const PrettyFormatter: FC<{ logParser: CheckupLogParser; component: any }> = ({
+const PrettyFormatter: React.FC<{ logParser: CheckupLogParser; component: any }> = ({
   logParser,
   component,
 }) => {
@@ -37,7 +36,7 @@ const PrettyFormatter: FC<{ logParser: CheckupLogParser; component: any }> = ({
   );
 };
 
-const CLIInfo: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
+const CLIInfo: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
   let { version, configHash } = metaData.cli;
 
   return (
@@ -48,7 +47,7 @@ const CLIInfo: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
   );
 };
 
-const MetaData: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
+const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
   let { analyzedFilesCount, project } = metaData;
   let { name, version, repository } = project;
   let analyzedFilesMessage =
@@ -91,7 +90,7 @@ const MetaData: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
   );
 };
 
-const RenderTiming: FC<{ timings: Record<string, number> }> = ({ timings }) => {
+const RenderTiming: React.FC<{ timings: Record<string, number> }> = ({ timings }) => {
   let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
   let tableData: any[] = [];
 
@@ -113,7 +112,7 @@ const RenderTiming: FC<{ timings: Record<string, number> }> = ({ timings }) => {
   );
 };
 
-const TaskResults: FC<{
+const TaskResults: React.FC<{
   taskResults: Map<string, RuleResults> | undefined;
   Component: any;
 }> = ({ taskResults, Component }) => {
