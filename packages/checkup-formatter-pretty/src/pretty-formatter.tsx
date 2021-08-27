@@ -3,10 +3,10 @@ import { FC } from 'react';
 import { Box, Text, Newline } from 'ink';
 import { Result, ReportingDescriptor } from 'sarif';
 import { CheckupLogParser, CheckupMetadata } from '@checkup/core';
+import { default as InkTable } from 'ink-table';
 import { List } from './components/list';
 import { BarData } from './types';
 import { Bar } from './components/bar';
-import { getComponents } from './components/index';
 
 type RuleResults = {
   rule: ReportingDescriptor;
@@ -18,7 +18,10 @@ interface TaskResultsData {
   category: string;
 }
 
-const PrettyFormatter: FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
+const PrettyFormatter: FC<{ logParser: CheckupLogParser; component: any }> = ({
+  logParser,
+  component,
+}) => {
   let metaData: CheckupMetadata = logParser.metaData;
   let taskResults: Map<string, RuleResults> | undefined = logParser.resultsByRule;
 
@@ -26,7 +29,7 @@ const PrettyFormatter: FC<{ logParser: CheckupLogParser }> = ({ logParser }) => 
     <>
       <MetaData metaData={metaData} />
       <Newline />
-      <TaskResults taskResults={taskResults} />
+      <TaskResults taskResults={taskResults} Component={component} />
       <Newline />
       {process.env.CHECKUP_TIMING === '1' ? <RenderTiming timings={logParser.timings} /> : <></>}
       <CLIInfo metaData={metaData} />
@@ -89,8 +92,6 @@ const MetaData: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
 };
 
 const RenderTiming: FC<{ timings: Record<string, number> }> = ({ timings }) => {
-  let componentsMap = getComponents();
-  let Component = componentsMap['inkTable'];
   let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
   let tableData: any[] = [];
 
@@ -107,20 +108,18 @@ const RenderTiming: FC<{ timings: Record<string, number> }> = ({ timings }) => {
   return (
     <>
       <Text>Task Timings</Text>
-      <Component data={tableData} />
+      <InkTable data={tableData} />
     </>
   );
 };
 
-const TaskResults: FC<{ taskResults: Map<string, RuleResults> | undefined }> = ({
-  taskResults,
-}) => {
+const TaskResults: FC<{
+  taskResults: Map<string, RuleResults> | undefined;
+  Component: any;
+}> = ({ taskResults, Component }) => {
   let currentCategory = '';
 
   if (taskResults!.size > 0) {
-    let componentsMap = getComponents();
-    let Component = componentsMap['inkTable'];
-
     let results: TaskResultsData[] = [];
     let index = -1;
 
