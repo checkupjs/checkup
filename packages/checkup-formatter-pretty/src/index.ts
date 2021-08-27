@@ -9,7 +9,7 @@ import {
 } from '@checkup/core';
 import { default as InkTable } from 'ink-table';
 import { default as pretty } from './pretty-formatter';
-import { getComponents } from './components/index';
+import { registeredComponents } from './component-provider';
 
 class PrettyFormatter implements Formatter {
   options: FormatterOptions;
@@ -17,12 +17,9 @@ class PrettyFormatter implements Formatter {
 
   constructor(options: FormatterOptions) {
     this.options = options;
-    if (this.options.componentName) {
-      let componentsMap = getComponents();
-      this.component = componentsMap.get(this.options.componentName);
-    } else {
-      this.component = InkTable;
-    }
+    this.component = this.options.componentName
+      ? registeredComponents.get(this.options.componentName)
+      : InkTable;
   }
 
   format(logParser: CheckupLogParser, component: any = this.component): string {
