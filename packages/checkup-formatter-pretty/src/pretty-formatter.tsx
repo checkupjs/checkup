@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { default as InkTable } from 'ink-table';
-import { List } from './components/list';
+import { List } from './components/utils/list';
 import { BarData } from './types';
-import { Bar } from './components/bar';
+import { Bar } from './components/utils/bar';
 import { registeredComponents } from './component-provider';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {

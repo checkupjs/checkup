@@ -8,5 +8,6 @@ export const Table: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => 
     ruleId: taskResult.rule.id,
     'result(value)': taskResult.results.length,
   });
+
   return <InkTable data={tableData} />;
 };

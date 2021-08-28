@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text } from 'ink';
-import { BarData } from '../types';
+import { BarData } from '../../types';
 
 export const Bar: React.FC<{ data: BarData }> = ({ data }) => {
   const barTick = '■';
