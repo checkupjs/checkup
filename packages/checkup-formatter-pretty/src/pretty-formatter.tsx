@@ -1,22 +1,11 @@
 import * as React from 'react';
 import { Box, Text, Newline } from 'ink';
-import { Result, ReportingDescriptor } from 'sarif';
-import { CheckupLogParser, CheckupMetadata, TaskName } from '@checkup/core';
+import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { default as InkTable } from 'ink-table';
 import { List } from './components/list';
 import { BarData } from './types';
 import { Bar } from './components/bar';
 import { registeredComponents } from './component-provider';
-
-type RuleResults = {
-  rule: ReportingDescriptor;
-  results: Result[];
-};
-
-interface TaskResultsData {
-  tableData: any[];
-  category: string;
-}
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
   let metaData: CheckupMetadata = logParser.metaData;
@@ -131,7 +120,7 @@ const TaskResults: React.FC<{
         {r.map(({ Component, taskResult }) => {
           return (
             <Box flexDirection="column" key={taskResult.rule.id}>
-              <Component results={taskResult.results} />
+              <Component taskResult={taskResult} />
             </Box>
           );
         })}

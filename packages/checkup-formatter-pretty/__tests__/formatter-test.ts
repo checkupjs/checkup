@@ -32,7 +32,6 @@ describe('Test Pretty formatter', () => {
       ■ html (201)
 
 
-      === metrics
       ┌─────────────┬───────────────┐
       │ ruleId      │ result(value) │
       ├─────────────┼───────────────┤

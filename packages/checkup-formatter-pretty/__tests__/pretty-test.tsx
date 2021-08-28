@@ -1,7 +1,6 @@
 import { resolve } from 'path';
 import * as React from 'react';
 import { render } from 'ink-testing-library';
-import { default as InkTable } from 'ink-table';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser } from '@checkup/core';
 import PrettyFormatter from '../src/pretty-formatter';
@@ -12,7 +11,8 @@ describe('Test Pretty component', () => {
   it('can generate Pretty component', async () => {
     const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
-    const { stdout } = render(<PrettyFormatter logParser={logParser} component={InkTable} />);
+
+    const { stdout } = render(<PrettyFormatter logParser={logParser} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
       "Checkup report generated for travis v0.0.1  (1797 files analyzed)
@@ -28,7 +28,6 @@ describe('Test Pretty component', () => {
       ■ html (201)
 
 
-      === metrics
       ┌─────────────┬───────────────┐
       │ ruleId      │ result(value) │
       ├─────────────┼───────────────┤
