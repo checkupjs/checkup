@@ -2,7 +2,7 @@ import { lint, LinterOptions, LinterResult } from 'stylelint';
 import { mergeLintConfig } from '../utils/merge-lint-config';
 import { TaskConfig } from '../types/config';
 
-export default class ESLintAnalyzer {
+export default class StyleLintAnalyzer {
   config: Partial<LinterOptions>;
 
   constructor(config: Partial<LinterOptions>, taskConfig?: TaskConfig) {
