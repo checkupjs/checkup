@@ -23,6 +23,8 @@ export enum ErrorKind {
   GeneratorPluginWorkContextNotValid,
   GeneratorPluginDestinationNotEmpty,
   GeneratorWorkContextNotValid,
+
+  InvalidCustomComponent,
 }
 
 export interface ErrorDetails {
@@ -161,6 +163,12 @@ export const ERROR_BY_KIND: { [Key in ErrorKind]?: ErrorDetails } = {
   [ErrorKind.Unknown]: {
     message: () => 'An unknown error has occurred.',
     callToAction: () => '',
+    errorCode: 1,
+  },
+
+  [ErrorKind.InvalidCustomComponent]: {
+    message: () => 'Invalid custom component',
+    callToAction: (options: ErrorDetailOptions) => options.details,
     errorCode: 1,
   },
 };

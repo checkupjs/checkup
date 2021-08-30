@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { FC } from 'react';
 import { Text } from 'ink';
-import { BarData } from '../types';
+import { BarData } from '../../types';
 
-export const Bar: FC<{ data: BarData }> = ({ data }) => {
+export const Bar: React.FC<{ data: BarData }> = ({ data }) => {
   const barTick = '■';
   // 16777215 == ffffff in decimal
   const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);

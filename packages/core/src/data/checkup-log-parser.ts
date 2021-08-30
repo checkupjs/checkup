@@ -57,7 +57,7 @@ export default class CheckupLogParser {
     );
   }
 
-  get resultsByRule(): Map<string, RuleResults> {
+  get resultsByRule(): Map<TaskName, RuleResults> {
     if (!this._resultsByRule) {
       this._resultsByRule = new Map();
       let rules = this.rules;

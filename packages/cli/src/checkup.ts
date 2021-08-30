@@ -73,9 +73,8 @@ checkup <command> [options]`
 
           format: {
             alias: 'f',
-            options: [...Object.values(OutputFormat)],
             default: 'summary',
-            description: `The output format, one of ${[...Object.values(OutputFormat)].join(', ')}`,
+            description: 'Use a specific output format',
           },
 
           'output-file': {

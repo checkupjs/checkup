@@ -1,26 +1,13 @@
 import * as React from 'react';
-import { FC } from 'react';
 import { Box, Text, Newline } from 'ink';
-import { Result, ReportingDescriptor } from 'sarif';
-import { CheckupLogParser, CheckupMetadata } from '@checkup/core';
-// eslint-disable-next-line node/no-unpublished-import
-// import { writeResultFile } from '../../cli/src/formatters/file-writer';
-import { List } from './components/list';
+import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
+import { default as InkTable } from 'ink-table';
+import { List } from './components/utils/list';
 import { BarData } from './types';
-import { Bar } from './components/bar';
-import { getComponents } from './components/index';
+import { Bar } from './components/utils/bar';
+import { registeredComponents } from './component-provider';
 
-type RuleResults = {
-  rule: ReportingDescriptor;
-  results: Result[];
-};
-
-interface TaskResultsData {
-  tableData: any[];
-  category: string;
-}
-
-const PrettyFormatter: FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
+const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
   let metaData: CheckupMetadata = logParser.metaData;
   let taskResults: Map<string, RuleResults> | undefined = logParser.resultsByRule;
 
@@ -36,7 +23,7 @@ const PrettyFormatter: FC<{ logParser: CheckupLogParser }> = ({ logParser }) => 
   );
 };
 
-const CLIInfo: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
+const CLIInfo: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
   let { version, configHash } = metaData.cli;
 
   return (
@@ -47,7 +34,7 @@ const CLIInfo: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
   );
 };
 
-const MetaData: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
+const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
   let { analyzedFilesCount, project } = metaData;
   let { name, version, repository } = project;
   let analyzedFilesMessage =
@@ -66,23 +53,31 @@ const MetaData: FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
         <Newline />
         <Text>lines of code {repository.linesOfCode.total}</Text>
         <List>
-          {repository.linesOfCode.types.map((type) => {
-            let barData: BarData = {
-              name: type.extension,
-              value: type.total,
-              total: repository.linesOfCode.total,
-            };
-            return <Bar key={type.extension} data={barData} />;
-          })}
+          {repository.linesOfCode.types
+            .sort((a, b) => {
+              if (a.total > b.total) {
+                return -1;
+              } else if (a.total === b.total) {
+                return a.extension > b.extension ? 1 : -1;
+              } else {
+                return 1;
+              }
+            })
+            .map((type) => {
+              let barData: BarData = {
+                name: type.extension,
+                value: type.total,
+                total: repository.linesOfCode.total,
+              };
+              return <Bar key={type.extension} data={barData} />;
+            })}
         </List>
       </Box>
     </>
   );
 };
 
-const RenderTiming: FC<{ timings: Record<string, number> }> = ({ timings }) => {
-  let componentsMap = getComponents();
-  let Component = componentsMap['inkTable'];
+const RenderTiming: React.FC<{ timings: Record<string, number> }> = ({ timings }) => {
   let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
   let tableData: any[] = [];
 
@@ -99,52 +94,33 @@ const RenderTiming: FC<{ timings: Record<string, number> }> = ({ timings }) => {
   return (
     <>
       <Text>Task Timings</Text>
-      <Component data={tableData} />
+      <InkTable data={tableData} />
     </>
   );
 };
 
-const TaskResults: FC<{ taskResults: Map<string, RuleResults> | undefined }> = ({
-  taskResults,
-}) => {
-  let currentCategory = '';
+const TaskResults: React.FC<{
+  taskResults: Map<TaskName, RuleResults> | undefined;
+}> = ({ taskResults }) => {
+  let r: { Component: React.FC<any>; taskResult: RuleResults }[] = [];
 
   if (taskResults!.size > 0) {
-    let componentsMap = getComponents();
-    let Component = componentsMap['inkTable'];
-
-    let results: TaskResultsData[] = [];
-    let index = -1;
-
     [...taskResults!.values()].forEach((taskResult) => {
-      let taskCategory = taskResult!.rule?.properties?.category;
-      if (taskCategory !== currentCategory) {
-        currentCategory = taskCategory;
-        index += 1;
-        results[index] = {
-          category: currentCategory,
-          tableData: [
-            {
-              ruleId: taskResult!.rule?.id,
-              'result(value)': taskResult.results.length,
-            },
-          ],
-        };
-      } else {
-        results[index].tableData.push({
-          ruleId: taskResult!.rule?.id,
-          'result(value)': taskResult.results.length,
-        });
-      }
+      let taskProps = taskResult!.rule?.properties!;
+      let componentName = taskProps.component;
+
+      r.push({
+        Component: registeredComponents.get(componentName ?? 'table')!,
+        taskResult,
+      });
     });
 
     return (
       <List>
-        {results.map((result) => {
+        {r.map(({ Component, taskResult }) => {
           return (
-            <Box flexDirection="column" key={result.category}>
-              <Text>=== {result['category']}</Text>
-              <Component data={result['tableData']} />
+            <Box flexDirection="column" key={taskResult.rule.id}>
+              <Component taskResult={taskResult} />
             </Box>
           );
         })}

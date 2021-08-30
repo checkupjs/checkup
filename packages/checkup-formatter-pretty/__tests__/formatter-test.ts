@@ -1,20 +1,24 @@
+/* eslint-disable jest/no-disabled-tests */
 import { resolve } from 'path';
-import * as React from 'react';
-import { render } from 'ink-testing-library';
 import { readJsonSync } from 'fs-extra';
-import { CheckupLogParser } from '@checkup/core';
-import PrettyFormatter from '../src/pretty-formatter';
-
+import { CheckupLogParser, FormatterOptions } from '@checkup/core';
 const stripAnsi = require('strip-ansi');
+const PrettyFormatter = require('../src');
 
-describe('Test Pretty component', () => {
-  it('can generate Pretty component', async () => {
+describe('Test Pretty formatter', () => {
+  it('can generate string from format', async () => {
     const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
+    const options: FormatterOptions = {
+      cwd: '',
+      format: 'checkup-formatter-pretty',
+    };
 
-    const { stdout } = render(<PrettyFormatter logParser={logParser} />);
+    let formatter = new PrettyFormatter(options);
 
-    expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
+    const result = await formatter.format(logParser);
+
+    expect(stripAnsi(result)).toMatchInlineSnapshot(`
       "Checkup report generated for travis v0.0.1  (1797 files analyzed)
       This project is 9 years old, with 1448 active days, 5983 commits and 1667 files
 
@@ -38,5 +42,20 @@ describe('Test Pretty component', () => {
       checkup v1.0.0-beta.11
       config 7bca477eada135bcfae0876e271fff89"
     `);
+  });
+
+  it.skip('can throw error when custom component is not valid', () => {
+    const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
+    const logParser = new CheckupLogParser(log);
+
+    const options: FormatterOptions = {
+      cwd: '',
+      format: 'checkup-formatter-pretty',
+      componentName: 'invalidComponent',
+    };
+
+    let formatter = new PrettyFormatter(options);
+
+    expect(formatter.format(logParser)).toThrowErrorMatchingInlineSnapshot(``);
   });
 });
