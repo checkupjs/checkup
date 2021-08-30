@@ -2,8 +2,8 @@
 import { resolve } from 'path';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser, FormatterOptions } from '@checkup/core';
-import PrettyFormatter from '../src/index';
 const stripAnsi = require('strip-ansi');
+const PrettyFormatter = require('../src');
 
 describe('Test Pretty formatter', () => {
   it('can generate string from format', async () => {
