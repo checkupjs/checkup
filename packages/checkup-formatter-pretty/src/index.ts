@@ -7,6 +7,7 @@ import {
   ErrorKind,
   CheckupError,
 } from '@checkup/core';
+import { registerCustomComponent } from './component-provider';
 import { default as pretty } from './pretty-formatter';
 
 class PrettyFormatter implements Formatter {
@@ -32,8 +33,8 @@ class PrettyFormatter implements Formatter {
       });
     }
   }
+
+  static registerCustomComponent = registerCustomComponent;
 }
 
-export default PrettyFormatter;
-
-export { registerCustomComponent } from './component-provider';
+export = PrettyFormatter;
