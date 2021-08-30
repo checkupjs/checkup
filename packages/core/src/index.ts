@@ -30,6 +30,7 @@ export { default as TypeScriptAnalyzer } from './analyzers/typescript-analyzer';
 export { default as JsonAnalyzer } from './analyzers/json-analyzer';
 export { default as HandlebarsAnalyzer } from './analyzers/handlebars-analyzer';
 export { default as ESLintAnalyzer } from './analyzers/eslint-analyzer';
+export { default as StyleLintAnalyzer } from './analyzers/stylelint-analyzer';
 export { default as EmberTemplateLintAnalyzer } from './analyzers/ember-template-lint-analyzer';
 export { default as DependencyAnalyzer } from './analyzers/dependency-analyzer';
 
