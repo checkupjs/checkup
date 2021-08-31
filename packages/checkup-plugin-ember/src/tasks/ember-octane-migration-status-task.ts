@@ -231,6 +231,11 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
               featureDisplayName: ruleMetadata.feature,
             },
           },
+          rule: {
+            properties: {
+              component: 'task-result-list',
+            },
+          },
         }
       );
     });

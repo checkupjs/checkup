@@ -28,6 +28,11 @@ export default class EslintDisableTask extends BaseTask implements Task {
           startColumn: disable.column,
           startLine: disable.line,
         },
+        rule: {
+          properties: {
+            component: 'task-result-list',
+          },
+        },
       });
     });
 

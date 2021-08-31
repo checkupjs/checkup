@@ -59,6 +59,11 @@ export default class EslintSummaryTask extends BaseTask implements Task {
           startColumn: result.column,
           startLine: result.line,
         },
+        rule: {
+          properties: {
+            component: 'task-result-list',
+          },
+        },
       });
     });
 

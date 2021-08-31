@@ -33,6 +33,11 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
               latestVersion: dependency.latestVersion,
               type: dependency.type,
             },
+            rule: {
+              properties: {
+                component: 'task-result-list',
+              },
+            },
           }
         );
       });
