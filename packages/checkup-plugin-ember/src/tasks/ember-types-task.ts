@@ -38,8 +38,10 @@ export default class EmberTypesTask extends BaseTask implements Task {
             location: {
               uri,
             },
-            properties: {
-              component: 'table',
+            rule: {
+              properties: {
+                component: 'table',
+              },
             },
           }
         );
