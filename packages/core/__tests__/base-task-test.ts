@@ -210,6 +210,11 @@ describe('BaseTask', () => {
       fakeTask.addResult('The is a fake message', 'informational', 'note', {
         rule: {
           id: 'my-fake-sub',
+          properties: {
+            category: 'foo',
+            component: 'table',
+            taskDisplayName: 'Fake',
+          },
         },
       });
 
@@ -221,6 +226,7 @@ describe('BaseTask', () => {
             "id": "my-fake-sub",
             "properties": Object {
               "category": "foo",
+              "component": "table",
               "taskDisplayName": "Fake",
             },
             "shortDescription": Object {
