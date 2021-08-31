@@ -21,9 +21,16 @@ export function toLintResult(
 
 export function toLintResults(results: LintResult[], cwd: string): NormalizedLintResult[] {
   return results.reduce((transformed, lintingResults) => {
-    const messages = (<any>lintingResults.messages).map((lintMessage: LintMessage) => {
-      return toLintResult(lintMessage, cwd, lintingResults.filePath);
-    });
+    const messages = (<any>lintingResults.messages)
+      .filter(
+        (lintMessage: LintMessage) =>
+          ('ruleId' in lintMessage && lintMessage.ruleId !== undefined) ||
+          ('rule' in lintMessage && lintMessage.rule !== undefined)
+      )
+      .map((lintMessage: LintMessage) => {
+        return toLintResult(lintMessage, cwd, lintingResults.filePath);
+      });
+
     transformed.push(...messages);
 
     return transformed;

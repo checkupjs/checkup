@@ -1,15 +1,15 @@
-import { CheckupLogParser, ConsoleWriter, Formatter, FormatterOptions } from '@checkup/core';
+import { BufferedWriter, CheckupLogParser, Formatter, FormatterOptions } from '@checkup/core';
 import { success } from 'log-symbols';
 import { yellow } from 'chalk';
 import { Log } from 'sarif';
 import { writeResultFile } from './file-writer';
 import BaseFormatter from './base-formatter';
 
-export default class SummaryFormatter extends BaseFormatter<ConsoleWriter> implements Formatter {
+export default class SummaryFormatter extends BaseFormatter<BufferedWriter> implements Formatter {
   constructor(options: FormatterOptions) {
     super(options);
 
-    this.writer = new ConsoleWriter();
+    this.writer = new BufferedWriter();
   }
 
   format(logParser: CheckupLogParser) {
@@ -29,6 +29,8 @@ export default class SummaryFormatter extends BaseFormatter<ConsoleWriter> imple
     this.renderActions(actions);
     this.writer.blankLine();
     this.renderCLIInfo(metaData);
+
+    return this.writer.buffer;
   }
 
   writeResultsToFile(log: Log) {
