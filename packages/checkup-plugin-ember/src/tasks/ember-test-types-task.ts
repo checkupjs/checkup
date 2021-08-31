@@ -68,10 +68,12 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
           startColumn: result.column,
           startLine: result.line,
         },
+        properties: {
+          testType,
+          testMethod: method,
+        },
         rule: {
           properties: {
-            testType,
-            testMethod: method,
             component: 'table',
           },
         },
