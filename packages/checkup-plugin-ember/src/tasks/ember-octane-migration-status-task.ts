@@ -42,6 +42,8 @@ const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
     'ember/no-mixins': 'error',
   },
   useEslintrc: false,
+  allowInlineConfig: false,
+  ignore: false,
 };
 
 const OCTANE_TEMPLATE_LINT_CONFIG: TemplateLintConfig = {
@@ -221,11 +223,12 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
             startColumn: lintResult.column,
             startLine: lintResult.line,
           },
-          rule: {
-            id: `${this.taskName}-${kebabCase(ruleMetadata.feature)}`,
-            properties: {
-              parentRuleID: this.taskName,
-              taskDisplayName: `Ember Octane Migration | ${ruleMetadata.feature}`,
+          properties: {
+            migration: {
+              name: 'ember-octane-migration',
+              displayName: 'Ember Octane Migration',
+              feature: kebabCase(ruleMetadata.feature),
+              featureDisplayName: ruleMetadata.feature,
             },
           },
         }

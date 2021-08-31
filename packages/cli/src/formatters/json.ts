@@ -14,13 +14,7 @@ export default class JsonFormatter implements Formatter {
   }
 
   format(logParser: CheckupLogParser) {
-    let log = logParser.log;
-
-    if (this.options.outputFile) {
-      this.writeResultsToFile(log);
-    } else {
-      this.writer.styledJSON(log);
-    }
+    return JSON.stringify(logParser.log, null, 2);
   }
 
   writeResultsToFile(log: Log) {
