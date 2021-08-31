@@ -50,7 +50,7 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
         },
         rule: {
           properties: {
-            component: 'table',
+            component: 'task-result-list',
           },
         },
       });

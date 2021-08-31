@@ -61,7 +61,7 @@ export default class EslintSummaryTask extends BaseTask implements Task {
         },
         rule: {
           properties: {
-            component: 'table',
+            component: 'task-result-list',
           },
         },
       });

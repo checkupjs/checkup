@@ -27,13 +27,15 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
               startColumn: dependency.startColumn,
               startLine: dependency.startLine,
             },
+            properties: {
+              packageName: dependency.packageName,
+              packageVersion: dependency.packageVersion,
+              latestVersion: dependency.latestVersion,
+              type: dependency.type,
+            },
             rule: {
               properties: {
-                packageName: dependency.packageName,
-                packageVersion: dependency.packageVersion,
-                latestVersion: dependency.latestVersion,
-                type: dependency.type,
-                component: 'table',
+                component: 'task-result-list',
               },
             },
           }
