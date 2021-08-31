@@ -71,6 +71,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
         properties: {
           testType,
           testMethod: method,
+          component: 'table',
         },
       });
     });

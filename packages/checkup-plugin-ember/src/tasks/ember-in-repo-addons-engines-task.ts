@@ -29,6 +29,9 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
             location: {
               uri: pathName,
             },
+            properties: {
+              component: 'table',
+            },
           }
         );
       }

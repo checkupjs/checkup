@@ -31,6 +31,7 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
               packageVersion: dependency.packageVersion,
               latestVersion: dependency.latestVersion,
               type: dependency.type,
+              component: 'table',
             },
           }
         );

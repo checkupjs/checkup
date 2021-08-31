@@ -32,6 +32,7 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
               packageVersion: dependency.packageVersion,
               latestVersion: dependency.latestVersion,
               type: dependency.type,
+              component: 'table',
             },
           }
         );
