@@ -44,7 +44,7 @@ export interface RegisterableTaskList {
 }
 
 export interface Formatter {
-  format(logParser: CheckupLogParser): void;
+  format(logParser: CheckupLogParser): string;
 }
 
 export interface FormatterCtor {

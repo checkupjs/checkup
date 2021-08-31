@@ -1,11 +1,12 @@
 import * as yargs from 'yargs';
 import * as ora from 'ora';
+import { yellow } from 'chalk';
 import { OutputFormat, ConsoleWriter, CheckupConfig } from '@checkup/core';
-
 import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
 import { getFormatter } from './formatters/get-formatter';
 import { reportAvailableTasks } from './formatters/available-tasks';
+import { writeResultFile } from './formatters/file-writer';
 
 export async function run(argv: string[] = process.argv.slice(2)) {
   let consoleWriter = new ConsoleWriter();
@@ -136,7 +137,23 @@ checkup <command> [options]`
           });
 
           spinner.stop();
-          formatter.format(log);
+          let output = formatter.format(log);
+
+          if (output) {
+            if (argv.outputFile) {
+              let resultFilePath = writeResultFile(
+                log,
+                argv.cwd as string,
+                argv.outputFile as string
+              );
+
+              console.log();
+              console.log('Results have been saved to the following file:');
+              console.log(yellow(resultFilePath));
+            } else {
+              console.log(output);
+            }
+          }
         } catch (error) {
           spinner.stop();
           consoleWriter.error(error);
