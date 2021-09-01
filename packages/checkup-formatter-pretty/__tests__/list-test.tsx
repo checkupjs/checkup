@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import { Text } from 'ink';
-import { List } from '../src/components/utils/list';
+import { List } from '../src/utils/list';
 
 describe('Test list component', () => {
   it('can generate list component', async () => {

@@ -2,9 +2,8 @@ import * as React from 'react';
 import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { default as InkTable } from 'ink-table';
-import { List } from './components/utils/list';
 import { BarData } from './types';
-import { Bar } from './components/utils/bar';
+import { Bar } from './utils/bar';
 import { registeredComponents } from './component-provider';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
@@ -52,7 +51,7 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
         </Text>
         <Newline />
         <Text>lines of code {repository.linesOfCode.total}</Text>
-        <List>
+        <>
           {repository.linesOfCode.types
             .sort((a, b) => {
               if (a.total > b.total) {
@@ -71,7 +70,7 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
               };
               return <Bar key={type.extension} data={barData} />;
             })}
-        </List>
+        </>
       </Box>
     </>
   );
@@ -116,7 +115,7 @@ const TaskResults: React.FC<{
     });
 
     return (
-      <List>
+      <>
         {r.map(({ Component, taskResult }) => {
           return (
             <Box flexDirection="column" key={taskResult.rule.id}>
@@ -124,7 +123,7 @@ const TaskResults: React.FC<{
             </Box>
           );
         })}
-      </List>
+      </>
     );
   } else {
     return <Text></Text>;

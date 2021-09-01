@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RuleResults } from '@checkup/core';
 import { BarData } from '../types';
-import { Bar } from './utils/bar';
+import { Bar } from '../utils/bar';
 
 export const TaskResultBar: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
   let barData: BarData = {
