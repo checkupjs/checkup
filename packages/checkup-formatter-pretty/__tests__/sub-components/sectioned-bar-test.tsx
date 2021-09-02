@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
-import { Bar } from '../src/sub-components/sectioned-bar';
-import { BarData } from '../src/types';
+import { SectionedBar } from '../../src/sub-components/sectioned-bar';
+import { BarData } from '../../src/types';
 
 const stripAnsi = require('strip-ansi');
 
@@ -13,7 +13,7 @@ describe('Test Bar component', () => {
       total: 20,
     };
 
-    const { lastFrame } = render(<Bar data={data}></Bar>);
+    const { lastFrame } = render(<SectionedBar data={data} />);
     expect(stripAnsi(lastFrame()!)).toMatchInlineSnapshot(
       `"■■■■■■■■■■■■■■■■■■■■■■■■■ test-item (10)"`
     );

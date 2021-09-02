@@ -3,7 +3,7 @@ import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { default as InkTable } from 'ink-table';
 import { BarData } from './types';
-import { Bar } from './sub-components/sectioned-bar';
+import { SectionedBar } from './sub-components/sectioned-bar';
 import { registeredComponents } from './component-provider';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
@@ -68,7 +68,7 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
                 value: type.total,
                 total: repository.linesOfCode.total,
               };
-              return <Bar key={type.extension} data={barData} />;
+              return <SectionedBar key={type.extension} data={barData} />;
             })}
         </>
       </Box>

@@ -6,7 +6,7 @@ export const Table: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => 
   let tableData = [];
   tableData.push({
     ruleId: taskResult.rule.id,
-    'result(value)': taskResult.results.length,
+    total: taskResult.results.length,
   });
 
   return <InkTable data={tableData} />;

@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-focused-tests */
 import { resolve } from 'path';
 import * as React from 'react';
 import { render } from 'ink-testing-library';
@@ -8,8 +7,8 @@ import PrettyFormatter from '../src/pretty-formatter';
 
 const stripAnsi = require('strip-ansi');
 
-describe.only('Test Pretty component', () => {
-  it.only('can generate Pretty component', async () => {
+describe('Test Pretty component', () => {
+  it('can generate Pretty component', async () => {
     const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
 
