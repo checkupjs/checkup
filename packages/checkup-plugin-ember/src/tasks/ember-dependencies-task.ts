@@ -34,7 +34,7 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
             },
             rule: {
               properties: {
-                component: 'task-result-list',
+                component: 'list',
               },
             },
           }

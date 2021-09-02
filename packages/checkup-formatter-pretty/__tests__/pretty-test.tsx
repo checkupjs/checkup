@@ -15,28 +15,43 @@ describe('Test Pretty component', () => {
     const { stdout } = render(<PrettyFormatter logParser={logParser} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
-      "Checkup report generated for travis v0.0.1  (1797 files analyzed)
-      This project is 9 years old, with 1448 active days, 5983 commits and 1667 files
+      "Checkup report generated for travis v0.0.1  (1693 files analyzed)
+      This project is 9 years old, with 1468 active days, 6010 commits and 1692 files
 
 
-      lines of code 101513
-      ■■■■■■■■■■■■■■■■■■■■■■■■■ js (49161)
+      lines of code 104439
+      ■■■■■■■■■■■■■■■■■■■■■■■■■ js (50740)
       ■■■■■■■■■■■■ svg (24112)
-      ■■■■■■■■ scss (14936)
-      ■■■■■■■ hbs (12464)
+      ■■■■■■■■ scss (15626)
+      ■■■■■■■ hbs (13121)
       ■ rb (639)
       ■ html (201)
 
 
-      ┌─────────────┬───────────────┐
-      │ ruleId      │ result(value) │
-      ├─────────────┼───────────────┤
-      │ ember-types │ 810           │
-      └─────────────┴───────────────┘
+      Ember Types
+      Total: 839
+
+
+      Template Lint Summary
+      Total: 673
+
+
+      Number of eslint-disable Usages
+      Total: 27
+
+
+      Outdated Dependencies
+      Total: 40
+
+
+      Ember Dependencies
+      Total: 37
+
+
 
 
       checkup v1.0.0-beta.11
-      config 7bca477eada135bcfae0876e271fff89"
+      config 257cda6f6d50eeef891fc6ec8d808bdb"
     `);
   });
 });

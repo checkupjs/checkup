@@ -2,9 +2,8 @@ import * as React from 'react';
 import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { default as InkTable } from 'ink-table';
-import { List } from './components/utils/list';
 import { BarData } from './types';
-import { Bar } from './components/utils/bar';
+import { SectionedBar } from './sub-components/sectioned-bar';
 import { registeredComponents } from './component-provider';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
@@ -52,7 +51,7 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
         </Text>
         <Newline />
         <Text>lines of code {repository.linesOfCode.total}</Text>
-        <List>
+        <>
           {repository.linesOfCode.types
             .sort((a, b) => {
               if (a.total > b.total) {
@@ -69,9 +68,9 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
                 value: type.total,
                 total: repository.linesOfCode.total,
               };
-              return <Bar key={type.extension} data={barData} />;
+              return <SectionedBar key={type.extension} data={barData} />;
             })}
-        </List>
+        </>
       </Box>
     </>
   );
@@ -110,21 +109,22 @@ const TaskResults: React.FC<{
       let componentName = taskProps.component;
 
       r.push({
-        Component: registeredComponents.get(componentName ?? 'table')!,
+        Component: registeredComponents.get(componentName ?? 'list')!,
         taskResult,
       });
     });
 
     return (
-      <List>
+      <>
         {r.map(({ Component, taskResult }) => {
           return (
             <Box flexDirection="column" key={taskResult.rule.id}>
               <Component taskResult={taskResult} />
+              <Newline />
             </Box>
           );
         })}
-      </List>
+      </>
     );
   } else {
     return <Text></Text>;

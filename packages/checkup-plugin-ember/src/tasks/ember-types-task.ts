@@ -40,7 +40,7 @@ export default class EmberTypesTask extends BaseTask implements Task {
             },
             rule: {
               properties: {
-                component: 'task-result-list',
+                component: 'list',
               },
             },
           }
