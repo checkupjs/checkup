@@ -20,7 +20,7 @@ describe('Test table component', () => {
       "┌─────────────┬───────┐
       │ ruleId      │ total │
       ├─────────────┼───────┤
-      │ ember-types │ 810   │
+      │ ember-types │ 839   │
       └─────────────┴───────┘"
     `);
   });

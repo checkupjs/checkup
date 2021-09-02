@@ -18,7 +18,7 @@ describe('Test table component', () => {
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
       "Ember Types
-      Total: 810"
+      Total: 839"
     `);
   });
 });

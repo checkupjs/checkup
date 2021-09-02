@@ -17,7 +17,7 @@ describe('Test table component', () => {
     const { stdout } = render(<Bar taskResult={taskResult} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(
-      `"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ember-types (810)"`
+      `"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ember-types (839)"`
     );
   });
 });
