@@ -3,7 +3,7 @@ import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { default as InkTable } from 'ink-table';
 import { BarData } from './types';
-import { Bar } from './utils/bar';
+import { Bar } from './sub-components/sectioned-bar';
 import { registeredComponents } from './component-provider';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
@@ -109,7 +109,7 @@ const TaskResults: React.FC<{
       let componentName = taskProps.component;
 
       r.push({
-        Component: registeredComponents.get(componentName ?? 'table')!,
+        Component: registeredComponents.get(componentName ?? 'list')!,
         taskResult,
       });
     });
@@ -120,6 +120,7 @@ const TaskResults: React.FC<{
           return (
             <Box flexDirection="column" key={taskResult.rule.id}>
               <Component taskResult={taskResult} />
+              <Newline />
             </Box>
           );
         })}

@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-focused-tests */
 import { resolve } from 'path';
 import * as React from 'react';
 import { render } from 'ink-testing-library';
@@ -7,8 +8,8 @@ import PrettyFormatter from '../src/pretty-formatter';
 
 const stripAnsi = require('strip-ansi');
 
-describe('Test Pretty component', () => {
-  it('can generate Pretty component', async () => {
+describe.only('Test Pretty component', () => {
+  it.only('can generate Pretty component', async () => {
     const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
 
@@ -28,11 +29,50 @@ describe('Test Pretty component', () => {
       ■ html (201)
 
 
-      ┌─────────────┬───────────────┐
-      │ ruleId      │ result(value) │
-      ├─────────────┼───────────────┤
-      │ ember-types │ 810           │
-      └─────────────┴───────────────┘
+      Ember Types
+      Total: 810
+
+
+      Eslint Summary
+      Total: 29
+
+
+      Ember Test Types
+      Total: 610
+
+
+      Ember Octane Migration Status Native Classes
+      Total: 435
+
+
+      Ember Octane Migration Status Glimmer Components
+      Total: 238
+
+
+      Ember Octane Migration Status Tagless Components
+      Total: 150
+
+
+      Ember Octane Migration Status Tracked Properties
+      Total: 2
+
+
+      Ember Template Lint Summary
+      Total: 632
+
+
+      Eslint Disables
+      Total: 27
+
+
+      Outdated Dependencies
+      Total: 52
+
+
+      Ember Dependencies
+      Total: 34
+
+
 
 
       checkup v1.0.0-beta.11
