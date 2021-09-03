@@ -106,7 +106,7 @@ const TaskResults: React.FC<{
   if (taskResults!.size > 0) {
     [...taskResults!.values()].forEach((taskResult) => {
       let taskProps = taskResult!.rule?.properties!;
-      let componentName = taskProps.component;
+      let componentName = taskProps.component.name;
 
       r.push({
         Component: registeredComponents.get(componentName ?? 'list')!,

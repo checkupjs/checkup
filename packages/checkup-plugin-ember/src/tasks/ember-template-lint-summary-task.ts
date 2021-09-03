@@ -40,6 +40,18 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
   async run(): Promise<Result[]> {
     let report = await this.runTemplateLint();
     let results = this.flattenLintResults(report.results);
+    let totalErrors = results.reduce((total, result) => {
+      if (result.severity === 2) {
+        total += 1;
+      }
+      return total;
+    }, 0);
+    let totalWarnings = results.reduce((total, result) => {
+      if (result.severity !== 2) {
+        total += 1;
+      }
+      return total;
+    }, 0);
 
     results.forEach((result) => {
       this.addResult(result.message, 'review', result.severity === 2 ? 'error' : 'warning', {
@@ -54,7 +66,19 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
           properties: {
             taskDisplayName: this.taskDisplayName,
             category: this.category,
-            component: 'list',
+            component: {
+              name: 'list',
+              data: [
+                {
+                  title: 'Total Errors',
+                  value: totalErrors,
+                },
+                {
+                  title: 'Total Warnings',
+                  value: totalWarnings,
+                },
+              ],
+            },
           },
         },
       });

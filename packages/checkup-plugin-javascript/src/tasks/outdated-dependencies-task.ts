@@ -44,7 +44,9 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
               properties: {
                 taskDisplayName: this.taskDisplayName,
                 category: this.category,
-                component: 'table',
+                component: {
+                  name: 'table',
+                },
               },
             },
           }

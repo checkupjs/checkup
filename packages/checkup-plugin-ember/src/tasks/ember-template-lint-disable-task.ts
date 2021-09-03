@@ -24,7 +24,15 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
         },
         rule: {
           properties: {
-            component: 'list',
+            component: {
+              name: 'list',
+              data: [
+                {
+                  title: 'Total Disables',
+                  value: templateLintDisables.length,
+                },
+              ],
+            },
           },
         },
       });

@@ -17,7 +17,51 @@
                      "properties":{
                         "taskDisplayName":"Ember Types",
                         "category":"metrics",
-                        "component":"list"
+                        "component":{
+                           "name":"list",
+                           "data":[
+                              {
+                                 "title":"components",
+                                 "value":258
+                              },
+                              {
+                                 "title":"controllers",
+                                 "value":44
+                              },
+                              {
+                                 "title":"helpers",
+                                 "value":38
+                              },
+                              {
+                                 "title":"initializers",
+                                 "value":4
+                              },
+                              {
+                                 "title":"instance-initializers",
+                                 "value":6
+                              },
+                              {
+                                 "title":"mixins",
+                                 "value":18
+                              },
+                              {
+                                 "title":"models",
+                                 "value":74
+                              },
+                              {
+                                 "title":"routes",
+                                 "value":65
+                              },
+                              {
+                                 "title":"services",
+                                 "value":47
+                              },
+                              {
+                                 "title":"templates",
+                                 "value":285
+                              }
+                           ]
+                        }
                      }
                   },
                   {
@@ -28,7 +72,19 @@
                      "properties":{
                         "taskDisplayName":"Template Lint Summary",
                         "category":"linting",
-                        "component":"list"
+                        "component":{
+                           "name":"list",
+                           "data":[
+                              {
+                                 "title":"Total Errors",
+                                 "value":673
+                              },
+                              {
+                                 "title":"Total Warnings",
+                                 "value":0
+                              }
+                           ]
+                        }
                      }
                   },
                   {
@@ -39,7 +95,15 @@
                      "properties":{
                         "taskDisplayName":"Number of eslint-disable Usages",
                         "category":"linting",
-                        "component":"list"
+                        "component":{
+                           "name":"list",
+                           "data":[
+                              {
+                                 "title":"Total Disables",
+                                 "value":27
+                              }
+                           ]
+                        }
                      }
                   },
                   {
@@ -50,7 +114,9 @@
                      "properties":{
                         "taskDisplayName":"Outdated Dependencies",
                         "category":"dependencies",
-                        "component":"table"
+                        "component":{
+                           "name":"table"
+                        }
                      }
                   },
                   {
@@ -61,7 +127,9 @@
                      "properties":{
                         "taskDisplayName":"Ember Dependencies",
                         "category":"dependencies",
-                        "component":"table"
+                        "component":{
+                           "name":"table"
+                        }
                      }
                   }
                ],
@@ -1052,8 +1120,6 @@
                         "app/utils/ui-kit/variant.js",
                         "app/utils/vcs.js",
                         "app/utils/wrap-with-array.js",
-                        "checkup-report-2021-09-02-22_31_07.sarif",
-                        "checkup-report-2021-09-02-22_40_04.sarif",
                         "config/deploy.js",
                         "config/deployment/deploy-local.sh",
                         "config/deployment/deploy-pull-request.sh",
@@ -1821,15 +1887,15 @@
                         "waiter/spec/spec_helper.rb",
                         "waiter/travis-web.gemspec"
                      ],
-                     "analyzedFilesCount":1695,
+                     "analyzedFilesCount":1693,
                      "timings":{
-                        "ember/ember-types":0.122101433,
-                        "ember/ember-template-lint-summary":11.235620837,
-                        "ember/ember-in-repo-addons-engines":11.161122292,
-                        "ember/ember-template-lint-disables":18.169806105,
-                        "javascript/eslint-disables":18.929946271,
-                        "javascript/outdated-dependencies":62.169123543,
-                        "ember/ember-dependencies":69.395369869
+                        "ember/ember-types":0.116762684,
+                        "ember/ember-template-lint-summary":8.024597974,
+                        "ember/ember-in-repo-addons-engines":7.934642545,
+                        "ember/ember-template-lint-disables":12.785937949,
+                        "javascript/eslint-disables":13.31104267,
+                        "javascript/outdated-dependencies":44.045757379,
+                        "ember/ember-dependencies":49.593025713
                      }
                   }
                }
@@ -31985,7 +32051,11 @@
                   {
                      "physicalLocation":{
                         "artifactLocation":{
-                           "uri":"app/utils/string-hash.js"
+                           "uri":"app/utils/pusher.js"
+                        },
+                        "region":{
+                           "startLine":160,
+                           "startColumn":4
                         }
                      }
                   }
@@ -32003,11 +32073,7 @@
                   {
                      "physicalLocation":{
                         "artifactLocation":{
-                           "uri":"app/utils/pusher.js"
-                        },
-                        "region":{
-                           "startLine":160,
-                           "startColumn":4
+                           "uri":"app/utils/string-hash.js"
                         }
                      }
                   }
@@ -34786,8 +34852,8 @@
                   "--cwd",
                   "/Users/zhanwang/personal/travis-web"
                ],
-               "startTimeUtc":"2021-09-03T05:57:12.552Z",
-               "endTimeUtc":"2021-09-03T05:58:22.527Z",
+               "startTimeUtc":"2021-09-03T23:05:19.327Z",
+               "endTimeUtc":"2021-09-03T23:06:09.475Z",
                "toolExecutionNotifications":[
                   {
                      "message":{

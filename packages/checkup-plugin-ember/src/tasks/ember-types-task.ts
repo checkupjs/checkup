@@ -22,6 +22,16 @@ export default class EmberTypesTask extends BaseTask implements Task {
   group = 'ember';
 
   async run(): Promise<Result[]> {
+    let typesTotal: any[] = [];
+
+    SEARCH_PATTERNS.map((pattern) => {
+      let files = this.context.paths.filterByGlob(pattern.pattern);
+      typesTotal.push({
+        title: pattern.patternName,
+        value: files.length,
+      });
+    });
+
     SEARCH_PATTERNS.map((pattern) => {
       let files = this.context.paths.filterByGlob(pattern.pattern);
 
@@ -42,7 +52,10 @@ export default class EmberTypesTask extends BaseTask implements Task {
               properties: {
                 taskDisplayName: this.taskDisplayName,
                 category: this.category,
-                component: 'list',
+                component: {
+                  name: 'list',
+                  data: typesTotal,
+                },
               },
             },
           }

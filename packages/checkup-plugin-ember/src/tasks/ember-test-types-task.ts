@@ -76,7 +76,10 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
         },
         rule: {
           properties: {
-            component: 'list',
+            component: {
+              name: 'list',
+              data: [],
+            },
           },
         },
       });

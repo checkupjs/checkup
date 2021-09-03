@@ -6,14 +6,8 @@ import { RuleResults } from '@checkup/core';
 export const Table: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
   let tableData: any[] = [];
   taskResult.results.forEach((result) => {
-    debugger;
     tableData.push(result.properties?.data);
-    debugger;
   });
-  // tableData.push({
-  //   ruleId: taskResult.rule.id,
-  //   total: taskResult.results.length,
-  // });
 
   return (
     <>

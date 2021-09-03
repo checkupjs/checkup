@@ -9,8 +9,14 @@ import { RuleResults } from '@checkup/core';
 export const List: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
   return (
     <Box flexDirection="column">
-      <Text>{taskResult.rule.properties?.taskDisplayName}</Text>
-      <Text>Total: {taskResult.results.length}</Text>
+      <Text underline>{taskResult.rule.properties?.taskDisplayName}</Text>
+      {taskResult.rule.properties?.component.data.map((item: any) => {
+        return (
+          <Text key={item.title}>
+            {item.title} {item.value}
+          </Text>
+        );
+      })}
     </Box>
   );
 };

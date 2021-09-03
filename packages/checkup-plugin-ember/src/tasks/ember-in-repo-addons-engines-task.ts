@@ -31,7 +31,10 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
             },
             rule: {
               properties: {
-                component: 'list',
+                component: {
+                  name: 'list',
+                  data: [],
+                },
               },
             },
           }

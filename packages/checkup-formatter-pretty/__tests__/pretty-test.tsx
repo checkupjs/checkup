@@ -15,7 +15,7 @@ describe('Test Pretty component', () => {
     const { stdout } = render(<PrettyFormatter logParser={logParser} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
-      "Checkup report generated for travis v0.0.1  (1695 files analyzed)
+      "Checkup report generated for travis v0.0.1  (1693 files analyzed)
       This project is 9 years old, with 1468 active days, 6010 commits and 1692 files
 
 
@@ -29,15 +29,25 @@ describe('Test Pretty component', () => {
 
 
       Ember Types
-      Total: 839
+      components 258
+      controllers 44
+      helpers 38
+      initializers 4
+      instance-initializers 6
+      mixins 18
+      models 74
+      routes 65
+      services 47
+      templates 285
 
 
       Template Lint Summary
-      Total: 673
+      Total Errors 673
+      Total Warnings 0
 
 
       Number of eslint-disable Usages
-      Total: 27
+      Total Disables 27
 
 
       Outdated Dependencies
