@@ -52,6 +52,8 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
         },
         rule: {
           properties: {
+            taskDisplayName: this.taskDisplayName,
+            category: this.category,
             component: 'list',
           },
         },
