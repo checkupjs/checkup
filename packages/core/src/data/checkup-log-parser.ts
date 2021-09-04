@@ -78,21 +78,4 @@ export default class CheckupLogParser {
 
     return this._resultsByRule;
   }
-
-  get rulesByParentRule() {
-    let rulesByParent = new Map<string, RuleResults[]>();
-
-    for (let ruleResult of this.resultsByRule.values()) {
-      let parentRuleID = ruleResult.rule.properties?.parentRuleID;
-      if (parentRuleID) {
-        if (!rulesByParent.has(parentRuleID)) {
-          rulesByParent.set(parentRuleID, []);
-        }
-
-        rulesByParent.get(parentRuleID)?.push(ruleResult);
-      }
-    }
-
-    return rulesByParent;
-  }
 }
