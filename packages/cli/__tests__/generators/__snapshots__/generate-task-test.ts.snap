@@ -6,6 +6,7 @@ exports[`task generator generates correct files with JavaScript 1`] = `
 module.exports = class MyFooTask extends BaseTask {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
+  description = 'Some description';
   category = 'foo';
   group = 'bar';
 
@@ -76,6 +77,7 @@ import { Result } from 'sarif';
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
+  description = '';
   category = '';
 
   async run(): Promise<Result[]> {
@@ -142,6 +144,7 @@ import { Result } from 'sarif';
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
+  description = '';
   category = '';
 
   async run(): Promise<Result[]> {
@@ -208,6 +211,7 @@ import { Result } from 'sarif';
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
+  description = 'Some description';
   category = 'foo';
   group = 'bar';
 
@@ -275,6 +279,7 @@ import { Result } from 'sarif';
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
+  description = 'Some description';
   category = 'foo';
   group = 'bar';
 
@@ -342,6 +347,7 @@ import { Result } from 'sarif';
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
+  description = 'Some description';
   category = 'foo';
   group = 'bar';
 
@@ -409,6 +415,7 @@ import { Result } from 'sarif';
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
+  description = 'Some description';
   category = 'foo';
   group = 'bar';
 
@@ -476,6 +483,7 @@ import { Result } from 'sarif';
 export default class MyFooTask extends BaseTask implements Task {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
+  description = '';
   category = '';
 
   async run(): Promise<Result[]> {
@@ -529,6 +537,7 @@ import { Result } from 'sarif';
 export default class MyBarTask extends BaseTask implements Task {
   taskName = 'my-bar';
   taskDisplayName = 'My Bar';
+  description = '';
   category = '';
 
   async run(): Promise<Result[]> {
