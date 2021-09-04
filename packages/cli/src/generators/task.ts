@@ -14,6 +14,7 @@ interface TaskOptions extends Options {
   pascalCaseName: string;
   typescript: boolean;
   commandType: string;
+  description: string;
   category: string;
   group: string;
 }
@@ -39,6 +40,7 @@ export default class TaskGenerator extends BaseGenerator {
     const defaults = {
       typescript: true,
       commandType: 'info',
+      description: '',
       category: '',
       group: '',
     };
@@ -61,6 +63,11 @@ export default class TaskGenerator extends BaseGenerator {
           },
           {
             type: 'input',
+            name: 'description',
+            message: `Enter a task description.`,
+          },
+          {
+            type: 'input',
             name: 'category',
             message: `Enter a task category. (Categories are used to group similar tasks together to help organize the results. eg: 'best practices', 'testing', etc.)`,
           },
@@ -76,6 +83,7 @@ export default class TaskGenerator extends BaseGenerator {
     this.options.taskClass = `${this.options.pascalCaseName}Task`;
     this.options.typescript = this.answers.typescript;
     this.options.commandType = this.answers.commandType;
+    this.options.description = this.answers.description;
     this.options.category = this.answers.category;
     this.options.group = this.answers.group;
   }
@@ -141,11 +149,11 @@ export default class TaskGenerator extends BaseGenerator {
     });
 
     transformer.analyze({
-      Program(path) {
-        path.node.body.splice(1, 0, importOrRequire);
+      Program(nodePath) {
+        nodePath.node.body.splice(1, 0, importOrRequire);
       },
-      BlockStatement(path) {
-        path.node.body.push(registerTaskStatement);
+      BlockStatement(nodePath) {
+        nodePath.node.body.push(registerTaskStatement);
       },
     });
 

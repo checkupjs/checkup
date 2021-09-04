@@ -4,6 +4,7 @@ import { Result } from 'sarif';
 export default class <%- taskClass %> extends BaseTask implements Task {
   taskName = '<%- name %>';
   taskDisplayName = '<%- _.startCase(name.split('-').join(' ')) %>';
+  description = '<%- description %>';
   category = '<%- category %>';
   <%_ if (group) { _%>
   group = '<%- group %>';
