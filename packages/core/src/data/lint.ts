@@ -15,6 +15,8 @@ export function toLintResult(
     severity: message.severity,
     line: message.line,
     column: message.column,
+    endLine: 'endLine' in message ? message.endLine! : message.line,
+    endColumn: 'endColumn' in message ? message.endColumn! : message.column,
     ...additionalData,
   };
 }

@@ -55,6 +55,8 @@ async function getEslintDisables(filePaths: string[], cwd: string) {
         message: 'eslint-disable usages',
         line: node.loc.start.line,
         column: node.loc.start.column,
+        endLine: node.loc.end.line,
+        endColumn: node.loc.end.column,
       });
     }
 

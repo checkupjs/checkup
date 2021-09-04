@@ -172,31 +172,33 @@ describe('BaseTask', () => {
               ]
           `);
       expect(run.results).toMatchInlineSnapshot(`
-              Array [
-                Object {
-                  "kind": "informational",
-                  "level": "note",
-                  "locations": Array [
-                    Object {
-                      "physicalLocation": Object {
-                        "artifactLocation": Object {
-                          "uri": "path/to/file.js",
-                        },
-                        "region": Object {
-                          "startColumn": 1,
-                          "startLine": 1,
-                        },
-                      },
-                    },
-                  ],
-                  "message": Object {
-                    "text": "The is a fake message",
+        Array [
+          Object {
+            "kind": "informational",
+            "level": "note",
+            "locations": Array [
+              Object {
+                "physicalLocation": Object {
+                  "artifactLocation": Object {
+                    "uri": "path/to/file.js",
                   },
-                  "ruleId": "my-fake",
-                  "ruleIndex": 0,
+                  "region": Object {
+                    "endColumn": 1,
+                    "endLine": 1,
+                    "startColumn": 1,
+                    "startLine": 1,
+                  },
                 },
-              ]
-          `);
+              },
+            ],
+            "message": Object {
+              "text": "The is a fake message",
+            },
+            "ruleId": "my-fake",
+            "ruleIndex": 0,
+          },
+        ]
+      `);
       for (let result of run.results) {
         expect(result).toBeValidSarifFor('result');
       }

@@ -25,6 +25,8 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
               uri: join(this.context.options.cwd, 'package.json'),
               startLine: dependency.startLine,
               startColumn: dependency.startColumn,
+              endColumn: dependency.endColumn,
+              endLine: dependency.endLine,
             },
             properties: {
               packageName: dependency.packageName,

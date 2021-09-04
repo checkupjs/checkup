@@ -140,10 +140,16 @@ export default abstract class BaseTask {
         },
       };
 
-      if (locationOptions.startLine && locationOptions.startColumn) {
+      if (
+        Object.keys(locationOptions).some((prop) =>
+          ['startLine', 'startColumn', 'endLine', 'endColumn'].includes(prop)
+        )
+      ) {
         location.physicalLocation.region = {
-          startLine: locationOptions.startLine,
-          startColumn: locationOptions.startColumn,
+          startLine: locationOptions.startLine ?? 0,
+          startColumn: locationOptions.startColumn ?? 0,
+          endLine: locationOptions.endLine ?? locationOptions.startLine ?? 0,
+          endColumn: locationOptions.endColumn ?? locationOptions.startColumn ?? 0,
         };
       }
 

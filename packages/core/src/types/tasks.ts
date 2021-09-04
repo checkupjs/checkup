@@ -27,8 +27,10 @@ export type TaskResultKind = Result.kind;
 export type TaskResultLevel = Result.level;
 export type TaskResultLocation = {
   uri: string;
-  startColumn?: number;
   startLine?: number;
+  startColumn?: number;
+  endLine?: number;
+  endColumn?: number;
 };
 export type TaskResultProperties = PropertyBag;
 export type TaskRule = SetOptional<ReportingDescriptor, 'id'>;
@@ -98,6 +100,8 @@ export interface NormalizedLintResult {
   message: string;
   line: number;
   column: number;
+  endLine: number;
+  endColumn: number;
 
   [key: string]: any;
 }

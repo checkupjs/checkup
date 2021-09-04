@@ -222,6 +222,8 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
             uri: lintResult.filePath,
             startColumn: lintResult.column,
             startLine: lintResult.line,
+            endColumn: lintResult.endColumn,
+            endLine: lintResult.endLine,
           },
           properties: {
             migration: {

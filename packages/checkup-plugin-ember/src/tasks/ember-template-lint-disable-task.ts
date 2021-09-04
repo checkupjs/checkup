@@ -49,6 +49,8 @@ async function getTemplateLintDisables(filePaths: string[], cwd: string) {
         message: 'ember-template-lint-disable usages',
         line: node.loc.start.line,
         column: node.loc.start.column,
+        endLine: node.loc.end.line,
+        endColumn: node.loc.end.column,
       });
     }
 
