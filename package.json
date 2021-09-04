@@ -15,7 +15,7 @@
     "clean": "tsc --build --clean",
     "lint": "eslint .",
     "prepare": "yarn build",
-    "test": "yarn workspaces run test"
+    "test": "yarn lint && yarn workspaces run test"
   },
   "devDependencies": {
     "@microsoft/jest-sarif": "^1.0.0-beta.0",
