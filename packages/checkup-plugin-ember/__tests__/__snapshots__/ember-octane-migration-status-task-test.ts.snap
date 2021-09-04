@@ -12,6 +12,8 @@ Array [
             "uri": "addon/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 25,
+            "endLine": 2,
             "startColumn": 16,
             "startLine": 2,
           },
@@ -42,6 +44,8 @@ Array [
             "uri": "addon/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 20,
             "startColumn": 24,
             "startLine": 6,
           },
@@ -72,6 +76,8 @@ Array [
             "uri": "addon/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 20,
             "startColumn": 24,
             "startLine": 6,
           },
@@ -102,6 +108,8 @@ Array [
             "uri": "addon/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 27,
+            "endLine": 9,
             "startColumn": 11,
             "startLine": 9,
           },
@@ -132,6 +140,8 @@ Array [
             "uri": "addon/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 44,
+            "endLine": 10,
             "startColumn": 24,
             "startLine": 10,
           },
@@ -162,6 +172,8 @@ Array [
             "uri": "addon/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 12,
+            "endLine": 19,
             "startColumn": 11,
             "startLine": 15,
           },
@@ -192,6 +204,8 @@ Array [
             "uri": "addon/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 25,
+            "endLine": 2,
             "startColumn": 16,
             "startLine": 2,
           },
@@ -222,6 +236,8 @@ Array [
             "uri": "addon/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 20,
             "startColumn": 24,
             "startLine": 6,
           },
@@ -252,6 +268,8 @@ Array [
             "uri": "addon/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 20,
             "startColumn": 24,
             "startLine": 6,
           },
@@ -282,6 +300,8 @@ Array [
             "uri": "addon/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 27,
+            "endLine": 9,
             "startColumn": 11,
             "startLine": 9,
           },
@@ -312,6 +332,8 @@ Array [
             "uri": "addon/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 44,
+            "endLine": 10,
             "startColumn": 24,
             "startLine": 10,
           },
@@ -342,6 +364,8 @@ Array [
             "uri": "addon/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 12,
+            "endLine": 19,
             "startColumn": 11,
             "startLine": 15,
           },
@@ -372,6 +396,8 @@ Array [
             "uri": "addon/routes/my-route.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 5,
             "startColumn": 24,
             "startLine": 4,
           },
@@ -402,6 +428,8 @@ Array [
             "uri": "addon/services/my-service.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 10,
             "startColumn": 24,
             "startLine": 4,
           },
@@ -432,6 +460,8 @@ Array [
             "uri": "addon/services/my-service.js",
           },
           "region": Object {
+            "endColumn": 40,
+            "endLine": 8,
             "startColumn": 25,
             "startLine": 8,
           },
@@ -462,6 +492,8 @@ Array [
             "uri": "addon/templates/application.hbs",
           },
           "region": Object {
+            "endColumn": 10,
+            "endLine": 2,
             "startColumn": 10,
             "startLine": 2,
           },
@@ -492,6 +524,8 @@ Array [
             "uri": "addon/templates/application.hbs",
           },
           "region": Object {
+            "endColumn": 10,
+            "endLine": 3,
             "startColumn": 10,
             "startLine": 3,
           },
@@ -522,6 +556,8 @@ Array [
             "uri": "addon/templates/application.hbs",
           },
           "region": Object {
+            "endColumn": 33,
+            "endLine": 2,
             "startColumn": 33,
             "startLine": 2,
           },
@@ -552,6 +588,8 @@ Array [
             "uri": "addon/templates/application.hbs",
           },
           "region": Object {
+            "endColumn": 39,
+            "endLine": 3,
             "startColumn": 39,
             "startLine": 3,
           },
@@ -582,6 +620,8 @@ Array [
             "uri": "addon/templates/my-component.hbs",
           },
           "region": Object {
+            "endColumn": 18,
+            "endLine": 2,
             "startColumn": 18,
             "startLine": 2,
           },
@@ -612,6 +652,8 @@ Array [
             "uri": "addon/templates/my-component.hbs",
           },
           "region": Object {
+            "endColumn": 10,
+            "endLine": 3,
             "startColumn": 10,
             "startLine": 3,
           },
@@ -642,6 +684,8 @@ Array [
             "uri": "addon/templates/my-component.hbs",
           },
           "region": Object {
+            "endColumn": 12,
+            "endLine": 3,
             "startColumn": 12,
             "startLine": 3,
           },
@@ -672,6 +716,8 @@ Array [
             "uri": "addon/templates/other-component.hbs",
           },
           "region": Object {
+            "endColumn": 10,
+            "endLine": 2,
             "startColumn": 10,
             "startLine": 2,
           },
@@ -702,6 +748,8 @@ Array [
             "uri": "addon/templates/other-component.hbs",
           },
           "region": Object {
+            "endColumn": 12,
+            "endLine": 2,
             "startColumn": 12,
             "startLine": 2,
           },
@@ -737,6 +785,8 @@ Array [
             "uri": "app/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 25,
+            "endLine": 2,
             "startColumn": 16,
             "startLine": 2,
           },
@@ -767,6 +817,8 @@ Array [
             "uri": "app/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 20,
             "startColumn": 24,
             "startLine": 6,
           },
@@ -797,6 +849,8 @@ Array [
             "uri": "app/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 20,
             "startColumn": 24,
             "startLine": 6,
           },
@@ -827,6 +881,8 @@ Array [
             "uri": "app/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 27,
+            "endLine": 9,
             "startColumn": 11,
             "startLine": 9,
           },
@@ -857,6 +913,8 @@ Array [
             "uri": "app/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 44,
+            "endLine": 10,
             "startColumn": 24,
             "startLine": 10,
           },
@@ -887,6 +945,8 @@ Array [
             "uri": "app/components/my-component.js",
           },
           "region": Object {
+            "endColumn": 12,
+            "endLine": 19,
             "startColumn": 11,
             "startLine": 15,
           },
@@ -917,6 +977,8 @@ Array [
             "uri": "app/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 25,
+            "endLine": 2,
             "startColumn": 16,
             "startLine": 2,
           },
@@ -947,6 +1009,8 @@ Array [
             "uri": "app/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 20,
             "startColumn": 24,
             "startLine": 6,
           },
@@ -977,6 +1041,8 @@ Array [
             "uri": "app/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 20,
             "startColumn": 24,
             "startLine": 6,
           },
@@ -1007,6 +1073,8 @@ Array [
             "uri": "app/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 27,
+            "endLine": 9,
             "startColumn": 11,
             "startLine": 9,
           },
@@ -1037,6 +1105,8 @@ Array [
             "uri": "app/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 44,
+            "endLine": 10,
             "startColumn": 24,
             "startLine": 10,
           },
@@ -1067,6 +1137,8 @@ Array [
             "uri": "app/components/other-component.js",
           },
           "region": Object {
+            "endColumn": 12,
+            "endLine": 19,
             "startColumn": 11,
             "startLine": 15,
           },
@@ -1097,6 +1169,8 @@ Array [
             "uri": "app/routes/my-route.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 5,
             "startColumn": 24,
             "startLine": 4,
           },
@@ -1127,6 +1201,8 @@ Array [
             "uri": "app/services/my-service.js",
           },
           "region": Object {
+            "endColumn": 11,
+            "endLine": 10,
             "startColumn": 24,
             "startLine": 4,
           },
@@ -1157,6 +1233,8 @@ Array [
             "uri": "app/services/my-service.js",
           },
           "region": Object {
+            "endColumn": 40,
+            "endLine": 8,
             "startColumn": 25,
             "startLine": 8,
           },
@@ -1187,6 +1265,8 @@ Array [
             "uri": "app/templates/application.hbs",
           },
           "region": Object {
+            "endColumn": 10,
+            "endLine": 2,
             "startColumn": 10,
             "startLine": 2,
           },
@@ -1217,6 +1297,8 @@ Array [
             "uri": "app/templates/application.hbs",
           },
           "region": Object {
+            "endColumn": 10,
+            "endLine": 3,
             "startColumn": 10,
             "startLine": 3,
           },
@@ -1247,6 +1329,8 @@ Array [
             "uri": "app/templates/application.hbs",
           },
           "region": Object {
+            "endColumn": 33,
+            "endLine": 2,
             "startColumn": 33,
             "startLine": 2,
           },
@@ -1277,6 +1361,8 @@ Array [
             "uri": "app/templates/application.hbs",
           },
           "region": Object {
+            "endColumn": 39,
+            "endLine": 3,
             "startColumn": 39,
             "startLine": 3,
           },
@@ -1307,6 +1393,8 @@ Array [
             "uri": "app/templates/my-component.hbs",
           },
           "region": Object {
+            "endColumn": 18,
+            "endLine": 2,
             "startColumn": 18,
             "startLine": 2,
           },
@@ -1337,6 +1425,8 @@ Array [
             "uri": "app/templates/my-component.hbs",
           },
           "region": Object {
+            "endColumn": 10,
+            "endLine": 3,
             "startColumn": 10,
             "startLine": 3,
           },
@@ -1367,6 +1457,8 @@ Array [
             "uri": "app/templates/my-component.hbs",
           },
           "region": Object {
+            "endColumn": 12,
+            "endLine": 3,
             "startColumn": 12,
             "startLine": 3,
           },
@@ -1397,6 +1489,8 @@ Array [
             "uri": "app/templates/other-component.hbs",
           },
           "region": Object {
+            "endColumn": 10,
+            "endLine": 2,
             "startColumn": 10,
             "startLine": 2,
           },
@@ -1427,6 +1521,8 @@ Array [
             "uri": "app/templates/other-component.hbs",
           },
           "region": Object {
+            "endColumn": 12,
+            "endLine": 2,
             "startColumn": 12,
             "startLine": 2,
           },

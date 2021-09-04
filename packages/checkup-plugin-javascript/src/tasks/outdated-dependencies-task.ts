@@ -26,6 +26,8 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
               uri: join(this.context.options.cwd, 'package.json'),
               startColumn: dependency.startColumn,
               startLine: dependency.startLine,
+              endColumn: dependency.endColumn,
+              endLine: dependency.endLine,
             },
             properties: {
               packageName: dependency.packageName,

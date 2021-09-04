@@ -47,6 +47,8 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
           uri: result.filePath,
           startColumn: result.column,
           startLine: result.line,
+          endLine: result.endLine,
+          endColumn: result.endColumn,
         },
         rule: {
           properties: {

@@ -33,6 +33,8 @@ export default class DependencyAnalyzer {
           type: dependency.devDependency ? 'devDependency' : 'dependency',
           startLine: 0,
           startColumn: 0,
+          endLine: 0,
+          endColumn: 0,
         };
 
         return {
@@ -75,6 +77,8 @@ export default class DependencyAnalyzer {
                   type: 'dependency',
                   startLine: property.loc.start.line,
                   startColumn: property.loc.start.column,
+                  endLine: property.loc.end.line,
+                  endColumn: property.loc.end.column,
                 });
               }
             }
@@ -86,6 +90,8 @@ export default class DependencyAnalyzer {
                   type: 'devDependency',
                   startLine: property.loc.start.line,
                   startColumn: property.loc.start.column,
+                  endLine: property.loc.end.line,
+                  endColumn: property.loc.end.column,
                 });
               }
             }

@@ -4,6 +4,8 @@ export interface DependencyInfo {
   type: 'dependency' | 'devDependency';
   startLine: number;
   startColumn: number;
+  endLine: number;
+  endColumn: number;
 }
 
 export type Dependency = DependencyInfo & {

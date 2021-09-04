@@ -67,6 +67,8 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
           uri: result.filePath,
           startColumn: result.column,
           startLine: result.line,
+          endLine: result.endLine,
+          endColumn: result.endColumn,
         },
         properties: {
           testType,
