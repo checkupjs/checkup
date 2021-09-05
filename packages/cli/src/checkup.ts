@@ -8,6 +8,24 @@ import { getFormatter } from './formatters/get-formatter';
 import { reportAvailableTasks } from './formatters/available-tasks';
 import { writeResultFile } from './formatters/file-writer';
 
+interface CheckupArguments {
+  [x: string]: unknown;
+  paths: string[];
+  excludePaths: string[];
+  config: CheckupConfig;
+  configPath: string;
+  cwd: string;
+  category: string[];
+  group: string[];
+  task: string[];
+  pluginBaseDir: string;
+  listTasks: boolean;
+  format: OutputFormat;
+  outputFile: string;
+}
+
+type CLIOptions = CheckupArguments & yargs.Arguments;
+
 export async function run(argv: string[] = process.argv.slice(2)) {
   let consoleWriter = new ConsoleWriter();
   let parser = yargs
@@ -97,23 +115,23 @@ checkup <command> [options]`
           },
         });
       },
-      handler: async (argv: yargs.Arguments) => {
-        let paths = argv._.slice(1);
+      handler: async (options: CLIOptions) => {
+        let paths = options._.slice(1);
 
         let taskRunner = new CheckupTaskRunner({
-          paths: paths as string[],
-          excludePaths: argv.excludePaths as string[],
-          config: argv.config as CheckupConfig,
-          configPath: argv.configPath as string,
-          cwd: argv.cwd as string,
-          categories: argv.category as string[],
-          groups: argv.group as string[],
-          tasks: argv.task as string[],
-          pluginBaseDir: argv['plugin-base-dir'] as string,
+          paths,
+          excludePaths: options.excludePaths,
+          config: options.config,
+          configPath: options.configPath,
+          cwd: options.cwd,
+          categories: options.category,
+          groups: options.group,
+          tasks: options.task,
+          pluginBaseDir: options['plugin-base-dir'] as string,
         });
 
         if (!paths || paths.length === 0) {
-          if (argv.listTasks) {
+          if (options.listTasks) {
             let availableTasks = await taskRunner.getAvailableTasks();
 
             reportAvailableTasks(availableTasks);
@@ -131,21 +149,17 @@ checkup <command> [options]`
           let log = await taskRunner.run();
 
           let formatter = getFormatter({
-            cwd: argv.cwd as string,
-            format: argv.format as OutputFormat,
-            outputFile: argv.outputFile as string,
+            cwd: options.cwd,
+            format: options.format,
+            outputFile: options.outputFile,
           });
 
           spinner.stop();
           let output = formatter.format(log);
 
           if (output) {
-            if (argv.outputFile) {
-              let resultFilePath = writeResultFile(
-                log,
-                argv.cwd as string,
-                argv.outputFile as string
-              );
+            if (options.outputFile) {
+              let resultFilePath = writeResultFile(log, options.cwd, options.outputFile);
 
               console.log();
               console.log('Results have been saved to the following file:');
