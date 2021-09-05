@@ -3,6 +3,7 @@ const { BaseTask } = require('@checkup/core');
 module.exports = class <%- taskClass %> extends BaseTask {
   taskName = '<%- name %>';
   taskDisplayName = '<%- _.startCase(name.split('-').join(' ')) %>';
+  description = '<%- description %>';
   category = '<%- category %>';
   <%_ if (group) { _%>
   group = '<%- group %>';

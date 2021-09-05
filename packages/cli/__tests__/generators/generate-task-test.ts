@@ -92,6 +92,7 @@ describe('task generator', () => {
       .withPrompts({
         typescript: false,
         commandType: 'info',
+        description: 'Some description',
         category: 'foo',
         group: 'bar',
       });
@@ -111,6 +112,7 @@ describe('task generator', () => {
       })
       .withPrompts({
         commandType: 'info',
+        description: 'Some description',
         category: 'foo',
         group: 'bar',
       });
@@ -130,6 +132,7 @@ describe('task generator', () => {
       })
       .withPrompts({
         commandType: 'migration',
+        description: 'Some description',
         category: 'foo',
         group: 'bar',
       });
@@ -149,6 +152,7 @@ describe('task generator', () => {
       })
       .withPrompts({
         commandType: 'info',
+        description: 'Some description',
         category: 'foo',
         group: 'bar',
       });
@@ -168,6 +172,7 @@ describe('task generator', () => {
       })
       .withPrompts({
         commandType: 'info',
+        description: 'Some description',
         category: 'foo',
         group: 'bar',
       });
