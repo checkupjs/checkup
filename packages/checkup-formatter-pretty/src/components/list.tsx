@@ -1,22 +1,51 @@
 import * as React from 'react';
 import { Box, Text } from 'ink';
 import { RuleResults } from '@checkup/core';
+import * as objectPath from 'object-path';
+import { TaskDisplayName } from '../sub-components/task-display-name';
+import { getOptions } from '../get-options';
 
-/**
- * // TODO: Group result by data field
- * that provided by checkup task
- */
+type ListOptions = {
+  items: Record<string, { groupBy: string; value: string }>;
+};
+
+type ListItem = {
+  text: string;
+  value: string | number;
+};
+
 export const List: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
+  let listItems = buildListData(taskResult);
+
   return (
-    <Box flexDirection="column">
-      <Text underline>{taskResult.rule.properties?.taskDisplayName}</Text>
-      {taskResult.rule.properties?.component.data.map((item: any) => {
-        return (
-          <Text key={item.title}>
-            {item.title} {item.value}
-          </Text>
-        );
-      })}
-    </Box>
+    <>
+      <TaskDisplayName taskResult={taskResult} />
+      <Box marginLeft={2} flexDirection="column">
+        {listItems.map((item: any) => {
+          return (
+            <Text key={item.text}>
+              {item.text} {item.value}
+            </Text>
+          );
+        })}
+      </Box>
+    </>
   );
 };
+
+function buildListData(taskResult: RuleResults) {
+  let { rule, results } = taskResult;
+  let { items } = getOptions<ListOptions>(rule);
+  let listItems: ListItem[] = [];
+
+  for (let item of Object.keys(items)) {
+    listItems.push({
+      text: item,
+      value: results.filter(
+        (result) => objectPath.get(result, items[item].groupBy) === items[item].value
+      ).length,
+    });
+  }
+
+  return listItems;
+}

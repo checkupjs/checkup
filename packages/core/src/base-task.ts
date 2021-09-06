@@ -2,6 +2,7 @@ import * as debug from 'debug';
 
 import { Location, Result } from 'sarif';
 import { SetRequired } from 'type-fest';
+
 import {
   TaskName,
   TaskContext,
@@ -19,6 +20,8 @@ import { RequiredResult } from './types/checkup-log';
 import CheckupLogBuilder from './data/checkup-log-builder';
 import { toLintResults } from './data/lint';
 import { LintResult } from './types/analyzers';
+
+const merge = require('lodash.merge');
 
 export default abstract class BaseTask {
   abstract taskName: TaskName;
@@ -187,7 +190,7 @@ export default abstract class BaseTask {
       },
     };
 
-    taskRule = Object.assign({}, ruleProps, rule);
+    taskRule = merge({}, ruleProps, rule);
 
     this._logBuilder.addRule(taskRule);
 

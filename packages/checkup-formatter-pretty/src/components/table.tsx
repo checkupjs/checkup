@@ -8,7 +8,7 @@ import { TaskDisplayName } from '../sub-components/task-display-name';
 import { getOptions } from '../get-options';
 
 type TableOptions = {
-  rows: Record<string, any>;
+  rows: Record<string, string>;
 };
 
 export const Table: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
@@ -25,10 +25,10 @@ export const Table: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => 
 };
 
 function buildTableData(taskResult: RuleResults): any[] {
-  let rule = taskResult.rule;
+  let { rule, results } = taskResult;
   let { rows } = getOptions<TableOptions>(rule);
 
-  let dataRows = taskResult.results.map((result: Result) => {
+  let dataRows = results.map((result: Result) => {
     let rowData: Record<string, any> = {};
 
     for (let column of Object.keys(rows)) {

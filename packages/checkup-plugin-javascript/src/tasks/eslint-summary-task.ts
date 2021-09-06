@@ -51,18 +51,6 @@ export default class EslintSummaryTask extends BaseTask implements Task {
   async run(): Promise<Result[]> {
     let report = await this.analyzer.analyze(this.context.paths.filterByGlob('**/*.js'));
     let results = this.flattenLintResults(report.results);
-    let totalErrors = results.reduce((total, result) => {
-      if (result.severity === 2) {
-        total += 1;
-      }
-      return total;
-    }, 0);
-    let totalWarnings = results.reduce((total, result) => {
-      if (result.severity !== 2) {
-        total += 1;
-      }
-      return total;
-    }, 0);
 
     results.forEach((result) => {
       this.addResult(result.message, 'review', result.severity === 2 ? 'error' : 'warning', {
@@ -77,16 +65,18 @@ export default class EslintSummaryTask extends BaseTask implements Task {
           properties: {
             component: {
               name: 'list',
-              data: [
-                {
-                  title: 'Total Errors',
-                  value: totalErrors,
+              options: {
+                items: {
+                  Errors: {
+                    groupBy: 'level',
+                    value: 'error',
+                  },
+                  Warnings: {
+                    groupBy: 'level',
+                    value: 'warning',
+                  },
                 },
-                {
-                  title: 'Total Warnings',
-                  value: totalWarnings,
-                },
-              ],
+              },
             },
           },
         },
