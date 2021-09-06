@@ -34,12 +34,14 @@ export default class EslintDisableTask extends BaseTask implements Task {
             category: this.category,
             component: {
               name: 'list',
-              data: [
-                {
-                  title: 'Total Disables',
-                  value: eslintDisables.length,
+              options: {
+                items: {
+                  'Disabled rules': {
+                    groupBy: 'level',
+                    value: 'note',
+                  },
                 },
-              ],
+              },
             },
           },
         },

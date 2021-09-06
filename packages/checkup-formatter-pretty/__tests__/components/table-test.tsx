@@ -16,25 +16,48 @@ describe('Test table component', () => {
         properties: {
           taskDisplayName: 'Ember Dependencies',
           category: 'dependencies',
-          component: 'table',
+          component: {
+            name: 'table',
+            options: {
+              rows: {
+                Dependency: 'properties.packageName',
+                Installed: 'properties.packageVersion',
+                Latest: 'properties.latestVersion',
+              },
+            },
+          },
         },
       },
       results: [
         {
           message: {
-            text: 'Ember dependency information for ember-composable-helpers',
+            text: 'Ember dependency information for ember-animated',
           },
           ruleId: 'ember-dependencies',
+          kind: 'review',
+          level: 'note',
           properties: {
-            packageName: 'ember-composable-helpers',
-            packageVersion: '^2.1.0',
-            latestVersion: '4.5.0',
+            packageName: 'ember-animated',
+            packageVersion: '^0.9.0',
+            latestVersion: '0.11.0',
             type: 'devDependency',
-            data: {
-              packageName: 'ember-composable-helpers',
-              packageVersion: '^2.1.0',
-            },
           },
+          locations: [
+            {
+              physicalLocation: {
+                artifactLocation: {
+                  uri: '/Users/zhanwang/personal/travis-web/package.json',
+                },
+                region: {
+                  startLine: 34,
+                  startColumn: 4,
+                  endLine: 34,
+                  endColumn: 30,
+                },
+              },
+            },
+          ],
+          ruleIndex: 4,
         },
       ],
     };
@@ -43,11 +66,11 @@ describe('Test table component', () => {
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
       "Ember Dependencies
-      ┌──────────────────────────┬────────────────┐
-      │ packageName              │ packageVersion │
-      ├──────────────────────────┼────────────────┤
-      │ ember-composable-helpers │ ^2.1.0         │
-      └──────────────────────────┴────────────────┘"
+        ┌────────────────┬───────────┬────────┐
+        │ Dependency     │ Installed │ Latest │
+        ├────────────────┼───────────┼────────┤
+        │ ember-animated │ ^0.9.0    │ 0.11.0 │
+        └────────────────┴───────────┴────────┘"
     `);
   });
 });
