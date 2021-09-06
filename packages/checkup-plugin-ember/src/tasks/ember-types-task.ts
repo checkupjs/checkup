@@ -2,16 +2,16 @@ import { Task, BaseTask, trimCwd } from '@checkup/core';
 import { Result } from 'sarif';
 
 const SEARCH_PATTERNS = [
-  { patternName: 'components', pattern: ['**/components/**/*.js'] },
-  { patternName: 'controllers', pattern: ['**/controllers/**/*.js'] },
-  { patternName: 'helpers', pattern: ['**/helpers/**/*.js'] },
-  { patternName: 'initializers', pattern: ['**/initializers/**/*.js'] },
-  { patternName: 'instance-initializers', pattern: ['**/instance-initializers/**/*.js'] },
-  { patternName: 'mixins', pattern: ['**/mixins/**/*.js'] },
-  { patternName: 'models', pattern: ['**/models/**/*.js'] },
-  { patternName: 'routes', pattern: ['**/routes/**/*.js'] },
-  { patternName: 'services', pattern: ['**/services/**/*.js'] },
-  { patternName: 'templates', pattern: ['**/templates/**/*.hbs'] },
+  { type: 'components', pattern: ['**/components/**/*.js'] },
+  { type: 'controllers', pattern: ['**/controllers/**/*.js'] },
+  { type: 'helpers', pattern: ['**/helpers/**/*.js'] },
+  { type: 'initializers', pattern: ['**/initializers/**/*.js'] },
+  { type: 'instance-initializers', pattern: ['**/instance-initializers/**/*.js'] },
+  { type: 'mixins', pattern: ['**/mixins/**/*.js'] },
+  { type: 'models', pattern: ['**/models/**/*.js'] },
+  { type: 'routes', pattern: ['**/routes/**/*.js'] },
+  { type: 'services', pattern: ['**/services/**/*.js'] },
+  { type: 'templates', pattern: ['**/templates/**/*.hbs'] },
 ];
 
 export default class EmberTypesTask extends BaseTask implements Task {
@@ -22,39 +22,35 @@ export default class EmberTypesTask extends BaseTask implements Task {
   group = 'ember';
 
   async run(): Promise<Result[]> {
-    let typesTotal: any[] = [];
-
-    SEARCH_PATTERNS.map((pattern) => {
-      let files = this.context.paths.filterByGlob(pattern.pattern);
-      typesTotal.push({
-        title: pattern.patternName,
-        value: files.length,
-      });
-    });
-
     SEARCH_PATTERNS.map((pattern) => {
       let files = this.context.paths.filterByGlob(pattern.pattern);
 
       files.forEach((file: string) => {
         let uri = trimCwd(file, this.context.options.cwd);
         this.addResult(
-          `Located ${pattern.patternName.slice(
-            0,
-            Math.max(0, pattern.patternName.length - 1)
-          )} at ${uri}`,
+          `Located ${pattern.type.slice(0, Math.max(0, pattern.type.length - 1))} at ${uri}`,
           'informational',
           'note',
           {
             location: {
               uri,
             },
+            properties: {
+              type: pattern.type,
+            },
             rule: {
               properties: {
-                taskDisplayName: this.taskDisplayName,
-                category: this.category,
                 component: {
                   name: 'list',
-                  data: typesTotal,
+                  options: {
+                    items: SEARCH_PATTERNS.reduce((total, pattern) => {
+                      total[pattern.type] = {
+                        groupBy: 'properties.type',
+                        value: pattern.type,
+                      };
+                      return total;
+                    }, {} as Record<string, any>),
+                  },
                 },
               },
             },

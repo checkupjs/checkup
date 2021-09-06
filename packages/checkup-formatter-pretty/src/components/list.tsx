@@ -5,6 +5,8 @@ import * as objectPath from 'object-path';
 import { TaskDisplayName } from '../sub-components/task-display-name';
 import { getOptions } from '../get-options';
 
+const startCase = require('lodash.startcase');
+
 type ListOptions = {
   items: Record<string, { groupBy: string; value: string }>;
 };
@@ -24,7 +26,7 @@ export const List: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
         {listItems.map((item: any) => {
           return (
             <Text key={item.text}>
-              {item.text} {item.value}
+              {startCase(item.text)} {item.value}
             </Text>
           );
         })}

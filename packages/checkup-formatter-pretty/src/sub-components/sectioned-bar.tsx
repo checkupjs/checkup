@@ -15,8 +15,9 @@ export const SectionedBar: React.FC<{ data: BarData }> = ({ data }) => {
   };
 
   return (
-    <Text color={randomColor}>
-      {barTick.repeat(normalizeSegment(data.value))} {data.name} ({data.value})
+    <Text>
+      <Text color={randomColor}>{barTick.repeat(normalizeSegment(data.value))}</Text> {data.name} (
+      {data.value})
     </Text>
   );
 };

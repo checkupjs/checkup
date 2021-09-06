@@ -21,24 +21,35 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
       let isAddon = packageJson.keywords?.includes('ember-addon') && packageJson.name;
 
       if (isEngine || isAddon) {
-        this.addResult(
-          `${packageJson.name} Ember ${isEngine ? 'engine' : 'addon'} found.`,
-          'review',
-          'note',
-          {
-            location: {
-              uri: pathName,
-            },
-            rule: {
-              properties: {
-                component: {
-                  name: 'list',
-                  data: [],
+        let type = isEngine ? 'engine' : 'addon';
+
+        this.addResult(`${packageJson.name} Ember ${type} found.`, 'review', 'note', {
+          location: {
+            uri: pathName,
+          },
+          properties: {
+            type,
+          },
+          rule: {
+            properties: {
+              component: {
+                name: 'list',
+                options: {
+                  items: {
+                    Engine: {
+                      groupBy: 'properties.type',
+                      value: 'engine',
+                    },
+                    Addon: {
+                      groupBy: 'properties.type',
+                      value: 'addon',
+                    },
+                  },
                 },
               },
             },
-          }
-        );
+          },
+        });
       }
     }
 
