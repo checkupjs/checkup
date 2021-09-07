@@ -1,27 +1,77 @@
-import { resolve } from 'path';
 import * as React from 'react';
 import { render } from 'ink-testing-library';
-import { readJsonSync } from 'fs-extra';
-import { CheckupLogParser } from '@checkup/core';
+import { RuleResults } from '@checkup/core';
 import { Table } from '../../src/components/table';
 
 const stripAnsi = require('strip-ansi');
 
 describe('Test table component', () => {
   it('can render task result as expected via table component', async () => {
-    const log = readJsonSync(resolve(__dirname, '../__fixtures__/checkup-result.sarif'));
-    const logParser = new CheckupLogParser(log);
-    const taskResults = logParser.resultsByRule;
-    const taskResult = [...taskResults.values()][0];
+    const taskResult: RuleResults = {
+      rule: {
+        id: 'ember-dependencies',
+        shortDescription: {
+          text: 'Finds Ember-specific dependencies and their versions in an Ember.js project',
+        },
+        properties: {
+          taskDisplayName: 'Ember Dependencies',
+          category: 'dependencies',
+          component: {
+            name: 'table',
+            options: {
+              rows: {
+                Dependency: 'properties.packageName',
+                Installed: 'properties.packageVersion',
+                Latest: 'properties.latestVersion',
+              },
+            },
+          },
+        },
+      },
+      results: [
+        {
+          message: {
+            text: 'Ember dependency information for ember-animated',
+          },
+          ruleId: 'ember-dependencies',
+          kind: 'review',
+          level: 'note',
+          properties: {
+            packageName: 'ember-animated',
+            packageVersion: '^0.9.0',
+            latestVersion: '0.11.0',
+            type: 'devDependency',
+          },
+          locations: [
+            {
+              physicalLocation: {
+                artifactLocation: {
+                  uri: '/Users/zhanwang/personal/travis-web/package.json',
+                },
+                region: {
+                  startLine: 34,
+                  startColumn: 4,
+                  endLine: 34,
+                  endColumn: 30,
+                },
+              },
+            },
+          ],
+          ruleIndex: 4,
+        },
+      ],
+    };
 
     const { stdout } = render(<Table taskResult={taskResult} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
-      "┌─────────────┬───────┐
-      │ ruleId      │ total │
-      ├─────────────┼───────┤
-      │ ember-types │ 839   │
-      └─────────────┴───────┘"
+      "Ember Dependencies
+      ==================
+        ┌────────────────┬───────────┬────────┐
+        │ Dependency     │ Installed │ Latest │
+        ├────────────────┼───────────┼────────┤
+        │ ember-animated │ ^0.9.0    │ 0.11.0 │
+        └────────────────┴───────────┴────────┘"
     `);
   });
 });

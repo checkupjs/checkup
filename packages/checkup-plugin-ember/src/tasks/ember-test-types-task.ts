@@ -76,7 +76,25 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
         },
         rule: {
           properties: {
-            component: 'list',
+            component: {
+              name: 'list',
+              options: {
+                items: {
+                  Application: {
+                    groupBy: 'properties.testType',
+                    value: 'application',
+                  },
+                  Rendering: {
+                    groupBy: 'properties.testType',
+                    value: 'rendering',
+                  },
+                  Unit: {
+                    groupBy: 'properties.testType',
+                    value: 'unit',
+                  },
+                },
+              },
+            },
           },
         },
       });

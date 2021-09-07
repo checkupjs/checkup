@@ -30,7 +30,19 @@ export default class EslintDisableTask extends BaseTask implements Task {
         },
         rule: {
           properties: {
-            component: 'list',
+            taskDisplayName: this.taskDisplayName,
+            category: this.category,
+            component: {
+              name: 'list',
+              options: {
+                items: {
+                  'Disabled rules': {
+                    groupBy: 'level',
+                    value: 'note',
+                  },
+                },
+              },
+            },
           },
         },
       });

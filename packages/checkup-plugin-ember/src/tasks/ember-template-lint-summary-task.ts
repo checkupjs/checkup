@@ -52,7 +52,21 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
         },
         rule: {
           properties: {
-            component: 'list',
+            component: {
+              name: 'list',
+              options: {
+                items: {
+                  Errors: {
+                    groupBy: 'level',
+                    value: 'error',
+                  },
+                  Warnings: {
+                    groupBy: 'level',
+                    value: 'warning',
+                  },
+                },
+              },
+            },
           },
         },
       });

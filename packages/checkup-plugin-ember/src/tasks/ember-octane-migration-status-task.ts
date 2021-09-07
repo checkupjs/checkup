@@ -235,7 +235,9 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
           },
           rule: {
             properties: {
-              component: 'list',
+              component: {
+                name: 'migration',
+              },
             },
           },
         }
