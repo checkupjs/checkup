@@ -11,25 +11,12 @@ const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser 
   let taskResults: Map<string, RuleResults> | undefined = logParser.resultsByRule;
 
   return (
-    <>
+    <Box flexDirection={'column'} marginTop={1} marginBottom={1}>
       <MetaData metaData={metaData} />
-      <Newline />
       <TaskResults taskResults={taskResults} />
-      <Newline />
-      {process.env.CHECKUP_TIMING === '1' ? <RenderTiming timings={logParser.timings} /> : <></>}
+      <RenderTiming timings={logParser.timings} />
       <CLIInfo metaData={metaData} />
-    </>
-  );
-};
-
-const CLIInfo: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
-  let { version, configHash } = metaData.cli;
-
-  return (
-    <>
-      <Text>checkup v{version}</Text>
-      <Text>config {configHash}</Text>
-    </>
+    </Box>
   );
 };
 
@@ -41,15 +28,18 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
 
   return (
     <>
-      <Box flexDirection="column">
-        <Text>
-          Checkup report generated for {name} v{version} {analyzedFilesMessage}
-        </Text>
-        <Text>
-          This project is {repository.age} old, with {repository.activeDays} active days,{' '}
-          {repository.totalCommits} commits and {repository.totalFiles} files
-        </Text>
-        <Newline />
+      <Box flexDirection="column" marginBottom={1}>
+        <Box marginBottom={1}>
+          <Text>
+            Checkup report generated for {name} v{version} {analyzedFilesMessage}
+          </Text>
+        </Box>
+        <Box marginBottom={1}>
+          <Text>
+            This project is {repository.age} old, with {repository.activeDays} active days,{' '}
+            {repository.totalCommits} commits and {repository.totalFiles} files
+          </Text>
+        </Box>
         <Text>lines of code {repository.linesOfCode.total}</Text>
         <>
           {repository.linesOfCode.types
@@ -76,9 +66,49 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
   );
 };
 
+const TaskResults: React.FC<{
+  taskResults: Map<TaskName, RuleResults> | undefined;
+}> = ({ taskResults }) => {
+  let r: { Component: React.FC<any>; taskResult: RuleResults }[] = [];
+
+  if (taskResults!.size > 0) {
+    [...taskResults!.values()].forEach((taskResult) => {
+      let taskProps = taskResult!.rule?.properties!;
+      let componentName = taskProps.component.name;
+
+      r.push({
+        Component: registeredComponents.get(componentName ?? 'list')!,
+        taskResult,
+      });
+    });
+
+    return (
+      <>
+        <Box marginBottom={1}>
+          <Text>Checkup ran the following task(s) successfully:</Text>
+        </Box>
+        {r.map(({ Component, taskResult }) => {
+          return (
+            <Box flexDirection="column" key={taskResult.rule.id}>
+              <Component taskResult={taskResult} />
+              <Newline />
+            </Box>
+          );
+        })}
+      </>
+    );
+  } else {
+    return <Text></Text>;
+  }
+};
+
 const RenderTiming: React.FC<{ timings: Record<string, number> }> = ({ timings }) => {
   let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
   let tableData: any[] = [];
+
+  if (process.env.CHECKUP_TIMING !== '1') {
+    return <></>;
+  }
 
   Object.keys(timings).map((taskName) => {
     let timing = Number.parseFloat(timings[taskName].toFixed(2));
@@ -98,37 +128,15 @@ const RenderTiming: React.FC<{ timings: Record<string, number> }> = ({ timings }
   );
 };
 
-const TaskResults: React.FC<{
-  taskResults: Map<TaskName, RuleResults> | undefined;
-}> = ({ taskResults }) => {
-  let r: { Component: React.FC<any>; taskResult: RuleResults }[] = [];
+const CLIInfo: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
+  let { version, configHash } = metaData.cli;
 
-  if (taskResults!.size > 0) {
-    [...taskResults!.values()].forEach((taskResult) => {
-      let taskProps = taskResult!.rule?.properties!;
-      let componentName = taskProps.component.name;
-
-      r.push({
-        Component: registeredComponents.get(componentName ?? 'list')!,
-        taskResult,
-      });
-    });
-
-    return (
-      <>
-        {r.map(({ Component, taskResult }) => {
-          return (
-            <Box flexDirection="column" key={taskResult.rule.id}>
-              <Component taskResult={taskResult} />
-              <Newline />
-            </Box>
-          );
-        })}
-      </>
-    );
-  } else {
-    return <Text></Text>;
-  }
+  return (
+    <Box flexDirection="column">
+      <Text color={'grey'}>checkup v{version}</Text>
+      <Text color={'grey'}>config {configHash}</Text>
+    </Box>
+  );
 };
 
 export default PrettyFormatter;
