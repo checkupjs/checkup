@@ -66,6 +66,7 @@ describe('Test table component', () => {
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
       "Ember Dependencies
+      ==================
         ┌────────────────┬───────────┬────────┐
         │ Dependency     │ Installed │ Latest │
         ├────────────────┼───────────┼────────┤

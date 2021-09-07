@@ -19,9 +19,10 @@ describe('Test Pretty formatter', () => {
     const result = await formatter.format(logParser);
 
     expect(stripAnsi(result)).toMatchInlineSnapshot(`
-      "Checkup report generated for travis v0.0.1  (1694 files analyzed)
-      This project is 9 years old, with 1468 active days, 6010 commits and 1692 files
+      "
+      Checkup report generated for travis v0.0.1  (1694 files analyzed)
 
+      This project is 9 years old, with 1468 active days, 6010 commits and 1692 files
 
       lines of code 104439
       ■■■■■■■■■■■■■■■■■■■■■■■■■ js (50740)
@@ -31,8 +32,10 @@ describe('Test Pretty formatter', () => {
       ■ rb (639)
       ■ html (201)
 
+      Checkup ran the following task(s) successfully:
 
       Ember Types
+      ===========
         Components 258
         Controllers 44
         Helpers 38
@@ -46,15 +49,18 @@ describe('Test Pretty formatter', () => {
 
 
       Template Lint Summary
+      =====================
         Errors 673
         Warnings 0
 
 
       Number of eslint-disable Usages
+      ===============================
         Disabled Rules 27
 
 
       Outdated Dependencies
+      =====================
         ┌─────────────────────────────────┬───────────┬────────┐
         │ Dependency                      │ Installed │ Latest │
         ├─────────────────────────────────┼───────────┼────────┤
@@ -141,6 +147,7 @@ describe('Test Pretty formatter', () => {
 
 
       Ember Dependencies
+      ==================
         ┌─────────────────────────────────┬───────────┬────────┐
         │ Dependency                      │ Installed │ Latest │
         ├─────────────────────────────────┼───────────┼────────┤
@@ -220,10 +227,9 @@ describe('Test Pretty formatter', () => {
         └─────────────────────────────────┴───────────┴────────┘
 
 
-
-
       checkup v1.0.0-beta.11
-      config 257cda6f6d50eeef891fc6ec8d808bdb"
+      config 257cda6f6d50eeef891fc6ec8d808bdb
+      "
     `);
   });
 

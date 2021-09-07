@@ -66,6 +66,7 @@ describe('Test list component', () => {
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
       "Template Lint Summary
+      =====================
         Errors 1
         Warnings 0"
     `);
