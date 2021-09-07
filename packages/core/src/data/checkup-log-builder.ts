@@ -7,14 +7,14 @@ import { FilePathArray } from '../utils/file-path-array';
 import extractStack from '../utils/extract-stack';
 import { AnnotationArgs, CheckupLogBuilderArgs } from '../types/checkup-log';
 import { CheckupConfig } from '../types/config';
-import { Action, TaskListError } from '../types/tasks';
+import { TaskAction, TaskListError } from '../types/tasks';
 import SarifLogBuilder from './sarif-log-builder';
 import { trimAllCwd } from './path';
 
 export default class CheckupLogBuilder extends SarifLogBuilder {
   args: CheckupLogBuilderArgs;
   config: CheckupConfig = DEFAULT_CONFIG;
-  actions: Action[] = [];
+  actions: TaskAction[] = [];
   errors: TaskListError[] = [];
   timings: Record<string, number> = {};
 
