@@ -1,6 +1,6 @@
 import { join } from 'path';
 import {
-  Action,
+  TaskAction,
   CheckupError,
   CheckupConfig,
   ErrorKind,
@@ -29,7 +29,7 @@ import { PackageJson } from 'type-fest';
 import TaskListImpl from '../task-list';
 import PluginRegistrationProvider from './registration-provider';
 export default class CheckupTaskRunner {
-  actions: Action[];
+  actions: TaskAction[];
   config!: CheckupConfig;
   debug: debug.Debugger;
   executedTasks!: Task[];

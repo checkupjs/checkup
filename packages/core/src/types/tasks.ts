@@ -12,7 +12,7 @@ export type RegisterTaskArgs = {
   tasks: TaskList;
 };
 
-export type TaskActionsEvaluator = (taskResults: Result[], taskConfig: TaskConfig) => Action[];
+export type TaskActionsEvaluator = (taskResults: Result[], taskConfig: TaskConfig) => TaskAction[];
 
 export type TaskFormatter = (taskResults: Result[], writer: BaseOutputWriter) => void;
 
@@ -62,16 +62,16 @@ export interface Task {
   ) => RequiredResult;
 }
 
-export type ActionItem = string | string[] | { columns: string[]; rows: object[] };
+export type TaskActionItem = string | string[] | { columns: string[]; rows: object[] };
 
-export interface Action {
+export interface TaskAction {
   taskName: string;
   name: string;
   summary: string;
   details: string;
   defaultThreshold: number;
 
-  items: ActionItem[];
+  items: TaskActionItem[];
   input: number;
 }
 
