@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-focused-tests */
 /* eslint-disable jest/no-disabled-tests */
 import '@microsoft/jest-sarif';
 import { join, resolve } from 'path';
@@ -17,7 +16,7 @@ const ROOT = process.cwd();
 
 jest.setTimeout(500_000);
 
-describe.skip('cli-test', () => {
+describe('cli-test', () => {
   let project: FakeProject;
 
   beforeEach(function () {
@@ -72,7 +71,7 @@ describe.skip('cli-test', () => {
             --category         Runs specific tasks specified by category. Can be used multiple times.  [array]
             --group            Runs specific tasks specified by group. Can be used multiple times.  [array]
         -t, --task             Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.  [array]
-        -f, --format           The output format, one of summary, json, pretty  [default: \\"summary\\"]
+        -f, --format           Use a specific output format  [default: \\"summary\\"]
         -o, --output-file      Specify file to write JSON output to.  [default: \\"\\"]
         -l, --list-tasks       List all available tasks to run.  [boolean]
         -p, --plugin-base-dir  The base directory where Checkup will load the plugins from. Defaults to cwd."
@@ -173,30 +172,6 @@ describe.skip('cli-test', () => {
     unlinkSync(outputPath);
   });
 
-  it.skip('should output a txt file in a custom directory if the pretty format and output-file options are provided', async () => {
-    project.symlinkPackage(
-      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
-      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
-    );
-
-    let result = await run([
-      'run',
-      '.',
-      '--format',
-      'checkup-formatter-pretty',
-      `--output-file`,
-      'my-checkup-file',
-    ]);
-
-    let output = result.stdout.trim();
-    let outputPath = output.split('\n').slice(-1)[0]; // output will be a string followed by newline then the file path
-
-    expect(outputPath).toMatch(/^(.*)\/my-checkup-file.txt/);
-    expect(existsSync(outputPath)).toEqual(true);
-
-    unlinkSync(outputPath);
-  });
-
   it('should output a json file in a custom directory if the summary format and output-file options are provided', async () => {
     let result = await run([
       'run',
@@ -210,32 +185,7 @@ describe.skip('cli-test', () => {
     expect(summaryOutput).toContain('my-checkup-file.sarif');
   });
 
-  it('should output checkup result in pretty mode', async () => {
-    project.symlinkPackage(
-      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
-      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
-    );
-
-    let result = await run(['run', '.', '--format', 'checkup-formatter-pretty']);
-
-    expect(result.stdout).toMatchInlineSnapshot(`
-      "Checkup report generated for checkup-app v0.0.0  (3 files analyzed)
-      This project is 0 days old, with 0 days active days, 0 commits and 0 files
-
-
-      lines of code 2
-      ■■■■■■■■■■■■■■■■■■■■■■■■■ hbs (1)
-      ■■■■■■■■■■■■■■■■■■■■■■■■■ js (1)
-
-
-
-
-      checkup v0.0.0
-      config dd17cda1fc2eb2bc6bb5206b41fc1a84"
-    `);
-  });
-
-  it.skip('should be able to load relative formatter', async function () {
+  it('should be able to load relative formatter', async function () {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -258,7 +208,7 @@ describe.skip('cli-test', () => {
                 }
 
                 format(logParser) {
-                  this.options.writer.log('Custom Formatter output');
+                  return 'Custom formatter output';
                 }
               }
 
@@ -267,11 +217,12 @@ describe.skip('cli-test', () => {
     });
 
     let result = await run(['run', '.', '--format', './custom-formatter.js']);
-    expect(result.stdout).toMatchInlineSnapshot(`"Custom Formatter output"`);
+
+    expect(result.stdout).toMatchInlineSnapshot(`"Custom formatter output"`);
     expect(result.exitCode).toEqual(0);
   });
 
-  it.skip('should be able to load formatter from node_modules', async function () {
+  it('should be able to load formatter from node_modules', async function () {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -295,11 +246,11 @@ describe.skip('cli-test', () => {
 
     let result = await run(['run', '.', '--format', 'checkup-formatter-test']);
 
-    expect(result.stdout).toMatchInlineSnapshot(`"Custom formatter output"`);
+    expect(result.stdout).toContain('Custom formatter output');
     expect(result.exitCode).toEqual(0);
   });
 
-  it.skip('should run a single task if the tasks option is specified with a single task', async () => {
+  it('should run a single task if the tasks option is specified with a single task', async () => {
     project.symlinkPackage(
       join(__dirname, '..', '..', 'checkup-formatter-pretty'),
       join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
@@ -319,69 +270,12 @@ describe.skip('cli-test', () => {
       plugins: ['checkup-plugin-fake'],
     });
 
-    let result = await run([
-      'run',
-      '.',
-      '--task',
-      'fake/file-count',
-      '--format',
-      'checkup-formatter-pretty',
-    ]);
+    let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'summary']);
 
-    expect(stripAnsi(result.stdout)).toMatchInlineSnapshot(`
-      "
-      [2K[1A[2K[GCheckup report generated for checkup-app v0.0.0  (5 files analyzed)
-      This project is 0 days old, with 0 days active days, 0 commits and 0 files
-
-
-      lines of code 3
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ js (2)
-      ■■■■■■■■■■■■■■■■■ hbs (1)
-
-
-      === best practices
-      ┌────────────┬───────────────┐
-      │ ruleId     │ result(value) │
-      ├────────────┼───────────────┤
-      │ file-count │ 1             │
-      └────────────┴───────────────┘
-
-
-      checkup v0.0.0
-      config 01f059d31fb4418b3792d2818b02a083"
-    `);
+    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
   });
 
-  it('should run with timing if CHECKUP_TIMING=1', async () => {
-    project.symlinkPackage(
-      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
-      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
-    );
-
-    let pluginDir = await project.addPlugin(
-      { name: 'fake', defaults: false },
-      { typescript: false }
-    );
-    await project.addTask(
-      { name: 'file-count', defaults: false },
-      { typescript: false, category: 'best practices', group: 'none' },
-      pluginDir
-    );
-
-    project.addCheckupConfig({
-      plugins: ['checkup-plugin-fake'],
-    });
-
-    let result = await run(['run', '.', '--format', 'checkup-formatter-pretty'], {
-      env: {
-        CHECKUP_TIMING: '1',
-      },
-    });
-
-    expect(result.stdout).toContain('Task Timings');
-  });
-
-  it.skip('should run multiple tasks if the tasks option is specified with multiple tasks', async () => {
+  it('should run multiple tasks if the tasks option is specified with multiple tasks', async () => {
     project.symlinkPackage(
       join(__dirname, '..', '..', 'checkup-formatter-pretty'),
       join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
@@ -413,36 +307,14 @@ describe.skip('cli-test', () => {
       '--task',
       'fake/foo',
       '--format',
-      'checkup-formatter-pretty',
+      'summary',
     ]);
 
-    expect(stripAnsi(result.stdout)).toMatchInlineSnapshot(`
-      "
-      Checkup report generated for checkup-app v0.0.0  (5 files analyzed)
-      This project is 0 days old, with 0 days active days, 0 commits and 0 files
-
-
-      lines of code 3
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ js (2)
-      ■■■■■■■■■■■■■■■■■ hbs (1)
-
-
-      === best practices
-      ┌────────────┬───────────────┐
-      │ ruleId     │ result(value) │
-      ├────────────┼───────────────┤
-      │ file-count │ 1             │
-      ├────────────┼───────────────┤
-      │ foo        │ 1             │
-      └────────────┴───────────────┘
-
-
-      checkup v0.0.0
-      config 01f059d31fb4418b3792d2818b02a083"
-    `);
+    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
+    expect(stripAnsi(result.stdout)).toContain('✔ foo');
   });
 
-  it.skip('should run only one task if the category option is specified', async () => {
+  it('should run only one task if the category option is specified', async () => {
     project.symlinkPackage(
       join(__dirname, '..', '..', 'checkup-formatter-pretty'),
       join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
@@ -467,40 +339,13 @@ describe.skip('cli-test', () => {
       plugins: ['checkup-plugin-fake'],
     });
 
-    let result = await run([
-      'run',
-      '.',
-      '--category',
-      'files',
-      '--format',
-      'checkup-formatter-pretty',
-    ]);
+    let result = await run(['run', '.', '--category', 'files', '--format', 'summary']);
 
-    expect(stripAnsi(result.stdout)).toMatchInlineSnapshot(`
-      "
-      Checkup report generated for checkup-app v0.0.0  (5 files analyzed)
-      This project is 0 days old, with 0 days active days, 0 commits and 0 files
-
-
-      lines of code 3
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ js (2)
-      ■■■■■■■■■■■■■■■■■ hbs (1)
-
-
-      === files
-      ┌────────────┬───────────────┐
-      │ ruleId     │ result(value) │
-      ├────────────┼───────────────┤
-      │ file-count │ 1             │
-      └────────────┴───────────────┘
-
-
-      checkup v0.0.0
-      config 01f059d31fb4418b3792d2818b02a083"
-    `);
+    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
+    expect(stripAnsi(result.stdout)).not.toContain('✔ foo');
   });
 
-  it.skip('should run multiple tasks if the category option is specified with multiple categories', async () => {
+  it('should run multiple tasks if the category option is specified with multiple categories', async () => {
     project.symlinkPackage(
       join(__dirname, '..', '..', 'checkup-formatter-pretty'),
       join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
@@ -533,40 +378,14 @@ describe.skip('cli-test', () => {
       '--category',
       'foos',
       '--format',
-      'checkup-formatter-pretty',
+      'summary',
     ]);
 
-    expect(stripAnsi(result.stdout)).toMatchInlineSnapshot(`
-      "
-      Checkup report generated for checkup-app v0.0.0  (5 files analyzed)
-      This project is 0 days old, with 0 days active days, 0 commits and 0 files
-
-
-      lines of code 3
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ js (2)
-      ■■■■■■■■■■■■■■■■■ hbs (1)
-
-
-      === files
-      ┌────────────┬───────────────┐
-      │ ruleId     │ result(value) │
-      ├────────────┼───────────────┤
-      │ file-count │ 1             │
-      └────────────┴───────────────┘
-      === foos
-      ┌────────┬───────────────┐
-      │ ruleId │ result(value) │
-      ├────────┼───────────────┤
-      │ foo    │ 1             │
-      └────────┴───────────────┘
-
-
-      checkup v0.0.0
-      config 01f059d31fb4418b3792d2818b02a083"
-    `);
+    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
+    expect(stripAnsi(result.stdout)).toContain('✔ foo');
   });
 
-  it.skip('should run only one task if the group option is specified', async () => {
+  it('should run only one task if the group option is specified', async () => {
     project.symlinkPackage(
       join(__dirname, '..', '..', 'checkup-formatter-pretty'),
       join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
@@ -590,40 +409,12 @@ describe.skip('cli-test', () => {
       plugins: ['checkup-plugin-fake'],
     });
 
-    let result = await run([
-      'run',
-      '.',
-      '--group',
-      'group1',
-      '--format',
-      'checkup-formatter-pretty',
-    ]);
+    let result = await run(['run', '.', '--group', 'group1', '--format', 'summary']);
 
-    expect(stripAnsi(result.stdout)).toMatchInlineSnapshot(`
-      "
-      Checkup report generated for checkup-app v0.0.0  (5 files analyzed)
-      This project is 0 days old, with 0 days active days, 0 commits and 0 files
-
-
-      lines of code 3
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ js (2)
-      ■■■■■■■■■■■■■■■■■ hbs (1)
-
-
-      === files
-      ┌────────────┬───────────────┐
-      │ ruleId     │ result(value) │
-      ├────────────┼───────────────┤
-      │ file-count │ 1             │
-      └────────────┴───────────────┘
-
-
-      checkup v0.0.0
-      config 01f059d31fb4418b3792d2818b02a083"
-    `);
+    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
   });
 
-  it.skip('should run multiple tasks if the group option is specified with multiple groups', async () => {
+  it('should run multiple tasks if the group option is specified with multiple groups', async () => {
     project.symlinkPackage(
       join(__dirname, '..', '..', 'checkup-formatter-pretty'),
       join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
@@ -656,36 +447,14 @@ describe.skip('cli-test', () => {
       '--group',
       'group2',
       '--format',
-      'checkup-formatter-pretty',
+      'summary',
     ]);
 
-    expect(stripAnsi(result.stdout)).toMatchInlineSnapshot(`
-      "
-      Checkup report generated for checkup-app v0.0.0  (5 files analyzed)
-      This project is 0 days old, with 0 days active days, 0 commits and 0 files
-
-
-      lines of code 3
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ js (2)
-      ■■■■■■■■■■■■■■■■■ hbs (1)
-
-
-      === files
-      ┌────────────┬───────────────┐
-      │ ruleId     │ result(value) │
-      ├────────────┼───────────────┤
-      │ file-count │ 1             │
-      ├────────────┼───────────────┤
-      │ foo        │ 1             │
-      └────────────┴───────────────┘
-
-
-      checkup v0.0.0
-      config 01f059d31fb4418b3792d2818b02a083"
-    `);
+    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
+    expect(stripAnsi(result.stdout)).toContain('✔ foo');
   });
 
-  it.skip('should run a task if its passed in via command line, even if it is turned "off" in config', async () => {
+  it('should run a task if its passed in via command line, even if it is turned "off" in config', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -701,32 +470,12 @@ describe.skip('cli-test', () => {
       tasks: { 'fake/file-count': 'off' },
     });
 
-    let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'pretty']);
+    let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'summary']);
 
-    expect(result.stdout).toMatchInlineSnapshot(`
-      "
-      Checkup report generated for checkup-app v0.0.0 (5 files analyzed)
-
-      This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 3 lines of code
-      ■ js (2)
-      ■ hbs (1)
-
-      === Best Practices
-
-      File Count
-
-      ■ file-count result (1)
-
-
-      checkup v0.0.0
-      config 646d2590f3635dd8409ebf92fd287bab
-      "
-    `);
+    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
   });
 
-  it.skip('should use the config at the config path if provided', async () => {
+  it('should use the config at the config path if provided', async () => {
     const anotherProject = new FakeProject('another-project');
 
     anotherProject.addCheckupConfig();
@@ -738,24 +487,12 @@ describe.skip('cli-test', () => {
       '--config-path',
       join(anotherProject.baseDir, '.checkuprc'),
       '--format',
-      'pretty',
+      'summary',
     ]);
 
-    expect(result.stdout).toMatchInlineSnapshot(`
-      "
-      Checkup report generated for checkup-app v0.0.0 (3 files analyzed)
-
-      This project is 0 days old, with 0 days active days, 0 commits and 0 files.
-
-      ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 2 lines of code
-      ■ hbs (1)
-      ■ js (1)
-
-
-      checkup v0.0.0
-      config dd17cda1fc2eb2bc6bb5206b41fc1a84
-      "
-    `);
+    expect(result.stdout).toContain(
+      'Checkup report generated for checkup-app v0.0.0 (3 files analyzed)'
+    );
     anotherProject.dispose();
   });
 
