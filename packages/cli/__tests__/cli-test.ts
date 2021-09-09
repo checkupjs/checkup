@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-disabled-tests */
 import '@microsoft/jest-sarif';
 import { join, resolve } from 'path';
 import { existsSync, unlinkSync } from 'fs';
@@ -31,7 +30,7 @@ describe('cli-test', () => {
 
   afterEach(function () {
     process.chdir(ROOT);
-    // project.dispose();
+    project.dispose();
   });
 
   it('outputs top level help', async () => {
@@ -546,7 +545,7 @@ describe('cli-test', () => {
       '**/*.hbs',
       '**/*.js',
       '--format',
-      'pretty',
+      'summary',
     ]);
 
     let hbsJsFiltered = result.stdout;
@@ -555,26 +554,24 @@ describe('cli-test', () => {
 
     let hbsFiltered = result.stdout;
 
-    expect(hbsFiltered).toContain('1 files analyzed');
-    expect(hbsJsFiltered).toContain('3 files analyzed');
+    expect(hbsJsFiltered).toContain('1 files analyzed');
+    expect(hbsFiltered).toContain('3 files analyzed');
   });
 
-  it.skip('if excludePaths are provided by both the config and command line, use command line', async () => {
-    project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
+  it('if excludePaths are provided by both the config and command line, use command line', async () => {
+    project.addCheckupConfig({ excludePaths: ['**/*.js'] });
     project.writeSync();
 
-    let result = await run(['run', '.', '--exclude-paths', '**/*.js', '--format', 'summary']);
-
-    let jsFiltered = result.stdout;
-
-    expect(jsFiltered).toMatchSnapshot();
-
-    result = await run(['run', '.', '--format', 'pretty']);
+    let result = await run(['run', '.', '--exclude-paths', '**/*.hbs', '--format', 'summary']);
 
     let hbsFiltered = result.stdout;
-    expect(hbsFiltered).toMatchSnapshot();
 
-    expect(jsFiltered).not.toStrictEqual(hbsFiltered);
+    expect(hbsFiltered).toContain('4 files analyzed');
+
+    result = await run(['run', '.', '--format', 'summary']);
+
+    let hbsJsFiltered = result.stdout;
+    expect(hbsJsFiltered).toContain('5 files analyzed');
   });
 
   it('should correctly report error when config contains invalid key', async () => {

@@ -1,7 +1,5 @@
-/* eslint-disable jest/no-disabled-tests */
 import { resolve } from 'path';
 import { readJsonSync } from 'fs-extra';
-// import * as execa from 'execa';
 import { CheckupLogParser, FormatterOptions } from '@checkup/core';
 const stripAnsi = require('strip-ansi');
 const PrettyFormatter = require('../src');
