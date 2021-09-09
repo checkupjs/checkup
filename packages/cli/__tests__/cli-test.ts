@@ -496,7 +496,7 @@ describe('cli-test', () => {
     anotherProject.dispose();
   });
 
-  it.skip('should run the tasks on the globs passed into checkup, if provided, instead of entire app', async () => {
+  it('should run the tasks on the globs passed into checkup, if provided, instead of entire app', async () => {
     project.files = Object.assign(project.files, {
       foo: {
         'index.hbs': '{{!-- i should todo: write code --}}',
@@ -510,39 +510,35 @@ describe('cli-test', () => {
     });
 
     project.writeSync();
-    let result = await run(['run', '**/*.hbs', '**baz/**', '--format', 'pretty']);
+    let result = await run(['run', '**/*.hbs', '**baz/**', '--format', 'summary']);
     let filtered = result.stdout;
 
-    result = await run(['run', '.', '--format', 'pretty']);
+    result = await run(['run', '.', '--format', 'summary']);
 
     let unfiltered = result.stdout;
 
-    expect(filtered).toMatchSnapshot();
-    expect(unfiltered).toMatchSnapshot();
-
-    expect(filtered).not.toStrictEqual(unfiltered);
+    expect(filtered).toContain('3 files analyzed');
+    expect(unfiltered).toContain('7 files analyzed');
   });
 
-  it.skip('should use the excludePaths provided by the config', async () => {
+  it('should use the excludePaths provided by the config', async () => {
     project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
     project.writeSync();
 
-    let result = await run(['run', '.', '--format', 'pretty']);
+    let result = await run(['run', '.', '--format', 'summary']);
     let filtered = result.stdout;
 
     project.addCheckupConfig({ excludePaths: [] });
     project.writeSync();
 
-    result = await run(['run', '.', '--format', 'pretty']);
-    let unFiltered = result.stdout;
+    result = await run(['run', '.', '--format', 'summary']);
+    let unfiltered = result.stdout;
 
-    expect(filtered).toMatchSnapshot();
-    expect(unFiltered).toMatchSnapshot();
-
-    expect(filtered).not.toStrictEqual(unFiltered);
+    expect(filtered).toContain('4 files analyzed');
+    expect(unfiltered).toContain('6 files analyzed');
   });
 
-  it.skip('should use the excludePaths provided by the command line', async () => {
+  it('should use the excludePaths provided by the command line', async () => {
     let result = await run([
       'run',
       '.',
@@ -555,20 +551,19 @@ describe('cli-test', () => {
 
     let hbsJsFiltered = result.stdout;
 
-    expect(hbsJsFiltered).toMatchSnapshot();
-
-    result = await run(['run', '.', '--exclude-paths', '**/*.hbs', '--format', 'pretty']);
+    result = await run(['run', '.', '--exclude-paths', '**/*.hbs', '--format', 'summary']);
 
     let hbsFiltered = result.stdout;
-    expect(hbsFiltered).toMatchSnapshot();
-    expect(hbsJsFiltered).not.toStrictEqual(hbsFiltered);
+
+    expect(hbsFiltered).toContain('1 files analyzed');
+    expect(hbsJsFiltered).toContain('3 files analyzed');
   });
 
   it.skip('if excludePaths are provided by both the config and command line, use command line', async () => {
     project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
     project.writeSync();
 
-    let result = await run(['run', '.', '--exclude-paths', '**/*.js', '--format', 'pretty']);
+    let result = await run(['run', '.', '--exclude-paths', '**/*.js', '--format', 'summary']);
 
     let jsFiltered = result.stdout;
 
@@ -645,7 +640,7 @@ describe('cli-test', () => {
     expect(result.stdout).toMatch('✔ foo');
   });
 
-  it.skip('can load plugins from nested (non-node_modules) pluginBaseDir', async () => {
+  it('can load plugins from nested (non-node_modules) pluginBaseDir', async () => {
     project.addCheckupConfig({
       plugins: ['checkup-plugin-nested'],
     });
@@ -685,16 +680,8 @@ module.exports = class FooTask extends BaseTask {
   category = 'best practices';
 
   async run() {
-    return [
-      {
-        message: { text: 'foo' },
-        ruleId: this.taskName,
-        properties: {
-          taskDisplayName: this.taskDisplayName,
-          category: this.category,
-        },
-      },
-    ];
+    this.addResult('foo', 'review', 'error');
+    return this.results;
   }
 }
 `,
