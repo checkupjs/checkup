@@ -4,7 +4,7 @@ class CustomFormatter {
   }
 
   format(logParser) {
-    return 'Custom formatter output ' + logParser.log;
+    return `Custom formatter output ${logParser.log}`;
   }
 }
 
