@@ -4,8 +4,7 @@ class CustomFormatter {
   }
 
   format(logParser) {
-    this.options.writer.log('Custom formatter output');
-    this.options.writer.log(logParser.log);
+    return `Custom formatter output ${logParser.log}`;
   }
 }
 
