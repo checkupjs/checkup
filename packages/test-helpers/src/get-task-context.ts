@@ -5,6 +5,7 @@ import {
   RunOptions,
   CheckupLogBuilder,
   CONFIG_SCHEMA_URL,
+  getFilePaths,
 } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
@@ -45,7 +46,7 @@ export function getTaskContext({
   options,
   config,
   pkg = DEFAULT_PACKAGE_JSON,
-  paths = new FilePathArray(),
+  paths,
 }: Partial<TaskContextArgs> = {}): TaskContext {
   let opts = Object.assign({}, DEFAULT_OPTIONS, options) as RunOptions;
   let c = Object.assign({}, DEFAULT_CONFIG, config) as CheckupConfig;
@@ -62,7 +63,7 @@ export function getTaskContext({
     }),
     pkg: pkg,
     pkgSource: JSON.stringify(pkg, null, 2),
-    paths: paths,
+    paths: paths || getFilePaths(options?.cwd ?? process.cwd(), ['.']),
   };
 
   taskContext.logBuilder.config;

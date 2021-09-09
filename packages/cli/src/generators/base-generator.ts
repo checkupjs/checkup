@@ -5,7 +5,7 @@ import * as chalk from 'chalk';
 
 import { getPackageJson } from '@checkup/core';
 
-let VERSION = require('../../package.json');
+let VERSION = require('../../package.json').version;
 export interface Options {
   type: string;
   name: string;

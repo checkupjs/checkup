@@ -79,10 +79,6 @@ describe('checkup-log-builder-test', () => {
                       "repository": Object {
                         "activeDays": "0 days",
                         "age": "0 days",
-                        "linesOfCode": Object {
-                          "total": 0,
-                          "types": Array [],
-                        },
                         "totalCommits": 0,
                         "totalFiles": 0,
                       },

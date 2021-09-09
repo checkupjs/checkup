@@ -42,7 +42,6 @@ export { default as BaseOutputWriter } from './utils/base-output-writer';
 export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
 export { sumOccurrences, reduceResults } from './utils/sarif-utils';
-export { renderEmptyResult, renderLintingSummaryResult } from './utils/pretty-formatter-utils';
 export { getPackageJson, getPackageJsonSource } from './utils/get-package-json';
 export { getRepositoryInfo } from './utils/repository';
 

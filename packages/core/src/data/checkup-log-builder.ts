@@ -58,7 +58,7 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
     let paths = this.args.paths ?? new FilePathArray();
     let cwd = this.args.options.cwd;
     let config = this.config;
-    let repositoryInfo = await getRepositoryInfo(cwd, paths);
+    let repositoryInfo = await getRepositoryInfo(cwd);
     let analyzedFiles = trimAllCwd(paths, cwd);
 
     this.currentRunBuilder.run.tool.driver.properties = {

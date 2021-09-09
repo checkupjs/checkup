@@ -20,13 +20,6 @@ describe('Test Pretty component', () => {
 
       This project is 9 years old, with 1468 active days, 6010 commits and 1692 files
 
-      lines of code 104439
-      ■■■■■■■■■■■■■■■■■■■■■■■■■ js (50740)
-      ■■■■■■■■■■■■ svg (24112)
-      ■■■■■■■■ scss (15626)
-      ■■■■■■■ hbs (13121)
-      ■ rb (639)
-      ■ html (201)
 
       Checkup ran the following task(s) successfully:
 

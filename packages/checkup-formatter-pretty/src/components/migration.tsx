@@ -6,7 +6,7 @@ import { TaskDisplayName } from '../sub-components/task-display-name';
 
 const startCase = require('lodash.startcase');
 
-export const List: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
+export const Migration: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
   let featureStatus = buildMigrationData(taskResult);
   let outstandingFeatureCount = taskResult.results.length;
 
