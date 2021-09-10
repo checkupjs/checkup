@@ -28,6 +28,10 @@ import { Log, Result } from 'sarif';
 import { PackageJson } from 'type-fest';
 import TaskListImpl from '../task-list';
 import PluginRegistrationProvider from './registration-provider';
+
+/**
+ * Class task runner
+ */
 export default class CheckupTaskRunner {
   actions: TaskAction[];
   config!: CheckupConfig;
@@ -47,6 +51,10 @@ export default class CheckupTaskRunner {
   pkg: PackageJson;
   pkgSource: string;
 
+  /**
+   * Get the task's error kind
+   * @return {ErrorKind}
+   */
   get taskErrorKind() {
     if (this.options.tasks !== undefined) {
       return ErrorKind.TasksNotFound;
@@ -59,12 +67,20 @@ export default class CheckupTaskRunner {
     return ErrorKind.None;
   }
 
+  /**
+   * Check task filter
+   * @return {boolean}
+   */
   get hasTaskFilter() {
     return [this.options.tasks, this.options.categories, this.options.groups].some(
       (taskFilterType) => taskFilterType !== undefined && taskFilterType.length > 0
     );
   }
 
+  /**
+   * Create a CheckupTaskRunner
+   * @param  {RunOptions} options
+   */
   constructor(options: RunOptions) {
     this.debug = debug('checkup');
 

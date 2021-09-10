@@ -12,6 +12,11 @@ import { Log } from 'sarif';
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
+/**
+ * get formatter from options
+ * @param  {FormatterOptions} options
+ * @return {Formatter}
+ */
 export function getFormatter(options: FormatterOptions) {
   let mergedOptions = Object.assign(
     {},
