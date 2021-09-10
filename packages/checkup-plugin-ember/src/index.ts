@@ -1,8 +1,5 @@
 import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import { evaluateActions as evaluateTemplateLintDisables } from './actions/ember-template-lint-disable-actions';
-import { evaluateActions as evaluateTemplateLintSummary } from './actions/ember-template-lint-summary-actions';
-import { evaluateActions as evaluateTestTypes } from './actions/ember-test-types-actions';
 import EmberDependenciesTask from './tasks/ember-dependencies-task';
 import EmberInRepoAddonsEnginesTask from './tasks/ember-in-repo-addons-engines-task';
 import EmberTestTypesTaskTask from './tasks/ember-test-types-task';
@@ -10,6 +7,9 @@ import EmberTypesTask from './tasks/ember-types-task';
 import EmberTemplateLintDisableTask from './tasks/ember-template-lint-disable-task';
 import EmberTemplateLintSummaryTask from './tasks/ember-template-lint-summary-task';
 import EmberOctaneMigrationStatusTask from './tasks/ember-octane-migration-status-task';
+import { evaluateActions as evaluateTemplateLintDisables } from './actions/ember-template-lint-disable-actions';
+import { evaluateActions as evaluateTemplateLintSummary } from './actions/ember-template-lint-summary-actions';
+import { evaluateActions as evaluateTestTypes } from './actions/ember-test-types-actions';
 
 export function register(args: RegistrationArgs) {
   let pluginName = getPluginName(__dirname);

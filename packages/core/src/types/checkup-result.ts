@@ -15,10 +15,6 @@ export type RepositoryInfo = {
   totalFiles: number;
   age: string;
   activeDays: string;
-  linesOfCode: {
-    types: { extension: string; total: number }[];
-    total: number;
-  };
 };
 
 export interface CheckupMetadata {

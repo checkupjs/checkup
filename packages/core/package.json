@@ -34,7 +34,6 @@
     "promise.hash.helper": "^1.0.7",
     "recast": "^0.20.4",
     "resolve": "^1.19.0",
-    "sloc": "^0.2.1",
     "strip-ansi": "^6.0.0",
     "stylelint": "^13.13.1",
     "tmp": "^0.2.1",

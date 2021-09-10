@@ -2,8 +2,6 @@ import * as React from 'react';
 import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { default as InkTable } from 'ink-table';
-import { BarData } from './types';
-import { SectionedBar } from './sub-components/sectioned-bar';
 import { registeredComponents } from './component-provider';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
@@ -40,27 +38,6 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
             {repository.totalCommits} commits and {repository.totalFiles} files
           </Text>
         </Box>
-        <Text>lines of code {repository.linesOfCode.total}</Text>
-        <>
-          {repository.linesOfCode.types
-            .sort((a, b) => {
-              if (a.total > b.total) {
-                return -1;
-              } else if (a.total === b.total) {
-                return a.extension > b.extension ? 1 : -1;
-              } else {
-                return 1;
-              }
-            })
-            .map((type) => {
-              let barData: BarData = {
-                name: type.extension,
-                value: type.total,
-                total: repository.linesOfCode.total,
-              };
-              return <SectionedBar key={type.extension} data={barData} />;
-            })}
-        </>
       </Box>
     </>
   );

@@ -22,7 +22,12 @@ describe('<%- name %>-task', () => {
   });
 
   it('can read task as JSON', async () => {
-    const result = await new <%- taskClass %>(pluginName, getTaskContext({},  {cwd: project.baseDir})).run();
+    const result = await new <%- taskClass %>(
+      pluginName, 
+      getTaskContext({
+        options: { cwd: project.baseDir },
+        pkg: project.pkg,
+      })).run();
 
     expect(result).toMatchSnapshot();
   });
