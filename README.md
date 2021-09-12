@@ -1,4 +1,8 @@
-# Checkup: A health checkup for your project
+<p align="center">
+  <img src="docs/logo.png" alt="checkup" width="25%" />
+</p>
+
+<p style="font-style: italic; font-size: 20px; margin-bottom: 30px">Use static analysis to gain insights that can help drive maintenance decisions</p>
 
 ![CI Build](https://github.com/checkupjs/checkup/workflows/CI%20Build/badge.svg)
 [![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -7,13 +11,15 @@
 ![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![Code Style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](#badge)
 
-> :warning: Checkup is pre-release and still in active development.
+<br />
+<hr />
+<br />
 
-Checkup allows you to ask _questions_ and get _answers_ that can help drive maintenance decisions. It runs **tasks** to gather information about the craftsmanship and quality of your codebase. Task results are output as [SARIF](https://sarifweb.azurewebsites.net/), which provides a consistent schema for data processing, and can be integrated into your development workflow through IDE integrations.
+Checkup is a framework that uses static analysis to gain insights that can help drive maintenance decisions. It enables you to run **tasks** to gather information about the craftsmanship and quality of your codebase. Task results are output as [SARIF](https://sarifweb.azurewebsites.net/), which provides a consistent schema for data processing, and can be integrated into your development workflow through IDE integrations.
 
-![Checkup sample output](docs/checkup-output.png)
+<img src="docs/checkup-run-output.png" alt="Checkup summary output" style="margin: 20px 0" />
 
-As mentioned, Checkup can help you with making maintenance and resourcing decisions, planning and prioritizing the general health of your codebase. You devise the important information you care about, and Checkup provides the infrastructure to gather and output that data.
+Checkup allows you to determine the important information you care about, and provides the infrastructure to gather and output that data.
 
 Tasks can gather information about
 
