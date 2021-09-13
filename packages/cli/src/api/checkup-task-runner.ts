@@ -30,7 +30,8 @@ import TaskListImpl from '../task-list';
 import PluginRegistrationProvider from './registration-provider';
 
 /**
- * Class task runner
+ * Class that is able to run a list of checkup tasks.
+ * Also it can show you the list of available task names.
  */
 export default class CheckupTaskRunner {
   actions: TaskAction[];
@@ -68,7 +69,7 @@ export default class CheckupTaskRunner {
   }
 
   /**
-   * Check task filter
+   * Check if user provides task filter by using --task, --category or --group
    * @return {boolean}
    */
   get hasTaskFilter() {
@@ -78,8 +79,18 @@ export default class CheckupTaskRunner {
   }
 
   /**
-   * Create a CheckupTaskRunner
-   * @param  {RunOptions} options
+   * Create a CheckupTaskRunner.
+   * @param  {RunOptions} options - run options that may specify the following items:
+   *
+   * cwd: string - The path referring to the root directory that Checkup will run in
+   * config?: CheckupConfig - Use this configuration, overriding .checkuprc if present.
+   * configPath?: string - Use the configuration found at this path, overriding .checkuprc if present.
+   * categories?: string[] - Runs specific tasks specified by category. Can be used multiple times.
+   * excludePaths?: string[] - Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.
+   * groups?: string[] - Runs specific tasks specified by group. Can be used multiple times.
+   * listTasks?: boolean - If true, list all available tasks to run.
+   * tasks?: string[] - Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.
+   * pluginBaseDir?: string - The base directory where Checkup will load the plugins from. Defaults to cwd.
    */
   constructor(options: RunOptions) {
     this.debug = debug('checkup');
@@ -116,7 +127,10 @@ export default class CheckupTaskRunner {
 
     return this.logBuilder.log;
   }
-
+  /**
+   * Get a list of task names that are able to run.
+   * @return - a list of fully qualified task names.
+   */
   async getAvailableTasks() {
     await this.loadConfig();
     await this.registerPlugins();

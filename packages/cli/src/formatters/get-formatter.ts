@@ -13,9 +13,10 @@ import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
 /**
- * get formatter from options
- * @param  {FormatterOptions} options
- * @return {Formatter}
+ * Get formatter from options.format
+ * The default formatter is summary if there is no formatter provided.
+ * @param  {FormatterOptions} options - formatter options that may specify the formatter name.
+ * @return {Formatter} - formatter with a format method that will return the result string.
  */
 export function getFormatter(options: FormatterOptions) {
   let mergedOptions = Object.assign(
