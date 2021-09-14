@@ -1,0 +1,134 @@
+{
+  "projectName": "checkup",
+  "projectOwner": "checkupjs",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "scalvert",
+      "name": "Steve Calvert",
+      "avatar_url": "https://avatars.githubusercontent.com/u/180990?v=4",
+      "profile": "https://github.com/scalvert",
+      "contributions": [
+        "code",
+        "question",
+        "review",
+        "infra"
+      ]
+    },
+    {
+      "login": "carakessler",
+      "name": "carakessler",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3287102?v=4",
+      "profile": "https://github.com/carakessler",
+      "contributions": [
+        "code",
+        "question",
+        "review",
+        "infra"
+      ]
+    },
+    {
+      "login": "zhanwang626",
+      "name": "Zhan Wang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18001663?v=4",
+      "profile": "https://github.com/zhanwang626",
+      "contributions": [
+        "code",
+        "review"
+      ]
+    },
+    {
+      "login": "mahirshah",
+      "name": "Mahir Shah",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6194811?v=4",
+      "profile": "https://github.com/mahirshah",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tylerbecks",
+      "name": "Tyler Becks",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16826230?v=4",
+      "profile": "https://github.com/tylerbecks",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gabrielcsapo",
+      "name": "Gabriel Csapo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1854811?v=4",
+      "profile": "https://www.gabrielcsapo.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "lisaqyli",
+      "name": "Lisa Li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3597818?v=4",
+      "profile": "http://lisaqyli.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "evansolomon",
+      "name": "Evan Solomon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/407310?v=4",
+      "profile": "http://evansolomon.me/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "oa495",
+      "name": "Omayeli Arenyeka",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8635106?v=4",
+      "profile": "https://www.omayeli.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "chadhietala",
+      "name": "Chad Hietala",
+      "avatar_url": "https://avatars.githubusercontent.com/u/183799?v=4",
+      "profile": "http://twitter.com/chadhietala",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rwjblue",
+      "name": "Robert Jackson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12637?v=4",
+      "profile": "https://www.rwjblue.com/",
+      "contributions": [
+        "code",
+        "question",
+        "review",
+        "infra"
+      ]
+    },
+    {
+      "login": "brendenpalmer",
+      "name": "Brenden Palmer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2276050?v=4",
+      "profile": "https://github.com/brendenpalmer",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true
+}
