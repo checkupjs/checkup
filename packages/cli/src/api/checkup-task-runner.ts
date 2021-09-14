@@ -69,7 +69,7 @@ export default class CheckupTaskRunner {
   }
 
   /**
-   * Check if user provides task filter by using --task, --category or --group
+   * Check if user provides task filter by using task, category or group
    * @return {boolean}
    */
   get hasTaskFilter() {
