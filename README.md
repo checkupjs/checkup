@@ -1,4 +1,7 @@
 <p align="center">
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
   <img src="docs/logo.png" alt="checkup" width="25%" />
 </p>
 
@@ -48,6 +51,35 @@ See the [CLI README](packages/cli/README.md) for information on usage.
 
 To contribute, please read the [CONTRIBUTING](CONTRIBUTING.md) guidelines.
 
-## Spec
+## Contributors ✨
 
-Read more about the mission, vision, and overall direction of checkup in the [spec](docs/SPEC.md) document.
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/scalvert"><img src="https://avatars.githubusercontent.com/u/180990?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Steve Calvert</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=scalvert" title="Code">💻</a> <a href="#question-scalvert" title="Answering Questions">💬</a> <a href="https://github.com/scalvert/checkup/pulls?q=is%3Apr+reviewed-by%3Ascalvert" title="Reviewed Pull Requests">👀</a> <a href="#infra-scalvert" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/carakessler"><img src="https://avatars.githubusercontent.com/u/3287102?v=4?s=100" width="100px;" alt=""/><br /><sub><b>carakessler</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=carakessler" title="Code">💻</a> <a href="#question-carakessler" title="Answering Questions">💬</a> <a href="https://github.com/scalvert/checkup/pulls?q=is%3Apr+reviewed-by%3Acarakessler" title="Reviewed Pull Requests">👀</a> <a href="#infra-carakessler" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/zhanwang626"><img src="https://avatars.githubusercontent.com/u/18001663?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Zhan Wang</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=zhanwang626" title="Code">💻</a> <a href="https://github.com/scalvert/checkup/pulls?q=is%3Apr+reviewed-by%3Azhanwang626" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/mahirshah"><img src="https://avatars.githubusercontent.com/u/6194811?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mahir Shah</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=mahirshah" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/tylerbecks"><img src="https://avatars.githubusercontent.com/u/16826230?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tyler Becks</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=tylerbecks" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.gabrielcsapo.com/"><img src="https://avatars.githubusercontent.com/u/1854811?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gabriel Csapo</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=gabrielcsapo" title="Code">💻</a></td>
+    <td align="center"><a href="http://lisaqyli.com/"><img src="https://avatars.githubusercontent.com/u/3597818?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lisa Li</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=lisaqyli" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="http://evansolomon.me/"><img src="https://avatars.githubusercontent.com/u/407310?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Evan Solomon</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=evansolomon" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.omayeli.com/"><img src="https://avatars.githubusercontent.com/u/8635106?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Omayeli Arenyeka</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=oa495" title="Code">💻</a></td>
+    <td align="center"><a href="http://twitter.com/chadhietala"><img src="https://avatars.githubusercontent.com/u/183799?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chad Hietala</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=chadhietala" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.rwjblue.com/"><img src="https://avatars.githubusercontent.com/u/12637?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Robert Jackson</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=rwjblue" title="Code">💻</a> <a href="#question-rwjblue" title="Answering Questions">💬</a> <a href="https://github.com/scalvert/checkup/pulls?q=is%3Apr+reviewed-by%3Arwjblue" title="Reviewed Pull Requests">👀</a> <a href="#infra-rwjblue" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
+    <td align="center"><a href="https://github.com/brendenpalmer"><img src="https://avatars.githubusercontent.com/u/2276050?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brenden Palmer</b></sub></a><br /><a href="https://github.com/scalvert/checkup/commits?author=brendenpalmer" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
