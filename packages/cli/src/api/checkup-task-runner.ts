@@ -80,7 +80,7 @@ export default class CheckupTaskRunner {
   /**
    * Create a CheckupTaskRunner.
    * @param  {RunOptions} options - run options that may specify the following items:
-   * @param  {string} options.cwd: - The path referring to the root directory that Checkup will run in
+   * @param  {string} options.cwd - The path referring to the root directory that Checkup will run in
    * @param  {CheckupConfig} options.config? - Use this configuration, overriding .checkuprc if present.
    * @param  {string} options.configPath? - Use the configuration found at this path, overriding .checkuprc if present.
    * @param  {string[]} options.categories? - Runs specific tasks specified by category. Can be used multiple times.
