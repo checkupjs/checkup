@@ -13,8 +13,8 @@ import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
 /**
- * Get formatter from options.format
- * The default formatter is summary if there is no formatter provided.
+ * Get formatter from options.format (default: summary)
+ *
  * @param  {FormatterOptions} options - formatter options that may specify the formatter name.
  * @return {Formatter} - formatter with a format method that will return the result string.
  */
