@@ -80,16 +80,15 @@ export default class CheckupTaskRunner {
   /**
    * Create a CheckupTaskRunner.
    * @param  {RunOptions} options - run options that may specify the following items:
-   *
-   * cwd: string - The path referring to the root directory that Checkup will run in
-   * config?: CheckupConfig - Use this configuration, overriding .checkuprc if present.
-   * configPath?: string - Use the configuration found at this path, overriding .checkuprc if present.
-   * categories?: string[] - Runs specific tasks specified by category. Can be used multiple times.
-   * excludePaths?: string[] - Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.
-   * groups?: string[] - Runs specific tasks specified by group. Can be used multiple times.
-   * listTasks?: boolean - If true, list all available tasks to run.
-   * tasks?: string[] - Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.
-   * pluginBaseDir?: string - The base directory where Checkup will load the plugins from. Defaults to cwd.
+   * @param  {string} options.cwd: - The path referring to the root directory that Checkup will run in
+   * @param  {CheckupConfig} options.config? - Use this configuration, overriding .checkuprc if present.
+   * @param  {string} options.configPath? - Use the configuration found at this path, overriding .checkuprc if present.
+   * @param  {string[]} options.categories? - Runs specific tasks specified by category. Can be used multiple times.
+   * @param  {string[]} options.excludePaths? - Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.
+   * @param  {string[]} options.groups? - Runs specific tasks specified by group. Can be used multiple times.
+   * @param  {boolean} options.listTasks? - If true, list all available tasks to run.
+   * @param  {string[]}  options.tasks? - Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.
+   * @param  {string} options.pluginBaseDir? - The base directory where Checkup will load the plugins from. Defaults to cwd.
    */
   constructor(options: RunOptions) {
     this.debug = debug('checkup');
