@@ -22,6 +22,69 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v1.0.0-beta.12 (2021-09-14)
+
+#### :boom: Breaking Change
+* `checkup-formatter-pretty`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#1077](https://github.com/checkupjs/checkup/pull/1077) Converts built-in LOC info to task ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `core`
+  * [#1025](https://github.com/checkupjs/checkup/pull/1025) Converts all Tasks to use new addResult API ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`
+  * [#1011](https://github.com/checkupjs/checkup/pull/1011) Standardizing output in tasks: ember-in-repo-addons-engines-task ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `core`
+  * [#1069](https://github.com/checkupjs/checkup/pull/1069) Adds endLine/endColumn to result range ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `cli`, `core`
+  * [#1060](https://github.com/checkupjs/checkup/pull/1060) Change other formatters to return strings ([@scalvert](https://github.com/scalvert))
+* `checkup-formatter-pretty`, `cli`, `core`
+  * [#1049](https://github.com/checkupjs/checkup/pull/1049) Update checkup-formatter-pretty to output string ([@zhanwang626](https://github.com/zhanwang626))
+* `checkup-formatter-pretty`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#1041](https://github.com/checkupjs/checkup/pull/1041) Adding custom formatter package ([@scalvert](https://github.com/scalvert))
+* `cli`, `core`, `test-helpers`
+  * [#1021](https://github.com/checkupjs/checkup/pull/1021) Adds addResult API to base-task ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `checkup-formatter-pretty`, `cli`
+  * [#1074](https://github.com/checkupjs/checkup/pull/1074) Move pretty related tests to checkup-formatter-pretty ([@zhanwang626](https://github.com/zhanwang626))
+* `cli`
+  * [#1070](https://github.com/checkupjs/checkup/pull/1070) Add description to Task generator ([@scalvert](https://github.com/scalvert))
+  * [#1046](https://github.com/checkupjs/checkup/pull/1046) Fixes task generator to output correct new Task format ([@scalvert](https://github.com/scalvert))
+* `core`
+  * [#1059](https://github.com/checkupjs/checkup/pull/1059) Rename stylelint analyzer and add public export. ([@oa495](https://github.com/oa495))
+* Other
+  * [#1045](https://github.com/checkupjs/checkup/pull/1045) Resolves type errors when building fresh master ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `checkup-formatter-pretty`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `core`
+  * [#1066](https://github.com/checkupjs/checkup/pull/1066) Pretty checkup tasks' output in checkup-formatter-pretty ([@zhanwang626](https://github.com/zhanwang626))
+* `cli`
+  * [#1071](https://github.com/checkupjs/checkup/pull/1071) Adding type to CLI options ([@scalvert](https://github.com/scalvert))
+* `core`
+  * [#1068](https://github.com/checkupjs/checkup/pull/1068) Project cleanup in preparation for 1.0 ([@scalvert](https://github.com/scalvert))
+* Other
+  * [#1067](https://github.com/checkupjs/checkup/pull/1067) Upgrades version of yarn via volta ([@scalvert](https://github.com/scalvert))
+* `checkup-formatter-pretty`, `checkup-plugin-ember`, `checkup-plugin-javascript`
+  * [#1064](https://github.com/checkupjs/checkup/pull/1064) Update list and bar component to render task result correctly. ([@zhanwang626](https://github.com/zhanwang626))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `core`
+  * [#1061](https://github.com/checkupjs/checkup/pull/1061) Retrofit components ([@zhanwang626](https://github.com/zhanwang626))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#1017](https://github.com/checkupjs/checkup/pull/1017) Adding CheckupLogBuilder to taskContext ([@scalvert](https://github.com/scalvert))
+
+#### :recycle: Generators
+* `cli`
+  * [#1070](https://github.com/checkupjs/checkup/pull/1070) Add description to Task generator ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Omayeli Arenyeka ([@oa495](https://github.com/oa495))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- Zhan Wang ([@zhanwang626](https://github.com/zhanwang626))
+
+
 ## v1.0.0-beta.11 (2021-05-21)
 
 #### :boom: Breaking Change
