@@ -31,7 +31,6 @@ import PluginRegistrationProvider from './registration-provider';
 
 /**
  * Class that is able to run a list of checkup tasks.
- * Also it can show you the list of available task names.
  */
 export default class CheckupTaskRunner {
   actions: TaskAction[];
