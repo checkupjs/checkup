@@ -128,6 +128,7 @@ export default class CheckupTaskRunner {
   }
   /**
    * Get a list of task names that are able to run.
+   *
    * @return - a list of fully qualified task names.
    */
   async getAvailableTasks() {
