@@ -2,7 +2,7 @@
   <img src="docs/logo.png" alt="checkup" width="25%" />
 </p>
 
-<p style="font-style: italic; font-size: 20px; margin-bottom: 30px">Use static analysis to gain insights that can help drive maintenance decisions</p>
+<p style="font-style: italic; font-size: 20px; margin-bottom: 20px">Use static analysis and gain insights to help drive maintenance decisions</p>
 
 ![CI Build](https://github.com/checkupjs/checkup/workflows/CI%20Build/badge.svg)
 [![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
@@ -11,24 +11,20 @@
 ![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)
 [![Code Style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](#badge)
 
-<br />
-<hr />
-<br />
-
-Checkup is a framework that uses static analysis to gain insights that can help drive maintenance decisions. It enables you to run **tasks** to gather information about the craftsmanship and quality of your codebase. Task results are output as [SARIF](https://sarifweb.azurewebsites.net/), which provides a consistent schema for data processing, and can be integrated into your development workflow through IDE integrations.
+Checkup is a framework that uses static analysis and gain insights to help drive maintenance decisions. It provides a framework to run **tasks** to gather information about the craftsmanship and quality of your codebase. Task results are output as [SARIF](https://sarifweb.azurewebsites.net/), which provides a consistent schema for data processing, and can be integrated into your development workflow through IDE integrations.
 
 <img src="docs/checkup-run-output.png" alt="Checkup summary output" style="margin: 20px 0" />
 
 Checkup allows you to determine the important information you care about, and provides the infrastructure to gather and output that data.
 
-Tasks can gather information about
+Tasks can gather insights on things like
 
-- code structure
-- dependency health
-- test health
-- API compatability
-- API migration status
-- anything else you can dream up :bulb:
+- **Code structure** - to give shape to your project, which can help you understand the codebase and identify areas of improvement
+- **Dependency health** - such as which dependency versions are out of date, or outside supported ranges
+- **Test health** - to identify types of tests used, which tests are being skipped, and what the [shape](https://martinfowler.com/articles/2021-test-shapes.html) of the test infrastructure is
+- **API compatability** - to identify which APIs are being used, and which are not
+- **Migration status** - to give practical insight into how your codebase is being migrated
+- Anything else you can dream up... :bulb:
 
 ## Features
 
@@ -36,13 +32,21 @@ Tasks can gather information about
 - **Code Generators** - A collection of generators allowing you to generate a checkup **config** file, **plugin** project structure, and **task** files and tests.
 - **Plugins** - Existing plugins for **JavaScript**, **Ember**, and **Ember Octane**.
 
+## Installation
+
+To install Checkup, run the following command:
+
+```bash
+$ npm install @checkup/cli
+```
+
 ## Usage
 
 See the [CLI README](packages/cli/README.md) for information on usage.
 
-## Installation and Contributing
+## Contributing
 
-To contribute to Checkup, you'll need to clone and setup the repository. See the [installation](CONTRIBUTING.md#installation) documentation to start. To contribute, please read the [CONTRIBUTING](CONTRIBUTING.md) guidelines.
+To contribute, please read the [CONTRIBUTING](CONTRIBUTING.md) guidelines.
 
 ## Spec
 

@@ -7,28 +7,29 @@ A CLI that provides health check information about your project.
 [![Downloads/week](https://img.shields.io/npm/dw/@checkup/cli.svg)](https://npmjs.org/package/@checkup/cli)
 [![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
 
-- [@checkup/cli](#checkupcli)
-- [Usage](#usage)
-- [Checkup Command (alias `checkup run`)](#checkup-command-alias-checkup-run)
-  - [`checkup PATH`](#checkup-path)
-- [Generate Command](#generate-command)
-  - [`checkup generate plugin PLUGIN_NAME PATH`](#checkup-generate-plugin-pluginname-path)
-  - [`checkup generate task TASK_NAME PATH`](#checkup-generate-task-taskname-path)
-- [Configuration](#configuration)
-  - [Plugins](#plugins)
-  - [Tasks](#tasks)
-
 # Usage
 
 Install checkup CLI globally:
 
+Using `yarn`:
+
 ```sh-session
 $ yarn global add @checkup/cli
+```
 
-# or
+Using `npm`:
 
+```sh-session
 $ npm install -g @checkup/cli
 ```
+
+Using `volta`:
+
+```sh-session
+$ volta install @checkup/cli
+```
+
+## Configuration
 
 First use the config generator to create a config file in your project's directory:
 
@@ -39,114 +40,10 @@ $ checkup generate config
 The `checkup` CLI is now available to run. Use the `run` command to run Checkup against your project directory:
 
 ```sh-session
-$ checkup
-Checking up on your project...
+$ checkup run .
 ```
-
-# Checkup Command (alias `checkup run`)
-
-## `checkup PATH`
-
-A CLI that provides health check information about your project
-
-```shell
-A health checkup for your project
-
-USAGE
-  $ checkup [run] PATHS
-
-ARGUMENTS
-  PATHS  The paths that checkup will operate on. If no paths are provided, checkup will run on the entire directory beginning
-         at --cwd.
-
-OPTIONS
-  -c, --config=config                Use this configuration, overriding .checkuprc.* if present.
-
-  -d, --cwd=cwd                      [default: '.'] The path referring to the root
-                                     directory that Checkup will run in
-
-  -e, --exclude-paths=exclude-paths  Paths to exclude from checkup. If paths are provided via command line and via checkup
-                                     config, command line paths will be used.
-
-  -f, --format=stdout|json           [default: stdout] The output format, one of stdout, json
-
-  -h, --help                         show CLI help
-
-  -l, --list-tasks                   List all available tasks to run.
-
-  -o, --output-file=output-file      Specify file to write JSON output to. Requires the `--format` flag to be set to `json`
-
-  -t, --task=task                    Runs specific tasks specified by the fully qualified task name in the format
-                                     pluginName/taskName. Can be used multiple times.
-
-  -v, --version                      show CLI version
-
-  --category=category                Runs specific tasks specified by category. Can be used multiple times.
-
-  --group=group                      Runs specific tasks specified by group. Can be used multiple times.
-
-  --verbose
-```
-
-_See code: [src/commands/run.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/run.ts)_
-
-# Generate Command
-
-Checkup comes with a few generators to help generate Checkup plugins and tasks.
-
-## `checkup generate plugin PLUGIN_NAME PATH`
-
-Generate a checkup plugin.
-
-```
-USAGE
-  $ checkup generate plugin PLUGIN_NAME PATH
-
-ARGUMENTS
-  NAME  name of the plugin (kebab-case)
-  PATH  [default: .] The path referring to the directory that the generator will run in
-
-OPTIONS
-  --defaults         use defaults for every setting
-  --force            overwrite existing files
-  --options=options  (typescript)
-```
-
-## `checkup generate task TASK_NAME PATH`
-
-Generate a task within a Checkup plugin.
-
-```
-USAGE
-  $ checkup generate task TASK_NAME PATH
-
-ARGUMENTS
-  NAME  name of the task (kebab-case)
-  PATH  [default: .] The path referring to the directory that the generator will run in
-
-OPTIONS
-  --defaults         use defaults for every setting
-  --force            overwrite existing files
-  --options=options  (typescript)
-```
-
-_See code: [src/commands/generate.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/generate.ts)_
-
-# Configuration
 
 Checkup is designed to be completely configurable via a configuration object.
-
-Checkup uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) to find and load your configuration object. Starting from the current working directory, it looks for the following possible sources:
-
-- a .checkuprc file
-- a checkup.config.js file exporting a JS object
-
-The search stops when one of these is found, and Checkup uses that object.
-
-The .checkuprc file (without extension) can be in JSON or JavaScript format. You can add a filename extension to help your text editor provide syntax checking and highlighting:
-
-- .checkup.json
-- .checkup.js
 
 You can also specify an explicit path to a configuration via the command line, which will override any configurations found in any `.checkuprc.*` files
 
@@ -156,7 +53,7 @@ $ checkup --config /some/path/to/my/config/.checkuprc
 
 The configuration object has the following properties:
 
-## Plugins
+### Plugins
 
 Plugins are collections of Checkup tasks that are intended to be configured and run. Conceptually, they're very similar to eslint plugins, which themselves contain a collection of eslint rules to run.
 
@@ -181,7 +78,7 @@ To configure plugins, use the plugins key in your configuration file, which cont
 }
 ```
 
-## Tasks
+### Tasks
 
 Tasks are the core primitive that Checkup uses to gather data for the Checkup report.
 
@@ -190,3 +87,105 @@ To generate a task, run the following in the plugin directory you want to add th
 ```shell
 $ checkup generate task example-task
 ```
+
+## Checkup Command (alias `checkup run`)
+
+### `checkup run PATH`
+
+A CLI that provides health check information about your project
+
+```shell
+checkup run [paths..] [options]
+
+Options:
+      --help             Show help                                        [boolean]
+      --version          Show version number                              [boolean]
+  -e, --exclude-paths    Paths to exclude from checkup. If paths are provided via
+                         command line and via checkup config, command line paths
+                         will be used.                                      [array]
+  -c, --config-path      Use the configuration found at this path, overriding
+                         .checkuprc if present.             [default: ".checkuprc"]
+      --config           Use this configuration, overriding .checkuprc if present.
+  -d, --cwd              The path referring to the root directory that Checkup will
+                         run in                                [default: (default)]
+      --category         Runs specific tasks specified by category. Can be used
+                         multiple times.                                    [array]
+      --group            Runs specific tasks specified by group. Can be used
+                         multiple times.                                    [array]
+  -t, --task             Runs specific tasks specified by the fully qualified task
+                         name in the format pluginName/taskName. Can be used
+                         multiple times.                                    [array]
+  -f, --format           Use a specific output format          [default: "summary"]
+  -o, --output-file      Specify file to write JSON output to.        [default: ""]
+  -l, --list-tasks       List all available tasks to run.                 [boolean]
+  -p, --plugin-base-dir  The base directory where Checkup will load the plugins
+                         from. Defaults to cwd.
+```
+
+_See code: [src/commands/run.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/run.ts)_
+
+## Generate Command
+
+Checkup comes with a few generators to help generate Checkup plugins and tasks.
+
+### `checkup generate plugin PLUGIN_NAME PATH`
+
+Generate a checkup `plugin`.
+
+```sh-session
+checkup generate plugin <name> [options]
+
+Generates a checkup plugin project
+
+Positionals:
+  name  Name of the plugin (eg. checkup-plugin-myplugin)   [required] [default: ""]
+
+Options:
+      --help      Show help                                               [boolean]
+      --version   Show version number                                     [boolean]
+  -d, --defaults  Use defaults for every setting                          [boolean]
+  -p, --path      The path referring to the directory that the generator will run
+                  in                                                 [default: "."]
+```
+
+### `checkup generate task TASK_NAME PATH`
+
+Generate a `task` within a Checkup `plugin`.
+
+```sh-session
+checkup generate task <name> [options]
+
+Generates a checkup task within a project
+
+Positionals:
+  name  Name of the task (foo-task)                        [required] [default: ""]
+
+Options:
+      --help      Show help                                               [boolean]
+      --version   Show version number                                     [boolean]
+  -d, --defaults  Use defaults for every setting                          [boolean]
+  -p, --path      The path referring to the directory that the generator will run
+                  in                                                 [default: "."]
+```
+
+### `checkup generate actions ACTION_NAME PATH`
+
+Generate a task actions within a Checkup `plugin`.
+
+```sh-session
+checkup generate actions <name> [options]
+
+Generates checkup actions within a project
+
+Positionals:
+  name  Name of the actions (foo-task-actions)             [required] [default: ""]
+
+Options:
+      --help      Show help                                               [boolean]
+      --version   Show version number                                     [boolean]
+  -d, --defaults  Use defaults for every setting                          [boolean]
+  -p, --path      The path referring to the directory that the generator will run
+                  in                                                 [default: "."]
+```
+
+_See code: [src/commands/generate.ts](https://github.com/checkupjs/checkup/blob/v0.0.0/src/commands/generate.ts)_
