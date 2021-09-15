@@ -116,7 +116,7 @@ checkup <command> [options]`
         });
       },
       handler: async (options: CLIOptions) => {
-        let paths = options._.slice(1);
+        let paths = options._.slice(1) as string[];
 
         let taskRunner = new CheckupTaskRunner({
           paths,
