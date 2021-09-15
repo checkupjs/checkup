@@ -12,6 +12,15 @@ import { Log } from 'sarif';
 import SummaryFormatter from './summary';
 import JsonFormatter from './json';
 
+/**
+ * Get formatter from options.format (default: summary)
+ *
+ * @param  {FormatterOptions} options - formatter options that may specify the formatter name.
+ * @param  {string} options.cwd - the directory where custom format located.
+ * @param  {OutputFormat | string} options.format - specify the output format, it can be summary, json and customized format
+ * @param  {string} options.outputFile - specify a output file to save the result.
+ * @return {Formatter} - formatter with a format method that will return the result string.
+ */
 export function getFormatter(options: FormatterOptions) {
   let mergedOptions = Object.assign(
     {},

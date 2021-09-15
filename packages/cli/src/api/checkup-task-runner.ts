@@ -28,6 +28,10 @@ import { Log, Result } from 'sarif';
 import { PackageJson } from 'type-fest';
 import TaskListImpl from '../task-list';
 import PluginRegistrationProvider from './registration-provider';
+
+/**
+ * Class that is able to run a list of checkup tasks.
+ */
 export default class CheckupTaskRunner {
   actions: TaskAction[];
   config!: CheckupConfig;
@@ -47,6 +51,10 @@ export default class CheckupTaskRunner {
   pkg: PackageJson;
   pkgSource: string;
 
+  /**
+   * Get the task's error kind
+   * @return {ErrorKind}
+   */
   get taskErrorKind() {
     if (this.options.tasks !== undefined) {
       return ErrorKind.TasksNotFound;
@@ -59,12 +67,29 @@ export default class CheckupTaskRunner {
     return ErrorKind.None;
   }
 
+  /**
+   * Check if user provides task filter by using task, category or group
+   * @return {boolean}
+   */
   get hasTaskFilter() {
     return [this.options.tasks, this.options.categories, this.options.groups].some(
       (taskFilterType) => taskFilterType !== undefined && taskFilterType.length > 0
     );
   }
 
+  /**
+   * Create a CheckupTaskRunner.
+   * @param  {RunOptions} options - run options that may specify the following items:
+   * @param  {string} options.cwd - The path referring to the root directory that Checkup will run in
+   * @param  {CheckupConfig} options.config? - Use this configuration, overriding .checkuprc if present.
+   * @param  {string} options.configPath? - Use the configuration found at this path, overriding .checkuprc if present.
+   * @param  {string[]} options.categories? - Runs specific tasks specified by category. Can be used multiple times.
+   * @param  {string[]} options.excludePaths? - Paths to exclude from checkup. If paths are provided via command line and via checkup config, command line paths will be used.
+   * @param  {string[]} options.groups? - Runs specific tasks specified by group. Can be used multiple times.
+   * @param  {boolean} options.listTasks? - If true, list all available tasks to run.
+   * @param  {string[]}  options.tasks? - Runs specific tasks specified by the fully qualified task name in the format pluginName/taskName. Can be used multiple times.
+   * @param  {string} options.pluginBaseDir? - The base directory where Checkup will load the plugins from. Defaults to cwd.
+   */
   constructor(options: RunOptions) {
     this.debug = debug('checkup');
 
@@ -100,7 +125,11 @@ export default class CheckupTaskRunner {
 
     return this.logBuilder.log;
   }
-
+  /**
+   * Get a list of task names that are able to run.
+   *
+   * @return - a list of fully qualified task names.
+   */
   async getAvailableTasks() {
     await this.loadConfig();
     await this.registerPlugins();

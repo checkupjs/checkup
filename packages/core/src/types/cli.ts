@@ -55,5 +55,4 @@ export interface FormatterOptions {
   cwd: string;
   format: OutputFormat | string;
   outputFile?: string;
-  componentName?: string;
 }
