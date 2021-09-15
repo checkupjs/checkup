@@ -38,8 +38,8 @@ describe('actions generator', () => {
         typescript: true,
       });
 
-    assertActionsFiles('my-foo', dir);
-    assertPluginFiles(dir);
+    assertActionsFiles('my-foo', dir.cwd);
+    assertPluginFiles(dir.cwd);
   });
 
   it('generates correct files with TypeScript in custom path', async () => {
@@ -86,9 +86,9 @@ describe('actions generator', () => {
         typescript: true,
       });
 
-    assertActionsFiles('my-foo', dir);
-    assertActionsFiles('my-bar', dir);
-    assertPluginFiles(dir);
+    assertActionsFiles('my-foo', dir.cwd);
+    assertActionsFiles('my-bar', dir.cwd);
+    assertPluginFiles(dir.cwd);
   });
 
   it('generates correct files with JavaScript', async () => {
@@ -108,7 +108,7 @@ describe('actions generator', () => {
         typescript: false,
       });
 
-    assertActionsFiles('my-foo', dir, 'js');
-    assertPluginFiles(dir, 'js');
+    assertActionsFiles('my-foo', dir.cwd, 'js');
+    assertPluginFiles(dir.cwd, 'js');
   });
 });

@@ -2,6 +2,7 @@ import { resolve, join } from 'path';
 import { existsSync, mkdirSync } from 'fs';
 import * as Generator from 'yeoman-generator';
 import * as chalk from 'chalk';
+import { extend } from 'lodash';
 
 import { getPackageJson } from '@checkup/core';
 
@@ -49,6 +50,8 @@ function isOutsideProject(path: string): boolean {
 function isInsideProject(path: string): boolean {
   return existsSync(join(path, '.checkuprc'));
 }
+
+extend(Generator.prototype, require('yeoman-generator/lib/actions/install'));
 
 export default abstract class GeneratorBase extends Generator {
   abstract works: Works;

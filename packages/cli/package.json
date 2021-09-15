@@ -34,17 +34,13 @@
     "wrap-ansi": "^7.0.0",
     "yargs": "^16.2.0",
     "yargs-unparser": "^2.0.0",
-    "yeoman-environment": "^3.4.1",
-    "yeoman-generator": "^4.12.0"
+    "yeoman-environment": "^3.6.0",
+    "yeoman-generator": "^5.4.2"
   },
   "devDependencies": {
     "@checkup/test-helpers": "1.0.0-beta.12",
-    "@types/sarif": "^2.1.3",
-    "@types/sloc": "^0.2.0",
-    "@types/yeoman-environment": "^2.3.3",
-    "@types/yeoman-generator": "^4.11.4",
     "execa": "^5.0.0",
-    "yeoman-test": "^3.0.0"
+    "yeoman-test": "^6.2.0"
   },
   "engines": {
     "node": ">= 12.11.*"

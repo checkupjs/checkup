@@ -29,9 +29,13 @@
     "@types/lodash": "^4.14.168",
     "@types/node": "^15",
     "@types/node-fetch": "^2.5.10",
+    "@types/sarif": "^2.1.3",
+    "@types/sloc": "^0.2.0",
     "@types/tmp": "^0.2.0",
+    "@types/yeoman-environment": "^2.10.5",
+    "@types/yeoman-generator": "^5.2.7",
     "@types/yeoman-assert": "^3.1.1",
-    "@types/yeoman-test": "^2.0.5",
+    "@types/yeoman-test": "^4.0.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.24.0",
     "all-contributors-cli": "^6.20.0",
@@ -85,6 +89,9 @@
     }
   },
   "resolutions": {
+    "@types/yeoman-environment": "^2.10.5",
+    "@types/yeoman-generator": "^5.2.7",
+    "@types/yeoman-test": "^4.0.3",
     "type-fest": "^0.20.2"
   },
   "volta": {

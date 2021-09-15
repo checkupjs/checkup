@@ -18,6 +18,10 @@ export default class PluginGenerator extends BaseGenerator {
       return cwd;
     }
 
+    if (this.options.path) {
+      return join(cwd, this.options.path, this.options.name);
+    }
+
     return join(cwd, this.options.name);
   }
 
@@ -143,7 +147,9 @@ export default class PluginGenerator extends BaseGenerator {
       this.options
     );
 
-    this.yarnInstall();
+    this.installDependencies({
+      yarn: true,
+    });
   }
 
   _normalizeName(): void {

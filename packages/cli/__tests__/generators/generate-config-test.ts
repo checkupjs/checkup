@@ -12,7 +12,7 @@ describe('config-init-generator', () => {
 
     const dir = await helpers.run(ConfigGenerator).cd(tmp).withOptions({ path: tmp });
 
-    expect(testRoot(dir).file('.checkuprc').contents).toMatchSnapshot();
+    expect(testRoot(dir.cwd).file('.checkuprc').contents).toMatchSnapshot();
   });
 
   it('should write a config in custom path', async () => {
@@ -20,7 +20,7 @@ describe('config-init-generator', () => {
 
     const dir = await helpers.run(ConfigGenerator).cd(tmp).withOptions({ path: './lib' });
 
-    expect(testRoot(join(dir, 'lib')).file('.checkuprc').contents).toMatchSnapshot();
+    expect(testRoot(join(dir.cwd, 'lib')).file('.checkuprc').contents).toMatchSnapshot();
   });
 
   it('should error if a checkuprc file is already present', async () => {
