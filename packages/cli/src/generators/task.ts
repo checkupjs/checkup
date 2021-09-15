@@ -5,7 +5,6 @@ import * as recast from 'recast';
 
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import { PackageJson } from 'type-fest';
 import { AstTransformer, CheckupError, ErrorKind } from '@checkup/core';
 import BaseGenerator, { Works, Options } from './base-generator';
 
@@ -21,7 +20,6 @@ interface TaskOptions extends Options {
 
 export default class TaskGenerator extends BaseGenerator {
   works: Works = Works.InsidePlugin;
-  packageJson!: PackageJson;
   answers!: Answers;
 
   constructor(args: any, public options: TaskOptions) {

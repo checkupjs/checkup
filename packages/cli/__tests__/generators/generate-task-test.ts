@@ -36,8 +36,8 @@ describe('task generator', () => {
         defaults: true,
       });
 
-    assertTaskFiles('my-foo', dir);
-    assertPluginFiles(dir);
+    assertTaskFiles('my-foo', dir.cwd);
+    assertPluginFiles(dir.cwd);
   });
 
   it('generates correct files with TypeScript for defaults in custom path', async () => {
@@ -72,9 +72,9 @@ describe('task generator', () => {
       defaults: true,
     });
 
-    assertTaskFiles('my-foo', dir);
-    assertTaskFiles('my-bar', dir);
-    assertPluginFiles(dir);
+    assertTaskFiles('my-foo', dir.cwd);
+    assertTaskFiles('my-bar', dir.cwd);
+    assertPluginFiles(dir.cwd);
   });
 
   it('generates correct files with JavaScript', async () => {
@@ -97,8 +97,8 @@ describe('task generator', () => {
         group: 'bar',
       });
 
-    assertTaskFiles('my-foo', dir, 'js');
-    assertPluginFiles(dir, 'js');
+    assertTaskFiles('my-foo', dir.cwd, 'js');
+    assertPluginFiles(dir.cwd, 'js');
   });
 
   it('generates correct files with typescript', async () => {
@@ -117,8 +117,8 @@ describe('task generator', () => {
         group: 'bar',
       });
 
-    assertTaskFiles('my-foo', dir);
-    assertPluginFiles(dir);
+    assertTaskFiles('my-foo', dir.cwd);
+    assertPluginFiles(dir.cwd);
   });
 
   it('generates correct files with commandType', async () => {
@@ -137,8 +137,8 @@ describe('task generator', () => {
         group: 'bar',
       });
 
-    assertTaskFiles('my-foo', dir);
-    assertPluginFiles(dir);
+    assertTaskFiles('my-foo', dir.cwd);
+    assertPluginFiles(dir.cwd);
   });
 
   it('generates correct files with category', async () => {
@@ -157,8 +157,8 @@ describe('task generator', () => {
         group: 'bar',
       });
 
-    assertTaskFiles('my-foo', dir);
-    assertPluginFiles(dir);
+    assertTaskFiles('my-foo', dir.cwd);
+    assertPluginFiles(dir.cwd);
   });
 
   it('generates correct files with group', async () => {
@@ -177,7 +177,7 @@ describe('task generator', () => {
         group: 'bar',
       });
 
-    assertTaskFiles('my-foo', dir);
-    assertPluginFiles(dir);
+    assertTaskFiles('my-foo', dir.cwd);
+    assertPluginFiles(dir.cwd);
   });
 });

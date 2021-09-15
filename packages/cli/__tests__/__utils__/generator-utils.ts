@@ -44,8 +44,8 @@ export async function generatePlugin(
     .withPrompts(mergedPrompts);
 
   return options.path
-    ? join(dir, options.path, `checkup-plugin-${mergedOptions.name}`)
-    : join(dir, `checkup-plugin-${mergedOptions.name}`);
+    ? join(dir.cwd, options.path, `checkup-plugin-${mergedOptions.name}`)
+    : join(dir.cwd, `checkup-plugin-${mergedOptions.name}`);
 }
 
 export async function generateTask(
