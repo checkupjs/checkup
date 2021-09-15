@@ -80,6 +80,7 @@
   "changelog": {
     "labels": {
       "breaking": ":boom: Breaking Change",
+      "security": ":lock: Security",
       "enhancement": ":rocket: Enhancement",
       "bug": ":bug: Bug Fix",
       "documentation": ":memo: Documentation",
