@@ -26,6 +26,25 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v1.0.0-beta.13 (2021-09-15)
+
+#### :lock: Security
+* `checkup-plugin-javascript`, `cli`
+  * [#1084](https://github.com/checkupjs/checkup/pull/1084) deps: Upgrading jest ([@scalvert](https://github.com/scalvert))
+* `cli`
+  * [#1081](https://github.com/checkupjs/checkup/pull/1081) Upgrades yeoman dependencies to fix security issues ([@scalvert](https://github.com/scalvert))
+
+#### :memo: Documentation
+* [#1080](https://github.com/checkupjs/checkup/pull/1080) Adding all-contributors ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.0.0-beta.12 (2021-09-14)
 
 #### :boom: Breaking Change

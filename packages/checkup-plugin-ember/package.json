@@ -1,14 +1,14 @@
 {
   "name": "checkup-plugin-ember",
   "description": "A checkup plugin for Ember project tasks",
-  "version": "1.0.0-beta.12",
+  "version": "1.0.0-beta.13",
   "author": "Steve Calvert @scalvert",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
     "@babel/parser": "^7.14.2",
     "@babel/traverse": "^7.14.2",
     "@babel/types": "7.13.17",
-    "@checkup/core": "^1.0.0-beta.12",
+    "@checkup/core": "^1.0.0-beta.13",
     "babel-eslint": "^10.1.0",
     "debug": "^4.3.1",
     "ember-template-recast": "^5.0.3",
@@ -18,8 +18,8 @@
     "tslib": "^2"
   },
   "devDependencies": {
-    "@checkup/plugin": "^1.0.0-beta.12",
-    "@checkup/test-helpers": "^1.0.0-beta.12",
+    "@checkup/plugin": "^1.0.0-beta.13",
+    "@checkup/test-helpers": "^1.0.0-beta.13",
     "@types/lodash.kebabcase": "^4.1.6",
     "fixturify-project": "^2.1.1",
     "rimraf": "^3.0.2"

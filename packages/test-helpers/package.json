@@ -1,11 +1,11 @@
 {
   "name": "@checkup/test-helpers",
   "description": "Checkup's test helper library",
-  "version": "1.0.0-beta.12",
+  "version": "1.0.0-beta.13",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "dependencies": {
-    "@checkup/core": "1.0.0-beta.12",
+    "@checkup/core": "1.0.0-beta.13",
     "fixturify-project": "^2.1.1",
     "handlebars": "^4.7.7",
     "json-stable-stringify": "^1.0.1",
