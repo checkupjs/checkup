@@ -23,6 +23,9 @@ import { LintResult } from './types/analyzers';
 
 const merge = require('lodash.merge');
 
+/**
+ * Class that create basic functionalities for checkup task.
+ */
 export default abstract class BaseTask {
   abstract taskName: TaskName;
   abstract taskDisplayName: string;
@@ -39,6 +42,16 @@ export default abstract class BaseTask {
   _enabledViaConfig!: boolean;
   _logBuilder: CheckupLogBuilder;
 
+  /**
+   * @param  {string} pluginName
+   * @param  {TaskContext} context
+   * @param  {RunOptions} context.options
+   * @param  {CheckupConfig} context.config
+   * @param  {CheckupLogBuilder} context.logBuilder
+   * @param  {PackageJson} context.pkg
+   * @param  {string} context.pkgSource
+   * @param  {FilePathArray} context.paths
+   */
   constructor(pluginName: string, context: TaskContext) {
     this.context = context;
     this.results = [];

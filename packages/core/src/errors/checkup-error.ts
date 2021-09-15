@@ -9,10 +9,17 @@ import { ErrorDetails, ErrorDetailOptions, ErrorKind, ERROR_BY_KIND } from './er
 const stripAnsi = require('strip-ansi');
 const clean = require('clean-stack');
 
+/**
+ * Class that provides checkup error information
+ */
 export default class CheckupError extends Error {
   private details: ErrorDetails;
   private options: ErrorDetailOptions;
 
+  /**
+   * @param  {ErrorKind} kind
+   * @param  {ErrorDetailOptions={}} options
+   */
   constructor(kind: ErrorKind, options: ErrorDetailOptions = {}) {
     let details = ERROR_BY_KIND[kind];
     if (!details) {
@@ -51,6 +58,10 @@ export default class CheckupError extends Error {
     }
   }
 
+  /**
+   * Write error into log file
+   * @param  {string[]} details
+   */
   writeErrorLog(details: string[]) {
     let logFileName = `checkup-error-${todayFormat()}.log`;
     let logPath = join(process.cwd(), '.checkup');
