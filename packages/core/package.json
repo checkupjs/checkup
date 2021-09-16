@@ -1,9 +1,21 @@
 {
   "name": "@checkup/core",
-  "description": "Checkup's core library",
   "version": "1.0.0-beta.13",
-  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "description": "Checkup's core library",
+  "homepage": "https://github.com/checkupjs/checkup",
   "bugs": "https://github.com/checkupjs/checkup/issues",
+  "repository": "https://github.com/checkupjs/checkup",
+  "license": "MIT",
+  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "/lib"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "test": "jest --passWithNoTests --no-cache"
+  },
   "dependencies": {
     "@babel/parser": "^7.14.2",
     "@glimmer/syntax": "^0.79.1",
@@ -55,19 +67,7 @@
   "engines": {
     "node": ">= 12.11.*"
   },
-  "files": [
-    "/lib"
-  ],
-  "homepage": "https://github.com/checkupjs/checkup",
-  "license": "MIT",
-  "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
-  },
-  "repository": "https://github.com/checkupjs/checkup",
-  "scripts": {
-    "build": "tsc --build",
-    "test": "jest --passWithNoTests --no-cache"
-  },
-  "types": "lib/index.d.ts"
+  }
 }
