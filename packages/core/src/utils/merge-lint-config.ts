@@ -2,14 +2,21 @@ import * as deepmerge from 'deepmerge';
 import { CLIEngine } from 'eslint';
 import { TemplateLintConfig } from '../types/ember-template-lint';
 
+/**
+ * Merges a task-specific lint configuration into the Task's lint configuration.
+ *
+ * @param {(TemplateLintConfig | CLIEngine.Options)} config - The linting configuration to merge into.
+ * @param {Record<string, any>} taskLintConfig - The task's specific lint configuration.
+ * @returns {*} - The combined configs
+ */
 export function mergeLintConfig(
   config: TemplateLintConfig | CLIEngine.Options,
-  taskLintConfig: { [key: string]: any }
+  taskLintConfig: Record<string, any>
 ) {
-  let initialMerge = deepmerge(config, taskLintConfig);
+  let combinedConfigs = deepmerge(config, taskLintConfig);
 
-  if (initialMerge.rules) {
-    let rules = initialMerge.rules;
+  if (combinedConfigs.rules) {
+    let rules = combinedConfigs.rules;
     let ruleIds = Object.keys(rules);
 
     ruleIds.forEach((ruleId: string) => {
@@ -31,5 +38,5 @@ export function mergeLintConfig(
     });
   }
 
-  return initialMerge;
+  return combinedConfigs;
 }

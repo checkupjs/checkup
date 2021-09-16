@@ -13,7 +13,10 @@ const ACTIVE_DAYS = `git log --pretty='format: %ai' $1 | cut -d ' ' -f 2 | sort 
   '`;
 
 /**
- * @param path
+ * Gets the git repository info
+ *
+ * @param {string} baseDir - The base directory from which to gather the repository info
+ * @returns {*}  {Promise<RepositoryInfo>}
  */
 export function getRepositoryInfo(baseDir: string): Promise<RepositoryInfo> {
   return hash({
