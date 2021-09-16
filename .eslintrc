@@ -14,6 +14,7 @@
     "plugin:unicorn/recommended",
     "plugin:import/errors",
     "plugin:import/typescript",
+    "plugin:jsdoc/recommended",
     "prettier",
     "prettier/@typescript-eslint"
   ],

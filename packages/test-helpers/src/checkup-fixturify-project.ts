@@ -14,8 +14,10 @@ const walkSync = require('walk-sync');
 const ROOT = process.cwd();
 
 /**
- * An extension of {@link Project} that adds methods specific to creating
- * mock checkup projects.
+ * Creates a fixturify instance of a Checkup project.
+ *
+ * @class CheckupFixturifyProject
+ * @augments {Project}
  */
 export default class CheckupFixturifyProject extends Project {
   private _hasWritten: boolean = false;
@@ -50,7 +52,7 @@ export default class CheckupFixturifyProject extends Project {
    * Add a checkup config file to the project
    *
    * @memberof CheckupFixturifyProject
-   * @param config - a partial {@link CheckupConfig} to write to .checkuprc file
+   * @param {CheckupConfig} config - a partial CheckupConfig to write to .checkuprc file
    */
   addCheckupConfig(config: Partial<CheckupConfig> = {}) {
     this.files['.checkuprc'] = stringify(mergeConfig(config));
@@ -102,29 +104,36 @@ export default class CheckupFixturifyProject extends Project {
   /**
    * Updates the contents of the package.json file.
    *
-   * @param {PackageJson} packageJsonContent
+   * @param {PackageJson} packageJson - The project's package.json file
    * @memberof CheckupFixturifyProject
    */
-  updatePackageJson(packageJsonContent: PackageJson) {
-    packageJsonContent.name = this.name;
+  updatePackageJson(packageJson: PackageJson) {
+    packageJson.name = this.name;
 
-    this.pkg = packageJsonContent;
+    this.pkg = packageJson;
   }
 
   get filePaths(): FilePathArray {
     if (this._hasWritten) {
       let allFiles = walkSync(this.baseDir, { directories: false, ignore: ['node_modules'] });
-      return new FilePathArray(...resolveFilePaths(allFiles, this.baseDir));
+      return new FilePathArray(...resolveFilePaths(this.baseDir, allFiles));
     } else {
       throw new Error('You must call writeSync on your project before getting the file paths.');
     }
   }
 }
 
-function resolveFilePaths(filePaths: string[], basePath: string): string[] {
-  if (basePath !== '.') {
+/**
+ * Resolves file paths from the basePath
+ *
+ * @param {string} baseDir - The base path to resolve the file paths from
+ * @param {string[]} filePaths - An array of file paths
+ * @returns {*}  {string[]} An array of file paths
+ */
+function resolveFilePaths(baseDir: string, filePaths: string[]): string[] {
+  if (baseDir !== '.') {
     return filePaths.map((pathName: string) => {
-      return join(resolve(basePath), pathName);
+      return join(resolve(baseDir), pathName);
     });
   }
   return filePaths;
