@@ -1,12 +1,30 @@
 {
   "name": "@checkup/cli",
-  "description": "A health checkup for your project",
   "version": "1.0.0-beta.13",
+  "description": "A health checkup for your project",
+  "keywords": [
+    "checkup"
+  ],
+  "homepage": "https://github.com/checkupjs/checkup",
+  "bugs": "https://github.com/checkupjs/checkup/issues",
+  "repository": "https://github.com/checkupjs/checkup",
+  "license": "MIT",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": {
     "checkup": "./bin/checkup.js"
   },
-  "bugs": "https://github.com/checkupjs/checkup/issues",
+  "files": [
+    "/bin",
+    "/lib",
+    "/templates",
+    "/static"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "test": "jest --runInBand --no-cache"
+  },
   "dependencies": {
     "@babel/parser": "^7.13.13",
     "@babel/traverse": "^7.13.17",
@@ -45,25 +63,7 @@
   "engines": {
     "node": ">= 12.11.*"
   },
-  "files": [
-    "/bin",
-    "/lib",
-    "/templates",
-    "/static"
-  ],
-  "homepage": "https://github.com/checkupjs/checkup",
-  "keywords": [
-    "checkup"
-  ],
-  "license": "MIT",
-  "main": "lib/index.js",
   "publishConfig": {
     "access": "public"
-  },
-  "repository": "https://github.com/checkupjs/checkup",
-  "scripts": {
-    "build": "tsc --build",
-    "test": "jest --runInBand --no-cache"
-  },
-  "types": "lib/index.d.ts"
+  }
 }

@@ -1,9 +1,26 @@
 {
   "name": "checkup-plugin-javascript",
-  "description": "A checkup plugin for Javascript project tasks",
   "version": "1.0.0-beta.13",
-  "author": "Cara Kessler @carakessler",
+  "description": "A checkup plugin for Javascript project tasks",
+  "keywords": [
+    "checkup-plugin"
+  ],
+  "homepage": "https://github.com/checkupjs/checkup",
   "bugs": "https://github.com/checkupjs/checkup/issues",
+  "repository": "https://github.com/checkupjs/checkup",
+  "license": "MIT",
+  "author": "Cara Kessler @carakessler",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "/lib",
+    "/yarn.lock"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "test": "jest --no-cache",
+    "docs:generate": "checkup-plugin docs"
+  },
   "dependencies": {
     "@babel/parser": "^7.13.13",
     "@checkup/core": "^1.0.0-beta.13",
@@ -22,24 +39,7 @@
   "engines": {
     "node": ">= 12.11.*"
   },
-  "files": [
-    "/lib",
-    "/yarn.lock"
-  ],
-  "homepage": "https://github.com/checkupjs/checkup",
-  "keywords": [
-    "checkup-plugin"
-  ],
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
-  },
-  "repository": "https://github.com/checkupjs/checkup",
-  "scripts": {
-    "build": "tsc --build",
-    "test": "jest --no-cache",
-    "docs:generate": "checkup-plugin docs"
-  },
-  "types": "lib/index.d.ts",
-  "main": "lib/index.js"
+  }
 }
