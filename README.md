@@ -1,9 +1,4 @@
-<p align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <img src="docs/logo.png" alt="checkup" width="25%" />
-</p>
+<img src="docs/logo.png" alt="checkup" width="25%" />
 
 <p style="font-style: italic; font-size: 20px; margin-bottom: 20px">Use static analysis and gain insights to help drive maintenance decisions</p>
 
