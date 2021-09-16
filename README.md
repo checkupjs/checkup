@@ -1,4 +1,6 @@
-<img src="docs/logo.png" alt="checkup" width="25%" />
+<p align="center">
+  <img src="docs/logo.png" alt="checkup" width="25%" />
+</p>
 
 <p style="font-style: italic; font-size: 20px; margin-bottom: 20px">Use static analysis and gain insights to help drive maintenance decisions</p>
 
