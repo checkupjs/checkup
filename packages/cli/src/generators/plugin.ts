@@ -12,17 +12,11 @@ export default class PluginGenerator extends BaseGenerator {
   answers!: Answers;
 
   private get _destinationPath() {
-    let cwd = process.cwd();
-
-    if (PLUGIN_DIR_PATTERN.test(cwd)) {
-      return cwd;
+    if (PLUGIN_DIR_PATTERN.test(this.options.path)) {
+      return this.options.path;
     }
 
-    if (this.options.path) {
-      return join(cwd, this.options.path, this.options.name);
-    }
-
-    return join(cwd, this.options.name);
+    return join(this.options.path, this.options.name);
   }
 
   initializing() {

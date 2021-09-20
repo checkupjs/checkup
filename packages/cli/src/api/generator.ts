@@ -44,23 +44,15 @@ export default class Generator {
     env.register(require.resolve(`../generators/${type}`), `checkup:${type}`);
 
     try {
-      await new Promise<void>((resolve, reject) => {
-        env.run(`checkup:${type}`, generatorOptions, (err: Error | null) => {
-          if (err) {
-            reject(err);
-          } else {
-            // this is ugly, but I couldn't find the correct configuration to ignore
-            // generating the yeoman repository directory in the cwd
-            let yoRepoPath = join(this.options.path, '.yo-repository');
+      // @ts-ignore
+      await env.run(`checkup:${type}`, generatorOptions, null);
+      // this is ugly, but I couldn't find the correct configuration to ignore
+      // generating the yeoman repository directory in the cwd
+      let yoRepoPath = join(this.options.path, '.yo-repository');
 
-            if (existsSync(yoRepoPath)) {
-              rmdirSync(yoRepoPath);
-            }
-
-            resolve();
-          }
-        });
-      });
+      if (existsSync(yoRepoPath)) {
+        rmdirSync(yoRepoPath);
+      }
     } catch (error) {
       if (error instanceof CheckupError) {
         throw error;
