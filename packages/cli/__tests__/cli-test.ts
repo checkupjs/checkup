@@ -126,7 +126,7 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'foo', defaults: false },
-      { typescript: false, category: 'best practices', group: 'none' },
+      { typescript: false, category: 'best practices', description: 'foos', group: 'none' },
       pluginDir
     );
 
@@ -191,7 +191,7 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'foo', defaults: false },
-      { typescript: false, category: 'best practices', group: 'none' },
+      { typescript: false, category: 'best practices', description: 'foos', group: 'none' },
       pluginDir
     );
 
@@ -228,7 +228,7 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'foo', defaults: false },
-      { typescript: false, category: 'best practices', group: 'none' },
+      { typescript: false, category: 'best practices', description: 'foos', group: 'none' },
       pluginDir
     );
 
@@ -261,7 +261,7 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'file-count', defaults: false },
-      { typescript: false, category: 'best practices', group: 'none' },
+      { typescript: false, category: 'best practices', description: 'file counts', group: 'none' },
       pluginDir
     );
 
@@ -285,12 +285,12 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'file-count', defaults: false },
-      { typescript: false, category: 'best practices', group: 'none' },
+      { typescript: false, category: 'best practices', description: 'file counts', group: 'none' },
       pluginDir
     );
     await project.addTask(
       { name: 'foo', defaults: false },
-      { typescript: false, category: 'best practices', group: 'none' },
+      { typescript: false, category: 'best practices', description: 'foo', group: 'none' },
       pluginDir
     );
 
@@ -325,12 +325,12 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'file-count', defaults: false },
-      { typescript: false, category: 'files', group: 'none' },
+      { typescript: false, category: 'files', description: 'file counts', group: 'none' },
       pluginDir
     );
     await project.addTask(
       { name: 'foo', defaults: false },
-      { typescript: false, category: 'foos', group: 'none' },
+      { typescript: false, category: 'foos', description: 'foos', group: 'none' },
       pluginDir
     );
 
@@ -356,12 +356,12 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'file-count', defaults: false },
-      { typescript: false, category: 'files', group: 'none' },
+      { typescript: false, category: 'files', description: 'file counts', group: 'none' },
       pluginDir
     );
     await project.addTask(
       { name: 'foo', defaults: false },
-      { typescript: false, category: 'foos', group: 'none' },
+      { typescript: false, category: 'foos', description: 'foos', group: 'none' },
       pluginDir
     );
 
@@ -395,12 +395,12 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'file-count', defaults: false },
-      { typescript: false, category: 'files', group: 'group1' },
+      { typescript: false, category: 'files', description: 'file counts', group: 'group1' },
       pluginDir
     );
     await project.addTask(
       { name: 'foo', defaults: false },
-      { typescript: false, category: 'files', group: 'group2' },
+      { typescript: false, category: 'files', description: 'foos', group: 'group2' },
       pluginDir
     );
 
@@ -425,12 +425,12 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'file-count', defaults: false },
-      { typescript: false, category: 'files', group: 'group1' },
+      { typescript: false, category: 'files', description: 'file counts', group: 'group1' },
       pluginDir
     );
     await project.addTask(
       { name: 'foo', defaults: false },
-      { typescript: false, category: 'files', group: 'group2' },
+      { typescript: false, category: 'files', description: 'foos', group: 'group2' },
       pluginDir
     );
 
@@ -460,7 +460,7 @@ describe('cli-test', () => {
     );
     await project.addTask(
       { name: 'file-count', defaults: false },
-      { typescript: false, category: 'best practices', group: 'none' },
+      { typescript: false, category: 'best practices', description: 'file counts', group: 'none' },
       pluginDir
     );
 
@@ -621,7 +621,7 @@ describe('cli-test', () => {
     );
     await newProject.addTask(
       { name: 'foo', defaults: false },
-      { typescript: false, category: 'best practices', group: 'none' },
+      { typescript: false, category: 'best practices', description: 'foos', group: 'none' },
       actualPluginDir
     );
     newProject.writeSync();
