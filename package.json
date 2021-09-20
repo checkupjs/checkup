@@ -31,7 +31,7 @@
     "@microsoft/jest-sarif": "^1.0.0-beta.0",
     "@types/date-and-time": "^0.13.0",
     "@types/debug": "^4.1.5",
-    "@types/fs-extra": "^9.0.11",
+    "@types/fs-extra": "^9.0.12",
     "@types/jest": "^27.0.1",
     "@types/json-stable-stringify": "^1.0.32",
     "@types/lodash": "^4.14.168",
