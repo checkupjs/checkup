@@ -79,7 +79,7 @@ export function getShorthandName(fullName: string) {
 }
 
 /**
- *
+ * When inside a checkup plugin, gets the plugin's name.
  *
  * @param {string} cwd - The current working directory from which to find the plugin's name
  * @returns {*}  {string}

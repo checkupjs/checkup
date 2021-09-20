@@ -8,13 +8,11 @@ type RecastParse = typeof recast.parse;
 type BabelTraverse = typeof traverse;
 
 /**
+ * A class used for code generation.
+ *
+ * @export
  * @class AstTransformer
- *
- * @example
- *
- * let code = new AstTransformer(source)
- *              .traverse(visitors)
- *              .generate();
+ * @extends {AstAnalyzer<File, TraverseOptions, RecastParse, BabelTraverse>}
  */
 export default class AstTransformer extends AstAnalyzer<
   File,

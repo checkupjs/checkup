@@ -2,6 +2,12 @@ import { CLIEngine, Rule } from 'eslint';
 import { mergeLintConfig } from '../utils/merge-lint-config';
 import { TaskConfig } from '../types/config';
 
+/**
+ * A class for analyzing JavaScript/TypeScript files using eslint.
+ *
+ * @export
+ * @class ESLintAnalyzer
+ */
 export default class ESLintAnalyzer {
   engine: CLIEngine;
   rules: Map<string, Rule.RuleModule>;

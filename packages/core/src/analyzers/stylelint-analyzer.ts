@@ -2,6 +2,12 @@ import { lint, LinterOptions, LinterResult } from 'stylelint';
 import { mergeLintConfig } from '../utils/merge-lint-config';
 import { TaskConfig } from '../types/config';
 
+/**
+ * A class for analyzing .css files using stylelint.
+ *
+ * @export
+ * @class StyleLintAnalyzer
+ */
 export default class StyleLintAnalyzer {
   config: Partial<LinterOptions>;
 

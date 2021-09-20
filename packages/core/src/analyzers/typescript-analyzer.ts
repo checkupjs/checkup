@@ -4,6 +4,13 @@ import traverse, { TraverseOptions } from '@babel/traverse';
 
 import AstAnalyzer from './ast-analyzer';
 
+/**
+ * A class for analyzing TypeScript files.
+ *
+ * @export
+ * @class TypeScriptAnalyzer
+ * @extends {AstAnalyzer<File, TraverseOptions, typeof recast.parse, typeof traverse>}
+ */
 export default class TypeScriptAnalyzer extends AstAnalyzer<
   File,
   TraverseOptions,

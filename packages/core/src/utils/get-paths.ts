@@ -52,7 +52,6 @@ export function getFilePathsAsync(
  * Get the file paths to run on.
  *
  * @param {string} baseDir - The base directory
- * @param baseDir
  * @param {string[]} [globsOrPaths=[]] - A list of globs or paths
  * @param {string[]} [excludePaths=[]] - A list of paths to exclude
  * @returns {FilePathArray} - A file path array

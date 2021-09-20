@@ -1,5 +1,11 @@
 import * as chalk from 'chalk';
 
+/**
+ * Enum containing kinds of errors used in a CheckupError instance.
+ *
+ * @export
+ * @enum {number}
+ */
 export enum ErrorKind {
   None,
 
@@ -27,6 +33,12 @@ export enum ErrorKind {
   InvalidCustomComponent,
 }
 
+/**
+ * An interface representing details passed to a CheckupError instance.
+ *
+ * @export
+ * @interface ErrorDetails
+ */
 export interface ErrorDetails {
   message: (options: ErrorDetailOptions) => string;
   callToAction: (options: ErrorDetailOptions) => string;
@@ -35,6 +47,9 @@ export interface ErrorDetails {
 
 export type ErrorDetailOptions = Record<string, any> & { error?: Error };
 
+/**
+ * An object containing a mapping of ErrorKind to ErrorDetails.
+ */
 export const ERROR_BY_KIND: { [Key in ErrorKind]?: ErrorDetails } = {
   [ErrorKind.ConfigNotValid]: {
     message: () => `Configuration not valid`,
