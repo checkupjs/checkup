@@ -30,6 +30,28 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0-beta.14 (2021-09-20)
+
+#### :bug: Bug Fix
+* `cli`
+  * [#1095](https://github.com/checkupjs/checkup/pull/1095) Remove commandType param from task generator ([@scalvert](https://github.com/scalvert))
+  * [#1094](https://github.com/checkupjs/checkup/pull/1094) Fixes plugin generator not generating in custom subdirectory ([@scalvert](https://github.com/scalvert))
+
+#### :memo: Documentation
+* `core`, `test-helpers`
+  * [#1091](https://github.com/checkupjs/checkup/pull/1091) Adding jsdocs for test-helpers and core APIs. ([@scalvert](https://github.com/scalvert))
+* `cli`, `core`
+  * [#1076](https://github.com/checkupjs/checkup/pull/1076) Add js doc for cli export contents ([@zhanwang626](https://github.com/zhanwang626))
+
+#### :house: Internal
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `plugin`, `test-helpers`
+  * [#1089](https://github.com/checkupjs/checkup/pull/1089) Sort all package.json files ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- Zhan Wang ([@zhanwang626](https://github.com/zhanwang626))
+
+
 ## v1.0.0-beta.13 (2021-09-15)
 
 #### :lock: Security
