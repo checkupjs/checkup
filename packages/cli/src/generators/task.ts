@@ -12,7 +12,6 @@ interface TaskOptions extends Options {
   taskClass: string;
   pascalCaseName: string;
   typescript: boolean;
-  commandType: string;
   description: string;
   category: string;
   group: string;
@@ -37,7 +36,6 @@ export default class TaskGenerator extends BaseGenerator {
 
     const defaults = {
       typescript: true,
-      commandType: 'info',
       description: '',
       category: '',
       group: '',
@@ -51,13 +49,6 @@ export default class TaskGenerator extends BaseGenerator {
             name: 'typescript',
             message: 'TypeScript',
             default: () => true,
-          },
-          {
-            type: 'list',
-            name: 'commandType',
-            message: 'Select the command this task is to be run under.',
-            default: 'info',
-            choices: ['run', 'validate'],
           },
           {
             type: 'input',
@@ -80,7 +71,6 @@ export default class TaskGenerator extends BaseGenerator {
     this.options.pascalCaseName = _.upperFirst(_.camelCase(this.options.name));
     this.options.taskClass = `${this.options.pascalCaseName}Task`;
     this.options.typescript = this.answers.typescript;
-    this.options.commandType = this.answers.commandType;
     this.options.description = this.answers.description;
     this.options.category = this.answers.category;
     this.options.group = this.answers.group;

@@ -91,7 +91,6 @@ describe('task generator', () => {
       })
       .withPrompts({
         typescript: false,
-        commandType: 'info',
         description: 'Some description',
         category: 'foo',
         group: 'bar',
@@ -111,27 +110,6 @@ describe('task generator', () => {
         path: '.',
       })
       .withPrompts({
-        commandType: 'info',
-        description: 'Some description',
-        category: 'foo',
-        group: 'bar',
-      });
-
-    assertTaskFiles('my-foo', dir.cwd);
-    assertPluginFiles(dir.cwd);
-  });
-
-  it('generates correct files with commandType', async () => {
-    let baseDir = await generatePlugin();
-    let dir = await helpers
-      .run(TaskGenerator, { namespace: 'checkup:task' })
-      .cd(baseDir)
-      .withOptions({
-        name: 'my-foo',
-        path: '.',
-      })
-      .withPrompts({
-        commandType: 'migration',
         description: 'Some description',
         category: 'foo',
         group: 'bar',
@@ -151,7 +129,6 @@ describe('task generator', () => {
         path: '.',
       })
       .withPrompts({
-        commandType: 'info',
         description: 'Some description',
         category: 'foo',
         group: 'bar',
@@ -171,7 +148,6 @@ describe('task generator', () => {
         path: '.',
       })
       .withPrompts({
-        commandType: 'info',
         description: 'Some description',
         category: 'foo',
         group: 'bar',
