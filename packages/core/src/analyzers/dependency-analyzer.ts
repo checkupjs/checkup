@@ -14,6 +14,12 @@ export type NpmCheckDependency = {
   bump: string;
 };
 
+/**
+ * A class for analyzing Dependencies in a package.json
+ *
+ * @export
+ * @class DependencyAnalyzer
+ */
 export default class DependencyAnalyzer {
   _dependencies: Dependency[] = [];
 

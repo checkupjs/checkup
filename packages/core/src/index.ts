@@ -35,18 +35,15 @@ export { default as EmberTemplateLintAnalyzer } from './analyzers/ember-template
 export { default as DependencyAnalyzer } from './analyzers/dependency-analyzer';
 
 export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
-export { exec } from './utils/exec';
 export { default as ConsoleWriter } from './utils/console-writer';
 export { default as BufferedWriter } from './utils/buffered-writer';
 export { default as BaseOutputWriter } from './utils/base-output-writer';
 export { getFilePaths, getFilePathsAsync } from './utils/get-paths';
 export { FilePathArray } from './utils/file-path-array';
-export { sumOccurrences, reduceResults } from './utils/sarif-utils';
 export { getPackageJson, getPackageJsonSource } from './utils/get-package-json';
 export { getRepositoryInfo } from './utils/repository';
 
-export { byRuleId, byRuleIds, bySeverity } from './data/filters';
-export { toPercent, groupDataByField } from './data/formatters';
+export { toPercent } from './data/formatters';
 export { trimCwd, trimAllCwd } from './data/path';
 export { lintBuilder } from './data/lint';
 export { default as SarifLogBuilder } from './data/sarif-log-builder';

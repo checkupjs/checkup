@@ -13,7 +13,7 @@ type IndexablePackageJson = PackageJson & { [key: string]: any };
 const Project = require('fixturify-project');
 
 /**
- * @param addon
+ * @param {any} addon - The addon to create the standardized addon structure for
  */
 function prepareAddon(addon: any) {
   addon.pkg.keywords.push('ember-addon');
@@ -25,7 +25,6 @@ function prepareAddon(addon: any) {
  * An extension of {@link CheckupFixturifyProject} that adds methods specific to creating
  * mock Ember projects.
  *
- * @export
  * @class EmberCLIFixturifyProject
  * @augments {CheckupFixturifyProject}
  */

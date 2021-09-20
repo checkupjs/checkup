@@ -9,8 +9,8 @@ import { sync } from 'pkg-up';
 
 /**
  * Brings package name to correct format based on prefix
- * @param {string} name The name of the package.
- * @param {string} prefix Can be either "checkup-plugin"
+ *
+ * @param {string} name - The name of the package.
  * @returns {string} Normalized name of the package
  * @private
  */
@@ -53,8 +53,8 @@ export function normalizePackageName(name: string) {
 
 /**
  * Removes the prefix from a fullName.
+ *
  * @param {string} fullName The term which may have the prefix.
- * @param {string} prefix The prefix to remove.
  * @returns {string} The term without prefix.
  */
 export function getShorthandName(fullName: string) {
@@ -78,6 +78,12 @@ export function getShorthandName(fullName: string) {
   return fullName;
 }
 
+/**
+ * When inside a checkup plugin, gets the plugin's name.
+ *
+ * @param {string} cwd - The current working directory from which to find the plugin's name
+ * @returns {*}  {string}
+ */
 export function getPluginName(cwd: string): string {
   let packageJsonPath = sync({ cwd });
   let packageJson: PackageJson = readJsonSync(packageJsonPath!);

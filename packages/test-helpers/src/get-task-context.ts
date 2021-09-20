@@ -42,6 +42,16 @@ const DEFAULT_PACKAGE_JSON: PackageJson = {
   keywords: [],
 };
 
+/**
+ * Gets a fake task context.
+ *
+ * @param {Partial<TaskContextArgs>} taskContextArgs - An object containing properties contained in a TaskContext
+ * @param {Partial<RunOptions>} taskContextArgs.options - The CLI options
+ * @param {Partial<CheckupConfig>} taskContextArgs.config - The CLI config
+ * @param {PackageJson} taskContextArgs.pkg - The package.json from the base directory checking is run from
+ * @param {FilePathArray} taskContextArgs.paths - The paths checkup is operating on
+ * @returns {TaskContext} - A task context instance
+ */
 export function getTaskContext({
   options,
   config,

@@ -9,6 +9,13 @@ import { ErrorDetails, ErrorDetailOptions, ErrorKind, ERROR_BY_KIND } from './er
 const stripAnsi = require('strip-ansi');
 const clean = require('clean-stack');
 
+/**
+ * A custom Error class that outputs additional information by ErrorKind.
+ *
+ * @export
+ * @class CheckupError
+ * @extends {Error}
+ */
 export default class CheckupError extends Error {
   private details: ErrorDetails;
   private options: ErrorDetailOptions;

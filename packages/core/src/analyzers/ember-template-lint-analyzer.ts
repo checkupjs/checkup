@@ -11,6 +11,12 @@ import { mergeLintConfig } from '../utils/merge-lint-config';
 
 const TemplateLinter = require('ember-template-lint');
 
+/**
+ * A class for analyzing .hbs files using ember-template-lint
+ *
+ * @export
+ * @class EmberTemplateLintAnalyzer
+ */
 export default class EmberTemplateLintAnalyzer {
   engine: typeof TemplateLinter;
 

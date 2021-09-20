@@ -2,6 +2,13 @@ import { resolve, join } from 'path';
 import { readFileSync } from 'fs-extra';
 import { PackageJson } from 'type-fest';
 
+/**
+ * Gets the package.json source
+ *
+ * @param {string} baseDir - The base directory
+ * @param {string} [pathName='package.json'] - The path to the package.json file
+ * @returns {string} - The package.json source
+ */
 export function getPackageJsonSource(baseDir: string, pathName: string = 'package.json'): string {
   let source: string = '';
   let packageJsonPath = join(resolve(baseDir), pathName);
@@ -22,7 +29,11 @@ export function getPackageJsonSource(baseDir: string, pathName: string = 'packag
 }
 
 /**
- * @param baseDir
+ * Gets the package.json file as an object
+ *
+ * @param {string} baseDir - The base directory
+ * @param {string} [pathName='package.json'] - The path to the package.json file
+ * @returns {PackageJson} - An object representing the package.json contents
  */
 export function getPackageJson(baseDir: string, pathName: string = 'package.json'): PackageJson {
   return JSON.parse(getPackageJsonSource(baseDir, pathName));

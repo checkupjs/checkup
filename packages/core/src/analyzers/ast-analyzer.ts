@@ -1,6 +1,16 @@
 type ParserWithOptions<TAst> = (source: string, parserOptions?: any) => TAst;
 type Parser<TAst> = (source: string) => TAst;
 
+/**
+ * A class for generic AST analysis.
+ *
+ * @export
+ * @class AstAnalyzer
+ * @template TAst
+ * @template TVisitors
+ * @template TParse
+ * @template TTraverse
+ */
 export default class AstAnalyzer<
   TAst,
   TVisitors,
