@@ -11,6 +11,13 @@ import { TaskAction, TaskListError } from '../types/tasks';
 import SarifLogBuilder from './sarif-log-builder';
 import { trimAllCwd } from './path';
 
+/**
+ * A class that simplifies the building of a checkup SARIF log.
+ *
+ * @export
+ * @class CheckupLogBuilder
+ * @extends {SarifLogBuilder}
+ */
 export default class CheckupLogBuilder extends SarifLogBuilder {
   args: CheckupLogBuilderArgs;
   config: CheckupConfig = DEFAULT_CONFIG;

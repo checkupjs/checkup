@@ -43,7 +43,7 @@ export { FilePathArray } from './utils/file-path-array';
 export { getPackageJson, getPackageJsonSource } from './utils/get-package-json';
 export { getRepositoryInfo } from './utils/repository';
 
-export { toPercent, groupDataByField } from './data/formatters';
+export { toPercent } from './data/formatters';
 export { trimCwd, trimAllCwd } from './data/path';
 export { lintBuilder } from './data/lint';
 export { default as SarifLogBuilder } from './data/sarif-log-builder';

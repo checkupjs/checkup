@@ -2,6 +2,21 @@ import { Log } from 'sarif';
 import { RuleResults } from '../types/checkup-log';
 import { TaskName } from '../types/tasks';
 
+/**
+ * A class that parses a SARIF checkup log to provide a
+ * simpler interface to accessing common properties.
+ *
+ * @example
+ *
+ * let logParser = new CheckupLogParser(log);
+ *
+ * for (let rule of logParser.rules) {
+ *   console.log(rule);
+ * }
+ *
+ * @export
+ * @class CheckupLogParser
+ */
 export default class CheckupLogParser {
   _resultsByRule!: Map<TaskName, RuleResults>;
 
