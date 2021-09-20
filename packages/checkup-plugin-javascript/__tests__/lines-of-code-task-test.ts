@@ -30,54 +30,54 @@ describe('lines-of-code-task', () => {
     ).run();
 
     expect(result).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "kind": "informational",
-          "level": "note",
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "/index.hbs",
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "Lines of code count for /index.hbs - total lines: 1",
+Array [
+  Object {
+    "kind": "informational",
+    "level": "note",
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "index.hbs",
           },
-          "properties": Object {
-            "extension": "hbs",
-            "filePath": "/index.hbs",
-            "lines": 1,
-          },
-          "ruleId": "lines-of-code",
-          "ruleIndex": 0,
         },
-        Object {
-          "kind": "informational",
-          "level": "note",
-          "locations": Array [
-            Object {
-              "physicalLocation": Object {
-                "artifactLocation": Object {
-                  "uri": "/index.js",
-                },
-              },
-            },
-          ],
-          "message": Object {
-            "text": "Lines of code count for /index.js - total lines: 1",
+      },
+    ],
+    "message": Object {
+      "text": "Lines of code count for index.hbs - total lines: 1",
+    },
+    "properties": Object {
+      "extension": "hbs",
+      "filePath": "index.hbs",
+      "lines": 1,
+    },
+    "ruleId": "lines-of-code",
+    "ruleIndex": 0,
+  },
+  Object {
+    "kind": "informational",
+    "level": "note",
+    "locations": Array [
+      Object {
+        "physicalLocation": Object {
+          "artifactLocation": Object {
+            "uri": "index.js",
           },
-          "properties": Object {
-            "extension": "js",
-            "filePath": "/index.js",
-            "lines": 1,
-          },
-          "ruleId": "lines-of-code",
-          "ruleIndex": 0,
         },
-      ]
-    `);
+      },
+    ],
+    "message": Object {
+      "text": "Lines of code count for index.js - total lines: 1",
+    },
+    "properties": Object {
+      "extension": "js",
+      "filePath": "index.js",
+      "lines": 1,
+    },
+    "ruleId": "lines-of-code",
+    "ruleIndex": 0,
+  },
+]
+`);
   });
 });
