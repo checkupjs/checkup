@@ -6,7 +6,7 @@ import AstAnalyzer from './ast-analyzer';
  *
  * @export
  * @class HandlebarsAnalyzer
- * @extends {AstAnalyzer<AST.Template, NodeVisitor, typeof parse, typeof traverse>}
+ * @extends {AstAnalyzer}
  */
 export default class HandlebarsAnalyzer extends AstAnalyzer<
   AST.Template,

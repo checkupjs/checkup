@@ -8,7 +8,7 @@ import AstAnalyzer from './ast-analyzer';
  *
  * @export
  * @class JavaScriptAnalyzer
- * @extends {AstAnalyzer<File, TraverseOptions<Node>, typeof parser.parse, typeof traverse>}
+ * @extends {AstAnalyzer}
  */
 export default class JavaScriptAnalyzer extends AstAnalyzer<
   File,
