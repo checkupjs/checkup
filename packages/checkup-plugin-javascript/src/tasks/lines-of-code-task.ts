@@ -1,6 +1,6 @@
 import { extname } from 'path';
 import { promises as fs } from 'fs';
-import { BaseTask, Task } from '@checkup/core';
+import { BaseTask, Task, trimCwd } from '@checkup/core';
 import { Result } from 'sarif';
 const sloc = require('sloc');
 
@@ -72,7 +72,7 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
           let extension = getExtension(filePath);
           let { total } = sloc(contents, extension);
           fileInfos.push({
-            filePath: filePath.replace(this.context.options.cwd, ''),
+            filePath: trimCwd(filePath, this.context.options.cwd),
             extension,
             lines: total,
           });
