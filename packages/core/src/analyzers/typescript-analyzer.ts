@@ -9,7 +9,7 @@ import AstAnalyzer from './ast-analyzer';
  *
  * @export
  * @class TypeScriptAnalyzer
- * @extends {AstAnalyzer<File, TraverseOptions, typeof recast.parse, typeof traverse>}
+ * @extends {AstAnalyzer}
  */
 export default class TypeScriptAnalyzer extends AstAnalyzer<
   File,
