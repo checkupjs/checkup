@@ -1,6 +1,6 @@
-import { ActionsEvaluator } from '@checkup/core';
+const { ActionsEvaluator } = require('@checkup/core');
 
-export function evaluateActions(taskResult, taskConfig) {
+module.exports = function evaluateActions(taskResult, taskConfig) {
   let actionsEvaluator = new ActionsEvaluator();
 
   return actionsEvaluator.evaluate(taskConfig);
