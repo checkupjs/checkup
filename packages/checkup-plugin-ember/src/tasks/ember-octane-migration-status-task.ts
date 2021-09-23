@@ -13,7 +13,6 @@ import {
   NormalizedLintResult,
   LintResult,
 } from '@checkup/core';
-import kebabCase = require('lodash.kebabcase');
 import { Result } from 'sarif';
 
 const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
