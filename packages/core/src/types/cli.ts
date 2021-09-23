@@ -1,3 +1,4 @@
+import { Log } from 'sarif';
 import CheckupLogParser from '../data/checkup-log-parser';
 import {
   Task,
@@ -45,6 +46,7 @@ export interface RegisterableTaskList {
 
 export interface Formatter {
   format(logParser: CheckupLogParser): string;
+  writeResultsToFile?(log: Log): void;
 }
 
 export interface FormatterCtor {
