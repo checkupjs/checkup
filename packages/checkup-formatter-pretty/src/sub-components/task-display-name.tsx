@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, Newline } from 'ink';
+import { Text } from 'ink';
 import { RuleResults } from '@checkup/core';
 
 export const TaskDisplayName: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {

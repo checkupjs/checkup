@@ -5,6 +5,7 @@ import * as objectPath from 'object-path';
 import { Result } from 'sarif';
 import { RuleResults } from '@checkup/core';
 import { TaskDisplayName } from '../sub-components/task-display-name';
+import { NoResultsFound } from '../sub-components/no-results-found';
 import { getOptions } from '../get-options';
 
 type TableOptions = {
@@ -21,9 +22,14 @@ export const Table: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => 
   return (
     <>
       <TaskDisplayName taskResult={taskResult} />
-      <Box marginLeft={2}>
-        <InkTable data={rowData} />
-      </Box>
+
+      {rowData.length === 0 ? (
+        <NoResultsFound />
+      ) : (
+        <Box marginLeft={2}>
+          <InkTable data={rowData} />
+        </Box>
+      )}
     </>
   );
 };

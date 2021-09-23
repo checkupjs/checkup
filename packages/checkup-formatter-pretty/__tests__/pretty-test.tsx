@@ -221,4 +221,60 @@ describe('Test Pretty component', () => {
       "
     `);
   });
+
+  it('can render a messgae when there is no result found', () => {
+    const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-no-result-found.sarif'));
+    const logParser = new CheckupLogParser(log);
+
+    const { stdout } = render(<PrettyFormatter logParser={logParser} />);
+
+    expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
+"
+Checkup report generated for travis v0.0.1  (1694 files analyzed)
+
+This project is 9 years old, with 1468 active days, 6010 commits and 1692 files
+
+
+Checkup ran the following task(s) successfully:
+
+Ember Types
+===========
+  Components 1
+  Controllers 0
+  Helpers 0
+  Initializers 0
+  Instance Initializers 0
+  Mixins 0
+  Models 0
+  Routes 0
+  Services 0
+  Templates 0
+
+
+Template Lint Summary
+=====================
+  Errors 0
+  Warnings 0
+
+
+Number of eslint-disable Usages
+===============================
+  Disabled Rules 0
+
+
+Outdated Dependencies
+=====================
+No results found.
+
+
+Ember Dependencies
+==================
+No results found.
+
+
+checkup v1.0.0-beta.11
+config 257cda6f6d50eeef891fc6ec8d808bdb
+"
+`);
+  });
 });
