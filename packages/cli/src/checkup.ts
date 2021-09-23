@@ -6,7 +6,7 @@ import CheckupTaskRunner from './api/checkup-task-runner';
 import Generator from './api/generator';
 import { getFormatter } from './formatters/get-formatter';
 import { reportAvailableTasks } from './formatters/available-tasks';
-import { writeResultFile } from './formatters/file-writer';
+import { writeResultsToFile } from './formatters/file-writer';
 
 interface CheckupArguments {
   [x: string]: unknown;
@@ -159,7 +159,7 @@ checkup <command> [options]`
 
           if (output) {
             if (options.outputFile) {
-              let resultFilePath = writeResultFile(log, options.cwd, options.outputFile);
+              let resultFilePath = writeResultsToFile(log, options.cwd, options.outputFile);
 
               console.log();
               console.log('Results have been saved to the following file:');

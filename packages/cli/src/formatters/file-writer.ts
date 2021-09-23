@@ -7,7 +7,7 @@ const stripAnsi = require('strip-ansi');
 
 export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${todayFormat()}`;
 
-export function writeResultFile(
+export function writeResultsToFile(
   result: Log | string,
   cwd: string,
   outputFile: string = DEFAULT_OUTPUT_FILENAME
