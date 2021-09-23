@@ -2,7 +2,7 @@ import { BufferedWriter, CheckupLogParser, Formatter, FormatterOptions } from '@
 import { success } from 'log-symbols';
 import { yellow } from 'chalk';
 import { Log } from 'sarif';
-import { writeResultFile } from './file-writer';
+import { writeResultsToFile } from './file-writer';
 import BaseFormatter from './base-formatter';
 
 export default class SummaryFormatter extends BaseFormatter<BufferedWriter> implements Formatter {
@@ -34,7 +34,7 @@ export default class SummaryFormatter extends BaseFormatter<BufferedWriter> impl
   }
 
   writeResultsToFile(log: Log) {
-    let resultsFilePath = writeResultFile(log, this.options.cwd, this.options.outputFile);
+    let resultsFilePath = writeResultsToFile(log, this.options.cwd, this.options.outputFile);
 
     this.writer.blankLine();
     this.writer.log('Results have been saved to the following file:');
