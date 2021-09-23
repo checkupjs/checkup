@@ -34,7 +34,7 @@
     "ink-testing-library": "^2.1.0"
   },
   "engines": {
-    "node": ">= 12.11.*"
+    "node": ">= 12.22.*"
   },
   "publishConfig": {
     "access": "public"
