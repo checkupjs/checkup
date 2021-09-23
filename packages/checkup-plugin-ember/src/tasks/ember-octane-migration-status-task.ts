@@ -229,8 +229,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
             migration: {
               name: 'ember-octane-migration',
               displayName: 'Ember Octane Migration',
-              feature: kebabCase(ruleMetadata.feature),
-              featureDisplayName: ruleMetadata.feature,
+              feature: ruleMetadata.feature,
             },
           },
           rule: {
@@ -238,6 +237,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
               component: {
                 name: 'migration',
               },
+              features: Object.values(RULE_METADATA).map((ruleMetadata) => ruleMetadata.feature),
             },
           },
         }
