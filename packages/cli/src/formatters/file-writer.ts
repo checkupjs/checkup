@@ -7,6 +7,16 @@ const stripAnsi = require('strip-ansi');
 
 export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${todayFormat()}`;
 
+/**
+ * A utility function to write results to an output file. If no `outputFile` is given,
+ * it uses a default output file name in the format "checkup-report-YYYY-MM-DD-HH_mm_ss".
+ * If result is a string the extension is .txt, otherwise .sarif is used.
+ *
+ * @param {(Log | string)} result - The result to be output, either a SARIF log or a string.
+ * @param {string} cwd - The current working directory to write to.
+ * @param {string} [outputFile=DEFAULT_OUTPUT_FILENAME] - The output filename format.
+ * @return {*}  {string}
+ */
 export function writeResultsToFile(
   result: Log | string,
   cwd: string,
