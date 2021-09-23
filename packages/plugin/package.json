@@ -29,7 +29,7 @@
     "recast": "^0.20.5"
   },
   "engines": {
-    "node": ">= 12.11.*"
+    "node": ">= 12.22.*"
   },
   "publishConfig": {
     "access": "public"

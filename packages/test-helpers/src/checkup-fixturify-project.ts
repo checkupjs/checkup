@@ -23,8 +23,8 @@ export default class CheckupFixturifyProject extends Project {
   private _hasWritten: boolean = false;
   private _dirChanged: boolean = false;
 
-  constructor(name: string, version?: string, cb?: (project: Project) => void, root?: string) {
-    super(name, version, cb, root);
+  constructor(name: string, version?: string, cb?: (project: Project) => void) {
+    super(name, version, cb);
 
     this.pkg = Object.assign({}, this.pkg, {
       license: 'MIT',
@@ -39,7 +39,7 @@ export default class CheckupFixturifyProject extends Project {
   }
 
   writeSync() {
-    super.writeSync(...arguments);
+    super.writeSync();
     this._hasWritten = true;
   }
 
