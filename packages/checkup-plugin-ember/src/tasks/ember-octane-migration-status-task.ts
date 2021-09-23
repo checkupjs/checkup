@@ -13,7 +13,6 @@ import {
   NormalizedLintResult,
   LintResult,
 } from '@checkup/core';
-import kebabCase = require('lodash.kebabcase');
 import { Result } from 'sarif';
 
 const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
@@ -229,8 +228,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
             migration: {
               name: 'ember-octane-migration',
               displayName: 'Ember Octane Migration',
-              feature: kebabCase(ruleMetadata.feature),
-              featureDisplayName: ruleMetadata.feature,
+              feature: ruleMetadata.feature,
             },
           },
           rule: {
@@ -238,6 +236,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
               component: {
                 name: 'migration',
               },
+              features: Object.values(RULE_METADATA).map((ruleMetadata) => ruleMetadata.feature),
             },
           },
         }

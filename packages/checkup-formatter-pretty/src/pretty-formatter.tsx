@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
+import { ReportingDescriptor } from 'sarif';
 import { default as InkTable } from 'ink-table';
 import { registeredComponents } from './component-provider';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
   let metaData: CheckupMetadata = logParser.metaData;
   let taskResults: Map<string, RuleResults> | undefined = logParser.resultsByRule;
+  let rules = logParser.rules;
 
   return (
     <Box flexDirection={'column'} marginTop={1} marginBottom={1}>
       <MetaData metaData={metaData} />
-      <TaskResults taskResults={taskResults} />
+      <TaskResults taskResults={taskResults} rules={rules} />
       <RenderTiming timings={logParser.timings} />
       <CLIInfo metaData={metaData} />
     </Box>
@@ -45,7 +47,8 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
 
 const TaskResults: React.FC<{
   taskResults: Map<TaskName, RuleResults> | undefined;
-}> = ({ taskResults }) => {
+  rules: ReportingDescriptor[];
+}> = ({ taskResults, rules }) => {
   let r: { Component: React.FC<any>; taskResult: RuleResults }[] = [];
 
   if (taskResults!.size > 0) {
@@ -58,6 +61,25 @@ const TaskResults: React.FC<{
         taskResult,
       });
     });
+
+    for (let rule of rules) {
+      if (
+        !r.some((item) => {
+          return rule.id === item.taskResult.rule.id;
+        })
+      ) {
+        let taskProps = rule.properties;
+        let componentName = taskProps!.component.name;
+
+        r.push({
+          Component: registeredComponents.get(componentName ?? 'list')!,
+          taskResult: {
+            results: [],
+            rule: rule,
+          },
+        });
+      }
+    }
 
     return (
       <>

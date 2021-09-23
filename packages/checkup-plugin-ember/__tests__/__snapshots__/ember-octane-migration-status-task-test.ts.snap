@@ -26,8 +26,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "glimmer-components",
-        "featureDisplayName": "Glimmer Components",
+        "feature": "Glimmer Components",
         "name": "ember-octane-migration",
       },
     },
@@ -58,8 +57,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -90,8 +88,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "tagless-components",
-        "featureDisplayName": "Tagless Components",
+        "feature": "Tagless Components",
         "name": "ember-octane-migration",
       },
     },
@@ -122,8 +119,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "glimmer-components",
-        "featureDisplayName": "Glimmer Components",
+        "feature": "Glimmer Components",
         "name": "ember-octane-migration",
       },
     },
@@ -154,8 +150,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -186,8 +181,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -218,8 +212,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "glimmer-components",
-        "featureDisplayName": "Glimmer Components",
+        "feature": "Glimmer Components",
         "name": "ember-octane-migration",
       },
     },
@@ -250,8 +243,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -282,8 +274,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "tagless-components",
-        "featureDisplayName": "Tagless Components",
+        "feature": "Tagless Components",
         "name": "ember-octane-migration",
       },
     },
@@ -314,8 +305,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "glimmer-components",
-        "featureDisplayName": "Glimmer Components",
+        "feature": "Glimmer Components",
         "name": "ember-octane-migration",
       },
     },
@@ -346,8 +336,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -378,8 +367,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -410,8 +398,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -442,8 +429,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -474,8 +460,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -506,8 +491,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "angle-bracket-syntax",
-        "featureDisplayName": "Angle Bracket Syntax",
+        "feature": "Angle Bracket Syntax",
         "name": "ember-octane-migration",
       },
     },
@@ -538,8 +522,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "angle-bracket-syntax",
-        "featureDisplayName": "Angle Bracket Syntax",
+        "feature": "Angle Bracket Syntax",
         "name": "ember-octane-migration",
       },
     },
@@ -570,8 +553,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "own-properties",
-        "featureDisplayName": "Own Properties",
+        "feature": "Own Properties",
         "name": "ember-octane-migration",
       },
     },
@@ -602,8 +584,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "own-properties",
-        "featureDisplayName": "Own Properties",
+        "feature": "Own Properties",
         "name": "ember-octane-migration",
       },
     },
@@ -634,8 +615,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "modifiers",
-        "featureDisplayName": "Modifiers",
+        "feature": "Modifiers",
         "name": "ember-octane-migration",
       },
     },
@@ -666,8 +646,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "angle-bracket-syntax",
-        "featureDisplayName": "Angle Bracket Syntax",
+        "feature": "Angle Bracket Syntax",
         "name": "ember-octane-migration",
       },
     },
@@ -698,8 +677,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "own-properties",
-        "featureDisplayName": "Own Properties",
+        "feature": "Own Properties",
         "name": "ember-octane-migration",
       },
     },
@@ -730,8 +708,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "angle-bracket-syntax",
-        "featureDisplayName": "Angle Bracket Syntax",
+        "feature": "Angle Bracket Syntax",
         "name": "ember-octane-migration",
       },
     },
@@ -762,8 +739,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "own-properties",
-        "featureDisplayName": "Own Properties",
+        "feature": "Own Properties",
         "name": "ember-octane-migration",
       },
     },
@@ -799,8 +775,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "glimmer-components",
-        "featureDisplayName": "Glimmer Components",
+        "feature": "Glimmer Components",
         "name": "ember-octane-migration",
       },
     },
@@ -831,8 +806,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -863,8 +837,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "tagless-components",
-        "featureDisplayName": "Tagless Components",
+        "feature": "Tagless Components",
         "name": "ember-octane-migration",
       },
     },
@@ -895,8 +868,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "glimmer-components",
-        "featureDisplayName": "Glimmer Components",
+        "feature": "Glimmer Components",
         "name": "ember-octane-migration",
       },
     },
@@ -927,8 +899,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -959,8 +930,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -991,8 +961,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "glimmer-components",
-        "featureDisplayName": "Glimmer Components",
+        "feature": "Glimmer Components",
         "name": "ember-octane-migration",
       },
     },
@@ -1023,8 +992,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -1055,8 +1023,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "tagless-components",
-        "featureDisplayName": "Tagless Components",
+        "feature": "Tagless Components",
         "name": "ember-octane-migration",
       },
     },
@@ -1087,8 +1054,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "glimmer-components",
-        "featureDisplayName": "Glimmer Components",
+        "feature": "Glimmer Components",
         "name": "ember-octane-migration",
       },
     },
@@ -1119,8 +1085,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -1151,8 +1116,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -1183,8 +1147,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -1215,8 +1178,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -1247,8 +1209,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "native-classes",
-        "featureDisplayName": "Native Classes",
+        "feature": "Native Classes",
         "name": "ember-octane-migration",
       },
     },
@@ -1279,8 +1240,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "angle-bracket-syntax",
-        "featureDisplayName": "Angle Bracket Syntax",
+        "feature": "Angle Bracket Syntax",
         "name": "ember-octane-migration",
       },
     },
@@ -1311,8 +1271,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "angle-bracket-syntax",
-        "featureDisplayName": "Angle Bracket Syntax",
+        "feature": "Angle Bracket Syntax",
         "name": "ember-octane-migration",
       },
     },
@@ -1343,8 +1302,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "own-properties",
-        "featureDisplayName": "Own Properties",
+        "feature": "Own Properties",
         "name": "ember-octane-migration",
       },
     },
@@ -1375,8 +1333,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "own-properties",
-        "featureDisplayName": "Own Properties",
+        "feature": "Own Properties",
         "name": "ember-octane-migration",
       },
     },
@@ -1407,8 +1364,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "modifiers",
-        "featureDisplayName": "Modifiers",
+        "feature": "Modifiers",
         "name": "ember-octane-migration",
       },
     },
@@ -1439,8 +1395,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "angle-bracket-syntax",
-        "featureDisplayName": "Angle Bracket Syntax",
+        "feature": "Angle Bracket Syntax",
         "name": "ember-octane-migration",
       },
     },
@@ -1471,8 +1426,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "own-properties",
-        "featureDisplayName": "Own Properties",
+        "feature": "Own Properties",
         "name": "ember-octane-migration",
       },
     },
@@ -1503,8 +1457,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "angle-bracket-syntax",
-        "featureDisplayName": "Angle Bracket Syntax",
+        "feature": "Angle Bracket Syntax",
         "name": "ember-octane-migration",
       },
     },
@@ -1535,8 +1488,7 @@ Array [
     "properties": Object {
       "migration": Object {
         "displayName": "Ember Octane Migration",
-        "feature": "own-properties",
-        "featureDisplayName": "Own Properties",
+        "feature": "Own Properties",
         "name": "ember-octane-migration",
       },
     },
