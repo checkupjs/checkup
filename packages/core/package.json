@@ -52,7 +52,7 @@
     "stylelint": "^13.13.1",
     "tmp": "^0.2.1",
     "type-fest": "^1.0.2",
-    "walk-sync": "^2.2.0",
+    "walk-sync": "^3.0.0",
     "wrap-ansi": "^7.0.0",
     "yargs-unparser": "^2.0.0"
   },

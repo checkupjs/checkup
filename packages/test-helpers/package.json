@@ -23,7 +23,7 @@
     "handlebars": "^4.7.7",
     "json-stable-stringify": "^1.0.1",
     "tmp": "^0.2.1",
-    "walk-sync": "^2.2.0"
+    "walk-sync": "^3.0.0"
   },
   "engines": {
     "node": ">= 12.22.*"
