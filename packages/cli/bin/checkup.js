@@ -2,8 +2,12 @@
 
 require('v8-compile-cache');
 
-const { run } = require('../lib/checkup');
+const importLocal = require('import-local');
+const checkup = importLocal(require.resolve('../lib/checkup.js'));
 
-if (require.main === module) {
+if (checkup) {
+  checkup.run();
+} else {
+  const { run } = require('../lib/checkup');
   run();
 }
