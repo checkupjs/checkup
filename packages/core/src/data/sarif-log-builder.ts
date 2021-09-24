@@ -49,6 +49,10 @@ export default class SarifLogBuilder {
     return ruleIndex;
   }
 
+  hasRule(ruleId: string) {
+    return this.rules.some((rule) => rule.id === ruleId);
+  }
+
   addResult<TResult extends RequiredResult>(
     result: TResult,
     ruleMetadata?: Omit<ReportingDescriptor, 'id'>

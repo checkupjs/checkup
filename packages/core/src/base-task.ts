@@ -118,16 +118,20 @@ export default abstract class BaseTask {
     level: TaskResultLevel,
     options?: TaskResultOptions
   ): RequiredResult {
-    let ruleId = this._addRule(options?.rule);
-
     let result: RequiredResult = {
       message: {
         text: messageText,
       },
-      ruleId,
+      ruleId: this.taskName,
       kind,
       level,
     };
+
+    if (!this._logBuilder.hasRule(this.taskName)) {
+      throw new Error(
+        'You must call `addRule` in your Task implemenation prior to calling `addResult`'
+      );
+    }
 
     if (options?.properties) {
       result.properties = options.properties;
@@ -177,7 +181,7 @@ export default abstract class BaseTask {
     return toLintResults(results, this.context.options.cwd);
   }
 
-  private _addRule(rule?: TaskRule) {
+  public addRule(rule?: TaskRule) {
     let taskRule;
     let ruleProps = {
       id: this.taskName,
