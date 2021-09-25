@@ -1,4 +1,4 @@
-import { BaseTask, Task } from '@checkup/core';
+import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class <%- taskClass %> extends BaseTask implements Task {
@@ -9,6 +9,12 @@ export default class <%- taskClass %> extends BaseTask implements Task {
   <%_ if (group) { _%>
   group = '<%- group %>';
   <%_ } _%>
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run(): Promise<Result[]> {
     this.addResult(

@@ -98,6 +98,7 @@ export default class CheckupTaskRunner {
     this.tasks = new TaskListImpl();
     this.taskResults = [];
     this.taskErrors = [];
+    this.executedTasks = [];
     this.options = options;
     this.pkg = getPackageJson(this.options.cwd);
     this.pkgSource = getPackageJsonSource(this.options.cwd);
@@ -121,6 +122,7 @@ export default class CheckupTaskRunner {
       actions: this.actions,
       errors: this.taskErrors,
       timings: this.tasks.timings,
+      executedTasks: this.executedTasks,
     });
 
     return this.logBuilder.log;

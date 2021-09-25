@@ -56,6 +56,10 @@ export default class CheckupLogParser {
     return this.metaData.timings;
   }
 
+  get executedTasks() {
+    return this.run.tool.driver.notifications ?? [];
+  }
+
   get actions() {
     return (
       this.invocation.toolExecutionNotifications?.filter(

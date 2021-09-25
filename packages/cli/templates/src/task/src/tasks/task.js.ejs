@@ -9,6 +9,11 @@ module.exports = class <%- taskClass %> extends BaseTask {
   group = '<%- group %>';
   <%_ } _%>
 
+  constructor(pluginName, context) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run() {
     this.addResult(

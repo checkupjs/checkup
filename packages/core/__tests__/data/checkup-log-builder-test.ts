@@ -35,6 +35,7 @@ describe('checkup-log-builder-test', () => {
       actions: [],
       errors: [],
       timings: {},
+      executedTasks: [],
     });
 
     // arguments are non-deterministic, so we nuke them

@@ -80,6 +80,7 @@ export function getTaskContext({
   taskContext.logBuilder.actions = [];
   taskContext.logBuilder.errors = [];
   taskContext.logBuilder.timings = {};
+  taskContext.logBuilder.executedTasks = [];
 
   return taskContext;
 }

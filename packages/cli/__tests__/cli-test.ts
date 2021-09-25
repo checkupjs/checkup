@@ -30,7 +30,7 @@ describe('cli-test', () => {
 
   afterEach(function () {
     process.chdir(ROOT);
-    project.dispose();
+    // project.dispose();
   });
 
   it('outputs top level help', async () => {
@@ -250,11 +250,6 @@ describe('cli-test', () => {
   });
 
   it('should run a single task if the tasks option is specified with a single task', async () => {
-    project.symlinkPackage(
-      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
-      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
-    );
-
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -269,16 +264,12 @@ describe('cli-test', () => {
       plugins: ['checkup-plugin-fake'],
     });
 
-    let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'summary']);
+    let result = await run(['run', '.', '--task', 'fake/file-count']);
 
     expect(stripAnsi(result.stdout)).toContain('✔ file-count');
   });
 
   it('should run multiple tasks if the tasks option is specified with multiple tasks', async () => {
-    project.symlinkPackage(
-      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
-      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
-    );
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -314,11 +305,6 @@ describe('cli-test', () => {
   });
 
   it('should run only one task if the category option is specified', async () => {
-    project.symlinkPackage(
-      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
-      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
-    );
-
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -338,18 +324,13 @@ describe('cli-test', () => {
       plugins: ['checkup-plugin-fake'],
     });
 
-    let result = await run(['run', '.', '--category', 'files', '--format', 'summary']);
+    let result = await run(['run', '.', '--category', 'files']);
 
     expect(stripAnsi(result.stdout)).toContain('✔ file-count');
     expect(stripAnsi(result.stdout)).not.toContain('✔ foo');
   });
 
   it('should run multiple tasks if the category option is specified with multiple categories', async () => {
-    project.symlinkPackage(
-      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
-      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
-    );
-
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -385,10 +366,6 @@ describe('cli-test', () => {
   });
 
   it('should run only one task if the group option is specified', async () => {
-    project.symlinkPackage(
-      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
-      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
-    );
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -408,17 +385,12 @@ describe('cli-test', () => {
       plugins: ['checkup-plugin-fake'],
     });
 
-    let result = await run(['run', '.', '--group', 'group1', '--format', 'summary']);
+    let result = await run(['run', '.', '--group', 'group1']);
 
     expect(stripAnsi(result.stdout)).toContain('✔ file-count');
   });
 
   it('should run multiple tasks if the group option is specified with multiple groups', async () => {
-    project.symlinkPackage(
-      join(__dirname, '..', '..', 'checkup-formatter-pretty'),
-      join(project.baseDir, 'node_modules', 'checkup-formatter-pretty')
-    );
-
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -469,7 +441,7 @@ describe('cli-test', () => {
       tasks: { 'fake/file-count': 'off' },
     });
 
-    let result = await run(['run', '.', '--task', 'fake/file-count', '--format', 'summary']);
+    let result = await run(['run', '.', '--task', 'fake/file-count']);
 
     expect(stripAnsi(result.stdout)).toContain('✔ file-count');
   });
@@ -509,10 +481,10 @@ describe('cli-test', () => {
     });
 
     project.writeSync();
-    let result = await run(['run', '**/*.hbs', '**baz/**', '--format', 'summary']);
+    let result = await run(['run', '**/*.hbs', '**baz/**']);
     let filtered = result.stdout;
 
-    result = await run(['run', '.', '--format', 'summary']);
+    result = await run(['run', '.']);
 
     let unfiltered = result.stdout;
 
@@ -524,13 +496,13 @@ describe('cli-test', () => {
     project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
     project.writeSync();
 
-    let result = await run(['run', '.', '--format', 'summary']);
+    let result = await run(['run', '.']);
     let filtered = result.stdout;
 
     project.addCheckupConfig({ excludePaths: [] });
     project.writeSync();
 
-    result = await run(['run', '.', '--format', 'summary']);
+    result = await run(['run', '.']);
     let unfiltered = result.stdout;
 
     expect(filtered).toContain('4 files analyzed');
@@ -550,7 +522,7 @@ describe('cli-test', () => {
 
     let hbsJsFiltered = result.stdout;
 
-    result = await run(['run', '.', '--exclude-paths', '**/*.hbs', '--format', 'summary']);
+    result = await run(['run', '.', '--exclude-paths', '**/*.hbs']);
 
     let hbsFiltered = result.stdout;
 
@@ -562,13 +534,13 @@ describe('cli-test', () => {
     project.addCheckupConfig({ excludePaths: ['**/*.js'] });
     project.writeSync();
 
-    let result = await run(['run', '.', '--exclude-paths', '**/*.hbs', '--format', 'summary']);
+    let result = await run(['run', '.', '--exclude-paths', '**/*.hbs']);
 
     let hbsFiltered = result.stdout;
 
     expect(hbsFiltered).toContain('4 files analyzed');
 
-    result = await run(['run', '.', '--format', 'summary']);
+    result = await run(['run', '.']);
 
     let hbsJsFiltered = result.stdout;
     expect(hbsJsFiltered).toContain('5 files analyzed');

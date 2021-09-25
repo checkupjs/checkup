@@ -19,7 +19,7 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
-    this.addRuleProperties({
+    this.addRule({
       properties: {
         component: {
           name: 'table',

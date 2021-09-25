@@ -8,6 +8,12 @@ class FakeTask extends BaseTask {
   taskDisplayName = 'Fake';
   description = 'description';
   category = 'foo';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 }
 
 describe('BaseTask', () => {
@@ -202,54 +208,6 @@ describe('BaseTask', () => {
       for (let result of run.results) {
         expect(result).toBeValidSarifFor('result');
       }
-    });
-
-    it('can add a result with overridden rule metadata', () => {
-      let context: TaskContext = getTaskContext();
-
-      let fakeTask = new FakeTask('fake', context);
-
-      fakeTask.addResult('The is a fake message', 'informational', 'note', {
-        rule: {
-          id: 'my-fake-sub',
-          properties: {
-            category: 'foo',
-            component: 'table',
-            taskDisplayName: 'Fake',
-          },
-        },
-      });
-
-      let run = fakeTask.context.logBuilder.currentRunBuilder.run;
-
-      expect(run.tool.driver.rules).toMatchInlineSnapshot(`
-        Array [
-          Object {
-            "id": "my-fake-sub",
-            "properties": Object {
-              "category": "foo",
-              "component": "table",
-              "taskDisplayName": "Fake",
-            },
-            "shortDescription": Object {
-              "text": "description",
-            },
-          },
-        ]
-      `);
-      expect(run.results).toMatchInlineSnapshot(`
-        Array [
-          Object {
-            "kind": "informational",
-            "level": "note",
-            "message": Object {
-              "text": "The is a fake message",
-            },
-            "ruleId": "my-fake-sub",
-            "ruleIndex": 0,
-          },
-        ]
-      `);
     });
   });
 

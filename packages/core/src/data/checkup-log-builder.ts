@@ -7,7 +7,7 @@ import { FilePathArray } from '../utils/file-path-array';
 import extractStack from '../utils/extract-stack';
 import { AnnotationArgs, CheckupLogBuilderArgs } from '../types/checkup-log';
 import { CheckupConfig } from '../types/config';
-import { TaskAction, TaskListError } from '../types/tasks';
+import { Task, TaskAction, TaskListError } from '../types/tasks';
 import SarifLogBuilder from './sarif-log-builder';
 import { trimAllCwd } from './path';
 
@@ -24,6 +24,7 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
   actions: TaskAction[] = [];
   errors: TaskListError[] = [];
   timings: Record<string, number> = {};
+  executedTasks: Task[] = [];
 
   startTime: string;
 
@@ -46,6 +47,7 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
       actions: this.actions,
       errors: this.errors,
       timings: this.timings,
+      executedTasks: this.executedTasks,
     } = annotations);
 
     this.addInvocation({
@@ -57,6 +59,7 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
 
     await this.addCheckupMetadata();
 
+    this.addTaskExecutionNotifications();
     this.addExecptionNotifications();
     this.addActionNotifications();
   }
@@ -88,6 +91,15 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
         timings: this.timings,
       },
     };
+  }
+
+  addTaskExecutionNotifications() {
+    this.executedTasks.forEach((task) => {
+      this.addNotification({
+        id: task.taskName,
+        name: 'Execution successful',
+      });
+    });
   }
 
   addExecptionNotifications(): void {

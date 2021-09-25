@@ -92,6 +92,16 @@ export default class SarifLogBuilder {
     this.currentRunBuilder.run.invocations?.push(invocation);
   }
 
+  addNotification(notification: ReportingDescriptor) {
+    let notifications = this.currentRunBuilder.run.tool.driver.notifications;
+
+    if (!notifications) {
+      this.currentRunBuilder.run.tool.driver.notifications = notifications = [];
+    }
+
+    notifications.push(notification);
+  }
+
   addToolExecutionNotification(notification: Notification) {
     let notifications = this.currentRunBuilder.currentInvocation.toolExecutionNotifications;
 
