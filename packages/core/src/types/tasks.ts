@@ -37,7 +37,6 @@ export type TaskRule = SetOptional<ReportingDescriptor, 'id'>;
 export type TaskResultOptions = {
   location?: TaskResultLocation;
   properties?: TaskResultProperties;
-  rule?: TaskRule;
 };
 
 export interface Task {

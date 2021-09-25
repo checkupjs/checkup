@@ -21,6 +21,26 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
+    this.addRule({
+      properties: {
+        component: {
+          name: 'list',
+          options: {
+            items: {
+              Errors: {
+                groupBy: 'level',
+                value: 'error',
+              },
+              Warnings: {
+                groupBy: 'level',
+                value: 'warning',
+              },
+            },
+          },
+        },
+      },
+    });
+
     let resolvedTemplateLintConfigFile = join(
       resolve(this.context.options.cwd),
       '.template-lintrc.js'
@@ -49,25 +69,6 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
           startLine: result.line,
           endLine: result.endLine,
           endColumn: result.endColumn,
-        },
-        rule: {
-          properties: {
-            component: {
-              name: 'list',
-              options: {
-                items: {
-                  Errors: {
-                    groupBy: 'level',
-                    value: 'error',
-                  },
-                  Warnings: {
-                    groupBy: 'level',
-                    value: 'warning',
-                  },
-                },
-              },
-            },
-          },
         },
       });
     });

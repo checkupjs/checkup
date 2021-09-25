@@ -41,6 +41,30 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
+    this.addRule({
+      properties: {
+        component: {
+          name: 'list',
+          options: {
+            items: {
+              Application: {
+                groupBy: 'properties.testType',
+                value: 'application',
+              },
+              Rendering: {
+                groupBy: 'properties.testType',
+                value: 'rendering',
+              },
+              Unit: {
+                groupBy: 'properties.testType',
+                value: 'unit',
+              },
+            },
+          },
+        },
+      },
+    });
+
     this.eslintAnalyzer = new ESLintAnalyzer(EMBER_TEST_TYPES);
 
     this.testFiles = this.context.paths.filterByGlob('**/*test.js');
@@ -73,29 +97,6 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
         properties: {
           testType,
           testMethod: method,
-        },
-        rule: {
-          properties: {
-            component: {
-              name: 'list',
-              options: {
-                items: {
-                  Application: {
-                    groupBy: 'properties.testType',
-                    value: 'application',
-                  },
-                  Rendering: {
-                    groupBy: 'properties.testType',
-                    value: 'rendering',
-                  },
-                  Unit: {
-                    groupBy: 'properties.testType',
-                    value: 'unit',
-                  },
-                },
-              },
-            },
-          },
         },
       });
     });

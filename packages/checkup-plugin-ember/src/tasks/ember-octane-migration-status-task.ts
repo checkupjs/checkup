@@ -177,6 +177,15 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
+    this.addRule({
+      properties: {
+        component: {
+          name: 'migration',
+        },
+        features: Object.values(RULE_METADATA).map((ruleMetadata) => ruleMetadata.feature),
+      },
+    });
+
     this.eslintAnalyzer = new ESLintAnalyzer(OCTANE_ES_LINT_CONFIG, this.config);
     this.emberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(
       OCTANE_TEMPLATE_LINT_CONFIG,
@@ -229,14 +238,6 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
               name: 'ember-octane-migration',
               displayName: 'Ember Octane Migration',
               feature: ruleMetadata.feature,
-            },
-          },
-          rule: {
-            properties: {
-              component: {
-                name: 'migration',
-              },
-              features: Object.values(RULE_METADATA).map((ruleMetadata) => ruleMetadata.feature),
             },
           },
         }

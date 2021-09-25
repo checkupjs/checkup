@@ -1,5 +1,12 @@
 import * as fs from 'fs';
-import { Task, BaseTask, trimCwd, NormalizedLintResult, AstAnalyzer } from '@checkup/core';
+import {
+  Task,
+  BaseTask,
+  trimCwd,
+  NormalizedLintResult,
+  AstAnalyzer,
+  TaskContext,
+} from '@checkup/core';
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
 import { Visitor } from 'ast-types';
@@ -14,6 +21,26 @@ export default class EslintDisableTask extends BaseTask implements Task {
   category = 'linting';
   group = 'disabled-lint-rules';
 
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule({
+      properties: {
+        component: {
+          name: 'list',
+          options: {
+            items: {
+              'Disabled rules': {
+                groupBy: 'level',
+                value: 'note',
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
   async run(): Promise<Result[]> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
     let eslintDisables: NormalizedLintResult[] = await getEslintDisables(
@@ -27,23 +54,6 @@ export default class EslintDisableTask extends BaseTask implements Task {
           uri: disable.filePath,
           startColumn: disable.column,
           startLine: disable.line,
-        },
-        rule: {
-          properties: {
-            taskDisplayName: this.taskDisplayName,
-            category: this.category,
-            component: {
-              name: 'list',
-              options: {
-                items: {
-                  'Disabled rules': {
-                    groupBy: 'level',
-                    value: 'note',
-                  },
-                },
-              },
-            },
-          },
         },
       });
     });

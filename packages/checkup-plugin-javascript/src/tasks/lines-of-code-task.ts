@@ -1,6 +1,6 @@
 import { extname } from 'path';
 import { promises as fs } from 'fs';
-import { BaseTask, Task, trimCwd } from '@checkup/core';
+import { BaseTask, Task, TaskContext, trimCwd } from '@checkup/core';
 import { Result } from 'sarif';
 const sloc = require('sloc');
 
@@ -16,6 +16,28 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
   description = 'Counts lines of code within a project';
   category = 'info';
 
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRuleProperties({
+      properties: {
+        component: {
+          name: 'table',
+          options: {
+            sumBy: {
+              findGroupBy: 'Language',
+              sumValueBy: 'Total Lines',
+            },
+            rows: {
+              Language: 'properties.extension',
+              'Total Lines': 'properties.lines',
+            },
+          },
+        },
+      },
+    });
+  }
+
   async run(): Promise<Result[]> {
     let fileInfos = await this.getLinesOfCode();
 
@@ -29,23 +51,6 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
             uri: fileInfo.filePath,
           },
           properties: Object.assign({}, fileInfo),
-          rule: {
-            properties: {
-              component: {
-                name: 'table',
-                options: {
-                  sumBy: {
-                    findGroupBy: 'Language',
-                    sumValueBy: 'Total Lines',
-                  },
-                  rows: {
-                    Language: 'properties.extension',
-                    'Total Lines': 'properties.lines',
-                  },
-                },
-              },
-            },
-          },
         }
       );
     });

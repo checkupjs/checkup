@@ -1,5 +1,12 @@
 import { promises } from 'fs';
-import { Task, BaseTask, NormalizedLintResult, trimCwd, HandlebarsAnalyzer } from '@checkup/core';
+import {
+  Task,
+  BaseTask,
+  NormalizedLintResult,
+  trimCwd,
+  HandlebarsAnalyzer,
+  TaskContext,
+} from '@checkup/core';
 import { Result } from 'sarif';
 
 const TEMPLATE_LINT_DISABLE = 'template-lint-disable';
@@ -11,6 +18,26 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
   category = 'linting';
   group = 'disabled-lint-rules';
 
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule({
+      properties: {
+        component: {
+          name: 'list',
+          options: {
+            items: {
+              'Disabled rules': {
+                groupBy: 'level',
+                value: 'note',
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
   async run(): Promise<Result[]> {
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
     let templateLintDisables = await getTemplateLintDisables(hbsPaths, this.context.options.cwd);
@@ -21,21 +48,6 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
           uri: disable.filePath,
           startColumn: disable.column,
           startLine: disable.line,
-        },
-        rule: {
-          properties: {
-            component: {
-              name: 'list',
-              options: {
-                items: {
-                  'Disabled rules': {
-                    groupBy: 'level',
-                    value: 'note',
-                  },
-                },
-              },
-            },
-          },
         },
       });
     });

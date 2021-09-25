@@ -1,4 +1,4 @@
-import { Task, BaseTask, trimCwd } from '@checkup/core';
+import { Task, BaseTask, trimCwd, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
 const SEARCH_PATTERNS = [
@@ -21,6 +21,27 @@ export default class EmberTypesTask extends BaseTask implements Task {
   category = 'metrics';
   group = 'ember';
 
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule({
+      properties: {
+        component: {
+          name: 'list',
+          options: {
+            items: SEARCH_PATTERNS.reduce((total, pattern) => {
+              total[pattern.type] = {
+                groupBy: 'properties.type',
+                value: pattern.type,
+              };
+              return total;
+            }, {} as Record<string, any>),
+          },
+        },
+      },
+    });
+  }
+
   async run(): Promise<Result[]> {
     SEARCH_PATTERNS.map((pattern) => {
       let files = this.context.paths.filterByGlob(pattern.pattern);
@@ -37,22 +58,6 @@ export default class EmberTypesTask extends BaseTask implements Task {
             },
             properties: {
               type: pattern.type,
-            },
-            rule: {
-              properties: {
-                component: {
-                  name: 'list',
-                  options: {
-                    items: SEARCH_PATTERNS.reduce((total, pattern) => {
-                      total[pattern.type] = {
-                        groupBy: 'properties.type',
-                        value: pattern.type,
-                      };
-                      return total;
-                    }, {} as Record<string, any>),
-                  },
-                },
-              },
             },
           }
         );

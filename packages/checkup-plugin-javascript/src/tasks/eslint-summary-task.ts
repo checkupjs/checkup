@@ -40,6 +40,26 @@ export default class EslintSummaryTask extends BaseTask implements Task {
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
+    this.addRule({
+      properties: {
+        component: {
+          name: 'list',
+          options: {
+            items: {
+              Errors: {
+                groupBy: 'level',
+                value: 'error',
+              },
+              Warnings: {
+                groupBy: 'level',
+                value: 'warning',
+              },
+            },
+          },
+        },
+      },
+    });
+
     let eslintConfig: ESLintOptions = this.readEslintConfig(
       this.context.paths,
       this.context.options.cwd,
@@ -60,25 +80,6 @@ export default class EslintSummaryTask extends BaseTask implements Task {
           startLine: result.line,
           endColumn: result.endColumn,
           endLine: result.endLine,
-        },
-        rule: {
-          properties: {
-            component: {
-              name: 'list',
-              options: {
-                items: {
-                  Errors: {
-                    groupBy: 'level',
-                    value: 'error',
-                  },
-                  Warnings: {
-                    groupBy: 'level',
-                    value: 'warning',
-                  },
-                },
-              },
-            },
-          },
         },
       });
     });

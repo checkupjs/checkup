@@ -49,8 +49,16 @@ export default class SarifLogBuilder {
     return ruleIndex;
   }
 
+  getRule(ruleId: string) {
+    let rules = this.currentRunBuilder.run.tool.driver.rules;
+
+    if (rules) {
+      return rules.find((rule) => rule.id === ruleId);
+    }
+  }
+
   hasRule(ruleId: string) {
-    return this.rules.some((rule) => rule.id === ruleId);
+    return !!this.getRule(ruleId);
   }
 
   addResult<TResult extends RequiredResult>(

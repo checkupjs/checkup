@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { BaseTask, Task, DependencyAnalyzer } from '@checkup/core';
+import { BaseTask, Task, TaskContext, DependencyAnalyzer } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class EmberDependenciesTask extends BaseTask implements Task {
@@ -8,6 +8,25 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
   description = 'Finds Ember-specific dependencies and their versions in an Ember.js project';
   category = 'dependencies';
   group = 'ember';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule({
+      properties: {
+        component: {
+          name: 'table',
+          options: {
+            rows: {
+              Dependency: 'properties.packageName',
+              Installed: 'properties.packageVersion',
+              Latest: 'properties.latestVersion',
+            },
+          },
+        },
+      },
+    });
+  }
 
   async run(): Promise<Result[]> {
     let analyzer = new DependencyAnalyzer(this.context.options.cwd);
@@ -33,20 +52,6 @@ export default class EmberDependenciesTask extends BaseTask implements Task {
               packageVersion: dependency.packageVersion,
               latestVersion: dependency.latestVersion,
               type: dependency.type,
-            },
-            rule: {
-              properties: {
-                component: {
-                  name: 'table',
-                  options: {
-                    rows: {
-                      Dependency: 'properties.packageName',
-                      Installed: 'properties.packageVersion',
-                      Latest: 'properties.latestVersion',
-                    },
-                  },
-                },
-              },
             },
           }
         );

@@ -1,4 +1,4 @@
-import { Task, BaseTask, TaskError } from '@checkup/core';
+import { Task, BaseTask, TaskError, TaskContext } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { readJson } from 'fs-extra';
@@ -11,6 +11,30 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
   description = 'Finds all in-repo engines and addons in an Ember.js project';
   category = 'metrics';
   group = 'ember';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule({
+      properties: {
+        component: {
+          name: 'list',
+          options: {
+            items: {
+              Engine: {
+                groupBy: 'properties.type',
+                value: 'engine',
+              },
+              Addon: {
+                groupBy: 'properties.type',
+                value: 'addon',
+              },
+            },
+          },
+        },
+      },
+    });
+  }
 
   async run(): Promise<Result[]> {
     let packageJsonPaths: string[] = this.context.paths.filterByGlob('**/*package.json');
@@ -29,25 +53,6 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
           },
           properties: {
             type,
-          },
-          rule: {
-            properties: {
-              component: {
-                name: 'list',
-                options: {
-                  items: {
-                    Engine: {
-                      groupBy: 'properties.type',
-                      value: 'engine',
-                    },
-                    Addon: {
-                      groupBy: 'properties.type',
-                      value: 'addon',
-                    },
-                  },
-                },
-              },
-            },
           },
         });
       }
