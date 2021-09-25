@@ -14,7 +14,7 @@ import {
 } from './types/tasks';
 
 import { TaskConfig, ConfigValue } from './types/config';
-import { getShorthandName } from './utils/plugin-name';
+import { getShorthandName } from './utils/normalize-package-name';
 import { parseConfigTuple } from './config';
 import { RequiredResult } from './types/checkup-log';
 import CheckupLogBuilder from './data/checkup-log-builder';

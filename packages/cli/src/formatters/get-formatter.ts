@@ -7,6 +7,7 @@ import {
   CheckupLogParser,
   FormatterOptions,
   FormatterCtor,
+  normalizePackageName,
 } from '@checkup/core';
 import { Log } from 'sarif';
 import SummaryFormatter from './summary';
@@ -44,7 +45,7 @@ export function getFormatter(options: FormatterOptions) {
     default: {
       try {
         const CustomFormatter = createRequire(join(options.cwd, '__placeholder__.js'))(
-          options.format
+          normalizePackageName(options.format, 'checkup-formatter')
         );
 
         Formatter = CustomFormatter;

@@ -1,6 +1,6 @@
-import { getShorthandName, normalizePackageName } from '../../src/utils/plugin-name';
+import { getShorthandName, normalizePackageName } from '../../src/utils/normalize-package-name';
 
-describe('plugin-name', () => {
+describe('normalize-package-name', () => {
   it.each([
     ['foo', 'checkup-plugin-foo'],
     ['checkup-plugin-foo', 'checkup-plugin-foo'],
@@ -11,6 +11,19 @@ describe('plugin-name', () => {
     ['@z/checkup-plugin-foo', '@z/checkup-plugin-foo'],
   ])('normalizes plugin name from %s to %s', (input, expected) => {
     let pluginName = normalizePackageName(input);
+    expect(pluginName).toEqual(expected);
+  });
+
+  it.each([
+    ['foo', 'checkup-formatter-foo'],
+    ['checkup-formatter-foo', 'checkup-formatter-foo'],
+    ['@z/foo', '@z/checkup-formatter-foo'],
+    ['@z\\foo', '@z/checkup-formatter-foo'],
+    ['@z\\foo\\bar.js', '@z/checkup-formatter-foo/bar.js'],
+    ['@z/checkup-formatter', '@z/checkup-formatter'],
+    ['@z/checkup-formatter-foo', '@z/checkup-formatter-foo'],
+  ])('normalizes formatter name from %s to %s', (input, expected) => {
+    let pluginName = normalizePackageName(input, 'checkup-formatter');
     expect(pluginName).toEqual(expected);
   });
 
