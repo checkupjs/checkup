@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 
-import { Location, Result } from 'sarif';
+import { Location, PropertyBag, Result } from 'sarif';
 import { SetRequired } from 'type-fest';
 
 import {
@@ -118,16 +118,20 @@ export default abstract class BaseTask {
     level: TaskResultLevel,
     options?: TaskResultOptions
   ): RequiredResult {
-    let ruleId = this._addRule(options?.rule);
-
     let result: RequiredResult = {
       message: {
         text: messageText,
       },
-      ruleId,
+      ruleId: this.taskName,
       kind,
       level,
     };
+
+    if (!this._logBuilder.hasRule(this.taskName)) {
+      throw new Error(
+        'You must call `addRule` in your Task implemenation prior to calling `addResult`'
+      );
+    }
 
     if (options?.properties) {
       result.properties = options.properties;
@@ -177,7 +181,7 @@ export default abstract class BaseTask {
     return toLintResults(results, this.context.options.cwd);
   }
 
-  private _addRule(rule?: TaskRule) {
+  public addRule(additionalRuleProps?: TaskRule) {
     let taskRule;
     let ruleProps = {
       id: this.taskName,
@@ -190,10 +194,22 @@ export default abstract class BaseTask {
       },
     };
 
-    taskRule = merge({}, ruleProps, rule);
+    taskRule = merge({}, ruleProps, additionalRuleProps);
 
     this._logBuilder.addRule(taskRule);
 
     return taskRule.id;
+  }
+
+  public addRuleProperties(properties: PropertyBag) {
+    let rule = this._logBuilder.getRule(this.taskName);
+
+    if (!rule) {
+      throw new Error(
+        'You must call `addRule` in your Task implemenation prior to calling `addResult`'
+      );
+    }
+
+    merge(rule.properties, properties);
   }
 }

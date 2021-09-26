@@ -13,12 +13,12 @@ export default class SummaryFormatter extends BaseFormatter<BufferedWriter> impl
   }
 
   format(logParser: CheckupLogParser) {
-    let { rules, metaData, log, actions } = logParser;
+    let { metaData, log, actions, executedTasks } = logParser;
 
     this.renderMetadata(metaData);
     this.writer.log('Checkup ran the following task(s) successfully:');
 
-    rules
+    executedTasks
       .map((rule) => rule.id)
       .sort()
       .forEach((taskName) => {

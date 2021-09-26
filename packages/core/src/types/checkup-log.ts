@@ -1,7 +1,7 @@
 import { PackageJson, SetRequired } from 'type-fest';
 import { Run, Result, ReportingDescriptor } from 'sarif';
 import { RunOptions } from '../types/cli';
-import { TaskListError, TaskAction } from '../types/tasks';
+import { TaskListError, TaskAction, Task } from '../types/tasks';
 import { CheckupConfig } from '../types/config';
 import { FilePathArray } from '../utils/file-path-array';
 
@@ -21,6 +21,7 @@ export type RuleResults = {
 
 export interface AnnotationArgs {
   config: CheckupConfig;
+  executedTasks: Task[];
   actions: TaskAction[];
   errors: TaskListError[];
   timings: Record<string, number>;

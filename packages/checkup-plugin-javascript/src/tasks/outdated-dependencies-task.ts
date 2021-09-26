@@ -1,12 +1,31 @@
 import { join } from 'path';
 import { Result } from 'sarif';
-import { BaseTask, Task, DependencyAnalyzer } from '@checkup/core';
+import { BaseTask, Task, DependencyAnalyzer, TaskContext } from '@checkup/core';
 
 export default class OutdatedDependenciesTask extends BaseTask implements Task {
   taskName = 'outdated-dependencies';
   taskDisplayName = 'Outdated Dependencies';
   description = 'Gets a summary of all outdated dependencies in a project';
   category = 'dependencies';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule({
+      properties: {
+        component: {
+          name: 'table',
+          options: {
+            rows: {
+              Dependency: 'properties.packageName',
+              Installed: 'properties.packageVersion',
+              Latest: 'properties.latestVersion',
+            },
+          },
+        },
+      },
+    });
+  }
 
   async run(): Promise<Result[]> {
     let analyzer = new DependencyAnalyzer(this.context.options.cwd);
@@ -34,20 +53,6 @@ export default class OutdatedDependenciesTask extends BaseTask implements Task {
               packageVersion: dependency.packageVersion,
               latestVersion: dependency.latestVersion,
               type: dependency.type,
-            },
-            rule: {
-              properties: {
-                component: {
-                  name: 'table',
-                  options: {
-                    rows: {
-                      Dependency: 'properties.packageName',
-                      Installed: 'properties.packageVersion',
-                      Latest: 'properties.latestVersion',
-                    },
-                  },
-                },
-              },
             },
           }
         );

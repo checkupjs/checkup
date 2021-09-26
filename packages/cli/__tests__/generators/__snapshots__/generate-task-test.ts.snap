@@ -10,6 +10,11 @@ module.exports = class MyFooTask extends BaseTask {
   category = 'foo';
   group = 'bar';
 
+  constructor(pluginName, context) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run() {
     this.addResult(
@@ -76,7 +81,7 @@ module.exports = {
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults 1`] = `
-"import { BaseTask, Task } from '@checkup/core';
+"import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -84,6 +89,12 @@ export default class MyFooTask extends BaseTask implements Task {
   taskDisplayName = 'My Foo';
   description = '';
   category = '';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run(): Promise<Result[]> {
     this.addResult(
@@ -148,7 +159,7 @@ export function register(args: RegistrationArgs) {
 `;
 
 exports[`task generator generates correct files with TypeScript for defaults in custom path 1`] = `
-"import { BaseTask, Task } from '@checkup/core';
+"import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -156,6 +167,12 @@ export default class MyFooTask extends BaseTask implements Task {
   taskDisplayName = 'My Foo';
   description = '';
   category = '';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run(): Promise<Result[]> {
     this.addResult(
@@ -220,7 +237,7 @@ export function register(args: RegistrationArgs) {
 `;
 
 exports[`task generator generates correct files with category 1`] = `
-"import { BaseTask, Task } from '@checkup/core';
+"import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -229,6 +246,12 @@ export default class MyFooTask extends BaseTask implements Task {
   description = 'Some description';
   category = 'foo';
   group = 'bar';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run(): Promise<Result[]> {
     this.addResult(
@@ -293,7 +316,7 @@ export function register(args: RegistrationArgs) {
 `;
 
 exports[`task generator generates correct files with group 1`] = `
-"import { BaseTask, Task } from '@checkup/core';
+"import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -302,6 +325,12 @@ export default class MyFooTask extends BaseTask implements Task {
   description = 'Some description';
   category = 'foo';
   group = 'bar';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run(): Promise<Result[]> {
     this.addResult(
@@ -366,7 +395,7 @@ export function register(args: RegistrationArgs) {
 `;
 
 exports[`task generator generates correct files with typescript 1`] = `
-"import { BaseTask, Task } from '@checkup/core';
+"import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -375,6 +404,12 @@ export default class MyFooTask extends BaseTask implements Task {
   description = 'Some description';
   category = 'foo';
   group = 'bar';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run(): Promise<Result[]> {
     this.addResult(
@@ -439,7 +474,7 @@ export function register(args: RegistrationArgs) {
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 1`] = `
-"import { BaseTask, Task } from '@checkup/core';
+"import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class MyFooTask extends BaseTask implements Task {
@@ -447,6 +482,12 @@ export default class MyFooTask extends BaseTask implements Task {
   taskDisplayName = 'My Foo';
   description = '';
   category = '';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run(): Promise<Result[]> {
     this.addResult(
@@ -498,7 +539,7 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator generates multiple correct files with TypeScript for defaults 3`] = `
-"import { BaseTask, Task } from '@checkup/core';
+"import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
 export default class MyBarTask extends BaseTask implements Task {
@@ -506,6 +547,12 @@ export default class MyBarTask extends BaseTask implements Task {
   taskDisplayName = 'My Bar';
   description = '';
   category = '';
+
+  constructor(pluginName: string, context: TaskContext) {
+    super(pluginName, context);
+
+    this.addRule();
+  }
 
   async run(): Promise<Result[]> {
     this.addResult(

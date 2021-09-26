@@ -49,6 +49,18 @@ export default class SarifLogBuilder {
     return ruleIndex;
   }
 
+  getRule(ruleId: string) {
+    let rules = this.currentRunBuilder.run.tool.driver.rules;
+
+    if (rules) {
+      return rules.find((rule) => rule.id === ruleId);
+    }
+  }
+
+  hasRule(ruleId: string) {
+    return !!this.getRule(ruleId);
+  }
+
   addResult<TResult extends RequiredResult>(
     result: TResult,
     ruleMetadata?: Omit<ReportingDescriptor, 'id'>
@@ -78,6 +90,16 @@ export default class SarifLogBuilder {
   addInvocation(invocation: Invocation) {
     this.currentRunBuilder.currentInvocation = invocation;
     this.currentRunBuilder.run.invocations?.push(invocation);
+  }
+
+  addNotification(notification: ReportingDescriptor) {
+    let notifications = this.currentRunBuilder.run.tool.driver.notifications;
+
+    if (!notifications) {
+      this.currentRunBuilder.run.tool.driver.notifications = notifications = [];
+    }
+
+    notifications.push(notification);
   }
 
   addToolExecutionNotification(notification: Notification) {
