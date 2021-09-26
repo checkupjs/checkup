@@ -1,5 +1,6 @@
 import { createRequire } from 'module';
 import { join } from 'path';
+import { existsSync } from 'fs';
 import {
   OutputFormat,
   ErrorKind,
@@ -7,6 +8,7 @@ import {
   CheckupLogParser,
   FormatterOptions,
   FormatterCtor,
+  normalizePackageName,
 } from '@checkup/core';
 import { Log } from 'sarif';
 import SummaryFormatter from './summary';
@@ -43,8 +45,14 @@ export function getFormatter(options: FormatterOptions) {
     }
     default: {
       try {
+        // options.format can either be a valid file system path, a valid formatter package, or a
+        // valid short name for a package (a string without the checkup-formatter- prefix)
+        let formatterName = existsSync(join(options.cwd, options.format))
+          ? options.format
+          : normalizePackageName(options.format, 'checkup-formatter');
+
         const CustomFormatter = createRequire(join(options.cwd, '__placeholder__.js'))(
-          options.format
+          formatterName
         );
 
         Formatter = CustomFormatter;

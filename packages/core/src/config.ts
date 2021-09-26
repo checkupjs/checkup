@@ -9,7 +9,7 @@ import { existsSync, readJsonSync, writeJsonSync, writeJSON } from 'fs-extra';
 import { white } from 'chalk';
 import { CheckupConfig, ConfigValue } from './types/config';
 import CheckupError from './errors/checkup-error';
-import { normalizePackageName } from './utils/plugin-name';
+import { normalizePackageName } from './utils/normalize-package-name';
 import { ErrorKind } from './errors/error-kind';
 
 const debug = require('debug')('checkup:config');

@@ -34,7 +34,8 @@ export { default as StyleLintAnalyzer } from './analyzers/stylelint-analyzer';
 export { default as EmberTemplateLintAnalyzer } from './analyzers/ember-template-lint-analyzer';
 export { default as DependencyAnalyzer } from './analyzers/dependency-analyzer';
 
-export { getPluginName, normalizePackageName, getShorthandName } from './utils/plugin-name';
+export { getPluginName } from './utils/plugin-name';
+export { normalizePackageName, getShorthandName } from './utils/normalize-package-name';
 export { default as ConsoleWriter } from './utils/console-writer';
 export { default as BufferedWriter } from './utils/buffered-writer';
 export { default as BaseOutputWriter } from './utils/base-output-writer';

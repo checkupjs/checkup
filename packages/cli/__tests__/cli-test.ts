@@ -33,7 +33,7 @@ describe('cli-test', () => {
     // project.dispose();
   });
 
-  it('outputs top level help', async () => {
+  it('can output top level help', async () => {
     let result = await run([]);
 
     expect(result.exitCode).toEqual(0);
@@ -53,7 +53,7 @@ describe('cli-test', () => {
     `);
   });
 
-  it('outputs help for run command', async () => {
+  it('can output help for run command', async () => {
     let result = await run(['run']);
 
     expect(result.exitCode).toEqual(1);
@@ -77,7 +77,7 @@ describe('cli-test', () => {
     `);
   });
 
-  it('outputs help for generate command', async () => {
+  it('can output help for generate command', async () => {
     let result = await run(['generate']);
 
     expect(result.exitCode).toEqual(1);
@@ -98,7 +98,7 @@ describe('cli-test', () => {
     `);
   });
 
-  it('should output checkup result', async () => {
+  it('can output checkup result', async () => {
     let result = await run(['run', '.']);
 
     let output = result.stdout.trim().split('\n');
@@ -119,7 +119,7 @@ describe('cli-test', () => {
     ]);
   });
 
-  it('should output list of available tasks', async () => {
+  it('can output list of available tasks', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -145,14 +145,14 @@ describe('cli-test', () => {
     `);
   });
 
-  it('should output checkup result in JSON', async () => {
+  it('can output checkup result in JSON', async () => {
     let result = await run(['run', '.', '--format', 'json']);
     let output = JSON.parse(trimCwd(result.stdout, project.baseDir)) as Log;
 
     expect(output).toBeValidSarifLog();
   });
 
-  it('should output a json file in a custom directory if the json format and output-file options are provided', async () => {
+  it('can output a json file in a custom directory if the json format and output-file options are provided', async () => {
     let result = await run([
       'run',
       '.',
@@ -171,7 +171,7 @@ describe('cli-test', () => {
     unlinkSync(outputPath);
   });
 
-  it('should output a json file in a custom directory if the summary format and output-file options are provided', async () => {
+  it('can output a json file in a custom directory if the summary format and output-file options are provided', async () => {
     let result = await run([
       'run',
       '.',
@@ -184,7 +184,7 @@ describe('cli-test', () => {
     expect(summaryOutput).toContain('my-checkup-file.sarif');
   });
 
-  it('should be able to load relative formatter', async function () {
+  it('can load relative formatter', async function () {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -221,7 +221,7 @@ describe('cli-test', () => {
     expect(result.exitCode).toEqual(0);
   });
 
-  it('should be able to load formatter from node_modules', async function () {
+  it('can load formatter from node_modules', async function () {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -249,7 +249,35 @@ describe('cli-test', () => {
     expect(result.exitCode).toEqual(0);
   });
 
-  it('should run a single task if the tasks option is specified with a single task', async () => {
+  it('can load formatter from node_modules using a short name', async function () {
+    let pluginDir = await project.addPlugin(
+      { name: 'fake', defaults: false },
+      { typescript: false }
+    );
+    await project.addTask(
+      { name: 'foo', defaults: false },
+      { typescript: false, category: 'best practices', description: 'foos', group: 'none' },
+      pluginDir
+    );
+
+    project.addCheckupConfig({
+      plugins: ['checkup-plugin-fake'],
+    });
+
+    let fixturePath = resolve(__dirname, '__fixtures__', 'checkup-formatter-test');
+    let formatterDirPath = join(project.baseDir, 'node_modules', 'checkup-formatter-test');
+
+    mkdirSync(formatterDirPath);
+    copyFileSync(join(fixturePath, 'index.js'), join(formatterDirPath, 'index.js'));
+    copyFileSync(join(fixturePath, 'package.json'), join(formatterDirPath, 'package.json'));
+
+    let result = await run(['run', '.', '--format', 'test']);
+
+    expect(result.stdout).toContain('Custom formatter output');
+    expect(result.exitCode).toEqual(0);
+  });
+
+  it('can run a single task if the tasks option is specified with a single task', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -269,7 +297,7 @@ describe('cli-test', () => {
     expect(stripAnsi(result.stdout)).toContain('✔ file-count');
   });
 
-  it('should run multiple tasks if the tasks option is specified with multiple tasks', async () => {
+  it('can run multiple tasks if the tasks option is specified with multiple tasks', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -304,7 +332,7 @@ describe('cli-test', () => {
     expect(stripAnsi(result.stdout)).toContain('✔ foo');
   });
 
-  it('should run only one task if the category option is specified', async () => {
+  it('can run only one task if the category option is specified', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -330,7 +358,7 @@ describe('cli-test', () => {
     expect(stripAnsi(result.stdout)).not.toContain('✔ foo');
   });
 
-  it('should run multiple tasks if the category option is specified with multiple categories', async () => {
+  it('can run multiple tasks if the category option is specified with multiple categories', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -365,7 +393,7 @@ describe('cli-test', () => {
     expect(stripAnsi(result.stdout)).toContain('✔ foo');
   });
 
-  it('should run only one task if the group option is specified', async () => {
+  it('can run only one task if the group option is specified', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -390,7 +418,7 @@ describe('cli-test', () => {
     expect(stripAnsi(result.stdout)).toContain('✔ file-count');
   });
 
-  it('should run multiple tasks if the group option is specified with multiple groups', async () => {
+  it('can run multiple tasks if the group option is specified with multiple groups', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -425,7 +453,7 @@ describe('cli-test', () => {
     expect(stripAnsi(result.stdout)).toContain('✔ foo');
   });
 
-  it('should run a task if its passed in via command line, even if it is turned "off" in config', async () => {
+  it('can run a task if its passed in via command line, even if it is turned "off" in config', async () => {
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -446,7 +474,7 @@ describe('cli-test', () => {
     expect(stripAnsi(result.stdout)).toContain('✔ file-count');
   });
 
-  it('should use the config at the config path if provided', async () => {
+  it('can use the config at the config path if provided', async () => {
     const anotherProject = new FakeProject('another-project');
 
     anotherProject.addCheckupConfig();
@@ -467,7 +495,7 @@ describe('cli-test', () => {
     anotherProject.dispose();
   });
 
-  it('should run the tasks on the globs passed into checkup, if provided, instead of entire app', async () => {
+  it('can run the tasks on the globs passed into checkup, if provided, instead of entire app', async () => {
     project.files = Object.assign(project.files, {
       foo: {
         'index.hbs': '{{!-- i should todo: write code --}}',
@@ -492,7 +520,7 @@ describe('cli-test', () => {
     expect(unfiltered).toContain('7 files analyzed');
   });
 
-  it('should use the excludePaths provided by the config', async () => {
+  it('can use the excludePaths provided by the config', async () => {
     project.addCheckupConfig({ excludePaths: ['**/*.hbs'] });
     project.writeSync();
 
@@ -509,7 +537,7 @@ describe('cli-test', () => {
     expect(unfiltered).toContain('6 files analyzed');
   });
 
-  it('should use the excludePaths provided by the command line', async () => {
+  it('can use the excludePaths provided by the command line', async () => {
     let result = await run([
       'run',
       '.',
@@ -546,7 +574,7 @@ describe('cli-test', () => {
     expect(hbsJsFiltered).toContain('5 files analyzed');
   });
 
-  it('should correctly report error when config contains invalid key', async () => {
+  it('can correctly report error when config contains invalid key', async () => {
     project.files['.checkuprc'] = stringify({
       plugins: [],
       task: {},
@@ -559,7 +587,7 @@ describe('cli-test', () => {
     expect(result.stderr).toContain(`data should have required property 'tasks'`);
   });
 
-  it('should correctly report error when config contains invalid value', async () => {
+  it('can correctly report error when config contains invalid value', async () => {
     project.files['.checkuprc'] = stringify({
       plugins: [],
       tasks: [],
@@ -572,7 +600,7 @@ describe('cli-test', () => {
     expect(result.stderr).toContain('data.tasks should be object');
   });
 
-  it('should correctly report error if task not found', async () => {
+  it('can correctly report error if task not found', async () => {
     project.addCheckupConfig();
     project.writeSync();
 
