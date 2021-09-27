@@ -95,7 +95,7 @@ export enum OutputFormat {
 
 export interface NormalizedLintResult {
   filePath: string;
-  lintRuleId: string | null;
+  lintRuleId: string;
   message: string;
   line: number;
   column: number;

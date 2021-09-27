@@ -29,6 +29,12 @@ export function toLintResults(results: LintResult[], cwd: string): NormalizedLin
           ('ruleId' in lintMessage && lintMessage.ruleId !== undefined) ||
           ('rule' in lintMessage && lintMessage.rule !== undefined)
       )
+      .filter((lintMessage: LintMessage) => {
+        return (
+          !lintMessage.message.includes('Parsing error') &&
+          !getLintRuleId(lintMessage).includes('global')
+        );
+      })
       .map((lintMessage: LintMessage) => {
         return toLintResult(lintMessage, cwd, lintingResults.filePath);
       });
