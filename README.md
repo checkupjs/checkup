@@ -28,21 +28,13 @@ Tasks can gather insights on things like
 
 ## Features
 
-- **Task Runner CLI** - A [CLI](packages/cli/README.md) that runs tasks that can be loaded via plugins.
-- **Code Generators** - A collection of generators allowing you to generate a checkup **config** file, **plugin** project structure, and **task** files and tests.
-- **Plugins** - Existing plugins for **JavaScript**, **Ember**, and **Ember Octane**.
+- **Task Runner CLI** - A [CLI](https://checkupjs.github.io/docs/introduction/cli) that runs tasks that can be loaded via plugins.
+- **Code Generators** - A [collection of generators](https://checkupjs.github.io/docs/introduction/cli#generate-a-config-file) allowing you to generate a checkup **config** file, **plugin** project structure, and **task** files and tests.
+- **Plugins** - Existing plugins for **JavaScript** and **Ember**.
 
-## Installation
+## Installation and Usage
 
-To install Checkup, run the following command:
-
-```bash
-$ npm install @checkup/cli
-```
-
-## Usage
-
-See the [CLI README](packages/cli/README.md) for information on usage.
+See the [documentation](https://checkupjs.github.io) for information on installation and usage.
 
 ## Contributing
 
