@@ -30,6 +30,39 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.0.0 (2021-09-27)
+
+#### :boom: Breaking Change
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `test-helpers`
+  * [#1108](https://github.com/checkupjs/checkup/pull/1108) Extracting rule metadata from addResult ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `cli`, `core`
+  * [#1109](https://github.com/checkupjs/checkup/pull/1109) Allows formatters to be called using a short form ([@scalvert](https://github.com/scalvert))
+* `cli`
+  * [#1107](https://github.com/checkupjs/checkup/pull/1107) Ensuring global execution defaults to local if present ([@scalvert](https://github.com/scalvert))
+  * [#1104](https://github.com/checkupjs/checkup/pull/1104) Add export to @checkup/cli for writeResultFile ([@carakessler](https://github.com/carakessler))
+* `checkup-formatter-pretty`, `checkup-plugin-ember`
+  * [#1106](https://github.com/checkupjs/checkup/pull/1106) Add no-results-found sub component ([@zhanwang626](https://github.com/zhanwang626))
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember`, `core`
+  * [#1110](https://github.com/checkupjs/checkup/pull/1110) Fixes errors in lint results causing incorrect data ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-javascript`, `cli`
+  * [#1100](https://github.com/checkupjs/checkup/pull/1100) Fixes actions generator for JavaScript ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-javascript`
+  * [#1101](https://github.com/checkupjs/checkup/pull/1101) [bugfix] Fixing URI in LOC task ([@carakessler](https://github.com/carakessler))
+
+#### :memo: Documentation
+* `core`
+  * [#1099](https://github.com/checkupjs/checkup/pull/1099) Fixes invalid syntax for type output ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- Zhan Wang ([@zhanwang626](https://github.com/zhanwang626))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v1.0.0-beta.14 (2021-09-20)
 
 #### :bug: Bug Fix
