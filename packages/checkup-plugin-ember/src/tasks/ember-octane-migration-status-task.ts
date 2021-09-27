@@ -218,7 +218,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
     let rawData = this.flattenLintResults(results);
 
     rawData.forEach((lintResult: NormalizedLintResult) => {
-      let ruleId = lintResult.lintRuleId ?? '';
+      let ruleId = lintResult.lintRuleId;
       let ruleMetadata = RULE_METADATA[ruleId];
 
       this.addResult(
