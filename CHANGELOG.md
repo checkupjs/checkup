@@ -1,3 +1,17 @@
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v1.0.1 (2021-09-28)
+
+#### :bug: Bug Fix
+* `core`
+  * [#1111](https://github.com/checkupjs/checkup/pull/1111) fix: Fixes lint result filtering to exclude exact match on global ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.0.0 (2021-09-27)
 
 #### :boom: Breaking Change
