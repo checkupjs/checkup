@@ -31,7 +31,7 @@ export function toLintResults(results: LintResult[], cwd: string): NormalizedLin
       )
       .filter((lintMessage: LintMessage) => {
         return (
-          !lintMessage.message.includes('Parsing error') && getLintRuleId(lintMessage) === 'global'
+          !lintMessage.message.includes('Parsing error') && getLintRuleId(lintMessage) !== 'global'
         );
       })
       .map((lintMessage: LintMessage) => {
