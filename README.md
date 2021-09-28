@@ -2,7 +2,9 @@
   <img src="docs/logo.png" alt="checkup" width="25%" />
 </p>
 
-<p style="font-style: italic; font-size: 20px; margin-bottom: 20px">Use static analysis and gain insights to help drive maintenance decisions</p>
+### Checkup is the easiest way to gather static analysis insights for your projects.
+
+<br>
 
 ![CI Build](https://github.com/checkupjs/checkup/workflows/CI%20Build/badge.svg)
 [![License](https://img.shields.io/npm/l/@checkup/cli.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
