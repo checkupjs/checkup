@@ -1,6 +1,6 @@
 {
   "name": "checkup-formatter-pretty",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Checkup formatter pretty library",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "repository": "https://github.com/checkupjs/checkup",
@@ -12,7 +12,7 @@
     "test": "jest --no-cache"
   },
   "dependencies": {
-    "@checkup/core": "1.0.1",
+    "@checkup/core": "1.0.2",
     "@types/react": "^17.0.15",
     "events": "^3.3.0",
     "fs-extra": "^10.0.0",

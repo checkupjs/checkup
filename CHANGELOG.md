@@ -2,6 +2,20 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v1.0.2 (2021-09-29)
+
+#### :bug: Bug Fix
+* `checkup-formatter-pretty`
+  * [#1112](https://github.com/checkupjs/checkup/pull/1112) Fixes Pretty formatter outputing empty results for all tasks ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.0.1 (2021-09-28)
 
 #### :bug: Bug Fix
