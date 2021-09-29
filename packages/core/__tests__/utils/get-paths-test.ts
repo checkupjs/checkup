@@ -1,6 +1,7 @@
 'use strict';
 
 import { CheckupProject } from '@checkup/test-helpers';
+import { FilePathArray } from '../../src/utils/file-path-array';
 import { getFilePaths } from '../../src/utils/get-paths';
 
 const APP_NAME = 'foo-app';
@@ -19,6 +20,9 @@ describe('getFilePaths', function () {
       },
       baz: {
         'index.js': '// TODO: write better code',
+        nested: {
+          'foo.js': 'console.log("foo!");',
+        },
       },
       someFolder: {
         anotherFolder: {
@@ -44,59 +48,44 @@ describe('getFilePaths', function () {
     it('returns all files except exclusions when no patterns are provided', function () {
       let filteredFiles = filterFilePathResults(getFilePaths(project.baseDir));
 
-      expect(filteredFiles).toMatchInlineSnapshot(`
-        FilePathArray [
-          "/bar/index.js",
-          "/baz/index.js",
-          "/foo/index.hbs",
-          "/index.js",
-          "/package.json",
-          "/someFolder/anotherFolder/goo.js",
-          "/someFolder/anotherFolder/shoe.js",
-        ]
-      `);
+      expect(filteredFiles).toEqual([
+        '/bar/index.js',
+        '/baz/index.js',
+        '/baz/nested/foo.js',
+        '/foo/index.hbs',
+        '/index.js',
+        '/package.json',
+        '/someFolder/anotherFolder/goo.js',
+        '/someFolder/anotherFolder/shoe.js',
+      ]);
 
       expect(filteredFiles).not.toContain('node_modules');
     });
 
     it('returns all files when no patterns are provided and a base path other than "." is provided', function () {
       let files = getFilePaths(`${project.baseDir}/baz`);
-      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathArray [
-          "/baz/index.js",
-        ]
-      `);
+      expect(filterFilePathResults(files)).toEqual(['/baz/index.js', '/baz/nested/foo.js']);
     });
 
     it('filterByGlob works', function () {
       let files = getFilePaths(project.baseDir);
 
-      expect(filterFilePathResults(files.filterByGlob('**/*.hbs'))).toMatchInlineSnapshot(`
-        Array [
-          "/foo/index.hbs",
-        ]
-      `);
+      expect(filterFilePathResults(files.filterByGlob('**/*.hbs'))).toEqual(['/foo/index.hbs']);
     });
 
     it('handles a file path being passed in', function () {
       let files = getFilePaths(project.baseDir, ['bar/index.js']);
 
-      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathArray [
-          "/bar/index.js",
-        ]
-      `);
+      expect(filterFilePathResults(files)).toEqual(['/bar/index.js']);
     });
 
     it('handles a folder being passed in', function () {
       let files = getFilePaths(project.baseDir, ['someFolder/']);
 
-      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathArray [
-          "/anotherFolder/goo.js",
-          "/anotherFolder/shoe.js",
-        ]
-      `);
+      expect(filterFilePathResults(files)).toEqual([
+        '/someFolder/anotherFolder/goo.js',
+        '/someFolder/anotherFolder/shoe.js',
+      ]);
     });
   });
 
@@ -104,50 +93,37 @@ describe('getFilePaths', function () {
     it('resolves a glob pattern', function () {
       let files = getFilePaths(project.baseDir, ['**/*.hbs']);
 
-      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathArray [
-          "/foo/index.hbs",
-        ]
-      `);
+      expect(filterFilePathResults(files)).toEqual(['/foo/index.hbs']);
     });
 
     it('handles a mixture of globs and folders being passed in', function () {
       let files = getFilePaths(project.baseDir, ['someFolder/', '**/*.hbs']);
 
-      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathArray [
-          "/anotherFolder/goo.js",
-          "/anotherFolder/shoe.js",
-          "/foo/index.hbs",
-        ]
-      `);
+      expect(filterFilePathResults(files)).toEqual([
+        '/someFolder/anotherFolder/goo.js',
+        '/someFolder/anotherFolder/shoe.js',
+        '/foo/index.hbs',
+      ]);
     });
 
     it('resolves a glob pattern when a base pattern other than "." is provided', function () {
       let files = getFilePaths(project.baseDir, ['*']);
 
-      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathArray [
-          "/index.js",
-          "/package.json",
-        ]
-      `);
+      expect(filterFilePathResults(files)).toEqual(['/index.js', '/package.json']);
     });
 
     it('respects a glob ignore option', function () {
       let files = getFilePaths(`${project.baseDir}/baz`, ['**']);
 
-      expect(filterFilePathResults(files)).toMatchInlineSnapshot(`
-        FilePathArray [
-          "/baz/index.js",
-        ]
-      `);
+      expect(filterFilePathResults(files)).toEqual(['/baz/index.js', '/baz/nested/foo.js']);
     });
   });
 });
 
 function filterFilePathResults(filePaths: string[]) {
-  return filePaths.map((filePath) => {
-    return filePath.split(APP_NAME)[1];
-  });
+  return new FilePathArray(
+    ...filePaths.map((filePath) => {
+      return filePath.split(APP_NAME)[1];
+    })
+  );
 }

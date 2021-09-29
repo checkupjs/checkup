@@ -93,9 +93,8 @@ function expandGlobsOrPaths(
     ...globsOrPaths.flatMap((globOrPath) => {
       let isLiteralPath =
         !isGlob(globOrPath) &&
-        existsSync(`${baseDir}/${globOrPath}`) &&
-        statSync(`${baseDir}/${globOrPath}`).isFile();
-      let isGlobString = isGlob(globOrPath);
+        existsSync(join(baseDir, globOrPath)) &&
+        statSync(join(baseDir, globOrPath)).isFile();
 
       if (isLiteralPath) {
         let isIgnored = micromatch.isMatch(globOrPath, excludePaths);
@@ -107,7 +106,7 @@ function expandGlobsOrPaths(
         return [];
       }
 
-      if (isGlobString) {
+      if (isGlob(globOrPath)) {
         let expandedGlob = walkSync(baseDir, {
           globs: [globOrPath],
           directories: false,
@@ -117,12 +116,13 @@ function expandGlobsOrPaths(
         return resolveFilePaths(baseDir, expandedGlob);
       }
 
-      let expandedFolder = walkSync(`${baseDir}/${globOrPath}`, {
+      let baseSubDir = join(baseDir, globOrPath);
+      let expandedFolder = walkSync(baseSubDir, {
         directories: false,
         ignore: excludePaths,
       }) as string[];
 
-      return resolveFilePaths(baseDir, expandedFolder);
+      return resolveFilePaths(baseSubDir, expandedFolder);
     })
   );
 }
@@ -136,8 +136,8 @@ function expandGlobsOrPaths(
  */
 function resolveFilePaths(baseDir: string, filePaths: string[]): FilePathArray {
   if (baseDir !== '.') {
-    let resolvedPaths = filePaths.map((pathName: string) => {
-      return join(resolve(baseDir), pathName);
+    let resolvedPaths = filePaths.map((filePath: string) => {
+      return join(resolve(baseDir), filePath);
     });
     return new FilePathArray(...resolvedPaths);
   }
