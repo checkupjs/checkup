@@ -13,7 +13,7 @@ const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser 
   return (
     <Box flexDirection={'column'} marginTop={1} marginBottom={1}>
       <MetaData metaData={metaData} />
-      <TaskResults taskResults={taskResults} rules={rules} />
+      <TaskResults taskResults={taskResults} rules={rules} logParser={logParser} />
       <RenderTiming timings={logParser.timings} />
       <CLIInfo metaData={metaData} />
     </Box>
@@ -48,7 +48,8 @@ const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
 const TaskResults: React.FC<{
   taskResults: Map<TaskName, RuleResults> | undefined;
   rules: ReportingDescriptor[];
-}> = ({ taskResults, rules }) => {
+  logParser: CheckupLogParser;
+}> = ({ taskResults, rules, logParser }) => {
   let r: { Component: React.FC<any>; taskResult: RuleResults }[] = [];
 
   if (taskResults!.size > 0) {
@@ -62,11 +63,13 @@ const TaskResults: React.FC<{
       });
     });
 
+    // For any executed task, we want to set its values to empty for output, to indicate the task ran with no results.
     for (let rule of rules) {
       if (
         !r.some((item) => {
           return rule.id === item.taskResult.rule.id;
-        })
+        }) &&
+        logParser.executedTasks.some((ruleDescriptor) => ruleDescriptor.id === rule.id)
       ) {
         let taskProps = rule.properties;
         let componentName = taskProps!.component.name;

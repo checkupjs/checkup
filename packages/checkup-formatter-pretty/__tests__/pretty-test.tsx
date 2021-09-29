@@ -279,7 +279,7 @@ config 257cda6f6d50eeef891fc6ec8d808bdb
 `);
   });
 
-  it('can render a messgae when there is no result found', () => {
+  it('can render a messgae when there is no result found for executed results', () => {
     const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-no-result-found.sarif'));
     const logParser = new CheckupLogParser(log);
 
@@ -306,27 +306,6 @@ Ember Types
   Routes 0
   Services 0
   Templates 0
-
-
-Template Lint Summary
-=====================
-  Errors 0
-  Warnings 0
-
-
-Number of eslint-disable Usages
-===============================
-  Disabled Rules 0
-
-
-Outdated Dependencies
-=====================
-No results found.
-
-
-Ember Dependencies
-==================
-No results found.
 
 
 checkup v1.0.0-beta.11
