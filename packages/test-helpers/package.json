@@ -1,6 +1,6 @@
 {
   "name": "@checkup/test-helpers",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Checkup's test helper library",
   "homepage": "https://github.com/checkupjs/checkup",
   "bugs": "https://github.com/checkupjs/checkup/issues",
@@ -18,7 +18,7 @@
     "test": "jest --passWithNoTests --no-cache"
   },
   "dependencies": {
-    "@checkup/core": "1.0.2",
+    "@checkup/core": "1.0.3",
     "fixturify-project": "^2.1.1",
     "handlebars": "^4.7.7",
     "json-stable-stringify": "^1.0.1",
