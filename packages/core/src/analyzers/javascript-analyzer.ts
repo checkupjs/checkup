@@ -1,6 +1,6 @@
-import { File, Node } from '@babel/types';
-import * as parser from '@babel/parser';
-import traverse, { TraverseOptions } from '@babel/traverse';
+import * as t from '@babel/types';
+import { parse, visit } from 'recast';
+import { Visitor } from 'ast-types';
 import AstAnalyzer from './ast-analyzer';
 
 /**
@@ -11,12 +11,14 @@ import AstAnalyzer from './ast-analyzer';
  * @extends {AstAnalyzer}
  */
 export default class JavaScriptAnalyzer extends AstAnalyzer<
-  File,
-  TraverseOptions<Node>,
-  typeof parser.parse,
-  typeof traverse
+  t.File,
+  Visitor<any>,
+  typeof parse,
+  typeof visit
 > {
   constructor(source: string) {
-    super(source, parser.parse, traverse);
+    super(source, parse, visit, {
+      parser: require('recast/parsers/babel'),
+    });
   }
 }
