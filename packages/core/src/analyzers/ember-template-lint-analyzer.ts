@@ -1,5 +1,7 @@
 import * as fs from 'fs';
 
+import { extname } from 'path';
+
 import {
   TemplateLintConfig,
   TemplateLintMessage,
@@ -42,6 +44,7 @@ export default class EmberTemplateLintAnalyzer {
       let messages: TemplateLintMessage[] = await this.engine.verify({
         source: template,
         filePath: path,
+        moduleId: this.removeExt(path), // this can be removed when https://github.com/ember-template-lint/ember-template-lint/issues/2128 is resolved
       });
 
       results.push({
@@ -60,5 +63,10 @@ export default class EmberTemplateLintAnalyzer {
       errorCount,
       results,
     };
+  }
+
+  // copied from ember-template-lint https://github.com/ember-template-lint/ember-template-lint/blob/master/bin/ember-template-lint.js
+  removeExt(filePath: string) {
+    return filePath.slice(0, -extname(filePath).length);
   }
 }
