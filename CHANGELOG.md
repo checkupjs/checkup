@@ -10,6 +10,22 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.1.0 (2021-10-08)
+
+#### :rocket: Enhancement
+* `checkup-formatter-pretty`, `checkup-plugin-ember`
+  * [#1115](https://github.com/checkupjs/checkup/pull/1115) Adding support for declarative sorting in Migration component ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `core`
+  * [#1116](https://github.com/checkupjs/checkup/pull/1116) Fixing JavaScriptAnalyzer to handle esm. Adding tests ([@scalvert](https://github.com/scalvert))
+  * [#1114](https://github.com/checkupjs/checkup/pull/1114) Fixing bug in ember-template-lint-analyzer ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v1.0.3 (2021-09-30)
 
 #### :bug: Bug Fix

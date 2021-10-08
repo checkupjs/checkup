@@ -1,6 +1,6 @@
 {
   "name": "@checkup/plugin",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Checkup plugin utility library",
   "homepage": "https://github.com/checkupjs/checkup",
   "bugs": "https://github.com/checkupjs/checkup/issues",
@@ -24,7 +24,7 @@
   "dependencies": {
     "@babel/traverse": "^7.13.17",
     "@babel/types": "7.13.17",
-    "@checkup/core": "^1.0.3",
+    "@checkup/core": "^1.1.0",
     "fs-extra": "^9.1.0",
     "recast": "^0.20.5"
   },
