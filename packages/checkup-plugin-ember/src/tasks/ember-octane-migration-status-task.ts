@@ -181,8 +181,14 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
       properties: {
         component: {
           name: 'migration',
+          options: {
+            sortBy: 'value',
+            sortDirection: 'desc',
+          },
         },
-        features: Object.values(RULE_METADATA).map((ruleMetadata) => ruleMetadata.feature),
+        features: [
+          ...new Set(Object.values(RULE_METADATA).map((ruleMetadata) => ruleMetadata.feature)),
+        ],
       },
     });
 
