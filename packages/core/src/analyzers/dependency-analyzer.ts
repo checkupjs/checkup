@@ -1,4 +1,5 @@
 import * as npmCheck from 'npm-check';
+import { Visitor } from 'ast-types';
 import { getPackageJsonSource } from '../utils/get-package-json';
 import { Dependency, DependencyInfo } from '../types/dependency';
 import JsonAnalyzer from './json-analyzer';
@@ -70,10 +71,11 @@ export default class DependencyAnalyzer {
         this.dependencies = new Set();
       }
 
-      get visitors() {
+      get visitors(): Visitor<any> {
         let self = this;
+
         return {
-          ObjectProperty(path: any) {
+          visitObjectProperty: function (path: any) {
             let node: any = path.node;
             if (node.key.value === 'dependencies' && node.value.properties) {
               for (let property of node.value.properties) {
@@ -101,6 +103,8 @@ export default class DependencyAnalyzer {
                 });
               }
             }
+
+            this.traverse(path);
           },
         };
       }
