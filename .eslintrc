@@ -121,12 +121,18 @@
       }
     },
     {
-      "files": ["packages/**/__tests__/**/*.ts", "packages/test-helpers/**/*.ts"],
+      "files": [
+        "packages/**/__tests__/**/*.ts",
+        "packages/**/__tests__/**/*.tsx",
+        "packages/test-helpers/**/*.ts"
+      ],
       "env": {
         "jest": true
       },
       "rules": {
-        "node/no-extraneous-import": "off"
+        "node/no-extraneous-import": "off",
+        "node/no-unpublished-import": "off",
+        "node/no-unpublished-require": "off"
       }
     }
   ],
