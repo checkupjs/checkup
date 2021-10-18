@@ -91,10 +91,9 @@ function expandGlobsOrPaths(
 ): FilePathArray {
   return new FilePathArray(
     ...globsOrPaths.flatMap((globOrPath) => {
-      let isLiteralPath =
-        !isGlob(globOrPath) &&
-        existsSync(join(baseDir, globOrPath)) &&
-        statSync(join(baseDir, globOrPath)).isFile();
+      let isPathGlob = isGlob(globOrPath);
+      let pathExists = existsSync(join(baseDir, globOrPath));
+      let isLiteralPath = !isPathGlob && pathExists && statSync(join(baseDir, globOrPath)).isFile();
 
       if (isLiteralPath) {
         let isIgnored = micromatch.isMatch(globOrPath, excludePaths);
@@ -106,7 +105,7 @@ function expandGlobsOrPaths(
         return [];
       }
 
-      if (isGlob(globOrPath)) {
+      if (isPathGlob) {
         let expandedGlob = walkSync(baseDir, {
           globs: [globOrPath],
           directories: false,
@@ -116,13 +115,17 @@ function expandGlobsOrPaths(
         return resolveFilePaths(baseDir, expandedGlob);
       }
 
-      let baseSubDir = join(baseDir, globOrPath);
-      let expandedFolder = walkSync(baseSubDir, {
-        directories: false,
-        ignore: excludePaths,
-      }) as string[];
+      if (pathExists) {
+        let baseSubDir = join(baseDir, globOrPath);
+        let expandedFolder = walkSync(baseSubDir, {
+          directories: false,
+          ignore: excludePaths,
+        }) as string[];
 
-      return resolveFilePaths(baseSubDir, expandedFolder);
+        return resolveFilePaths(baseSubDir, expandedFolder);
+      }
+
+      return [];
     })
   );
 }
