@@ -30,7 +30,7 @@ describe('cli-test', () => {
 
   afterEach(function () {
     process.chdir(ROOT);
-    // project.dispose();
+    project.dispose();
   });
 
   it('can output top level help', async () => {
@@ -493,6 +493,19 @@ describe('cli-test', () => {
       'Checkup report generated for checkup-app v0.0.0 (3 files analyzed)'
     );
     anotherProject.dispose();
+  });
+
+  it('fails gracefully if paths/folders/globs being passed into checkup dont exist', async () => {
+    let result = await run(['run', 'index.js', 'bar/index.hbs', 'foo/**', 'baz/bing']);
+    let filtered = result.stdout;
+
+    result = await run(['run', '.']);
+
+    let unfiltered = result.stdout;
+
+    // the only file that exists in the options passed in is index.js
+    expect(filtered).toContain('1 files analyzed');
+    expect(unfiltered).toContain('4 files analyzed');
   });
 
   it('can run the tasks on the globs passed into checkup, if provided, instead of entire app', async () => {
