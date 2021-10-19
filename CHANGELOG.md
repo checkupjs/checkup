@@ -10,6 +10,16 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.1.1 (2021-10-19)
+
+#### :bug: Bug Fix
+* `cli`, `core`
+  * [#1122](https://github.com/checkupjs/checkup/pull/1122) [bugfix] Add cases to getPaths to prevent uncaught exception ([@carakessler](https://github.com/carakessler))
+
+#### Committers: 1
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v1.1.0 (2021-10-08)
 
 #### :rocket: Enhancement
