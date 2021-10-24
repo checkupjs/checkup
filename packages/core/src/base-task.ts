@@ -109,8 +109,9 @@ export default abstract class BaseTask {
    * @param messageText A non-empty string containing a plain text message
    * @param kind One of a fixed set of strings that specify the nature of the result
    * @param level One of a fixed set of strings that specify the severity level of the result
-   * @param location Specifies a location where the result occurred
-   * @param properties A property bag named properties, which stores additional values on the result
+   * @param options Additional options to pass to the result
+   * @param options.location Specifies a location where the result occurred
+   * @param options.properties A property bag named properties, which stores additional values on the result
    */
   addResult(
     messageText: string,
@@ -181,6 +182,12 @@ export default abstract class BaseTask {
     return toLintResults(results, this.context.options.cwd);
   }
 
+  /**
+   * Adds rule metadata to the SARIF log.
+   *
+   * @param additionalRuleProps - Additional properties to be passed to the SARIF rule metadata.
+   * @returns The task name, which represents the rule ID in the SARIF log.
+   */
   public addRule(additionalRuleProps?: TaskRule) {
     let taskRule;
     let ruleProps = {
@@ -201,12 +208,17 @@ export default abstract class BaseTask {
     return taskRule.id;
   }
 
+  /**
+   * Adds additional properties to the rule metadata's properties in the SARIF log.
+   *
+   * @param properties - A {PropertyBag} to be merged with the rule metadata's properties.
+   */
   public addRuleProperties(properties: PropertyBag) {
     let rule = this._logBuilder.getRule(this.taskName);
 
     if (!rule) {
       throw new Error(
-        'You must call `addRule` in your Task implemenation prior to calling `addResult`'
+        'You must call `addRule` in your Task implemenation prior to calling `addRuleProperties`'
       );
     }
 
