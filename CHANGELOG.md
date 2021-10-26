@@ -10,6 +10,21 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v1.2.0 (2021-10-26)
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember`, `checkup-plugin-javascript`
+  * [#1124](https://github.com/checkupjs/checkup/pull/1124) Adding ruleId into eslint and ember-template-lint summary tasks ([@scalvert](https://github.com/scalvert))
+* `checkup-formatter-pretty`, `checkup-plugin-ember`, `core`
+  * [#1123](https://github.com/checkupjs/checkup/pull/1123) Adding migration class to provide more API-based guidance for adding migrations ([@scalvert](https://github.com/scalvert))
+
+#### :memo: Documentation
+* [#1125](https://github.com/checkupjs/checkup/pull/1125) Adding versioning policy ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.1.1 (2021-10-19)
 
 #### :bug: Bug Fix
