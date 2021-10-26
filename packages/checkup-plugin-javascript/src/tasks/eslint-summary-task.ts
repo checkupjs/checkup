@@ -81,6 +81,9 @@ export default class EslintSummaryTask extends BaseTask implements Task {
           endColumn: result.endColumn,
           endLine: result.endLine,
         },
+        properties: {
+          ruleId: result.lintRuleId,
+        },
       });
     });
 

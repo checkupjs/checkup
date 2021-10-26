@@ -70,6 +70,9 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
           endLine: result.endLine,
           endColumn: result.endColumn,
         },
+        properties: {
+          ruleId: result.lintRuleId,
+        },
       });
     });
 
