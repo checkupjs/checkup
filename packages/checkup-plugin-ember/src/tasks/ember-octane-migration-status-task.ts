@@ -74,23 +74,13 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
   constructor(pluginName: string, context: TaskContext) {
     super('Octane', pluginName, context);
 
-    this.addRule({
-      properties: {
-        component: {
-          name: 'migration',
-          options: {
-            sortBy: 'value',
-            sortDirection: 'desc',
-          },
-        },
-      },
-    });
-
     this.eslintAnalyzer = new ESLintAnalyzer(OCTANE_ES_LINT_CONFIG, this.config);
     this.emberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(
       OCTANE_TEMPLATE_LINT_CONFIG,
       this.config
     );
+
+    this.addRuleComponentMetadata();
 
     this.addFeature('ember/no-classic-classes', {
       featureName: 'Native Classes',

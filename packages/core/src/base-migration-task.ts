@@ -27,16 +27,29 @@ export default abstract class BaseMigrationTask extends BaseTask {
     this.features = new Map<FeatureId, Feature>();
   }
 
+  addRuleComponentMetadata() {
+    this.addRule({
+      properties: {
+        component: {
+          name: 'migration',
+          options: {
+            sortBy: 'value',
+            sortDirection: 'desc',
+          },
+        },
+      },
+    });
+  }
   /**
    *
-   * @param id - The ID of the feature, such as the lint rule ID corresponding to the feature
+   * @param featureId - The ID of the feature, such as the lint rule ID corresponding to the feature
    * @param feature - An object representing the feature's details
    * @param feature.feature - The name of the feature
    * @param feature.message - The user-friendly message
    * @param feature.helpUri - A URL to provide help documentation about the feature
    */
-  addFeature(id: FeatureId, feature: Feature) {
-    this.features.set(id, feature);
+  addFeature(featureId: FeatureId, feature: Feature) {
+    this.features.set(featureId, feature);
 
     this.addRuleProperties({
       features: this.featureNames,
