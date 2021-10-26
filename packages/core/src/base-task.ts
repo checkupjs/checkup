@@ -39,6 +39,12 @@ export default abstract class BaseTask {
   _enabledViaConfig!: boolean;
   _logBuilder: CheckupLogBuilder;
 
+  /**
+   * Creates a new instance of a Task.
+   *
+   * @param pluginName The name of the plugin this task is included in.
+   * @param context The runtime task context passed to the Task.
+   */
   constructor(pluginName: string, context: TaskContext) {
     this.context = context;
     this.results = [];

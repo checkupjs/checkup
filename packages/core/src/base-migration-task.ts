@@ -13,6 +13,12 @@ export type Feature = {
 export default abstract class BaseMigrationTask extends BaseTask {
   features: Map<FeatureId, Feature>;
 
+  /**
+   * A list of feature names that represent this migration.
+   *
+   * @readonly
+   * @memberof BaseMigrationTask
+   */
   get featureNames() {
     return [
       ...new Set(
@@ -21,12 +27,22 @@ export default abstract class BaseMigrationTask extends BaseTask {
     ];
   }
 
+  /**
+   * Creates a new instance of a migration Task.
+   *
+   * @param migrationName The short name of the migration. Used to format result messages.
+   * @param pluginName The name of the plugin this task is included in.
+   * @param context The runtime task context passed to the Task.
+   */
   constructor(public migrationName: string, pluginName: string, context: TaskContext) {
     super(pluginName, context);
 
     this.features = new Map<FeatureId, Feature>();
   }
 
+  /**
+   * Adds componennt data to the rule metadata.
+   */
   addRuleComponentMetadata() {
     this.addRule({
       properties: {
@@ -41,6 +57,7 @@ export default abstract class BaseMigrationTask extends BaseTask {
     });
   }
   /**
+   * Adds a feature definition to the Checkup rule metadata. Used for correctly associating features and results.
    *
    * @param featureId - The ID of the feature, such as the lint rule ID corresponding to the feature
    * @param feature - An object representing the feature's details
@@ -57,6 +74,8 @@ export default abstract class BaseMigrationTask extends BaseTask {
   }
 
   /**
+   * Adds a feature-specific result object to the Checkup output. The result includes the feature
+   * metadata that this result is associated with in the migration.
    *
    * @param feature - An object representing the feature's details
    * @param feature.feature - The name of the feature
