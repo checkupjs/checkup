@@ -1,5 +1,5 @@
 import {
-  BaseTask,
+  BaseMigrationTask,
   ESLintOptions,
   ESLintReport,
   LintAnalyzer,
@@ -60,110 +60,7 @@ const OCTANE_TEMPLATE_LINT_CONFIG: TemplateLintConfig = {
   },
 };
 
-const RULE_METADATA: Record<
-  string,
-  {
-    feature: string;
-    message: string;
-    helpUri: string;
-  }
-> = {
-  'ember/no-classic-classes': {
-    feature: 'Native Classes',
-    message: 'Use native JS classes to extend the built-in classes provided by Ember',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
-  },
-  'ember/classic-decorator-no-classic-methods': {
-    feature: 'Native Classes',
-    message: 'Do not use classic API methods within a class',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
-  },
-  'ember/classic-decorator-hooks': {
-    feature: 'Native Classes',
-    message: 'Use constructor over init',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-lifecycle__constructors',
-  },
-  'ember/no-actions-hash': {
-    feature: 'Native Classes',
-    message: 'Do not use the actions hash and {{action}} modifier and helper',
-    helpUri: 'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions',
-  },
-  'ember/no-component-lifecycle-hooks': {
-    feature: 'Glimmer Components',
-    message: 'Do not use "classic" Ember component lifecycle hooks.',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-lifecycle',
-  },
-  'ember/no-get': {
-    feature: 'Native Classes',
-    message: 'Use native ES5 getters instead of `get` / `getProperties` on Ember objects',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set',
-  },
-  'ember/no-get-with-default': {
-    feature: 'Native Classes',
-    message: 'Use native ES5 getters with || or ternary operators',
-    helpUri:
-      'https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-get-with-default.md',
-  },
-  'ember/no-jquery': {
-    feature: 'Glimmer Components',
-    message: 'Use native DOM APIs over jQuery',
-    helpUri: 'https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-jquery.md',
-  },
-  'ember/no-mixins': {
-    feature: 'Native Classes',
-    message: 'Do not use mixins, as they no longer work with native classes',
-    helpUri: 'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__mixins',
-  },
-  'ember/require-tagless-components': {
-    feature: 'Tagless Components',
-    message: 'Use tagless components to avoid unnecessary outer element wrapping',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name',
-  },
-  'ember/no-classic-components': {
-    feature: 'Glimmer Components',
-    message: 'Use Glimmer components over classic Ember Components',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
-  },
-  'ember/no-computed-properties-in-native-classes': {
-    feature: 'Tracked Properties',
-    message: 'Use tracked properties over computed properties',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__tracked-vs-cp',
-  },
-  'no-curly-component-invocation': {
-    feature: 'Angle Bracket Syntax',
-    message:
-      'Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets',
-  },
-  'no-args-paths': {
-    feature: 'Named Arguments',
-    message: 'Use arguments prefixed with the @ symbol to pass arguments to components',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-named',
-  },
-  'no-implicit-this': {
-    feature: 'Own Properties',
-    message: 'Use `this` when referring to properties owned by the component',
-    helpUri:
-      'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this',
-  },
-  'no-action': {
-    feature: 'Modifiers',
-    message: 'Do not use `action`. Instead, use the `on` modifier and `fn` helper',
-    helpUri: 'https://guides.emberjs.com/release/components/template-lifecycle-dom-and-modifiers',
-  },
-};
-
-export default class EmberOctaneMigrationStatusTask extends BaseTask implements Task {
+export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask implements Task {
   taskName = 'ember-octane-migration-status';
   taskDisplayName = 'Ember Octane Migration Status';
   description =
@@ -175,28 +72,126 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
   private emberTemplateLintAnalyzer: TemplateLinter;
 
   constructor(pluginName: string, context: TaskContext) {
-    super(pluginName, context);
-
-    this.addRule({
-      properties: {
-        component: {
-          name: 'migration',
-          options: {
-            sortBy: 'value',
-            sortDirection: 'desc',
-          },
-        },
-        features: [
-          ...new Set(Object.values(RULE_METADATA).map((ruleMetadata) => ruleMetadata.feature)),
-        ],
-      },
-    });
+    super('Octane', pluginName, context);
 
     this.eslintAnalyzer = new ESLintAnalyzer(OCTANE_ES_LINT_CONFIG, this.config);
     this.emberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(
       OCTANE_TEMPLATE_LINT_CONFIG,
       this.config
     );
+
+    this.addRuleComponentMetadata();
+
+    this.addFeature('ember/no-classic-classes', {
+      featureName: 'Native Classes',
+      message: 'Use native JS classes to extend the built-in classes provided by Ember',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
+    });
+
+    this.addFeature('ember/classic-decorator-no-classic-methods', {
+      featureName: 'Native Classes',
+      message: 'Do not use classic API methods within a class',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
+    });
+
+    this.addFeature('ember/classic-decorator-hooks', {
+      featureName: 'Native Classes',
+      message: 'Use constructor over init',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-lifecycle__constructors',
+    });
+
+    this.addFeature('ember/no-actions-hash', {
+      featureName: 'Native Classes',
+      message: 'Do not use the actions hash and {{action}} modifier and helper',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions',
+    });
+
+    this.addFeature('ember/no-component-lifecycle-hooks', {
+      featureName: 'Glimmer Components',
+      message: 'Do not use "classic" Ember component lifecycle hooks.',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-lifecycle',
+    });
+
+    this.addFeature('ember/no-get', {
+      featureName: 'Native Classes',
+      message: 'Use native ES5 getters instead of `get` / `getProperties` on Ember objects',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set',
+    });
+
+    this.addFeature('ember/no-get-with-default', {
+      featureName: 'Native Classes',
+      message: 'Use native ES5 getters with || or ternary operators',
+      helpUri:
+        'https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-get-with-default.md',
+    });
+
+    this.addFeature('ember/no-jquery', {
+      featureName: 'Glimmer Components',
+      message: 'Use native DOM APIs over jQuery',
+      helpUri:
+        'https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-jquery.md',
+    });
+
+    this.addFeature('ember/no-mixins', {
+      featureName: 'Native Classes',
+      message: 'Do not use mixins, as they no longer work with native classes',
+      helpUri: 'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__mixins',
+    });
+
+    this.addFeature('ember/require-tagless-components', {
+      featureName: 'Tagless Components',
+      message: 'Use tagless components to avoid unnecessary outer element wrapping',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name',
+    });
+
+    this.addFeature('ember/no-classic-components', {
+      featureName: 'Glimmer Components',
+      message: 'Use Glimmer components over classic Ember Components',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
+    });
+
+    this.addFeature('ember/no-computed-properties-in-native-classes', {
+      featureName: 'Tracked Properties',
+      message: 'Use tracked properties over computed properties',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__tracked-vs-cp',
+    });
+
+    this.addFeature('no-curly-component-invocation', {
+      featureName: 'Angle Bracket Syntax',
+      message:
+        'Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets',
+    });
+
+    this.addFeature('no-args-paths', {
+      featureName: 'Named Arguments',
+      message: 'Use arguments prefixed with the @ symbol to pass arguments to components',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-named',
+    });
+
+    this.addFeature('no-implicit-this', {
+      featureName: 'Own Properties',
+      message: 'Use `this` when referring to properties owned by the component',
+      helpUri:
+        'https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this',
+    });
+
+    this.addFeature('no-action', {
+      featureName: 'Modifiers',
+      message: 'Do not use `action`. Instead, use the `on` modifier and `fn` helper',
+      helpUri: 'https://guides.emberjs.com/release/components/template-lifecycle-dom-and-modifiers',
+    });
   }
 
   async run(): Promise<Result[]> {
@@ -225,13 +220,10 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
 
     rawData.forEach((lintResult: NormalizedLintResult) => {
       let ruleId = lintResult.lintRuleId;
-      let ruleMetadata = RULE_METADATA[ruleId];
+      let feature = this.features.get(ruleId);
 
-      this.addResult(
-        `Octane | ${ruleMetadata.feature} : ${ruleMetadata.message}. More info: ${ruleMetadata.helpUri}`,
-        'review',
-        'warning',
-        {
+      if (feature) {
+        this.addFeatureResult(feature, {
           location: {
             uri: lintResult.filePath,
             startColumn: lintResult.column,
@@ -239,15 +231,8 @@ export default class EmberOctaneMigrationStatusTask extends BaseTask implements 
             endColumn: lintResult.endColumn,
             endLine: lintResult.endLine,
           },
-          properties: {
-            migration: {
-              name: 'ember-octane-migration',
-              displayName: 'Ember Octane Migration',
-              feature: ruleMetadata.feature,
-            },
-          },
-        }
-      );
+        });
+      }
     });
 
     return this.results;

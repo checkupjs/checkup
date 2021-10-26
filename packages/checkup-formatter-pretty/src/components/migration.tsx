@@ -38,7 +38,8 @@ function buildMigrationData(taskResult: RuleResults) {
   const options = getOptions<MigrationOptions>(rule);
 
   let aggregatedFeatureResults = results.reduce((features: Map<string, number>, result: Result) => {
-    let feature = result.properties?.migration.feature;
+    // Tasks inheriting from BaseMigrationTask use featureName for their migration property key. Generic BaseTasks do not.
+    let feature = result.properties?.migration.featureName ?? result.properties?.migration.feature;
 
     features.set(feature, (features.get(feature) ?? 0) + 1);
 
