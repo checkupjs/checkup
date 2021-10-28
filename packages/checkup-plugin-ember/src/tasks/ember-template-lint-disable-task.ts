@@ -49,6 +49,9 @@ export default class EmberTemplateLintDisableTask extends BaseTask implements Ta
           startColumn: disable.column,
           startLine: disable.line,
         },
+        properties: {
+          ruleId: disable.lintRuleId,
+        },
       });
     });
 
