@@ -14,7 +14,7 @@ export const Validation: React.FC<{ taskResult: RuleResults }> = ({ taskResult }
       <Text>Validation {isValid ? 'passed' : 'failed'}</Text>
       <Box marginLeft={2} flexDirection="column">
         {[...taskResult.results].map((result) => {
-          return <ValidationStepItem result={result} />;
+          return <ValidationStepItem key={result.message.text} result={result} />;
         })}
       </Box>
     </>
@@ -25,7 +25,7 @@ const ValidationStepItem: React.FC<{ result: Result }> = ({ result }) => {
   let { message, kind } = result;
 
   return (
-    <Text key={message.text}>
+    <Text>
       {kind === 'pass' ? success : error} {message.text}
     </Text>
   );

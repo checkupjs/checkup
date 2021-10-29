@@ -5,7 +5,7 @@ import { List } from '../../src/components/list';
 
 const stripAnsi = require('strip-ansi');
 
-describe('Test list component', () => {
+describe('list component', () => {
   it('can render task result as expected via list component', async () => {
     const taskResult: RuleResults = {
       rule: {

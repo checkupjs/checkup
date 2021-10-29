@@ -7,8 +7,8 @@ import { Bar } from '../../src/components/bar';
 
 const stripAnsi = require('strip-ansi');
 
-describe('Test table component', () => {
-  it('can render task result as expected via table component', async () => {
+describe('bar component', () => {
+  it('can render task result as expected via bar component', async () => {
     const log = readJsonSync(resolve(__dirname, '../__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
     const taskResults = logParser.resultsByRule;
