@@ -1,5 +1,6 @@
 export { default as BaseTask } from './base-task';
 export { default as BaseMigrationTask } from './base-migration-task';
+export { default as BaseValidationTask } from './base-validation-task';
 
 export { getRegisteredActions, registerActions } from './actions/registered-actions';
 export { default as ActionsEvaluator } from './actions/actions-evaluator';

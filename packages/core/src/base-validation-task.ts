@@ -1,13 +1,13 @@
 import BaseTask from './base-task';
-import { TaskContext, TaskResultLocation, TaskResultOptions } from './types/tasks';
+import { TaskContext, TaskResultOptions } from './types/tasks';
 
 type ValidationResult = {
   isValid: boolean;
-  location?: TaskResultLocation;
+  options?: TaskResultOptions;
 };
 
 export default abstract class BaseValidationTask extends BaseTask {
-  private validationSteps: Map<string, () => ValidationResult>;
+  validationSteps: Map<string, () => ValidationResult>;
 
   /**
    * Creates a new instance of a validation Task.
@@ -49,7 +49,7 @@ export default abstract class BaseValidationTask extends BaseTask {
    *
    * @returns A map of messages and ValidationResult objects
    */
-  protected validate() {
+  validate() {
     let results = new Map<string, ValidationResult>();
 
     for (let [messageText, validate] of this.validationSteps) {
