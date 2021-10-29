@@ -40,7 +40,7 @@ export default abstract class BaseTask {
   _logBuilder: CheckupLogBuilder;
 
   /**
-   * Creates a new instance of a Task.
+   * Creates a new instance of a BaseTask.
    *
    * @param pluginName The name of the plugin this task is included in.
    * @param context The runtime task context passed to the Task.

@@ -10,8 +10,15 @@ export type Feature = {
   helpUri: string;
 };
 
+/**
+ * Creates a new instance of a BaseMigrationTask.
+ *
+ * @param migrationName The short name of the migration. Used to format result messages.
+ * @param pluginName The name of the plugin this task is included in.
+ * @param context The runtime task context passed to the Task.
+ */
 export default abstract class BaseMigrationTask extends BaseTask {
-  features: Map<FeatureId, Feature>;
+  protected features: Map<FeatureId, Feature>;
 
   /**
    * A list of feature names that represent this migration.
@@ -43,7 +50,7 @@ export default abstract class BaseMigrationTask extends BaseTask {
   /**
    * Adds componennt data to the rule metadata.
    */
-  addRuleComponentMetadata() {
+  protected addRuleComponentMetadata() {
     this.addRule({
       properties: {
         component: {
@@ -56,6 +63,7 @@ export default abstract class BaseMigrationTask extends BaseTask {
       },
     });
   }
+
   /**
    * Adds a feature definition to the Checkup rule metadata. Used for correctly associating features and results.
    *
@@ -65,7 +73,7 @@ export default abstract class BaseMigrationTask extends BaseTask {
    * @param feature.message - The user-friendly message
    * @param feature.helpUri - A URL to provide help documentation about the feature
    */
-  addFeature(featureId: FeatureId, feature: Feature) {
+  protected addFeature(featureId: FeatureId, feature: Feature) {
     this.features.set(featureId, feature);
 
     this.addRuleProperties({
@@ -85,7 +93,7 @@ export default abstract class BaseMigrationTask extends BaseTask {
    * @param options.location Specifies a location where the result occurred
    * @param options.properties A property bag named properties, which stores additional values on the result
    */
-  addFeatureResult(feature: Feature, options?: TaskResultOptions) {
+  protected addFeatureResult(feature: Feature, options?: TaskResultOptions) {
     this.addResult(
       `${this.migrationName} | ${feature.featureName} : ${feature.message}. More info: ${feature.helpUri}`,
       'review',
