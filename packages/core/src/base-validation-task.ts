@@ -1,7 +1,7 @@
 import BaseTask from './base-task';
 import { TaskContext, TaskResultOptions } from './types/tasks';
 
-type ValidationResult = {
+export type ValidationResult = {
   isValid: boolean;
   options?: TaskResultOptions;
 };
