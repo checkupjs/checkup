@@ -169,7 +169,7 @@ function getTaskResult(componentOptions = {}) {
   return merge({}, TASK_RESULT, componentOptions);
 }
 
-describe('Test Migration component', () => {
+describe('Migration component', () => {
   it('can render task result with no sort options', async () => {
     const { stdout } = render(<Migration taskResult={getTaskResult()} />);
 

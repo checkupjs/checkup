@@ -5,7 +5,7 @@ import { Table } from '../../src/components/table';
 
 const stripAnsi = require('strip-ansi');
 
-describe('Test table component', () => {
+describe('table component', () => {
   it('can render task result as expected via table component', async () => {
     const taskResult: RuleResults = {
       rule: {

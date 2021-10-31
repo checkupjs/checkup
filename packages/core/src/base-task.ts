@@ -1,6 +1,6 @@
 import * as debug from 'debug';
 
-import { Location, PropertyBag, Result } from 'sarif';
+import { Location, PropertyBag, ReportingDescriptor, Result } from 'sarif';
 import { SetRequired } from 'type-fest';
 
 import {
@@ -28,6 +28,7 @@ export default abstract class BaseTask {
   abstract taskDisplayName: string;
   abstract description: string;
   abstract category: string;
+  rule?: ReportingDescriptor;
   group?: string;
   context: TaskContext;
   debug: debug.Debugger;
@@ -40,7 +41,7 @@ export default abstract class BaseTask {
   _logBuilder: CheckupLogBuilder;
 
   /**
-   * Creates a new instance of a Task.
+   * Creates a new instance of a BaseTask.
    *
    * @param pluginName The name of the plugin this task is included in.
    * @param context The runtime task context passed to the Task.
@@ -55,7 +56,17 @@ export default abstract class BaseTask {
   }
 
   /**
-   * An object containing optional configuration for this Task. Tasks can be
+   * Gets a reference to the SARIF log.
+   *
+   * @readonly
+   * @memberof BaseTask
+   */
+  get log() {
+    return this._logBuilder.log;
+  }
+
+  /**
+   * Gets an object containing optional configuration for this Task. Tasks can be
    * configured in the .checkuprc file.
    */
   get config() {
@@ -207,7 +218,7 @@ export default abstract class BaseTask {
       },
     };
 
-    taskRule = merge({}, ruleProps, additionalRuleProps);
+    this.rule = taskRule = merge({}, ruleProps, additionalRuleProps);
 
     this._logBuilder.addRule(taskRule);
 
