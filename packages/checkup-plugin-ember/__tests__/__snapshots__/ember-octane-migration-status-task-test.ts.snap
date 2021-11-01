@@ -462,7 +462,7 @@ Array [
             "uri": "addon/templates/application.hbs",
           },
           "region": Object {
-            "endColumn": 10,
+            "endColumn": 38,
             "endLine": 2,
             "startColumn": 10,
             "startLine": 2,
@@ -492,7 +492,7 @@ Array [
             "uri": "addon/templates/application.hbs",
           },
           "region": Object {
-            "endColumn": 10,
+            "endColumn": 44,
             "endLine": 3,
             "startColumn": 10,
             "startLine": 3,
@@ -522,7 +522,7 @@ Array [
             "uri": "addon/templates/application.hbs",
           },
           "region": Object {
-            "endColumn": 33,
+            "endColumn": 36,
             "endLine": 2,
             "startColumn": 33,
             "startLine": 2,
@@ -552,7 +552,7 @@ Array [
             "uri": "addon/templates/application.hbs",
           },
           "region": Object {
-            "endColumn": 39,
+            "endColumn": 42,
             "endLine": 3,
             "startColumn": 39,
             "startLine": 3,
@@ -582,7 +582,7 @@ Array [
             "uri": "addon/templates/my-component.hbs",
           },
           "region": Object {
-            "endColumn": 18,
+            "endColumn": 37,
             "endLine": 2,
             "startColumn": 18,
             "startLine": 2,
@@ -612,7 +612,7 @@ Array [
             "uri": "addon/templates/my-component.hbs",
           },
           "region": Object {
-            "endColumn": 10,
+            "endColumn": 22,
             "endLine": 3,
             "startColumn": 10,
             "startLine": 3,
@@ -642,7 +642,7 @@ Array [
             "uri": "addon/templates/my-component.hbs",
           },
           "region": Object {
-            "endColumn": 12,
+            "endColumn": 20,
             "endLine": 3,
             "startColumn": 12,
             "startLine": 3,
@@ -672,7 +672,7 @@ Array [
             "uri": "addon/templates/other-component.hbs",
           },
           "region": Object {
-            "endColumn": 10,
+            "endColumn": 22,
             "endLine": 2,
             "startColumn": 10,
             "startLine": 2,
@@ -702,7 +702,7 @@ Array [
             "uri": "addon/templates/other-component.hbs",
           },
           "region": Object {
-            "endColumn": 12,
+            "endColumn": 20,
             "endLine": 2,
             "startColumn": 12,
             "startLine": 2,
@@ -1187,7 +1187,7 @@ Array [
             "uri": "app/templates/application.hbs",
           },
           "region": Object {
-            "endColumn": 10,
+            "endColumn": 38,
             "endLine": 2,
             "startColumn": 10,
             "startLine": 2,
@@ -1217,7 +1217,7 @@ Array [
             "uri": "app/templates/application.hbs",
           },
           "region": Object {
-            "endColumn": 10,
+            "endColumn": 44,
             "endLine": 3,
             "startColumn": 10,
             "startLine": 3,
@@ -1247,7 +1247,7 @@ Array [
             "uri": "app/templates/application.hbs",
           },
           "region": Object {
-            "endColumn": 33,
+            "endColumn": 36,
             "endLine": 2,
             "startColumn": 33,
             "startLine": 2,
@@ -1277,7 +1277,7 @@ Array [
             "uri": "app/templates/application.hbs",
           },
           "region": Object {
-            "endColumn": 39,
+            "endColumn": 42,
             "endLine": 3,
             "startColumn": 39,
             "startLine": 3,
@@ -1307,7 +1307,7 @@ Array [
             "uri": "app/templates/my-component.hbs",
           },
           "region": Object {
-            "endColumn": 18,
+            "endColumn": 37,
             "endLine": 2,
             "startColumn": 18,
             "startLine": 2,
@@ -1337,7 +1337,7 @@ Array [
             "uri": "app/templates/my-component.hbs",
           },
           "region": Object {
-            "endColumn": 10,
+            "endColumn": 22,
             "endLine": 3,
             "startColumn": 10,
             "startLine": 3,
@@ -1367,7 +1367,7 @@ Array [
             "uri": "app/templates/my-component.hbs",
           },
           "region": Object {
-            "endColumn": 12,
+            "endColumn": 20,
             "endLine": 3,
             "startColumn": 12,
             "startLine": 3,
@@ -1397,7 +1397,7 @@ Array [
             "uri": "app/templates/other-component.hbs",
           },
           "region": Object {
-            "endColumn": 10,
+            "endColumn": 22,
             "endLine": 2,
             "startColumn": 10,
             "startLine": 2,
@@ -1427,7 +1427,7 @@ Array [
             "uri": "app/templates/other-component.hbs",
           },
           "region": Object {
-            "endColumn": 12,
+            "endColumn": 20,
             "endLine": 2,
             "startColumn": 12,
             "startLine": 2,
