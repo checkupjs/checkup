@@ -97,7 +97,7 @@ export default abstract class BaseTask {
   /**
    * The fully qualified name for this task, in the format
    *
-   * <pluginName>/<taskName>
+   * pluginName/taskName
    */
   get fullyQualifiedTaskName() {
     return `${this._pluginName}/${this.taskName}`;
