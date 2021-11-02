@@ -8,7 +8,6 @@
  *
  * @param {string} name - The name of the package.
  * @returns {string} Normalized name of the package
- * @private
  */
 export function normalizePackageName(name: string, prefix = 'checkup-plugin') {
   let normalizedName = name;
