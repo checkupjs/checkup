@@ -10,6 +10,29 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v1.3.0 (2021-11-02)
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember`, `core`
+  * [#1130](https://github.com/checkupjs/checkup/pull/1130) Upgrades ember-template-lint to 3.11.0 ([@scalvert](https://github.com/scalvert))
+* `checkup-formatter-pretty`, `core`
+  * [#1128](https://github.com/checkupjs/checkup/pull/1128) Adds validation task base class and associated component ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`
+  * [#1127](https://github.com/checkupjs/checkup/pull/1127) Adding ruleId into eslint and ember-template-lint disable tasks ([@scalvert](https://github.com/scalvert))
+
+#### :memo: Documentation
+* `core`
+  * [#1131](https://github.com/checkupjs/checkup/pull/1131) Removes @private jsdoc attribute ([@scalvert](https://github.com/scalvert))
+  * [#1129](https://github.com/checkupjs/checkup/pull/1129) Fixes base-task jsdoc generating invalid syntax for docs (mdx) ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.2.0 (2021-10-26)
 
 #### :rocket: Enhancement
