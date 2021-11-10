@@ -7,7 +7,7 @@ export type ValidationResult = {
 };
 
 export default abstract class BaseValidationTask extends BaseTask {
-  validationSteps: Map<string, () => ValidationResult>;
+  validationSteps: Map<string, () => ValidationResult | Promise<ValidationResult>>;
 
   /**
    * Creates a new instance of a validation Task.
@@ -40,7 +40,10 @@ export default abstract class BaseValidationTask extends BaseTask {
    * @param messageText A non-empty string containing a plain text message
    * @param validate A function to run that returns a {ValidationResult} indicating whether the validation was successful.
    */
-  protected addValidationStep(messageText: string, validate: () => ValidationResult) {
+  protected addValidationStep(
+    messageText: string,
+    validate: () => ValidationResult | Promise<ValidationResult>
+  ) {
     this.validationSteps.set(messageText, validate);
   }
 
@@ -49,11 +52,11 @@ export default abstract class BaseValidationTask extends BaseTask {
    *
    * @returns A map of messages and ValidationResult objects
    */
-  validate() {
+  async validate() {
     let results = new Map<string, ValidationResult>();
 
     for (let [messageText, validate] of this.validationSteps) {
-      results.set(messageText, validate());
+      results.set(messageText, await validate());
     }
 
     return results;
