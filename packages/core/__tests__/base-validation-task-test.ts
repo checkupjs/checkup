@@ -55,7 +55,7 @@ class FakeValidationTask extends BaseValidationTask {
   }
 
   async run(): Promise<Result[]> {
-    let stepResults = this.validate();
+    let stepResults = await this.validate();
 
     for (let [messageText, validationResult] of stepResults) {
       this.addValidationResult(messageText, validationResult.isValid);
@@ -94,12 +94,12 @@ describe('BaseValidationTask', () => {
     expect(fakeTask.validationSteps.size).toEqual(3);
   });
 
-  it('can validate steps and return result', () => {
+  it('can validate steps and return result', async () => {
     let context: TaskContext = getTaskContext();
 
     let fakeTask = new FakeValidationTask('fake validation', context);
 
-    let steps = fakeTask.validate();
+    let steps = await fakeTask.validate();
 
     expect(steps.size).toEqual(3);
     expect(steps).toMatchInlineSnapshot(`
