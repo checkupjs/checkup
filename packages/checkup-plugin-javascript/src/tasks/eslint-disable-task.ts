@@ -43,7 +43,7 @@ export default class EslintDisableTask extends BaseTask implements Task {
 
   async run(): Promise<Result[]> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
-    let eslintDisables: NormalizedLintResult[] = await getEslintDisables(
+    let eslintDisables: NormalizedLintResult[] = await this.getEslintDisables(
       jsPaths,
       this.context.options.cwd
     );
@@ -63,61 +63,66 @@ export default class EslintDisableTask extends BaseTask implements Task {
 
     return this.results;
   }
-}
 
-async function getEslintDisables(filePaths: string[], cwd: string) {
-  let data: NormalizedLintResult[] = [];
+  async getEslintDisables(filePaths: string[], cwd: string): Promise<NormalizedLintResult[]> {
+    let data: NormalizedLintResult[] = [];
 
-  class ESLintDisableAccumulator {
-    data: NormalizedLintResult[] = [];
+    class ESLintDisableAccumulator {
+      data: NormalizedLintResult[] = [];
 
-    constructor(private filePath: string) {}
+      constructor(private filePath: string) {}
 
-    add(node: any) {
-      this.data.push({
-        filePath: trimCwd(this.filePath, cwd),
-        lintRuleId: 'no-eslint-disable',
-        message: 'eslint-disable usages',
-        line: node.loc.start.line,
-        column: node.loc.start.column,
-        endLine: node.loc.end.line,
-        endColumn: node.loc.end.column,
-      });
+      add(node: any) {
+        this.data.push({
+          filePath: trimCwd(this.filePath, cwd),
+          lintRuleId: 'no-eslint-disable',
+          message: 'eslint-disable usages',
+          line: node.loc.start.line,
+          column: node.loc.start.column,
+          endLine: node.loc.end.line,
+          endColumn: node.loc.end.column,
+        });
+      }
+
+      get visitors(): Visitor<any> {
+        let self = this;
+
+        return {
+          visitComment: function (path: any) {
+            if (ESLINT_DISABLE_REGEX.test(path.value.value.trim())) {
+              self.add(path.value);
+            }
+
+            this.traverse(path);
+          },
+        };
+      }
     }
 
-    get visitors(): Visitor<any> {
-      let self = this;
-
-      return {
-        visitComment: function (path: any) {
-          if (ESLINT_DISABLE_REGEX.test(path.value.value.trim())) {
-            self.add(path.value);
+    await Promise.all(
+      filePaths.map((filePath) => {
+        return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
+          let accumulator = new ESLintDisableAccumulator(filePath);
+          let analyzer;
+          try {
+            analyzer = new AstAnalyzer<t.File, Visitor<any>, typeof parse, typeof visit>(
+              fileContents,
+              parse,
+              visit,
+              {
+                parser: require('recast/parsers/babel'),
+              }
+            );
+            analyzer.analyze(accumulator.visitors);
+            data.push(...accumulator.data);
+          } catch (error) {
+            (error as Error).message = `Error occurred at ${filePath}. ${(error as Error).message}`;
+            this.addNonFatalError(error as Error);
           }
+        });
+      })
+    );
 
-          this.traverse(path);
-        },
-      };
-    }
+    return data;
   }
-
-  await Promise.all(
-    filePaths.map((filePath) => {
-      return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
-        let accumulator = new ESLintDisableAccumulator(filePath);
-        let analyzer = new AstAnalyzer<t.File, Visitor<any>, typeof parse, typeof visit>(
-          fileContents,
-          parse,
-          visit,
-          {
-            parser: require('recast/parsers/babel'),
-          }
-        );
-
-        analyzer.analyze(accumulator.visitors);
-        data.push(...accumulator.data);
-      });
-    })
-  );
-
-  return data;
 }

@@ -33,6 +33,7 @@ export default abstract class BaseTask {
   context: TaskContext;
   debug: debug.Debugger;
   results: Result[];
+  nonFatalErrors: Error[];
 
   _pluginName: string;
   _config!: TaskConfig;
@@ -49,6 +50,7 @@ export default abstract class BaseTask {
   constructor(pluginName: string, context: TaskContext) {
     this.context = context;
     this.results = [];
+    this.nonFatalErrors = [];
     this._pluginName = getShorthandName(pluginName);
     this._logBuilder = context.logBuilder;
 
@@ -240,5 +242,14 @@ export default abstract class BaseTask {
     }
 
     merge(rule.properties, properties);
+  }
+
+  /**
+   * Adds non-fatal error encountered while running a task to the SARIF log.
+   *
+   * @param error - A non-fatal {Error} thrown while the task was run
+   */
+  public addNonFatalError(error: Error) {
+    this.nonFatalErrors.push(error);
   }
 }

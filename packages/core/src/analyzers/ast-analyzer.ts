@@ -29,15 +29,7 @@ export default class AstAnalyzer<
   }
 
   private _parse(source: string): TAst {
-    let ast: TAst;
-
-    try {
-      ast = this.parser(source, this.parserOptions);
-    } catch (error) {
-      throw new Error(error);
-    }
-
-    return ast;
+    return this.parser(source, this.parserOptions);
   }
 
   analyze(visitors: TVisitors) {

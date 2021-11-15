@@ -152,7 +152,7 @@ class MigrationTaskLow extends BaseTask implements Task {
   }
 }
 
-class ErrorTask extends BaseTask implements Task {
+class FatalErrorTask extends BaseTask implements Task {
   taskName = 'error-task';
   taskDisplayName = 'Error Task';
   description = 'description';
@@ -163,6 +163,21 @@ class ErrorTask extends BaseTask implements Task {
   }
   async run(): Promise<Result[]> {
     throw STABLE_ERROR;
+  }
+}
+
+class NonFatalErrorTask extends BaseTask implements Task {
+  taskName = 'non-fatal-error-task';
+  taskDisplayName = 'Non-Fatal Error Task';
+  description = 'description';
+  category = 'bar';
+
+  constructor(context: TaskContext) {
+    super('fake', context);
+  }
+  async run(): Promise<Result[]> {
+    this.addNonFatalError(STABLE_ERROR);
+    return [];
   }
 }
 
@@ -450,16 +465,29 @@ describe('TaskList', () => {
     expect(errors).toHaveLength(0);
   });
 
-  it('Correctly captures errors in tasks', async () => {
+  it('Correctly captures fatal errors in tasks', async () => {
     let taskList = new TaskList();
 
-    taskList.registerTask(new ErrorTask(getTaskContext()));
+    taskList.registerTask(new FatalErrorTask(getTaskContext()));
 
     let [results, errors] = await taskList.runTasks();
 
     expect(results).toHaveLength(0);
     expect(errors).toHaveLength(1);
     expect(errors[0].taskName).toEqual('fake/error-task');
+    expect(errors[0].error).toEqual(STABLE_ERROR);
+  });
+
+  it('Correctly captures non-fatal errors in tasks', async () => {
+    let taskList = new TaskList();
+
+    taskList.registerTask(new NonFatalErrorTask(getTaskContext()));
+
+    let [results, errors] = await taskList.runTasks();
+
+    expect(results).toHaveLength(0);
+    expect(errors).toHaveLength(1);
+    expect(errors[0].taskName).toEqual('fake/non-fatal-error-task');
     expect(errors[0].error).toEqual(STABLE_ERROR);
   });
 });
