@@ -108,9 +108,8 @@ describe('eslint-disable-task', () => {
     await task.run();
 
     expect(task.nonFatalErrors).toHaveLength(1);
-    expect(task.nonFatalErrors![0]).toMatchInlineSnapshot(
-      // eslint-disable-next-line jest/no-interpolation-in-snapshots
-      `[SyntaxError: Error occurred at ${project.root}/foo/error-file.js. Unexpected token (9:18)]`
+    expect(task.nonFatalErrors[0].message).toEqual(
+      `Error occurred at ${project.root}/foo/error-file.js. Unexpected token (9:18)`
     );
   });
 });

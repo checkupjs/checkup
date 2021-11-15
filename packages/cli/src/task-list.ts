@@ -187,7 +187,7 @@ export default class TaskListImpl implements RegisterableTaskList {
       result = await this._runTask(task);
       this.addErrors(task.fullyQualifiedTaskName, task.nonFatalErrors);
     } catch (error) {
-      this.addError(task.fullyQualifiedTaskName, error);
+      this.addErrors(task.fullyQualifiedTaskName, error);
     }
 
     this.debug('%s run done', task.fullyQualifiedTaskName);
@@ -211,7 +211,7 @@ export default class TaskListImpl implements RegisterableTaskList {
         result = await this._runTask(task);
         this.addErrors(task.fullyQualifiedTaskName, task.nonFatalErrors);
       } catch (error) {
-        this.addError(task.fullyQualifiedTaskName, error);
+        this.addErrors(task.fullyQualifiedTaskName, error);
       }
 
       this.debug('%s run done', task.fullyQualifiedTaskName);
@@ -281,13 +281,11 @@ export default class TaskListImpl implements RegisterableTaskList {
     return values;
   }
 
-  private addError(taskName: TaskName, error: Error) {
-    this._errors.push({ taskName, error });
-  }
+  private addErrors(taskName: TaskName, errors: Error | Error[]) {
+    const errorsArr = Array.isArray(errors) ? errors : [errors];
 
-  private addErrors(taskName: TaskName, errors: Error[]) {
     this._errors.push(
-      ...errors.map((error) => {
+      ...errorsArr.map((error) => {
         return {
           error,
           taskName,
