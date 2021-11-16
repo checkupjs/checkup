@@ -1,3 +1,16 @@
+## v1.4.0 (2021-11-16)
+
+#### :rocket: Enhancement
+* `checkup-plugin-javascript`, `cli`, `core`
+  * [#1137](https://github.com/checkupjs/checkup/pull/1137) [enhancement] Adding non-fatal errors to tasks ([@carakessler](https://github.com/carakessler))
+* `checkup-plugin-javascript`, `core`
+  * [#1135](https://github.com/checkupjs/checkup/pull/1135) Adds valid-esm-package-task ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v1.3.0 (2021-11-02)
 
 #### :rocket: Enhancement
