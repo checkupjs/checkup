@@ -282,10 +282,10 @@ export default class TaskListImpl implements RegisterableTaskList {
   }
 
   private addErrors(taskName: TaskName, errors: Error | Error[]) {
-    const errorsArr = Array.isArray(errors) ? errors : [errors];
+    errors = Array.isArray(errors) ? errors : [errors];
 
     this._errors.push(
-      ...errorsArr.map((error) => {
+      ...errors.map((error) => {
         return {
           error,
           taskName,
