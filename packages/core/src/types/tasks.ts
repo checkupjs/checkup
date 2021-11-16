@@ -45,6 +45,7 @@ export interface Task {
   description: string;
   config: TaskConfig;
   results: Result[];
+  nonFatalErrors: Error[];
   category: string;
   group?: string;
 

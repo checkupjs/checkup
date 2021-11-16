@@ -79,4 +79,37 @@ describe('eslint-disable-task', () => {
       }
     `);
   });
+
+  it('captures a non-fatal error for nonparsable files', async () => {
+    project.files['error-file.js'] = `
+      let config;
+
+      try {
+        const metaName = '{{MODULE_PREFIX}}/config/environment';
+        const rawConfig = document.querySelector('meta[name="' + metaName + '"]').getAttribute('content');
+        config = JSON.parse(unescape(rawConfig));
+      } catch(err) {
+        config = {{CONFIG_CONTENTS}};
+      }
+
+      export default config;
+    `;
+
+    project.writeSync();
+
+    const task = new EslintDisableTask(
+      pluginName,
+      getTaskContext({
+        paths: project.filePaths,
+        options: { cwd: project.baseDir },
+      })
+    );
+
+    await task.run();
+
+    expect(task.nonFatalErrors).toHaveLength(1);
+    expect(task.nonFatalErrors[0].message).toEqual(
+      `Error occurred at ${project.root}/foo/error-file.js. Unexpected token (9:18)`
+    );
+  });
 });

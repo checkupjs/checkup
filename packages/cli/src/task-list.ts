@@ -185,8 +185,9 @@ export default class TaskListImpl implements RegisterableTaskList {
 
     try {
       result = await this._runTask(task);
+      this.addErrors(task.fullyQualifiedTaskName, task.nonFatalErrors);
     } catch (error) {
-      this.addError(task.fullyQualifiedTaskName, error);
+      this.addErrors(task.fullyQualifiedTaskName, error);
     }
 
     this.debug('%s run done', task.fullyQualifiedTaskName);
@@ -208,8 +209,9 @@ export default class TaskListImpl implements RegisterableTaskList {
 
       try {
         result = await this._runTask(task);
+        this.addErrors(task.fullyQualifiedTaskName, task.nonFatalErrors);
       } catch (error) {
-        this.addError(task.fullyQualifiedTaskName, error);
+        this.addErrors(task.fullyQualifiedTaskName, error);
       }
 
       this.debug('%s run done', task.fullyQualifiedTaskName);
@@ -219,7 +221,7 @@ export default class TaskListImpl implements RegisterableTaskList {
     return [(results.flat().filter(Boolean) as Result[]).sort(taskResultComparator), this._errors];
   }
 
-  private async _runTask(task: Task) {
+  private async _runTask(task: Task): Promise<Result[]> {
     let t = process.hrtime();
     let result = await task.run();
     t = process.hrtime(t);
@@ -279,7 +281,16 @@ export default class TaskListImpl implements RegisterableTaskList {
     return values;
   }
 
-  private addError(taskName: TaskName, error: Error) {
-    this._errors.push({ taskName, error });
+  private addErrors(taskName: TaskName, errors: Error | Error[]) {
+    errors = Array.isArray(errors) ? errors : [errors];
+
+    this._errors.push(
+      ...errors.map((error) => {
+        return {
+          error,
+          taskName,
+        };
+      })
+    );
   }
 }
