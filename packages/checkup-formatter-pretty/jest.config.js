@@ -1,5 +1,5 @@
 module.exports = {
-  testEnvironment: 'node',
+  testEnvironment: 'jest-environment-node-single-context',
   moduleFileExtensions: ['ts', 'js', 'json', 'tsx'],
   transform: { '^.+\\.(ts)x?$': 'ts-jest' },
   coverageReporters: ['lcov', 'text-summary'],
