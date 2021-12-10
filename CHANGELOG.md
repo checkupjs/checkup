@@ -1,3 +1,24 @@
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v1.4.1 (2021-12-10)
+
+#### :bug: Bug Fix
+* `core`
+  * [#1148](https://github.com/checkupjs/checkup/pull/1148) Skip unused dependency check to avoid depcheck open file spike ([@mikrostew](https://github.com/mikrostew))
+  * [#1144](https://github.com/checkupjs/checkup/pull/1144) backwards incompatibility issue introduced in 1.4.0 ([@carakessler](https://github.com/carakessler))
+
+#### :house: Internal
+* `checkup-formatter-pretty`
+  * [#1138](https://github.com/checkupjs/checkup/pull/1138) fix: Fixes v8 error thrown when running pretty formatter tests ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 3
+- Michael Stewart ([@mikrostew](https://github.com/mikrostew))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+- [@carakessler](https://github.com/carakessler)
+
+
 ## v1.4.0 (2021-11-16)
 
 #### :rocket: Enhancement
