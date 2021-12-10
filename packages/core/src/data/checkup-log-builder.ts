@@ -115,7 +115,7 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
           id: error.taskName,
         },
         exception: {
-          message: error.error.message,
+          message: error.error?.message,
           stack: {
             frames: stackFrames,
           },
