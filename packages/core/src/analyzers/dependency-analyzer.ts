@@ -58,7 +58,7 @@ export default class DependencyAnalyzer {
   }
 
   async loadOutdatedDependencies(): Promise<NpmCheckDependency[]> {
-    let result = await npmCheck({ cwd: this.baseDir });
+    let result = await npmCheck({ cwd: this.baseDir, skipUnused: true });
 
     return result.get('packages');
   }
