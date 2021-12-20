@@ -48,37 +48,28 @@ describe('outdated-dependencies-task', () => {
   it('returns correct action items if too many dependencies are out of date (and additional actions for minor/major out of date)', async () => {
     let actions = evaluateActions(results, task.config);
 
-    expect(actions).toHaveLength(3);
+    expect(actions).toHaveLength(2);
     expect(actions).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "defaultThreshold": 0.05,
-          "details": "1 major versions outdated",
-          "input": 0.5,
-          "items": Array [],
-          "name": "reduce-outdated-major-dependencies",
-          "summary": "Update outdated major versions",
-          "taskName": "outdated-dependencies",
-        },
-        Object {
-          "defaultThreshold": 0.05,
-          "details": "1 minor versions outdated",
-          "input": 0.5,
-          "items": Array [],
-          "name": "reduce-outdated-minor-dependencies",
-          "summary": "Update outdated minor versions",
-          "taskName": "outdated-dependencies",
-        },
-        Object {
-          "defaultThreshold": 0.2,
-          "details": "100% of versions outdated",
-          "input": 1,
-          "items": Array [],
-          "name": "reduce-outdated-dependencies",
-          "summary": "Update outdated versions",
-          "taskName": "outdated-dependencies",
-        },
-      ]
-    `);
+Array [
+  Object {
+    "defaultThreshold": 0.05,
+    "details": "2 major versions outdated",
+    "input": 1,
+    "items": Array [],
+    "name": "reduce-outdated-major-dependencies",
+    "summary": "Update outdated major versions",
+    "taskName": "outdated-dependencies",
+  },
+  Object {
+    "defaultThreshold": 0.2,
+    "details": "100% of versions outdated",
+    "input": 1,
+    "items": Array [],
+    "name": "reduce-outdated-dependencies",
+    "summary": "Update outdated versions",
+    "taskName": "outdated-dependencies",
+  },
+]
+`);
   });
 });
