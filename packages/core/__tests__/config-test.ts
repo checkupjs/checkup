@@ -125,17 +125,17 @@ describe('config', () => {
       let config = readConfig(configPath);
 
       expect(config).toMatchInlineSnapshot(`
-        Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-          "excludePaths": Array [],
-          "plugins": Array [
-            "checkup-plugin-ember",
-          ],
-          "tasks": Object {
-            "foo/bar": "on",
-          },
-        }
-      `);
+{
+  "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+  "excludePaths": [],
+  "plugins": [
+    "checkup-plugin-ember",
+  ],
+  "tasks": {
+    "foo/bar": "on",
+  },
+}
+`);
     });
 
     it('can read a valid config with valid task config string value set to "off"', () => {
@@ -149,17 +149,17 @@ describe('config', () => {
       let config = readConfig(configPath);
 
       expect(config).toMatchInlineSnapshot(`
-        Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-          "excludePaths": Array [],
-          "plugins": Array [
-            "checkup-plugin-ember",
-          ],
-          "tasks": Object {
-            "foo/bar": "off",
-          },
-        }
-      `);
+{
+  "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+  "excludePaths": [],
+  "plugins": [
+    "checkup-plugin-ember",
+  ],
+  "tasks": {
+    "foo/bar": "off",
+  },
+}
+`);
     });
 
     it('can read a valid config with valid task config tuple value set to ["on", {}]', () => {
@@ -173,20 +173,20 @@ describe('config', () => {
       let config = readConfig(configPath);
 
       expect(config).toMatchInlineSnapshot(`
-        Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-          "excludePaths": Array [],
-          "plugins": Array [
-            "checkup-plugin-ember",
-          ],
-          "tasks": Object {
-            "foo/bar": Array [
-              "on",
-              Object {},
-            ],
-          },
-        }
-      `);
+{
+  "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+  "excludePaths": [],
+  "plugins": [
+    "checkup-plugin-ember",
+  ],
+  "tasks": {
+    "foo/bar": [
+      "on",
+      {},
+    ],
+  },
+}
+`);
     });
   });
 
@@ -207,13 +207,13 @@ describe('config', () => {
       let path = writeConfig(tmp);
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
-        Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-          "excludePaths": Array [],
-          "plugins": Array [],
-          "tasks": Object {},
-        }
-      `);
+{
+  "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+  "excludePaths": [],
+  "plugins": [],
+  "tasks": {},
+}
+`);
     });
 
     it('writes specific config when config is passed', () => {
@@ -225,17 +225,17 @@ describe('config', () => {
       });
 
       expect(readJsonSync(path)).toMatchInlineSnapshot(`
-        Object {
-          "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-          "excludePaths": Array [],
-          "plugins": Array [
-            "ember",
-          ],
-          "tasks": Object {
-            "ember/ember-tests-task": "off",
-          },
-        }
-      `);
+{
+  "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+  "excludePaths": [],
+  "plugins": [
+    "ember",
+  ],
+  "tasks": {
+    "ember/ember-tests-task": "off",
+  },
+}
+`);
     });
   });
 

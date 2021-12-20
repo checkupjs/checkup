@@ -11,18 +11,18 @@ describe('ember-template-lint-analyzer', () => {
 
     expect(analyzer.engine).toBeInstanceOf(TemplateLinter);
     expect(Object.keys(analyzer.engine.config)).toMatchInlineSnapshot(`
-      Array [
-        "rules",
-        "pending",
-        "overrides",
-        "ignore",
-        "extends",
-        "plugins",
-        "loadedRules",
-        "loadedConfigurations",
-        "_processed",
-      ]
-    `);
+[
+  "rules",
+  "pending",
+  "overrides",
+  "ignore",
+  "extends",
+  "plugins",
+  "loadedRules",
+  "loadedConfigurations",
+  "_processed",
+]
+`);
   });
 
   it('can create an ember-template-lint analyzer with custom rule configuration', () => {
@@ -37,10 +37,10 @@ describe('ember-template-lint-analyzer', () => {
 
     expect(analyzer.engine).toBeInstanceOf(TemplateLinter);
     expect(optionsForRule).toMatchInlineSnapshot(`
-      Object {
-        "config": 6,
-        "severity": 2,
-      }
-    `);
+{
+  "config": 6,
+  "severity": 2,
+}
+`);
   });
 });

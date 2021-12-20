@@ -50,21 +50,21 @@ describe('outdated-dependencies-task', () => {
 
     expect(actions).toHaveLength(2);
     expect(actions).toMatchInlineSnapshot(`
-Array [
-  Object {
+[
+  {
     "defaultThreshold": 0.05,
     "details": "2 major versions outdated",
     "input": 1,
-    "items": Array [],
+    "items": [],
     "name": "reduce-outdated-major-dependencies",
     "summary": "Update outdated major versions",
     "taskName": "outdated-dependencies",
   },
-  Object {
+  {
     "defaultThreshold": 0.2,
     "details": "100% of versions outdated",
     "input": 1,
-    "items": Array [],
+    "items": [],
     "name": "reduce-outdated-dependencies",
     "summary": "Update outdated versions",
     "taskName": "outdated-dependencies",

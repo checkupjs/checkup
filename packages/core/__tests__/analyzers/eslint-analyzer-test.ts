@@ -24,19 +24,19 @@ describe('eslint-analyzer', () => {
 
     expect(analyzer.engine).toBeInstanceOf(CLIEngine);
     expect(Object.keys(configForFile)).toMatchInlineSnapshot(`
-      Array [
-        "env",
-        "globals",
-        "noInlineConfig",
-        "parser",
-        "parserOptions",
-        "plugins",
-        "reportUnusedDisableDirectives",
-        "rules",
-        "settings",
-        "ignorePatterns",
-      ]
-    `);
+[
+  "env",
+  "globals",
+  "noInlineConfig",
+  "parser",
+  "parserOptions",
+  "plugins",
+  "reportUnusedDisableDirectives",
+  "rules",
+  "settings",
+  "ignorePatterns",
+]
+`);
   });
 
   it('can create an eslint analyzer with custom rule configuration', () => {
@@ -65,12 +65,12 @@ describe('eslint-analyzer', () => {
 
     expect(analyzer.engine).toBeInstanceOf(CLIEngine);
     expect(configForFile.rules!['no-tabs']).toMatchInlineSnapshot(`
-      Array [
-        "error",
-        Object {
-          "allowIndentationTabs": true,
-        },
-      ]
-    `);
+[
+  "error",
+  {
+    "allowIndentationTabs": true,
+  },
+]
+`);
   });
 });

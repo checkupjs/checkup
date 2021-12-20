@@ -136,19 +136,19 @@ export function register(args: RegistrationArgs) {
 exports[`plugin generator generates plugin into existing directory with defaults 9`] = `""`;
 
 exports[`plugin generator generates plugin into existing directory with defaults 10`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin into existing directory with defaults 11`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin into existing directory with defaults 12`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
@@ -269,19 +269,19 @@ module.exports = {
 exports[`plugin generator generates plugin with JavaScript defaults 8`] = `""`;
 
 exports[`plugin generator generates plugin with JavaScript defaults 9`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with JavaScript defaults 10`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with JavaScript defaults 11`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
@@ -422,19 +422,19 @@ export function register(args: RegistrationArgs) {
 exports[`plugin generator generates plugin with custom options 9`] = `""`;
 
 exports[`plugin generator generates plugin with custom options 10`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with custom options 11`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with custom options 12`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
@@ -575,19 +575,19 @@ export function register(args: RegistrationArgs) {
 exports[`plugin generator generates plugin with defaults 9`] = `""`;
 
 exports[`plugin generator generates plugin with defaults 10`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with defaults 11`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with defaults 12`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
@@ -728,19 +728,19 @@ export function register(args: RegistrationArgs) {
 exports[`plugin generator generates plugin with defaults in custom path 9`] = `""`;
 
 exports[`plugin generator generates plugin with defaults in custom path 10`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with defaults in custom path 11`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with defaults in custom path 12`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
@@ -881,19 +881,19 @@ export function register(args: RegistrationArgs) {
 exports[`plugin generator generates plugin with unmodified name with defaults 9`] = `""`;
 
 exports[`plugin generator generates plugin with unmodified name with defaults 10`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with unmodified name with defaults 11`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;
 
 exports[`plugin generator generates plugin with unmodified name with defaults 12`] = `
-Array [
+[
   ".gitkeep",
 ]
 `;

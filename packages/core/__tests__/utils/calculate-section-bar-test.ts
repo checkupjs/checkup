@@ -26,25 +26,27 @@ describe('calculate-sectioned-bar', () => {
               title: 'foo',
               count: 5,
             },
+
             {
               title: 'bar',
               count: 10,
             },
           ],
+
           20,
           50
         )
       ).toMatchInlineSnapshot(
         {},
         `
-        Object {
-          "completedSegments": Array [
-            Object {
+        {
+          "completedSegments": [
+            {
               "completed": 25,
               "count": 10,
               "title": "bar",
             },
-            Object {
+            {
               "completed": 13,
               "count": 5,
               "title": "foo",

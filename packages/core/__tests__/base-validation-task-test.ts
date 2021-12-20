@@ -104,27 +104,27 @@ describe('BaseValidationTask', () => {
     expect(steps.size).toEqual(3);
     expect(steps).toMatchInlineSnapshot(`
 Map {
-  "Check the first thing" => Object {
+  "Check the first thing" => {
     "isValid": true,
   },
-  "Check the second thing" => Object {
+  "Check the second thing" => {
     "isValid": true,
-    "options": Object {
-      "location": Object {
+    "options": {
+      "location": {
         "uri": "some/path/to/second.js",
       },
-      "properties": Object {
+      "properties": {
         "foo": "bar",
       },
     },
   },
-  "Check the third thing" => Object {
+  "Check the third thing" => {
     "isValid": false,
-    "options": Object {
-      "location": Object {
+    "options": {
+      "location": {
         "uri": "some/path/to/third.js",
       },
-      "properties": Object {
+      "properties": {
         "foo": "bar",
       },
     },
@@ -141,29 +141,29 @@ Map {
     await fakeTask.run();
 
     expect(fakeTask.log.runs[0].results).toMatchInlineSnapshot(`
-Array [
-  Object {
+[
+  {
     "kind": "pass",
     "level": "none",
-    "message": Object {
+    "message": {
       "text": "Check the first thing",
     },
     "ruleId": "my-fake-validation",
     "ruleIndex": 0,
   },
-  Object {
+  {
     "kind": "pass",
     "level": "none",
-    "message": Object {
+    "message": {
       "text": "Check the second thing",
     },
     "ruleId": "my-fake-validation",
     "ruleIndex": 0,
   },
-  Object {
+  {
     "kind": "fail",
     "level": "error",
-    "message": Object {
+    "message": {
       "text": "Check the third thing",
     },
     "ruleId": "my-fake-validation",

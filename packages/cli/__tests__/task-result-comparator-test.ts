@@ -13,75 +13,75 @@ describe('taskResultComparator', () => {
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "metrics",
-            "group": "",
-            "taskDisplayName": "baz",
-            "taskName": "baz",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "best practices",
-            "group": "",
-            "taskDisplayName": "bag",
-            "taskName": "bag",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "dependencies",
-            "group": "",
-            "taskDisplayName": "bad",
-            "taskName": "bad",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "linting",
-            "group": "",
-            "taskDisplayName": "foo",
-            "taskName": "foo",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "testing",
-            "group": "",
-            "taskDisplayName": "bar",
-            "taskName": "bar",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "migrations",
-            "group": "",
-            "taskDisplayName": "fod",
-            "taskName": "fod",
-          },
-        },
-      ]
-    `);
+[
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "metrics",
+      "group": "",
+      "taskDisplayName": "baz",
+      "taskName": "baz",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "best practices",
+      "group": "",
+      "taskDisplayName": "bag",
+      "taskName": "bag",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "dependencies",
+      "group": "",
+      "taskDisplayName": "bad",
+      "taskName": "bad",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "linting",
+      "group": "",
+      "taskDisplayName": "foo",
+      "taskName": "foo",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "testing",
+      "group": "",
+      "taskDisplayName": "bar",
+      "taskName": "bar",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "migrations",
+      "group": "",
+      "taskDisplayName": "fod",
+      "taskName": "fod",
+    },
+  },
+]
+`);
   });
 
   it('should sort task results with custom category by category with no group', () => {
@@ -96,86 +96,86 @@ describe('taskResultComparator', () => {
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "metrics",
-            "group": "",
-            "taskDisplayName": "baz",
-            "taskName": "baz",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "best practices",
-            "group": "",
-            "taskDisplayName": "bag",
-            "taskName": "bag",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "dependencies",
-            "group": "",
-            "taskDisplayName": "bad",
-            "taskName": "bad",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "linting",
-            "group": "",
-            "taskDisplayName": "foo",
-            "taskName": "foo",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "testing",
-            "group": "",
-            "taskDisplayName": "fod",
-            "taskName": "fod",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "custom category2",
-            "group": "",
-            "taskDisplayName": "bar",
-            "taskName": "bar",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "custom category",
-            "group": "",
-            "taskDisplayName": "bar",
-            "taskName": "bar",
-          },
-        },
-      ]
-    `);
+[
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "metrics",
+      "group": "",
+      "taskDisplayName": "baz",
+      "taskName": "baz",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "best practices",
+      "group": "",
+      "taskDisplayName": "bag",
+      "taskName": "bag",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "dependencies",
+      "group": "",
+      "taskDisplayName": "bad",
+      "taskName": "bad",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "linting",
+      "group": "",
+      "taskDisplayName": "foo",
+      "taskName": "foo",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "testing",
+      "group": "",
+      "taskDisplayName": "fod",
+      "taskName": "fod",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "custom category2",
+      "group": "",
+      "taskDisplayName": "bar",
+      "taskName": "bar",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "custom category",
+      "group": "",
+      "taskDisplayName": "bar",
+      "taskName": "bar",
+    },
+  },
+]
+`);
   });
 
   it('should sort task results by category with group', () => {
@@ -189,75 +189,75 @@ describe('taskResultComparator', () => {
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "metrics",
-            "group": "",
-            "taskDisplayName": "baz",
-            "taskName": "baz",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "best practices",
-            "group": "lint",
-            "taskDisplayName": "fod",
-            "taskName": "fod",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "best practices",
-            "group": "lint",
-            "taskDisplayName": "bad",
-            "taskName": "bad",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "best practices",
-            "group": "",
-            "taskDisplayName": "bar",
-            "taskName": "bar",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "dependencies",
-            "group": "",
-            "taskDisplayName": "bag",
-            "taskName": "bag",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "linting",
-            "group": "",
-            "taskDisplayName": "foo",
-            "taskName": "foo",
-          },
-        },
-      ]
-    `);
+[
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "metrics",
+      "group": "",
+      "taskDisplayName": "baz",
+      "taskName": "baz",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "best practices",
+      "group": "lint",
+      "taskDisplayName": "fod",
+      "taskName": "fod",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "best practices",
+      "group": "lint",
+      "taskDisplayName": "bad",
+      "taskName": "bad",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "best practices",
+      "group": "",
+      "taskDisplayName": "bar",
+      "taskName": "bar",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "dependencies",
+      "group": "",
+      "taskDisplayName": "bag",
+      "taskName": "bag",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "linting",
+      "group": "",
+      "taskDisplayName": "foo",
+      "taskName": "foo",
+    },
+  },
+]
+`);
   });
 
   it('should sort task results with custom category by category with group', () => {
@@ -271,74 +271,74 @@ describe('taskResultComparator', () => {
     ];
 
     expect(results.sort(taskResultComparator)).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "metrics",
-            "group": "",
-            "taskDisplayName": "baz",
-            "taskName": "baz",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "best practices",
-            "group": "",
-            "taskDisplayName": "bar",
-            "taskName": "bar",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "dependencies",
-            "group": "",
-            "taskDisplayName": "bad",
-            "taskName": "bad",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "linting",
-            "group": "",
-            "taskDisplayName": "foo",
-            "taskName": "foo",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "grouped linting",
-            "group": "lint",
-            "taskDisplayName": "fod",
-            "taskName": "fod",
-          },
-        },
-        Object {
-          "message": Object {
-            "text": "hey",
-          },
-          "properties": Object {
-            "category": "grouped linting2",
-            "group": "lint",
-            "taskDisplayName": "bag",
-            "taskName": "bag",
-          },
-        },
-      ]
-    `);
+[
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "metrics",
+      "group": "",
+      "taskDisplayName": "baz",
+      "taskName": "baz",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "best practices",
+      "group": "",
+      "taskDisplayName": "bar",
+      "taskName": "bar",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "dependencies",
+      "group": "",
+      "taskDisplayName": "bad",
+      "taskName": "bad",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "linting",
+      "group": "",
+      "taskDisplayName": "foo",
+      "taskName": "foo",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "grouped linting",
+      "group": "lint",
+      "taskDisplayName": "fod",
+      "taskName": "fod",
+    },
+  },
+  {
+    "message": {
+      "text": "hey",
+    },
+    "properties": {
+      "category": "grouped linting2",
+      "group": "lint",
+      "taskDisplayName": "bag",
+      "taskName": "bag",
+    },
+  },
+]
+`);
   });
 });
