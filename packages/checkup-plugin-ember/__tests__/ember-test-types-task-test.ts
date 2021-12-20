@@ -157,19 +157,19 @@ describe('ember-test-types-task', () => {
 
     expect(actions).toHaveLength(1);
     expect(actions).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "defaultThreshold": 0.01,
-          "details": "67% of tests are skipped",
-          "input": 0.6666666666666666,
-          "items": Array [
-            "Total skipped tests: 8",
-          ],
-          "name": "reduce-skipped-tests",
-          "summary": "Reduce number of skipped tests",
-          "taskName": "ember-test-types",
-        },
-      ]
-    `);
+[
+  {
+    "defaultThreshold": 0.01,
+    "details": "67% of tests are skipped",
+    "input": 0.6666666666666666,
+    "items": [
+      "Total skipped tests: 8",
+    ],
+    "name": "reduce-skipped-tests",
+    "summary": "Reduce number of skipped tests",
+    "taskName": "ember-test-types",
+  },
+]
+`);
   });
 });

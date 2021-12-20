@@ -7,9 +7,9 @@ describe('FilePathsArray', function () {
     let files = new FilePathArray(...['foo.js', 'blue.hbs', 'goo.hbs']);
 
     expect(files.filterByGlob('**.js')).toMatchInlineSnapshot(`
-      Array [
-        "foo.js",
-      ]
-    `);
+[
+  "foo.js",
+]
+`);
   });
 });

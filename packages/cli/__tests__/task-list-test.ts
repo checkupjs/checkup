@@ -290,20 +290,20 @@ describe('TaskList', () => {
     let [result, errors] = await taskList.runTask('insights-task-high');
 
     expect(result).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "message": Object {
-            "text": "hi",
-          },
-          "properties": Object {
-            "category": "bar",
-            "group": "group1",
-            "taskDisplayName": "Insights Task High",
-          },
-          "ruleId": "insights-task-high",
-        },
-      ]
-    `);
+[
+  {
+    "message": {
+      "text": "hi",
+    },
+    "properties": {
+      "category": "bar",
+      "group": "group1",
+      "taskDisplayName": "Insights Task High",
+    },
+    "ruleId": "insights-task-high",
+  },
+]
+`);
     expect(errors).toHaveLength(0);
   });
 
@@ -352,31 +352,31 @@ describe('TaskList', () => {
     let [results, errors] = await taskList.runTasks();
 
     expect(results).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "message": Object {
-            "text": "hi",
-          },
-          "properties": Object {
-            "category": "foo",
-            "group": "group2",
-            "taskDisplayName": "Insights Task Low",
-          },
-          "ruleId": "insights-task-low",
-        },
-        Object {
-          "message": Object {
-            "text": "hi",
-          },
-          "properties": Object {
-            "category": "bar",
-            "group": "group1",
-            "taskDisplayName": "Insights Task High",
-          },
-          "ruleId": "insights-task-high",
-        },
-      ]
-    `);
+[
+  {
+    "message": {
+      "text": "hi",
+    },
+    "properties": {
+      "category": "foo",
+      "group": "group2",
+      "taskDisplayName": "Insights Task Low",
+    },
+    "ruleId": "insights-task-low",
+  },
+  {
+    "message": {
+      "text": "hi",
+    },
+    "properties": {
+      "category": "bar",
+      "group": "group1",
+      "taskDisplayName": "Insights Task High",
+    },
+    "ruleId": "insights-task-high",
+  },
+]
+`);
     expect(errors).toHaveLength(0);
   });
 
@@ -393,75 +393,75 @@ describe('TaskList', () => {
     let [results, errors] = await taskList.runTasks();
 
     expect(results).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "message": Object {
-            "text": "hi",
-          },
-          "properties": Object {
-            "category": "foo",
-            "group": "group2",
-            "taskDisplayName": "Insights Task Low",
-          },
-          "ruleId": "insights-task-low",
-        },
-        Object {
-          "message": Object {
-            "text": "hi",
-          },
-          "properties": Object {
-            "category": "bar",
-            "group": "group1",
-            "taskDisplayName": "Insights Task High",
-          },
-          "ruleId": "insights-task-high",
-        },
-        Object {
-          "message": Object {
-            "text": "hi",
-          },
-          "properties": Object {
-            "category": "foo",
-            "group": undefined,
-            "taskDisplayName": "Migration Task High",
-          },
-          "ruleId": "migration-task-high",
-        },
-        Object {
-          "message": Object {
-            "text": "hi",
-          },
-          "properties": Object {
-            "category": "baz",
-            "group": undefined,
-            "taskDisplayName": "Recommendations Task High",
-          },
-          "ruleId": "recommendations-task-high",
-        },
-        Object {
-          "message": Object {
-            "text": "hi",
-          },
-          "properties": Object {
-            "category": "baz",
-            "group": undefined,
-            "taskDisplayName": "Migration Task Low",
-          },
-          "ruleId": "migration-task-low",
-        },
-        Object {
-          "message": Object {
-            "text": "hi",
-          },
-          "properties": Object {
-            "category": "bar",
-            "group": undefined,
-            "taskDisplayName": "Recommendations Task Low",
-          },
-          "ruleId": "recommendations-task-low",
-        },
-      ]
-    `);
+[
+  {
+    "message": {
+      "text": "hi",
+    },
+    "properties": {
+      "category": "foo",
+      "group": "group2",
+      "taskDisplayName": "Insights Task Low",
+    },
+    "ruleId": "insights-task-low",
+  },
+  {
+    "message": {
+      "text": "hi",
+    },
+    "properties": {
+      "category": "bar",
+      "group": "group1",
+      "taskDisplayName": "Insights Task High",
+    },
+    "ruleId": "insights-task-high",
+  },
+  {
+    "message": {
+      "text": "hi",
+    },
+    "properties": {
+      "category": "foo",
+      "group": undefined,
+      "taskDisplayName": "Migration Task High",
+    },
+    "ruleId": "migration-task-high",
+  },
+  {
+    "message": {
+      "text": "hi",
+    },
+    "properties": {
+      "category": "baz",
+      "group": undefined,
+      "taskDisplayName": "Recommendations Task High",
+    },
+    "ruleId": "recommendations-task-high",
+  },
+  {
+    "message": {
+      "text": "hi",
+    },
+    "properties": {
+      "category": "baz",
+      "group": undefined,
+      "taskDisplayName": "Migration Task Low",
+    },
+    "ruleId": "migration-task-low",
+  },
+  {
+    "message": {
+      "text": "hi",
+    },
+    "properties": {
+      "category": "bar",
+      "group": undefined,
+      "taskDisplayName": "Recommendations Task Low",
+    },
+    "ruleId": "recommendations-task-low",
+  },
+]
+`);
     expect(errors).toHaveLength(0);
   });
 

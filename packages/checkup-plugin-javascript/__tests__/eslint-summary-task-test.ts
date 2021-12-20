@@ -99,31 +99,31 @@ describe('eslint-summary-task', () => {
 
     expect(actions).toHaveLength(2);
     expect(actions).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "defaultThreshold": 20,
-          "details": "1 total errors",
-          "input": 1,
-          "items": Array [
-            "Total eslint errors: 1",
-          ],
-          "name": "reduce-eslint-errors",
-          "summary": "Reduce number of eslint errors",
-          "taskName": "eslint-summary",
-        },
-        Object {
-          "defaultThreshold": 20,
-          "details": "1 total warnings",
-          "input": 1,
-          "items": Array [
-            "Total eslint warnings: 1",
-          ],
-          "name": "reduce-eslint-warnings",
-          "summary": "Reduce number of eslint warnings",
-          "taskName": "eslint-summary",
-        },
-      ]
-    `);
+[
+  {
+    "defaultThreshold": 20,
+    "details": "1 total errors",
+    "input": 1,
+    "items": [
+      "Total eslint errors: 1",
+    ],
+    "name": "reduce-eslint-errors",
+    "summary": "Reduce number of eslint errors",
+    "taskName": "eslint-summary",
+  },
+  {
+    "defaultThreshold": 20,
+    "details": "1 total warnings",
+    "input": 1,
+    "items": [
+      "Total eslint warnings: 1",
+    ],
+    "name": "reduce-eslint-warnings",
+    "summary": "Reduce number of eslint warnings",
+    "taskName": "eslint-summary",
+  },
+]
+`);
   });
 
   describe('readEslintConfig', () => {

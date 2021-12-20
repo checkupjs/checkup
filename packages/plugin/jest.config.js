@@ -14,5 +14,8 @@ module.exports = {
       statements: 100,
     },
   },
+  snapshotFormat: {
+    printBasicPrototype: false,
+  },
   testPathIgnorePatterns: ['/__fixtures__/'],
 };

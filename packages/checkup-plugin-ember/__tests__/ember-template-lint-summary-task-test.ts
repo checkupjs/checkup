@@ -97,30 +97,30 @@ describe('ember-emplate-lint-summary-task', () => {
 
     expect(actions).toHaveLength(2);
     expect(actions).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "defaultThreshold": 20,
-          "details": "3 total errors",
-          "input": 3,
-          "items": Array [
-            "Total template-lint errors: 3",
-          ],
-          "name": "reduce-template-lint-errors",
-          "summary": "Reduce number of template-lint errors",
-          "taskName": "ember-template-lint-summary",
-        },
-        Object {
-          "defaultThreshold": 20,
-          "details": "1 total warnings",
-          "input": 1,
-          "items": Array [
-            "Total template-lint warnings: 1",
-          ],
-          "name": "reduce-template-lint-warnings",
-          "summary": "Reduce number of template-lin warnings",
-          "taskName": "ember-template-lint-summary",
-        },
-      ]
-    `);
+[
+  {
+    "defaultThreshold": 20,
+    "details": "3 total errors",
+    "input": 3,
+    "items": [
+      "Total template-lint errors: 3",
+    ],
+    "name": "reduce-template-lint-errors",
+    "summary": "Reduce number of template-lint errors",
+    "taskName": "ember-template-lint-summary",
+  },
+  {
+    "defaultThreshold": 20,
+    "details": "1 total warnings",
+    "input": 1,
+    "items": [
+      "Total template-lint warnings: 1",
+    ],
+    "name": "reduce-template-lint-warnings",
+    "summary": "Reduce number of template-lin warnings",
+    "taskName": "ember-template-lint-summary",
+  },
+]
+`);
   });
 });

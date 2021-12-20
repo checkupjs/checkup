@@ -30,23 +30,23 @@ describe('lines-of-code-task', () => {
     ).run();
 
     expect(result).toMatchInlineSnapshot(`
-Array [
-  Object {
+[
+  {
     "kind": "informational",
     "level": "note",
-    "locations": Array [
-      Object {
-        "physicalLocation": Object {
-          "artifactLocation": Object {
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
             "uri": "index.hbs",
           },
         },
       },
     ],
-    "message": Object {
+    "message": {
       "text": "Lines of code count for index.hbs - total lines: 1",
     },
-    "properties": Object {
+    "properties": {
       "extension": "hbs",
       "filePath": "index.hbs",
       "lines": 1,
@@ -54,22 +54,22 @@ Array [
     "ruleId": "lines-of-code",
     "ruleIndex": 0,
   },
-  Object {
+  {
     "kind": "informational",
     "level": "note",
-    "locations": Array [
-      Object {
-        "physicalLocation": Object {
-          "artifactLocation": Object {
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
             "uri": "index.js",
           },
         },
       },
     ],
-    "message": Object {
+    "message": {
       "text": "Lines of code count for index.js - total lines: 1",
     },
-    "properties": Object {
+    "properties": {
       "extension": "js",
       "filePath": "index.js",
       "lines": 1,

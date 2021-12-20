@@ -24,18 +24,18 @@ describe('mergeLintConfig', () => {
       };
 
       expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
-        Object {
-          "rules": Object {
-            "fake-eslint-rule": Array [
-              "warn",
-              Object {
-                "prop1": "error",
-                "prop2": "off",
-              },
-            ],
-          },
-        }
-      `);
+{
+  "rules": {
+    "fake-eslint-rule": [
+      "warn",
+      {
+        "prop1": "error",
+        "prop2": "off",
+      },
+    ],
+  },
+}
+`);
     });
 
     it('should merge strings and tuples when tuples are leftmost, string takes precedence', () => {
@@ -58,12 +58,12 @@ describe('mergeLintConfig', () => {
       };
 
       expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
-        Object {
-          "rules": Object {
-            "fake-eslint-rule": "error",
-          },
-        }
-      `);
+{
+  "rules": {
+    "fake-eslint-rule": "error",
+  },
+}
+`);
     });
 
     it('should merge rule tuples when there are rule overrides', () => {
@@ -93,19 +93,19 @@ describe('mergeLintConfig', () => {
       };
 
       expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
-        Object {
-          "rules": Object {
-            "fake-eslint-rule": Array [
-              "error",
-              Object {
-                "prop1": "warn",
-                "prop2": "off",
-                "prop3": "error",
-              },
-            ],
-          },
-        }
-      `);
+{
+  "rules": {
+    "fake-eslint-rule": [
+      "error",
+      {
+        "prop1": "warn",
+        "prop2": "off",
+        "prop3": "error",
+      },
+    ],
+  },
+}
+`);
     });
 
     it('should merge rule tuples when there are rule overrides with true merge', () => {
@@ -134,19 +134,19 @@ describe('mergeLintConfig', () => {
       };
 
       expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
-        Object {
-          "rules": Object {
-            "fake-eslint-rule": Array [
-              "error",
-              Object {
-                "prop1": "warn",
-                "prop2": "off",
-                "prop3": "error",
-              },
-            ],
-          },
-        }
-      `);
+{
+  "rules": {
+    "fake-eslint-rule": [
+      "error",
+      {
+        "prop1": "warn",
+        "prop2": "off",
+        "prop3": "error",
+      },
+    ],
+  },
+}
+`);
     });
   });
 
@@ -171,18 +171,18 @@ describe('mergeLintConfig', () => {
       };
 
       expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
-        Object {
-          "rules": Object {
-            "fake-ember-template-lint-rule": Array [
-              "warn",
-              Object {
-                "prop1": "error",
-                "prop2": "off",
-              },
-            ],
-          },
-        }
-      `);
+{
+  "rules": {
+    "fake-ember-template-lint-rule": [
+      "warn",
+      {
+        "prop1": "error",
+        "prop2": "off",
+      },
+    ],
+  },
+}
+`);
     });
 
     it('should merge strings and tuples when tuples are leftmost, string takes precedence', () => {
@@ -205,12 +205,12 @@ describe('mergeLintConfig', () => {
       };
 
       expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
-        Object {
-          "rules": Object {
-            "fake-ember-template-lint-rule": "error",
-          },
-        }
-      `);
+{
+  "rules": {
+    "fake-ember-template-lint-rule": "error",
+  },
+}
+`);
     });
 
     it('should merge rule tuples when there are rule overrides', () => {
@@ -240,19 +240,19 @@ describe('mergeLintConfig', () => {
       };
 
       expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
-        Object {
-          "rules": Object {
-            "fake-ember-template-lint-rule": Array [
-              "error",
-              Object {
-                "prop1": "warn",
-                "prop2": "off",
-                "prop3": "error",
-              },
-            ],
-          },
-        }
-      `);
+{
+  "rules": {
+    "fake-ember-template-lint-rule": [
+      "error",
+      {
+        "prop1": "warn",
+        "prop2": "off",
+        "prop3": "error",
+      },
+    ],
+  },
+}
+`);
     });
 
     it('should merge rule tuples when there are rule overrides with true merge', () => {
@@ -281,19 +281,19 @@ describe('mergeLintConfig', () => {
       };
 
       expect(mergeLintConfig(original, overrides)).toMatchInlineSnapshot(`
-        Object {
-          "rules": Object {
-            "fake-ember-template-lint-rule": Array [
-              "error",
-              Object {
-                "prop1": "warn",
-                "prop2": "off",
-                "prop3": "error",
-              },
-            ],
-          },
-        }
-      `);
+{
+  "rules": {
+    "fake-ember-template-lint-rule": [
+      "error",
+      {
+        "prop1": "warn",
+        "prop2": "off",
+        "prop3": "error",
+      },
+    ],
+  },
+}
+`);
     });
   });
 });

@@ -66,18 +66,18 @@ describe('eslint-disable-task', () => {
 
     expect(actions).toHaveLength(1);
     expect(actions![0]).toMatchInlineSnapshot(`
-      Object {
-        "defaultThreshold": 2,
-        "details": "2 usages of eslint-disable",
-        "input": 2,
-        "items": Array [
-          "Total eslint-disable usages: 2",
-        ],
-        "name": "reduce-eslint-disable-usages",
-        "summary": "Reduce number of eslint-disable usages",
-        "taskName": "eslint-disable",
-      }
-    `);
+{
+  "defaultThreshold": 2,
+  "details": "2 usages of eslint-disable",
+  "input": 2,
+  "items": [
+    "Total eslint-disable usages: 2",
+  ],
+  "name": "reduce-eslint-disable-usages",
+  "summary": "Reduce number of eslint-disable usages",
+  "taskName": "eslint-disable",
+}
+`);
   });
 
   it('captures a non-fatal error for nonparsable files', async () => {

@@ -42,60 +42,60 @@ describe('checkup-log-builder-test', () => {
     builder.currentRunBuilder.currentInvocation.arguments = [];
 
     expect(builder.log).toMatchInlineSnapshot(`
-      Object {
-        "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
-        "runs": Array [
-          Object {
-            "invocations": Array [
-              Object {
-                "arguments": Array [],
-                "endTimeUtc": "2000-01-23T00:00:00.000Z",
-                "executionSuccessful": true,
-                "startTimeUtc": "2000-01-23T00:00:00.000Z",
-              },
-            ],
-            "results": Array [],
-            "tool": Object {
-              "driver": Object {
-                "informationUri": "https://github.com/checkupjs/checkup",
-                "language": "en-US",
-                "name": "checkup",
-                "properties": Object {
-                  "checkup": Object {
-                    "analyzedFiles": FilePathArray [],
-                    "analyzedFilesCount": 0,
-                    "cli": Object {
-                      "config": Object {
-                        "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
-                        "excludePaths": Array [],
-                        "plugins": Array [],
-                        "tasks": Object {},
-                      },
-                      "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
-                      "schema": 1,
-                      "version": "0.0.0",
-                    },
-                    "project": Object {
-                      "name": "fake-package",
-                      "repository": Object {
-                        "activeDays": "0 days",
-                        "age": "0 days",
-                        "totalCommits": 0,
-                        "totalFiles": 0,
-                      },
-                      "version": "0.0.0",
-                    },
-                    "timings": Object {},
-                  },
+{
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "invocations": [
+        {
+          "arguments": [],
+          "endTimeUtc": "2000-01-23T00:00:00.000Z",
+          "executionSuccessful": true,
+          "startTimeUtc": "2000-01-23T00:00:00.000Z",
+        },
+      ],
+      "results": [],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/checkupjs/checkup",
+          "language": "en-US",
+          "name": "checkup",
+          "properties": {
+            "checkup": {
+              "analyzedFiles": FilePathArray [],
+              "analyzedFilesCount": 0,
+              "cli": {
+                "config": {
+                  "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+                  "excludePaths": [],
+                  "plugins": [],
+                  "tasks": {},
                 },
-                "rules": Array [],
+                "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
+                "schema": 1,
+                "version": "0.0.0",
               },
+              "project": {
+                "name": "fake-package",
+                "repository": {
+                  "activeDays": "0 days",
+                  "age": "0 days",
+                  "totalCommits": 0,
+                  "totalFiles": 0,
+                },
+                "version": "0.0.0",
+              },
+              "timings": {},
             },
           },
-        ],
-        "version": "2.1.0",
-      }
-    `);
+          "rules": [],
+        },
+      },
+    },
+  ],
+  "version": "2.1.0",
+}
+`);
     expect(builder.log).toBeValidSarifLog();
   });
 });

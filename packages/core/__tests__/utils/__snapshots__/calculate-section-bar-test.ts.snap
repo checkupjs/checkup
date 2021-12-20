@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 1`] = `
-Object {
-  "completedSegments": Array [
-    Object {
+{
+  "completedSegments": [
+    {
       "completed": 50,
       "count": 495,
       "title": "bar",
     },
-    Object {
+    {
       "completed": 1,
       "count": 5,
       "title": "foo",
@@ -19,14 +19,14 @@ Object {
 `;
 
 exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 3`] = `
-Object {
-  "completedSegments": Array [
-    Object {
+{
+  "completedSegments": [
+    {
       "completed": 25,
       "count": 10,
       "title": "bar",
     },
-    Object {
+    {
       "completed": 25,
       "count": 10,
       "title": "foo",
@@ -37,19 +37,19 @@ Object {
 `;
 
 exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 4`] = `
-Object {
-  "completedSegments": Array [
-    Object {
+{
+  "completedSegments": [
+    {
       "completed": 17,
       "count": 10,
       "title": "bar",
     },
-    Object {
+    {
       "completed": 17,
       "count": 10,
       "title": "foo",
     },
-    Object {
+    {
       "completed": 17,
       "count": 10,
       "title": "moo",
@@ -60,19 +60,19 @@ Object {
 `;
 
 exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 5`] = `
-Object {
-  "completedSegments": Array [
-    Object {
+{
+  "completedSegments": [
+    {
       "completed": 17,
       "count": 50,
       "title": "bar",
     },
-    Object {
+    {
       "completed": 17,
       "count": 50,
       "title": "foo",
     },
-    Object {
+    {
       "completed": 17,
       "count": 50,
       "title": "foo",
@@ -83,19 +83,19 @@ Object {
 `;
 
 exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 6`] = `
-Object {
-  "completedSegments": Array [
-    Object {
+{
+  "completedSegments": [
+    {
       "completed": 17,
       "count": 50,
       "title": "foo",
     },
-    Object {
+    {
       "completed": 17,
       "count": 50,
       "title": "foo",
     },
-    Object {
+    {
       "completed": 7,
       "count": 20,
       "title": "bar",

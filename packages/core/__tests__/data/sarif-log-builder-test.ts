@@ -8,25 +8,25 @@ describe('sarif-builder', () => {
     builder.addRun();
 
     expect(builder.log).toMatchInlineSnapshot(`
-      Object {
-        "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
-        "runs": Array [
-          Object {
-            "invocations": Array [],
-            "results": Array [],
-            "tool": Object {
-              "driver": Object {
-                "informationUri": "https://github.com/checkupjs/checkup",
-                "language": "en-US",
-                "name": "checkup",
-                "rules": Array [],
-              },
-            },
-          },
-        ],
-        "version": "2.1.0",
-      }
-    `);
+{
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "invocations": [],
+      "results": [],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/checkupjs/checkup",
+          "language": "en-US",
+          "name": "checkup",
+          "rules": [],
+        },
+      },
+    },
+  ],
+  "version": "2.1.0",
+}
+`);
   });
 
   it('can add runs to a log', () => {
@@ -56,31 +56,31 @@ describe('sarif-builder', () => {
 
     expect(builder.log.runs[0].tool.driver.rules).toHaveLength(3);
     expect(builder.log.runs).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "invocations": Array [],
-          "results": Array [],
-          "tool": Object {
-            "driver": Object {
-              "informationUri": "https://github.com/checkupjs/checkup",
-              "language": "en-US",
-              "name": "checkup",
-              "rules": Array [
-                Object {
-                  "id": "FOO",
-                },
-                Object {
-                  "id": "BAR",
-                },
-                Object {
-                  "id": "BAZ",
-                },
-              ],
-            },
+[
+  {
+    "invocations": [],
+    "results": [],
+    "tool": {
+      "driver": {
+        "informationUri": "https://github.com/checkupjs/checkup",
+        "language": "en-US",
+        "name": "checkup",
+        "rules": [
+          {
+            "id": "FOO",
           },
-        },
-      ]
-    `);
+          {
+            "id": "BAR",
+          },
+          {
+            "id": "BAZ",
+          },
+        ],
+      },
+    },
+  },
+]
+`);
   });
 
   it('can add results to a log', () => {
@@ -98,39 +98,39 @@ describe('sarif-builder', () => {
     });
 
     expect(builder.log).toMatchInlineSnapshot(`
-      Object {
-        "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
-        "runs": Array [
-          Object {
-            "invocations": Array [],
-            "results": Array [
-              Object {
-                "kind": "fail",
-                "level": "error",
-                "message": Object {
-                  "text": "THIS IS A MESSAGE",
-                },
-                "ruleId": "test-rule",
-                "ruleIndex": 0,
-              },
-            ],
-            "tool": Object {
-              "driver": Object {
-                "informationUri": "https://github.com/checkupjs/checkup",
-                "language": "en-US",
-                "name": "checkup",
-                "rules": Array [
-                  Object {
-                    "id": "test-rule",
-                  },
-                ],
-              },
-            },
+{
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "invocations": [],
+      "results": [
+        {
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "THIS IS A MESSAGE",
           },
-        ],
-        "version": "2.1.0",
-      }
-    `);
+          "ruleId": "test-rule",
+          "ruleIndex": 0,
+        },
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/checkupjs/checkup",
+          "language": "en-US",
+          "name": "checkup",
+          "rules": [
+            {
+              "id": "test-rule",
+            },
+          ],
+        },
+      },
+    },
+  ],
+  "version": "2.1.0",
+}
+`);
     expect(builder.log).toBeValidSarifLog();
   });
 
@@ -158,43 +158,43 @@ describe('sarif-builder', () => {
     let run = builder.log.runs[0];
 
     expect(builder.log).toMatchInlineSnapshot(`
-      Object {
-        "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
-        "runs": Array [
-          Object {
-            "invocations": Array [],
-            "results": Array [
-              Object {
-                "kind": "fail",
-                "level": "error",
-                "message": Object {
-                  "text": "THIS IS A MESSAGE",
-                },
-                "ruleId": "test-rule",
-                "ruleIndex": 0,
-              },
-            ],
-            "tool": Object {
-              "driver": Object {
-                "informationUri": "https://github.com/checkupjs/checkup",
-                "language": "en-US",
-                "name": "checkup",
-                "rules": Array [
-                  Object {
-                    "helpUri": "http://fat-chance-youre-gonna-get-help-here.com",
-                    "id": "test-rule",
-                    "shortDescription": Object {
-                      "text": "This is only a test rule",
-                    },
-                  },
-                ],
+{
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "invocations": [],
+      "results": [
+        {
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "THIS IS A MESSAGE",
+          },
+          "ruleId": "test-rule",
+          "ruleIndex": 0,
+        },
+      ],
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/checkupjs/checkup",
+          "language": "en-US",
+          "name": "checkup",
+          "rules": [
+            {
+              "helpUri": "http://fat-chance-youre-gonna-get-help-here.com",
+              "id": "test-rule",
+              "shortDescription": {
+                "text": "This is only a test rule",
               },
             },
-          },
-        ],
-        "version": "2.1.0",
-      }
-    `);
+          ],
+        },
+      },
+    },
+  ],
+  "version": "2.1.0",
+}
+`);
     expect(run.tool.driver.rules![0].id).toEqual(run.results![0].ruleId);
     expect(builder.log).toBeValidSarifLog();
   });

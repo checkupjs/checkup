@@ -55,19 +55,19 @@ describe('ember-template-lint-disable-task', () => {
 
     expect(actions).toHaveLength(1);
     expect(actions).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "defaultThreshold": 2,
-          "details": "3 usages of template-lint-disable",
-          "input": 3,
-          "items": Array [
-            "Total template-lint-disable usages: 3",
-          ],
-          "name": "reduce-template-lint-disable-usages",
-          "summary": "Reduce number of template-lint-disable usages",
-          "taskName": "ember-template-lint-disable",
-        },
-      ]
-    `);
+[
+  {
+    "defaultThreshold": 2,
+    "details": "3 usages of template-lint-disable",
+    "input": 3,
+    "items": [
+      "Total template-lint-disable usages: 3",
+    ],
+    "name": "reduce-template-lint-disable-usages",
+    "summary": "Reduce number of template-lint-disable usages",
+    "taskName": "ember-template-lint-disable",
+  },
+]
+`);
   });
 });
