@@ -2,6 +2,28 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v1.4.2 (2022-01-12)
+
+#### :bug: Bug Fix
+* `checkup-plugin-javascript`
+  * [#1160](https://github.com/checkupjs/checkup/pull/1160) Adding missing package required by tasks using eslint configurations ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `cli`
+  * [#1154](https://github.com/checkupjs/checkup/pull/1154) Extract commands into separate modules ([@scalvert](https://github.com/scalvert))
+* `checkup-formatter-pretty`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `plugin`
+  * [#1151](https://github.com/checkupjs/checkup/pull/1151) Update jest to use printBasicPrototype for snapshotFormat ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-javascript`
+  * [#1150](https://github.com/checkupjs/checkup/pull/1150) Adds dependabot auto-merge configuration ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.4.1 (2021-12-10)
 
 #### :bug: Bug Fix

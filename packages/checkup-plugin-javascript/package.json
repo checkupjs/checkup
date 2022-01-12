@@ -1,6 +1,6 @@
 {
   "name": "checkup-plugin-javascript",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "A checkup plugin for Javascript project tasks",
   "keywords": [
     "checkup-plugin"
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@babel/parser": "^7.13.13",
-    "@checkup/core": "^1.4.1",
+    "@checkup/core": "^1.4.2",
     "babel-eslint": "^10.1.0",
     "ember-template-recast": "^5.0.3",
     "npm-check": "^5.9.2",
@@ -33,8 +33,8 @@
     "tslib": "^2"
   },
   "devDependencies": {
-    "@checkup/plugin": "^1.4.1",
-    "@checkup/test-helpers": "^1.4.1",
+    "@checkup/plugin": "^1.4.2",
+    "@checkup/test-helpers": "^1.4.2",
     "@types/semver": "^7.3.9",
     "fixturify-project": "^2.1.1",
     "rimraf": "^3.0.2"

@@ -1,6 +1,6 @@
 {
   "name": "@checkup/core",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Checkup's core library",
   "homepage": "https://github.com/checkupjs/checkup",
   "bugs": "https://github.com/checkupjs/checkup/issues",
