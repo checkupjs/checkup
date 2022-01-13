@@ -22,7 +22,7 @@
     "docs:generate": "checkup-plugin docs"
   },
   "dependencies": {
-    "@babel/parser": "^7.13.13",
+    "@babel/parser": "^7.16.8",
     "@checkup/core": "^1.4.2",
     "babel-eslint": "^10.1.0",
     "ember-template-recast": "^5.0.3",
