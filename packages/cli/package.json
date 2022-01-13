@@ -53,7 +53,7 @@
     "wrap-ansi": "^7.0.0",
     "yargs": "^16.2.0",
     "yargs-unparser": "^2.0.0",
-    "yeoman-environment": "^3.6.0",
+    "yeoman-environment": "^3.8.1",
     "yeoman-generator": "^5.4.2"
   },
   "devDependencies": {
