@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "jest --passWithNoTests --no-cache"
+    "test": "node --experimental-vm-modules $(yarn bin jest) --passWithNoTests --no-cache"
   },
   "dependencies": {
     "@checkup/core": "1.4.2",

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js', 'json'],
   transform: { '\\.ts$': 'ts-jest' },
@@ -19,4 +19,13 @@ module.exports = {
     printBasicPrototype: false,
   },
   testPathIgnorePatterns: ['/__utils__/', '__fixtures__'],
+  extensionsToTreatAsEsm: ['.ts'],
+  globals: {
+    'ts-jest': {
+      useESM: true,
+    },
+  },
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
 };

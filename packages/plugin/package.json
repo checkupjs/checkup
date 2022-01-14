@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "jest --passWithNoTests --no-cache"
+    "test": "node --experimental-vm-modules $(yarn bin jest) --passWithNoTests --no-cache"
   },
   "dependencies": {
     "@babel/traverse": "^7.13.17",

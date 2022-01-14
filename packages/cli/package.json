@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "jest --runInBand --no-cache"
+    "test": "node --experimental-vm-modules $(yarn bin jest) --runInBand --no-cache"
   },
   "dependencies": {
     "@babel/parser": "^7.17.10",
