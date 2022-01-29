@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 1`] = `
+exports[`calculate-sectioned-bar > calculateSectionBar > should calculateSectionBar segments correctly 1`] = `
 {
   "completedSegments": [
     {
@@ -18,7 +18,7 @@ exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar 
 }
 `;
 
-exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 3`] = `
+exports[`calculate-sectioned-bar > calculateSectionBar > should calculateSectionBar segments correctly 3`] = `
 {
   "completedSegments": [
     {
@@ -36,7 +36,7 @@ exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar 
 }
 `;
 
-exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 4`] = `
+exports[`calculate-sectioned-bar > calculateSectionBar > should calculateSectionBar segments correctly 4`] = `
 {
   "completedSegments": [
     {
@@ -59,7 +59,7 @@ exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar 
 }
 `;
 
-exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 5`] = `
+exports[`calculate-sectioned-bar > calculateSectionBar > should calculateSectionBar segments correctly 5`] = `
 {
   "completedSegments": [
     {
@@ -82,7 +82,7 @@ exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar 
 }
 `;
 
-exports[`calculate-sectioned-bar calculateSectionBar should calculateSectionBar segments correctly 6`] = `
+exports[`calculate-sectioned-bar > calculateSectionBar > should calculateSectionBar segments correctly 6`] = `
 {
   "completedSegments": [
     {

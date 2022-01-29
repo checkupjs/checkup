@@ -9,7 +9,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc --build",
-    "test": "node --experimental-vm-modules $(yarn bin jest) --no-cache"
+    "test": "vitest run"
   },
   "dependencies": {
     "@checkup/core": "1.4.2",

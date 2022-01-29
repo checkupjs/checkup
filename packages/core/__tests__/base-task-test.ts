@@ -18,6 +18,7 @@ class FakeTask extends BaseTask {
 
 describe('BaseTask', () => {
   it('creates a task with correct defaults set', () => {
+    debugger;
     let context: TaskContext = getTaskContext();
 
     let fakeTask = new FakeTask('fake', context);

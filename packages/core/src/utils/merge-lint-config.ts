@@ -1,4 +1,4 @@
-import * as deepmerge from 'deepmerge';
+import deepmerge from 'deepmerge';
 
 /**
  * Merges a task-specific lint configuration into the Task's lint configuration.

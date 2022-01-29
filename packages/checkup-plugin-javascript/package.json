@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "node --experimental-vm-modules $(yarn bin jest) --no-cache",
+    "test": "vitest run",
     "docs:generate": "checkup-plugin docs"
   },
   "dependencies": {
