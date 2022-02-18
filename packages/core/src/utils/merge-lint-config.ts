@@ -1,5 +1,5 @@
 import * as deepmerge from 'deepmerge';
-import { CLIEngine } from 'eslint';
+import { Linter } from 'eslint';
 import { TemplateLintConfig } from '../types/ember-template-lint';
 
 /**
@@ -10,7 +10,7 @@ import { TemplateLintConfig } from '../types/ember-template-lint';
  * @returns {*} - The combined configs
  */
 export function mergeLintConfig(
-  config: TemplateLintConfig | CLIEngine.Options,
+  config: TemplateLintConfig | Linter.Config,
   taskLintConfig: Record<string, any>
 ) {
   let combinedConfigs = deepmerge(config, taskLintConfig);

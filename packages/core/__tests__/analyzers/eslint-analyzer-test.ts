@@ -1,13 +1,12 @@
 import { resolve } from 'path';
-import { CLIEngine } from 'eslint';
+import { ESLint, Linter } from 'eslint';
 import ESLintAnalyzer from '../../src/analyzers/eslint-analyzer';
-import { ESLintOptions } from '../../src/types/analyzers';
 
 const SIMPLE_FILE_PATH = resolve('..', '__fixtures__/simple.js');
 
 describe('eslint-analyzer', () => {
-  it('can create an eslint analyzer', () => {
-    let config: ESLintOptions = {
+  it('can create an eslint analyzer', async () => {
+    let config: Linter.Config = {
       parser: 'babel-eslint',
       parserOptions: {
         ecmaVersion: 2018,
@@ -16,13 +15,15 @@ describe('eslint-analyzer', () => {
           legacyDecorators: true,
         },
       },
-      envs: ['browser'],
+      env: {
+        browser: true,
+      },
     };
 
     let analyzer: ESLintAnalyzer = new ESLintAnalyzer(config);
-    let configForFile = analyzer.engine.getConfigForFile(SIMPLE_FILE_PATH);
+    let configForFile = await analyzer.engine.calculateConfigForFile(SIMPLE_FILE_PATH);
 
-    expect(analyzer.engine).toBeInstanceOf(CLIEngine);
+    expect(analyzer.engine).toBeInstanceOf(ESLint);
     expect(Object.keys(configForFile)).toMatchInlineSnapshot(`
 [
   "env",
@@ -39,8 +40,8 @@ describe('eslint-analyzer', () => {
 `);
   });
 
-  it('can create an eslint analyzer with custom rule configuration', () => {
-    let config: ESLintOptions = {
+  it('can create an eslint analyzer with custom rule configuration', async () => {
+    let config: Linter.Config = {
       parser: 'babel-eslint',
       parserOptions: {
         ecmaVersion: 2018,
@@ -49,7 +50,7 @@ describe('eslint-analyzer', () => {
           legacyDecorators: true,
         },
       },
-      envs: ['browser'],
+      env: { browser: true },
       rules: {
         'no-tabs': [
           'error',
@@ -61,12 +62,12 @@ describe('eslint-analyzer', () => {
     };
 
     let analyzer: ESLintAnalyzer = new ESLintAnalyzer(config);
-    let configForFile = analyzer.engine.getConfigForFile(SIMPLE_FILE_PATH);
+    let configForFile = await analyzer.engine.calculateConfigForFile(SIMPLE_FILE_PATH);
 
-    expect(analyzer.engine).toBeInstanceOf(CLIEngine);
+    expect(analyzer.engine).toBeInstanceOf(ESLint);
     expect(configForFile.rules!['no-tabs']).toMatchInlineSnapshot(`
 [
-  "error",
+  0,
   {
     "allowIndentationTabs": true,
   },
