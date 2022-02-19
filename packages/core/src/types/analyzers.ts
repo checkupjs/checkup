@@ -1,4 +1,4 @@
-import { CLIEngine, Linter } from 'eslint';
+import { ESLint, Linter } from 'eslint';
 import { TemplateLintMessage, TemplateLintResult } from './ember-template-lint';
 
 const EmberTemplateLinter = require('ember-template-lint').TemplateLinter;
@@ -9,11 +9,9 @@ export interface LintAnalyzer<ParserReport> {
 }
 
 export type LintMessage = ESLintMessage | TemplateLintMessage;
-export type LintResult = ESLintResult | TemplateLintResult;
+export type LintResult = ESLint.LintResult | TemplateLintResult;
 
 export type TemplateLinter = typeof EmberTemplateLinter;
 
-export type ESLintOptions = CLIEngine.Options;
-export type ESLintReport = CLIEngine.LintReport;
-export type ESLintResult = CLIEngine.LintResult;
+export type ESLintOptions = ESLint.Options;
 export type ESLintMessage = Linter.LintMessage;

@@ -9,16 +9,18 @@ import { satisfies } from 'semver';
 import { Result } from 'sarif';
 
 const ESLINT_CONFIG: ESLintOptions = {
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
+  baseConfig: {
+    parser: 'babel-eslint',
+    parserOptions: {
+      ecmaVersion: 2018,
+      sourceType: 'module',
+      ecmaFeatures: {
+        legacyDecorators: true,
+      },
     },
-  },
-  rules: {
-    strict: ['error', 'never'],
+    rules: {
+      strict: ['error', 'never'],
+    },
   },
   useEslintrc: false,
   allowInlineConfig: false,
@@ -92,7 +94,7 @@ export default class ValidEsmPackageTask extends BaseValidationTask implements T
     this.addValidationStep('Should not have "use strict" in any JavaScript files', async () => {
       let analyzer = new ESLintAnalyzer(ESLINT_CONFIG);
 
-      let { results } = await analyzer.analyze(this.context.paths.filterByGlob('**/*.js'));
+      let results = await analyzer.analyze(this.context.paths.filterByGlob('**/*.js'));
       let hasErrors = results.some((result) => result.messages.length > 0);
 
       return {

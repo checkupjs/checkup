@@ -1,4 +1,4 @@
-import { CLIEngine, Rule } from 'eslint';
+import { ESLint, Linter, Rule } from 'eslint';
 import { mergeLintConfig } from '../utils/merge-lint-config';
 import { TaskConfig } from '../types/config';
 
@@ -9,26 +9,19 @@ import { TaskConfig } from '../types/config';
  * @class ESLintAnalyzer
  */
 export default class ESLintAnalyzer {
-  engine: CLIEngine;
+  engine: ESLint;
   rules: Map<string, Rule.RuleModule>;
 
-  constructor(config: CLIEngine.Options, taskConfig?: TaskConfig) {
+  constructor(options: ESLint.Options, taskConfig?: TaskConfig) {
     if (taskConfig && taskConfig.eslintConfig) {
-      config = mergeLintConfig(config, taskConfig.eslintConfig);
+      options.baseConfig = mergeLintConfig(options.baseConfig, taskConfig.eslintConfig);
     }
 
-    this.engine = new CLIEngine(config);
-    this.rules = this.engine.getRules();
+    this.engine = new ESLint(options);
+    this.rules = new Linter().getRules();
   }
 
-  async analyze(paths: string[]): Promise<CLIEngine.LintReport> {
-    return new Promise((resolve, reject) => {
-      try {
-        let report = this.engine.executeOnFiles(paths);
-        resolve(report);
-      } catch (error) {
-        reject(error);
-      }
-    });
+  async analyze(paths: string[]): Promise<ESLint.LintResult[]> {
+    return this.engine.lintFiles(paths);
   }
 }

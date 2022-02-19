@@ -1,28 +1,30 @@
 import { join } from 'path';
 import {
   Task,
-  ESLintReport,
   LintAnalyzer,
   BaseTask,
   TaskContext,
   ESLintAnalyzer,
   ESLintOptions,
+  LintResult,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
 export const EMBER_TEST_TYPES: ESLintOptions = {
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
+  baseConfig: {
+    parser: 'babel-eslint',
+    parserOptions: {
+      ecmaVersion: 2018,
+      sourceType: 'module',
+      ecmaFeatures: {
+        legacyDecorators: true,
+      },
     },
-  },
-  plugins: ['ember'],
-  envs: ['browser'],
-  rules: {
-    'test-types': 'error',
+    plugins: ['ember'],
+    env: { browser: true },
+    rules: {
+      'test-types': 'error',
+    },
   },
   rulePaths: [join(__dirname, '../eslint/rules')],
   useEslintrc: false,
@@ -35,7 +37,7 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
   category = 'testing';
   group = 'ember';
 
-  private eslintAnalyzer: LintAnalyzer<ESLintReport>;
+  private eslintAnalyzer: LintAnalyzer<LintResult[]>;
   private testFiles: string[];
 
   constructor(pluginName: string, context: TaskContext) {
@@ -76,12 +78,12 @@ export default class EmberTestTypesTask extends BaseTask implements Task {
     return this.buildResult(esLintReport);
   }
 
-  private async runEsLint(): Promise<ESLintReport> {
+  private async runEsLint(): Promise<LintResult[]> {
     return this.eslintAnalyzer.analyze(this.testFiles);
   }
 
-  buildResult(report: ESLintReport): Result[] {
-    let results = this.flattenLintResults(report.results);
+  buildResult(lintResults: LintResult[]): Result[] {
+    let results = this.flattenLintResults(lintResults);
 
     results.forEach((result) => {
       let [testType, method] = result.message.split('|');

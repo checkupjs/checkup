@@ -1,11 +1,11 @@
-import { CLIEngine } from 'eslint';
+import { Linter } from 'eslint';
 import { mergeLintConfig } from '../../src/utils/merge-lint-config';
 import { TemplateLintConfig } from '../../src/types/ember-template-lint';
 
 describe('mergeLintConfig', () => {
   describe('eslint', () => {
     it('should merge strings and tuples when strings are leftmost, tuple takes precedence', () => {
-      let original: CLIEngine.Options = {
+      let original: Linter.Config = {
         rules: {
           'fake-eslint-rule': 'error',
         },
@@ -39,7 +39,7 @@ describe('mergeLintConfig', () => {
     });
 
     it('should merge strings and tuples when tuples are leftmost, string takes precedence', () => {
-      let original: CLIEngine.Options = {
+      let original: Linter.Config = {
         rules: {
           'fake-eslint-rule': [
             'warn',
@@ -67,7 +67,7 @@ describe('mergeLintConfig', () => {
     });
 
     it('should merge rule tuples when there are rule overrides', () => {
-      let original: CLIEngine.Options = {
+      let original: Linter.Config = {
         rules: {
           'fake-eslint-rule': [
             'warn',
@@ -109,7 +109,7 @@ describe('mergeLintConfig', () => {
     });
 
     it('should merge rule tuples when there are rule overrides with true merge', () => {
-      let original: CLIEngine.Options = {
+      let original: Linter.Config = {
         rules: {
           'fake-eslint-rule': [
             'error',

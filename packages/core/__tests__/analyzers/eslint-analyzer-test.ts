@@ -1,28 +1,31 @@
 import { resolve } from 'path';
-import { CLIEngine } from 'eslint';
+import { ESLint } from 'eslint';
 import ESLintAnalyzer from '../../src/analyzers/eslint-analyzer';
-import { ESLintOptions } from '../../src/types/analyzers';
 
 const SIMPLE_FILE_PATH = resolve('..', '__fixtures__/simple.js');
 
 describe('eslint-analyzer', () => {
-  it('can create an eslint analyzer', () => {
-    let config: ESLintOptions = {
-      parser: 'babel-eslint',
-      parserOptions: {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-        ecmaFeatures: {
-          legacyDecorators: true,
+  it('can create an eslint analyzer', async () => {
+    let options: ESLint.Options = {
+      baseConfig: {
+        parser: 'babel-eslint',
+        parserOptions: {
+          ecmaVersion: 2018,
+          sourceType: 'module',
+          ecmaFeatures: {
+            legacyDecorators: true,
+          },
+        },
+        env: {
+          browser: true,
         },
       },
-      envs: ['browser'],
     };
 
-    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(config);
-    let configForFile = analyzer.engine.getConfigForFile(SIMPLE_FILE_PATH);
+    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(options);
+    let configForFile = await analyzer.engine.calculateConfigForFile(SIMPLE_FILE_PATH);
 
-    expect(analyzer.engine).toBeInstanceOf(CLIEngine);
+    expect(analyzer.engine).toBeInstanceOf(ESLint);
     expect(Object.keys(configForFile)).toMatchInlineSnapshot(`
 [
   "env",
@@ -39,34 +42,36 @@ describe('eslint-analyzer', () => {
 `);
   });
 
-  it('can create an eslint analyzer with custom rule configuration', () => {
-    let config: ESLintOptions = {
-      parser: 'babel-eslint',
-      parserOptions: {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-        ecmaFeatures: {
-          legacyDecorators: true,
-        },
-      },
-      envs: ['browser'],
-      rules: {
-        'no-tabs': [
-          'error',
-          {
-            allowIndentationTabs: true,
+  it('can create an eslint analyzer with custom rule configuration', async () => {
+    let options: ESLint.Options = {
+      baseConfig: {
+        parser: 'babel-eslint',
+        parserOptions: {
+          ecmaVersion: 2018,
+          sourceType: 'module',
+          ecmaFeatures: {
+            legacyDecorators: true,
           },
-        ],
+        },
+        env: { browser: true },
+        rules: {
+          'no-tabs': [
+            'error',
+            {
+              allowIndentationTabs: true,
+            },
+          ],
+        },
       },
     };
 
-    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(config);
-    let configForFile = analyzer.engine.getConfigForFile(SIMPLE_FILE_PATH);
+    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(options);
+    let configForFile = await analyzer.engine.calculateConfigForFile(SIMPLE_FILE_PATH);
 
-    expect(analyzer.engine).toBeInstanceOf(CLIEngine);
+    expect(analyzer.engine).toBeInstanceOf(ESLint);
     expect(configForFile.rules!['no-tabs']).toMatchInlineSnapshot(`
 [
-  "error",
+  0,
   {
     "allowIndentationTabs": true,
   },

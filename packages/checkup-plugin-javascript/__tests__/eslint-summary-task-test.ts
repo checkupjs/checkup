@@ -1,10 +1,9 @@
 import '@microsoft/jest-sarif';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName, Task, FilePathArray } from '@checkup/core';
-import { PackageJson } from 'type-fest';
 import { Result, Location } from 'sarif';
 import { evaluateActions } from '../src/actions/eslint-summary-actions';
-import EslintSummaryTask, { ACCEPTED_ESLINT_CONFIG_FILES } from '../src/tasks/eslint-summary-task';
+import EslintSummaryTask from '../src/tasks/eslint-summary-task';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
@@ -126,59 +125,59 @@ describe('eslint-summary-task', () => {
 `);
   });
 
-  describe('readEslintConfig', () => {
-    let task: EslintSummaryTask;
-    const eslintConfigJson = 'airbnb';
-    const pkg: PackageJson & { eslintConfig: string } = {
-      name: 'foo-project',
-      version: '0.0.0',
-      keywords: [],
-      eslintConfig: eslintConfigJson,
-    };
+  // describe('readEslintConfig', () => {
+  //   let task: EslintSummaryTask;
+  //   const eslintConfigJson = 'airbnb';
+  //   const pkg: PackageJson & { eslintConfig: string } = {
+  //     name: 'foo-project',
+  //     version: '0.0.0',
+  //     keywords: [],
+  //     eslintConfig: eslintConfigJson,
+  //   };
 
-    beforeEach(() => {
-      task = new EslintSummaryTask(
-        pluginName,
-        getTaskContext({
-          options: { cwd: project.baseDir },
-          pkg: project.pkg,
-        })
-      );
-    });
+  //   beforeEach(() => {
+  //     task = new EslintSummaryTask(
+  //       pluginName,
+  //       getTaskContext({
+  //         options: { cwd: project.baseDir },
+  //         pkg: project.pkg,
+  //       })
+  //     );
+  //   });
 
-    ACCEPTED_ESLINT_CONFIG_FILES.forEach((file) => {
-      it(`it returns ${file}, even if there is also a JSON config (as .eslintrc* are prioritized over config in package.json)`, () => {
-        let expectedConfig = 'foo';
+  //   ACCEPTED_ESLINT_CONFIG_FILES.forEach((file) => {
+  //     it(`it returns ${file}, even if there is also a JSON config (as .eslintrc* are prioritized over config in package.json)`, () => {
+  //       let expectedConfig = 'foo';
 
-        let project = new CheckupProject('foo-project');
-        project.files[file] = expectedConfig;
-        project.writeSync();
+  //       let project = new CheckupProject('foo-project');
+  //       project.files[file] = expectedConfig;
+  //       project.writeSync();
 
-        const eslintConfig = task.readEslintConfig(project.filePaths, project.baseDir, pkg);
+  //       const eslintConfig = task.readEslintConfig(project.filePaths, project.baseDir, pkg);
 
-        expect(eslintConfig).toEqual(expectedConfig);
-        project.dispose();
-      });
-    });
+  //       expect(eslintConfig).toEqual(expectedConfig);
+  //       project.dispose();
+  //     });
+  //   });
 
-    it('reads config from package.json, only if there is no .eslintrc*', () => {
-      const eslintConfig = task.readEslintConfig([], '.', pkg);
+  //   it('reads config from package.json, only if there is no .eslintrc*', () => {
+  //     const eslintConfig = task.readEslintConfig([], '.', pkg);
 
-      expect(eslintConfig).toEqual(eslintConfigJson);
-    });
+  //     expect(eslintConfig).toEqual(eslintConfigJson);
+  //   });
 
-    it('reads the higher prioritzed .eslintrc*', () => {
-      let expectedConfig = 'foo';
+  //   it('reads the higher prioritzed .eslintrc*', () => {
+  //     let expectedConfig = 'foo';
 
-      let project = new CheckupProject('foo-project');
-      project.files['.eslintrc.js'] = expectedConfig;
-      project.files['.eslintrc.json'] = 'blue';
-      project.writeSync();
+  //     let project = new CheckupProject('foo-project');
+  //     project.files['.eslintrc.js'] = expectedConfig;
+  //     project.files['.eslintrc.json'] = 'blue';
+  //     project.writeSync();
 
-      const eslintConfig = task.readEslintConfig(project.filePaths, project.baseDir, pkg);
+  //     const eslintConfig = task.readEslintConfig(project.filePaths, project.baseDir, pkg);
 
-      expect(eslintConfig).toEqual(expectedConfig);
-      project.dispose();
-    });
-  });
+  //     expect(eslintConfig).toEqual(expectedConfig);
+  //     project.dispose();
+  //   });
+  // });
 });
