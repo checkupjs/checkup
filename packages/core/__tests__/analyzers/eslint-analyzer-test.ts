@@ -1,26 +1,28 @@
 import { resolve } from 'path';
-import { ESLint, Linter } from 'eslint';
+import { ESLint } from 'eslint';
 import ESLintAnalyzer from '../../src/analyzers/eslint-analyzer';
 
 const SIMPLE_FILE_PATH = resolve('..', '__fixtures__/simple.js');
 
 describe('eslint-analyzer', () => {
   it('can create an eslint analyzer', async () => {
-    let config: Linter.Config = {
-      parser: 'babel-eslint',
-      parserOptions: {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-        ecmaFeatures: {
-          legacyDecorators: true,
+    let options: ESLint.Options = {
+      baseConfig: {
+        parser: 'babel-eslint',
+        parserOptions: {
+          ecmaVersion: 2018,
+          sourceType: 'module',
+          ecmaFeatures: {
+            legacyDecorators: true,
+          },
         },
-      },
-      env: {
-        browser: true,
+        env: {
+          browser: true,
+        },
       },
     };
 
-    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(config);
+    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(options);
     let configForFile = await analyzer.engine.calculateConfigForFile(SIMPLE_FILE_PATH);
 
     expect(analyzer.engine).toBeInstanceOf(ESLint);
@@ -41,27 +43,29 @@ describe('eslint-analyzer', () => {
   });
 
   it('can create an eslint analyzer with custom rule configuration', async () => {
-    let config: Linter.Config = {
-      parser: 'babel-eslint',
-      parserOptions: {
-        ecmaVersion: 2018,
-        sourceType: 'module',
-        ecmaFeatures: {
-          legacyDecorators: true,
-        },
-      },
-      env: { browser: true },
-      rules: {
-        'no-tabs': [
-          'error',
-          {
-            allowIndentationTabs: true,
+    let options: ESLint.Options = {
+      baseConfig: {
+        parser: 'babel-eslint',
+        parserOptions: {
+          ecmaVersion: 2018,
+          sourceType: 'module',
+          ecmaFeatures: {
+            legacyDecorators: true,
           },
-        ],
+        },
+        env: { browser: true },
+        rules: {
+          'no-tabs': [
+            'error',
+            {
+              allowIndentationTabs: true,
+            },
+          ],
+        },
       },
     };
 
-    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(config);
+    let analyzer: ESLintAnalyzer = new ESLintAnalyzer(options);
     let configForFile = await analyzer.engine.calculateConfigForFile(SIMPLE_FILE_PATH);
 
     expect(analyzer.engine).toBeInstanceOf(ESLint);

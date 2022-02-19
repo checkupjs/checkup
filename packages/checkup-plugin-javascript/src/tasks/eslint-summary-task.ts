@@ -1,16 +1,11 @@
-import { join, resolve } from 'path';
-import { readFileSync } from 'fs';
 import {
   BaseTask,
-  ESLintOptions,
-  ESLintReport,
   LintAnalyzer,
   Task,
   TaskContext,
-  TaskError,
   ESLintAnalyzer,
+  LintResult,
 } from '@checkup/core';
-
 import { PackageJson } from 'type-fest';
 import { Result } from 'sarif';
 
@@ -35,7 +30,7 @@ export default class EslintSummaryTask extends BaseTask implements Task {
   description = 'Gets a summary of all eslint results in a project';
   category = 'linting';
 
-  private analyzer: LintAnalyzer<ESLintReport>;
+  private analyzer: LintAnalyzer<LintResult[]>;
 
   constructor(pluginName: string, context: TaskContext) {
     super(pluginName, context);
@@ -60,17 +55,15 @@ export default class EslintSummaryTask extends BaseTask implements Task {
       },
     });
 
-    let eslintConfig: ESLintOptions = this.readEslintConfig(
-      this.context.paths,
-      this.context.options.cwd,
-      this.context.pkg as PackageJsonWithEslint
-    );
-    this.analyzer = new ESLintAnalyzer(eslintConfig);
+    this.analyzer = new ESLintAnalyzer({
+      cwd: this.context.options.cwd,
+      useEslintrc: true,
+    });
   }
 
   async run(): Promise<Result[]> {
-    let report = await this.analyzer.analyze(this.context.paths.filterByGlob('**/*.js'));
-    let results = this.flattenLintResults(report.results);
+    let lintResults = await this.analyzer.analyze(this.context.paths.filterByGlob('**/*.js'));
+    let results = this.flattenLintResults(lintResults);
 
     results.forEach((result) => {
       this.addResult(result.message, 'review', result.severity === 2 ? 'error' : 'warning', {
@@ -88,30 +81,5 @@ export default class EslintSummaryTask extends BaseTask implements Task {
     });
 
     return this.results;
-  }
-
-  readEslintConfig(paths: string[], basePath: string, pkg: PackageJsonWithEslint): ESLintOptions {
-    let eslintConfigFile: string = '';
-
-    for (const acceptedConfigFile of ACCEPTED_ESLINT_CONFIG_FILES) {
-      let resolvedAcceptedConfigFile = join(resolve(basePath), acceptedConfigFile);
-
-      if (paths.includes(resolvedAcceptedConfigFile)) {
-        eslintConfigFile = readFileSync(resolvedAcceptedConfigFile, { encoding: 'utf8' });
-        break;
-      }
-    }
-
-    if (eslintConfigFile) {
-      return eslintConfigFile as ESLintOptions;
-    } else if (pkg.eslintConfig !== null) {
-      return pkg.eslintConfig as ESLintOptions;
-    } else {
-      throw new TaskError({
-        taskName: this.taskName,
-        taskErrorMessage:
-          'No eslint config found in root (in the form of .eslintrc.* or as an eslintConfig field in package.json)',
-      });
-    }
   }
 }

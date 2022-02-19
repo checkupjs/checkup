@@ -12,14 +12,12 @@ export default class ESLintAnalyzer {
   engine: ESLint;
   rules: Map<string, Rule.RuleModule>;
 
-  constructor(config: Linter.Config, taskConfig?: TaskConfig) {
+  constructor(options: ESLint.Options, taskConfig?: TaskConfig) {
     if (taskConfig && taskConfig.eslintConfig) {
-      config = mergeLintConfig(config, taskConfig.eslintConfig);
+      options.baseConfig = mergeLintConfig(options.baseConfig, taskConfig.eslintConfig);
     }
 
-    this.engine = new ESLint({
-      baseConfig: config,
-    });
+    this.engine = new ESLint(options);
     this.rules = new Linter().getRules();
   }
 

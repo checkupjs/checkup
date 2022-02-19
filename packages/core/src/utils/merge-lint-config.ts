@@ -1,6 +1,4 @@
 import * as deepmerge from 'deepmerge';
-import { Linter } from 'eslint';
-import { TemplateLintConfig } from '../types/ember-template-lint';
 
 /**
  * Merges a task-specific lint configuration into the Task's lint configuration.
@@ -9,13 +7,10 @@ import { TemplateLintConfig } from '../types/ember-template-lint';
  * @param {Record<string, any>} taskLintConfig - The task's specific lint configuration.
  * @returns {*} - The combined configs
  */
-export function mergeLintConfig(
-  config: TemplateLintConfig | Linter.Config,
-  taskLintConfig: Record<string, any>
-) {
+export function mergeLintConfig<T>(config: T, taskLintConfig: Record<string, any>) {
   let combinedConfigs = deepmerge(config, taskLintConfig);
 
-  if (combinedConfigs.rules) {
+  if ('rules' in combinedConfigs) {
     let rules = combinedConfigs.rules;
     let ruleIds = Object.keys(rules);
 

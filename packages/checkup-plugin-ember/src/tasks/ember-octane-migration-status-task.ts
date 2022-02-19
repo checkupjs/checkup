@@ -1,7 +1,6 @@
 import {
   BaseMigrationTask,
   ESLintOptions,
-  ESLintReport,
   LintAnalyzer,
   Task,
   TemplateLintConfig,
@@ -16,33 +15,37 @@ import {
 import { Result } from 'sarif';
 
 const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
+  baseConfig: {
+    parser: 'babel-eslint',
+    parserOptions: {
+      ecmaVersion: 2018,
+      sourceType: 'module',
+      ecmaFeatures: {
+        legacyDecorators: true,
+      },
+    },
+    plugins: ['ember'],
+    env: {
+      browser: true,
+    },
+    rules: {
+      'ember/classic-decorator-hooks': 'error',
+      'ember/classic-decorator-no-classic-methods': 'error',
+      'ember/no-actions-hash': 'error',
+      'ember/no-classic-classes': 'error',
+      'ember/no-classic-components': 'error',
+      'ember/no-component-lifecycle-hooks': 'error',
+      'ember/no-computed-properties-in-native-classes': 'error',
+      'ember/no-get-with-default': 'error',
+      'ember/no-get': 'error',
+      'ember/no-jquery': 'error',
+      'ember/require-tagless-components': 'error',
+      'ember/no-mixins': 'error',
     },
   },
-  plugins: ['ember'],
-  envs: ['browser'],
-  rules: {
-    'ember/classic-decorator-hooks': 'error',
-    'ember/classic-decorator-no-classic-methods': 'error',
-    'ember/no-actions-hash': 'error',
-    'ember/no-classic-classes': 'error',
-    'ember/no-classic-components': 'error',
-    'ember/no-component-lifecycle-hooks': 'error',
-    'ember/no-computed-properties-in-native-classes': 'error',
-    'ember/no-get-with-default': 'error',
-    'ember/no-get': 'error',
-    'ember/no-jquery': 'error',
-    'ember/require-tagless-components': 'error',
-    'ember/no-mixins': 'error',
-  },
-  useEslintrc: false,
-  allowInlineConfig: false,
   ignore: false,
+  allowInlineConfig: false,
+  useEslintrc: false,
 };
 
 const OCTANE_TEMPLATE_LINT_CONFIG: TemplateLintConfig = {
@@ -68,7 +71,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
   category = 'migrations';
   group = 'ember';
 
-  private eslintAnalyzer: LintAnalyzer<ESLintReport>;
+  private eslintAnalyzer: LintAnalyzer<LintResult[]>;
   private emberTemplateLintAnalyzer: TemplateLinter;
 
   constructor(pluginName: string, context: TaskContext) {
@@ -195,15 +198,15 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
   }
 
   async run(): Promise<Result[]> {
-    let [esLintReport, templateLintReport] = await Promise.all([
+    let [eslintResults, templateLintReport] = await Promise.all([
       this.runEsLint(),
       this.runTemplateLint(),
     ]);
 
-    return this.buildResults([...esLintReport.results, ...templateLintReport.results]);
+    return this.buildResults([...eslintResults, ...templateLintReport.results]);
   }
 
-  private runEsLint(): Promise<ESLintReport> {
+  private runEsLint(): Promise<LintResult[]> {
     let jsPaths = this.context.paths.filterByGlob('**/*.js');
 
     return this.eslintAnalyzer.analyze(jsPaths);
