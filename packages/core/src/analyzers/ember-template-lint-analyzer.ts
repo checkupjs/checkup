@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 
 import { extname } from 'path';
+import TemplateLinter from 'ember-template-lint';
 
 import {
   TemplateLintConfig,
@@ -10,8 +11,6 @@ import {
 } from '../types/ember-template-lint';
 import { TaskConfig } from '../types/config';
 import { mergeLintConfig } from '../utils/merge-lint-config';
-
-const TemplateLinter = require('ember-template-lint');
 
 /**
  * A class for analyzing .hbs files using ember-template-lint
