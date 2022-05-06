@@ -19,7 +19,7 @@ jobs:
         node: ['12']
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
         with:
           node-version: ${{ matrix.node }}
@@ -31,3 +31,16 @@ jobs:
         run: yarn build
       - name: test
         run: yarn test
+
+  dependabot-auto-merge:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && startsWith('dependabot', github.head_ref)
+    steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - uses: actions/checkout@v2
+      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          github-token: ${{ secrets.AUTO_MERGE }}
