@@ -67,7 +67,7 @@
     "mockdate": "^3.0.5"
   },
   "engines": {
-    "node": ">= 12.22.*"
+    "node": ">= 14"
   },
   "publishConfig": {
     "access": "public"
