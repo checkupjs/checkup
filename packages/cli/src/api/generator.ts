@@ -53,12 +53,12 @@ export default class Generator {
       if (existsSync(yoRepoPath)) {
         rmdirSync(yoRepoPath);
       }
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof CheckupError) {
         throw error;
       }
 
-      throw new CheckupError(ErrorKind.Unknown, { error });
+      throw new CheckupError(ErrorKind.Unknown, { error: error as Error });
     }
   }
 }

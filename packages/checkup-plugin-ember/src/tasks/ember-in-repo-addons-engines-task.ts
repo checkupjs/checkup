@@ -1,4 +1,4 @@
-import { Task, BaseTask, TaskError, TaskContext } from '@checkup/core';
+import { Task, BaseTask, TaskError, TaskContext, isErrnoException } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
 import { readJson } from 'fs-extra';
@@ -67,7 +67,7 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
     try {
       package_ = await readJson(packageJsonPath);
     } catch (error) {
-      if (error.code === 'ENOENT') {
+      if (isErrnoException(error) && error.code === 'ENOENT') {
         throw new TaskError({
           taskName: this.taskName,
           taskErrorMessage: `No package.json file detected at ${packageJsonPath}`,

@@ -198,12 +198,12 @@ export default class CheckupTaskRunner {
     try {
       let configPath = await getConfigPath(this.options.configPath, this.options.cwd);
       this.config = this.options.config || readConfig(configPath);
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof CheckupError) {
         throw error;
       }
 
-      throw new CheckupError(ErrorKind.ConfigNotValid, { error });
+      throw new CheckupError(ErrorKind.ConfigNotValid, { error: error as Error });
     }
   }
 

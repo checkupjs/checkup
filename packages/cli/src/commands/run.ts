@@ -138,9 +138,9 @@ export const runCommand = {
           console.log(output);
         }
       }
-    } catch (error) {
+    } catch (error: unknown) {
       spinner.stop();
-      consoleWriter.error(error);
+      consoleWriter.error(error as Error);
     } finally {
       spinner.stop();
     }

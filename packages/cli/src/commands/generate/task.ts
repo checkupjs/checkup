@@ -34,8 +34,8 @@ export const generateTaskCommand = {
       });
 
       await generator.run();
-    } catch (error) {
-      consoleWriter.error(error);
+    } catch (error: unknown) {
+      consoleWriter.error(error as Error);
     }
   },
 };

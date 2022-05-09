@@ -77,11 +77,7 @@ export default class CheckupFixturifyProject extends Project {
   install(cwd = this.baseDir) {
     let cmd: string = 'yarn install --silent';
 
-    try {
-      execSync(cmd, { cwd, stdio: 'ignore' });
-    } catch (error) {
-      throw new Error(error);
-    }
+    execSync(cmd, { cwd, stdio: 'ignore' });
   }
 
   chdir() {
