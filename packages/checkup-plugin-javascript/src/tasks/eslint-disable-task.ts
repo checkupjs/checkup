@@ -115,11 +115,12 @@ export default class EslintDisableTask extends BaseTask implements Task {
             );
             analyzer.analyze(accumulator.visitors);
             data.push(...accumulator.data);
-          } catch (error) {
+          } catch (error: unknown) {
             if (error instanceof Error) {
               error.message = `Error occurred at ${filePath}. ${error.message}`;
             }
-            this.addNonFatalError(error);
+
+            this.addNonFatalError(error as Error);
           }
         });
       })

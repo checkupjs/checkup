@@ -138,6 +138,7 @@
   ],
   "globals": {
     "React": true,
-    "JSX": true
+    "JSX": true,
+    "NodeJS": true
   }
 }

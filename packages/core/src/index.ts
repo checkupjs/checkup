@@ -54,6 +54,7 @@ export { default as CheckupLogBuilder } from './data/checkup-log-builder';
 export { default as CheckupLogParser } from './data/checkup-log-parser';
 
 export { todayFormat } from './today-format';
+export { isError, isErrnoException } from './utils/type-guards';
 
 export * from './types/analyzers';
 export * from './types/checkup-log';
