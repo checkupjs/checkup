@@ -22,7 +22,7 @@
     "docs:generate": "checkup-plugin docs"
   },
   "dependencies": {
-    "@babel/parser": "^7.14.2",
+    "@babel/parser": "^7.17.10",
     "@babel/traverse": "^7.14.2",
     "@babel/types": "7.13.17",
     "@checkup/core": "^1.4.2",
