@@ -1,6 +1,6 @@
 'use strict';
 
-import BufferedWriter from '../../lib/utils/buffered-writer';
+import BufferedWriter from '../../lib/utils/buffered-writer.js';
 
 describe('buffered-writer', function () {
   let bufferedWriter: BufferedWriter;
@@ -111,7 +111,7 @@ describe('buffered-writer', function () {
       50
     );
     expect(bufferedWriter.escapedBuffer.trim()).toMatchInlineSnapshot(`
-      "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 50 
+      "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 50
       ■ tables (39)
       ■ books (36)"
     `);

@@ -1,4 +1,4 @@
-import CheckupLogParser from '../data/checkup-log-parser';
+import CheckupLogParser from '../data/checkup-log-parser.js';
 import {
   Task,
   TaskContext,
@@ -7,7 +7,7 @@ import {
   TaskFormatter,
   OutputFormat,
 } from './tasks';
-import { CheckupConfig } from './config';
+import { CheckupConfig } from './config.js';
 
 export type RunOptions = {
   cwd: string;

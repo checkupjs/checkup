@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
-import { SectionedBar } from '../../src/sub-components/sectioned-bar';
-import { BarData } from '../../src/types';
+import { SectionedBar } from '../../src/sub-components/sectioned-bar.js';
+import { BarData } from '../../src/types.js';
 
 const stripAnsi = require('strip-ansi');
 

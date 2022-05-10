@@ -1,5 +1,5 @@
 import { ESLint, Linter } from 'eslint';
-import { TemplateLintMessage, TemplateLintResult } from './ember-template-lint';
+import { TemplateLintMessage, TemplateLintResult } from './ember-template-lint.js';
 
 const EmberTemplateLinter = require('ember-template-lint').TemplateLinter;
 

@@ -3,8 +3,8 @@ import * as helpers from 'yeoman-test';
 
 import { Answers } from 'inquirer';
 import { createTmpDir } from '@checkup/test-helpers';
-import PluginGenerator from '../../src/generators/plugin';
-import TaskGenerator from '../../src/generators/task';
+import PluginGenerator from '../../src/generators/plugin.js';
+import TaskGenerator from '../../src/generators/task.js';
 
 const DEFAULT_PLUGIN_OPTIONS = {
   name: 'my-plugin',

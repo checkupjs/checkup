@@ -1,11 +1,11 @@
 import * as yargs from 'yargs';
 import * as ora from 'ora';
 import { yellow } from 'chalk';
-import CheckupTaskRunner from '../api/checkup-task-runner';
-import { CLIOptions, consoleWriter } from '../checkup';
-import { reportAvailableTasks } from '../formatters/available-tasks';
-import { getFormatter } from '../formatters/get-formatter';
-import { writeResultsToFile } from '../formatters/file-writer';
+import CheckupTaskRunner from '../api/checkup-task-runner.js';
+import { CLIOptions, consoleWriter } from '../checkup.js';
+import { reportAvailableTasks } from '../formatters/available-tasks.js';
+import { getFormatter } from '../formatters/get-formatter.js';
+import { writeResultsToFile } from '../formatters/file-writer.js';
 
 export const runCommand = {
   command: 'run',

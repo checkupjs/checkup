@@ -1,5 +1,5 @@
-import { RunOptions } from './cli';
-import { CheckupConfig } from './config';
+import { RunOptions } from './cli.js';
+import { CheckupConfig } from './config.js';
 
 export type IndexableObject = { [key: string]: any };
 

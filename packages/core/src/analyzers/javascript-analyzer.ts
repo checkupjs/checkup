@@ -1,7 +1,7 @@
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
 import { Visitor } from 'ast-types';
-import AstAnalyzer from './ast-analyzer';
+import AstAnalyzer from './ast-analyzer.js';
 
 /**
  * A class for analyzing JavaScript files.

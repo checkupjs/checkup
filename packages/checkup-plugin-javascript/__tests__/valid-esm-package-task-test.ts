@@ -1,6 +1,6 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
-import ValidEsmPackageTask from '../src/tasks/valid-esm-package-task';
+import ValidEsmPackageTask from '../src/tasks/valid-esm-package-task.js';
 
 describe('valid-esm-package-task', () => {
   let project: CheckupProject;

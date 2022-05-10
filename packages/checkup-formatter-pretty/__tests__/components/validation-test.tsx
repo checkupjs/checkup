@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import { RuleResults } from '@checkup/core';
-import { Validation } from '../../src/components/validation';
+import { Validation } from '../../src/components/validation.js';
 
 const stripAnsi = require('strip-ansi');
 

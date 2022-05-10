@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import DependencyAnalyzer from '../../src/analyzers/dependency-analyzer';
+import DependencyAnalyzer from '../../src/analyzers/dependency-analyzer.js';
 
 describe('dependency-analyzer', () => {
   it('can load dependencies for a package.json', async () => {

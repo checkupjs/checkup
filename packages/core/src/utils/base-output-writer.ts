@@ -1,7 +1,7 @@
 import * as chalk from 'chalk';
 import { startCase } from 'lodash';
 import CliTable3 from 'cli-table3';
-import CheckupError from '../errors/checkup-error';
+import CheckupError from '../errors/checkup-error.js';
 
 type Segment = { title: string; count: number; color?: chalk.Chalk };
 

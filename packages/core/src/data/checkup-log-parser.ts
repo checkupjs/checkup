@@ -1,6 +1,6 @@
 import { Log } from 'sarif';
-import { RuleResults } from '../types/checkup-log';
-import { TaskName } from '../types/tasks';
+import { RuleResults } from '../types/checkup-log.js';
+import { TaskName } from '../types/tasks.js';
 
 /**
  * A class that parses a SARIF checkup log to provide a

@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 import { LinterOptions } from 'stylelint';
-import StylelintAnalyzer from '../../src/analyzers/stylelint-analyzer';
-import { TaskConfig } from '../../src/types/config';
+import StylelintAnalyzer from '../../src/analyzers/stylelint-analyzer.js';
+import { TaskConfig } from '../../src/types/config.js';
 
 describe('stylelint-analyzer', () => {
   it('can create a stylelint analyzer', () => {

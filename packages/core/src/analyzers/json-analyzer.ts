@@ -1,4 +1,4 @@
-import JavaScriptAnalyzer from './javascript-analyzer';
+import JavaScriptAnalyzer from './javascript-analyzer.js';
 
 /**
  * A class for analyzing JSON files.

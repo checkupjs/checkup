@@ -1,7 +1,7 @@
 'use strict';
 
 import { stdout as mockStdout } from 'stdout-stderr';
-import ConsoleWriter from '../../src/utils/console-writer';
+import ConsoleWriter from '../../src/utils/console-writer.js';
 
 describe('console-writer', function () {
   let consoleWriter: ConsoleWriter;
@@ -112,7 +112,7 @@ describe('console-writer', function () {
       50
     );
     expect(mockStdout.output.trim()).toMatchInlineSnapshot(`
-      "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 50 
+      "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 50
       ■ tables (39)
       ■ books (36)"
     `);

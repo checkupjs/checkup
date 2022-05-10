@@ -1,7 +1,7 @@
 import '@microsoft/jest-sarif';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
-import EmberOctaneMigrationStatusTask from '../src/tasks/ember-octane-migration-status-task';
+import EmberOctaneMigrationStatusTask from '../src/tasks/ember-octane-migration-status-task.js';
 
 describe('ember-octane-migration-status-task', () => {
   let project: EmberProject;

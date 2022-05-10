@@ -11,7 +11,7 @@ import {
   CheckupError,
 } from '@checkup/core';
 import { Result } from 'sarif';
-import { taskResultComparator } from './task-result-comparator';
+import { taskResultComparator } from './task-result-comparator.js';
 
 export type TaskFinderResult = { tasksFound: Task[]; tasksNotFound: (TaskName | string)[] };
 

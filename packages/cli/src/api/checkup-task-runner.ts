@@ -26,8 +26,8 @@ import * as resolve from 'resolve';
 import { Log, Result } from 'sarif';
 
 import { PackageJson } from 'type-fest';
-import TaskListImpl from '../task-list';
-import PluginRegistrationProvider from './registration-provider';
+import TaskListImpl from '../task-list.js';
+import PluginRegistrationProvider from './registration-provider.js';
 
 /**
  * Class that is able to run a list of checkup tasks.

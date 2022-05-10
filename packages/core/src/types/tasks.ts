@@ -1,11 +1,11 @@
 import { PackageJson, SetOptional } from 'type-fest';
 import { PropertyBag, ReportingDescriptor, Result } from 'sarif';
-import { FilePathArray } from '../utils/file-path-array';
-import CheckupLogBuilder from '../data/checkup-log-builder';
-import BaseOutputWriter from '../utils/base-output-writer';
-import { CheckupConfig, TaskConfig } from './config';
-import { RunOptions } from './cli';
-import { RequiredResult } from './checkup-log';
+import { FilePathArray } from '../utils/file-path-array.js';
+import CheckupLogBuilder from '../data/checkup-log-builder.js';
+import BaseOutputWriter from '../utils/base-output-writer.js';
+import { CheckupConfig, TaskConfig } from './config.js';
+import { RunOptions } from './cli.js';
+import { RequiredResult } from './checkup-log.js';
 
 export type RegisterTaskArgs = {
   context: TaskContext;

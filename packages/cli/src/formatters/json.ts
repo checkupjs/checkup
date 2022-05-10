@@ -1,7 +1,7 @@
 import { CheckupLogParser, ConsoleWriter, Formatter, FormatterOptions } from '@checkup/core';
 import { yellow } from 'chalk';
 import { Log } from 'sarif';
-import { writeResultsToFile } from './file-writer';
+import { writeResultsToFile } from './file-writer.js';
 
 export default class JsonFormatter implements Formatter {
   options: FormatterOptions;

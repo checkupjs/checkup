@@ -1,6 +1,6 @@
 import { Log, Run, ReportingDescriptor, Result, Invocation, Notification } from 'sarif';
 import ow from 'ow';
-import { RequiredResult, RequiredRun } from '../types/checkup-log';
+import { RequiredResult, RequiredRun } from '../types/checkup-log.js';
 
 export default class SarifLogBuilder {
   log: Log;

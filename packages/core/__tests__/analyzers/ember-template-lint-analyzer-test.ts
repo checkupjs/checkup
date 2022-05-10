@@ -1,5 +1,5 @@
-import { TemplateLintConfig } from '../../src/types/ember-template-lint';
-import EmberTemplateLintAnalyzer from '../../src/analyzers/ember-template-lint-analyzer';
+import { TemplateLintConfig } from '../../src/types/ember-template-lint.js';
+import EmberTemplateLintAnalyzer from '../../src/analyzers/ember-template-lint-analyzer.js';
 
 const TemplateLinter = require('ember-template-lint');
 

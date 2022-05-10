@@ -1,6 +1,6 @@
 'use strict';
 
-import { FilePathArray } from '../../src/utils/file-path-array';
+import { FilePathArray } from '../../src/utils/file-path-array.js';
 
 describe('FilePathsArray', function () {
   it('returns all files when no patterns are provided', function () {

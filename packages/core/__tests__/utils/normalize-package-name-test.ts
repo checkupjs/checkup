@@ -1,4 +1,4 @@
-import { getShorthandName, normalizePackageName } from '../../src/utils/normalize-package-name';
+import { getShorthandName, normalizePackageName } from '../../src/utils/normalize-package-name.js';
 
 describe('normalize-package-name', () => {
   it.each([

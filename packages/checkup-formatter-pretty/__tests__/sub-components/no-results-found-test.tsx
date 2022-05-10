@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
-import { NoResultsFound } from '../../src/sub-components/no-results-found';
+import { NoResultsFound } from '../../src/sub-components/no-results-found.js';
 
 const stripAnsi = require('strip-ansi');
 

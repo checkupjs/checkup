@@ -1,6 +1,6 @@
 import { ESLint, Linter, Rule } from 'eslint';
-import { mergeLintConfig } from '../utils/merge-lint-config';
-import { TaskConfig } from '../types/config';
+import { mergeLintConfig } from '../utils/merge-lint-config.js';
+import { TaskConfig } from '../types/config.js';
 
 /**
  * A class for analyzing JavaScript/TypeScript files using eslint.

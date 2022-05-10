@@ -1,6 +1,6 @@
 import { join, resolve } from 'path';
 import { existsSync, statSync } from 'fs';
-import { FilePathArray } from './file-path-array';
+import { FilePathArray } from './file-path-array.js';
 
 const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
 const isGlob = require('is-glob');

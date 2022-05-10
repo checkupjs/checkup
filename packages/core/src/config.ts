@@ -7,10 +7,10 @@ import * as stringify from 'json-stable-stringify';
 import { existsSync, readJsonSync, writeJsonSync, writeJSON } from 'fs-extra';
 
 import { white } from 'chalk';
-import { CheckupConfig, ConfigValue } from './types/config';
-import CheckupError from './errors/checkup-error';
-import { normalizePackageName } from './utils/normalize-package-name';
-import { ErrorKind } from './errors/error-kind';
+import { CheckupConfig, ConfigValue } from './types/config.js';
+import CheckupError from './errors/checkup-error.js';
+import { normalizePackageName } from './utils/normalize-package-name.js';
+import { ErrorKind } from './errors/error-kind.js';
 
 const debug = require('debug')('checkup:config');
 const schema = require('./schemas/config-schema.json');

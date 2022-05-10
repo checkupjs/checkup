@@ -1,4 +1,4 @@
-import { TaskName, TaskFormatter } from '../types/tasks';
+import { TaskName, TaskFormatter } from '../types/tasks.js';
 
 const registeredTaskReporters = new Map<TaskName, TaskFormatter>();
 

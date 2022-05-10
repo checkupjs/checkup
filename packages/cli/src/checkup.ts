@@ -1,7 +1,7 @@
 import * as yargs from 'yargs';
 import { OutputFormat, ConsoleWriter, CheckupConfig } from '@checkup/core';
-import { runCommand } from './commands/run';
-import { generateCommand } from './commands/generate';
+import { runCommand } from './commands/run.js';
+import { generateCommand } from './commands/generate.js';
 
 interface CheckupArguments {
   [x: string]: unknown;

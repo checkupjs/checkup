@@ -11,8 +11,8 @@ import {
   normalizePackageName,
 } from '@checkup/core';
 import { Log } from 'sarif';
-import SummaryFormatter from './summary';
-import JsonFormatter from './json';
+import SummaryFormatter from './summary.js';
+import JsonFormatter from './json.js';
 
 /**
  * Get formatter from options.format (default: summary)

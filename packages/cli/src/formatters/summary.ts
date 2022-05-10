@@ -2,8 +2,8 @@ import { BufferedWriter, CheckupLogParser, Formatter, FormatterOptions } from '@
 import { success } from 'log-symbols';
 import { yellow } from 'chalk';
 import { Log } from 'sarif';
-import { writeResultsToFile } from './file-writer';
-import BaseFormatter from './base-formatter';
+import { writeResultsToFile } from './file-writer.js';
+import BaseFormatter from './base-formatter.js';
 
 export default class SummaryFormatter extends BaseFormatter<BufferedWriter> implements Formatter {
   constructor(options: FormatterOptions) {

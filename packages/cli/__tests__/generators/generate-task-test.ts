@@ -4,8 +4,8 @@ import { resolve } from 'path';
 import * as helpers from 'yeoman-test';
 
 import { testRoot } from '@checkup/test-helpers';
-import TaskGenerator from '../../src/generators/task';
-import { generatePlugin } from '../__utils__/generator-utils';
+import TaskGenerator from '../../src/generators/task.js';
+import { generatePlugin } from '../__utils__/generator-utils.js';
 
 function assertTaskFiles(name: string, dir: string, extension: string = 'ts') {
   let root = testRoot(dir);

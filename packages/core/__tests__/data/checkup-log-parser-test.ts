@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import { readJsonSync } from 'fs-extra';
-import CheckupLogParser from '../../src/data/checkup-log-parser';
+import CheckupLogParser from '../../src/data/checkup-log-parser.js';
 
 describe('checkup-log-parser-test', () => {
   it('can parse a single task log', () => {

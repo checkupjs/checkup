@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Box, Text } from 'ink';
 import { RuleResults } from '@checkup/core';
 import { Result } from 'sarif';
-import { TaskDisplayName } from '../sub-components/task-display-name';
-import { getOptions } from '../get-options';
-import { getSorter, SortBy, SortDirection } from '../get-sorter';
+import { TaskDisplayName } from '../sub-components/task-display-name.js';
+import { getOptions } from '../get-options.js';
+import { getSorter, SortBy, SortDirection } from '../get-sorter.js';
 
 type MigrationOptions = {
   sortBy: SortBy;

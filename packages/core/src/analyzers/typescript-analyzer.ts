@@ -2,7 +2,7 @@ import * as recast from 'recast';
 import { File } from '@babel/types';
 import traverse, { TraverseOptions } from '@babel/traverse';
 
-import AstAnalyzer from './ast-analyzer';
+import AstAnalyzer from './ast-analyzer.js';
 
 /**
  * A class for analyzing TypeScript files.

@@ -1,5 +1,5 @@
 import '@microsoft/jest-sarif';
-import SarifLogBuilder from '../../src/data/sarif-log-builder';
+import SarifLogBuilder from '../../src/data/sarif-log-builder.js';
 
 describe('sarif-builder', () => {
   it('builds a default SARIF builder log', () => {

@@ -1,6 +1,6 @@
 import { lint, LinterOptions, LinterResult } from 'stylelint';
-import { mergeLintConfig } from '../utils/merge-lint-config';
-import { TaskConfig } from '../types/config';
+import { mergeLintConfig } from '../utils/merge-lint-config.js';
+import { TaskConfig } from '../types/config.js';
 
 /**
  * A class for analyzing .css files using stylelint.

@@ -1,8 +1,8 @@
 'use strict';
 
 import { CheckupProject } from '@checkup/test-helpers';
-import { FilePathArray } from '../../src/utils/file-path-array';
-import { getFilePaths } from '../../src/utils/get-paths';
+import { FilePathArray } from '../../src/utils/file-path-array.js';
+import { getFilePaths } from '../../src/utils/get-paths.js';
 
 const APP_NAME = 'foo-app';
 

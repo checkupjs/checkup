@@ -2,7 +2,7 @@
 <%_ const resultClass = `${taskClass}Result` _%>
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
-import <%- taskClass %> from '../src/tasks/<%- name %>-task';
+import <%- taskClass %> from '../src/tasks/<%- name %>-task.js';
 
 describe('<%- name %>-task', () => {
   let project;
@@ -23,7 +23,7 @@ describe('<%- name %>-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new <%- taskClass %>(
-      pluginName, 
+      pluginName,
       getTaskContext({
         options: { cwd: project.baseDir },
         pkg: project.pkg,

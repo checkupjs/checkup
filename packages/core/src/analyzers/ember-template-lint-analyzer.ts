@@ -8,8 +8,8 @@ import {
   TemplateLintReport,
   TemplateLintResult,
 } from '../types/ember-template-lint';
-import { TaskConfig } from '../types/config';
-import { mergeLintConfig } from '../utils/merge-lint-config';
+import { TaskConfig } from '../types/config.js';
+import { mergeLintConfig } from '../utils/merge-lint-config.js';
 
 const TemplateLinter = require('ember-template-lint');
 

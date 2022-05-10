@@ -6,7 +6,7 @@ import * as recast from 'recast';
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
 import { AstTransformer, CheckupError, ErrorKind } from '@checkup/core';
-import BaseGenerator, { Works, Options } from './base-generator';
+import BaseGenerator, { Works, Options } from './base-generator.js';
 
 interface ActionOptions extends Options {
   taskName: string;

@@ -1,7 +1,7 @@
 import '@microsoft/jest-sarif';
 import { getPluginName } from '@checkup/core';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
-import EmberInRepoAddonEnginesTask from '../src/tasks/ember-in-repo-addons-engines-task';
+import EmberInRepoAddonEnginesTask from '../src/tasks/ember-in-repo-addons-engines-task.js';
 
 describe('ember-in-repo-addons-engines-task', () => {
   let emberProject: EmberProject;

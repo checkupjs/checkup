@@ -2,7 +2,7 @@ import { getTaskContext } from '@checkup/test-helpers';
 import { BaseTask, Task, TaskContext } from '@checkup/core';
 
 import { Result } from 'sarif';
-import TaskList from '../src/task-list';
+import TaskList from '../src/task-list.js';
 const STABLE_ERROR = new Error('Something went wrong in this task');
 
 class InsightsTaskHigh extends BaseTask implements Task {

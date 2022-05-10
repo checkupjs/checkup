@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Box, Text } from 'ink';
 import { RuleResults } from '@checkup/core';
 import * as objectPath from 'object-path';
-import { TaskDisplayName } from '../sub-components/task-display-name';
-import { getOptions } from '../get-options';
+import { TaskDisplayName } from '../sub-components/task-display-name.js';
+import { getOptions } from '../get-options.js';
 
 const startCase = require('lodash.startcase');
 

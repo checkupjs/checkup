@@ -2,8 +2,8 @@ import '@microsoft/jest-sarif';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName, Task } from '@checkup/core';
 import { Result } from 'sarif';
-import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task';
-import { evaluateActions } from '../src/actions/outdated-dependency-actions';
+import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task.js';
+import { evaluateActions } from '../src/actions/outdated-dependency-actions.js';
 
 jest.setTimeout(50000);
 

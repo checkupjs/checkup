@@ -1,5 +1,5 @@
-import BaseTask from './base-task';
-import { TaskContext, TaskResultOptions } from './types/tasks';
+import BaseTask from './base-task.js';
+import { TaskContext, TaskResultOptions } from './types/tasks.js';
 
 const merge = require('lodash.merge');
 

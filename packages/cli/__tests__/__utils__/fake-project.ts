@@ -4,7 +4,7 @@ import * as helpers from 'yeoman-test';
 import { CheckupProject } from '@checkup/test-helpers';
 
 import type { Answers } from 'inquirer';
-import { generatePlugin, generateTask } from './generator-utils';
+import { generatePlugin, generateTask } from './generator-utils.js';
 
 export class FakeProject extends CheckupProject {
   symlinkCorePackage(baseDir: string = this.baseDir) {

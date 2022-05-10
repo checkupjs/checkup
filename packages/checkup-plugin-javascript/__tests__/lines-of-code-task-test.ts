@@ -1,6 +1,6 @@
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
-import LinesOfCodeTask from '../src/tasks/lines-of-code-task';
+import LinesOfCodeTask from '../src/tasks/lines-of-code-task.js';
 
 describe('lines-of-code-task', () => {
   let project: CheckupProject;

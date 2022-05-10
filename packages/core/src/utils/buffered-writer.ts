@@ -1,5 +1,5 @@
 import stripAnsi from 'strip-ansi';
-import BaseOutputWriter from './base-output-writer';
+import BaseOutputWriter from './base-output-writer.js';
 
 export default class BufferedWriter extends BaseOutputWriter {
   buffer: string = '';

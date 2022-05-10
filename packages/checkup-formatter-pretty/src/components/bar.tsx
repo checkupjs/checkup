@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RuleResults } from '@checkup/core';
 import { BarData } from '../types';
-import { SectionedBar } from '../sub-components/sectioned-bar';
+import { SectionedBar } from '../sub-components/sectioned-bar.js';
 
 /**
  * // TODO: Group result by data field

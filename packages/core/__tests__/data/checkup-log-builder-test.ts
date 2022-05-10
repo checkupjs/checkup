@@ -1,9 +1,9 @@
 import '@microsoft/jest-sarif';
 import MockDate from 'mockdate';
-import { createTmpDir } from '../__utils__/tmp-dir';
-import { CONFIG_SCHEMA_URL } from '../../src/config';
-import CheckupLogBuilder from '../../src/data/checkup-log-builder';
-import { CheckupLogBuilderArgs } from '../../src/types/checkup-log';
+import { createTmpDir } from '../__utils__/tmp-dir.js';
+import { CONFIG_SCHEMA_URL } from '../../src/config.js';
+import CheckupLogBuilder from '../../src/data/checkup-log-builder.js';
+import { CheckupLogBuilderArgs } from '../../src/types/checkup-log.js';
 
 const DEFAULT_CONFIG = {
   $schema: CONFIG_SCHEMA_URL,

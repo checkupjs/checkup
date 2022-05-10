@@ -7,8 +7,8 @@ import {
   ErrorKind,
   CheckupError,
 } from '@checkup/core';
-import { registerCustomComponent } from './component-provider';
-import { default as pretty } from './pretty-formatter';
+import { registerCustomComponent } from './component-provider.js';
+import { default as pretty } from './pretty-formatter.js';
 
 class PrettyFormatter implements Formatter {
   options: FormatterOptions;

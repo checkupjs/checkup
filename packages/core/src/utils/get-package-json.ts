@@ -1,7 +1,7 @@
 import { resolve, join } from 'path';
 import { readFileSync } from 'fs-extra';
 import { PackageJson } from 'type-fest';
-import { isErrnoException } from './type-guards';
+import { isErrnoException } from './type-guards.js';
 
 /**
  * Gets the package.json source

@@ -1,5 +1,5 @@
 import { AST, NodeVisitor, parse, traverse } from 'ember-template-recast';
-import AstAnalyzer from './ast-analyzer';
+import AstAnalyzer from './ast-analyzer.js';
 
 /**
  * A class for analyzing .hbs files using ember-template-recast.

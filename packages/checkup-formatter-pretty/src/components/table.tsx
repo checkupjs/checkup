@@ -4,9 +4,9 @@ import { Box } from 'ink';
 import * as objectPath from 'object-path';
 import { Result } from 'sarif';
 import { RuleResults } from '@checkup/core';
-import { TaskDisplayName } from '../sub-components/task-display-name';
-import { NoResultsFound } from '../sub-components/no-results-found';
-import { getOptions } from '../get-options';
+import { TaskDisplayName } from '../sub-components/task-display-name.js';
+import { NoResultsFound } from '../sub-components/no-results-found.js';
+import { getOptions } from '../get-options.js';
 
 type TableOptions = {
   sumBy: {

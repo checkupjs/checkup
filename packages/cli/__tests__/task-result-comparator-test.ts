@@ -1,5 +1,5 @@
-import { taskResultComparator } from '../src/task-result-comparator';
-import { getMockResult } from './__utils__/mock-task-result';
+import { taskResultComparator } from '../src/task-result-comparator.js';
+import { getMockResult } from './__utils__/mock-task-result.js';
 
 describe('taskResultComparator', () => {
   it('should sort task results by category with no group', () => {
