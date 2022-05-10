@@ -1,4 +1,4 @@
-import { RepositoryInfo } from '../types/checkup-result.js';
+import { RepositoryInfo } from '../types/checkup-result';
 import { exec } from './exec.js';
 
 const hash = require('promise.hash.helper');

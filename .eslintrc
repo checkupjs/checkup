@@ -26,6 +26,9 @@
           "replace": ["^packages/(.+)/src/(.+)\\.ts$", "lib/$1.js"]
         }
       ]
+    },
+    "import/resolver": {
+      "node": { "extensions": [".js", ".ts", ".mjs"] }
     }
   },
   "env": {
@@ -55,12 +58,7 @@
         "allowModules": ["@microsoft/jest-sarif"]
       }
     ],
-    "node/no-missing-import": [
-      "error",
-      {
-        "allowModules": ["@checkup/core", "@checkup/test-helpers", "sarif", "ink-testing-library"]
-      }
-    ],
+    "node/no-missing-import": "off",
     "node/no-unpublished-import": [
       "error",
       {
@@ -73,7 +71,17 @@
         "ignore": ["sarif", "ink-testing-library"]
       }
     ],
-    "import/order": "error"
+    "import/order": "error",
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "js": "never",
+        "ts": "never",
+        "jsx": "never",
+        "mjs": "never"
+      }
+    ]
   },
   "overrides": [
     {
