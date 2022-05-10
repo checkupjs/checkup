@@ -1,5 +1,5 @@
 import { realpathSync } from 'fs';
-import tmp = require('tmp');
+import tmp from 'tmp';
 
 /**
  * Creates a tmp directory with unsafe cleanup allowed.

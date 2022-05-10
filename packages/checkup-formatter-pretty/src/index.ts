@@ -37,4 +37,5 @@ class PrettyFormatter implements Formatter {
   static registerCustomComponent = registerCustomComponent;
 }
 
+// @ts-ignore
 export = PrettyFormatter;
