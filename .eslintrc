@@ -28,7 +28,7 @@
       ]
     },
     "import/resolver": {
-      "node": { "extensions": [".js", ".ts", ".mjs"] }
+      "node": { "extensions": [".js", ".mjs", ".ts", ".mts"] }
     }
   },
   "env": {
