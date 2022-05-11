@@ -2,7 +2,7 @@ import '@microsoft/jest-sarif';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 
 import { getPluginName } from '@checkup/core';
-import EmberDependenciesTask from '../src/tasks/ember-dependencies-task.js';
+import EmberDependenciesTask from '../src/tasks/ember-dependencies-task';
 
 describe('dependencies-task', () => {
   let emberProject: EmberProject;

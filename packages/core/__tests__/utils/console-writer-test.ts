@@ -1,7 +1,7 @@
 'use strict';
 
 import { stdout as mockStdout } from 'stdout-stderr';
-import ConsoleWriter from '../../src/utils/console-writer.js';
+import ConsoleWriter from '../../src/utils/console-writer';
 
 describe('console-writer', function () {
   let consoleWriter: ConsoleWriter;

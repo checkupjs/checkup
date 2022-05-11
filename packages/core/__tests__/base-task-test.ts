@@ -1,7 +1,7 @@
 import '@microsoft/jest-sarif';
 import { getTaskContext } from '@checkup/test-helpers';
-import BaseTask from '../src/base-task.js';
-import { TaskContext } from '../src/types/tasks.js';
+import BaseTask from '../src/base-task';
+import { TaskContext } from '../src/types/tasks';
 
 class FakeTask extends BaseTask {
   taskName = 'my-fake';

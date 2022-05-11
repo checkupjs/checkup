@@ -1,4 +1,4 @@
-import JavaScriptAnalyzer from '../../src/analyzers/javascript-analyzer.js';
+import JavaScriptAnalyzer from '../../src/analyzers/javascript-analyzer';
 
 describe('javascript-analyzer', () => {
   it('can parse cjs modules', () => {

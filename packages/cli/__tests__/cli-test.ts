@@ -7,7 +7,7 @@ import * as stringify from 'json-stable-stringify';
 import { trimCwd } from '@checkup/core';
 import type { Log } from 'sarif';
 import { copyFileSync } from 'fs-extra';
-import { FakeProject } from './__utils__/fake-project.js';
+import { FakeProject } from './__utils__/fake-project';
 
 const stripAnsi = require('strip-ansi');
 

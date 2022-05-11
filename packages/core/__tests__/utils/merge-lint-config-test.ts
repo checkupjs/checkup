@@ -1,6 +1,6 @@
 import { Linter } from 'eslint';
-import { mergeLintConfig } from '../../src/utils/merge-lint-config.js';
-import { TemplateLintConfig } from '../../src/types/ember-template-lint.js';
+import { mergeLintConfig } from '../../src/utils/merge-lint-config';
+import { TemplateLintConfig } from '../../src/types/ember-template-lint';
 
 describe('mergeLintConfig', () => {
   describe('eslint', () => {

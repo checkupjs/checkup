@@ -9,7 +9,7 @@ import {
   CONFIG_SCHEMA_URL,
   DEFAULT_CONFIG,
 } from '../src/config';
-import { createTmpDir } from './__utils__/tmp-dir.js';
+import { createTmpDir } from './__utils__/tmp-dir';
 
 const REMOTE_CONFIG = {
   $schema: CONFIG_SCHEMA_URL,

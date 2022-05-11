@@ -1,7 +1,7 @@
 import '@microsoft/jest-sarif';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
-import TemplateLintDisableTask from '../src/tasks/ember-template-lint-disable-task.js';
-import { evaluateActions } from '../src/actions/ember-template-lint-disable-actions.js';
+import TemplateLintDisableTask from '../src/tasks/ember-template-lint-disable-task';
+import { evaluateActions } from '../src/actions/ember-template-lint-disable-actions';
 
 describe('ember-template-lint-disable-task', () => {
   let project: CheckupProject;

@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import { ESLint } from 'eslint';
-import ESLintAnalyzer from '../../src/analyzers/eslint-analyzer.js';
+import ESLintAnalyzer from '../../src/analyzers/eslint-analyzer';
 
 const SIMPLE_FILE_PATH = resolve('..', '__fixtures__/simple.js');
 

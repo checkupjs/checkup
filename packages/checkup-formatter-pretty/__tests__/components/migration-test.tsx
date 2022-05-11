@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import { RuleResults } from '@checkup/core';
-import { Migration } from '../../src/components/migration.js';
-import { getSorter } from '../../src/get-sorter.js';
+import { Migration } from '../../src/components/migration';
+import { getSorter } from '../../src/get-sorter';
 
 const merge = require('lodash.merge');
 const stripAnsi = require('strip-ansi');

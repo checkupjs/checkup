@@ -4,7 +4,7 @@ import * as helpers from 'yeoman-test';
 
 import { createTmpDir, testRoot } from '@checkup/test-helpers';
 
-import ConfigGenerator from '../../src/generators/config.js';
+import ConfigGenerator from '../../src/generators/config';
 
 describe('config-init-generator', () => {
   it('should write a config', async () => {

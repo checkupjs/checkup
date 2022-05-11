@@ -1,8 +1,8 @@
 import '@microsoft/jest-sarif';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
-import EmberTestTypesTask from '../src/tasks/ember-test-types-task.js';
-import { evaluateActions } from '../src/actions/ember-test-types-actions.js';
+import EmberTestTypesTask from '../src/tasks/ember-test-types-task';
+import { evaluateActions } from '../src/actions/ember-test-types-actions';
 
 const TESTS = {
   application: {

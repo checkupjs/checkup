@@ -3,7 +3,7 @@ import * as React from 'react';
 import { render } from 'ink-testing-library';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser } from '@checkup/core';
-import { Bar } from '../../src/components/bar.js';
+import { Bar } from '../../src/components/bar';
 
 const stripAnsi = require('strip-ansi');
 

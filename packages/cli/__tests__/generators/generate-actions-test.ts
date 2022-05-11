@@ -4,8 +4,8 @@ import { resolve } from 'path';
 import * as helpers from 'yeoman-test';
 
 import { testRoot } from '@checkup/test-helpers';
-import ActionsGenerator from '../../src/generators/actions.js';
-import { generatePlugin } from '../__utils__/generator-utils.js';
+import ActionsGenerator from '../../src/generators/actions';
+import { generatePlugin } from '../__utils__/generator-utils';
 
 function assertActionsFiles(name: string, dir: string, extension: string = 'ts') {
   let root = testRoot(dir);

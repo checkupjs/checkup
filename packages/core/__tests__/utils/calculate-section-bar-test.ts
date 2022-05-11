@@ -1,4 +1,4 @@
-import { calculateSectionBar } from '../../src/utils/base-output-writer.js';
+import { calculateSectionBar } from '../../src/utils/base-output-writer';
 
 describe('calculate-sectioned-bar', () => {
   describe('calculateSectionBar', function () {

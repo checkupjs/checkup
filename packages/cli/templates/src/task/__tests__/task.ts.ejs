@@ -2,7 +2,7 @@
 <%_ const resultClass = `${taskClass}Result` _%>
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
-import <%- taskClass %> from '../src/tasks/<%- name %>-task.js';
+import <%- taskClass %> from '../src/tasks/<%- name %>-task';
 
 describe('<%- name %>-task', () => {
   let project: CheckupProject;

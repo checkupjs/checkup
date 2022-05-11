@@ -3,7 +3,7 @@ import * as React from 'react';
 import { render } from 'ink-testing-library';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser } from '@checkup/core';
-import PrettyFormatter from '../src/pretty-formatter.js';
+import PrettyFormatter from '../src/pretty-formatter';
 
 const stripAnsi = require('strip-ansi');
 

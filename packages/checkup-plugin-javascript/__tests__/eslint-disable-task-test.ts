@@ -1,8 +1,8 @@
 import '@microsoft/jest-sarif';
 import { getPluginName } from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
-import EslintDisableTask from '../src/tasks/eslint-disable-task.js';
-import { evaluateActions } from '../src/actions/eslint-disable-actions.js';
+import EslintDisableTask from '../src/tasks/eslint-disable-task';
+import { evaluateActions } from '../src/actions/eslint-disable-actions';
 
 describe('eslint-disable-task', () => {
   let project: CheckupProject;

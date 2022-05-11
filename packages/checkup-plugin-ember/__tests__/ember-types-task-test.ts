@@ -1,7 +1,7 @@
 import '@microsoft/jest-sarif';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
-import EmberTypesTask from '../src/tasks/ember-types-task.js';
+import EmberTypesTask from '../src/tasks/ember-types-task';
 
 const TYPES = {
   components: {

@@ -1,6 +1,6 @@
 'use strict';
 
-import BufferedWriter from '../../lib/utils/buffered-writer.js';
+import BufferedWriter from '../../lib/utils/buffered-writer';
 
 describe('buffered-writer', function () {
   let bufferedWriter: BufferedWriter;

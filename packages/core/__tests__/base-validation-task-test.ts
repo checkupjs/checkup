@@ -1,7 +1,7 @@
 import { getTaskContext } from '@checkup/test-helpers';
 import { Result } from 'sarif';
-import BaseValidationTask from '../src/base-validation-task.js';
-import { TaskContext } from '../src/types/tasks.js';
+import BaseValidationTask from '../src/base-validation-task';
+import { TaskContext } from '../src/types/tasks';
 
 class FakeValidationTask extends BaseValidationTask {
   taskName = 'my-fake-validation';

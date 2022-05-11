@@ -1,4 +1,4 @@
-import ActionsEvaluator from '../src/actions/actions-evaluator.js';
+import ActionsEvaluator from '../src/actions/actions-evaluator';
 
 describe('actions-evaluator', () => {
   it('can add an action to actions', () => {

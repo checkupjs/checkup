@@ -2,7 +2,7 @@ import '@microsoft/jest-sarif';
 import { BaseTask, Task, TaskContext, DEFAULT_CONFIG, CheckupConfig } from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import type { Result } from 'sarif';
-import CheckupTaskRunner from '../src/api/checkup-task-runner.js';
+import CheckupTaskRunner from '../src/api/checkup-task-runner';
 
 class FooTask extends BaseTask implements Task {
   taskName = 'foo';

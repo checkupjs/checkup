@@ -1,4 +1,4 @@
-import JsonAnalyzer from '../../src/analyzers/json-analyzer.js';
+import JsonAnalyzer from '../../src/analyzers/json-analyzer';
 
 describe('json-analyzer', () => {
   it('throws when given invalid JSON string', () => {
