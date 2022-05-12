@@ -5,7 +5,7 @@ import {
   Task,
   TaskContext,
 } from '@checkup/core';
-import { satisfies } from 'semver';
+import semver from 'semver';
 import { Result } from 'sarif';
 
 const ESLINT_CONFIG: ESLintOptions = {
@@ -85,7 +85,7 @@ export default class ValidEsmPackageTask extends BaseValidationTask implements T
           isValid: !!(
             pkg.engines &&
             pkg.engines['node'] &&
-            satisfies('13.2.0', pkg.engines['node'])
+            semver.satisfies('13.2.0', pkg.engines['node'])
           ),
         };
       }

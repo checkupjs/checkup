@@ -12,7 +12,7 @@ import { evaluateActions as evaluateTemplateLintSummary } from './actions/ember-
 import { evaluateActions as evaluateTestTypes } from './actions/ember-test-types-actions.js';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   args.register.actions('ember-template-lint-disables', evaluateTemplateLintDisables);
   args.register.actions('ember-template-lint-summary', evaluateTemplateLintSummary);

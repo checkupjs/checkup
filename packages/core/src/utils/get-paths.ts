@@ -1,6 +1,7 @@
 import { join, resolve } from 'path';
 import { existsSync, statSync } from 'fs';
 import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
+import { fileURLToPath } from 'url';
 import esMain from 'es-main';
 
 import isGlob from 'is-glob';
@@ -35,7 +36,7 @@ export function getFilePathsAsync(
   excludePaths: string[] = []
 ) {
   return new Promise<FilePathArray>((resolve, reject) => {
-    const worker = new Worker(__filename, {
+    const worker = new Worker(fileURLToPath(import.meta.url), {
       workerData: { basePath: baseDir, globsOrPaths, excludePaths },
     });
 

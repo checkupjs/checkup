@@ -1,7 +1,7 @@
 import { join, resolve } from 'path';
 import * as crypto from 'crypto';
 import { createRequire } from 'module';
-import * as Ajv from 'ajv';
+import Ajv from 'ajv';
 import fetch from 'node-fetch';
 import * as tmp from 'tmp';
 import * as stringify from 'json-stable-stringify';

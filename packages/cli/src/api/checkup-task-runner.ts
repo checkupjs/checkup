@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { createRequire } from 'module';
 import {
   TaskAction,
   CheckupError,
@@ -21,13 +22,15 @@ import {
   RegistrationArgs,
   CheckupLogBuilder,
 } from '@checkup/core';
-import * as debug from 'debug';
-import * as resolve from 'resolve';
+import debug from 'debug';
+import resolve from 'resolve';
 import { Log, Result } from 'sarif';
 
 import { PackageJson } from 'type-fest';
 import TaskListImpl from '../task-list.js';
 import PluginRegistrationProvider from './registration-provider.js';
+
+const require = createRequire(import.meta.url);
 
 /**
  * Class that is able to run a list of checkup tasks.
@@ -252,7 +255,7 @@ export default class CheckupTaskRunner {
 
       this.debug('Loading plugin from %s', pluginDir);
 
-      let { register } = require(pluginDir);
+      let { register } = await import(pluginDir);
       await register(registrationArgs);
     }
   }

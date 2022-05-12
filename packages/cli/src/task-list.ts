@@ -1,6 +1,6 @@
-import * as debug from 'debug';
-import * as pMap from 'p-map';
-import * as convertHrtime from 'convert-hrtime';
+import debug from 'debug';
+import pMap from 'p-map';
+import convertHrtime from 'convert-hrtime';
 
 import {
   Task,

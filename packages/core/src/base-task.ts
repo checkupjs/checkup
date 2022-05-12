@@ -1,4 +1,4 @@
-import * as debug from 'debug';
+import debug from 'debug';
 
 import { Location, PropertyBag, ReportingDescriptor, Result } from 'sarif';
 import { SetRequired } from 'type-fest';

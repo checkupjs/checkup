@@ -10,7 +10,7 @@ import { evaluateActions as evaluateESLintSummary } from './actions/eslint-summa
 import { evaluateActions as evaluateOutdatedDependencies } from './actions/outdated-dependency-actions.js';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   args.register.actions('eslint-disables', evaluateESLintDisables);
   args.register.actions('eslint-summary', evaluateESLintSummary);
