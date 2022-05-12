@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { dirname } from 'dirname-filename-esm';
 import * as _ from 'lodash';
 import * as t from '@babel/types';
 import * as recast from 'recast';
@@ -57,7 +58,7 @@ export default class ActionsGenerator extends BaseGenerator {
   }
 
   writing() {
-    this.sourceRoot(join(__dirname, '../../templates/src/actions'));
+    this.sourceRoot(join(dirname(import.meta), '../../templates/src/actions'));
 
     this.fs.copyTpl(
       this.templatePath(`src/actions/actions.${this._ext}.ejs`),

@@ -1,4 +1,5 @@
-import * as path from 'path';
+import path from 'path';
+import { dirname } from 'dirname-filename-esm';
 import * as _ from 'lodash';
 import * as t from '@babel/types';
 import * as recast from 'recast';
@@ -77,7 +78,7 @@ export default class TaskGenerator extends BaseGenerator {
   }
 
   writing() {
-    this.sourceRoot(path.join(__dirname, '../../templates/src/task'));
+    this.sourceRoot(path.join(dirname(import.meta), '../../templates/src/task'));
 
     const options = { ...this.options, _ };
 

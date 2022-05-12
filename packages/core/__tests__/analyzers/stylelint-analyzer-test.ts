@@ -1,4 +1,5 @@
 import { resolve } from 'path';
+import { dirname } from 'dirname-filename-esm';
 import { LinterOptions } from 'stylelint';
 import StylelintAnalyzer from '../../src/analyzers/stylelint-analyzer';
 import { TaskConfig } from '../../src/types/config';
@@ -52,7 +53,7 @@ describe('stylelint-analyzer', () => {
 
     let analyzer: StylelintAnalyzer = new StylelintAnalyzer(config);
 
-    let filePath = resolve(__dirname, '..', '__fixtures__/simple.css');
+    let filePath = resolve(dirname(import.meta), '..', '__fixtures__/simple.css');
     let result = await analyzer.analyze([filePath]);
 
     expect(result.errored).toEqual(true);

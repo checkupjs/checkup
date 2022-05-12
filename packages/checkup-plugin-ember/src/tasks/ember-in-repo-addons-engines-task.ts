@@ -1,7 +1,7 @@
 import { Task, BaseTask, TaskError, TaskContext, isErrnoException } from '@checkup/core';
 
 import { PackageJson } from 'type-fest';
-import { readJson } from 'fs-extra';
+import fs from 'fs-extra';
 
 import { Result } from 'sarif';
 
@@ -65,7 +65,7 @@ export default class EmberInRepoAddonsEnginesTask extends BaseTask implements Ta
     let package_ = {};
 
     try {
-      package_ = await readJson(packageJsonPath);
+      package_ = await fs.readJson(packageJsonPath);
     } catch (error) {
       if (isErrnoException(error) && error.code === 'ENOENT') {
         throw new TaskError({

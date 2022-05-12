@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { dirname } from 'dirname-filename-esm';
 import * as Wrap from 'wrap-ansi';
 import * as ci from 'ci-info';
 import chalk from 'chalk';
@@ -62,7 +63,7 @@ export default class CheckupError extends Error {
     let logPath = join(process.cwd(), '.checkup');
     let logFilePath = join(logPath, logFileName);
     let logOutput: string[] = [];
-    let version = fs.readJsonSync(join(__dirname, '../../package.json')).version;
+    let version = fs.readJsonSync(join(dirname(import.meta), '../../package.json')).version;
 
     logOutput.push(
       `Checkup v${version}`,
