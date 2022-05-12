@@ -1,7 +1,6 @@
+import merge from 'lodash.merge';
 import BaseTask from './base-task.js';
 import { TaskContext, TaskResultOptions } from './types/tasks.js';
-
-const merge = require('lodash.merge');
 
 export type FeatureId = string;
 export type Feature = {

@@ -1,13 +1,12 @@
 import { join } from 'path';
 import * as Wrap from 'wrap-ansi';
 import * as ci from 'ci-info';
-import { red } from 'chalk';
-import { ensureDirSync, writeFileSync, readJsonSync } from 'fs-extra';
+import chalk from 'chalk';
+import fs from 'fs-extra';
+import stripAnsi from 'strip-ansi';
+import clean from 'clean-stack';
 import { todayFormat } from '../today-format.js';
 import { ErrorDetails, ErrorDetailOptions, ErrorKind, ERROR_BY_KIND } from './error-kind.js';
-
-const stripAnsi = require('strip-ansi');
-const clean = require('clean-stack');
 
 /**
  * A custom Error class that outputs additional information by ErrorKind.
@@ -44,7 +43,7 @@ export default class CheckupError extends Error {
     let details: string[] = [];
 
     details.push(
-      `${red('Checkup Error')}: ${this.message}`,
+      `${chalk.red('Checkup Error')}: ${this.message}`,
       `${this.details.callToAction(this.options)}`
     );
 
@@ -63,7 +62,7 @@ export default class CheckupError extends Error {
     let logPath = join(process.cwd(), '.checkup');
     let logFilePath = join(logPath, logFileName);
     let logOutput: string[] = [];
-    let version = readJsonSync(join(__dirname, '../../package.json')).version;
+    let version = fs.readJsonSync(join(__dirname, '../../package.json')).version;
 
     logOutput.push(
       `Checkup v${version}`,
@@ -73,9 +72,9 @@ export default class CheckupError extends Error {
       clean(this.stack || 'No stack available')
     );
 
-    ensureDirSync(logPath);
+    fs.ensureDirSync(logPath);
 
-    writeFileSync(logFilePath, logOutput.join('\n'), { encoding: 'utf-8' });
+    fs.writeFileSync(logFilePath, logOutput.join('\n'), { encoding: 'utf-8' });
 
     return logFilePath;
   }

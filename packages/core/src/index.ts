@@ -7,7 +7,7 @@ export { default as ActionsEvaluator } from './actions/actions-evaluator.js';
 export {
   getRegisteredTaskReporters,
   registerTaskReporter,
-} from './task-reporters/registered-task-reporters';
+} from './task-reporters/registered-task-reporters.js';
 
 export {
   readConfig,
@@ -18,7 +18,7 @@ export {
   parseConfigTuple,
   DEFAULT_CONFIG,
   CONFIG_SCHEMA_URL,
-} from './config';
+} from './config.js';
 
 export { ErrorKind, ErrorDetails, ERROR_BY_KIND } from './errors/error-kind.js';
 export { default as CheckupError } from './errors/checkup-error.js';

@@ -1,5 +1,5 @@
 import { CheckupLogParser, ConsoleWriter, Formatter, FormatterOptions } from '@checkup/core';
-import { yellow } from 'chalk';
+import chalk from 'chalk';
 import { Log } from 'sarif';
 import { writeResultsToFile } from './file-writer.js';
 
@@ -22,6 +22,6 @@ export default class JsonFormatter implements Formatter {
 
     this.writer.blankLine();
     this.writer.log('Results have been saved to the following file:');
-    this.writer.log(yellow(resultFilePath));
+    this.writer.log(chalk.yellow(resultFilePath));
   }
 }

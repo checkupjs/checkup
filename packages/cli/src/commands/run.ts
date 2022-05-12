@@ -1,13 +1,13 @@
 import * as yargs from 'yargs';
 import * as ora from 'ora';
-import { yellow } from 'chalk';
+import chalk from 'chalk';
 import CheckupTaskRunner from '../api/checkup-task-runner.js';
-import { CLIOptions, consoleWriter } from '../checkup.js';
+import { consoleWriter } from '../checkup.js';
 import { reportAvailableTasks } from '../formatters/available-tasks.js';
 import { getFormatter } from '../formatters/get-formatter.js';
 import { writeResultsToFile } from '../formatters/file-writer.js';
 
-export const runCommand = {
+export const runCommand: yargs.CommandModule = {
   command: 'run',
   aliases: ['r'],
   describe: 'Runs configured checkup tasks',
@@ -85,7 +85,7 @@ export const runCommand = {
       },
     });
   },
-  handler: async (options: CLIOptions) => {
+  handler: async (options: yargs.ArgumentsCamelCase<any>) => {
     let paths = options._.slice(1) as string[];
 
     let taskRunner = new CheckupTaskRunner({
@@ -133,7 +133,7 @@ export const runCommand = {
 
           console.log();
           console.log('Results have been saved to the following file:');
-          console.log(yellow(resultFilePath));
+          console.log(chalk.yellow(resultFilePath));
         } else {
           console.log(output);
         }

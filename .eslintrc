@@ -51,7 +51,10 @@
     "unicorn/no-fn-reference-in-iterator": "off",
     "unicorn/no-process-exit": "off",
     "unicorn/no-this-assignment": "off",
-    "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }],
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      { "ignores": ["dynamicImport", "modules"] }
+    ],
     "node/no-extraneous-import": [
       "error",
       {

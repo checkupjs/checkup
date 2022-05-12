@@ -1,5 +1,5 @@
 import { PackageJson } from 'type-fest';
-import { readJsonSync } from 'fs-extra';
+import fs from 'fs-extra';
 import { sync } from 'pkg-up';
 
 /**
@@ -10,7 +10,7 @@ import { sync } from 'pkg-up';
  */
 export function getPluginName(cwd: string): string {
   let packageJsonPath = sync({ cwd });
-  let packageJson: PackageJson = readJsonSync(packageJsonPath!);
+  let packageJson: PackageJson = fs.readJsonSync(packageJsonPath!);
 
   if (!packageJson.keywords?.includes('checkup-plugin')) {
     throw new Error(

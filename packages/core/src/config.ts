@@ -1,18 +1,22 @@
 import { join, resolve } from 'path';
 import * as crypto from 'crypto';
+import { createRequire } from 'module';
 import * as Ajv from 'ajv';
 import fetch from 'node-fetch';
 import * as tmp from 'tmp';
 import * as stringify from 'json-stable-stringify';
-import { existsSync, readJsonSync, writeJsonSync, writeJSON } from 'fs-extra';
+import fs from 'fs-extra';
+import createDebug from 'debug';
 
-import { white } from 'chalk';
+import chalk from 'chalk';
 import { CheckupConfig, ConfigValue } from './types/config.js';
 import CheckupError from './errors/checkup-error.js';
 import { normalizePackageName } from './utils/normalize-package-name.js';
 import { ErrorKind } from './errors/error-kind.js';
 
-const debug = require('debug')('checkup:config');
+const require = createRequire(import.meta.url);
+const { existsSync, readJsonSync, writeJsonSync, writeJSON } = fs;
+const debug = createDebug('checkup:config');
 const schema = require('./schemas/config-schema.json');
 
 export const CONFIG_DOCS_URL =
@@ -108,7 +112,7 @@ export function validateConfig(config: CheckupConfig, configPath: string) {
   const validate = ajv.compile(schema);
 
   if (!validate(config)) {
-    let hint = `\n\n${white.bold('Details')}: ${
+    let hint = `\n\n${chalk.white.bold('Details')}: ${
       (validate.errors && validate.errors.length > 0 && ajv.errorsText(validate.errors)) || ''
     }.`;
 

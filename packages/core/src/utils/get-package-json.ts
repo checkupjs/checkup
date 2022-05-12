@@ -1,5 +1,5 @@
 import { resolve, join } from 'path';
-import { readFileSync } from 'fs-extra';
+import fs from 'fs-extra';
 import { PackageJson } from 'type-fest';
 import { isErrnoException } from './type-guards.js';
 
@@ -15,7 +15,7 @@ export function getPackageJsonSource(baseDir: string, pathName: string = 'packag
   let packageJsonPath = join(resolve(baseDir), pathName);
 
   try {
-    source = readFileSync(packageJsonPath, { encoding: 'utf-8' });
+    source = fs.readFileSync(packageJsonPath, { encoding: 'utf-8' });
   } catch (error: unknown) {
     if (isErrnoException(error) && error.code === 'ENOENT') {
       throw new Error(

@@ -1,6 +1,6 @@
 import { extname } from 'path';
 
-const micromatch = require('micromatch');
+import micromatch from 'micromatch';
 
 export class FilePathArray extends Array<string> {
   filterByGlob(glob: string | string[]) {

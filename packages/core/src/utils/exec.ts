@@ -1,5 +1,6 @@
-const util = require('util');
-const execAsPromise = util.promisify(require('child_process').exec);
+import util from 'util';
+import { exec as cpExec } from 'child_process';
+const execAsPromise = util.promisify(cpExec);
 
 /**
  * @param {string} cmd - The command to run
@@ -16,5 +17,5 @@ export async function exec(
 ) {
   const { stdout } = await execAsPromise(cmd, options);
 
-  return toType(stdout.trim()) || defaultValue;
+  return toType(stdout.toString().trim()) || defaultValue;
 }

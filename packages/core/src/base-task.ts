@@ -3,6 +3,7 @@ import * as debug from 'debug';
 import { Location, PropertyBag, ReportingDescriptor, Result } from 'sarif';
 import { SetRequired } from 'type-fest';
 
+import merge from 'lodash.merge';
 import {
   TaskName,
   TaskContext,
@@ -20,8 +21,6 @@ import { RequiredResult } from './types/checkup-log.js';
 import CheckupLogBuilder from './data/checkup-log-builder.js';
 import { toLintResults } from './data/lint.js';
 import { LintResult } from './types/analyzers.js';
-
-const merge = require('lodash.merge');
 
 export default abstract class BaseTask {
   abstract taskName: TaskName;

@@ -1,4 +1,4 @@
-import * as yargs from 'yargs';
+import yargs from 'yargs';
 import { OutputFormat, ConsoleWriter, CheckupConfig } from '@checkup/core';
 import { runCommand } from './commands/run.js';
 import { generateCommand } from './commands/generate.js';
@@ -19,13 +19,13 @@ interface CheckupArguments {
   outputFile: string;
 }
 
-export type CLIOptions = CheckupArguments & yargs.Arguments;
+export type CLIOptions = CheckupArguments & yargs.ArgumentsCamelCase<unknown>;
 
 export const consoleWriter = new ConsoleWriter();
 export let parser: yargs.Argv<{}>;
 
 export async function run(argv: string[] = process.argv.slice(2)) {
-  parser = yargs
+  parser = yargs(argv)
     .scriptName('checkup')
     .usage(
       `
@@ -36,7 +36,6 @@ checkup <command> [options]`
     .command(runCommand)
     .command(generateCommand)
     .showHelpOnFail(false)
-    .wrap(yargs.terminalWidth())
     .help()
     .version();
 

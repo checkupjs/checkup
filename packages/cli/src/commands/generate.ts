@@ -1,10 +1,11 @@
+import * as yargs from 'yargs';
 import { parser } from '../checkup.js';
 import { generatePluginCommand } from './generate/plugin.js';
 import { generateTaskCommand } from './generate/task.js';
 import { generateActionsCommand } from './generate/actions.js';
 import { generateConfigCommand } from './generate/config.js';
 
-export const generateCommand = {
+export const generateCommand: yargs.CommandModule = {
   command: 'generate',
   aliases: ['g'],
   describe: 'Runs a generator to scaffold Checkup code',

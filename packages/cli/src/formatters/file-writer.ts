@@ -1,9 +1,10 @@
 import { isAbsolute, dirname, resolve, extname } from 'path';
 import { Log } from 'sarif';
-import { existsSync, mkdirpSync, writeFileSync, writeJsonSync } from 'fs-extra';
+import fs from 'fs-extra';
 import { todayFormat } from '@checkup/core';
 
-const stripAnsi = require('strip-ansi');
+const { existsSync, mkdirpSync, writeFileSync, writeJsonSync } = fs;
+import stripAnsi from 'strip-ansi';
 
 export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${todayFormat()}`;
 
@@ -26,7 +27,7 @@ export function writeResultsToFile(
   let outputPath = getOutputPath(cwd, outputFile, fileType);
 
   if (fileType === 'txt') {
-    writeFileSync(outputPath, stripAnsi(result));
+    writeFileSync(outputPath, stripAnsi(result.toString()));
   } else {
     writeJsonSync(outputPath, result);
   }
