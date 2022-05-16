@@ -1,4 +1,5 @@
 import { join, resolve } from 'path';
+import { createRequire } from 'module';
 import {
   BaseTask,
   Task,
@@ -8,6 +9,8 @@ import {
   EmberTemplateLintAnalyzer,
 } from '@checkup/core';
 import { Result } from 'sarif';
+
+const require = createRequire(import.meta.url);
 
 export default class TemplateLintSummaryTask extends BaseTask implements Task {
   taskName = 'ember-template-lint-summary';
@@ -41,13 +44,10 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
       },
     });
 
-    let resolvedTemplateLintConfigFile = join(
-      resolve(this.context.options.cwd),
-      '.template-lintrc.js'
-    );
+    let templateLintConfigFilePath = join(resolve(this.context.options.cwd), '.template-lintrc.js');
 
     this.emberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(
-      require(resolvedTemplateLintConfigFile)
+      require(templateLintConfigFilePath)
     );
   }
 

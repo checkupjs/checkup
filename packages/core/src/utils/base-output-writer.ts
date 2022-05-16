@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 import lodash from 'lodash';
 import CliTable3 from 'cli-table3';
 import CheckupError from '../errors/checkup-error.js';
