@@ -1,7 +1,6 @@
 import '@microsoft/jest-sarif';
 import { join, resolve } from 'path';
-import { existsSync, unlinkSync } from 'fs';
-import { mkdirSync } from 'fs';
+import { existsSync, unlinkSync, mkdirSync } from 'fs';
 import * as execa from 'execa';
 import * as stringify from 'json-stable-stringify';
 import { trimCwd } from '@checkup/core';

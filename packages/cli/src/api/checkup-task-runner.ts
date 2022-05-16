@@ -1,5 +1,4 @@
 import { join } from 'path';
-import { createRequire } from 'module';
 import {
   TaskAction,
   CheckupError,
@@ -29,8 +28,6 @@ import { Log, Result } from 'sarif';
 import { PackageJson } from 'type-fest';
 import TaskListImpl from '../task-list.js';
 import PluginRegistrationProvider from './registration-provider.js';
-
-const require = createRequire(import.meta.url);
 
 /**
  * Class that is able to run a list of checkup tasks.

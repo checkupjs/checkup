@@ -37,11 +37,14 @@
     "es6": true
   },
   "rules": {
-    "prettier/prettier": "error",
     "no-unused-vars": "off",
+    "no-global-assign": ["error", { "exceptions": ["console"] }],
+
+    "prettier/prettier": "error",
+
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars-experimental": "error",
-    "no-global-assign": ["error", { "exceptions": ["console"] }],
+
     "unicorn/no-reduce": "off",
     "unicorn/no-null": "off",
     "unicorn/no-array-reduce": "off",
@@ -51,6 +54,7 @@
     "unicorn/no-fn-reference-in-iterator": "off",
     "unicorn/no-process-exit": "off",
     "unicorn/no-this-assignment": "off",
+
     "node/no-unsupported-features/es-syntax": [
       "error",
       { "ignores": ["dynamicImport", "modules"] }
@@ -68,15 +72,16 @@
         "allowModules": ["ink-testing-library"]
       }
     ],
+
     "import/no-unresolved": [
-      "error",
+      "off",
       {
         "ignore": ["sarif", "ink-testing-library"]
       }
     ],
     "import/order": "error",
     "import/extensions": [
-      "error",
+      "off",
       "always",
       {
         "js": "never",

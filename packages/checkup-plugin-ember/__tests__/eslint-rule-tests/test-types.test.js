@@ -1,5 +1,5 @@
 const RuleTester = require('eslint').RuleTester;
-const rule = require('../../src/eslint/rules/test-types');
+const rule = require('../../src/eslint/rules/test-types.cjs');
 
 const ruleTester = new RuleTester();
 

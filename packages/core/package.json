@@ -7,6 +7,7 @@
   "repository": "https://github.com/checkupjs/checkup",
   "license": "MIT",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -68,7 +69,6 @@
     "@types/wrap-ansi": "^3.0.0",
     "mockdate": "^3.0.5"
   },
-  "type": "module",
   "engines": {
     "node": ">= 12.22.*"
   },
