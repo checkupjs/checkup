@@ -697,7 +697,7 @@ export default class FooTask extends BaseTask {
     });
 
     project.symlinkCorePackage();
-    debugger;
+
     let result = await run(['run', '.', '--plugin-base-dir', join(project.baseDir, 'lib')]);
     expect(result.exitCode).toEqual(0);
     expect(result.stdout).toMatch('✔ foo');

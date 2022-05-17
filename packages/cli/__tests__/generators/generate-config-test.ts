@@ -14,7 +14,7 @@ describe('config-init-generator', () => {
 
     expect(testRoot(dir.cwd).file('.checkuprc').contents).toMatchInlineSnapshot(`
       "{
-        \\"\$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json\\",
+        \\"$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json\\",
         \\"excludePaths\\": [],
         \\"plugins\\": [],
         \\"tasks\\": {}
@@ -30,7 +30,7 @@ describe('config-init-generator', () => {
 
     expect(testRoot(join(dir.cwd, 'lib')).file('.checkuprc').contents).toMatchInlineSnapshot(`
       "{
-        \\"\$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json\\",
+        \\"$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json\\",
         \\"excludePaths\\": [],
         \\"plugins\\": [],
         \\"tasks\\": {}
