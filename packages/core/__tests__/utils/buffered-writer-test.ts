@@ -111,7 +111,7 @@ describe('buffered-writer', function () {
       50
     );
     expect(bufferedWriter.escapedBuffer.trim()).toMatchInlineSnapshot(`
-      "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 50
+      "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 50 
       ■ tables (39)
       ■ books (36)"
     `);

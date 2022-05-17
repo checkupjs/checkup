@@ -1,8 +1,8 @@
 import yargs from 'yargs';
 import ora from 'ora';
 import chalk from 'chalk';
+import { parser, consoleWriter } from '../checkup.js';
 import CheckupTaskRunner from '../api/checkup-task-runner.js';
-import { consoleWriter } from '../checkup.js';
 import { reportAvailableTasks } from '../formatters/available-tasks.js';
 import { getFormatter } from '../formatters/get-formatter.js';
 import { writeResultsToFile } from '../formatters/file-writer.js';
@@ -106,8 +106,7 @@ export const runCommand: yargs.CommandModule = {
 
         reportAvailableTasks(availableTasks);
       } else {
-        // @ts-ignore
-        yargs().showHelp();
+        parser.showHelp();
         process.exitCode = 1;
       }
 

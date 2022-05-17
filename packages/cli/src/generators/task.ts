@@ -119,19 +119,10 @@ export default class TaskGenerator extends BaseGenerator {
     );
 
     let importOrRequire: t.ImportDeclaration | t.VariableDeclaration;
-    let taskPath = `./tasks/${this.options.name}-task`;
+    let taskPath = `./tasks/${this.options.name}-task.js`;
 
-    if (this.options.typescript) {
-      let newTaskImportSpecifier = t.importDefaultSpecifier(t.identifier(this.options.taskClass));
-      importOrRequire = t.importDeclaration([newTaskImportSpecifier], t.stringLiteral(taskPath));
-    } else {
-      importOrRequire = t.variableDeclaration('const', [
-        t.variableDeclarator(
-          t.identifier(this.options.taskClass),
-          t.callExpression(t.identifier('require'), [t.stringLiteral(taskPath)])
-        ),
-      ]);
-    }
+    let newTaskImportSpecifier = t.importDefaultSpecifier(t.identifier(this.options.taskClass));
+    importOrRequire = t.importDeclaration([newTaskImportSpecifier], t.stringLiteral(taskPath));
 
     let transformer = new AstTransformer(registerTasksSource, recast.parse, traverse, {
       parser: require('recast/parsers/typescript'),

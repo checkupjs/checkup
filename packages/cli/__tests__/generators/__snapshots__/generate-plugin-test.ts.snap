@@ -110,8 +110,9 @@ exports[`plugin generator > generates plugin into existing directory with defaul
     \\"declaration\\": true,
     \\"importHelpers\\": true,
     \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -127,8 +128,7 @@ exports[`plugin generator > generates plugin into existing directory with defaul
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
@@ -255,13 +255,10 @@ exports[`plugin generator > generates plugin with JavaScript defaults 6`] = `
 `;
 
 exports[`plugin generator > generates plugin with JavaScript defaults 7`] = `
-"let { getPluginName } = require('@checkup/core');
+"import { getPluginName } from '@checkup/core';
 
-module.exports = {
-  register: function(args) {
-    let pluginName = getPluginName(__dirname);
-    
-  }
+export function register(args) {
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
@@ -396,8 +393,9 @@ exports[`plugin generator > generates plugin with custom options 7`] = `
     \\"declaration\\": true,
     \\"importHelpers\\": true,
     \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -413,8 +411,7 @@ exports[`plugin generator > generates plugin with custom options 8`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
@@ -549,8 +546,9 @@ exports[`plugin generator > generates plugin with defaults 7`] = `
     \\"declaration\\": true,
     \\"importHelpers\\": true,
     \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -566,8 +564,7 @@ exports[`plugin generator > generates plugin with defaults 8`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
@@ -702,8 +699,9 @@ exports[`plugin generator > generates plugin with defaults in custom path 7`] = 
     \\"declaration\\": true,
     \\"importHelpers\\": true,
     \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -719,8 +717,7 @@ exports[`plugin generator > generates plugin with defaults in custom path 8`] = 
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
@@ -855,8 +852,9 @@ exports[`plugin generator > generates plugin with unmodified name with defaults 
     \\"declaration\\": true,
     \\"importHelpers\\": true,
     \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -872,8 +870,7 @@ exports[`plugin generator > generates plugin with unmodified name with defaults 
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
@@ -893,904 +890,6 @@ exports[`plugin generator > generates plugin with unmodified name with defaults 
 `;
 
 exports[`plugin generator > generates plugin with unmodified name with defaults 12`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 1`] = `
-"lib 
-node_modules
-"
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 2`] = `
-"{
-  \\"root\\": true,
-  \\"parser\\": \\"@typescript-eslint/parser\\",
-  \\"parserOptions\\": {
-    \\"ecmaVersion\\": 2017,
-    \\"sourceType\\": \\"module\\"
-  },
-  \\"plugins\\": [\\"@typescript-eslint\\", \\"jest\\", \\"prettier\\"],
-  \\"extends\\": [
-    \\"eslint:recommended\\",
-    \\"prettier\\",
-    \\"prettier/@typescript-eslint\\",
-    \\"plugin:jest/recommended\\",
-    \\"plugin:jest/style\\"
-  ],
-  \\"env\\": {
-    \\"browser\\": false,
-    \\"node\\": true,
-    \\"es6\\": true
-  },
-  \\"rules\\": {
-    \\"prettier/prettier\\": \\"error\\",
-    \\"no-unused-vars\\": \\"off\\",
-    \\"@typescript-eslint/no-unused-vars\\": \\"error\\",
-    \\"no-global-assign\\": [
-      \\"error\\",
-      {
-        \\"exceptions\\": [\\"console\\"]
-      }
-    ]
-  },
-  \\"overrides\\": [
-    {
-      \\"files\\": [\\"__tests__/**/*.ts\\"],
-      \\"env\\": {
-        \\"jest\\": true
-      }
-    }
-  ]
-}"
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 3`] = `
-"lib
-.eslintcache"
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 4`] = `
-"module.exports = {
-  singleQuote: true,
-  trailingComma: 'es5',
-  printWidth: 100,
-};"
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 5`] = `
-"# checkup-plugin-bar
-
-Checkup plugin
-
-[![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
-
-<!-- toc -->
-
-# Usage
-
-<!-- usage -->
-
-# Commands
-
-<!-- commands -->
-"
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 6`] = `
-"module.exports = {
-  testEnvironment: 'node',
-  moduleFileExtensions: ['ts', 'js', 'json'],
-  transform: { '\\\\\\\\.ts$': 'ts-jest' },
-  coverageReporters: ['lcov', 'text-summary'],
-  collectCoverageFrom: ['src/**/*.ts'],
-  coveragePathIgnorePatterns: ['/templates/'],
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100,
-    },
-  },
-  testPathIgnorePatterns: ['__fixtures__'],
-};
-"
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 7`] = `
-"{
-  \\"compilerOptions\\": {
-    \\"declaration\\": true,
-    \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
-    \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
-    \\"allowSyntheticDefaultImports\\": true,
-    \\"sourceMap\\": true,
-    \\"outDir\\": \\"lib\\",
-    \\"rootDir\\": \\"src\\",
-    \\"types\\": [\\"jest\\", \\"node\\"]
-  },
-  \\"include\\": [\\"src/**/*\\"]
-}
-"
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
-}
-"
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 9`] = `""`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 10`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 11`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin into existing directory with defaults 12`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 1`] = `
-"lib 
-node_modules
-"
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 2`] = `
-"{
-  \\"root\\": true,
-  \\"parser\\": \\"babel-eslint\\",
-  \\"parserOptions\\": {
-    \\"ecmaVersion\\": 2017,
-    \\"sourceType\\": \\"module\\"
-  },
-  \\"plugins\\": [\\"jest\\", \\"prettier\\"],
-  \\"extends\\": [
-    \\"eslint:recommended\\",
-    \\"prettier\\",
-    \\"plugin:jest/recommended\\",
-    \\"plugin:jest/style\\"
-  ],
-  \\"env\\": {
-    \\"browser\\": false,
-    \\"node\\": true,
-    \\"es6\\": true
-  },
-  \\"rules\\": {
-    \\"prettier/prettier\\": \\"error\\",
-    \\"no-unused-vars\\": \\"off\\",
-    \\"no-global-assign\\": [
-      \\"error\\",
-      {
-        \\"exceptions\\": [\\"console\\"]
-      }
-    ]
-  },
-  \\"overrides\\": [
-    {
-      \\"files\\": [\\"__tests__/**/*.js\\"],
-      \\"env\\": {
-        \\"jest\\": true
-      }
-    }
-  ]
-}"
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 3`] = `
-"lib
-.eslintcache"
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 4`] = `
-"module.exports = {
-  singleQuote: true,
-  trailingComma: 'es5',
-  printWidth: 100,
-};"
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 5`] = `
-"# checkup-plugin-my-plugin
-
-Checkup plugin
-
-[![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
-
-<!-- toc -->
-
-# Usage
-
-<!-- usage -->
-
-# Commands
-
-<!-- commands -->
-"
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 6`] = `
-"module.exports = {
-  testEnvironment: 'node',
-  moduleFileExtensions: ['js', 'json'],
-  coverageReporters: ['lcov', 'text-summary'],
-  collectCoverageFrom: ['src/**/*.js'],
-  coveragePathIgnorePatterns: ['/templates/'],
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100,
-    },
-  },
-  testPathIgnorePatterns: ['__fixtures__'],
-};
-"
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 7`] = `
-"let { getPluginName } = require('@checkup/core');
-
-module.exports = {
-  register: function(args) {
-    let pluginName = getPluginName(__dirname);
-    
-  }
-}
-"
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 8`] = `""`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 9`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 10`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with JavaScript defaults 11`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with custom options 1`] = `
-"lib 
-node_modules
-"
-`;
-
-exports[`plugin generator generates plugin with custom options 2`] = `
-"{
-  \\"root\\": true,
-  \\"parser\\": \\"@typescript-eslint/parser\\",
-  \\"parserOptions\\": {
-    \\"ecmaVersion\\": 2017,
-    \\"sourceType\\": \\"module\\"
-  },
-  \\"plugins\\": [\\"@typescript-eslint\\", \\"jest\\", \\"prettier\\"],
-  \\"extends\\": [
-    \\"eslint:recommended\\",
-    \\"prettier\\",
-    \\"prettier/@typescript-eslint\\",
-    \\"plugin:jest/recommended\\",
-    \\"plugin:jest/style\\"
-  ],
-  \\"env\\": {
-    \\"browser\\": false,
-    \\"node\\": true,
-    \\"es6\\": true
-  },
-  \\"rules\\": {
-    \\"prettier/prettier\\": \\"error\\",
-    \\"no-unused-vars\\": \\"off\\",
-    \\"@typescript-eslint/no-unused-vars\\": \\"error\\",
-    \\"no-global-assign\\": [
-      \\"error\\",
-      {
-        \\"exceptions\\": [\\"console\\"]
-      }
-    ]
-  },
-  \\"overrides\\": [
-    {
-      \\"files\\": [\\"__tests__/**/*.ts\\"],
-      \\"env\\": {
-        \\"jest\\": true
-      }
-    }
-  ]
-}"
-`;
-
-exports[`plugin generator generates plugin with custom options 3`] = `
-"lib
-.eslintcache"
-`;
-
-exports[`plugin generator generates plugin with custom options 4`] = `
-"module.exports = {
-  singleQuote: true,
-  trailingComma: 'es5',
-  printWidth: 100,
-};"
-`;
-
-exports[`plugin generator generates plugin with custom options 5`] = `
-"# checkup-plugin-my-plugin
-
-My custom plugin
-
-[![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
-
-<!-- toc -->
-
-# Usage
-
-<!-- usage -->
-
-# Commands
-
-<!-- commands -->
-"
-`;
-
-exports[`plugin generator generates plugin with custom options 6`] = `
-"module.exports = {
-  testEnvironment: 'node',
-  moduleFileExtensions: ['ts', 'js', 'json'],
-  transform: { '\\\\\\\\.ts$': 'ts-jest' },
-  coverageReporters: ['lcov', 'text-summary'],
-  collectCoverageFrom: ['src/**/*.ts'],
-  coveragePathIgnorePatterns: ['/templates/'],
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100,
-    },
-  },
-  testPathIgnorePatterns: ['__fixtures__'],
-};
-"
-`;
-
-exports[`plugin generator generates plugin with custom options 7`] = `
-"{
-  \\"compilerOptions\\": {
-    \\"declaration\\": true,
-    \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
-    \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
-    \\"allowSyntheticDefaultImports\\": true,
-    \\"sourceMap\\": true,
-    \\"outDir\\": \\"lib\\",
-    \\"rootDir\\": \\"src\\",
-    \\"types\\": [\\"jest\\", \\"node\\"]
-  },
-  \\"include\\": [\\"src/**/*\\"]
-}
-"
-`;
-
-exports[`plugin generator generates plugin with custom options 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
-}
-"
-`;
-
-exports[`plugin generator generates plugin with custom options 9`] = `""`;
-
-exports[`plugin generator generates plugin with custom options 10`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with custom options 11`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with custom options 12`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with defaults 1`] = `
-"lib 
-node_modules
-"
-`;
-
-exports[`plugin generator generates plugin with defaults 2`] = `
-"{
-  \\"root\\": true,
-  \\"parser\\": \\"@typescript-eslint/parser\\",
-  \\"parserOptions\\": {
-    \\"ecmaVersion\\": 2017,
-    \\"sourceType\\": \\"module\\"
-  },
-  \\"plugins\\": [\\"@typescript-eslint\\", \\"jest\\", \\"prettier\\"],
-  \\"extends\\": [
-    \\"eslint:recommended\\",
-    \\"prettier\\",
-    \\"prettier/@typescript-eslint\\",
-    \\"plugin:jest/recommended\\",
-    \\"plugin:jest/style\\"
-  ],
-  \\"env\\": {
-    \\"browser\\": false,
-    \\"node\\": true,
-    \\"es6\\": true
-  },
-  \\"rules\\": {
-    \\"prettier/prettier\\": \\"error\\",
-    \\"no-unused-vars\\": \\"off\\",
-    \\"@typescript-eslint/no-unused-vars\\": \\"error\\",
-    \\"no-global-assign\\": [
-      \\"error\\",
-      {
-        \\"exceptions\\": [\\"console\\"]
-      }
-    ]
-  },
-  \\"overrides\\": [
-    {
-      \\"files\\": [\\"__tests__/**/*.ts\\"],
-      \\"env\\": {
-        \\"jest\\": true
-      }
-    }
-  ]
-}"
-`;
-
-exports[`plugin generator generates plugin with defaults 3`] = `
-"lib
-.eslintcache"
-`;
-
-exports[`plugin generator generates plugin with defaults 4`] = `
-"module.exports = {
-  singleQuote: true,
-  trailingComma: 'es5',
-  printWidth: 100,
-};"
-`;
-
-exports[`plugin generator generates plugin with defaults 5`] = `
-"# checkup-plugin-my-plugin
-
-Checkup plugin
-
-[![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
-
-<!-- toc -->
-
-# Usage
-
-<!-- usage -->
-
-# Commands
-
-<!-- commands -->
-"
-`;
-
-exports[`plugin generator generates plugin with defaults 6`] = `
-"module.exports = {
-  testEnvironment: 'node',
-  moduleFileExtensions: ['ts', 'js', 'json'],
-  transform: { '\\\\\\\\.ts$': 'ts-jest' },
-  coverageReporters: ['lcov', 'text-summary'],
-  collectCoverageFrom: ['src/**/*.ts'],
-  coveragePathIgnorePatterns: ['/templates/'],
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100,
-    },
-  },
-  testPathIgnorePatterns: ['__fixtures__'],
-};
-"
-`;
-
-exports[`plugin generator generates plugin with defaults 7`] = `
-"{
-  \\"compilerOptions\\": {
-    \\"declaration\\": true,
-    \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
-    \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
-    \\"allowSyntheticDefaultImports\\": true,
-    \\"sourceMap\\": true,
-    \\"outDir\\": \\"lib\\",
-    \\"rootDir\\": \\"src\\",
-    \\"types\\": [\\"jest\\", \\"node\\"]
-  },
-  \\"include\\": [\\"src/**/*\\"]
-}
-"
-`;
-
-exports[`plugin generator generates plugin with defaults 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
-}
-"
-`;
-
-exports[`plugin generator generates plugin with defaults 9`] = `""`;
-
-exports[`plugin generator generates plugin with defaults 10`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with defaults 11`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with defaults 12`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 1`] = `
-"lib 
-node_modules
-"
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 2`] = `
-"{
-  \\"root\\": true,
-  \\"parser\\": \\"@typescript-eslint/parser\\",
-  \\"parserOptions\\": {
-    \\"ecmaVersion\\": 2017,
-    \\"sourceType\\": \\"module\\"
-  },
-  \\"plugins\\": [\\"@typescript-eslint\\", \\"jest\\", \\"prettier\\"],
-  \\"extends\\": [
-    \\"eslint:recommended\\",
-    \\"prettier\\",
-    \\"prettier/@typescript-eslint\\",
-    \\"plugin:jest/recommended\\",
-    \\"plugin:jest/style\\"
-  ],
-  \\"env\\": {
-    \\"browser\\": false,
-    \\"node\\": true,
-    \\"es6\\": true
-  },
-  \\"rules\\": {
-    \\"prettier/prettier\\": \\"error\\",
-    \\"no-unused-vars\\": \\"off\\",
-    \\"@typescript-eslint/no-unused-vars\\": \\"error\\",
-    \\"no-global-assign\\": [
-      \\"error\\",
-      {
-        \\"exceptions\\": [\\"console\\"]
-      }
-    ]
-  },
-  \\"overrides\\": [
-    {
-      \\"files\\": [\\"__tests__/**/*.ts\\"],
-      \\"env\\": {
-        \\"jest\\": true
-      }
-    }
-  ]
-}"
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 3`] = `
-"lib
-.eslintcache"
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 4`] = `
-"module.exports = {
-  singleQuote: true,
-  trailingComma: 'es5',
-  printWidth: 100,
-};"
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 5`] = `
-"# checkup-plugin-my-plugin
-
-Checkup plugin
-
-[![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
-
-<!-- toc -->
-
-# Usage
-
-<!-- usage -->
-
-# Commands
-
-<!-- commands -->
-"
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 6`] = `
-"module.exports = {
-  testEnvironment: 'node',
-  moduleFileExtensions: ['ts', 'js', 'json'],
-  transform: { '\\\\\\\\.ts$': 'ts-jest' },
-  coverageReporters: ['lcov', 'text-summary'],
-  collectCoverageFrom: ['src/**/*.ts'],
-  coveragePathIgnorePatterns: ['/templates/'],
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100,
-    },
-  },
-  testPathIgnorePatterns: ['__fixtures__'],
-};
-"
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 7`] = `
-"{
-  \\"compilerOptions\\": {
-    \\"declaration\\": true,
-    \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
-    \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
-    \\"allowSyntheticDefaultImports\\": true,
-    \\"sourceMap\\": true,
-    \\"outDir\\": \\"lib\\",
-    \\"rootDir\\": \\"src\\",
-    \\"types\\": [\\"jest\\", \\"node\\"]
-  },
-  \\"include\\": [\\"src/**/*\\"]
-}
-"
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
-}
-"
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 9`] = `""`;
-
-exports[`plugin generator generates plugin with defaults in custom path 10`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 11`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with defaults in custom path 12`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 1`] = `
-"lib 
-node_modules
-"
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 2`] = `
-"{
-  \\"root\\": true,
-  \\"parser\\": \\"@typescript-eslint/parser\\",
-  \\"parserOptions\\": {
-    \\"ecmaVersion\\": 2017,
-    \\"sourceType\\": \\"module\\"
-  },
-  \\"plugins\\": [\\"@typescript-eslint\\", \\"jest\\", \\"prettier\\"],
-  \\"extends\\": [
-    \\"eslint:recommended\\",
-    \\"prettier\\",
-    \\"prettier/@typescript-eslint\\",
-    \\"plugin:jest/recommended\\",
-    \\"plugin:jest/style\\"
-  ],
-  \\"env\\": {
-    \\"browser\\": false,
-    \\"node\\": true,
-    \\"es6\\": true
-  },
-  \\"rules\\": {
-    \\"prettier/prettier\\": \\"error\\",
-    \\"no-unused-vars\\": \\"off\\",
-    \\"@typescript-eslint/no-unused-vars\\": \\"error\\",
-    \\"no-global-assign\\": [
-      \\"error\\",
-      {
-        \\"exceptions\\": [\\"console\\"]
-      }
-    ]
-  },
-  \\"overrides\\": [
-    {
-      \\"files\\": [\\"__tests__/**/*.ts\\"],
-      \\"env\\": {
-        \\"jest\\": true
-      }
-    }
-  ]
-}"
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 3`] = `
-"lib
-.eslintcache"
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 4`] = `
-"module.exports = {
-  singleQuote: true,
-  trailingComma: 'es5',
-  printWidth: 100,
-};"
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 5`] = `
-"# checkup-plugin-foo
-
-Checkup plugin
-
-[![Version](https://img.shields.io/npm/v/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![Downloads/week](https://img.shields.io/npm/dw/plugin-default.svg)](https://npmjs.org/package/plugin-default)
-[![License](https://img.shields.io/npm/l/plugin-default.svg)](https://github.com/checkupjs/checkup/blob/master/package.json)
-
-<!-- toc -->
-
-# Usage
-
-<!-- usage -->
-
-# Commands
-
-<!-- commands -->
-"
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 6`] = `
-"module.exports = {
-  testEnvironment: 'node',
-  moduleFileExtensions: ['ts', 'js', 'json'],
-  transform: { '\\\\\\\\.ts$': 'ts-jest' },
-  coverageReporters: ['lcov', 'text-summary'],
-  collectCoverageFrom: ['src/**/*.ts'],
-  coveragePathIgnorePatterns: ['/templates/'],
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100,
-    },
-  },
-  testPathIgnorePatterns: ['__fixtures__'],
-};
-"
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 7`] = `
-"{
-  \\"compilerOptions\\": {
-    \\"declaration\\": true,
-    \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
-    \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
-    \\"allowSyntheticDefaultImports\\": true,
-    \\"sourceMap\\": true,
-    \\"outDir\\": \\"lib\\",
-    \\"rootDir\\": \\"src\\",
-    \\"types\\": [\\"jest\\", \\"node\\"]
-  },
-  \\"include\\": [\\"src/**/*\\"]
-}
-"
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
-}
-"
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 9`] = `""`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 10`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 11`] = `
-[
-  ".gitkeep",
-]
-`;
-
-exports[`plugin generator generates plugin with unmodified name with defaults 12`] = `
 [
   ".gitkeep",
 ]

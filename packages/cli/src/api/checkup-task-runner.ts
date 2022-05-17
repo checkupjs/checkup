@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { pathToFileURL } from 'url';
 import {
   TaskAction,
   CheckupError,
@@ -242,12 +243,15 @@ export default class CheckupTaskRunner {
         // We first attempt to resolve from a node_modules location, which is either
         // the project's node_modules directory or an alternative location that contains
         // a node_modules.
-        pluginDir = resolve.sync(pluginName, { basedir: pluginBaseDir });
+        pluginDir = resolve.sync(pluginName, {
+          basedir: pluginBaseDir,
+          extensions: ['.js', '.mjs', '.cjs'],
+        });
       } catch {
         // If we're trying to load from a pluginBaseDir that doesn't contain a node_modules,
         // we assume we're trying to load plugins from a simple directory, and therefore
         // simply require the entry point file.
-        pluginDir = join(pluginBaseDir, pluginName);
+        pluginDir = pathToFileURL(join(pluginBaseDir, pluginName, 'index.js')).toString();
       }
 
       this.debug('Loading plugin from %s', pluginDir);

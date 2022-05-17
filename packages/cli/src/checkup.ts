@@ -39,6 +39,8 @@ checkup <command> [options]`
     .help()
     .version();
 
+  parser.wrap(parser.terminalWidth());
+
   if (argv.length === 0) {
     parser.showHelp();
   } else {

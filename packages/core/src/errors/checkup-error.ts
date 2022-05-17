@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { dirname } from 'dirname-filename-esm';
-import * as Wrap from 'wrap-ansi';
-import * as ci from 'ci-info';
+import wrap from 'wrap-ansi';
+import ci from 'ci-info';
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import stripAnsi from 'strip-ansi';
@@ -37,8 +37,6 @@ export default class CheckupError extends Error {
   }
 
   render(): string {
-    const wrap: typeof Wrap = require('wrap-ansi');
-
     process.exitCode = this.details.errorCode;
 
     let details: string[] = [];

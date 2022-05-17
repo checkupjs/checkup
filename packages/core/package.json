@@ -48,7 +48,7 @@
     "micromatch": "^4.0.2",
     "node-fetch": "^2.3.0",
     "npm-check": "^5.9.2",
-    "ow": "^0.23.0",
+    "ow": "^0.28.1",
     "pkg-up": "^3.1.0",
     "promise.hash.helper": "^1.0.7",
     "recast": "^0.20.5",
