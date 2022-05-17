@@ -14,7 +14,10 @@ export default class ESLintAnalyzer {
 
   constructor(options: ESLint.Options, taskConfig?: TaskConfig) {
     if (taskConfig && taskConfig.eslintConfig) {
-      options.baseConfig = mergeLintConfig(options.baseConfig, taskConfig.eslintConfig);
+      options.baseConfig = mergeLintConfig<Linter.Config<Linter.RulesRecord>>(
+        options.baseConfig!,
+        taskConfig.eslintConfig
+      );
     }
 
     this.engine = new ESLint(options);

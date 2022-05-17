@@ -7,7 +7,7 @@ import * as deepmerge from 'deepmerge';
  * @param {Record<string, any>} taskLintConfig - The task's specific lint configuration.
  * @returns {*} - The combined configs
  */
-export function mergeLintConfig<T>(config: T, taskLintConfig: Record<string, any>) {
+export function mergeLintConfig<T extends object>(config: T, taskLintConfig: Record<string, any>) {
   let combinedConfigs = deepmerge(config, taskLintConfig);
 
   if ('rules' in combinedConfigs) {
