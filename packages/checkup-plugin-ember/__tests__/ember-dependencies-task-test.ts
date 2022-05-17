@@ -6,7 +6,7 @@ import EmberDependenciesTask from '../src/tasks/ember-dependencies-task';
 
 describe('dependencies-task', () => {
   let emberProject: EmberProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(function () {
     emberProject = new EmberProject('checkup-app', '0.0.0', (project) => {

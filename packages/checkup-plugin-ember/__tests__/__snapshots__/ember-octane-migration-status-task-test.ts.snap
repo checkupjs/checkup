@@ -1,4 +1,1458 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
+
+exports[`ember-octane-migration-status-task > detects octane migration status for non-octane addon and outputs to json 1`] = `
+[
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 25,
+            "endLine": 2,
+            "startColumn": 16,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Glimmer Components : Use Glimmer components over classic Ember Components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Glimmer Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 20,
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 20,
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Tagless Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 27,
+            "endLine": 9,
+            "startColumn": 11,
+            "startLine": 9,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Glimmer Components : Do not use \\"classic\\" Ember component lifecycle hooks.. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-lifecycle",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Glimmer Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 44,
+            "endLine": 10,
+            "startColumn": 24,
+            "startLine": 10,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 12,
+            "endLine": 19,
+            "startColumn": 11,
+            "startLine": 15,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Do not use the actions hash and {{action}} modifier and helper. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 25,
+            "endLine": 2,
+            "startColumn": 16,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Glimmer Components : Use Glimmer components over classic Ember Components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Glimmer Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 20,
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 20,
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Tagless Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 27,
+            "endLine": 9,
+            "startColumn": 11,
+            "startLine": 9,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Glimmer Components : Do not use \\"classic\\" Ember component lifecycle hooks.. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-lifecycle",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Glimmer Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 44,
+            "endLine": 10,
+            "startColumn": 24,
+            "startLine": 10,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 12,
+            "endLine": 19,
+            "startColumn": 11,
+            "startLine": 15,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Do not use the actions hash and {{action}} modifier and helper. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/routes/my-route.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 5,
+            "startColumn": 24,
+            "startLine": 4,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/services/my-service.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 10,
+            "startColumn": 24,
+            "startLine": 4,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/services/my-service.js",
+          },
+          "region": {
+            "endColumn": 40,
+            "endLine": 8,
+            "startColumn": 25,
+            "startLine": 8,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/templates/application.hbs",
+          },
+          "region": {
+            "endColumn": 38,
+            "endLine": 2,
+            "startColumn": 10,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Angle Bracket Syntax",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/templates/application.hbs",
+          },
+          "region": {
+            "endColumn": 44,
+            "endLine": 3,
+            "startColumn": 10,
+            "startLine": 3,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Angle Bracket Syntax",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/templates/application.hbs",
+          },
+          "region": {
+            "endColumn": 36,
+            "endLine": 2,
+            "startColumn": 33,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Own Properties",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/templates/application.hbs",
+          },
+          "region": {
+            "endColumn": 42,
+            "endLine": 3,
+            "startColumn": 39,
+            "startLine": 3,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Own Properties",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/templates/my-component.hbs",
+          },
+          "region": {
+            "endColumn": 37,
+            "endLine": 2,
+            "startColumn": 18,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Modifiers : Do not use \`action\`. Instead, use the \`on\` modifier and \`fn\` helper. More info: https://guides.emberjs.com/release/components/template-lifecycle-dom-and-modifiers",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Modifiers",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/templates/my-component.hbs",
+          },
+          "region": {
+            "endColumn": 22,
+            "endLine": 3,
+            "startColumn": 10,
+            "startLine": 3,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Angle Bracket Syntax",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/templates/my-component.hbs",
+          },
+          "region": {
+            "endColumn": 20,
+            "endLine": 3,
+            "startColumn": 12,
+            "startLine": 3,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Own Properties",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/templates/other-component.hbs",
+          },
+          "region": {
+            "endColumn": 22,
+            "endLine": 2,
+            "startColumn": 10,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Angle Bracket Syntax",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/templates/other-component.hbs",
+          },
+          "region": {
+            "endColumn": 20,
+            "endLine": 2,
+            "startColumn": 12,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Own Properties",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+]
+`;
+
+exports[`ember-octane-migration-status-task > detects octane migration status for non-octane app and outputs to json 1`] = `
+[
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 25,
+            "endLine": 2,
+            "startColumn": 16,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Glimmer Components : Use Glimmer components over classic Ember Components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Glimmer Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 20,
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 20,
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Tagless Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 27,
+            "endLine": 9,
+            "startColumn": 11,
+            "startLine": 9,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Glimmer Components : Do not use \\"classic\\" Ember component lifecycle hooks.. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-lifecycle",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Glimmer Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 44,
+            "endLine": 10,
+            "startColumn": 24,
+            "startLine": 10,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/my-component.js",
+          },
+          "region": {
+            "endColumn": 12,
+            "endLine": 19,
+            "startColumn": 11,
+            "startLine": 15,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Do not use the actions hash and {{action}} modifier and helper. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 25,
+            "endLine": 2,
+            "startColumn": 16,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Glimmer Components : Use Glimmer components over classic Ember Components. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Glimmer Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 20,
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 20,
+            "startColumn": 24,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Tagless Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 27,
+            "endLine": 9,
+            "startColumn": 11,
+            "startLine": 9,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Glimmer Components : Do not use \\"classic\\" Ember component lifecycle hooks.. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-lifecycle",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Glimmer Components",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 44,
+            "endLine": 10,
+            "startColumn": 24,
+            "startLine": 10,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/components/other-component.js",
+          },
+          "region": {
+            "endColumn": 12,
+            "endLine": 19,
+            "startColumn": 11,
+            "startLine": 15,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Do not use the actions hash and {{action}} modifier and helper. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#actions__actions",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/routes/my-route.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 5,
+            "startColumn": 24,
+            "startLine": 4,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/services/my-service.js",
+          },
+          "region": {
+            "endColumn": 11,
+            "endLine": 10,
+            "startColumn": 24,
+            "startLine": 4,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/services/my-service.js",
+          },
+          "region": {
+            "endColumn": 40,
+            "endLine": 8,
+            "startColumn": 25,
+            "startLine": 8,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Native Classes : Use native ES5 getters instead of \`get\` / \`getProperties\` on Ember objects. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__get-and-set",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Native Classes",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/templates/application.hbs",
+          },
+          "region": {
+            "endColumn": 38,
+            "endLine": 2,
+            "startColumn": 10,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Angle Bracket Syntax",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/templates/application.hbs",
+          },
+          "region": {
+            "endColumn": 44,
+            "endLine": 3,
+            "startColumn": 10,
+            "startLine": 3,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Angle Bracket Syntax",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/templates/application.hbs",
+          },
+          "region": {
+            "endColumn": 36,
+            "endLine": 2,
+            "startColumn": 33,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Own Properties",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/templates/application.hbs",
+          },
+          "region": {
+            "endColumn": 42,
+            "endLine": 3,
+            "startColumn": 39,
+            "startLine": 3,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Own Properties",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/templates/my-component.hbs",
+          },
+          "region": {
+            "endColumn": 37,
+            "endLine": 2,
+            "startColumn": 18,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Modifiers : Do not use \`action\`. Instead, use the \`on\` modifier and \`fn\` helper. More info: https://guides.emberjs.com/release/components/template-lifecycle-dom-and-modifiers",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Modifiers",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/templates/my-component.hbs",
+          },
+          "region": {
+            "endColumn": 22,
+            "endLine": 3,
+            "startColumn": 10,
+            "startLine": 3,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Angle Bracket Syntax",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/templates/my-component.hbs",
+          },
+          "region": {
+            "endColumn": 20,
+            "endLine": 3,
+            "startColumn": 12,
+            "startLine": 3,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Own Properties",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/templates/other-component.hbs",
+          },
+          "region": {
+            "endColumn": 22,
+            "endLine": 2,
+            "startColumn": 10,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Angle Bracket Syntax : Use angle bracket syntax as it improves readability of templates, i.e. disambiguates components from helpers. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__angle-brackets",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Angle Bracket Syntax",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "review",
+    "level": "warning",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "app/templates/other-component.hbs",
+          },
+          "region": {
+            "endColumn": 20,
+            "endLine": 2,
+            "startColumn": 12,
+            "startLine": 2,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "Octane | Own Properties : Use \`this\` when referring to properties owned by the component. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__template-this",
+    },
+    "properties": {
+      "migration": {
+        "featureName": "Own Properties",
+        "name": "Octane",
+      },
+    },
+    "ruleId": "ember-octane-migration-status",
+    "ruleIndex": 0,
+  },
+]
+`;
+
+exports[`ember-octane-migration-status-task > detects octane migration status for octane addon and outputs to json 1`] = `[]`;
+
+exports[`ember-octane-migration-status-task > detects octane migration status for octane app and outputs to json 1`] = `[]`;
 
 exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to json 1`] = `
 [

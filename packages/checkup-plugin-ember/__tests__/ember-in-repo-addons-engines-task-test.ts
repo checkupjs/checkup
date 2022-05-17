@@ -5,7 +5,7 @@ import EmberInRepoAddonEnginesTask from '../src/tasks/ember-in-repo-addons-engin
 
 describe('ember-in-repo-addons-engines-task', () => {
   let emberProject: EmberProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     emberProject = new EmberProject('checkup-app', '0.0.0', (emberProject) => {
