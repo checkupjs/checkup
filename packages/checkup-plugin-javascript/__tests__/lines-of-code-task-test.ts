@@ -4,7 +4,7 @@ import LinesOfCodeTask from '../src/tasks/lines-of-code-task';
 
 describe('lines-of-code-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', (project) => {

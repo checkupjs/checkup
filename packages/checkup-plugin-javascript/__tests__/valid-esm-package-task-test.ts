@@ -4,7 +4,7 @@ import ValidEsmPackageTask from '../src/tasks/valid-esm-package-task';
 
 describe('valid-esm-package-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0');

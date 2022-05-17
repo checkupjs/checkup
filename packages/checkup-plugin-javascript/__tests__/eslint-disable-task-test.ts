@@ -6,7 +6,7 @@ import { evaluateActions } from '../src/actions/eslint-disable-actions';
 
 describe('eslint-disable-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(function () {
     project = new CheckupProject('foo', '0.0.0');

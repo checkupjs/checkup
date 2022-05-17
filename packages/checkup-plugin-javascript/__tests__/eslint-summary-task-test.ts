@@ -7,7 +7,7 @@ import EslintSummaryTask from '../src/tasks/eslint-summary-task.js';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
   let task: Task;
   let results: Result[];
 
