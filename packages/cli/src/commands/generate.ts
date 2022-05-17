@@ -1,4 +1,4 @@
-import * as yargs from 'yargs';
+import yargs from 'yargs';
 import { parser } from '../checkup.js';
 import { generatePluginCommand } from './generate/plugin.js';
 import { generateTaskCommand } from './generate/task.js';

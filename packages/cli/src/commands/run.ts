@@ -1,5 +1,5 @@
-import * as yargs from 'yargs';
-import * as ora from 'ora';
+import yargs from 'yargs';
+import ora from 'ora';
 import chalk from 'chalk';
 import CheckupTaskRunner from '../api/checkup-task-runner.js';
 import { consoleWriter } from '../checkup.js';
@@ -106,7 +106,8 @@ export const runCommand: yargs.CommandModule = {
 
         reportAvailableTasks(availableTasks);
       } else {
-        yargs.showHelp();
+        // @ts-ignore
+        yargs().showHelp();
         process.exitCode = 1;
       }
 

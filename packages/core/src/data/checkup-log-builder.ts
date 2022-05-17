@@ -1,5 +1,5 @@
 import { StackFrame } from 'sarif';
-import * as unparse from 'yargs-unparser';
+import unparse from 'yargs-unparser';
 import { DEFAULT_CONFIG, getConfigHash } from '../config.js';
 import { getVersion } from '../utils/get-version.js';
 import { getRepositoryInfo } from '../utils/repository.js';

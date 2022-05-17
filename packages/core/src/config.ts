@@ -3,8 +3,8 @@ import * as crypto from 'crypto';
 import { createRequire } from 'module';
 import Ajv from 'ajv';
 import fetch from 'node-fetch';
-import * as tmp from 'tmp';
-import * as stringify from 'json-stable-stringify';
+import tmp from 'tmp';
+import stringify from 'json-stable-stringify';
 import fs from 'fs-extra';
 import createDebug from 'debug';
 

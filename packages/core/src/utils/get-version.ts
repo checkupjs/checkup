@@ -1,5 +1,7 @@
+import { createRequire } from 'module';
 import { join } from 'path';
 
+const require = createRequire(import.meta.url);
 /**
  * Gets the version from the package.json file.
  *
