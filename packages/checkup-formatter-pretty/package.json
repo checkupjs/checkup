@@ -14,6 +14,7 @@
   "dependencies": {
     "@checkup/core": "1.4.2",
     "@types/react": "^17.0.15",
+    "dirname-filename-esm": "^1.1.1",
     "events": "^3.3.0",
     "fs-extra": "^10.0.0",
     "ink": "^3.0.9",

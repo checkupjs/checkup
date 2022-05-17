@@ -1,8 +1,8 @@
 import { resolve } from 'path';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser, FormatterOptions } from '@checkup/core';
-const stripAnsi = require('strip-ansi');
-const PrettyFormatter = require('../src');
+import stripAnsi from 'strip-ansi';
+import PrettyFormatter from '../src/index.js';
 
 describe('Test Pretty formatter', () => {
   it('can generate string from format', async () => {
@@ -15,7 +15,7 @@ describe('Test Pretty formatter', () => {
 
     let formatter = new PrettyFormatter(options);
 
-    const result = await formatter.format(logParser);
+    const result = formatter.format(logParser);
 
     expect(stripAnsi(result)).toMatchInlineSnapshot(`
 "
@@ -294,7 +294,7 @@ config 257cda6f6d50eeef891fc6ec8d808bdb
 
     let formatter = new PrettyFormatter(options);
 
-    const result = await formatter.format(logParser);
+    const result = formatter.format(logParser);
 
     delete process.env.CHECKUP_TIMING;
 
