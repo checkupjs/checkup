@@ -1,7 +1,7 @@
 import { resolve, join } from 'path';
 import { existsSync, mkdirSync } from 'fs';
-import * as Generator from 'yeoman-generator';
-import * as chalk from 'chalk';
+import Generator from 'yeoman-generator';
+import chalk from 'chalk';
 import { extend } from 'lodash';
 
 import { getPackageJson } from '@checkup/core';

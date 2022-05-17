@@ -1,4 +1,121 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
+
+exports[`actions generator > generates correct files with JavaScript 1`] = `
+"const { ActionsEvaluator } = require('@checkup/core');
+
+module.exports = function evaluateActions(taskResult, taskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}"
+`;
+
+exports[`actions generator > generates correct files with JavaScript 2`] = `
+"let { getPluginName } = require('@checkup/core');
+
+const {
+  evaluateActions: evaluateMyFooActions
+} = require('../actions/my-foo-actions');
+
+module.exports = {
+  register: function(args) {
+    let pluginName = getPluginName(__dirname);
+
+    args.register.actions('foo', evaluateMyFooActions);
+  }
+}
+"
+`;
+
+exports[`actions generator > generates correct files with TypeScript 1`] = `
+"import { TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { Result } from 'sarif';
+
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}
+"
+`;
+
+exports[`actions generator > generates correct files with TypeScript 2`] = `
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
+
+import { evaluateActions as evaluateMyFooActions } from '../actions/my-foo-actions';
+
+export function register(args: RegistrationArgs) {
+  let pluginName = getPluginName(__dirname);
+
+  args.register.actions('foo', evaluateMyFooActions);
+}
+"
+`;
+
+exports[`actions generator > generates correct files with TypeScript in custom path 1`] = `
+"import { TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { Result } from 'sarif';
+
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}
+"
+`;
+
+exports[`actions generator > generates correct files with TypeScript in custom path 2`] = `
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
+
+import { evaluateActions as evaluateMyFooActions } from '../actions/my-foo-actions';
+
+export function register(args: RegistrationArgs) {
+  let pluginName = getPluginName(__dirname);
+
+  args.register.actions('foo', evaluateMyFooActions);
+}
+"
+`;
+
+exports[`actions generator > generates multiple correct files with TypeScript 1`] = `
+"import { TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { Result } from 'sarif';
+
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}
+"
+`;
+
+exports[`actions generator > generates multiple correct files with TypeScript 2`] = `
+"import { TaskConfig, ActionsEvaluator } from '@checkup/core';
+import { Result } from 'sarif';
+
+export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
+  let actionsEvaluator = new ActionsEvaluator();
+
+  return actionsEvaluator.evaluate(taskConfig);
+}
+"
+`;
+
+exports[`actions generator > generates multiple correct files with TypeScript 3`] = `
+"import { RegistrationArgs, getPluginName } from '@checkup/core';
+
+import { evaluateActions as evaluateMyBarActions } from '../actions/my-bar-actions';
+
+import { evaluateActions as evaluateMyFooActions } from '../actions/my-foo-actions';
+
+export function register(args: RegistrationArgs) {
+  let pluginName = getPluginName(__dirname);
+
+  args.register.actions('foo', evaluateMyFooActions);
+  args.register.actions('foo', evaluateMyBarActions);
+}
+"
+`;
 
 exports[`actions generator generates correct files with JavaScript 1`] = `
 "const { ActionsEvaluator } = require('@checkup/core');

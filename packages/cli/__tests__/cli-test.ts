@@ -1,18 +1,15 @@
 import '@microsoft/jest-sarif';
 import { join, resolve } from 'path';
 import { existsSync, unlinkSync, mkdirSync } from 'fs';
-import * as execa from 'execa';
-import * as stringify from 'json-stable-stringify';
+import execa from 'execa';
+import stringify from 'json-stable-stringify';
 import { trimCwd } from '@checkup/core';
 import type { Log } from 'sarif';
 import { copyFileSync } from 'fs-extra';
+import stripAnsi from 'strip-ansi';
 import { FakeProject } from './__utils__/fake-project';
 
-const stripAnsi = require('strip-ansi');
-
 const ROOT = process.cwd();
-
-jest.setTimeout(500_000);
 
 describe('cli-test', () => {
   let project: FakeProject;

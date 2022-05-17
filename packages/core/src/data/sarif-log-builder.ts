@@ -1,6 +1,11 @@
+import { createRequire } from 'module';
 import { Log, Run, ReportingDescriptor, Result, Invocation, Notification } from 'sarif';
-import ow from 'ow';
 import { RequiredResult, RequiredRun } from '../types/checkup-log.js';
+
+const require = createRequire(import.meta.url);
+debugger;
+//@ts-ignore
+const ow = require('ow');
 
 export default class SarifLogBuilder {
   log: Log;

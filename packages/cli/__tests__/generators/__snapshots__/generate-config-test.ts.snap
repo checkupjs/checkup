@@ -1,4 +1,28 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
+
+exports[`config-init-generator > should write a config 1`] = `
+"{
+  \\"$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json\\",
+  \\"excludePaths\\": [
+    \\"**/*.hbs\\"
+  ],
+  \\"plugins\\": [],
+  \\"tasks\\": {}
+}
+"
+`;
+
+exports[`config-init-generator > should write a config in custom path 1`] = `
+"{
+  \\"$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json\\",
+  \\"excludePaths\\": [
+    \\"**/*.hbs\\"
+  ],
+  \\"plugins\\": [],
+  \\"tasks\\": {}
+}
+"
+`;
 
 exports[`config-init-generator should write a config 1`] = `
 "{

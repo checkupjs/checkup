@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "vitest run"
+    "test": "vitest run --threads false"
   },
   "dependencies": {
     "@babel/parser": "^7.17.10",
