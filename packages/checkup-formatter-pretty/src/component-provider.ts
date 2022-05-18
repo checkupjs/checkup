@@ -10,7 +10,6 @@ export const registeredComponents = new Map<string, React.FC>();
 const __dirname = dirname(import.meta);
 
 export async function registerDefaultComponents(): Promise<Map<string, React.FC>> {
-  debugger;
   let builtInComponents = new Set(
     readdirSync(join(__dirname, 'components'), { withFileTypes: true })
       .filter((file) => file.isFile())
