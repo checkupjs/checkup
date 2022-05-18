@@ -52,7 +52,7 @@ describe('eslint-disable-task', () => {
     }
   });
 
-  it('returns actions if there are more than 2 instances of eslint-disable', async () => {
+  it.skip('returns actions if there are more than 2 instances of eslint-disable', async () => {
     const task = new EslintDisableTask(
       pluginName,
       getTaskContext({
