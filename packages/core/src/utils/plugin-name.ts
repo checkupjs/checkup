@@ -1,5 +1,7 @@
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { PackageJson } from 'type-fest';
-import { readJsonSync } from 'fs-extra';
+import fs from 'fs-extra';
 import { sync } from 'pkg-up';
 
 /**
@@ -8,9 +10,10 @@ import { sync } from 'pkg-up';
  * @param {string} cwd - The current working directory from which to find the plugin's name
  * @returns {*}  {string}
  */
-export function getPluginName(cwd: string): string {
+export function getPluginName(url: string): string {
+  let cwd = dirname(fileURLToPath(url));
   let packageJsonPath = sync({ cwd });
-  let packageJson: PackageJson = readJsonSync(packageJsonPath!);
+  let packageJson: PackageJson = fs.readJsonSync(packageJsonPath!);
 
   if (!packageJson.keywords?.includes('checkup-plugin')) {
     throw new Error(

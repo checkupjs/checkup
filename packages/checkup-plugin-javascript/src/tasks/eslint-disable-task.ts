@@ -100,29 +100,28 @@ export default class EslintDisableTask extends BaseTask implements Task {
     }
 
     await Promise.all(
-      filePaths.map((filePath) => {
-        return fs.promises.readFile(filePath, 'utf8').then((fileContents: string) => {
-          let accumulator = new ESLintDisableAccumulator(filePath);
-          let analyzer;
-          try {
-            analyzer = new AstAnalyzer<t.File, Visitor<any>, typeof parse, typeof visit>(
-              fileContents,
-              parse,
-              visit,
-              {
-                parser: require('recast/parsers/babel'),
-              }
-            );
-            analyzer.analyze(accumulator.visitors);
-            data.push(...accumulator.data);
-          } catch (error: unknown) {
-            if (error instanceof Error) {
-              error.message = `Error occurred at ${filePath}. ${error.message}`;
+      filePaths.map(async (filePath) => {
+        const fileContents = await fs.promises.readFile(filePath, 'utf8');
+        let accumulator = new ESLintDisableAccumulator(filePath);
+        let analyzer;
+        try {
+          analyzer = new AstAnalyzer<t.File, Visitor<any>, typeof parse, typeof visit>(
+            fileContents,
+            parse,
+            visit,
+            {
+              parser: require('recast/parsers/babel'),
             }
-
-            this.addNonFatalError(error as Error);
+          );
+          analyzer.analyze(accumulator.visitors);
+          data.push(...accumulator.data);
+        } catch (error: unknown) {
+          if (error instanceof Error) {
+            error.message = `Error occurred at ${filePath}. ${error.message}`;
           }
-        });
+
+          this.addNonFatalError(error as Error);
+        }
       })
     );
 

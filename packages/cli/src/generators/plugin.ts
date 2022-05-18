@@ -1,9 +1,10 @@
 import { join } from 'path';
 import { readdirSync, existsSync } from 'fs';
+import { dirname } from 'dirname-filename-esm';
 import { readJsonSync } from 'fs-extra';
 import { Answers } from 'inquirer';
 import { CheckupError, ErrorKind } from '@checkup/core';
-import BaseGenerator, { Works } from './base-generator';
+import BaseGenerator, { Works } from './base-generator.js';
 
 const PLUGIN_DIR_PATTERN = /checkup-plugin-.*/;
 
@@ -72,7 +73,7 @@ export default class PluginGenerator extends BaseGenerator {
           },
         ]);
 
-    const checkupVersion = readJsonSync(join(__dirname, '../../package.json')).version;
+    const checkupVersion = readJsonSync(join(dirname(import.meta), '../../package.json')).version;
     this.options.checkupVersion = checkupVersion;
     this.options.typescript = this.answers.typescript;
     this.options.description = this.answers.description;
@@ -81,7 +82,7 @@ export default class PluginGenerator extends BaseGenerator {
   }
 
   writing() {
-    this.sourceRoot(join(__dirname, '../../templates/src/plugin'));
+    this.sourceRoot(join(dirname(import.meta), '../../templates/src/plugin'));
     this.destinationRoot(this._destinationPath);
 
     this.fs.copyTpl(

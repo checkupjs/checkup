@@ -1,9 +1,10 @@
 import { resolve } from 'path';
+import { dirname } from 'dirname-filename-esm';
 import DependencyAnalyzer from '../../src/analyzers/dependency-analyzer';
 
 describe('dependency-analyzer', () => {
   it('can load dependencies for a package.json', async () => {
-    let packageJsonPath = resolve(__dirname, '..', '__fixtures__');
+    let packageJsonPath = resolve(dirname(import.meta), '..', '__fixtures__');
     let analyzer = new DependencyAnalyzer(packageJsonPath);
     let result = await analyzer.analyze();
 

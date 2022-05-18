@@ -1,11 +1,13 @@
 import { join, resolve } from 'path';
 import { existsSync, statSync } from 'fs';
-import { FilePathArray } from './file-path-array';
+import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
+import { fileURLToPath } from 'url';
+import esMain from 'es-main';
 
-const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
-const isGlob = require('is-glob');
-const micromatch = require('micromatch');
-const walkSync = require('walk-sync');
+import isGlob from 'is-glob';
+import micromatch from 'micromatch';
+import walkSync from 'walk-sync';
+import { FilePathArray } from './file-path-array.js';
 
 const PATHS_TO_IGNORE: string[] = [
   '**/node_modules/**',
@@ -34,7 +36,7 @@ export function getFilePathsAsync(
   excludePaths: string[] = []
 ) {
   return new Promise<FilePathArray>((resolve, reject) => {
-    const worker = new Worker(__filename, {
+    const worker = new Worker(fileURLToPath(import.meta.url), {
       workerData: { basePath: baseDir, globsOrPaths, excludePaths },
     });
 
@@ -147,8 +149,8 @@ function resolveFilePaths(baseDir: string, filePaths: string[]): FilePathArray {
   return new FilePathArray(...filePaths);
 }
 
-if (require.main === module && !isMainThread) {
-  parentPort.postMessage(
+if (esMain(import.meta) && !isMainThread) {
+  parentPort?.postMessage(
     getFilePaths(workerData.basePath, workerData.globsOrPaths, workerData.excludePaths)
   );
 }

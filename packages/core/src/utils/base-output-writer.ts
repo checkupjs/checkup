@@ -1,7 +1,7 @@
-import * as chalk from 'chalk';
-import { startCase } from 'lodash';
-import CliTable3 = require('cli-table3');
-import CheckupError from '../errors/checkup-error';
+import chalk from 'chalk';
+import lodash from 'lodash';
+import CliTable3 from 'cli-table3';
+import CheckupError from '../errors/checkup-error.js';
 
 type Segment = { title: string; count: number; color?: chalk.Chalk };
 
@@ -26,7 +26,7 @@ export default abstract class BaseOutputWriter {
   }
 
   sectionHeader(header: string) {
-    this.write(this.emphasize(`${chalk.underline(startCase(header))}\n`));
+    this.write(this.emphasize(`${chalk.underline(lodash.startCase(header))}\n`));
     this.blankLine();
   }
 
@@ -39,7 +39,7 @@ export default abstract class BaseOutputWriter {
   }
 
   subHeader(header: string) {
-    this.write(`${chalk.underline(startCase(header))}\n`);
+    this.write(`${chalk.underline(lodash.startCase(header))}\n`);
     this.blankLine();
   }
 

@@ -3,11 +3,11 @@ import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName, Task, FilePathArray } from '@checkup/core';
 import { Result, Location } from 'sarif';
 import { evaluateActions } from '../src/actions/eslint-summary-actions';
-import EslintSummaryTask from '../src/tasks/eslint-summary-task';
+import EslintSummaryTask from '../src/tasks/eslint-summary-task.js';
 
 describe('eslint-summary-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
   let task: Task;
   let results: Result[];
 

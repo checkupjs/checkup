@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { dirname } from 'dirname-filename-esm';
 import {
   Task,
   LintAnalyzer,
@@ -26,7 +27,7 @@ export const EMBER_TEST_TYPES: ESLintOptions = {
       'test-types': 'error',
     },
   },
-  rulePaths: [join(__dirname, '../eslint/rules')],
+  rulePaths: [join(dirname(import.meta), '../eslint/rules')],
   useEslintrc: false,
 };
 

@@ -12,7 +12,7 @@
     "plugin:jest/style",
     "plugin:node/recommended",
     "plugin:unicorn/recommended",
-    "plugin:import/errors",
+    "plugin:import/recommended",
     "plugin:import/typescript",
     "prettier",
     "prettier/@typescript-eslint"
@@ -26,6 +26,9 @@
           "replace": ["^packages/(.+)/src/(.+)\\.ts$", "lib/$1.js"]
         }
       ]
+    },
+    "import/resolver": {
+      "node": { "extensions": [".js", ".mjs", ".ts", ".mts"] }
     }
   },
   "env": {
@@ -34,11 +37,14 @@
     "es6": true
   },
   "rules": {
-    "prettier/prettier": "error",
     "no-unused-vars": "off",
+    "no-global-assign": ["error", { "exceptions": ["console"] }],
+
+    "prettier/prettier": "error",
+
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars-experimental": "error",
-    "no-global-assign": ["error", { "exceptions": ["console"] }],
+
     "unicorn/no-reduce": "off",
     "unicorn/no-null": "off",
     "unicorn/no-array-reduce": "off",
@@ -48,32 +54,42 @@
     "unicorn/no-fn-reference-in-iterator": "off",
     "unicorn/no-process-exit": "off",
     "unicorn/no-this-assignment": "off",
-    "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }],
+
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      { "ignores": ["dynamicImport", "modules"] }
+    ],
     "node/no-extraneous-import": [
       "error",
       {
         "allowModules": ["@microsoft/jest-sarif"]
       }
     ],
-    "node/no-missing-import": [
-      "error",
-      {
-        "allowModules": ["@checkup/core", "@checkup/test-helpers", "sarif", "ink-testing-library"]
-      }
-    ],
+    "node/no-missing-import": "off",
     "node/no-unpublished-import": [
       "error",
       {
         "allowModules": ["ink-testing-library"]
       }
     ],
+
     "import/no-unresolved": [
-      "error",
+      "off",
       {
         "ignore": ["sarif", "ink-testing-library"]
       }
     ],
-    "import/order": "error"
+    "import/order": "error",
+    "import/extensions": [
+      "off",
+      "always",
+      {
+        "js": "never",
+        "ts": "never",
+        "jsx": "never",
+        "mjs": "never"
+      }
+    ]
   },
   "overrides": [
     {

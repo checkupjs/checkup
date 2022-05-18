@@ -1,15 +1,15 @@
 import { StackFrame } from 'sarif';
-import * as unparse from 'yargs-unparser';
-import { DEFAULT_CONFIG, getConfigHash } from '../config';
-import { getVersion } from '../utils/get-version';
-import { getRepositoryInfo } from '../utils/repository';
-import { FilePathArray } from '../utils/file-path-array';
-import extractStack from '../utils/extract-stack';
-import { AnnotationArgs, CheckupLogBuilderArgs } from '../types/checkup-log';
-import { CheckupConfig } from '../types/config';
-import { Task, TaskAction, TaskListError } from '../types/tasks';
-import SarifLogBuilder from './sarif-log-builder';
-import { trimAllCwd } from './path';
+import unparse from 'yargs-unparser';
+import { DEFAULT_CONFIG, getConfigHash } from '../config.js';
+import { getVersion } from '../utils/get-version.js';
+import { getRepositoryInfo } from '../utils/repository.js';
+import { FilePathArray } from '../utils/file-path-array.js';
+import extractStack from '../utils/extract-stack.js';
+import { AnnotationArgs, CheckupLogBuilderArgs } from '../types/checkup-log.js';
+import { CheckupConfig } from '../types/config.js';
+import { Task, TaskAction, TaskListError } from '../types/tasks.js';
+import SarifLogBuilder from './sarif-log-builder.js';
+import { trimAllCwd } from './path.js';
 
 /**
  * A class that simplifies the building of a checkup SARIF log.

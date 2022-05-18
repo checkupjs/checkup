@@ -1,7 +1,6 @@
 import { ESLint, Linter } from 'eslint';
-import { TemplateLintMessage, TemplateLintResult } from './ember-template-lint';
-
-const EmberTemplateLinter = require('ember-template-lint').TemplateLinter;
+import EmberTemplateLinter from 'ember-template-lint';
+import { TemplateLintMessage, TemplateLintResult } from './ember-template-lint.js';
 
 export type AnalyzerReport = any;
 export interface LintAnalyzer<ParserReport> {

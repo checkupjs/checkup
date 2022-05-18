@@ -12,7 +12,15 @@ describe('config-init-generator', () => {
 
     const dir = await helpers.run(ConfigGenerator).cd(tmp).withOptions({ path: tmp });
 
-    expect(testRoot(dir.cwd).file('.checkuprc').contents).toMatchSnapshot();
+    expect(testRoot(dir.cwd).file('.checkuprc').contents).toMatchInlineSnapshot(`
+      "{
+        \\"$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json\\",
+        \\"excludePaths\\": [],
+        \\"plugins\\": [],
+        \\"tasks\\": {}
+      }
+      "
+    `);
   });
 
   it('should write a config in custom path', async () => {
@@ -20,7 +28,15 @@ describe('config-init-generator', () => {
 
     const dir = await helpers.run(ConfigGenerator).cd(tmp).withOptions({ path: './lib' });
 
-    expect(testRoot(join(dir.cwd, 'lib')).file('.checkuprc').contents).toMatchSnapshot();
+    expect(testRoot(join(dir.cwd, 'lib')).file('.checkuprc').contents).toMatchInlineSnapshot(`
+      "{
+        \\"$schema\\": \\"https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json\\",
+        \\"excludePaths\\": [],
+        \\"plugins\\": [],
+        \\"tasks\\": {}
+      }
+      "
+    `);
   });
 
   it('should error if a checkuprc file is already present', async () => {

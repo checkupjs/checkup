@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`task generator generates correct files with JavaScript 1`] = `
-"const { BaseTask } = require('@checkup/core');
+exports[`task generator > generates correct files with JavaScript 1`] = `
+"import { BaseTask } from '@checkup/core';
 
-module.exports = class MyFooTask extends BaseTask {
+export default class MyFooTask extends BaseTask {
   taskName = 'my-foo';
   taskDisplayName = 'My Foo';
   description = 'Some description';
@@ -29,14 +29,14 @@ module.exports = class MyFooTask extends BaseTask {
 "
 `;
 
-exports[`task generator generates correct files with JavaScript 2`] = `
+exports[`task generator > generates correct files with JavaScript 2`] = `
 "import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 
 describe('my-foo-task', () => {
   let project;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', project => {
@@ -53,7 +53,7 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(
-      pluginName, 
+      pluginName,
       getTaskContext({
         options: { cwd: project.baseDir },
         pkg: project.pkg,
@@ -65,22 +65,19 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates correct files with JavaScript 3`] = `
-"let { getPluginName } = require('@checkup/core');
+exports[`task generator > generates correct files with JavaScript 3`] = `
+"import { getPluginName } from '@checkup/core';
 
-const MyFooTask = require('./tasks/my-foo-task');
+import MyFooTask from './tasks/my-foo-task.js';
 
-module.exports = {
-  register: function(args) {
-    let pluginName = getPluginName(__dirname);
-
-    args.register.task(new MyFooTask(pluginName, args.context));
-  }
+export function register(args) {
+  let pluginName = getPluginName(import.meta.url);
+  args.register.task(new MyFooTask(pluginName, args.context));
 }
 "
 `;
 
-exports[`task generator generates correct files with TypeScript for defaults 1`] = `
+exports[`task generator > generates correct files with TypeScript for defaults 1`] = `
 "import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -109,14 +106,14 @@ export default class MyFooTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates correct files with TypeScript for defaults 2`] = `
+exports[`task generator > generates correct files with TypeScript for defaults 2`] = `
 "import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', project => {
@@ -133,7 +130,7 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(
-      pluginName, 
+      pluginName,
       getTaskContext({
         options: { cwd: project.baseDir },
         pkg: project.pkg,
@@ -145,20 +142,19 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates correct files with TypeScript for defaults 3`] = `
+exports[`task generator > generates correct files with TypeScript for defaults 3`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from './tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task.js';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-
+  let pluginName = getPluginName(import.meta.url);
   args.register.task(new MyFooTask(pluginName, args.context));
 }
 "
 `;
 
-exports[`task generator generates correct files with TypeScript for defaults in custom path 1`] = `
+exports[`task generator > generates correct files with TypeScript for defaults in custom path 1`] = `
 "import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -187,14 +183,14 @@ export default class MyFooTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates correct files with TypeScript for defaults in custom path 2`] = `
+exports[`task generator > generates correct files with TypeScript for defaults in custom path 2`] = `
 "import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', project => {
@@ -211,7 +207,7 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(
-      pluginName, 
+      pluginName,
       getTaskContext({
         options: { cwd: project.baseDir },
         pkg: project.pkg,
@@ -223,20 +219,19 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates correct files with TypeScript for defaults in custom path 3`] = `
+exports[`task generator > generates correct files with TypeScript for defaults in custom path 3`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from './tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task.js';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-
+  let pluginName = getPluginName(import.meta.url);
   args.register.task(new MyFooTask(pluginName, args.context));
 }
 "
 `;
 
-exports[`task generator generates correct files with category 1`] = `
+exports[`task generator > generates correct files with category 1`] = `
 "import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -266,14 +261,14 @@ export default class MyFooTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates correct files with category 2`] = `
+exports[`task generator > generates correct files with category 2`] = `
 "import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', project => {
@@ -290,7 +285,7 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(
-      pluginName, 
+      pluginName,
       getTaskContext({
         options: { cwd: project.baseDir },
         pkg: project.pkg,
@@ -302,20 +297,19 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates correct files with category 3`] = `
+exports[`task generator > generates correct files with category 3`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from './tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task.js';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-
+  let pluginName = getPluginName(import.meta.url);
   args.register.task(new MyFooTask(pluginName, args.context));
 }
 "
 `;
 
-exports[`task generator generates correct files with group 1`] = `
+exports[`task generator > generates correct files with group 1`] = `
 "import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -345,14 +339,14 @@ export default class MyFooTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates correct files with group 2`] = `
+exports[`task generator > generates correct files with group 2`] = `
 "import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', project => {
@@ -369,7 +363,7 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(
-      pluginName, 
+      pluginName,
       getTaskContext({
         options: { cwd: project.baseDir },
         pkg: project.pkg,
@@ -381,20 +375,19 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates correct files with group 3`] = `
+exports[`task generator > generates correct files with group 3`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from './tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task.js';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-
+  let pluginName = getPluginName(import.meta.url);
   args.register.task(new MyFooTask(pluginName, args.context));
 }
 "
 `;
 
-exports[`task generator generates correct files with typescript 1`] = `
+exports[`task generator > generates correct files with typescript 1`] = `
 "import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -424,14 +417,14 @@ export default class MyFooTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates correct files with typescript 2`] = `
+exports[`task generator > generates correct files with typescript 2`] = `
 "import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', project => {
@@ -448,7 +441,7 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(
-      pluginName, 
+      pluginName,
       getTaskContext({
         options: { cwd: project.baseDir },
         pkg: project.pkg,
@@ -460,20 +453,19 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates correct files with typescript 3`] = `
+exports[`task generator > generates correct files with typescript 3`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyFooTask from './tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task.js';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-
+  let pluginName = getPluginName(import.meta.url);
   args.register.task(new MyFooTask(pluginName, args.context));
 }
 "
 `;
 
-exports[`task generator generates multiple correct files with TypeScript for defaults 1`] = `
+exports[`task generator > generates multiple correct files with TypeScript for defaults 1`] = `
 "import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -502,14 +494,14 @@ export default class MyFooTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates multiple correct files with TypeScript for defaults 2`] = `
+exports[`task generator > generates multiple correct files with TypeScript for defaults 2`] = `
 "import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyFooTask from '../src/tasks/my-foo-task';
 
 describe('my-foo-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', project => {
@@ -526,7 +518,7 @@ describe('my-foo-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyFooTask(
-      pluginName, 
+      pluginName,
       getTaskContext({
         options: { cwd: project.baseDir },
         pkg: project.pkg,
@@ -538,7 +530,7 @@ describe('my-foo-task', () => {
 "
 `;
 
-exports[`task generator generates multiple correct files with TypeScript for defaults 3`] = `
+exports[`task generator > generates multiple correct files with TypeScript for defaults 3`] = `
 "import { BaseTask, Task, TaskContext } from '@checkup/core';
 import { Result } from 'sarif';
 
@@ -567,14 +559,14 @@ export default class MyBarTask extends BaseTask implements Task {
 "
 `;
 
-exports[`task generator generates multiple correct files with TypeScript for defaults 4`] = `
+exports[`task generator > generates multiple correct files with TypeScript for defaults 4`] = `
 "import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import MyBarTask from '../src/tasks/my-bar-task';
 
 describe('my-bar-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', project => {
@@ -591,7 +583,7 @@ describe('my-bar-task', () => {
 
   it('can read task as JSON', async () => {
     const result = await new MyBarTask(
-      pluginName, 
+      pluginName,
       getTaskContext({
         options: { cwd: project.baseDir },
         pkg: project.pkg,
@@ -603,16 +595,15 @@ describe('my-bar-task', () => {
 "
 `;
 
-exports[`task generator generates multiple correct files with TypeScript for defaults 5`] = `
+exports[`task generator > generates multiple correct files with TypeScript for defaults 5`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
-import MyBarTask from './tasks/my-bar-task';
+import MyBarTask from './tasks/my-bar-task.js';
 
-import MyFooTask from './tasks/my-foo-task';
+import MyFooTask from './tasks/my-foo-task.js';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-
+  let pluginName = getPluginName(import.meta.url);
   args.register.task(new MyFooTask(pluginName, args.context));
   args.register.task(new MyBarTask(pluginName, args.context));
 }

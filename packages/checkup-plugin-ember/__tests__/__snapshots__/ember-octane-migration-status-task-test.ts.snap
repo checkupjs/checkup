@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`ember-octane-migration-status-task detects octane migration status for non-octane addon and outputs to json 1`] = `
+exports[`ember-octane-migration-status-task > detects octane migration status for non-octane addon and outputs to json 1`] = `
 [
   {
     "kind": "review",
@@ -725,7 +725,7 @@ exports[`ember-octane-migration-status-task detects octane migration status for 
 ]
 `;
 
-exports[`ember-octane-migration-status-task detects octane migration status for non-octane app and outputs to json 1`] = `
+exports[`ember-octane-migration-status-task > detects octane migration status for non-octane app and outputs to json 1`] = `
 [
   {
     "kind": "review",
@@ -1450,6 +1450,6 @@ exports[`ember-octane-migration-status-task detects octane migration status for 
 ]
 `;
 
-exports[`ember-octane-migration-status-task detects octane migration status for octane addon and outputs to json 1`] = `[]`;
+exports[`ember-octane-migration-status-task > detects octane migration status for octane addon and outputs to json 1`] = `[]`;
 
-exports[`ember-octane-migration-status-task detects octane migration status for octane app and outputs to json 1`] = `[]`;
+exports[`ember-octane-migration-status-task > detects octane migration status for octane app and outputs to json 1`] = `[]`;

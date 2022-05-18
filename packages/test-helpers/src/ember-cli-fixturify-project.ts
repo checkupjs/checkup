@@ -1,7 +1,7 @@
 'use strict';
 
 import { PackageJson } from 'type-fest';
-import CheckupFixturifyProject from './checkup-fixturify-project';
+import CheckupFixturifyProject from './checkup-fixturify-project.js';
 
 const enum InRepoPackageType {
   Addon = 'addon',

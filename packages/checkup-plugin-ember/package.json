@@ -10,6 +10,7 @@
   "repository": "https://github.com/checkupjs/checkup",
   "license": "MIT",
   "author": "Steve Calvert @scalvert",
+  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -18,7 +19,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "jest --no-cache",
+    "test": "vitest run",
     "docs:generate": "checkup-plugin docs"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
     "@checkup/core": "^1.4.2",
     "babel-eslint": "^10.1.0",
     "debug": "^4.3.1",
+    "dirname-filename-esm": "^1.1.1",
     "ember-template-recast": "^5.0.3",
     "eslint-plugin-ember": "^10.6.1",
     "fs-extra": "^9.1.0",
@@ -42,7 +44,7 @@
     "rimraf": "^3.0.2"
   },
   "engines": {
-    "node": ">= 12.22.*"
+    "node": ">= 14"
   },
   "publishConfig": {
     "access": "public"

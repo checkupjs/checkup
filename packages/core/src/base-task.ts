@@ -1,8 +1,9 @@
-import * as debug from 'debug';
+import debug from 'debug';
 
 import { Location, PropertyBag, ReportingDescriptor, Result } from 'sarif';
 import { SetRequired } from 'type-fest';
 
+import merge from 'lodash.merge';
 import {
   TaskName,
   TaskContext,
@@ -13,15 +14,13 @@ import {
   NormalizedLintResult,
 } from './types/tasks';
 
-import { TaskConfig, ConfigValue } from './types/config';
-import { getShorthandName } from './utils/normalize-package-name';
-import { parseConfigTuple } from './config';
-import { RequiredResult } from './types/checkup-log';
-import CheckupLogBuilder from './data/checkup-log-builder';
-import { toLintResults } from './data/lint';
-import { LintResult } from './types/analyzers';
-
-const merge = require('lodash.merge');
+import { TaskConfig, ConfigValue } from './types/config.js';
+import { getShorthandName } from './utils/normalize-package-name.js';
+import { parseConfigTuple } from './config.js';
+import { RequiredResult } from './types/checkup-log.js';
+import CheckupLogBuilder from './data/checkup-log-builder.js';
+import { toLintResults } from './data/lint.js';
+import { LintResult } from './types/analyzers.js';
 
 export default abstract class BaseTask {
   abstract taskName: TaskName;

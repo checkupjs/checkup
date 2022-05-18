@@ -1,19 +1,15 @@
 import '@microsoft/jest-sarif';
 import { join, resolve } from 'path';
-import { existsSync, unlinkSync } from 'fs';
-import { mkdirSync } from 'fs';
-import * as execa from 'execa';
-import * as stringify from 'json-stable-stringify';
+import { existsSync, unlinkSync, mkdirSync } from 'fs';
+import execa from 'execa';
+import stringify from 'json-stable-stringify';
 import { trimCwd } from '@checkup/core';
 import type { Log } from 'sarif';
 import { copyFileSync } from 'fs-extra';
+import stripAnsi from 'strip-ansi';
 import { FakeProject } from './__utils__/fake-project';
 
-const stripAnsi = require('strip-ansi');
-
 const ROOT = process.cwd();
-
-jest.setTimeout(500_000);
 
 describe('cli-test', () => {
   let project: FakeProject;
@@ -114,7 +110,7 @@ describe('cli-test', () => {
       'Results have been saved to the following file:',
       '<outputPath>',
       '',
-      'checkup v0.0.0',
+      'checkup v1.4.2',
       'config dd17cda1fc2eb2bc6bb5206b41fc1a84',
     ]);
   });
@@ -659,19 +655,19 @@ describe('cli-test', () => {
       lib: {
         'checkup-plugin-nested': {
           'index.js': `
-const FooTask = require('./tasks/foo-task');
-module.exports = {
-  register: function(args) {
-    let pluginName = 'checkup-plugin-nested';
+import FooTask from './tasks/foo-task.js';
 
-    args.register.task(new FooTask(pluginName, args.context));
-  }
+export function register(args) {
+  let pluginName = 'checkup-plugin-nested';
+
+  args.register.task(new FooTask(pluginName, args.context));
 }
 `,
           'package.json': `{
   "name": "checkup-plugin-nested",
   "description": "",
   "version": "0.0.1",
+  "type": "module",
   "dependencies": {
     "@checkup/core": "*"
   },
@@ -682,9 +678,9 @@ module.exports = {
 }
 `,
           tasks: {
-            'foo-task.js': `const { BaseTask } = require('@checkup/core');
+            'foo-task.js': `import { BaseTask } from '@checkup/core';
 
-module.exports = class FooTask extends BaseTask {
+export default class FooTask extends BaseTask {
   taskName = 'foo';
   taskDisplayName = 'Foo';
   category = 'best practices';

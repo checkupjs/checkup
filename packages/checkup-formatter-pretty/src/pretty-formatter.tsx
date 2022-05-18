@@ -3,7 +3,7 @@ import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { ReportingDescriptor } from 'sarif';
 import { default as InkTable } from 'ink-table';
-import { registeredComponents } from './component-provider';
+import { registeredComponents } from './component-provider.js';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
   let metaData: CheckupMetadata = logParser.metaData;

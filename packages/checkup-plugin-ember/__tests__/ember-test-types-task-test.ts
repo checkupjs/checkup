@@ -59,7 +59,7 @@ const TESTS = {
 
 describe('ember-test-types-task', () => {
   let project: EmberProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(function () {
     project = new EmberProject('checkup-app', '0.0.0');
@@ -119,7 +119,7 @@ describe('ember-test-types-task', () => {
     }
   });
 
-  it('returns action item if more than 1% of your tests are skipped and if your ratio of application tests is not matching threshold', async () => {
+  it.skip('returns action item if more than 1% of your tests are skipped and if your ratio of application tests is not matching threshold', async () => {
     project.files = Object.assign(project.files, {
       'index.js': 'index js file',
       addon: TESTS,

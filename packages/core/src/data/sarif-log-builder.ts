@@ -1,6 +1,5 @@
 import { Log, Run, ReportingDescriptor, Result, Invocation, Notification } from 'sarif';
-import ow from 'ow';
-import { RequiredResult, RequiredRun } from '../types/checkup-log';
+import { RequiredResult, RequiredRun } from '../types/checkup-log.js';
 
 export default class SarifLogBuilder {
   log: Log;
@@ -28,13 +27,6 @@ export default class SarifLogBuilder {
   addRule(rule: ReportingDescriptor) {
     let ruleIndex = -1;
     let rules = this.currentRunBuilder.run.tool.driver.rules;
-
-    ow(
-      rule,
-      ow.object.partialShape({
-        id: ow.string,
-      })
-    );
 
     if (rules) {
       ruleIndex = rules.findIndex((r) => r.id === rule.id);
@@ -65,16 +57,6 @@ export default class SarifLogBuilder {
     result: TResult,
     ruleMetadata?: Omit<ReportingDescriptor, 'id'>
   ) {
-    ow(
-      result,
-      ow.object.partialShape({
-        message: ow.object.hasKeys('text'),
-        ruleId: ow.string,
-        level: ow.string,
-        kind: ow.string,
-      })
-    );
-
     const ruleIndex = this.addRule({
       id: result.ruleId,
       ...ruleMetadata,

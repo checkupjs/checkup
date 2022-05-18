@@ -7,6 +7,7 @@
   "repository": "https://github.com/checkupjs/checkup",
   "license": "MIT",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -15,7 +16,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "jest --passWithNoTests --no-cache"
+    "test": "echo \"No tests\""
   },
   "dependencies": {
     "@checkup/core": "1.4.2",
@@ -26,7 +27,7 @@
     "walk-sync": "^3.0.0"
   },
   "engines": {
-    "node": ">= 12.22.*"
+    "node": ">= 14"
   },
   "publishConfig": {
     "access": "public"

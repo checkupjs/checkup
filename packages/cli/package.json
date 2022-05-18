@@ -10,6 +10,7 @@
   "repository": "https://github.com/checkupjs/checkup",
   "license": "MIT",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "bin": {
@@ -23,7 +24,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "jest --runInBand --no-cache"
+    "test": "vitest run --threads false"
   },
   "dependencies": {
     "@babel/parser": "^7.17.10",
@@ -34,6 +35,7 @@
     "clean-stack": "^3.0.1",
     "convert-hrtime": "^3.0.0",
     "debug": "^4.3.1",
+    "dirname-filename-esm": "^1.1.1",
     "fs-extra": "^9.1.0",
     "import-local": "^3.0.2",
     "inquirer": "^8.0.0",
@@ -62,7 +64,7 @@
     "yeoman-test": "^6.2.0"
   },
   "engines": {
-    "node": ">= 12.22.*"
+    "node": ">= 14"
   },
   "publishConfig": {
     "access": "public"

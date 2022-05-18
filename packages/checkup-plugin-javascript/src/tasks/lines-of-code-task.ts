@@ -2,7 +2,7 @@ import { extname } from 'path';
 import { promises as fs } from 'fs';
 import { BaseTask, Task, TaskContext, trimCwd } from '@checkup/core';
 import { Result } from 'sarif';
-const sloc = require('sloc');
+import sloc from 'sloc';
 
 /*
  * note: these extensions must be supported here https://github.com/flosse/sloc/blob/731fbea00799a45a6068c4aaa1d6b7f67500615e/src/sloc.coffee#L264
@@ -68,7 +68,7 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
     await Promise.all(
       this.context.paths
         .filter((filePath) => {
-          let extension = getExtension(filePath);
+          let extension: sloc.Extension = getExtension(filePath);
 
           return FILE_EXTENSIONS_SUPPORTED.has(extension);
         })
@@ -88,6 +88,6 @@ export default class LinesOfCodeTask extends BaseTask implements Task {
   }
 }
 
-function getExtension(filePath: string) {
-  return extname(filePath).replace('.', '');
+function getExtension(filePath: string): sloc.Extension {
+  return extname(filePath).replace('.', '') as sloc.Extension;
 }

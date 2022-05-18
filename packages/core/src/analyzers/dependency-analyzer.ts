@@ -1,8 +1,8 @@
-import * as npmCheck from 'npm-check';
+import npmCheck from 'npm-check';
 import { Visitor } from 'ast-types';
-import { getPackageJsonSource } from '../utils/get-package-json';
-import { Dependency, DependencyInfo } from '../types/dependency';
-import JsonAnalyzer from './json-analyzer';
+import { getPackageJsonSource } from '../utils/get-package-json.js';
+import { Dependency, DependencyInfo } from '../types/dependency.js';
+import JsonAnalyzer from './json-analyzer.js';
 
 export type NpmCheckDependency = {
   moduleName: string;

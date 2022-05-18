@@ -2,7 +2,7 @@ import * as recast from 'recast';
 import { File } from '@babel/types';
 import traverse, { TraverseOptions } from '@babel/traverse';
 
-import AstAnalyzer from '../analyzers/ast-analyzer';
+import AstAnalyzer from '../analyzers/ast-analyzer.js';
 
 type RecastParse = typeof recast.parse;
 type BabelTraverse = typeof traverse;

@@ -1,9 +1,9 @@
 import { BufferedWriter, CheckupLogParser, Formatter, FormatterOptions } from '@checkup/core';
-import { success } from 'log-symbols';
-import { yellow } from 'chalk';
+import logSymbols from 'log-symbols';
+import chalk from 'chalk';
 import { Log } from 'sarif';
-import { writeResultsToFile } from './file-writer';
-import BaseFormatter from './base-formatter';
+import { writeResultsToFile } from './file-writer.js';
+import BaseFormatter from './base-formatter.js';
 
 export default class SummaryFormatter extends BaseFormatter<BufferedWriter> implements Formatter {
   constructor(options: FormatterOptions) {
@@ -22,7 +22,7 @@ export default class SummaryFormatter extends BaseFormatter<BufferedWriter> impl
       .map((rule) => rule.id)
       .sort()
       .forEach((taskName) => {
-        this.writer.log(`${success} ${taskName}`);
+        this.writer.log(`${logSymbols.success} ${taskName}`);
       });
 
     this.writeResultsToFile(log);
@@ -38,6 +38,6 @@ export default class SummaryFormatter extends BaseFormatter<BufferedWriter> impl
 
     this.writer.blankLine();
     this.writer.log('Results have been saved to the following file:');
-    this.writer.log(yellow(resultsFilePath));
+    this.writer.log(chalk.yellow(resultsFilePath));
   }
 }

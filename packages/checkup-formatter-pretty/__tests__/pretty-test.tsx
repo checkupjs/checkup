@@ -3,9 +3,8 @@ import * as React from 'react';
 import { render } from 'ink-testing-library';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser } from '@checkup/core';
+import stripAnsi from 'strip-ansi';
 import PrettyFormatter from '../src/pretty-formatter';
-
-const stripAnsi = require('strip-ansi');
 
 describe('Test Pretty component', () => {
   it('can generate Pretty component', async () => {

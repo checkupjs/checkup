@@ -1,4 +1,5 @@
-import * as path from 'path';
+import path from 'path';
+import { dirname } from 'dirname-filename-esm';
 import * as _ from 'lodash';
 import * as t from '@babel/types';
 import * as recast from 'recast';
@@ -6,7 +7,7 @@ import * as recast from 'recast';
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
 import { AstTransformer, CheckupError, ErrorKind } from '@checkup/core';
-import BaseGenerator, { Works, Options } from './base-generator';
+import BaseGenerator, { Works, Options } from './base-generator.js';
 
 interface TaskOptions extends Options {
   taskClass: string;
@@ -77,7 +78,7 @@ export default class TaskGenerator extends BaseGenerator {
   }
 
   writing() {
-    this.sourceRoot(path.join(__dirname, '../../templates/src/task'));
+    this.sourceRoot(path.join(dirname(import.meta), '../../templates/src/task'));
 
     const options = { ...this.options, _ };
 
@@ -118,19 +119,10 @@ export default class TaskGenerator extends BaseGenerator {
     );
 
     let importOrRequire: t.ImportDeclaration | t.VariableDeclaration;
-    let taskPath = `./tasks/${this.options.name}-task`;
+    let taskPath = `./tasks/${this.options.name}-task.js`;
 
-    if (this.options.typescript) {
-      let newTaskImportSpecifier = t.importDefaultSpecifier(t.identifier(this.options.taskClass));
-      importOrRequire = t.importDeclaration([newTaskImportSpecifier], t.stringLiteral(taskPath));
-    } else {
-      importOrRequire = t.variableDeclaration('const', [
-        t.variableDeclarator(
-          t.identifier(this.options.taskClass),
-          t.callExpression(t.identifier('require'), [t.stringLiteral(taskPath)])
-        ),
-      ]);
-    }
+    let newTaskImportSpecifier = t.importDefaultSpecifier(t.identifier(this.options.taskClass));
+    importOrRequire = t.importDeclaration([newTaskImportSpecifier], t.stringLiteral(taskPath));
 
     let transformer = new AstTransformer(registerTasksSource, recast.parse, traverse, {
       parser: require('recast/parsers/typescript'),

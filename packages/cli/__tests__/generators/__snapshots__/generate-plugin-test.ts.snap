@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`plugin generator generates plugin into existing directory with defaults 1`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 1`] = `
 "lib 
 node_modules
 "
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 2`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 2`] = `
 "{
   \\"root\\": true,
   \\"parser\\": \\"@typescript-eslint/parser\\",
@@ -49,12 +49,12 @@ exports[`plugin generator generates plugin into existing directory with defaults
 }"
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 3`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 3`] = `
 "lib
 .eslintcache"
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 4`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 4`] = `
 "module.exports = {
   singleQuote: true,
   trailingComma: 'es5',
@@ -62,7 +62,7 @@ exports[`plugin generator generates plugin into existing directory with defaults
 };"
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 5`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 5`] = `
 "# checkup-plugin-bar
 
 Checkup plugin
@@ -83,7 +83,7 @@ Checkup plugin
 "
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 6`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 6`] = `
 "module.exports = {
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js', 'json'],
@@ -104,14 +104,15 @@ exports[`plugin generator generates plugin into existing directory with defaults
 "
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 7`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 7`] = `
 "{
   \\"compilerOptions\\": {
     \\"declaration\\": true,
     \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
+    \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -123,43 +124,42 @@ exports[`plugin generator generates plugin into existing directory with defaults
 "
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 8`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 8`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 9`] = `""`;
+exports[`plugin generator > generates plugin into existing directory with defaults 9`] = `""`;
 
-exports[`plugin generator generates plugin into existing directory with defaults 10`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 10`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 11`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 11`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin into existing directory with defaults 12`] = `
+exports[`plugin generator > generates plugin into existing directory with defaults 12`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 1`] = `
+exports[`plugin generator > generates plugin with JavaScript defaults 1`] = `
 "lib 
 node_modules
 "
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 2`] = `
+exports[`plugin generator > generates plugin with JavaScript defaults 2`] = `
 "{
   \\"root\\": true,
   \\"parser\\": \\"babel-eslint\\",
@@ -200,12 +200,12 @@ exports[`plugin generator generates plugin with JavaScript defaults 2`] = `
 }"
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 3`] = `
+exports[`plugin generator > generates plugin with JavaScript defaults 3`] = `
 "lib
 .eslintcache"
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 4`] = `
+exports[`plugin generator > generates plugin with JavaScript defaults 4`] = `
 "module.exports = {
   singleQuote: true,
   trailingComma: 'es5',
@@ -213,7 +213,7 @@ exports[`plugin generator generates plugin with JavaScript defaults 4`] = `
 };"
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 5`] = `
+exports[`plugin generator > generates plugin with JavaScript defaults 5`] = `
 "# checkup-plugin-my-plugin
 
 Checkup plugin
@@ -234,7 +234,7 @@ Checkup plugin
 "
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 6`] = `
+exports[`plugin generator > generates plugin with JavaScript defaults 6`] = `
 "module.exports = {
   testEnvironment: 'node',
   moduleFileExtensions: ['js', 'json'],
@@ -254,45 +254,42 @@ exports[`plugin generator generates plugin with JavaScript defaults 6`] = `
 "
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 7`] = `
-"let { getPluginName } = require('@checkup/core');
+exports[`plugin generator > generates plugin with JavaScript defaults 7`] = `
+"import { getPluginName } from '@checkup/core';
 
-module.exports = {
-  register: function(args) {
-    let pluginName = getPluginName(__dirname);
-    
-  }
+export function register(args) {
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 8`] = `""`;
+exports[`plugin generator > generates plugin with JavaScript defaults 8`] = `""`;
 
-exports[`plugin generator generates plugin with JavaScript defaults 9`] = `
+exports[`plugin generator > generates plugin with JavaScript defaults 9`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 10`] = `
+exports[`plugin generator > generates plugin with JavaScript defaults 10`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with JavaScript defaults 11`] = `
+exports[`plugin generator > generates plugin with JavaScript defaults 11`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with custom options 1`] = `
+exports[`plugin generator > generates plugin with custom options 1`] = `
 "lib 
 node_modules
 "
 `;
 
-exports[`plugin generator generates plugin with custom options 2`] = `
+exports[`plugin generator > generates plugin with custom options 2`] = `
 "{
   \\"root\\": true,
   \\"parser\\": \\"@typescript-eslint/parser\\",
@@ -335,12 +332,12 @@ exports[`plugin generator generates plugin with custom options 2`] = `
 }"
 `;
 
-exports[`plugin generator generates plugin with custom options 3`] = `
+exports[`plugin generator > generates plugin with custom options 3`] = `
 "lib
 .eslintcache"
 `;
 
-exports[`plugin generator generates plugin with custom options 4`] = `
+exports[`plugin generator > generates plugin with custom options 4`] = `
 "module.exports = {
   singleQuote: true,
   trailingComma: 'es5',
@@ -348,7 +345,7 @@ exports[`plugin generator generates plugin with custom options 4`] = `
 };"
 `;
 
-exports[`plugin generator generates plugin with custom options 5`] = `
+exports[`plugin generator > generates plugin with custom options 5`] = `
 "# checkup-plugin-my-plugin
 
 My custom plugin
@@ -369,7 +366,7 @@ My custom plugin
 "
 `;
 
-exports[`plugin generator generates plugin with custom options 6`] = `
+exports[`plugin generator > generates plugin with custom options 6`] = `
 "module.exports = {
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js', 'json'],
@@ -390,14 +387,15 @@ exports[`plugin generator generates plugin with custom options 6`] = `
 "
 `;
 
-exports[`plugin generator generates plugin with custom options 7`] = `
+exports[`plugin generator > generates plugin with custom options 7`] = `
 "{
   \\"compilerOptions\\": {
     \\"declaration\\": true,
     \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
+    \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -409,43 +407,42 @@ exports[`plugin generator generates plugin with custom options 7`] = `
 "
 `;
 
-exports[`plugin generator generates plugin with custom options 8`] = `
+exports[`plugin generator > generates plugin with custom options 8`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
 
-exports[`plugin generator generates plugin with custom options 9`] = `""`;
+exports[`plugin generator > generates plugin with custom options 9`] = `""`;
 
-exports[`plugin generator generates plugin with custom options 10`] = `
+exports[`plugin generator > generates plugin with custom options 10`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with custom options 11`] = `
+exports[`plugin generator > generates plugin with custom options 11`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with custom options 12`] = `
+exports[`plugin generator > generates plugin with custom options 12`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with defaults 1`] = `
+exports[`plugin generator > generates plugin with defaults 1`] = `
 "lib 
 node_modules
 "
 `;
 
-exports[`plugin generator generates plugin with defaults 2`] = `
+exports[`plugin generator > generates plugin with defaults 2`] = `
 "{
   \\"root\\": true,
   \\"parser\\": \\"@typescript-eslint/parser\\",
@@ -488,12 +485,12 @@ exports[`plugin generator generates plugin with defaults 2`] = `
 }"
 `;
 
-exports[`plugin generator generates plugin with defaults 3`] = `
+exports[`plugin generator > generates plugin with defaults 3`] = `
 "lib
 .eslintcache"
 `;
 
-exports[`plugin generator generates plugin with defaults 4`] = `
+exports[`plugin generator > generates plugin with defaults 4`] = `
 "module.exports = {
   singleQuote: true,
   trailingComma: 'es5',
@@ -501,7 +498,7 @@ exports[`plugin generator generates plugin with defaults 4`] = `
 };"
 `;
 
-exports[`plugin generator generates plugin with defaults 5`] = `
+exports[`plugin generator > generates plugin with defaults 5`] = `
 "# checkup-plugin-my-plugin
 
 Checkup plugin
@@ -522,7 +519,7 @@ Checkup plugin
 "
 `;
 
-exports[`plugin generator generates plugin with defaults 6`] = `
+exports[`plugin generator > generates plugin with defaults 6`] = `
 "module.exports = {
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js', 'json'],
@@ -543,14 +540,15 @@ exports[`plugin generator generates plugin with defaults 6`] = `
 "
 `;
 
-exports[`plugin generator generates plugin with defaults 7`] = `
+exports[`plugin generator > generates plugin with defaults 7`] = `
 "{
   \\"compilerOptions\\": {
     \\"declaration\\": true,
     \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
+    \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -562,43 +560,42 @@ exports[`plugin generator generates plugin with defaults 7`] = `
 "
 `;
 
-exports[`plugin generator generates plugin with defaults 8`] = `
+exports[`plugin generator > generates plugin with defaults 8`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
 
-exports[`plugin generator generates plugin with defaults 9`] = `""`;
+exports[`plugin generator > generates plugin with defaults 9`] = `""`;
 
-exports[`plugin generator generates plugin with defaults 10`] = `
+exports[`plugin generator > generates plugin with defaults 10`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with defaults 11`] = `
+exports[`plugin generator > generates plugin with defaults 11`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with defaults 12`] = `
+exports[`plugin generator > generates plugin with defaults 12`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 1`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 1`] = `
 "lib 
 node_modules
 "
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 2`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 2`] = `
 "{
   \\"root\\": true,
   \\"parser\\": \\"@typescript-eslint/parser\\",
@@ -641,12 +638,12 @@ exports[`plugin generator generates plugin with defaults in custom path 2`] = `
 }"
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 3`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 3`] = `
 "lib
 .eslintcache"
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 4`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 4`] = `
 "module.exports = {
   singleQuote: true,
   trailingComma: 'es5',
@@ -654,7 +651,7 @@ exports[`plugin generator generates plugin with defaults in custom path 4`] = `
 };"
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 5`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 5`] = `
 "# checkup-plugin-my-plugin
 
 Checkup plugin
@@ -675,7 +672,7 @@ Checkup plugin
 "
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 6`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 6`] = `
 "module.exports = {
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js', 'json'],
@@ -696,14 +693,15 @@ exports[`plugin generator generates plugin with defaults in custom path 6`] = `
 "
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 7`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 7`] = `
 "{
   \\"compilerOptions\\": {
     \\"declaration\\": true,
     \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
+    \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -715,43 +713,42 @@ exports[`plugin generator generates plugin with defaults in custom path 7`] = `
 "
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 8`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 8`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 9`] = `""`;
+exports[`plugin generator > generates plugin with defaults in custom path 9`] = `""`;
 
-exports[`plugin generator generates plugin with defaults in custom path 10`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 10`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 11`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 11`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with defaults in custom path 12`] = `
+exports[`plugin generator > generates plugin with defaults in custom path 12`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 1`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 1`] = `
 "lib 
 node_modules
 "
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 2`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 2`] = `
 "{
   \\"root\\": true,
   \\"parser\\": \\"@typescript-eslint/parser\\",
@@ -794,12 +791,12 @@ exports[`plugin generator generates plugin with unmodified name with defaults 2`
 }"
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 3`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 3`] = `
 "lib
 .eslintcache"
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 4`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 4`] = `
 "module.exports = {
   singleQuote: true,
   trailingComma: 'es5',
@@ -807,7 +804,7 @@ exports[`plugin generator generates plugin with unmodified name with defaults 4`
 };"
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 5`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 5`] = `
 "# checkup-plugin-foo
 
 Checkup plugin
@@ -828,7 +825,7 @@ Checkup plugin
 "
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 6`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 6`] = `
 "module.exports = {
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js', 'json'],
@@ -849,14 +846,15 @@ exports[`plugin generator generates plugin with unmodified name with defaults 6`
 "
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 7`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 7`] = `
 "{
   \\"compilerOptions\\": {
     \\"declaration\\": true,
     \\"importHelpers\\": true,
-    \\"module\\": \\"commonjs\\",
+    \\"module\\": \\"ESNext\\",
+    \\"moduleResolution\\": \\"node\\",
     \\"strict\\": true,
-    \\"target\\": \\"es2017\\",
+    \\"target\\": \\"es2019\\",
     \\"allowSyntheticDefaultImports\\": true,
     \\"sourceMap\\": true,
     \\"outDir\\": \\"lib\\",
@@ -868,31 +866,30 @@ exports[`plugin generator generates plugin with unmodified name with defaults 7`
 "
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 8`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 8`] = `
 "import { RegistrationArgs, getPluginName } from '@checkup/core';
 
 export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(__dirname);
-  
+  let pluginName = getPluginName(import.meta.url);
 }
 "
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 9`] = `""`;
+exports[`plugin generator > generates plugin with unmodified name with defaults 9`] = `""`;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 10`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 10`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 11`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 11`] = `
 [
   ".gitkeep",
 ]
 `;
 
-exports[`plugin generator generates plugin with unmodified name with defaults 12`] = `
+exports[`plugin generator > generates plugin with unmodified name with defaults 12`] = `
 [
   ".gitkeep",
 ]

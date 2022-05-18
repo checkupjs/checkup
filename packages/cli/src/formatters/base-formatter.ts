@@ -1,6 +1,6 @@
 import { BaseOutputWriter, FormatterOptions, CheckupMetadata } from '@checkup/core';
 import { Notification } from 'sarif';
-import { yellow } from 'chalk';
+import chalk from 'chalk';
 
 export default abstract class BaseFormatter<T extends BaseOutputWriter> {
   writer!: T;
@@ -39,7 +39,7 @@ export default abstract class BaseFormatter<T extends BaseOutputWriter> {
     if (actions && actions.length > 0) {
       this.writer.categoryHeader('Actions');
       actions.forEach((action: Notification) => {
-        this.writer.log(`${yellow('■')} ${action.message.text}`);
+        this.writer.log(`${chalk.yellow('■')} ${action.message.text}`);
       });
       this.writer.blankLine();
     }

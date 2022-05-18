@@ -7,14 +7,16 @@
   "repository": "https://github.com/checkupjs/checkup",
   "license": "MIT",
   "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
     "/lib"
   ],
   "scripts": {
-    "build": "tsc --build",
-    "test": "jest --passWithNoTests --no-cache"
+    "build": "tsc --build && yarn build:copy-schema",
+    "build:copy-schema": "cp -r ./src/schemas ./lib/schemas",
+    "test": "vitest run"
   },
   "dependencies": {
     "@babel/parser": "^7.17.10",
@@ -32,9 +34,11 @@
     "date-and-time": "^1.0.0",
     "debug": "^4.3.1",
     "deepmerge": "^4.2.2",
+    "dirname-filename-esm": "^1.1.1",
     "ember-template-lint": "^3.11.0",
     "ember-template-recast": "^5.0.3",
-    "eslint": "^7.32.0",
+    "es-main": "^1.0.2",
+    "eslint": "^8.15.0",
     "fs-extra": "^9.1.0",
     "globby": "^12.0.2",
     "is-glob": "^4.0.1",
@@ -44,7 +48,7 @@
     "micromatch": "^4.0.2",
     "node-fetch": "^2.3.0",
     "npm-check": "^5.9.2",
-    "ow": "^0.23.0",
+    "ow": "^0.28.1",
     "pkg-up": "^3.1.0",
     "promise.hash.helper": "^1.0.7",
     "recast": "^0.20.5",
@@ -63,11 +67,10 @@
     "@types/lodash.merge": "^4.6.6",
     "@types/resolve": "^1.20.0",
     "@types/wrap-ansi": "^3.0.0",
-    "eslint-plugin-jest": "^24.1.3",
     "mockdate": "^3.0.5"
   },
   "engines": {
-    "node": ">= 12.22.*"
+    "node": ">= 14"
   },
   "publishConfig": {
     "access": "public"

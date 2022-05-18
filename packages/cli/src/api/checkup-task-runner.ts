@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { pathToFileURL } from 'url';
 import {
   TaskAction,
   CheckupError,
@@ -21,13 +22,13 @@ import {
   RegistrationArgs,
   CheckupLogBuilder,
 } from '@checkup/core';
-import * as debug from 'debug';
-import * as resolve from 'resolve';
+import debug from 'debug';
+import resolve from 'resolve';
 import { Log, Result } from 'sarif';
 
 import { PackageJson } from 'type-fest';
-import TaskListImpl from '../task-list';
-import PluginRegistrationProvider from './registration-provider';
+import TaskListImpl from '../task-list.js';
+import PluginRegistrationProvider from './registration-provider.js';
 
 /**
  * Class that is able to run a list of checkup tasks.
@@ -242,17 +243,20 @@ export default class CheckupTaskRunner {
         // We first attempt to resolve from a node_modules location, which is either
         // the project's node_modules directory or an alternative location that contains
         // a node_modules.
-        pluginDir = resolve.sync(pluginName, { basedir: pluginBaseDir });
+        pluginDir = resolve.sync(pluginName, {
+          basedir: pluginBaseDir,
+          extensions: ['.js', '.mjs', '.cjs'],
+        });
       } catch {
         // If we're trying to load from a pluginBaseDir that doesn't contain a node_modules,
         // we assume we're trying to load plugins from a simple directory, and therefore
         // simply require the entry point file.
-        pluginDir = join(pluginBaseDir, pluginName);
+        pluginDir = pathToFileURL(join(pluginBaseDir, pluginName, 'index.js')).toString();
       }
 
       this.debug('Loading plugin from %s', pluginDir);
 
-      let { register } = require(pluginDir);
+      let { register } = await import(pluginDir);
       await register(registrationArgs);
     }
   }

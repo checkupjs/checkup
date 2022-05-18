@@ -1,5 +1,5 @@
 import * as yargs from 'yargs';
-import Generator from '../../api/generator';
+import Generator from '../../api/generator.js';
 
 export const generatePluginCommand = {
   command: 'plugin <name> [options]',

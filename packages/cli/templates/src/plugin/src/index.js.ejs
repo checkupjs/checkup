@@ -1,8 +1,5 @@
-let { getPluginName } = require('@checkup/core');
+import { getPluginName } from '@checkup/core';
 
-module.exports = {
-  register: function(args) {
-    let pluginName = getPluginName(__dirname);
-    
-  }
+export function register(args) {
+  let pluginName = getPluginName(import.meta.url);
 }

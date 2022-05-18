@@ -1,4 +1,4 @@
-import { TaskName, TaskActionsEvaluator } from '../types/tasks';
+import { TaskName, TaskActionsEvaluator } from '../types/tasks.js';
 
 const registeredActions = new Map<TaskName, TaskActionsEvaluator>();
 

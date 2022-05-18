@@ -7,7 +7,7 @@ import { evaluateActions } from '../src/actions/ember-template-lint-summary-acti
 
 describe('ember-emplate-lint-summary-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
   let task: Task;
   let results: Result[];
 

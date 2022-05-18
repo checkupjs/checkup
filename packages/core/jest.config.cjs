@@ -18,5 +18,14 @@ module.exports = {
   snapshotFormat: {
     printBasicPrototype: false,
   },
-  testPathIgnorePatterns: ['/__utils__/', '__fixtures__'],
+  testPathIgnorePatterns: ['/__fixtures__/', '/__utils__/'],
+  extensionsToTreatAsEsm: ['.ts'],
+  globals: {
+    'ts-jest': {
+      useESM: true,
+    },
+  },
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
 };

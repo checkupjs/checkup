@@ -10,6 +10,7 @@
   "repository": "https://github.com/checkupjs/checkup",
   "license": "MIT",
   "author": "Cara Kessler @carakessler",
+  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -18,7 +19,7 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "jest --no-cache",
+    "test": "vitest run",
     "docs:generate": "checkup-plugin docs"
   },
   "dependencies": {
@@ -40,7 +41,7 @@
     "rimraf": "^3.0.2"
   },
   "engines": {
-    "node": ">= 12.22.*"
+    "node": ">= 14"
   },
   "publishConfig": {
     "access": "public"

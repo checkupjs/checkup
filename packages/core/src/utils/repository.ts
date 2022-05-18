@@ -1,7 +1,6 @@
+import hash from 'promise.hash.helper';
 import { RepositoryInfo } from '../types/checkup-result';
-import { exec } from './exec';
-
-const hash = require('promise.hash.helper');
+import { exec } from './exec.js';
 
 const COMMIT_COUNT = "git log --oneline $commit | wc -l | tr -d ' '";
 const FILE_COUNT = "git ls-files | wc -l | tr -d ' '";

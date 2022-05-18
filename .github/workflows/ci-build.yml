@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node: ['12']
+        node: ['14']
 
     steps:
       - uses: actions/checkout@v2
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: install dependencies
-        run: yarn install
+        run: yarn install --ignore-engines
       - name: lint
         run: yarn lint
       - name: build

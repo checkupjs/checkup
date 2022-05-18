@@ -1,5 +1,5 @@
-import CheckupError from './checkup-error';
-import { ErrorKind, ErrorDetailOptions } from './error-kind';
+import CheckupError from './checkup-error.js';
+import { ErrorKind, ErrorDetailOptions } from './error-kind.js';
 
 export type TaskErrorDetailOptions = ErrorDetailOptions & { taskName: string };
 

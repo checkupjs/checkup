@@ -1,6 +1,6 @@
-import { LintMessage, LintResult } from '../types/analyzers';
-import { NormalizedLintResult } from '../types/tasks';
-import { trimCwd } from './path';
+import { LintMessage, LintResult } from '../types/analyzers.js';
+import { NormalizedLintResult } from '../types/tasks.js';
+import { trimCwd } from './path.js';
 
 export function toLintResult(
   message: LintMessage,

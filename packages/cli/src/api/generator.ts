@@ -1,8 +1,8 @@
 import { join } from 'path';
 import * as debug from 'debug';
 import { CheckupError, ErrorKind } from '@checkup/core';
-import { createEnv } from 'yeoman-environment';
-import { existsSync, rmdirSync } from 'fs-extra';
+import yeomanEnv from 'yeoman-environment';
+import fs from 'fs-extra';
 
 export type GenerateOptions = {
   generator: string;
@@ -11,6 +11,7 @@ export type GenerateOptions = {
   defaults?: boolean;
 };
 
+const { existsSync, rmdirSync } = fs;
 const VALID_GENERATORS = ['config', 'plugin', 'task', 'actions'];
 
 export default class Generator {
@@ -39,7 +40,7 @@ export default class Generator {
   async generate(type: string, generatorOptions: GenerateOptions) {
     this.debug('generatorOptions', generatorOptions);
 
-    const env = createEnv();
+    const env = yeomanEnv.createEnv();
 
     env.register(require.resolve(`../generators/${type}`), `checkup:${type}`);
 

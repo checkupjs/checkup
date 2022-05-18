@@ -1,3 +1,6 @@
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 const { version } = require('../../package.json');
 
 export function getVersion(fakeVersion: string = '0.0.0') {

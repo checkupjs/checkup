@@ -38,7 +38,7 @@ const TYPES = {
 
 describe('types-task', () => {
   let project: EmberProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
 
   beforeEach(function () {
     project = new EmberProject('checkup-app', '0.0.0');

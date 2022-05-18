@@ -5,12 +5,10 @@ import { Result } from 'sarif';
 import OutdatedDependenciesTask from '../src/tasks/outdated-dependencies-task';
 import { evaluateActions } from '../src/actions/outdated-dependency-actions';
 
-jest.setTimeout(50000);
-
 // this test actually checks if dependencies are out of date, and will fail if new versions of react and react-dom are released.
 describe('outdated-dependencies-task', () => {
   let project: CheckupProject;
-  let pluginName = getPluginName(__dirname);
+  let pluginName = getPluginName(import.meta.url);
   let task: Task;
   let results: Result[];
 

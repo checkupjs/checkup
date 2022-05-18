@@ -1,6 +1,6 @@
-import { TaskConfig, ActionConfig } from '../types/config';
-import { parseConfigTuple } from '../config';
-import { TaskAction } from '../types/tasks';
+import { TaskConfig, ActionConfig } from '../types/config.js';
+import { parseConfigTuple } from '../config.js';
+import { TaskAction } from '../types/tasks.js';
 
 export default class TaskActionsEvaluator {
   private actions: TaskAction[] = [];

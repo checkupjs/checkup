@@ -1,6 +1,6 @@
 import * as yargs from 'yargs';
-import Generator from '../../api/generator';
-import { consoleWriter } from '../../checkup';
+import Generator from '../../api/generator.js';
+import { consoleWriter } from '../../checkup.js';
 
 export const generateConfigCommand = {
   command: 'config',
