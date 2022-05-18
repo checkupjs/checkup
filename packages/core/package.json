@@ -50,7 +50,7 @@
     "npm-check": "^5.9.2",
     "ow": "^0.28.1",
     "pkg-up": "^3.1.0",
-    "promise.hash.helper": "^1.0.7",
+    "promise.hash.helper": "^1.0.8",
     "recast": "^0.20.5",
     "resolve": "^1.19.0",
     "strip-ansi": "^6.0.0",
