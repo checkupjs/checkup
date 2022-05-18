@@ -64,7 +64,7 @@
     "yeoman-test": "^6.2.0"
   },
   "engines": {
-    "node": ">= 12.22.*"
+    "node": ">= 14"
   },
   "publishConfig": {
     "access": "public"
