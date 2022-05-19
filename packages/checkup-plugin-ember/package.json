@@ -19,8 +19,8 @@
   ],
   "scripts": {
     "build": "tsc --build",
-    "test": "vitest run",
-    "docs:generate": "checkup-plugin docs"
+    "docs:generate": "checkup-plugin docs",
+    "test": "vitest run"
   },
   "dependencies": {
     "@babel/parser": "^7.17.10",

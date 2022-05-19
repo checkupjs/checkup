@@ -31,6 +31,10 @@ export default class EmberTemplateLintAnalyzer {
     });
   }
 
+  async loadConfig() {
+    await this.engine.loadConfig();
+  }
+
   async analyze(paths: string[]): Promise<TemplateLintReport> {
     let sources = paths.map((path) => ({
       path,

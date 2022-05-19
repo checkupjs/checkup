@@ -1,31 +1,19 @@
+import TemplateLinter from 'ember-template-lint';
 import { TemplateLintConfig } from '../../src/types/ember-template-lint';
 import EmberTemplateLintAnalyzer from '../../src/analyzers/ember-template-lint-analyzer';
-
-const TemplateLinter = require('ember-template-lint');
 
 describe('ember-template-lint-analyzer', () => {
   it('can create an ember-template-lint analyzer', () => {
     let config: TemplateLintConfig = {};
-
     let analyzer: EmberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(config);
 
+    analyzer.loadConfig();
+
     expect(analyzer.engine).toBeInstanceOf(TemplateLinter);
-    expect(Object.keys(analyzer.engine.config)).toMatchInlineSnapshot(`
-[
-  "rules",
-  "pending",
-  "overrides",
-  "ignore",
-  "extends",
-  "plugins",
-  "loadedRules",
-  "loadedConfigurations",
-  "_processed",
-]
-`);
+    expect(Object.keys(analyzer.engine.options.config)).toEqual([]);
   });
 
-  it('can create an ember-template-lint analyzer with custom rule configuration', () => {
+  it('can create an ember-template-lint analyzer with custom rule configuration', async () => {
     let config: TemplateLintConfig = {
       rules: {
         'block-indentation': ['error', 6],
@@ -33,6 +21,9 @@ describe('ember-template-lint-analyzer', () => {
     };
 
     let analyzer: EmberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(config);
+
+    await analyzer.loadConfig();
+
     let optionsForRule = analyzer.engine.config.rules['block-indentation'];
 
     expect(analyzer.engine).toBeInstanceOf(TemplateLinter);
