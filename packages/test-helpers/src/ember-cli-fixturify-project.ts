@@ -1,5 +1,3 @@
-'use strict';
-
 import { PackageJson } from 'type-fest';
 import CheckupFixturifyProject from './checkup-fixturify-project.js';
 

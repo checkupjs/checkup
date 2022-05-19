@@ -1,5 +1,3 @@
-'use strict';
-
 import { FilePathArray } from '../../src/utils/file-path-array';
 
 describe('FilePathsArray', function () {

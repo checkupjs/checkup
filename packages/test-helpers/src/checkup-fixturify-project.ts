@@ -1,5 +1,3 @@
-'use strict';
-
 import { join, resolve, dirname } from 'path';
 import { execSync } from 'child_process';
 import { CheckupConfig, mergeConfig, FilePathArray } from '@checkup/core';
