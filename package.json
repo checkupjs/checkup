@@ -73,6 +73,11 @@
     "vite": "^2.7.13",
     "vitest": "^0.12.6"
   },
+  "volta": {
+    "node": "14.18.3",
+    "npm": "8.4.0",
+    "yarn": "1.22.11"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
@@ -104,10 +109,5 @@
       "tokenRef": "GITHUB_AUTH"
     },
     "npm": false
-  },
-  "volta": {
-    "node": "14.18.3",
-    "yarn": "1.22.11",
-    "npm": "8.4.0"
   }
 }

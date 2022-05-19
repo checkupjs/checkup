@@ -212,7 +212,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
     return this.eslintAnalyzer.analyze(jsPaths);
   }
 
-  private runTemplateLint(): Promise<TemplateLintReport> {
+  private async runTemplateLint(): Promise<TemplateLintReport> {
     let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
 
     return this.emberTemplateLintAnalyzer.analyze(hbsPaths);
