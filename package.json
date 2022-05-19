@@ -20,7 +20,8 @@
     "lint:ts": "eslint .",
     "lint:package-json": "sort-package-json package.json packages/*/package.json",
     "prepare": "yarn build",
-    "test": "yarn lint && yarn workspaces run test"
+    "test": "yarn lint && yarn workspaces run test",
+    "test:only": "yarn workspaces run test"
   },
   "resolutions": {
     "@types/yeoman-environment": "^2.10.5",

@@ -2,13 +2,13 @@ import { resolve } from 'path';
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import { readJsonSync } from 'fs-extra';
-import { CheckupLogParser } from '@checkup/core';
+import { CheckupLogParser, dirname } from '@checkup/core';
 import stripAnsi from 'strip-ansi';
 import PrettyFormatter from '../src/pretty-formatter';
 
 describe('Test Pretty component', () => {
   it('can generate Pretty component', async () => {
-    const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
+    const log = readJsonSync(resolve(dirname(import.meta), './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
 
     const { stdout } = render(<PrettyFormatter logParser={logParser} />);
@@ -279,7 +279,9 @@ config 257cda6f6d50eeef891fc6ec8d808bdb
   });
 
   it('can render a messgae when there is no result found for executed results', () => {
-    const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-no-result-found.sarif'));
+    const log = readJsonSync(
+      resolve(dirname(import.meta), './__fixtures__/checkup-no-result-found.sarif')
+    );
     const logParser = new CheckupLogParser(log);
 
     const { stdout } = render(<PrettyFormatter logParser={logParser} />);

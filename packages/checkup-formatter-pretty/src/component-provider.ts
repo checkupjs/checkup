@@ -1,12 +1,9 @@
 import { readdirSync } from 'fs';
 import { join, parse } from 'path';
-// import { createRequire } from 'module';
-import { dirname } from 'dirname-filename-esm';
+import { dirname } from '@checkup/core';
 import * as React from 'react';
 
 export const registeredComponents = new Map<string, React.FC>();
-
-// const require = createRequire(import.meta.url);
 const __dirname = dirname(import.meta);
 
 export async function registerDefaultComponents(): Promise<Map<string, React.FC>> {

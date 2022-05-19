@@ -1,6 +1,6 @@
 import { join } from 'path';
-import { dirname } from 'dirname-filename-esm';
 import {
+  dirname,
   Task,
   LintAnalyzer,
   BaseTask,

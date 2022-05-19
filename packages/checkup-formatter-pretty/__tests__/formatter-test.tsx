@@ -1,12 +1,12 @@
 import { resolve } from 'path';
 import { readJsonSync } from 'fs-extra';
-import { CheckupLogParser, FormatterOptions } from '@checkup/core';
+import { CheckupLogParser, dirname, FormatterOptions } from '@checkup/core';
 import stripAnsi from 'strip-ansi';
 import PrettyFormatter from '../src/index.js';
 
 describe('Test Pretty formatter', () => {
   it('can generate string from format', async () => {
-    const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
+    const log = readJsonSync(resolve(dirname(import.meta), './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
     const options: FormatterOptions = {
       cwd: '',
@@ -285,7 +285,7 @@ config 257cda6f6d50eeef891fc6ec8d808bdb
   it('should render timing if CHECKUP_TIMING=1', async () => {
     process.env.CHECKUP_TIMING = '1';
 
-    const log = readJsonSync(resolve(__dirname, './__fixtures__/checkup-result.sarif'));
+    const log = readJsonSync(resolve(dirname(import.meta), './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
     const options: FormatterOptions = {
       cwd: '',

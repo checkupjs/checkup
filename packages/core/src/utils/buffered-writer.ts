@@ -5,6 +5,7 @@ export default class BufferedWriter extends BaseOutputWriter {
   buffer: string = '';
 
   get escapedBuffer() {
+    debugger;
     return stripAnsi(this.buffer);
   }
 

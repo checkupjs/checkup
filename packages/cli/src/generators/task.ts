@@ -1,12 +1,11 @@
 import path from 'path';
-import { dirname } from 'dirname-filename-esm';
 import * as _ from 'lodash';
 import * as t from '@babel/types';
 import * as recast from 'recast';
 
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import { AstTransformer, CheckupError, ErrorKind } from '@checkup/core';
+import { AstTransformer, CheckupError, ErrorKind, dirname } from '@checkup/core';
 import BaseGenerator, { Works, Options } from './base-generator.js';
 
 interface TaskOptions extends Options {

@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import { RuleResults } from '@checkup/core';
+import stripAnsi from 'strip-ansi';
 import { List } from '../../src/components/list';
-
-const stripAnsi = require('strip-ansi');
 
 describe('list component', () => {
   it('can render task result as expected via list component', async () => {
