@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`plugin generator > generates plugin into existing directory with defaults 1`] = `
-"lib
+"lib 
 node_modules
 "
 `;
@@ -154,7 +154,7 @@ exports[`plugin generator > generates plugin into existing directory with defaul
 `;
 
 exports[`plugin generator > generates plugin with JavaScript defaults 1`] = `
-"lib
+"lib 
 node_modules
 "
 `;
@@ -284,7 +284,7 @@ exports[`plugin generator > generates plugin with JavaScript defaults 11`] = `
 `;
 
 exports[`plugin generator > generates plugin with custom options 1`] = `
-"lib
+"lib 
 node_modules
 "
 `;
@@ -437,7 +437,7 @@ exports[`plugin generator > generates plugin with custom options 12`] = `
 `;
 
 exports[`plugin generator > generates plugin with defaults 1`] = `
-"lib
+"lib 
 node_modules
 "
 `;
@@ -590,7 +590,7 @@ exports[`plugin generator > generates plugin with defaults 12`] = `
 `;
 
 exports[`plugin generator > generates plugin with defaults in custom path 1`] = `
-"lib
+"lib 
 node_modules
 "
 `;
@@ -743,7 +743,7 @@ exports[`plugin generator > generates plugin with defaults in custom path 12`] =
 `;
 
 exports[`plugin generator > generates plugin with unmodified name with defaults 1`] = `
-"lib
+"lib 
 node_modules
 "
 `;

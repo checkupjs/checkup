@@ -27,8 +27,8 @@ describe('cli-test', () => {
   });
 
   afterEach(function () {
-    // process.chdir(ROOT);
-    // project.dispose();
+    process.chdir(ROOT);
+    project.dispose();
   });
 
   it('can output top level help', async () => {
@@ -220,7 +220,6 @@ describe('cli-test', () => {
   });
 
   it('can load formatter from node_modules', async function () {
-    debugger;
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
