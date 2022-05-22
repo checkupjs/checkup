@@ -1,8 +1,10 @@
+import { createRequire } from 'module';
 import * as recast from 'recast';
 import { File } from '@babel/types';
 import traverse, { TraverseOptions } from '@babel/traverse';
-
 import AstAnalyzer from './ast-analyzer.js';
+
+const require = createRequire(import.meta.url);
 
 /**
  * A class for analyzing TypeScript files.

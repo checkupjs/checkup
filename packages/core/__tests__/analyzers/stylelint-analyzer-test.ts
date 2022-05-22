@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { dirname } from 'dirname-filename-esm';
+import { dirname } from '@checkup/core';
 import { LinterOptions } from 'stylelint';
 import StylelintAnalyzer from '../../src/analyzers/stylelint-analyzer';
 import { TaskConfig } from '../../src/types/config';

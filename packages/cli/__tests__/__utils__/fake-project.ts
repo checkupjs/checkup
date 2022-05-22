@@ -1,14 +1,13 @@
 import { join } from 'path';
 import * as helpers from 'yeoman-test';
-
 import { CheckupProject } from '@checkup/test-helpers';
-
+import { dirname } from '@checkup/core';
 import type { Answers } from 'inquirer';
 import { generatePlugin, generateTask } from './generator-utils';
 
 export class FakeProject extends CheckupProject {
   symlinkCorePackage(baseDir: string = this.baseDir) {
-    let source = join(__dirname, '../../..', 'core');
+    let source = join(dirname(import.meta), '../../..', 'core');
     let target = join(baseDir, 'node_modules', '@checkup', 'core');
 
     // we create a self-referential link to the core package within the generated plugin. This

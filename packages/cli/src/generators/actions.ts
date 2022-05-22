@@ -1,12 +1,11 @@
 import { join } from 'path';
-import { dirname } from 'dirname-filename-esm';
+import { createRequire } from 'module';
 import * as _ from 'lodash';
 import * as t from '@babel/types';
 import * as recast from 'recast';
-
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
-import { AstTransformer, CheckupError, ErrorKind } from '@checkup/core';
+import { AstTransformer, CheckupError, ErrorKind, dirname } from '@checkup/core';
 import BaseGenerator, { Works, Options } from './base-generator.js';
 
 interface ActionOptions extends Options {
@@ -14,6 +13,8 @@ interface ActionOptions extends Options {
   pascalCaseName: string;
   typescript: boolean;
 }
+
+const require = createRequire(import.meta.url);
 
 export default class ActionsGenerator extends BaseGenerator {
   works: Works = Works.InsidePlugin;

@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { dirname } from 'dirname-filename-esm';
+import { dirname } from '@checkup/core';
 import { readJsonSync } from 'fs-extra';
 import CheckupLogParser from '../../src/data/checkup-log-parser';
 

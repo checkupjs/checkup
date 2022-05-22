@@ -1,5 +1,3 @@
-'use strict';
-
 import { CheckupProject } from '@checkup/test-helpers';
 import { FilePathArray } from '../../src/utils/file-path-array';
 import { getFilePaths } from '../../src/utils/get-paths';
@@ -34,7 +32,7 @@ describe('getFilePaths', function () {
         '.bin': {
           'foo.js': 'whatever',
         },
-        'index.js': 'module.exports = {};',
+        'index.js': '',
       },
     });
     project.writeSync();

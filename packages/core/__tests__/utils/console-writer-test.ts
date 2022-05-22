@@ -1,5 +1,3 @@
-'use strict';
-
 import { stdout as mockStdout } from 'stdout-stderr';
 import ConsoleWriter from '../../src/utils/console-writer';
 

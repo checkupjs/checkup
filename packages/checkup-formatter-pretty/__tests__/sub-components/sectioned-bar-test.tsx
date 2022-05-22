@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
+import stripAnsi from 'strip-ansi';
 import { SectionedBar } from '../../src/sub-components/sectioned-bar';
 import { BarData } from '../../src/types';
-
-const stripAnsi = require('strip-ansi');
 
 describe('Test Bar component', () => {
   it('can generate bar component', async () => {

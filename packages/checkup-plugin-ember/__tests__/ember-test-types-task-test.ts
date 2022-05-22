@@ -2,7 +2,6 @@ import '@microsoft/jest-sarif';
 import { EmberProject, getTaskContext } from '@checkup/test-helpers';
 import { getPluginName } from '@checkup/core';
 import EmberTestTypesTask from '../src/tasks/ember-test-types-task';
-import { evaluateActions } from '../src/actions/ember-test-types-actions';
 
 const TESTS = {
   application: {
@@ -117,59 +116,5 @@ describe('ember-test-types-task', () => {
     for (let result of results) {
       expect(result).toBeValidSarifFor('result');
     }
-  });
-
-  it.skip('returns action item if more than 1% of your tests are skipped and if your ratio of application tests is not matching threshold', async () => {
-    project.files = Object.assign(project.files, {
-      'index.js': 'index js file',
-      addon: TESTS,
-    });
-
-    project.writeSync();
-
-    const task = new EmberTestTypesTask(
-      pluginName,
-      getTaskContext({
-        options: { cwd: project.baseDir },
-        paths: project.filePaths,
-        config: {
-          tasks: {
-            'ember/ember-test-types': [
-              'on',
-              {
-                actions: {
-                  'ratio-application-tests': [
-                    'on',
-                    {
-                      threshold: 3,
-                    },
-                  ],
-                },
-              },
-            ],
-          },
-        },
-      })
-    );
-    const result = await task.run();
-
-    let actions = evaluateActions(result, task.config);
-
-    expect(actions).toHaveLength(1);
-    expect(actions).toMatchInlineSnapshot(`
-[
-  {
-    "defaultThreshold": 0.01,
-    "details": "67% of tests are skipped",
-    "input": 0.6666666666666666,
-    "items": [
-      "Total skipped tests: 8",
-    ],
-    "name": "reduce-skipped-tests",
-    "summary": "Reduce number of skipped tests",
-    "taskName": "ember-test-types",
-  },
-]
-`);
   });
 });

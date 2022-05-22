@@ -2,7 +2,6 @@ import '@microsoft/jest-sarif';
 import { getPluginName } from '@checkup/core';
 import { CheckupProject, getTaskContext } from '@checkup/test-helpers';
 import EslintDisableTask from '../src/tasks/eslint-disable-task';
-import { evaluateActions } from '../src/actions/eslint-disable-actions';
 
 describe('eslint-disable-task', () => {
   let project: CheckupProject;
@@ -50,34 +49,6 @@ describe('eslint-disable-task', () => {
     for (let result of results) {
       expect(result).toBeValidSarifFor('result');
     }
-  });
-
-  it.skip('returns actions if there are more than 2 instances of eslint-disable', async () => {
-    const task = new EslintDisableTask(
-      pluginName,
-      getTaskContext({
-        paths: project.filePaths,
-        options: { cwd: project.baseDir },
-      })
-    );
-    const result = await task.run();
-
-    let actions = evaluateActions(result, task.config);
-
-    expect(actions).toHaveLength(1);
-    expect(actions![0]).toMatchInlineSnapshot(`
-{
-  "defaultThreshold": 2,
-  "details": "2 usages of eslint-disable",
-  "input": 2,
-  "items": [
-    "Total eslint-disable usages: 2",
-  ],
-  "name": "reduce-eslint-disable-usages",
-  "summary": "Reduce number of eslint-disable usages",
-  "taskName": "eslint-disable",
-}
-`);
   });
 
   it('captures a non-fatal error for nonparsable files', async () => {

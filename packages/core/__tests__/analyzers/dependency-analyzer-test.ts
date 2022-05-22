@@ -1,5 +1,5 @@
 import { resolve } from 'path';
-import { dirname } from 'dirname-filename-esm';
+import { dirname } from '@checkup/core';
 import DependencyAnalyzer from '../../src/analyzers/dependency-analyzer';
 
 describe('dependency-analyzer', () => {

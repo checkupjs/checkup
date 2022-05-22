@@ -61,7 +61,7 @@ describe('checkup-task-runner', () => {
 
   beforeEach(function () {
     project = new CheckupProject('checkup-app', '0.0.0', () => {});
-    project.files['index.js'] = 'module.exports = {};';
+    project.files['index.js'] = '';
     project.files['index.hbs'] = '<div>Checkup App</div>';
 
     project.writeSync();

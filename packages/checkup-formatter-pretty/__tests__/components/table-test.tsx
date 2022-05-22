@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import { RuleResults } from '@checkup/core';
+import stripAnsi from 'strip-ansi';
 import { Table } from '../../src/components/table';
-
-const stripAnsi = require('strip-ansi');
 
 describe('table component', () => {
   it('can render task result as expected via table component', async () => {

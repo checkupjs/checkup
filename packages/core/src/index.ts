@@ -1,3 +1,5 @@
+export { dirname, filename } from 'dirname-filename-esm';
+
 export { default as BaseTask } from './base-task.js';
 export { default as BaseMigrationTask, Feature, FeatureId } from './base-migration-task.js';
 export { default as BaseValidationTask, ValidationResult } from './base-validation-task.js';

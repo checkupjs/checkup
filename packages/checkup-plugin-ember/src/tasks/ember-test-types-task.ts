@@ -1,6 +1,6 @@
 import { join } from 'path';
-import { dirname } from 'dirname-filename-esm';
 import {
+  dirname,
   Task,
   LintAnalyzer,
   BaseTask,
@@ -13,13 +13,14 @@ import { Result } from 'sarif';
 
 export const EMBER_TEST_TYPES: ESLintOptions = {
   baseConfig: {
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module',
       ecmaFeatures: {
         legacyDecorators: true,
       },
+      requireConfigFile: false,
     },
     plugins: ['ember'],
     env: { browser: true },

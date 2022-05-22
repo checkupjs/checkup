@@ -1,5 +1,6 @@
 {
   "name": "checkup-formatter-test",
   "version": "1.0.0",
-  "description": "test formatter to show how to package formatters and use them."
+  "description": "test formatter to show how to package formatters and use them.",
+  "type": "module"
 }

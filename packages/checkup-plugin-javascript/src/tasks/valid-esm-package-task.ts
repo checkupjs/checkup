@@ -10,13 +10,14 @@ import { Result } from 'sarif';
 
 const ESLINT_CONFIG: ESLintOptions = {
   baseConfig: {
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module',
       ecmaFeatures: {
         legacyDecorators: true,
       },
+      requireConfigFile: false,
     },
     rules: {
       strict: ['error', 'never'],

@@ -1,6 +1,5 @@
-'use strict';
-
 import { PackageJson } from 'type-fest';
+import Project from 'fixturify-project';
 import CheckupFixturifyProject from './checkup-fixturify-project.js';
 
 const enum InRepoPackageType {
@@ -9,8 +8,6 @@ const enum InRepoPackageType {
 }
 
 type IndexablePackageJson = PackageJson & { [key: string]: any };
-
-const Project = require('fixturify-project');
 
 /**
  * @param {any} addon - The addon to create the standardized addon structure for
