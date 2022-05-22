@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 
 /**
  * Enum containing kinds of errors used in a CheckupError instance.

@@ -2,5 +2,5 @@ export function toPercent(numeratorOrValue: number, denominator?: number): strin
   let value: number =
     typeof denominator === 'number' ? numeratorOrValue / denominator : numeratorOrValue;
 
-  return `${(value * 100).toFixed()}%`;
+  return `${(value * 100).toFixed(0)}%`;
 }

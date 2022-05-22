@@ -1,4 +1,5 @@
 import { join } from 'path';
+import { createRequire } from 'module';
 import * as debug from 'debug';
 import { CheckupError, ErrorKind } from '@checkup/core';
 import yeomanEnv from 'yeoman-environment';
@@ -11,6 +12,7 @@ export type GenerateOptions = {
   defaults?: boolean;
 };
 
+const require = createRequire(import.meta.url);
 const { existsSync, rmdirSync } = fs;
 const VALID_GENERATORS = ['config', 'plugin', 'task', 'actions'];
 

@@ -6,8 +6,7 @@ import Project from 'fixturify-project';
 import stringify from 'json-stable-stringify';
 import type { PackageJson } from 'type-fest';
 import { symlinkSync, mkdirpSync } from 'fs-extra';
-
-const walkSync = require('walk-sync');
+import walkSync from 'walk-sync';
 
 const ROOT = process.cwd();
 

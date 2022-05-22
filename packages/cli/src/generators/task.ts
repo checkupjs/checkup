@@ -1,8 +1,8 @@
 import path from 'path';
+import { createRequire } from 'module';
 import * as _ from 'lodash';
 import * as t from '@babel/types';
 import * as recast from 'recast';
-
 import traverse from '@babel/traverse';
 import { Answers } from 'inquirer';
 import { AstTransformer, CheckupError, ErrorKind, dirname } from '@checkup/core';
@@ -16,6 +16,8 @@ interface TaskOptions extends Options {
   category: string;
   group: string;
 }
+
+const require = createRequire(import.meta.url);
 
 export default class TaskGenerator extends BaseGenerator {
   works: Works = Works.InsidePlugin;

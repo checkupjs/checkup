@@ -5,7 +5,7 @@ import { BarData } from '../types';
 export const SectionedBar: React.FC<{ data: BarData }> = ({ data }) => {
   const barTick = '■';
   // 16777215 == ffffff in decimal
-  const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+  const randomColor = '#' + Math.floor(Math.random() * 16_777_215).toString(16);
   const width: number = 50;
 
   const normalizeSegment = function (amount: number) {

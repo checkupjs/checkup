@@ -8,13 +8,14 @@ describe('eslint-analyzer', () => {
   it('can create an eslint analyzer', async () => {
     let options: ESLint.Options = {
       baseConfig: {
-        parser: 'babel-eslint',
+        parser: '@babel/eslint-parser',
         parserOptions: {
           ecmaVersion: 2018,
           sourceType: 'module',
           ecmaFeatures: {
             legacyDecorators: true,
           },
+          requireConfigFile: false,
         },
         env: {
           browser: true,
@@ -45,13 +46,14 @@ describe('eslint-analyzer', () => {
   it('can create an eslint analyzer with custom rule configuration', async () => {
     let options: ESLint.Options = {
       baseConfig: {
-        parser: 'babel-eslint',
+        parser: '@babel/eslint-parser',
         parserOptions: {
           ecmaVersion: 2018,
           sourceType: 'module',
           ecmaFeatures: {
             legacyDecorators: true,
           },
+          requireConfigFile: false,
         },
         env: { browser: true },
         rules: {

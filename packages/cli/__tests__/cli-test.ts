@@ -1,22 +1,24 @@
 import '@microsoft/jest-sarif';
 import { join, resolve } from 'path';
+import { createRequire } from 'module';
 import { existsSync, unlinkSync, mkdirSync } from 'fs';
 import execa from 'execa';
 import stringify from 'json-stable-stringify';
-import { trimCwd } from '@checkup/core';
+import { dirname, trimCwd } from '@checkup/core';
 import type { Log } from 'sarif';
 import { copyFileSync } from 'fs-extra';
 import stripAnsi from 'strip-ansi';
 import { FakeProject } from './__utils__/fake-project';
 
 const ROOT = process.cwd();
+const require = createRequire(import.meta.url);
 
 describe('cli-test', () => {
   let project: FakeProject;
 
   beforeEach(function () {
     project = new FakeProject('checkup-app', '0.0.0', () => {});
-    project.files['index.js'] = 'module.exports = {};';
+    project.files['index.js'] = '';
     project.files['index.hbs'] = '<div>Checkup App</div>';
 
     project.writeSync();
@@ -25,8 +27,8 @@ describe('cli-test', () => {
   });
 
   afterEach(function () {
-    process.chdir(ROOT);
-    project.dispose();
+    // process.chdir(ROOT);
+    // project.dispose();
   });
 
   it('can output top level help', async () => {
@@ -218,6 +220,7 @@ describe('cli-test', () => {
   });
 
   it('can load formatter from node_modules', async function () {
+    debugger;
     let pluginDir = await project.addPlugin(
       { name: 'fake', defaults: false },
       { typescript: false }
@@ -232,7 +235,7 @@ describe('cli-test', () => {
       plugins: ['checkup-plugin-fake'],
     });
 
-    let fixturePath = resolve(__dirname, '__fixtures__', 'checkup-formatter-test');
+    let fixturePath = resolve(dirname(import.meta), '__fixtures__', 'checkup-formatter-test');
     let formatterDirPath = join(project.baseDir, 'node_modules', 'checkup-formatter-test');
 
     mkdirSync(formatterDirPath);
@@ -260,7 +263,7 @@ describe('cli-test', () => {
       plugins: ['checkup-plugin-fake'],
     });
 
-    let fixturePath = resolve(__dirname, '__fixtures__', 'checkup-formatter-test');
+    let fixturePath = resolve(dirname(import.meta), '__fixtures__', 'checkup-formatter-test');
     let formatterDirPath = join(project.baseDir, 'node_modules', 'checkup-formatter-test');
 
     mkdirSync(formatterDirPath);
@@ -621,7 +624,7 @@ describe('cli-test', () => {
 
   it('can load plugins from pluginBaseDir with a node_modules', async () => {
     let newProject = new FakeProject('random-app', '0.0.0', () => {});
-    newProject.files['index.js'] = 'module.exports = {};';
+    newProject.files['index.js'] = '';
     newProject.files['index.hbs'] = '<div>Random App</div>';
     newProject.chdir();
     let actualPluginDir = await newProject.addPlugin(

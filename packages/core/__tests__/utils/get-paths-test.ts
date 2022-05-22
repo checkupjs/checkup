@@ -32,7 +32,7 @@ describe('getFilePaths', function () {
         '.bin': {
           'foo.js': 'whatever',
         },
-        'index.js': 'module.exports = {};',
+        'index.js': '',
       },
     });
     project.writeSync();

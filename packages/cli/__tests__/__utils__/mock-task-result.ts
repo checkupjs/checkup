@@ -9,12 +9,10 @@ export function getMockResult(
 ): Result {
   result.properties = {
     ...result.properties,
-    ...{
-      taskName: taskName,
-      taskDisplayName: taskName,
-      category: category,
-      group: group,
-    },
+    taskName: taskName,
+    taskDisplayName: taskName,
+    category: category,
+    group: group,
   };
   return result;
 }

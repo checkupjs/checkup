@@ -1,11 +1,12 @@
 import { resolve, join } from 'path';
+import { createRequire } from 'module';
 import { existsSync, mkdirSync } from 'fs';
 import Generator from 'yeoman-generator';
 import chalk from 'chalk';
 import { extend } from 'lodash';
-
 import { getPackageJson } from '@checkup/core';
 
+const require = createRequire(import.meta.url);
 let VERSION = require('../../package.json').version;
 export interface Options {
   type: string;

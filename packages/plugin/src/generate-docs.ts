@@ -1,14 +1,14 @@
 import { join, extname, parse } from 'path';
 import { ensureDir, readdir, readFile, existsSync, writeFile } from 'fs-extra';
 import * as t from '@babel/types';
-import { getPluginName, getShorthandName, TypeScriptAnalyzer } from '@checkup/core';
+import { dirname, getPluginName, getShorthandName, TypeScriptAnalyzer } from '@checkup/core';
 
 function getDocsFile(docsFilePath: string) {
   if (existsSync(docsFilePath)) {
     return readFile(docsFilePath, 'utf-8');
   }
 
-  return readFile(join(__dirname, '..', 'templates', 'task-template.md'), 'utf-8');
+  return readFile(join(dirname(import.meta), '..', 'templates', 'task-template.md'), 'utf-8');
 }
 
 function replaceContent(contents: string, replacement: string, tagName: string) {

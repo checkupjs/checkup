@@ -2,10 +2,9 @@ import * as React from 'react';
 import { Box, Text } from 'ink';
 import { RuleResults } from '@checkup/core';
 import * as objectPath from 'object-path';
+import startCase from 'lodash.startcase';
 import { TaskDisplayName } from '../sub-components/task-display-name.js';
 import { getOptions } from '../get-options.js';
-
-const startCase = require('lodash.startcase');
 
 type ListOptions = {
   items: Record<string, { groupBy: string; value: string }>;

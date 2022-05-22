@@ -1,6 +1,8 @@
-import { createRequire } from 'module';
 import { join } from 'path';
 import { existsSync } from 'fs';
+import { pathToFileURL } from 'url';
+import { createRequire } from 'module';
+import resolve from 'resolve';
 import {
   OutputFormat,
   ErrorKind,
@@ -14,6 +16,8 @@ import { Log } from 'sarif';
 import SummaryFormatter from './summary.js';
 import JsonFormatter from './json.js';
 
+const require = createRequire(import.meta.url);
+
 /**
  * Get formatter from options.format (default: summary)
  *
@@ -21,9 +25,9 @@ import JsonFormatter from './json.js';
  * @param  {string} options.cwd - the directory where custom format located.
  * @param  {OutputFormat | string} options.format - specify the output format, it can be summary, json and customized format
  * @param  {string} options.outputFile - specify a output file to save the result.
- * @return {Formatter} - formatter with a format method that will return the result string.
+ * @return {Promise<Formatter>} - formatter with a format method that will return the result string.
  */
-export function getFormatter(options: FormatterOptions) {
+export async function getFormatter(options: FormatterOptions) {
   let mergedOptions = Object.assign(
     {},
     {
@@ -51,13 +55,23 @@ export function getFormatter(options: FormatterOptions) {
           ? options.format
           : normalizePackageName(options.format, 'checkup-formatter');
 
-        const CustomFormatter = createRequire(join(options.cwd, '__placeholder__.js'))(
-          formatterName
-        );
+        let formatterPath = resolve.sync(formatterName, {
+          basedir: options.cwd,
+          extensions: ['.js', '.mjs', '.cjs'],
+        });
 
-        Formatter = CustomFormatter;
-        break;
-      } catch {
+        try {
+          let formatterUrl = pathToFileURL(formatterPath);
+
+          const { default: CustomFormatter } = await import(formatterUrl.toString());
+
+          Formatter = CustomFormatter;
+          break;
+        } catch {
+          Formatter = require(formatterPath);
+        }
+      } catch (error) {
+        process.stdout.write((<Error>error).toString());
         throw new CheckupError(ErrorKind.FormatterNotFound, {
           format: mergedOptions.format,
           validFormats: [...Object.values(OutputFormat)],

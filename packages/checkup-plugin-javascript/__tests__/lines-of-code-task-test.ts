@@ -8,7 +8,7 @@ describe('lines-of-code-task', () => {
 
   beforeEach(() => {
     project = new CheckupProject('checkup-app', '0.0.0', (project) => {
-      project.files['index.js'] = 'module.exports = {};';
+      project.files['index.js'] = '';
       project.files['index.hbs'] = '<div>Checkup App</div>';
     });
 

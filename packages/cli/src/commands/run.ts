@@ -118,7 +118,7 @@ export const runCommand: yargs.CommandModule = {
     try {
       let log = await taskRunner.run();
 
-      let formatter = getFormatter({
+      let formatter = await getFormatter({
         cwd: options.cwd,
         format: options.format,
         outputFile: options.outputFile,

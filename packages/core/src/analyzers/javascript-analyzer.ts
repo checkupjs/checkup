@@ -1,7 +1,10 @@
+import { createRequire } from 'module';
 import * as t from '@babel/types';
 import { parse, visit } from 'recast';
 import { Visitor } from 'ast-types';
 import AstAnalyzer from './ast-analyzer.js';
+
+const require = createRequire(import.meta.url);
 
 /**
  * A class for analyzing JavaScript files.

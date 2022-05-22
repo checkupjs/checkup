@@ -1,4 +1,4 @@
-class CustomFormatter {
+export default class CustomFormatter {
   constructor(options = {}) {
     this.options = options;
   }
@@ -7,5 +7,3 @@ class CustomFormatter {
     return `Custom formatter output ${logParser.log}`;
   }
 }
-
-module.exports = CustomFormatter;

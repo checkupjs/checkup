@@ -16,13 +16,14 @@ import { Result } from 'sarif';
 
 const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
   baseConfig: {
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
     parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module',
       ecmaFeatures: {
         legacyDecorators: true,
       },
+      requireConfigFile: false,
     },
     plugins: ['ember'],
     env: {
