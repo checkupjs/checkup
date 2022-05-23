@@ -6,6 +6,32 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+Version 9 of Highlight.js has reached EOL and is no longer supported.
+Please upgrade or ask whatever dependency you are using to upgrade.
+https://github.com/highlightjs/highlight.js/issues/2877
+
+## v2.0.0-beta.0 (2022-05-23)
+
+#### :boom: Breaking Change
+* `checkup-formatter-pretty`, `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `plugin`, `test-helpers`
+  * [#1219](https://github.com/checkupjs/checkup/pull/1219) Bumps eslint and fixes associated errors ([@scalvert](https://github.com/scalvert))
+  * [#1210](https://github.com/checkupjs/checkup/pull/1210) Converting from commonjs to esm ([@scalvert](https://github.com/scalvert))
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `core`
+  * [#1217](https://github.com/checkupjs/checkup/pull/1217) Upgrades ember-template-lint to 4.8.0 ([@scalvert](https://github.com/scalvert))
+  * [#1172](https://github.com/checkupjs/checkup/pull/1172) Converts to using ESLint class vs deprecated CLIEngine ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `core`
+  * [#1211](https://github.com/checkupjs/checkup/pull/1211) Fixes TS build error due to TS 4.7 upgrade ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* [#1202](https://github.com/checkupjs/checkup/pull/1202) Another attempt at fixing auto-merge ([@scalvert](https://github.com/scalvert))
+* [#1197](https://github.com/checkupjs/checkup/pull/1197) Updating browserlist ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v1.4.2 (2022-01-12)
 
 #### :bug: Bug Fix
