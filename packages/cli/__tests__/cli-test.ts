@@ -112,7 +112,7 @@ describe('cli-test', () => {
       'Results have been saved to the following file:',
       '<outputPath>',
       '',
-      'checkup v1.4.2',
+      'checkup v2.0.0-beta.0',
       'config dd17cda1fc2eb2bc6bb5206b41fc1a84',
     ]);
   });

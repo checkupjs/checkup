@@ -73,7 +73,7 @@ describe('checkup-log-builder-test', () => {
                       },
                       "configHash": "dd17cda1fc2eb2bc6bb5206b41fc1a84",
                       "schema": 1,
-                      "version": "1.4.2",
+                      "version": "2.0.0-beta.0",
                     },
                     "project": {
                       "name": "fake-package",
