@@ -1,0 +1,44 @@
+{
+  "name": "@checkup/ui",
+  "version": "2.0.0-beta.0",
+  "description": "Checkup ui library",
+  "bugs": "https://github.com/checkupjs/checkup/issues",
+  "repository": "https://github.com/checkupjs/checkup",
+  "license": "MIT",
+  "author": "Steve Calvert <steve.calvert@gmail.com>",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@checkup/core": "2.0.0-beta.0",
+    "@types/react": "^17.0.15",
+    "events": "^3.3.0",
+    "fs-extra": "^10.0.0",
+    "ink": "^3.0.9",
+    "ink-render-string": "^0.0.5",
+    "ink-table": "^3.0.0",
+    "ink-task-list": "^1.1.0",
+    "lodash.startcase": "^4.4.0",
+    "log-symbols": "^4.0.0",
+    "object-path": "^0.11.8",
+    "react": "^17.0.2",
+    "strip-ansi": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.12",
+    "@types/lodash.startcase": "^4.4.6",
+    "@types/object-path": "^0.11.1",
+    "@types/react": "^17.0.15",
+    "@types/resolve": "^1.20.2",
+    "ink-testing-library": "^2.1.0",
+    "lodash.merge": "^4.6.2"
+  },
+  "engines": {
+    "node": ">= 14"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

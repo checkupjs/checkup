@@ -17,9 +17,9 @@
       "@checkup/cli": ["./packages/cli/lib/index.d.ts"],
       "@checkup/plugin": ["./packages/plugin/lib/index.d.ts"],
       "@checkup/test-helpers": ["./packages/test-helpers/lib/index.d.ts"],
+      "@checkup/ui": ["./packages/ui/lib/index.d.ts"],
       "checkup-plugin-ember": ["./packages/checkup-plugin-ember/lib/index.d.ts"],
       "checkup-plugin-javascript": ["./packages/checkup-plugin-javascript/lib/index.d.ts"],
-      "checkup-formatter-pretty": ["./packages/checkup-formatter-pretty/lib/index.d.ts"],
       "*": ["./types/*"]
     },
     "typeRoots": ["node_modules/@types"]
