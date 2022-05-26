@@ -110,7 +110,7 @@ export default class EslintDisableTask extends BaseTask implements Task {
             parse,
             visit,
             {
-              parser: await import('recast/parsers/babel'),
+              parser: await import('recast/parsers/babel.js'),
             }
           );
           analyzer.analyze(accumulator.visitors);
