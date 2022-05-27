@@ -9,6 +9,7 @@ import * as React from 'react';
 import { render } from 'ink-render-string';
 
 export default class BaseUIFormatter implements Formatter {
+  shouldWrite = false;
   options: FormatterOptions;
   component: any;
 

@@ -4,6 +4,7 @@ import { Log } from 'sarif';
 import { writeResultsToFile } from './file-writer.js';
 
 export default class JsonFormatter implements Formatter {
+  shouldWrite = true;
   options: FormatterOptions;
   writer: ConsoleWriter;
 

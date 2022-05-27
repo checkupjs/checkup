@@ -44,6 +44,7 @@ export interface RegisterableTaskList {
 }
 
 export interface Formatter {
+  shouldWrite: boolean;
   format(logParser: CheckupLogParser): string;
 }
 

@@ -103,6 +103,7 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
   }
 
   addExecptionNotifications(): void {
+    debugger;
     this.errors.forEach((error) => {
       let stackFrames: StackFrame[] = extractStack.lines(error.error).map((line) => {
         return { module: line };

@@ -13,6 +13,7 @@ export default class ESLintAnalyzer {
   rules: Map<string, Rule.RuleModule>;
 
   constructor(options: ESLint.Options, taskConfig?: TaskConfig) {
+    debugger;
     if (taskConfig && taskConfig.eslintConfig) {
       options.baseConfig = mergeLintConfig<Linter.Config<Linter.RulesRecord>>(
         options.baseConfig!,

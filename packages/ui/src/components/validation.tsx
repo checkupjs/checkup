@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Text } from 'ink';
 import { RuleResults } from '@checkup/core';
 import { Result } from 'sarif';
-import { success, error } from 'log-symbols';
+import logSymbols from 'log-symbols';
 import { TaskDisplayName } from '../sub-components/task-display-name.js';
 
 export const Validation: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
@@ -26,7 +26,7 @@ const ValidationStepItem: React.FC<{ result: Result }> = ({ result }) => {
 
   return (
     <Text>
-      {kind === 'pass' ? success : error} {message.text}
+      {kind === 'pass' ? logSymbols.success : logSymbols.error} {message.text}
     </Text>
   );
 };

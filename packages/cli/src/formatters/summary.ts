@@ -6,6 +6,8 @@ import { writeResultsToFile } from './file-writer.js';
 import BaseFormatter from './base-formatter.js';
 
 export default class SummaryFormatter extends BaseFormatter<BufferedWriter> implements Formatter {
+  shouldWrite = false;
+
   constructor(options: FormatterOptions) {
     super(options);
 

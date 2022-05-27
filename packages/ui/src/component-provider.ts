@@ -18,7 +18,9 @@ export async function registerDefaultComponents(): Promise<Map<string, React.FC>
   for (let component of builtInComponents) {
     registeredComponents.set(
       component,
-      Object.values(await import(join(__dirname, 'components', component))).pop() as React.FC
+      Object.values(
+        await import(join(__dirname, 'components', `${component}.js`))
+      ).pop() as React.FC
     );
   }
 
