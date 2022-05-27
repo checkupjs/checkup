@@ -8,12 +8,13 @@ import {
   ESLintAnalyzer,
   ESLintOptions,
   LintResult,
+  resolveModulePath,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
 export const EMBER_TEST_TYPES: ESLintOptions = {
   baseConfig: {
-    parser: '@babel/eslint-parser',
+    parser: resolveModulePath('@babel/eslint-parser'),
     parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module',

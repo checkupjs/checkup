@@ -10,12 +10,13 @@ import {
   EmberTemplateLintAnalyzer,
   NormalizedLintResult,
   LintResult,
+  resolveModulePath,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
 const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
   baseConfig: {
-    parser: '@babel/eslint-parser',
+    parser: resolveModulePath('@babel/eslint-parser'),
     parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module',
