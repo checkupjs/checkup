@@ -19,7 +19,7 @@ export async function registerDefaultComponents(): Promise<Map<string, React.FC>
     registeredComponents.set(
       component,
       Object.values(
-        await import(join(__dirname, 'components', `${component}.js`))
+        await import(join(__dirname, '../lib', 'components', `${component}.js`))
       ).pop() as React.FC
     );
   }

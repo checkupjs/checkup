@@ -77,7 +77,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
 
   constructor(pluginName: string, context: TaskContext) {
     super('Octane', pluginName, context);
-    debugger;
+
     this.eslintAnalyzer = new ESLintAnalyzer(OCTANE_ES_LINT_CONFIG, this.config);
     this.emberTemplateLintAnalyzer = new EmberTemplateLintAnalyzer(
       OCTANE_TEMPLATE_LINT_CONFIG,
@@ -199,7 +199,6 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
   }
 
   async run(): Promise<Result[]> {
-    debugger;
     let [eslintResults, templateLintReport] = await Promise.all([
       this.runEsLint(),
       this.runTemplateLint(),
