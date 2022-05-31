@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { ReportingDescriptor } from 'sarif';
-import { default as InkTable } from 'ink-table';
 import { MetaData } from '../components/meta-data.js';
+import { TaskTiming } from '../components/task-timing.js';
+import { CLIInfo } from '../components/cli-info.js';
 import { registeredComponents } from '../component-provider.js';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
@@ -15,7 +16,7 @@ const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser 
     <Box flexDirection={'column'} marginTop={1} marginBottom={1}>
       <MetaData metaData={metaData} />
       <TaskResults taskResults={taskResults} rules={rules} logParser={logParser} />
-      <RenderTiming timings={logParser.timings} />
+      <TaskTiming timings={logParser.timings} />
       <CLIInfo metaData={metaData} />
     </Box>
   );
@@ -78,43 +79,6 @@ const TaskResults: React.FC<{
   } else {
     return <Text></Text>;
   }
-};
-
-const RenderTiming: React.FC<{ timings: Record<string, number> }> = ({ timings }) => {
-  let total = Object.values(timings).reduce((total, timing) => (total += timing), 0);
-  let tableData: any[] = [];
-
-  if (process.env.CHECKUP_TIMING !== '1') {
-    return <></>;
-  }
-
-  Object.keys(timings).map((taskName) => {
-    let timing = Number.parseFloat(timings[taskName].toFixed(2));
-    let relavtive = `${((timings[taskName] * 100) / total).toFixed(1)}%`;
-    tableData.push({
-      'Task Name': taskName,
-      'Time (sec)': timing,
-      'Relative: ': relavtive,
-    });
-  });
-
-  return (
-    <>
-      <Text>Task Timings</Text>
-      <InkTable data={tableData} />
-    </>
-  );
-};
-
-const CLIInfo: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) => {
-  let { version, configHash } = metaData.cli;
-
-  return (
-    <Box flexDirection="column">
-      <Text color={'grey'}>checkup v{version}</Text>
-      <Text color={'grey'}>config {configHash}</Text>
-    </Box>
-  );
 };
 
 export default PrettyFormatter;
