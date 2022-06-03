@@ -48,6 +48,7 @@ export { FilePathArray } from './utils/file-path-array.js';
 export { getPackageJson, getPackageJsonSource } from './utils/get-package-json.js';
 export { getRepositoryInfo } from './utils/repository.js';
 export { resolveModulePath } from './utils/resolve-module-path.js';
+export { writeResultsToFile } from './utils/file-writer.js';
 
 export { toPercent } from './data/formatters.js';
 export { trimCwd, trimAllCwd } from './data/path.js';

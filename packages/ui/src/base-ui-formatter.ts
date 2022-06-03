@@ -20,7 +20,9 @@ export default class BaseUIFormatter implements Formatter {
 
   format(logParser: CheckupLogParser): string {
     try {
-      const result = render(React.createElement(this.component, { logParser }));
+      const result = render(
+        React.createElement(this.component, { logParser, options: this.options })
+      );
 
       if (result.includes('ERROR')) {
         throw result;

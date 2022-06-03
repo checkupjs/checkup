@@ -5,6 +5,7 @@ import { ReportingDescriptor } from 'sarif';
 import { MetaData } from '../components/meta-data.js';
 import { TaskTiming } from '../components/task-timing.js';
 import { CLIInfo } from '../components/cli-info.js';
+import { Actions } from '../components/actions.js';
 import { registeredComponents } from '../component-provider.js';
 
 const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
@@ -17,6 +18,7 @@ const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser 
       <MetaData metaData={metaData} />
       <TaskResults taskResults={taskResults} rules={rules} logParser={logParser} />
       <TaskTiming timings={logParser.timings} />
+      <Actions actions={logParser.actions} />
       <CLIInfo metaData={metaData} />
     </Box>
   );

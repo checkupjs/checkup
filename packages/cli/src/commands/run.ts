@@ -1,11 +1,11 @@
 import yargs from 'yargs';
 import ora from 'ora';
 import chalk from 'chalk';
+import { writeResultsToFile } from '@checkup/core';
 import { parser, consoleWriter } from '../checkup.js';
 import CheckupTaskRunner from '../api/checkup-task-runner.js';
 import { reportAvailableTasks } from '../formatters/available-tasks.js';
 import { getFormatter } from '../formatters/get-formatter.js';
-import { writeResultsToFile } from '../formatters/file-writer.js';
 
 export const runCommand: yargs.CommandModule = {
   command: 'run',

@@ -1,10 +1,10 @@
 import { isAbsolute, dirname, resolve, extname } from 'path';
 import { Log } from 'sarif';
 import fs from 'fs-extra';
-import { todayFormat } from '@checkup/core';
+import stripAnsi from 'strip-ansi';
+import { todayFormat } from '../today-format.js';
 
 const { existsSync, mkdirpSync, writeFileSync, writeJsonSync } = fs;
-import stripAnsi from 'strip-ansi';
 
 export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${todayFormat()}`;
 

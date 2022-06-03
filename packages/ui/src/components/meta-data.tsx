@@ -6,11 +6,11 @@ export const MetaData: React.FC<{ metaData: CheckupMetadata }> = ({ metaData }) 
   let { analyzedFilesCount, project } = metaData;
   let { name, version, repository } = project;
   let analyzedFilesMessage =
-    repository.totalFiles !== analyzedFilesCount ? ` (${analyzedFilesCount} files analyzed)` : '';
+    repository.totalFiles !== analyzedFilesCount ? `(${analyzedFilesCount} files analyzed)` : '';
 
   return (
     <>
-      <Box flexDirection="column" marginBottom={1}>
+      <Box flexDirection="column">
         <Box marginBottom={1}>
           <Text>
             Checkup report generated for {name} v{version} {analyzedFilesMessage}
