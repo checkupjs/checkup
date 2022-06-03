@@ -3,13 +3,13 @@ import { Box, Text } from 'ink';
 import logSymbols from 'log-symbols';
 import { CheckupLogParser, FormatterOptions, RuleResults, TaskName } from '@checkup/core';
 import { ReportingDescriptor } from 'sarif';
-import { MetaData } from '../components/meta-data.js';
-import { TaskTiming } from '../components/task-timing.js';
-import { CLIInfo } from '../components/cli-info.js';
-import { Actions } from '../components/actions.js';
-import { ResultsToFile } from '../components/results-to-file.js';
+import { MetaData } from '../components/MetaData.js';
+import { TaskTiming } from '../components/TaskTiming.js';
+import { CLIInfo } from '../components/CLIInfo.js';
+import { Actions } from '../components/Actions.js';
+import { ResultsToFile } from '../components/ResultsToFile.js';
 
-export const SummaryFormatter: React.FC<{
+export const Summary: React.FC<{
   logParser: CheckupLogParser;
   options: FormatterOptions;
 }> = ({ logParser, options }) => {
@@ -57,4 +57,4 @@ const TaskResults: React.FC<{
   );
 };
 
-export default SummaryFormatter;
+export default Summary;

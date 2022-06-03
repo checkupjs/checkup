@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import stripAnsi from 'strip-ansi';
-import { NoResultsFound } from '../../src/sub-components/no-results-found';
+import { NoResults } from '../../src/sub-components/NoResults.js';
 
 describe('Test Bar component', () => {
   it('can generate bar component', async () => {
-    const { lastFrame } = render(<NoResultsFound />);
+    const { lastFrame } = render(<NoResults />);
 
     expect(stripAnsi(lastFrame()!)).toMatchInlineSnapshot(`"No results found."`);
   });

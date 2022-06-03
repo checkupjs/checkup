@@ -4,8 +4,8 @@ import { Box } from 'ink';
 import * as objectPath from 'object-path';
 import { Result } from 'sarif';
 import { RuleResults } from '@checkup/core';
-import { TaskDisplayName } from '../sub-components/task-display-name.js';
-import { NoResultsFound } from '../sub-components/no-results-found.js';
+import { TaskDisplayName } from '../sub-components/TaskDisplayName.js';
+import { NoResults } from '../sub-components/NoResults.js';
 import { getOptions } from '../get-options.js';
 
 type TableOptions = {
@@ -24,7 +24,7 @@ export const Table: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => 
       <TaskDisplayName taskResult={taskResult} />
 
       {rowData.length === 0 ? (
-        <NoResultsFound />
+        <NoResults />
       ) : (
         <Box marginLeft={2}>
           <InkTable data={rowData} />

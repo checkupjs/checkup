@@ -3,7 +3,7 @@ import { Box, Text } from 'ink';
 import { RuleResults } from '@checkup/core';
 import { Result } from 'sarif';
 import logSymbols from 'log-symbols';
-import { TaskDisplayName } from '../sub-components/task-display-name.js';
+import { TaskDisplayName } from '../sub-components/TaskDisplayName.js';
 
 export const Validation: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
   let isValid = taskResult.results.every((result) => result.kind === 'pass');

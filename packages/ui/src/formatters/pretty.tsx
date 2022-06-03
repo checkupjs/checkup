@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
 import { ReportingDescriptor } from 'sarif';
-import { MetaData } from '../components/meta-data.js';
-import { TaskTiming } from '../components/task-timing.js';
-import { CLIInfo } from '../components/cli-info.js';
-import { Actions } from '../components/actions.js';
+import { MetaData } from '../components/MetaData.js';
+import { TaskTiming } from '../components/TaskTiming.js';
+import { CLIInfo } from '../components/CLIInfo.js';
+import { Actions } from '../components/Actions.js';
 import { registeredComponents } from '../component-provider.js';
 
-const PrettyFormatter: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
+const Pretty: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
   let metaData: CheckupMetadata = logParser.metaData;
   let taskResults: Map<string, RuleResults> | undefined = logParser.resultsByRule;
   let rules = logParser.rules;
@@ -37,7 +37,7 @@ const TaskResults: React.FC<{
       let componentName = taskProps.component.name;
 
       r.push({
-        Component: registeredComponents.get(componentName ?? 'list')!,
+        Component: registeredComponents.get(componentName ?? 'List')!,
         taskResult,
       });
     });
@@ -54,7 +54,7 @@ const TaskResults: React.FC<{
         let componentName = taskProps!.component.name;
 
         r.push({
-          Component: registeredComponents.get(componentName ?? 'list')!,
+          Component: registeredComponents.get(componentName ?? 'List')!,
           taskResult: {
             results: [],
             rule: rule,
@@ -83,4 +83,4 @@ const TaskResults: React.FC<{
   }
 };
 
-export default PrettyFormatter;
+export default Pretty;

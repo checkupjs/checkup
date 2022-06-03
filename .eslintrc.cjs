@@ -150,6 +150,12 @@ module.exports = {
         'node/no-unpublished-require': 'off',
       },
     },
+    {
+      files: ['packages/**/*.tsx'],
+      rules: {
+        'unicorn/filename-case': 'off',
+      },
+    },
   ],
   globals: {
     React: true,

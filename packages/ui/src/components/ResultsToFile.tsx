@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Box, Text } from 'ink';
-import chalk from 'chalk';
 import { Log } from 'sarif';
 import { FormatterOptions, writeResultsToFile } from '@checkup/core';
 
@@ -16,7 +15,7 @@ export const ResultsToFile: React.FC<{ log: Log; options: FormatterOptions }> = 
         <Text>Results have been saved to the following file:</Text>
       </Box>
       <Box>
-        <Text>{chalk.yellow(resultsFilePath)}</Text>
+        <Text color="yellow">{resultsFilePath}</Text>
       </Box>
     </Box>
   );
