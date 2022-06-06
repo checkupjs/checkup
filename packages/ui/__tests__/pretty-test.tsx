@@ -10,9 +10,6 @@ describe('Test Pretty component', () => {
   it('can generate Pretty component', async () => {
     const log = readJsonSync(resolve(dirname(import.meta), './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
-
-    debugger;
-
     const { stdout } = render(<Pretty logParser={logParser} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
@@ -284,7 +281,6 @@ describe('Test Pretty component', () => {
       resolve(dirname(import.meta), './__fixtures__/checkup-no-result-found.sarif')
     );
     const logParser = new CheckupLogParser(log);
-    debugger;
     const { stdout } = render(<Pretty logParser={logParser} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
