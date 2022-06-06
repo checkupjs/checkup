@@ -11,7 +11,7 @@ export async function registerDefaultComponents(): Promise<Map<string, React.FC>
     readdirSync(join(__dirname, 'components'), { withFileTypes: true })
       .filter((file) => file.isFile())
       .map((file) => {
-        return parse(file.name).base.split('.')[0];
+        return parse(file.name).base.split('.')[0].toLocaleLowerCase();
       })
   );
 

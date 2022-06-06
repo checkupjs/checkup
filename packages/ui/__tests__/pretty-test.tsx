@@ -4,18 +4,20 @@ import { render } from 'ink-testing-library';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser, dirname } from '@checkup/core';
 import stripAnsi from 'strip-ansi';
-import PrettyFormatter from '../src/formatters/pretty';
+import Pretty from '../src/formatters/Pretty';
 
 describe('Test Pretty component', () => {
   it('can generate Pretty component', async () => {
     const log = readJsonSync(resolve(dirname(import.meta), './__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
 
-    const { stdout } = render(<PrettyFormatter logParser={logParser} />);
+    debugger;
+
+    const { stdout } = render(<Pretty logParser={logParser} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
 "
-Checkup report generated for travis v0.0.1  (1765 files analyzed)
+Checkup report generated for travis v0.0.1 (1765 files analyzed)
 
 This project is 9 years old, with 1470 active days, 6012 commits and 1692 files
 
@@ -283,12 +285,12 @@ config 257cda6f6d50eeef891fc6ec8d808bdb
       resolve(dirname(import.meta), './__fixtures__/checkup-no-result-found.sarif')
     );
     const logParser = new CheckupLogParser(log);
-
-    const { stdout } = render(<PrettyFormatter logParser={logParser} />);
+    debugger;
+    const { stdout } = render(<Pretty logParser={logParser} />);
 
     expect(stripAnsi(stdout.lastFrame()!)).toMatchInlineSnapshot(`
 "
-Checkup report generated for travis v0.0.1  (1694 files analyzed)
+Checkup report generated for travis v0.0.1 (1694 files analyzed)
 
 This project is 9 years old, with 1468 active days, 6010 commits and 1692 files
 

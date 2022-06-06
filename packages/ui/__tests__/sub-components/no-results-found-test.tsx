@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import stripAnsi from 'strip-ansi';
-import { NoResults } from '../../src/sub-components/NoResults.js';
+import { NoResults } from '../../src/sub-components/NoResults';
 
 describe('Test Bar component', () => {
   it('can generate bar component', async () => {

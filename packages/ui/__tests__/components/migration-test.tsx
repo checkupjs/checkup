@@ -3,7 +3,7 @@ import { render } from 'ink-testing-library';
 import { RuleResults } from '@checkup/core';
 import merge from 'lodash.merge';
 import stripAnsi from 'strip-ansi';
-import { Migration } from '../../src/components/migration';
+import { Migration } from '../../src/components/Migration';
 import { getSorter } from '../../src/get-sorter';
 
 const TASK_RESULT: RuleResults = {

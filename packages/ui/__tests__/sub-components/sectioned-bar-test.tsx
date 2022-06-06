@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render } from 'ink-testing-library';
 import stripAnsi from 'strip-ansi';
-import { SectionedBar } from '../../src/sub-components/sectioned-bar';
+import { SectionedBar } from '../../src/sub-components/SectionedBar';
 import { BarData } from '../../src/types';
 
 describe('Test Bar component', () => {

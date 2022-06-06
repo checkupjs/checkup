@@ -4,7 +4,7 @@ import { render } from 'ink-testing-library';
 import { readJsonSync } from 'fs-extra';
 import { CheckupLogParser, dirname } from '@checkup/core';
 import stripAnsi from 'strip-ansi';
-import { Bar } from '../../src/components/bar';
+import { Bar } from '../../src/components/Bar';
 
 describe('bar component', () => {
   it('can render task result as expected via bar component', async () => {

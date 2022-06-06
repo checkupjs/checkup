@@ -37,7 +37,7 @@ const TaskResults: React.FC<{
       let componentName = taskProps.component.name;
 
       r.push({
-        Component: registeredComponents.get(componentName ?? 'List')!,
+        Component: registeredComponents.get(componentName ?? 'list')!,
         taskResult,
       });
     });
@@ -54,7 +54,7 @@ const TaskResults: React.FC<{
         let componentName = taskProps!.component.name;
 
         r.push({
-          Component: registeredComponents.get(componentName ?? 'List')!,
+          Component: registeredComponents.get(componentName ?? 'list')!,
           taskResult: {
             results: [],
             rule: rule,
