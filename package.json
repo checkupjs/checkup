@@ -10,8 +10,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "yarn tsc --build && yarn workspace @checkup/core build:copy-schema",
-    "build:watch": "yarn tsc --watch",
+    "build": "tsc --build && yarn workspace @checkup/core build:copy-schema",
+    "build:watch": "tsc --watch",
     "clean": "yarn clean:lib && tsc --build --clean",
     "clean:lib": "find packages -type d -name lib -not -path \"*/node_modules/*\" -exec rm -rf {} +",
     "contributors:add": "all-contributors add",
