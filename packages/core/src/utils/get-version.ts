@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url);
  * @returns {string} - A version number string
  */
 export function getVersion(cwd?: string, fakeVersion: string = '0.0.0') {
-  if (process.env.JEST_WORKER_ID !== undefined) {
+  if (process.env.VITEST !== undefined) {
     return fakeVersion;
   }
 
