@@ -10,6 +10,26 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v2.0.0-beta.1 (2022-06-14)
+
+#### :boom: Breaking Change
+* `checkup-formatter-pretty`, `checkup-plugin-ember`, `cli`, `core`, `ui`
+  * [#1224](https://github.com/checkupjs/checkup/pull/1224) Converts checkup-formatter-pretty package to @checkup/ui package ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `checkup-plugin-javascript`, `cli`, `core`
+  * [#1223](https://github.com/checkupjs/checkup/pull/1223) Updates stylelint to resolve error and import using file extension ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `cli`
+  * [#1232](https://github.com/checkupjs/checkup/pull/1232) Adding formatter tests to cli package ([@scalvert](https://github.com/scalvert))
+* `cli`, `ui`
+  * [#1230](https://github.com/checkupjs/checkup/pull/1230) Moves formatters from @checkup/ui to @checkup/cli ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v2.0.0-beta.0 (2022-05-23)
 
 #### :boom: Breaking Change
