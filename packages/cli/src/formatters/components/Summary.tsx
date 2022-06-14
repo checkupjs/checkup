@@ -1,13 +1,8 @@
 import * as React from 'react';
-import { Box, Text } from 'ink';
 import logSymbols from 'log-symbols';
 import { CheckupLogParser, FormatterOptions, RuleResults, TaskName } from '@checkup/core';
 import { ReportingDescriptor } from 'sarif';
-import { MetaData } from '../components/MetaData.js';
-import { TaskTiming } from '../components/TaskTiming.js';
-import { CLIInfo } from '../components/CLIInfo.js';
-import { Actions } from '../components/Actions.js';
-import { ResultsToFile } from '../components/ResultsToFile.js';
+import { Box, Text, MetaData, TaskTiming, CLIInfo, Actions, ResultsToFile } from '@checkup/ui';
 
 export const Summary: React.FC<{
   logParser: CheckupLogParser;

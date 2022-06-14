@@ -1,12 +1,16 @@
 import * as React from 'react';
-import { Box, Text, Newline } from 'ink';
 import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
+import {
+  Box,
+  Text,
+  Newline,
+  MetaData,
+  TaskTiming,
+  CLIInfo,
+  Actions,
+  registeredComponents,
+} from '@checkup/ui';
 import { ReportingDescriptor } from 'sarif';
-import { MetaData } from '../components/MetaData.js';
-import { TaskTiming } from '../components/TaskTiming.js';
-import { CLIInfo } from '../components/CLIInfo.js';
-import { Actions } from '../components/Actions.js';
-import { registeredComponents } from '../component-provider.js';
 
 const Pretty: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
   let metaData: CheckupMetadata = logParser.metaData;
