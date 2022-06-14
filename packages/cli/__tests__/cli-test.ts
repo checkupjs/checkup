@@ -102,7 +102,7 @@ describe('cli-test', () => {
     expect(result.stdout).toContain(
       'Checkup report generated for checkup-app v0.0.0 (3 files analyzed)'
     );
-    expect(result.stdout).toContain('checkup v2.0.0-beta.0');
+    expect(result.stdout).toMatch(/.*checkup v.*/);
     expect(result.stdout).toContain('config dd17cda1fc2eb2bc6bb5206b41fc1a84');
   });
 
