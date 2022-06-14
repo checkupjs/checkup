@@ -16,13 +16,15 @@ jobs:
 
     strategy:
       matrix:
-        node: ['14', '16']
+        node: ['14']
 
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
         with:
           node-version: ${{ matrix.node }}
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: install dependencies
         run: yarn install
       - name: lint
