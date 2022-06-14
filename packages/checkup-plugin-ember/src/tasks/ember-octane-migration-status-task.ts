@@ -4,19 +4,19 @@ import {
   LintAnalyzer,
   Task,
   TemplateLintConfig,
-  TemplateLinter,
   TemplateLintReport,
   TaskContext,
   ESLintAnalyzer,
   EmberTemplateLintAnalyzer,
   NormalizedLintResult,
   LintResult,
+  resolveModulePath,
 } from '@checkup/core';
 import { Result } from 'sarif';
 
 const OCTANE_ES_LINT_CONFIG: ESLintOptions = {
   baseConfig: {
-    parser: '@babel/eslint-parser',
+    parser: resolveModulePath('@babel/eslint-parser'),
     parserOptions: {
       ecmaVersion: 2018,
       sourceType: 'module',
@@ -73,7 +73,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
   group = 'ember';
 
   private eslintAnalyzer: LintAnalyzer<LintResult[]>;
-  private emberTemplateLintAnalyzer: TemplateLinter;
+  private emberTemplateLintAnalyzer: LintAnalyzer<TemplateLintReport>;
 
   constructor(pluginName: string, context: TaskContext) {
     super('Octane', pluginName, context);

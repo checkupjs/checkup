@@ -99,22 +99,11 @@ describe('cli-test', () => {
   it('can output checkup result', async () => {
     let result = await run(['run', '.']);
 
-    let output = result.stdout.trim().split('\n');
-    output[7] = '<outputPath>';
-
-    expect(output).toEqual([
-      'Checkup report generated for checkup-app v0.0.0 (3 files analyzed)',
-      '',
-      'This project is 0 days old, with 0 days active days, 0 commits and 0 files.',
-      '',
-      'Checkup ran the following task(s) successfully:',
-      '',
-      'Results have been saved to the following file:',
-      '<outputPath>',
-      '',
-      'checkup v2.0.0-beta.0',
-      'config dd17cda1fc2eb2bc6bb5206b41fc1a84',
-    ]);
+    expect(result.stdout).toContain(
+      'Checkup report generated for checkup-app v0.0.0 (3 files analyzed)'
+    );
+    expect(result.stdout).toContain('checkup v2.0.0-beta.0');
+    expect(result.stdout).toContain('config dd17cda1fc2eb2bc6bb5206b41fc1a84');
   });
 
   it('can output list of available tasks', async () => {

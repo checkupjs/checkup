@@ -15,6 +15,7 @@ import {
 import { Log } from 'sarif';
 import SummaryFormatter from './summary.js';
 import JsonFormatter from './json.js';
+import PrettyFormatter from './pretty.js';
 
 const require = createRequire(import.meta.url);
 
@@ -45,6 +46,11 @@ export async function getFormatter(options: FormatterOptions) {
 
     case OutputFormat.json: {
       Formatter = JsonFormatter;
+      break;
+    }
+
+    case OutputFormat.pretty: {
+      Formatter = PrettyFormatter;
       break;
     }
     default: {
@@ -80,9 +86,12 @@ export async function getFormatter(options: FormatterOptions) {
     }
   }
 
+  let formatter = new Formatter(mergedOptions);
+
   return {
+    shouldWrite: formatter.shouldWrite,
+
     format(log: Log) {
-      let formatter = new Formatter(mergedOptions);
       let logParser = new CheckupLogParser(log);
 
       return formatter.format(logParser);

@@ -2,11 +2,15 @@
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
     "outDir": "lib",
-    "rootDir": "src",
+    "jsx": "react",
+    "rootDir": "src"
   },
   "references": [
     {
       "path": "../core"
+    },
+    {
+      "path": "../ui"
     },
     {
       "path": "../checkup-plugin-ember"
@@ -15,11 +19,8 @@
       "path": "../checkup-plugin-javascript"
     },
     {
-      "path": "../checkup-formatter-pretty"
-    },
-    {
       "path": "../test-helpers"
-    },
+    }
   ],
   "include": ["src/**/*"]
 }

@@ -92,6 +92,7 @@ export interface TaskContext {
 export enum OutputFormat {
   summary = 'summary',
   json = 'json',
+  pretty = 'pretty',
 }
 
 export interface NormalizedLintResult {
