@@ -12,7 +12,7 @@ on:
 jobs:
   test:
     name: Tests
-    runs-on: macos-latest
+    runs-on: ubuntu-18.04
 
     strategy:
       matrix:
