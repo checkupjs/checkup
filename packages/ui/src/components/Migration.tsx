@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Text } from 'ink';
 import { RuleResults } from '@checkup/core';
 import { Result } from 'sarif';
-import { TaskDisplayName } from '../sub-components/TaskDisplayName.js';
+import { TaskDisplayName } from '../components/TaskDisplayName.js';
 import { getOptions } from '../get-options.js';
 import { getSorter, SortBy, SortDirection } from '../get-sorter.js';
 
