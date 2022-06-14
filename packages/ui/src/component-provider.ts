@@ -11,13 +11,13 @@ export async function registerDefaultComponents(): Promise<Map<string, React.FC>
     readdirSync(join(__dirname, 'components'), { withFileTypes: true })
       .filter((file) => file.isFile())
       .map((file) => {
-        return parse(file.name).base.split('.')[0].toLocaleLowerCase();
+        return parse(file.name).base.split('.')[0];
       })
   );
 
   for (let component of builtInComponents) {
     registeredComponents.set(
-      component,
+      component.toLocaleLowerCase(),
       Object.values(
         await import(join(__dirname, '../lib', 'components', `${component}.js`))
       ).pop() as React.FC
