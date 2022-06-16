@@ -43,7 +43,7 @@ describe('checkup-log-builder-test', () => {
 
     expect(builder.log).toMatchInlineSnapshot(`
       {
-        "\$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+        "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
         "runs": [
           {
             "invocations": [
@@ -66,7 +66,7 @@ describe('checkup-log-builder-test', () => {
                     "analyzedFilesCount": 0,
                     "cli": {
                       "config": {
-                        "\$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
+                        "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
                         "excludePaths": [],
                         "plugins": [],
                         "tasks": {},
