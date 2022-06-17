@@ -11,7 +11,7 @@ export const Summary: React.FC<{
   let { log, metaData, resultsByRule: taskResults, rules, timings, actions } = logParser;
 
   return (
-    <Box flexDirection="column" marginTop={1} marginBottom={1}>
+    <Box flexDirection="column" flexGrow={1} marginTop={1} marginBottom={1}>
       <MetaData metaData={metaData} />
       <TaskResults taskResults={taskResults} rules={rules} logParser={logParser} />
       <TaskTiming timings={timings} />
@@ -33,18 +33,16 @@ const TaskResults: React.FC<{
         <Text>Checkup ran the following task(s) successfully:</Text>
       </Box>
 
-      <Box marginBottom={1}>
+      <Box marginBottom={1} flexDirection="column">
         {logParser.executedTasks
           .map((rule) => rule.id)
           .sort()
           .map((taskName) => {
             return (
-              <Box flexDirection="column" key={taskName}>
-                <Text>
-                  {`${logSymbols.success} `}
-                  {taskName}
-                </Text>
-              </Box>
+              <Text key={taskName}>
+                {`${logSymbols.success} `}
+                {taskName}
+              </Text>
             );
           })}
       </Box>
