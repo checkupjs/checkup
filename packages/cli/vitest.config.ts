@@ -6,5 +6,6 @@ export default defineConfig({
     globals: true,
     testTimeout: 200_000,
     outputDiffLines: 200,
+    outputTruncateLength: 200,
   },
 });
