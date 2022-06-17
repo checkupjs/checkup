@@ -23,7 +23,7 @@ describe('Pretty formatter', () => {
 
       This project is 9 years old, with 1470 active days, 6012 commits and 1692 files
 
-      Checkup ran the following task(s) successfully:
+      Checkup ran the following task(s):
 
       Ember Types
       ===========
@@ -303,7 +303,7 @@ describe('Pretty formatter', () => {
 
       This project is 9 years old, with 1470 active days, 6012 commits and 1692 files
 
-      Checkup ran the following task(s) successfully:
+      Checkup ran the following task(s):
 
       Ember Types
       ===========

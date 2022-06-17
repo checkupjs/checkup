@@ -58,9 +58,7 @@ export default class TaskListImpl implements RegisterableTaskList {
    * Adds a default task to the task list, which is executed as part of checkup.
    *
    * @method registerTask
-   * @param taskName {TaskName}
    * @param task {Task}
-   * @param taskClassification
    */
   registerTask(task: Task) {
     if (task.category === '') {
