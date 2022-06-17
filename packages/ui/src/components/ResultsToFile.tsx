@@ -10,12 +10,14 @@ export const ResultsToFile: React.FC<{ log: Log; options: FormatterOptions }> = 
   let resultsFilePath = writeResultsToFile(log, options.cwd, options.outputFile);
 
   return (
-    <Box flexDirection="column" marginBottom={1}>
+    <Box flexDirection="column" flexGrow={1} marginBottom={1}>
       <Box>
         <Text>Results have been saved to the following file:</Text>
       </Box>
       <Box>
-        <Text color="yellow">{resultsFilePath}</Text>
+        <Text color="yellow" wrap="end">
+          {resultsFilePath}
+        </Text>
       </Box>
     </Box>
   );
