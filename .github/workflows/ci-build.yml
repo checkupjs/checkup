@@ -27,5 +27,7 @@ jobs:
         run: yarn install
       - name: lint
         run: yarn lint
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: test
         run: yarn test
