@@ -5,5 +5,6 @@ export default defineConfig({
     include: ['__tests__/**/*-test.{ts,tsx}'],
     globals: true,
     testTimeout: 200_000,
+    outputDiffLines: 200,
   },
 });
