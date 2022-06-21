@@ -281,7 +281,7 @@ describe('cli-test', () => {
 
     let result = await run(['run', '.', '--task', 'fake/file-count']);
 
-    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/file-count');
   });
 
   it('can run multiple tasks if the tasks option is specified with multiple tasks', async () => {
@@ -315,8 +315,8 @@ describe('cli-test', () => {
       'summary',
     ]);
 
-    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
-    expect(stripAnsi(result.stdout)).toContain('✔ foo');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/file-count');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/foo');
   });
 
   it('can run only one task if the category option is specified', async () => {
@@ -341,8 +341,8 @@ describe('cli-test', () => {
 
     let result = await run(['run', '.', '--category', 'files']);
 
-    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
-    expect(stripAnsi(result.stdout)).not.toContain('✔ foo');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/file-count');
+    expect(stripAnsi(result.stdout)).not.toContain('✔ fake/foo');
   });
 
   it('can run multiple tasks if the category option is specified with multiple categories', async () => {
@@ -376,8 +376,8 @@ describe('cli-test', () => {
       'summary',
     ]);
 
-    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
-    expect(stripAnsi(result.stdout)).toContain('✔ foo');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/file-count');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/foo');
   });
 
   it('can run only one task if the group option is specified', async () => {
@@ -402,7 +402,7 @@ describe('cli-test', () => {
 
     let result = await run(['run', '.', '--group', 'group1']);
 
-    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/file-count');
   });
 
   it('can run multiple tasks if the group option is specified with multiple groups', async () => {
@@ -436,8 +436,8 @@ describe('cli-test', () => {
       'summary',
     ]);
 
-    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
-    expect(stripAnsi(result.stdout)).toContain('✔ foo');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/file-count');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/foo');
   });
 
   it('can run a task if its passed in via command line, even if it is turned "off" in config', async () => {
@@ -458,7 +458,7 @@ describe('cli-test', () => {
 
     let result = await run(['run', '.', '--task', 'fake/file-count']);
 
-    expect(stripAnsi(result.stdout)).toContain('✔ file-count');
+    expect(stripAnsi(result.stdout)).toContain('✔ fake/file-count');
   });
 
   it('can use the config at the config path if provided', async () => {
@@ -634,7 +634,7 @@ describe('cli-test', () => {
     let result = await run(['run', '.', '--plugin-base-dir', newProject.baseDir]);
 
     expect(result.exitCode).toEqual(0);
-    expect(result.stdout).toMatch('✔ foo');
+    expect(result.stdout).toMatch('✔ fake/foo');
   });
 
   it('can load plugins from nested (non-node_modules) pluginBaseDir', async () => {
@@ -691,7 +691,7 @@ export default class FooTask extends BaseTask {
 
     let result = await run(['run', '.', '--plugin-base-dir', join(project.baseDir, 'lib')]);
     expect(result.exitCode).toEqual(0);
-    expect(result.stdout).toMatch('✔ foo');
+    expect(result.stdout).toMatch('✔ nested/foo');
   });
 
   function run(args: string[], options: execa.Options = {}) {
