@@ -96,8 +96,8 @@ export default class CheckupLogBuilder extends SarifLogBuilder {
   addTaskExecutionNotifications() {
     this.executedTasks.forEach((task) => {
       this.addNotification({
-        id: task.taskName,
-        name: 'Execution successful',
+        id: task.fullyQualifiedTaskName,
+        name: `Execution completed${task.nonFatalErrors.length > 0 ? ' with errors' : ''}`,
       });
     });
   }
