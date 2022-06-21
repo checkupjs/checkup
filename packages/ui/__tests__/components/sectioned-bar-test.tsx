@@ -4,7 +4,7 @@ import stripAnsi from 'strip-ansi';
 import { SectionedBar } from '../../src/components/SectionedBar';
 import { BarData } from '../../src/types';
 
-describe('Test Bar component', () => {
+describe('SectionedBar', () => {
   it('can generate bar component', async () => {
     const data: BarData = {
       name: 'test-item',

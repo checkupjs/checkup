@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CheckupLogParser, CheckupMetadata, TaskName, RuleResults } from '@checkup/core';
+import { CheckupLogParser, TaskName, RuleResults } from '@checkup/core';
 import {
   Box,
   Text,
@@ -9,20 +9,28 @@ import {
   CLIInfo,
   Actions,
   registeredComponents,
+  TaskErrors,
 } from '@checkup/ui';
 import { ReportingDescriptor } from 'sarif';
 
 const Pretty: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
-  let metaData: CheckupMetadata = logParser.metaData;
-  let taskResults: Map<string, RuleResults> | undefined = logParser.resultsByRule;
-  let rules = logParser.rules;
+  let {
+    actions,
+    executedTasks,
+    metaData,
+    resultsByRule: taskResults,
+    rules,
+    timings,
+    tasksWithExceptions,
+  } = logParser;
 
   return (
     <Box flexDirection={'column'} marginTop={1} marginBottom={1}>
       <MetaData metaData={metaData} />
-      <TaskResults taskResults={taskResults} rules={rules} logParser={logParser} />
-      <TaskTiming timings={logParser.timings} />
-      <Actions actions={logParser.actions} />
+      <TaskResults taskResults={taskResults} rules={rules} executedTasks={executedTasks} />
+      <TaskErrors hasErrors={tasksWithExceptions.size > 0} />
+      <TaskTiming timings={timings} />
+      <Actions actions={actions} />
       <CLIInfo metaData={metaData} />
     </Box>
   );
@@ -31,8 +39,8 @@ const Pretty: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
 const TaskResults: React.FC<{
   taskResults: Map<TaskName, RuleResults> | undefined;
   rules: ReportingDescriptor[];
-  logParser: CheckupLogParser;
-}> = ({ taskResults, rules, logParser }) => {
+  executedTasks: ReportingDescriptor[];
+}> = ({ taskResults, rules, executedTasks }) => {
   let r: { Component: React.FC<any>; taskResult: RuleResults }[] = [];
 
   if (taskResults!.size > 0) {
@@ -52,7 +60,7 @@ const TaskResults: React.FC<{
         !r.some((item) => {
           return rule.id === item.taskResult.rule.id;
         }) &&
-        logParser.executedTasks.some((ruleDescriptor) => ruleDescriptor.id === rule.id)
+        executedTasks.some((ruleDescriptor) => ruleDescriptor.id === rule.id)
       ) {
         let taskProps = rule.properties;
         let componentName = taskProps!.component.name;
@@ -70,7 +78,7 @@ const TaskResults: React.FC<{
     return (
       <>
         <Box marginBottom={1}>
-          <Text>Checkup ran the following task(s) successfully:</Text>
+          <Text>Checkup ran the following task(s):</Text>
         </Box>
         {r.map(({ Component, taskResult }) => {
           return (

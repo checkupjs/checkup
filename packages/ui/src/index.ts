@@ -13,5 +13,6 @@ export { ResultsToFile } from './components/ResultsToFile.js';
 export { SectionedBar } from './components/SectionedBar.js';
 export { Table } from './components/Table.js';
 export { TaskDisplayName } from './components/TaskDisplayName.js';
+export { TaskErrors } from './components/TaskErrors.js';
 export { TaskTiming } from './components/TaskTiming.js';
 export { Validation } from './components/Validation.js';

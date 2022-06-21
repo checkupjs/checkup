@@ -3,7 +3,7 @@ import { render } from 'ink-testing-library';
 import stripAnsi from 'strip-ansi';
 import { NoResults } from '../../src/components/NoResults';
 
-describe('Test Bar component', () => {
+describe('NoResults', () => {
   it('can generate bar component', async () => {
     const { lastFrame } = render(<NoResults />);
 

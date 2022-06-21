@@ -6,7 +6,7 @@ import { CheckupLogParser, dirname } from '@checkup/core';
 import stripAnsi from 'strip-ansi';
 import { Bar } from '../../src/components/Bar';
 
-describe('bar component', () => {
+describe('Bar', () => {
   it('can render task result as expected via bar component', async () => {
     const log = readJsonSync(resolve(dirname(import.meta), '../__fixtures__/checkup-result.sarif'));
     const logParser = new CheckupLogParser(log);
