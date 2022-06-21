@@ -4,7 +4,7 @@ import { RuleResults } from '@checkup/core';
 import stripAnsi from 'strip-ansi';
 import { Table } from '../../src/components/Table';
 
-describe('table component', () => {
+describe('Table', () => {
   it('can render task result as expected via table component', async () => {
     const taskResult: RuleResults = {
       rule: {

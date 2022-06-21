@@ -4,7 +4,7 @@ import { RuleResults } from '@checkup/core';
 import stripAnsi from 'strip-ansi';
 import { List } from '../../src/components/List';
 
-describe('list component', () => {
+describe('List', () => {
   it('can render task result as expected via list component', async () => {
     const taskResult: RuleResults = {
       rule: {

@@ -46,7 +46,7 @@ const TASK_RESULT: RuleResults = {
   ],
 };
 
-describe('Validation component', () => {
+describe('Validation', () => {
   it('can render task result', () => {
     const { stdout } = render(<Validation taskResult={TASK_RESULT} />);
 
