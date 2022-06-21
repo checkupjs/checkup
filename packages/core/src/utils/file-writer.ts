@@ -21,18 +21,15 @@ export const DEFAULT_OUTPUT_FILENAME = `checkup-report-${todayFormat()}`;
 export function writeResultsToFile(
   result: Log | string,
   cwd: string,
-  outputFile: string = DEFAULT_OUTPUT_FILENAME,
-  shouldWrite = true
+  outputFile: string = DEFAULT_OUTPUT_FILENAME
 ): string {
   let fileType: 'sarif' | 'txt' = typeof result === 'string' ? 'txt' : 'sarif';
   let outputPath = getOutputPath(cwd, outputFile, fileType);
 
-  if (shouldWrite) {
-    if (fileType === 'txt') {
-      writeFileSync(outputPath, stripAnsi(result.toString()));
-    } else {
-      writeJsonSync(outputPath, result);
-    }
+  if (fileType === 'txt') {
+    writeFileSync(outputPath, stripAnsi(result.toString()));
+  } else {
+    writeJsonSync(outputPath, result);
   }
 
   return outputPath;
