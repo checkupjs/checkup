@@ -6,10 +6,6 @@ export { default as BaseValidationTask, ValidationResult } from './base-validati
 
 export { getRegisteredActions, registerActions } from './actions/registered-actions.js';
 export { default as ActionsEvaluator } from './actions/actions-evaluator.js';
-export {
-  getRegisteredTaskReporters,
-  registerTaskReporter,
-} from './task-reporters/registered-task-reporters.js';
 
 export {
   readConfig,
