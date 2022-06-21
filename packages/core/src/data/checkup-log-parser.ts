@@ -76,6 +76,18 @@ export default class CheckupLogParser {
     );
   }
 
+  get tasksWithExceptions() {
+    return this.exceptions.reduce((taskNames, exception) => {
+      let taskName = exception.associatedRule?.id;
+
+      if (taskName) {
+        taskNames.add(taskName);
+      }
+
+      return taskNames;
+    }, new Set<TaskName>());
+  }
+
   get resultsByRule(): Map<TaskName, RuleResults> {
     if (!this._resultsByRule) {
       this._resultsByRule = new Map();
