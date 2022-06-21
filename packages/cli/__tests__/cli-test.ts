@@ -677,6 +677,7 @@ export default class FooTask extends BaseTask {
   category = 'best practices';
 
   async run() {
+    this.addRule();
     this.addResult('foo', 'review', 'error');
     return this.results;
   }
