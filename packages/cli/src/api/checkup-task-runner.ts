@@ -18,7 +18,6 @@ import {
   TaskActionsEvaluator,
   TaskListError,
   TaskName,
-  TaskFormatter,
   RegistrationArgs,
   CheckupLogBuilder,
 } from '@checkup/core';
@@ -48,7 +47,6 @@ export default class CheckupTaskRunner {
   taskContext!: TaskContext;
   logBuilder: CheckupLogBuilder;
   registeredActions: Map<string, TaskActionsEvaluator> = new Map<TaskName, TaskActionsEvaluator>();
-  registeredTaskReporters: Map<string, TaskFormatter> = new Map<TaskName, TaskFormatter>();
   pkg: PackageJson;
   pkgSource: string;
 
@@ -228,7 +226,6 @@ export default class CheckupTaskRunner {
       context: this.taskContext,
       register: new PluginRegistrationProvider({
         registeredActions: this.registeredActions,
-        registeredTaskReporters: this.registeredTaskReporters,
         registeredTasks: this.tasks,
       }),
     });

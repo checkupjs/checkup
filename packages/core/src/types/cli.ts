@@ -1,12 +1,5 @@
 import CheckupLogParser from '../data/checkup-log-parser.js';
-import {
-  Task,
-  TaskContext,
-  TaskName,
-  TaskActionsEvaluator,
-  TaskFormatter,
-  OutputFormat,
-} from './tasks';
+import { Task, TaskContext, TaskName, TaskActionsEvaluator, OutputFormat } from './tasks';
 import { CheckupConfig } from './config.js';
 
 export type RunOptions = {
@@ -29,13 +22,11 @@ export interface RegistrationArgs {
 
 export interface RegistrationProvider {
   actions(taskName: TaskName, evaluate: TaskActionsEvaluator): void;
-  taskFormatter(taskName: TaskName, report: TaskFormatter): void;
   task(task: Task): void;
 }
 
 export interface RegistrationProviderOptions {
   registeredActions: Map<string, TaskActionsEvaluator>;
-  registeredTaskReporters: Map<TaskName, TaskFormatter>;
   registeredTasks: RegisterableTaskList;
 }
 export interface RegisterableTaskList {
