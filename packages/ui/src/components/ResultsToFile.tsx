@@ -7,7 +7,8 @@ export const ResultsToFile: React.FC<{ log: Log; options: FormatterOptions }> = 
   log,
   options,
 }) => {
-  let resultsFilePath = writeResultsToFile(log, options.cwd, options.outputFile);
+  let shouldWrite = process.env.VITEST === undefined;
+  let resultsFilePath = writeResultsToFile(log, options.cwd, options.outputFile, shouldWrite);
 
   return (
     <Box flexDirection="column" flexGrow={1} marginBottom={1}>
