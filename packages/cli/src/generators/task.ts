@@ -100,27 +100,12 @@ export default class TaskGenerator extends BaseGenerator {
 
   private _addRegistration() {
     let registrationDestinationPath = this.destinationPath(`${this._dir}/index.${this._ext}`);
-
-    // builds a task source in the form of
-    // args.register.task(new FooTask(pluginName, args.context));
     let registerTasksSource = this.fs.read(registrationDestinationPath);
-    let registerTaskStatement = t.expressionStatement(
-      t.callExpression(
-        t.memberExpression(
-          t.memberExpression(t.identifier('args'), t.identifier('register')),
-          t.identifier('task')
-        ),
-        [
-          t.newExpression(t.identifier(this.options.taskClass), [
-            t.identifier('pluginName'),
-            t.memberExpression(t.identifier('args'), t.identifier('context')),
-          ]),
-        ]
-      )
-    );
 
     let importOrRequire: t.ImportDeclaration | t.VariableDeclaration;
-    let taskPath = `./tasks/${this.options.name}-task.js`;
+    let taskName = this.options.name;
+    let taskClass = this.options.taskClass;
+    let taskPath = `./tasks/${taskName}-task.js`;
 
     let newTaskImportSpecifier = t.importDefaultSpecifier(t.identifier(this.options.taskClass));
     importOrRequire = t.importDeclaration([newTaskImportSpecifier], t.stringLiteral(taskPath));
@@ -131,10 +116,22 @@ export default class TaskGenerator extends BaseGenerator {
 
     transformer.analyze({
       Program(nodePath) {
-        nodePath.node.body.splice(1, 0, importOrRequire);
+        nodePath.unshiftContainer('body', importOrRequire);
       },
-      BlockStatement(nodePath) {
-        nodePath.node.body.push(registerTaskStatement);
+      ExportDefaultDeclaration(nodePath) {
+        let pluginExportedObject = nodePath.node.declaration as t.ObjectExpression;
+        let tasks: t.ObjectExpression;
+
+        if (pluginExportedObject.properties.length === 0) {
+          pluginExportedObject.properties.push(
+            t.objectProperty(t.identifier('tasks'), t.objectExpression([]))
+          );
+        }
+
+        tasks = (pluginExportedObject.properties[0] as t.ObjectProperty)
+          .value as t.ObjectExpression;
+
+        tasks.properties.push(t.objectProperty(t.stringLiteral(taskName), t.identifier(taskClass)));
       },
     });
 

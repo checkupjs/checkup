@@ -125,11 +125,7 @@ exports[`plugin generator > generates plugin into existing directory with defaul
 `;
 
 exports[`plugin generator > generates plugin into existing directory with defaults 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-}
+"export default {};
 "
 `;
 
@@ -255,11 +251,7 @@ exports[`plugin generator > generates plugin with JavaScript defaults 6`] = `
 `;
 
 exports[`plugin generator > generates plugin with JavaScript defaults 7`] = `
-"import { getPluginName } from '@checkup/core';
-
-export function register(args) {
-  let pluginName = getPluginName(import.meta.url);
-}
+"export default {};
 "
 `;
 
@@ -408,11 +400,7 @@ exports[`plugin generator > generates plugin with custom options 7`] = `
 `;
 
 exports[`plugin generator > generates plugin with custom options 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-}
+"export default {};
 "
 `;
 
@@ -561,11 +549,7 @@ exports[`plugin generator > generates plugin with defaults 7`] = `
 `;
 
 exports[`plugin generator > generates plugin with defaults 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-}
+"export default {};
 "
 `;
 
@@ -714,11 +698,7 @@ exports[`plugin generator > generates plugin with defaults in custom path 7`] = 
 `;
 
 exports[`plugin generator > generates plugin with defaults in custom path 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-}
+"export default {};
 "
 `;
 
@@ -867,11 +847,7 @@ exports[`plugin generator > generates plugin with unmodified name with defaults 
 `;
 
 exports[`plugin generator > generates plugin with unmodified name with defaults 8`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-}
+"export default {};
 "
 `;
 

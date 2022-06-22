@@ -224,7 +224,7 @@ export default class CheckupTaskRunner {
       pkgSource: this.pkgSource,
       paths,
     });
-    debugger;
+
     await this.loadFromPlugin();
   }
 
@@ -247,7 +247,7 @@ export default class CheckupTaskRunner {
         // simply require the entry point file.
         pluginDir = pathToFileURL(join(pluginBaseDir, pluginName, 'index.js')).toString();
       }
-      debugger;
+
       this.debug('Loading plugin from %s', pluginDir);
 
       let plugin: {

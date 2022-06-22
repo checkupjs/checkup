@@ -66,14 +66,12 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator > generates correct files with JavaScript 3`] = `
-"import { getPluginName } from '@checkup/core';
-
-import MyFooTask from './tasks/my-foo-task.js';
-
-export function register(args) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.task(new MyFooTask(pluginName, args.context));
-}
+"import MyFooTask from './tasks/my-foo-task.js';
+export default {
+  tasks: {
+    'my-foo': MyFooTask
+  }
+};
 "
 `;
 
@@ -143,14 +141,12 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator > generates correct files with TypeScript for defaults 3`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-import MyFooTask from './tasks/my-foo-task.js';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.task(new MyFooTask(pluginName, args.context));
-}
+"import MyFooTask from './tasks/my-foo-task.js';
+export default {
+  tasks: {
+    'my-foo': MyFooTask
+  }
+};
 "
 `;
 
@@ -220,14 +216,12 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator > generates correct files with TypeScript for defaults in custom path 3`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-import MyFooTask from './tasks/my-foo-task.js';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.task(new MyFooTask(pluginName, args.context));
-}
+"import MyFooTask from './tasks/my-foo-task.js';
+export default {
+  tasks: {
+    'my-foo': MyFooTask
+  }
+};
 "
 `;
 
@@ -298,14 +292,12 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator > generates correct files with category 3`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-import MyFooTask from './tasks/my-foo-task.js';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.task(new MyFooTask(pluginName, args.context));
-}
+"import MyFooTask from './tasks/my-foo-task.js';
+export default {
+  tasks: {
+    'my-foo': MyFooTask
+  }
+};
 "
 `;
 
@@ -376,14 +368,12 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator > generates correct files with group 3`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-import MyFooTask from './tasks/my-foo-task.js';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.task(new MyFooTask(pluginName, args.context));
-}
+"import MyFooTask from './tasks/my-foo-task.js';
+export default {
+  tasks: {
+    'my-foo': MyFooTask
+  }
+};
 "
 `;
 
@@ -454,14 +444,12 @@ describe('my-foo-task', () => {
 `;
 
 exports[`task generator > generates correct files with typescript 3`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-import MyFooTask from './tasks/my-foo-task.js';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.task(new MyFooTask(pluginName, args.context));
-}
+"import MyFooTask from './tasks/my-foo-task.js';
+export default {
+  tasks: {
+    'my-foo': MyFooTask
+  }
+};
 "
 `;
 
@@ -596,16 +584,13 @@ describe('my-bar-task', () => {
 `;
 
 exports[`task generator > generates multiple correct files with TypeScript for defaults 5`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-import MyBarTask from './tasks/my-bar-task.js';
-
+"import MyBarTask from './tasks/my-bar-task.js';
 import MyFooTask from './tasks/my-foo-task.js';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.task(new MyFooTask(pluginName, args.context));
-  args.register.task(new MyBarTask(pluginName, args.context));
-}
+export default {
+  tasks: {
+    'my-foo': MyFooTask,
+    'my-bar': MyBarTask
+  }
+};
 "
 `;
