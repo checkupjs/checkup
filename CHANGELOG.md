@@ -10,6 +10,31 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v2.0.0-beta.2 (2022-06-22)
+
+#### :boom: Breaking Change
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`
+  * [#1239](https://github.com/checkupjs/checkup/pull/1239) Simplifies plugin task/action registration to better match other OSS tools ([@scalvert](https://github.com/scalvert))
+* `cli`, `core`
+  * [#1238](https://github.com/checkupjs/checkup/pull/1238) Removes task formatter API in favor of Ink components ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `cli`, `core`, `ui`
+  * [#1236](https://github.com/checkupjs/checkup/pull/1236) Adding task error output to indicate tasks ran, but with errors ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `cli`, `core`
+  * [#1237](https://github.com/checkupjs/checkup/pull/1237) Update executed tasks to use fully qualified task name ([@scalvert](https://github.com/scalvert))
+* `cli`, `ui`
+  * [#1234](https://github.com/checkupjs/checkup/pull/1234) Fix wrapping for Summary output ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* [#1240](https://github.com/checkupjs/checkup/pull/1240) Adds dependabot rebase action ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v2.0.0-beta.1 (2022-06-14)
 
 #### :boom: Breaking Change
