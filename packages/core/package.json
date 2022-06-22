@@ -41,7 +41,7 @@
     "es-main": "^1.0.2",
     "eslint": "^8.15.0",
     "fs-extra": "^9.1.0",
-    "globby": "^12.0.2",
+    "globby": "^13.1.2",
     "is-glob": "^4.0.1",
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.21",
