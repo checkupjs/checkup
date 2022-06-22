@@ -11,6 +11,7 @@ import {
   getFilePathsAsync,
   getPackageJson,
   getPackageJsonSource,
+  getShorthandName,
   readConfig,
   RunOptions,
   Task,
@@ -18,7 +19,6 @@ import {
   TaskActionsEvaluator,
   TaskListError,
   TaskName,
-  RegistrationArgs,
   CheckupLogBuilder,
 } from '@checkup/core';
 import debug from 'debug';
@@ -27,7 +27,10 @@ import { Log, Result } from 'sarif';
 
 import { PackageJson } from 'type-fest';
 import TaskListImpl from '../task-list.js';
-import PluginRegistrationProvider from './registration-provider.js';
+
+export type Constructor<T, Arguments extends unknown[] = any[]> = new (
+  ...arguments_: Arguments
+) => T;
 
 /**
  * Class that is able to run a list of checkup tasks.
@@ -222,16 +225,10 @@ export default class CheckupTaskRunner {
       paths,
     });
 
-    await this.loadFromPlugin({
-      context: this.taskContext,
-      register: new PluginRegistrationProvider({
-        registeredActions: this.registeredActions,
-        registeredTasks: this.tasks,
-      }),
-    });
+    await this.loadFromPlugin();
   }
 
-  private async loadFromPlugin(registrationArgs: RegistrationArgs) {
+  private async loadFromPlugin() {
     let pluginBaseDir = this.options.pluginBaseDir || this.options.cwd;
     for (let pluginName of this.config.plugins) {
       let pluginDir;
@@ -253,8 +250,24 @@ export default class CheckupTaskRunner {
 
       this.debug('Loading plugin from %s', pluginDir);
 
-      let { register } = await import(pluginDir);
-      await register(registrationArgs);
+      let plugin: {
+        tasks: Record<TaskName, Constructor<Task>>;
+        actions: Record<TaskName, TaskActionsEvaluator>;
+      } = {
+        tasks: {},
+        actions: {},
+        ...(await import(pluginDir)).default,
+      };
+
+      for (let [, TaskConstructor] of Object.entries(plugin.tasks)) {
+        this.tasks.registerTask(
+          new TaskConstructor(getShorthandName(pluginName), this.taskContext)
+        );
+      }
+
+      for (let [taskName, taskActionsEvaluator] of Object.entries(plugin.actions)) {
+        this.registeredActions.set(taskName, taskActionsEvaluator);
+      }
     }
   }
 }

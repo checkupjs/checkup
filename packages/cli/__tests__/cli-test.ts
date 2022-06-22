@@ -648,11 +648,11 @@ describe('cli-test', () => {
           'index.js': `
 import FooTask from './tasks/foo-task.js';
 
-export function register(args) {
-  let pluginName = 'checkup-plugin-nested';
-
-  args.register.task(new FooTask(pluginName, args.context));
-}
+export default {
+  tasks: {
+    'foo': FooTask
+  }
+};
 `,
           'package.json': `{
   "name": "checkup-plugin-nested",
