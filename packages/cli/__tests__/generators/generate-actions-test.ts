@@ -82,7 +82,7 @@ describe('actions generator', () => {
         path: '.',
       })
       .withPrompts({
-        taskName: 'foo',
+        taskName: 'bar',
         typescript: true,
       });
 

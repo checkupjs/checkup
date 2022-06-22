@@ -72,55 +72,43 @@ export default class ActionsGenerator extends BaseGenerator {
 
   private _transformHooks() {
     let registrationDestinationPath = this.destinationPath(`${this._dir}/index.${this._ext}`);
-
     let registerActionsSource = this.fs.read(registrationDestinationPath);
-    let registerActionStatement = t.expressionStatement(
-      t.callExpression(
-        t.memberExpression(
-          t.memberExpression(t.identifier('args'), t.identifier('register')),
-          t.identifier('actions')
-        ),
-        [
-          t.stringLiteral(this.options.taskName),
-          t.identifier(`evaluate${this.options.pascalCaseName}Actions`),
-        ]
-      )
-    );
 
+    let taskName = this.options.taskName;
     let importOrRequire: t.ImportDeclaration | t.VariableDeclaration;
     let actionsPath = `../actions/${this.options.name}-actions`;
     let actionsAlias = `evaluate${this.options.pascalCaseName}Actions`;
 
-    if (this.options.typescript) {
-      let newActionImportSpecifier = t.importSpecifier(
-        t.identifier(actionsAlias),
-        t.identifier('evaluateActions')
-      );
-      importOrRequire = t.importDeclaration(
-        [newActionImportSpecifier],
-        t.stringLiteral(actionsPath)
-      );
-    } else {
-      importOrRequire = t.variableDeclaration('const', [
-        t.variableDeclarator(
-          t.objectPattern([
-            t.objectProperty(t.identifier('evaluateActions'), t.identifier(actionsAlias)),
-          ]),
-          t.callExpression(t.identifier('require'), [t.stringLiteral(actionsPath)])
-        ),
-      ]);
-    }
+    let newActionImportSpecifier = t.importSpecifier(
+      t.identifier(actionsAlias),
+      t.identifier('evaluateActions')
+    );
+    importOrRequire = t.importDeclaration([newActionImportSpecifier], t.stringLiteral(actionsPath));
 
     let transformer = new AstTransformer(registerActionsSource, recast.parse, traverse, {
       parser: require('recast/parsers/typescript'),
     });
 
     transformer.analyze({
-      Program(path) {
-        path.node.body.splice(1, 0, importOrRequire);
+      Program(nodePath) {
+        nodePath.unshiftContainer('body', importOrRequire);
       },
-      BlockStatement(path) {
-        path.node.body.push(registerActionStatement);
+      ExportDefaultDeclaration(nodePath) {
+        let pluginExportedObject = nodePath.node.declaration as t.ObjectExpression;
+        let actions: t.ObjectExpression;
+
+        if (pluginExportedObject.properties.length === 0) {
+          pluginExportedObject.properties.push(
+            t.objectProperty(t.identifier('actions'), t.objectExpression([]))
+          );
+        }
+
+        actions = (pluginExportedObject.properties[0] as t.ObjectProperty)
+          .value as t.ObjectExpression;
+
+        actions.properties.push(
+          t.objectProperty(t.stringLiteral(taskName), t.identifier(actionsAlias))
+        );
       },
     });
 

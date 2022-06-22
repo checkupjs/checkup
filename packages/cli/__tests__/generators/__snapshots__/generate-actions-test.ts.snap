@@ -11,16 +11,12 @@ module.exports = function evaluateActions(taskResult, taskConfig) {
 `;
 
 exports[`actions generator > generates correct files with JavaScript 2`] = `
-"import { getPluginName } from '@checkup/core';
-
-const {
-  evaluateActions: evaluateMyFooActions
-} = require('../actions/my-foo-actions');
-
-export function register(args) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.actions('foo', evaluateMyFooActions);
-}
+"import { evaluateActions as evaluateMyFooActions } from '../actions/my-foo-actions';
+export default {
+  actions: {
+    'foo': evaluateMyFooActions
+  }
+};
 "
 `;
 
@@ -37,14 +33,12 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
 `;
 
 exports[`actions generator > generates correct files with TypeScript 2`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-import { evaluateActions as evaluateMyFooActions } from '../actions/my-foo-actions';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.actions('foo', evaluateMyFooActions);
-}
+"import { evaluateActions as evaluateMyFooActions } from '../actions/my-foo-actions';
+export default {
+  actions: {
+    'foo': evaluateMyFooActions
+  }
+};
 "
 `;
 
@@ -61,14 +55,12 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
 `;
 
 exports[`actions generator > generates correct files with TypeScript in custom path 2`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-import { evaluateActions as evaluateMyFooActions } from '../actions/my-foo-actions';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.actions('foo', evaluateMyFooActions);
-}
+"import { evaluateActions as evaluateMyFooActions } from '../actions/my-foo-actions';
+export default {
+  actions: {
+    'foo': evaluateMyFooActions
+  }
+};
 "
 `;
 
@@ -97,16 +89,13 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
 `;
 
 exports[`actions generator > generates multiple correct files with TypeScript 3`] = `
-"import { RegistrationArgs, getPluginName } from '@checkup/core';
-
-import { evaluateActions as evaluateMyBarActions } from '../actions/my-bar-actions';
-
+"import { evaluateActions as evaluateMyBarActions } from '../actions/my-bar-actions';
 import { evaluateActions as evaluateMyFooActions } from '../actions/my-foo-actions';
-
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-  args.register.actions('foo', evaluateMyFooActions);
-  args.register.actions('foo', evaluateMyBarActions);
-}
+export default {
+  actions: {
+    'foo': evaluateMyFooActions,
+    'bar': evaluateMyBarActions
+  }
+};
 "
 `;
