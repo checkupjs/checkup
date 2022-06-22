@@ -1,5 +1,3 @@
-import { RegistrationArgs, getPluginName } from '@checkup/core';
-
 import EmberDependenciesTask from './tasks/ember-dependencies-task.js';
 import EmberInRepoAddonsEnginesTask from './tasks/ember-in-repo-addons-engines-task.js';
 import EmberTestTypesTaskTask from './tasks/ember-test-types-task.js';
@@ -11,18 +9,19 @@ import { evaluateActions as evaluateTemplateLintDisables } from './actions/ember
 import { evaluateActions as evaluateTemplateLintSummary } from './actions/ember-template-lint-summary-actions.js';
 import { evaluateActions as evaluateTestTypes } from './actions/ember-test-types-actions.js';
 
-export function register(args: RegistrationArgs) {
-  let pluginName = getPluginName(import.meta.url);
-
-  args.register.actions('ember-template-lint-disables', evaluateTemplateLintDisables);
-  args.register.actions('ember-template-lint-summary', evaluateTemplateLintSummary);
-  args.register.actions('ember-test-types', evaluateTestTypes);
-
-  args.register.task(new EmberTypesTask(pluginName, args.context));
-  args.register.task(new EmberDependenciesTask(pluginName, args.context));
-  args.register.task(new EmberInRepoAddonsEnginesTask(pluginName, args.context));
-  args.register.task(new EmberTestTypesTaskTask(pluginName, args.context));
-  args.register.task(new EmberTemplateLintDisableTask(pluginName, args.context));
-  args.register.task(new EmberTemplateLintSummaryTask(pluginName, args.context));
-  args.register.task(new EmberOctaneMigrationStatusTask(pluginName, args.context));
-}
+export default {
+  tasks: {
+    'ember-types': EmberTypesTask,
+    'ember-dependencies': EmberDependenciesTask,
+    'ember-in-repo-addons-engines': EmberInRepoAddonsEnginesTask,
+    'ember-test-types': EmberTestTypesTaskTask,
+    'ember-template-lint-disables': EmberTemplateLintDisableTask,
+    'ember-template-lint-summary': EmberTemplateLintSummaryTask,
+    'ember-octane-migration-status': EmberOctaneMigrationStatusTask,
+  },
+  actions: {
+    'ember-template-lint-disables': evaluateTemplateLintDisables,
+    'ember-template-lint-summary': evaluateTemplateLintSummary,
+    'ember-test-types': evaluateTestTypes,
+  },
+};
