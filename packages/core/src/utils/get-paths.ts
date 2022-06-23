@@ -24,13 +24,6 @@ const PATHS_TO_IGNORE: string[] = [
   '*.log',
 ];
 
-class NoMatchingFilesError extends Error {
-  constructor(...args: any[]) {
-    super(...args);
-    this.name = 'NoMatchingFilesError';
-  }
-}
-
 /**
  * Get the file paths to run on.
  *
@@ -66,11 +59,15 @@ export function getFilePaths(
 ): FilePathArray {
   let files: Set<string>;
   let ignore = [...excludePaths, ...PATHS_TO_IGNORE];
+  let patterns =
+    globsOrPaths.length === 0 || (globsOrPaths.length === 1 && globsOrPaths[0] === '.')
+      ? [baseDir]
+      : globsOrPaths;
 
   files =
-    globsOrPaths.length === 0 || globsOrPaths.includes('-') || globsOrPaths.includes(STDIN)
+    patterns.includes('-') || patterns.includes(STDIN)
       ? new Set([STDIN])
-      : expandFileGlobs(baseDir, globsOrPaths, ignore);
+      : expandFileGlobs(baseDir, patterns, ignore);
 
   return new FilePathArray(...files);
 }
@@ -97,9 +94,6 @@ export function expandFileGlobs(
     }
 
     const globResults = glob(baseDir, pattern, excludePaths);
-    if (!globResults || globResults.length === 0) {
-      throw new NoMatchingFilesError(`No files matching the pattern were found: "${pattern}"`);
-    }
 
     for (const filePath of globResults) {
       result.add(filePath);

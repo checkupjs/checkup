@@ -44,15 +44,15 @@ describe('getFilePaths', function () {
 
   describe('basic', function () {
     it('returns all files except exclusions when no patterns are provided', function () {
-      let filteredFiles = filterFilePathResults(getFilePaths(project.baseDir));
+      let filteredFiles = filterFilePathResults(project.baseDir, getFilePaths(project.baseDir));
 
       expect(filteredFiles).toEqual([
-        '/bar/index.js',
-        '/baz/index.js',
-        '/baz/nested/foo.js',
-        '/foo/index.hbs',
         '/index.js',
         '/package.json',
+        '/bar/index.js',
+        '/baz/index.js',
+        '/foo/index.hbs',
+        '/baz/nested/foo.js',
         '/someFolder/anotherFolder/goo.js',
         '/someFolder/anotherFolder/shoe.js',
       ]);
@@ -62,27 +62,32 @@ describe('getFilePaths', function () {
 
     it('returns all files when no patterns are provided and a base path other than "." is provided', function () {
       let files = getFilePaths(`${project.baseDir}/baz`);
-      expect(filterFilePathResults(files)).toEqual(['/baz/index.js', '/baz/nested/foo.js']);
+      expect(filterFilePathResults(project.baseDir, files)).toEqual([
+        '/baz/index.js',
+        '/baz/nested/foo.js',
+      ]);
     });
 
     it('filterByGlob works', function () {
       let files = getFilePaths(project.baseDir);
 
-      expect(filterFilePathResults(files.filterByGlob('**/*.hbs'))).toEqual(['/foo/index.hbs']);
+      expect(filterFilePathResults(project.baseDir, files.filterByGlob('**/*.hbs'))).toEqual([
+        '/foo/index.hbs',
+      ]);
     });
 
     it('handles a file path being passed in', function () {
       let files = getFilePaths(project.baseDir, ['bar/index.js']);
 
-      expect(filterFilePathResults(files)).toEqual(['/bar/index.js']);
+      expect(filterFilePathResults(project.baseDir, files)).toEqual(['bar/index.js']);
     });
 
     it('handles a folder being passed in', function () {
       let files = getFilePaths(project.baseDir, ['someFolder/']);
 
-      expect(filterFilePathResults(files)).toEqual([
-        '/someFolder/anotherFolder/goo.js',
-        '/someFolder/anotherFolder/shoe.js',
+      expect(filterFilePathResults(project.baseDir, files)).toEqual([
+        'someFolder/anotherFolder/goo.js',
+        'someFolder/anotherFolder/shoe.js',
       ]);
     });
   });
@@ -91,37 +96,38 @@ describe('getFilePaths', function () {
     it('resolves a glob pattern', function () {
       let files = getFilePaths(project.baseDir, ['**/*.hbs']);
 
-      expect(filterFilePathResults(files)).toEqual(['/foo/index.hbs']);
+      expect(filterFilePathResults(project.baseDir, files)).toEqual(['foo/index.hbs']);
     });
 
     it('handles a mixture of globs and folders being passed in', function () {
       let files = getFilePaths(project.baseDir, ['someFolder/', '**/*.hbs']);
 
-      expect(filterFilePathResults(files)).toEqual([
-        '/someFolder/anotherFolder/goo.js',
-        '/someFolder/anotherFolder/shoe.js',
-        '/foo/index.hbs',
+      expect(filterFilePathResults(project.baseDir, files)).toEqual([
+        'someFolder/anotherFolder/goo.js',
+        'someFolder/anotherFolder/shoe.js',
+        'foo/index.hbs',
       ]);
     });
 
     it('resolves a glob pattern when a base pattern other than "." is provided', function () {
       let files = getFilePaths(project.baseDir, ['*']);
 
-      expect(filterFilePathResults(files)).toEqual(['/index.js', '/package.json']);
+      expect(filterFilePathResults(project.baseDir, files)).toEqual(['index.js', 'package.json']);
     });
 
     it('respects a glob ignore option', function () {
-      let files = getFilePaths(`${project.baseDir}/baz`, ['**']);
+      let baseDir = `${project.baseDir}/baz`;
+      let files = getFilePaths(baseDir, ['**']);
 
-      expect(filterFilePathResults(files)).toEqual(['/baz/index.js', '/baz/nested/foo.js']);
+      expect(filterFilePathResults(baseDir, files)).toEqual(['index.js', 'nested/foo.js']);
     });
   });
 });
 
-function filterFilePathResults(filePaths: string[]) {
+function filterFilePathResults(baseDir: string, filePaths: string[]) {
   return new FilePathArray(
     ...filePaths.map((filePath) => {
-      return filePath.split(APP_NAME)[1];
+      return filePath.includes(baseDir) ? filePath.split(baseDir).pop()! : filePath;
     })
   );
 }
