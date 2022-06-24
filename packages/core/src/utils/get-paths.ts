@@ -8,6 +8,7 @@ import isGlob from 'is-glob';
 import micromatch from 'micromatch';
 import { globbySync, Options } from 'globby';
 import { FilePathArray } from './file-path-array.js';
+import { toAbsolute } from './path.js';
 
 const STDIN = '/dev/stdin';
 
@@ -59,10 +60,7 @@ export function getFilePaths(
 ): FilePathArray {
   let files: Set<string>;
   let ignore = [...excludePaths, ...PATHS_TO_IGNORE];
-  let patterns =
-    globsOrPaths.length === 0 || (globsOrPaths.length === 1 && globsOrPaths[0] === '.')
-      ? [baseDir]
-      : globsOrPaths;
+  let patterns = globsOrPaths.length === 0 ? ['.'] : globsOrPaths;
 
   files =
     patterns.includes('-') || patterns.includes(STDIN)
@@ -87,7 +85,7 @@ export function expandFileGlobs(
       let isIgnored = micromatch.isMatch(pattern, excludePaths);
 
       if (!isIgnored) {
-        result.add(pattern);
+        result.add(toAbsolute(baseDir, pattern));
       }
 
       continue;
@@ -96,7 +94,7 @@ export function expandFileGlobs(
     const globResults = glob(baseDir, pattern, excludePaths);
 
     for (const filePath of globResults) {
-      result.add(filePath);
+      result.add(toAbsolute(baseDir, filePath));
     }
   }
 
