@@ -1,13 +1,15 @@
-import { join, resolve } from 'path';
-import { existsSync, statSync } from 'fs';
+import { resolve } from 'path';
+import { PathLike, statSync } from 'fs';
 import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
 import { fileURLToPath } from 'url';
 import esMain from 'es-main';
 
 import isGlob from 'is-glob';
 import micromatch from 'micromatch';
-import walkSync from 'walk-sync';
+import { globbySync, Options } from 'globby';
 import { FilePathArray } from './file-path-array.js';
+
+const STDIN = '/dev/stdin';
 
 const PATHS_TO_IGNORE: string[] = [
   '**/node_modules/**',
@@ -50,103 +52,70 @@ export function getFilePathsAsync(
   });
 }
 
-/**
- * Get the file paths to run on.
- *
- * @param {string} baseDir - The base directory
- * @param {string[]} [globsOrPaths=[]] - A list of globs or paths
- * @param {string[]} [excludePaths=[]] - A list of paths to exclude
- * @returns {FilePathArray} - A file path array
- */
 export function getFilePaths(
   baseDir: string,
   globsOrPaths: string[] = [],
   excludePaths: string[] = []
 ): FilePathArray {
-  let mergedPathsToIgnore = [...excludePaths, ...PATHS_TO_IGNORE];
+  let files: Set<string>;
+  let ignore = [...excludePaths, ...PATHS_TO_IGNORE];
+  let patterns =
+    globsOrPaths.length === 0 || (globsOrPaths.length === 1 && globsOrPaths[0] === '.')
+      ? [baseDir]
+      : globsOrPaths;
 
-  if (globsOrPaths.length > 0) {
-    return expandGlobsOrPaths(baseDir, globsOrPaths, mergedPathsToIgnore);
-  }
+  files =
+    patterns.includes('-') || patterns.includes(STDIN)
+      ? new Set([STDIN])
+      : expandFileGlobs(baseDir, patterns, ignore);
 
-  const allFiles: string[] = walkSync(baseDir, {
-    ignore: mergedPathsToIgnore,
-    directories: false,
-    globOptions: { dot: true },
-  });
-
-  return resolveFilePaths(baseDir, allFiles);
+  return new FilePathArray(...files);
 }
 
-/**
- * Expands globs or paths
- *
- * @param {string} baseDir - The base directory
- * @param {string[]} [globsOrPaths=[]] - A list of globs or paths
- * @param {string[]} [excludePaths=[]] - A list of paths to exclude
- * @returns {FilePathArray} - A file path array
- */
-function expandGlobsOrPaths(
+export function expandFileGlobs(
   baseDir: string,
   globsOrPaths: string[],
-  excludePaths: string[]
-): FilePathArray {
-  return new FilePathArray(
-    ...globsOrPaths.flatMap((globOrPath) => {
-      let isPathGlob = isGlob(globOrPath);
-      let pathExists = existsSync(join(baseDir, globOrPath));
-      let isLiteralPath = !isPathGlob && pathExists && statSync(join(baseDir, globOrPath)).isFile();
+  excludePaths: string[],
+  glob = executeGlobby
+) {
+  let result = new Set<string>();
 
-      if (isLiteralPath) {
-        let isIgnored = micromatch.isMatch(globOrPath, excludePaths);
+  for (const pattern of globsOrPaths) {
+    let isLiteralPath = !isGlob(pattern) && isFile(resolve(baseDir, pattern));
 
-        if (!isIgnored) {
-          return resolveFilePaths(baseDir, [globOrPath]);
-        }
+    if (isLiteralPath) {
+      let isIgnored = micromatch.isMatch(pattern, excludePaths);
 
-        return [];
+      if (!isIgnored) {
+        result.add(pattern);
       }
 
-      if (isPathGlob) {
-        let expandedGlob = walkSync(baseDir, {
-          globs: [globOrPath],
-          directories: false,
-          ignore: excludePaths,
-        }) as string[];
+      continue;
+    }
 
-        return resolveFilePaths(baseDir, expandedGlob);
-      }
+    const globResults = glob(baseDir, pattern, excludePaths);
 
-      if (pathExists) {
-        let baseSubDir = join(baseDir, globOrPath);
-        let expandedFolder = walkSync(baseSubDir, {
-          directories: false,
-          ignore: excludePaths,
-        }) as string[];
+    for (const filePath of globResults) {
+      result.add(filePath);
+    }
+  }
 
-        return resolveFilePaths(baseSubDir, expandedFolder);
-      }
-
-      return [];
-    })
-  );
+  return result;
 }
 
-/**
- * Resvolves file paths against the base directory
- *
- * @param {string} baseDir - The base directory
- * @param {string[]} filePaths - A list of file paths
- * @returns {FilePathArray} - A file path array
- */
-function resolveFilePaths(baseDir: string, filePaths: string[]): FilePathArray {
-  if (baseDir !== '.') {
-    let resolvedPaths = filePaths.map((filePath: string) => {
-      return join(resolve(baseDir), filePath);
-    });
-    return new FilePathArray(...resolvedPaths);
+function executeGlobby(baseDir: string, pattern: string | readonly string[], ignore: string[]) {
+  let options: Options = { cwd: baseDir, gitignore: true, ignore };
+
+  return globbySync(pattern, options);
+}
+
+function isFile(possibleFile: PathLike) {
+  try {
+    let stat = statSync(possibleFile);
+    return stat.isFile();
+  } catch {
+    return false;
   }
-  return new FilePathArray(...filePaths);
 }
 
 if (esMain(import.meta) && !isMainThread) {

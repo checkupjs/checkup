@@ -533,8 +533,8 @@ describe('cli-test', () => {
     result = await run(['run', '.']);
     let unfiltered = result.stdout;
 
-    expect(filtered).toContain('4 files analyzed');
-    expect(unfiltered).toContain('6 files analyzed');
+    expect(filtered).toContain('2 files analyzed');
+    expect(unfiltered).toContain('4 files analyzed');
   });
 
   it('can use the excludePaths provided by the command line', async () => {
@@ -566,12 +566,12 @@ describe('cli-test', () => {
 
     let hbsFiltered = result.stdout;
 
-    expect(hbsFiltered).toContain('4 files analyzed');
+    expect(hbsFiltered).toContain('2 files analyzed');
 
     result = await run(['run', '.']);
 
     let hbsJsFiltered = result.stdout;
-    expect(hbsJsFiltered).toContain('5 files analyzed');
+    expect(hbsJsFiltered).toContain('3 files analyzed');
   });
 
   it('can correctly report error when config contains invalid key', async () => {

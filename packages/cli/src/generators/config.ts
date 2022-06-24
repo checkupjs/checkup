@@ -1,4 +1,4 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 
 import { writeConfig, CheckupError, ErrorKind } from '@checkup/core';
 import BaseGenerator, { Works } from './base-generator.js';
