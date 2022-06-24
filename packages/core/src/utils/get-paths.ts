@@ -59,10 +59,7 @@ export function getFilePaths(
 ): FilePathArray {
   let files: Set<string>;
   let ignore = [...excludePaths, ...PATHS_TO_IGNORE];
-  let patterns =
-    globsOrPaths.length === 0 || (globsOrPaths.length === 1 && globsOrPaths[0] === '.')
-      ? [baseDir]
-      : globsOrPaths;
+  let patterns = globsOrPaths.length === 0 ? ['.'] : globsOrPaths;
 
   files =
     patterns.includes('-') || patterns.includes(STDIN)
