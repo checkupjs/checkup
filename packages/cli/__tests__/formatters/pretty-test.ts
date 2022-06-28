@@ -1,6 +1,4 @@
-import { resolve } from 'path';
-import { readJsonSync } from 'fs-extra';
-import { CheckupLogParser, dirname, FormatterOptions } from '@checkup/core';
+import { CheckupLogParser, FormatterOptions } from '@checkup/core';
 import stripAnsi from 'strip-ansi';
 import PrettyFormatter from '../../src/formatters/pretty.js';
 import { getFixture } from '../__utils__/get-fixture.js';

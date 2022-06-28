@@ -37,7 +37,7 @@ export default class SonarQubeFormatter implements Formatter {
     const issues = [];
 
     if (logParser.results.length > 0) {
-      let results = logParser.results.filter((result) => result.level! === 'none');
+      let results = logParser.results.filter((result) => result.level! !== 'none');
 
       for (const result of results) {
         let physicalLocation = getPhysicalLocation(result);

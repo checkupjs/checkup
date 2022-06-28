@@ -1,6 +1,4 @@
-import { resolve } from 'path';
-import { readJsonSync } from 'fs-extra';
-import { CheckupLogParser, dirname, FormatterOptions } from '@checkup/core';
+import { CheckupLogParser, FormatterOptions } from '@checkup/core';
 import { createTmpDir } from '@checkup/test-helpers';
 import stripAnsi from 'strip-ansi';
 import SummaryFormatter from '../../src/formatters/summary.js';

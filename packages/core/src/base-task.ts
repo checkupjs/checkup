@@ -172,10 +172,10 @@ export default abstract class BaseTask {
         )
       ) {
         location.physicalLocation.region = {
-          startLine: locationOptions.startLine ?? 0,
-          startColumn: locationOptions.startColumn ?? 0,
-          endLine: locationOptions.endLine ?? locationOptions.startLine ?? 0,
-          endColumn: locationOptions.endColumn ?? locationOptions.startColumn ?? 0,
+          startLine: locationOptions.startLine ?? 1,
+          startColumn: locationOptions.startColumn ?? 1,
+          endLine: locationOptions.endLine ?? locationOptions.startLine ?? 1,
+          endColumn: locationOptions.endColumn ?? locationOptions.startColumn ?? 1,
         };
       }
 
