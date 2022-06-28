@@ -93,6 +93,7 @@ export enum OutputFormat {
   summary = 'summary',
   json = 'json',
   pretty = 'pretty',
+  sonarqube = 'sonarqube',
 }
 
 export interface NormalizedLintResult {

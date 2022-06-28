@@ -16,6 +16,7 @@ import { Log } from 'sarif';
 import SummaryFormatter from './summary.js';
 import JsonFormatter from './json.js';
 import PrettyFormatter from './pretty.js';
+import SonarQubeFormatter from './sonarqube.js';
 
 const require = createRequire(import.meta.url);
 
@@ -51,6 +52,11 @@ export async function getFormatter(options: FormatterOptions) {
 
     case OutputFormat.pretty: {
       Formatter = PrettyFormatter;
+      break;
+    }
+
+    case OutputFormat.sonarqube: {
+      Formatter = SonarQubeFormatter;
       break;
     }
     default: {
