@@ -4,6 +4,7 @@ import { CheckupLogParser, dirname, FormatterOptions } from '@checkup/core';
 import { createTmpDir } from '@checkup/test-helpers';
 import stripAnsi from 'strip-ansi';
 import SummaryFormatter from '../../src/formatters/summary.js';
+import { getFixture } from '../__utils__/get-fixture.js';
 
 describe('Summary formatter', () => {
   let tmpDir: string;
@@ -18,7 +19,7 @@ describe('Summary formatter', () => {
   });
 
   it('can generate string from format', async () => {
-    const log = readJsonSync(resolve(dirname(import.meta), '../__fixtures__/checkup-result.sarif'));
+    const log = getFixture('checkup-result.sarif');
     const logParser = new CheckupLogParser(log);
     const options: FormatterOptions = {
       cwd: '',
@@ -42,7 +43,7 @@ describe('Summary formatter', () => {
   it('should render timing if CHECKUP_TIMING=1', async () => {
     process.env.CHECKUP_TIMING = '1';
 
-    const log = readJsonSync(resolve(dirname(import.meta), '../__fixtures__/checkup-result.sarif'));
+    const log = getFixture('checkup-result.sarif');
     const logParser = new CheckupLogParser(log);
     const options: FormatterOptions = {
       cwd: '',
