@@ -1,12 +1,11 @@
-import { resolve } from 'path';
-import { readJsonSync } from 'fs-extra';
-import { CheckupLogParser, dirname, FormatterOptions } from '@checkup/core';
+import { CheckupLogParser, FormatterOptions } from '@checkup/core';
 import stripAnsi from 'strip-ansi';
 import PrettyFormatter from '../../src/formatters/pretty.js';
+import { getFixture } from '../__utils__/get-fixture.js';
 
 describe('Pretty formatter', () => {
   it('can generate string from format', async () => {
-    const log = readJsonSync(resolve(dirname(import.meta), '../__fixtures__/checkup-result.sarif'));
+    const log = getFixture('checkup-result.sarif');
     const logParser = new CheckupLogParser(log);
     const options: FormatterOptions = {
       cwd: '',
@@ -284,7 +283,7 @@ describe('Pretty formatter', () => {
   it('should render timing if CHECKUP_TIMING=1', async () => {
     process.env.CHECKUP_TIMING = '1';
 
-    const log = readJsonSync(resolve(dirname(import.meta), '../__fixtures__/checkup-result.sarif'));
+    const log = getFixture('checkup-result.sarif');
     const logParser = new CheckupLogParser(log);
     const options: FormatterOptions = {
       cwd: '',
