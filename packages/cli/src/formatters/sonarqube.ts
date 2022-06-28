@@ -1,6 +1,6 @@
 import { CheckupLogParser, Formatter, FormatterOptions } from '@checkup/core';
 
-export default class JsonFormatter implements Formatter {
+export default class SonarQubeFormatter implements Formatter {
   shouldWrite = true;
   options: FormatterOptions;
 
