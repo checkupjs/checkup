@@ -18,7 +18,7 @@ const PATHS_TO_IGNORE: string[] = [
   '**/tests/dummy/**',
   'concat-stats-for/**',
   'dist/**',
-  'build/**',
+  '**/build/**',
   'vendor/**',
   '.git/**',
   '**/*.log',
