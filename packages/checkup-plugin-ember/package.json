@@ -1,6 +1,6 @@
 {
   "name": "checkup-plugin-ember",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0-beta.3",
   "description": "A checkup plugin for Ember project tasks",
   "keywords": [
     "checkup-plugin"
@@ -27,7 +27,7 @@
     "@babel/parser": "^7.18.0",
     "@babel/traverse": "^7.14.2",
     "@babel/types": "7.13.17",
-    "@checkup/core": "^2.0.0-beta.2",
+    "@checkup/core": "^2.0.0-beta.3",
     "debug": "^4.3.1",
     "ember-template-recast": "^5.0.3",
     "eslint-plugin-ember": "^10.6.1",
@@ -36,8 +36,8 @@
     "tslib": "^2"
   },
   "devDependencies": {
-    "@checkup/plugin": "^2.0.0-beta.2",
-    "@checkup/test-helpers": "^2.0.0-beta.2",
+    "@checkup/plugin": "^2.0.0-beta.3",
+    "@checkup/test-helpers": "^2.0.0-beta.3",
     "@types/lodash.kebabcase": "^4.1.6",
     "eslint": "^8.15.0",
     "fixturify-project": "^2.1.1",

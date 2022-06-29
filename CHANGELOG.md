@@ -10,6 +10,27 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v2.0.0-beta.3 (2022-06-29)
+
+#### :boom: Breaking Change
+* `cli`, `core`
+  * [#1243](https://github.com/checkupjs/checkup/pull/1243) Refactors path expansion for CLI inputs ([@scalvert](https://github.com/scalvert))
+
+#### :rocket: Enhancement
+* `core`
+  * [#1248](https://github.com/checkupjs/checkup/pull/1248) Recursively ignore build files ([@jalexakos](https://github.com/jalexakos))
+* `cli`, `core`
+  * [#1247](https://github.com/checkupjs/checkup/pull/1247) Adds formatter for SonarQube ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `core`
+  * [#1244](https://github.com/checkupjs/checkup/pull/1244) Revert to using '.' as default when no paths provided ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Josh Alexakos ([@jalexakos](https://github.com/jalexakos))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v2.0.0-beta.2 (2022-06-22)
 
 #### :boom: Breaking Change
