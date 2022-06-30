@@ -137,8 +137,8 @@ module.exports = {
     },
     {
       files: [
-        'packages/**/__tests__/**/*.ts',
-        'packages/**/__tests__/**/*.tsx',
+        'packages/**/tests/**/*.ts',
+        'packages/**/tests/**/*.tsx',
         'packages/test-helpers/**/*.ts',
       ],
       env: {
