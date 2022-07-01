@@ -5965,10 +5965,10 @@ ini@^1.3.4, ini@^1.3.5, ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
-ink-render-string@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/ink-render-string/-/ink-render-string-0.0.5.tgz#df4e7600d2a97e6a8cae80f89b178a3dc8c868d6"
-  integrity sha512-9J87hUcya0RF81uaE09QONTqNJbladgOOqczjY2jol2AyPnz+x9ub2xXuvA9lzMmmy38WwsatbQ6hujUkojNNQ==
+ink-render-string@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/ink-render-string/-/ink-render-string-0.1.0.tgz#09d7562d89a4ee2eb974bd92773a870a5fc6a9d4"
+  integrity sha512-XELD+/lHA2SaM0K7lrjlK4379ONwCbOwQqCZaliXDqznMvgz9EbGk+ZJUro8TKjmx/+bSDpI5XdO+2djUSkh5Q==
   dependencies:
     events "^3.3.0"
     ink "^3.0.9"
