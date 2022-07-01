@@ -10,6 +10,20 @@ Version 9 of Highlight.js has reached EOL and is no longer supported.
 Please upgrade or ask whatever dependency you are using to upgrade.
 https://github.com/highlightjs/highlight.js/issues/2877
 
+## v2.0.0 (2022-07-01)
+
+#### :bug: Bug Fix
+* `core`, `test-helpers`
+  * [#1251](https://github.com/checkupjs/checkup/pull/1251) Minor fixes to paths in test, adding missing dependency ([@scalvert](https://github.com/scalvert))
+
+#### :house: Internal
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `plugin`, `test-helpers`, `ui`
+  * [#1249](https://github.com/checkupjs/checkup/pull/1249) Renaming test directories ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v2.0.0-beta.3 (2022-06-29)
 
 #### :boom: Breaking Change
