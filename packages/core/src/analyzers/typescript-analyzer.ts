@@ -20,7 +20,7 @@ export default class TypeScriptAnalyzer extends AstAnalyzer<
   typeof traverse
 > {
   constructor(source: string) {
-    super(source, recast.parse, traverse, {
+    super(source, recast.parse, (<any>traverse).default, {
       parser: require('recast/parsers/typescript'),
     });
   }
