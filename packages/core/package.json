@@ -57,7 +57,7 @@
     "strip-ansi": "^6.0.0",
     "stylelint": "^14.8.5",
     "tmp": "^0.2.1",
-    "type-fest": "^1.0.2",
+    "type-fest": "^2.16.0",
     "walk-sync": "^3.0.0",
     "wrap-ansi": "^7.0.0",
     "yargs-unparser": "^2.0.0"
