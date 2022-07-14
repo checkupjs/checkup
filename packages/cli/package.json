@@ -29,7 +29,7 @@
   "dependencies": {
     "@babel/parser": "^7.18.0",
     "@babel/traverse": "^7.13.17",
-    "@babel/types": "7.13.17",
+    "@babel/types": "7.18.8",
     "@checkup/core": "2.0.0",
     "@checkup/ui": "2.0.0",
     "chalk": "^4.0.0",
