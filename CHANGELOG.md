@@ -1,3 +1,15 @@
+## v2.0.1 (2022-07-21)
+
+#### :bug: Bug Fix
+* `core`
+  * [#1256](https://github.com/checkupjs/checkup/pull/1256) Fixes @babel/traverse import ([@scalvert](https://github.com/scalvert))
+* `ui`
+  * [#1258](https://github.com/checkupjs/checkup/pull/1258) Fixes invalid usage of ink-render-string ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v2.0.0 (2022-07-01)
 
 
