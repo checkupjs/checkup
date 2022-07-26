@@ -39,7 +39,7 @@
     "@checkup/plugin": "^2.0.1",
     "@checkup/test-helpers": "^2.0.1",
     "@types/lodash.kebabcase": "^4.1.7",
-    "eslint": "^8.15.0",
+    "eslint": "^8.20.0",
     "fixturify-project": "^2.1.1",
     "rimraf": "^3.0.2"
   },
