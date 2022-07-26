@@ -5,8 +5,10 @@ import * as fixturify from 'fixturify';
 import Project from 'fixturify-project';
 import stringify from 'json-stable-stringify';
 import type { PackageJson } from 'type-fest';
-import { symlinkSync, mkdirpSync } from 'fs-extra';
+import fs from 'fs-extra';
 import walkSync from 'walk-sync';
+
+const { symlinkSync, mkdirpSync } = fs;
 
 const ROOT = process.cwd();
 
