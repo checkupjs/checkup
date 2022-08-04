@@ -17,7 +17,7 @@ type ListItem = {
 
 export const List: React.FC<{ taskResult: RuleResults }> = ({ taskResult }) => {
   let listItems = buildListData(taskResult);
-
+  debugger;
   return (
     <>
       <TaskDisplayName taskResult={taskResult} />

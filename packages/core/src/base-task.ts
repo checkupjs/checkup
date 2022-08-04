@@ -209,7 +209,7 @@ export default abstract class BaseTask {
   public addRule(additionalRuleProps?: TaskRule) {
     let taskRule;
     let ruleProps = {
-      id: this.taskName,
+      id: this.fullyQualifiedTaskName,
       shortDescription: {
         text: this.description,
       },
