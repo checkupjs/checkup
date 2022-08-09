@@ -11562,9 +11562,9 @@ type-detect@4.0.8, type-detect@^4.0.0, type-detect@^4.0.5, type-detect@^4.0.8:
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
 
 type-fest@^0.11.0, type-fest@^0.12.0, type-fest@^0.18.0, type-fest@^0.20.2, type-fest@^0.6.0, type-fest@^0.8.1, type-fest@^1.0.1, type-fest@^1.0.2, type-fest@^2.13.0, type-fest@^2.16.0, type-fest@^2.3.4, type-fest@^2.5.1:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.16.0.tgz#1250fbd64dafaf4c8e405e393ef3fb16d9651db2"
-  integrity sha512-qpaThT2HQkFb83gMOrdKVsfCN7LKxP26Yq+smPzY1FqoHRjqmjqHXA7n5Gkxi8efirtbeEUxzfEdePthQWCuHw==
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.18.0.tgz#fdef3a74e0a9e68ebe46054836650fb91ac3881e"
+  integrity sha512-pRS+/yrW5TjPPHNOvxhbNZexr2bS63WjrMU8a+VzEBhUi9Tz1pZeD+vQz3ut0svZ46P+SRqMEPnJmk2XnvNzTw==
 
 typedarray-to-buffer@^3.1.5:
   version "3.1.5"
@@ -12370,10 +12370,10 @@ yeoman-generator@^5.4.2:
     shelljs "^0.8.4"
     text-table "^0.2.0"
 
-yeoman-test@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/yeoman-test/-/yeoman-test-6.2.0.tgz#2699af950de58e0cda4b59d88649156eae03d9a5"
-  integrity sha512-KsCxwx4vPG2IwP7hG3U67WV04ymjbAmmy+BU06CrCku7U3sFFFq7LRoeGqrMRTsAqk/ff7gQJoc8sD43AgMX6Q==
+yeoman-test@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/yeoman-test/-/yeoman-test-6.3.0.tgz#c0b44562507dc40aa624719c8a24b2c49c2a196d"
+  integrity sha512-FpaLV5AiVFlYe4pizAB/QLWc+5BSyttk/TcFQfi/r8g/rz290uqEkV4waN3rHEvP/DCmoMNSJykKTZNWL2y07g==
   dependencies:
     inquirer "^8.0.0"
     lodash "^4.17.21"
