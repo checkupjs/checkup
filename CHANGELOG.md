@@ -1,3 +1,14 @@
+
+## v2.0.2 (2022-08-11)
+
+#### :bug: Bug Fix
+* `test-helpers`
+  * [#1279](https://github.com/checkupjs/checkup/pull/1279) Fixes destructure of fs-extra ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v2.0.1 (2022-07-21)
 
 #### :bug: Bug Fix

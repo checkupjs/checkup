@@ -1,6 +1,6 @@
 {
   "name": "@checkup/ui",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Checkup ui library",
   "bugs": "https://github.com/checkupjs/checkup/issues",
   "repository": "https://github.com/checkupjs/checkup",
@@ -13,7 +13,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@checkup/core": "2.0.1",
+    "@checkup/core": "2.0.2",
     "@types/react": "^17.0.15",
     "chalk": "^4.0.0",
     "events": "^3.3.0",
