@@ -141,12 +141,12 @@ export default abstract class BaseTask {
       message: {
         text: messageText,
       },
-      ruleId: this.taskName,
+      ruleId: this.fullyQualifiedTaskName,
       kind,
       level,
     };
 
-    if (!this._logBuilder.hasRule(this.taskName)) {
+    if (!this._logBuilder.hasRule(this.fullyQualifiedTaskName)) {
       throw new Error(
         'You must call `addRule` in your Task implemenation prior to calling `addResult`'
       );
@@ -232,7 +232,7 @@ export default abstract class BaseTask {
    * @param properties - A {PropertyBag} to be merged with the rule metadata's properties.
    */
   public addRuleProperties(properties: PropertyBag) {
-    let rule = this._logBuilder.getRule(this.taskName);
+    let rule = this._logBuilder.getRule(this.fullyQualifiedTaskName);
 
     if (!rule) {
       throw new Error(

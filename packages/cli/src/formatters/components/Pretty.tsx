@@ -23,7 +23,7 @@ const Pretty: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
     timings,
     tasksWithExceptions,
   } = logParser;
-
+  debugger;
   return (
     <Box flexDirection={'column'} marginTop={1} marginBottom={1}>
       <MetaData metaData={metaData} />
@@ -44,7 +44,7 @@ const TaskResults: React.FC<{
   let r: { Component: React.FC<any>; taskResult: RuleResults }[] = [];
 
   [...taskResults!.values()].forEach((taskResult) => {
-    let taskProps = taskResult!.rule?.properties!;
+    let taskProps = taskResult?.rule?.properties!;
     let componentName = taskProps.component.name;
 
     r.push({
