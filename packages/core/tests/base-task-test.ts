@@ -69,32 +69,32 @@ describe('BaseTask', () => {
       let run = fakeTask.context.logBuilder.currentRunBuilder.run;
 
       expect(run.tool.driver.rules).toMatchInlineSnapshot(`
-[
-  {
-    "id": "my-fake",
-    "properties": {
-      "category": "foo",
-      "taskDisplayName": "Fake",
-    },
-    "shortDescription": {
-      "text": "description",
-    },
-  },
-]
-`);
+        [
+          {
+            "id": "fake/my-fake",
+            "properties": {
+              "category": "foo",
+              "taskDisplayName": "Fake",
+            },
+            "shortDescription": {
+              "text": "description",
+            },
+          },
+        ]
+      `);
       expect(run.results).toMatchInlineSnapshot(`
-[
-  {
-    "kind": "informational",
-    "level": "note",
-    "message": {
-      "text": "The is a fake message",
-    },
-    "ruleId": "my-fake",
-    "ruleIndex": 0,
-  },
-]
-`);
+        [
+          {
+            "kind": "informational",
+            "level": "note",
+            "message": {
+              "text": "The is a fake message",
+            },
+            "ruleId": "fake/my-fake",
+            "ruleIndex": 0,
+          },
+        ]
+      `);
       for (let result of run.results) {
         expect(result).toBeValidSarifFor('result');
       }
@@ -112,41 +112,41 @@ describe('BaseTask', () => {
       let run = fakeTask.context.logBuilder.currentRunBuilder.run;
 
       expect(run.tool.driver.rules).toMatchInlineSnapshot(`
-[
-  {
-    "id": "my-fake",
-    "properties": {
-      "category": "foo",
-      "taskDisplayName": "Fake",
-    },
-    "shortDescription": {
-      "text": "description",
-    },
-  },
-]
-`);
-      expect(run.results).toMatchInlineSnapshot(`
-[
-  {
-    "kind": "informational",
-    "level": "note",
-    "locations": [
-      {
-        "physicalLocation": {
-          "artifactLocation": {
-            "uri": "path/to/file.js",
+        [
+          {
+            "id": "fake/my-fake",
+            "properties": {
+              "category": "foo",
+              "taskDisplayName": "Fake",
+            },
+            "shortDescription": {
+              "text": "description",
+            },
           },
-        },
-      },
-    ],
-    "message": {
-      "text": "The is a fake message",
-    },
-    "ruleId": "my-fake",
-    "ruleIndex": 0,
-  },
-]
-`);
+        ]
+      `);
+      expect(run.results).toMatchInlineSnapshot(`
+        [
+          {
+            "kind": "informational",
+            "level": "note",
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "path/to/file.js",
+                  },
+                },
+              },
+            ],
+            "message": {
+              "text": "The is a fake message",
+            },
+            "ruleId": "fake/my-fake",
+            "ruleIndex": 0,
+          },
+        ]
+      `);
       for (let result of run.results) {
         expect(result).toBeValidSarifFor('result');
       }
@@ -164,47 +164,47 @@ describe('BaseTask', () => {
       let run = fakeTask.context.logBuilder.currentRunBuilder.run;
 
       expect(run.tool.driver.rules).toMatchInlineSnapshot(`
-[
-  {
-    "id": "my-fake",
-    "properties": {
-      "category": "foo",
-      "taskDisplayName": "Fake",
-    },
-    "shortDescription": {
-      "text": "description",
-    },
-  },
-]
-`);
+        [
+          {
+            "id": "fake/my-fake",
+            "properties": {
+              "category": "foo",
+              "taskDisplayName": "Fake",
+            },
+            "shortDescription": {
+              "text": "description",
+            },
+          },
+        ]
+      `);
       expect(run.results).toMatchInlineSnapshot(`
-[
-  {
-    "kind": "informational",
-    "level": "note",
-    "locations": [
-      {
-        "physicalLocation": {
-          "artifactLocation": {
-            "uri": "path/to/file.js",
+        [
+          {
+            "kind": "informational",
+            "level": "note",
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "path/to/file.js",
+                  },
+                  "region": {
+                    "endColumn": 1,
+                    "endLine": 1,
+                    "startColumn": 1,
+                    "startLine": 1,
+                  },
+                },
+              },
+            ],
+            "message": {
+              "text": "The is a fake message",
+            },
+            "ruleId": "fake/my-fake",
+            "ruleIndex": 0,
           },
-          "region": {
-            "endColumn": 1,
-            "endLine": 1,
-            "startColumn": 1,
-            "startLine": 1,
-          },
-        },
-      },
-    ],
-    "message": {
-      "text": "The is a fake message",
-    },
-    "ruleId": "my-fake",
-    "ruleIndex": 0,
-  },
-]
-`);
+        ]
+      `);
       for (let result of run.results) {
         expect(result).toBeValidSarifFor('result');
       }
@@ -221,32 +221,32 @@ describe('BaseTask', () => {
     let run = fakeTask.context.logBuilder.currentRunBuilder.run;
 
     expect(run.tool.driver.rules).toMatchInlineSnapshot(`
-[
-  {
-    "id": "my-fake",
-    "properties": {
-      "category": "foo",
-      "taskDisplayName": "Fake",
-    },
-    "shortDescription": {
-      "text": "description",
-    },
-  },
-]
-`);
+      [
+        {
+          "id": "fake/my-fake",
+          "properties": {
+            "category": "foo",
+            "taskDisplayName": "Fake",
+          },
+          "shortDescription": {
+            "text": "description",
+          },
+        },
+      ]
+    `);
     expect(run.results).toMatchInlineSnapshot(`
-[
-  {
-    "kind": "informational",
-    "level": "note",
-    "message": {
-      "text": "The is a fake message",
-    },
-    "ruleId": "my-fake",
-    "ruleIndex": 0,
-  },
-]
-`);
+      [
+        {
+          "kind": "informational",
+          "level": "note",
+          "message": {
+            "text": "The is a fake message",
+          },
+          "ruleId": "fake/my-fake",
+          "ruleIndex": 0,
+        },
+      ]
+    `);
     for (let result of run.results) {
       expect(result).toBeValidSarifFor('result');
     }

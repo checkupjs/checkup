@@ -72,7 +72,7 @@ describe('BaseValidationTask', () => {
     let fakeTask = new FakeValidationTask('fake validation', context);
 
     expect(fakeTask.rule).toEqual({
-      id: 'my-fake-validation',
+      id: 'fake validation/my-fake-validation',
       shortDescription: {
         text: 'description',
       },
@@ -141,35 +141,35 @@ Map {
     await fakeTask.run();
 
     expect(fakeTask.log.runs[0].results).toMatchInlineSnapshot(`
-[
-  {
-    "kind": "pass",
-    "level": "none",
-    "message": {
-      "text": "Check the first thing",
-    },
-    "ruleId": "my-fake-validation",
-    "ruleIndex": 0,
-  },
-  {
-    "kind": "pass",
-    "level": "none",
-    "message": {
-      "text": "Check the second thing",
-    },
-    "ruleId": "my-fake-validation",
-    "ruleIndex": 0,
-  },
-  {
-    "kind": "fail",
-    "level": "error",
-    "message": {
-      "text": "Check the third thing",
-    },
-    "ruleId": "my-fake-validation",
-    "ruleIndex": 0,
-  },
-]
-`);
+      [
+        {
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "Check the first thing",
+          },
+          "ruleId": "fake validation/my-fake-validation",
+          "ruleIndex": 0,
+        },
+        {
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "Check the second thing",
+          },
+          "ruleId": "fake validation/my-fake-validation",
+          "ruleIndex": 0,
+        },
+        {
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Check the third thing",
+          },
+          "ruleId": "fake validation/my-fake-validation",
+          "ruleIndex": 0,
+        },
+      ]
+    `);
   });
 });
