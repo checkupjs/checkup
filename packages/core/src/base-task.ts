@@ -109,9 +109,8 @@ export default abstract class BaseTask {
       return;
     }
 
-    let config: ConfigValue<TaskConfig> | undefined = this.context.config.tasks[
-      this.fullyQualifiedTaskName
-    ];
+    let config: ConfigValue<TaskConfig> | undefined =
+      this.context.config.tasks[this.fullyQualifiedTaskName];
 
     let [enabled, taskConfig] = parseConfigTuple<TaskConfig>(config);
 

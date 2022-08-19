@@ -23,7 +23,6 @@ const Pretty: React.FC<{ logParser: CheckupLogParser }> = ({ logParser }) => {
     timings,
     tasksWithExceptions,
   } = logParser;
-  debugger;
   return (
     <Box flexDirection={'column'} marginTop={1} marginBottom={1}>
       <MetaData metaData={metaData} />

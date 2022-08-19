@@ -23,14 +23,13 @@ export default class BaseUIFormatter implements Formatter {
       const result = render(
         React.createElement(this.component, { logParser, options: this.options })
       );
-      debugger;
+
       if (result.output.includes('ERROR')) {
         throw result;
       } else {
         return result.output;
       }
     } catch (error) {
-      debugger;
       throw new CheckupError(ErrorKind.InvalidCustomComponent, {
         details: error,
       });
