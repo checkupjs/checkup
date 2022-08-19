@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Text } from 'ink';
 import { RuleResults } from '@checkup/core';
-import * as objectPath from 'object-path';
+import objectPath from 'object-path';
 import startCase from 'lodash.startcase';
 import { TaskDisplayName } from '../components/TaskDisplayName.js';
 import { getOptions } from '../get-options.js';
