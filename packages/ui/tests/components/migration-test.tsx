@@ -10,8 +10,7 @@ const TASK_RESULT: RuleResults = {
   rule: {
     id: 'ember-octane-migration-status',
     shortDescription: {
-      text:
-        'Tracks the migration status when moving from Ember Classic to Ember Octane in an Ember.js project',
+      text: 'Tracks the migration status when moving from Ember Classic to Ember Octane in an Ember.js project',
     },
     properties: {
       taskDisplayName: 'Ember Octane Migration Status',
@@ -35,8 +34,7 @@ const TASK_RESULT: RuleResults = {
   results: [
     {
       message: {
-        text:
-          'Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
+        text: 'Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
       },
       ruleId: 'ember-octane-migration-status',
       kind: 'review',
@@ -67,8 +65,7 @@ const TASK_RESULT: RuleResults = {
     },
     {
       message: {
-        text:
-          'Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
+        text: 'Octane | Native Classes : Use native JS classes to extend the built-in classes provided by Ember. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-properties__js-boilerplate',
       },
       ruleId: 'ember-octane-migration-status',
       kind: 'review',
@@ -99,8 +96,7 @@ const TASK_RESULT: RuleResults = {
     },
     {
       message: {
-        text:
-          'Octane | Glimmer Components : Use native DOM APIs over jQuery. More info: https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-jquery.md',
+        text: 'Octane | Glimmer Components : Use native DOM APIs over jQuery. More info: https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-jquery.md',
       },
       ruleId: 'ember-octane-migration-status',
       kind: 'review',
@@ -131,8 +127,7 @@ const TASK_RESULT: RuleResults = {
     },
     {
       message: {
-        text:
-          'Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name',
+        text: 'Octane | Tagless Components : Use tagless components to avoid unnecessary outer element wrapping. More info: https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/#component-templates__tag-name',
       },
       ruleId: 'ember-octane-migration-status',
       kind: 'review',

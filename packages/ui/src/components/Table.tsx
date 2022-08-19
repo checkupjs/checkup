@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { default as InkTable } from 'ink-table';
 import { Box } from 'ink';
-import * as objectPath from 'object-path';
+import objectPath from 'object-path';
 import { Result } from 'sarif';
 import { RuleResults } from '@checkup/core';
 import { TaskDisplayName } from '../components/TaskDisplayName.js';

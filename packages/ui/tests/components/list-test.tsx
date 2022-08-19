@@ -35,8 +35,7 @@ describe('List', () => {
       results: [
         {
           message: {
-            text:
-              'Do not use `action` as <button {{action ...}} />. Instead, use the `on` modifier and `fn` helper.',
+            text: 'Do not use `action` as <button {{action ...}} />. Instead, use the `on` modifier and `fn` helper.',
           },
           ruleId: 'ember-template-lint-summary',
           kind: 'review',

@@ -30,54 +30,54 @@ describe('lines-of-code-task', () => {
     ).run();
 
     expect(result).toMatchInlineSnapshot(`
-[
-  {
-    "kind": "informational",
-    "level": "note",
-    "locations": [
-      {
-        "physicalLocation": {
-          "artifactLocation": {
-            "uri": "index.hbs",
+      [
+        {
+          "kind": "informational",
+          "level": "note",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "index.hbs",
+                },
+              },
+            },
+          ],
+          "message": {
+            "text": "Lines of code count for index.hbs - total lines: 1",
           },
-        },
-      },
-    ],
-    "message": {
-      "text": "Lines of code count for index.hbs - total lines: 1",
-    },
-    "properties": {
-      "extension": "hbs",
-      "filePath": "index.hbs",
-      "lines": 1,
-    },
-    "ruleId": "lines-of-code",
-    "ruleIndex": 0,
-  },
-  {
-    "kind": "informational",
-    "level": "note",
-    "locations": [
-      {
-        "physicalLocation": {
-          "artifactLocation": {
-            "uri": "index.js",
+          "properties": {
+            "extension": "hbs",
+            "filePath": "index.hbs",
+            "lines": 1,
           },
+          "ruleId": "javascript/lines-of-code",
+          "ruleIndex": 0,
         },
-      },
-    ],
-    "message": {
-      "text": "Lines of code count for index.js - total lines: 1",
-    },
-    "properties": {
-      "extension": "js",
-      "filePath": "index.js",
-      "lines": 1,
-    },
-    "ruleId": "lines-of-code",
-    "ruleIndex": 0,
-  },
-]
-`);
+        {
+          "kind": "informational",
+          "level": "note",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "index.js",
+                },
+              },
+            },
+          ],
+          "message": {
+            "text": "Lines of code count for index.js - total lines: 1",
+          },
+          "properties": {
+            "extension": "js",
+            "filePath": "index.js",
+            "lines": 1,
+          },
+          "ruleId": "javascript/lines-of-code",
+          "ruleIndex": 0,
+        },
+      ]
+    `);
   });
 });
