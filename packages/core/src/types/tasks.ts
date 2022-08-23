@@ -91,6 +91,7 @@ export interface TaskContext {
 
 export enum OutputFormat {
   summary = 'summary',
+  stylish = 'stylish',
   json = 'json',
   pretty = 'pretty',
   sonarqube = 'sonarqube',
