@@ -1,5 +1,5 @@
 import objectPath from 'object-path';
-import { Log, Result } from 'sarif';
+import { Log, ReportingDescriptor, Result } from 'sarif';
 import { RuleResults } from '../types/checkup-log.js';
 import { TaskName } from '../types/tasks.js';
 
@@ -133,7 +133,11 @@ export default class CheckupLogParser {
     return this._resultsByFile;
   }
 
-  getPropertyValue(object: object, path: string) {
+  getRule(id: string): ReportingDescriptor | undefined {
+    return this.rules.find((rule) => rule.id === id);
+  }
+
+  getPropertyValue(object: any, path: string) {
     return objectPath.get(object, path);
   }
 }
