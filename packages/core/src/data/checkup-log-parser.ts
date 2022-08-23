@@ -1,4 +1,5 @@
-import { Log } from 'sarif';
+import objectPath from 'object-path';
+import { Log, ReportingDescriptor, Result } from 'sarif';
 import { RuleResults } from '../types/checkup-log.js';
 import { TaskName } from '../types/tasks.js';
 
@@ -18,7 +19,8 @@ import { TaskName } from '../types/tasks.js';
  * @class CheckupLogParser
  */
 export default class CheckupLogParser {
-  _resultsByRule!: Map<TaskName, RuleResults>;
+  private _resultsByRule!: Map<TaskName, RuleResults>;
+  private _resultsByFile!: Map<string, Result[]>;
 
   constructor(private _log: Log) {}
 
@@ -108,5 +110,34 @@ export default class CheckupLogParser {
     }
 
     return this._resultsByRule;
+  }
+
+  get resultsByFile(): Map<string, Result[]> {
+    if (!this._resultsByFile) {
+      this._resultsByFile = new Map<string, Result[]>();
+
+      this.run.results?.forEach((result) => {
+        let uri = this.getPropertyValue(
+          result,
+          'locations.0.physicalLocation.artifactLocation.uri'
+        );
+
+        if (!this._resultsByFile.has(uri)) {
+          this._resultsByFile.set(uri, []);
+        }
+
+        this._resultsByFile.get(uri)?.push(result);
+      });
+    }
+
+    return this._resultsByFile;
+  }
+
+  getRule(id: string): ReportingDescriptor | undefined {
+    return this.rules.find((rule) => rule.id === id);
+  }
+
+  getPropertyValue(object: any, path: string) {
+    return objectPath.get(object, path);
   }
 }

@@ -50,6 +50,7 @@
     "shorthash": "^0.0.2",
     "stdout-stderr": "^0.1.13",
     "strip-ansi": "^6.0.0",
+    "text-table": "^0.2.0",
     "tmp": "^0.2.1",
     "tslib": "^2",
     "v8-compile-cache": "^2.3.0",

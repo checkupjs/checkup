@@ -17,6 +17,7 @@ import SummaryFormatter from './summary.js';
 import JsonFormatter from './json.js';
 import PrettyFormatter from './pretty.js';
 import SonarQubeFormatter from './sonarqube.js';
+import StylishFormatter from './stylish.js';
 
 const require = createRequire(import.meta.url);
 
@@ -42,6 +43,11 @@ export async function getFormatter(options: FormatterOptions) {
   switch (mergedOptions.format) {
     case OutputFormat.summary: {
       Formatter = SummaryFormatter;
+      break;
+    }
+
+    case OutputFormat.stylish: {
+      Formatter = StylishFormatter;
       break;
     }
 
