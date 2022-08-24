@@ -1,4 +1,19 @@
 
+
+## v2.0.3 (2022-08-24)
+
+#### :rocket: Enhancement
+* `cli`, `core`
+  * [#1294](https://github.com/checkupjs/checkup/pull/1294) Adding stylish formatter to replace pretty formatter (deprecated) ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `ui`
+  * [#1292](https://github.com/checkupjs/checkup/pull/1292) Uses fully qualified task name everywhere ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 1
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v2.0.2 (2022-08-11)
 
 #### :bug: Bug Fix
