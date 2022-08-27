@@ -3,7 +3,7 @@ import { createRequire } from 'module';
 import { existsSync, mkdirSync } from 'fs';
 import Generator from 'yeoman-generator';
 import chalk from 'chalk';
-import { extend } from 'lodash';
+import _ from 'lodash';
 import { getPackageJson } from '@checkup/core';
 
 const require = createRequire(import.meta.url);
@@ -52,7 +52,7 @@ function isInsideProject(path: string): boolean {
   return existsSync(join(path, '.checkuprc'));
 }
 
-extend(Generator.prototype, require('yeoman-generator/lib/actions/install'));
+_.extend(Generator.prototype, require('yeoman-generator/lib/actions/install'));
 
 export default abstract class GeneratorBase extends Generator {
   abstract works: Works;

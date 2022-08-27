@@ -53,11 +53,10 @@
     "text-table": "^0.2.0",
     "tmp": "^0.2.1",
     "tslib": "^2",
-    "v8-compile-cache": "^2.3.0",
     "wrap-ansi": "^7.0.0",
     "yargs": "^16.2.0",
     "yargs-unparser": "^2.0.0",
-    "yeoman-environment": "^3.9.1",
+    "yeoman-environment": "^3.10.0",
     "yeoman-generator": "^5.4.2"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { createRequire } from 'module';
-import * as debug from 'debug';
+import debug from 'debug';
 import { CheckupError, ErrorKind } from '@checkup/core';
 import yeomanEnv from 'yeoman-environment';
 import fs from 'fs-extra';
@@ -49,6 +49,7 @@ export default class Generator {
     try {
       // @ts-ignore
       await env.run(`checkup:${type}`, generatorOptions, null);
+
       // this is ugly, but I couldn't find the correct configuration to ignore
       // generating the yeoman repository directory in the cwd
       let yoRepoPath = join(this.options.path, '.yo-repository');
