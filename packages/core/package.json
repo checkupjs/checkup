@@ -38,7 +38,7 @@
     "dirname-filename-esm": "^1.1.1",
     "ember-template-lint": "^4.8.0",
     "ember-template-recast": "^5.0.3",
-    "es-main": "^1.0.2",
+    "es-main": "^1.2.0",
     "eslint": "^8.22.0",
     "fs-extra": "^9.1.0",
     "globby": "^13.1.2",
