@@ -40,7 +40,7 @@
     "@checkup/test-helpers": "^2.0.3",
     "@types/lodash.kebabcase": "^4.1.7",
     "eslint": "^8.22.0",
-    "fixturify-project": "^2.1.1",
+    "fixturify-project": "^5.0.3",
     "rimraf": "^3.0.2"
   },
   "engines": {
