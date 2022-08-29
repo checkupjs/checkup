@@ -29,14 +29,14 @@
     "ember-template-recast": "^5.0.3",
     "npm-check": "^5.9.2",
     "recast": "^0.20.5",
-    "semver": "^7.3.5",
+    "semver": "^7.3.7",
     "sloc": "^0.2.1",
     "tslib": "^2"
   },
   "devDependencies": {
     "@checkup/plugin": "^2.0.3",
     "@checkup/test-helpers": "^2.0.3",
-    "@types/semver": "^7.3.9",
+    "@types/semver": "^7.3.12",
     "fixturify-project": "^2.1.1",
     "rimraf": "^3.0.2"
   },
