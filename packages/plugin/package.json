@@ -25,7 +25,7 @@
     "@babel/traverse": "^7.13.17",
     "@babel/types": "7.18.8",
     "@checkup/core": "^2.0.3",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.1.0",
     "recast": "^0.20.5"
   },
   "engines": {
