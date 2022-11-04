@@ -1,5 +1,5 @@
 import { RuleTester } from 'eslint';
-import rule from '../../src/eslint/rules/test-types.cjs';
+import rule from '../../src/eslint/rules/test-types.js';
 
 const ruleTester = new RuleTester();
 

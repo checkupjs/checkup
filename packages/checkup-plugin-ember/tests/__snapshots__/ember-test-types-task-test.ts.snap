@@ -1,0 +1,342 @@
+// Vitest Snapshot v1
+
+exports[`ember-test-types-task > returns all the test types found in the app and outputs to json 1`] = `
+[
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/application/someFolder/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 5,
+            "startColumn": 9,
+            "startLine": 5,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "application test found using test",
+    },
+    "properties": {
+      "testMethod": "test",
+      "testType": "application",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/application/someFolder/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 6,
+            "startColumn": 9,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "application test found using skip",
+    },
+    "properties": {
+      "testMethod": "skip",
+      "testType": "application",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/application/someFolder/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 7,
+            "startColumn": 9,
+            "startLine": 7,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "application test found using skip",
+    },
+    "properties": {
+      "testMethod": "skip",
+      "testType": "application",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/application/tests/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 5,
+            "startColumn": 9,
+            "startLine": 5,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "application test found using test",
+    },
+    "properties": {
+      "testMethod": "test",
+      "testType": "application",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/application/tests/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 6,
+            "startColumn": 9,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "application test found using skip",
+    },
+    "properties": {
+      "testMethod": "skip",
+      "testType": "application",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/application/tests/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 7,
+            "startColumn": 9,
+            "startLine": 7,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "application test found using skip",
+    },
+    "properties": {
+      "testMethod": "skip",
+      "testType": "application",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/rendering/tests/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 5,
+            "startColumn": 9,
+            "startLine": 5,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "rendering test found using test",
+    },
+    "properties": {
+      "testMethod": "test",
+      "testType": "rendering",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/rendering/tests/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 6,
+            "startColumn": 9,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "rendering test found using skip",
+    },
+    "properties": {
+      "testMethod": "skip",
+      "testType": "rendering",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/rendering/tests/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 7,
+            "startColumn": 9,
+            "startLine": 7,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "rendering test found using skip",
+    },
+    "properties": {
+      "testMethod": "skip",
+      "testType": "rendering",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/unit/tests/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 5,
+            "startColumn": 9,
+            "startLine": 5,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "unit test found using test",
+    },
+    "properties": {
+      "testMethod": "test",
+      "testType": "unit",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/unit/tests/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 6,
+            "startColumn": 9,
+            "startLine": 6,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "unit test found using skip",
+    },
+    "properties": {
+      "testMethod": "skip",
+      "testType": "unit",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+  {
+    "kind": "informational",
+    "level": "note",
+    "locations": [
+      {
+        "physicalLocation": {
+          "artifactLocation": {
+            "uri": "addon/unit/tests/my-component-test.js",
+          },
+          "region": {
+            "endColumn": 13,
+            "endLine": 7,
+            "startColumn": 9,
+            "startLine": 7,
+          },
+        },
+      },
+    ],
+    "message": {
+      "text": "unit test found using skip",
+    },
+    "properties": {
+      "testMethod": "skip",
+      "testType": "unit",
+    },
+    "ruleId": "ember/ember-test-types",
+    "ruleIndex": 0,
+  },
+]
+`;

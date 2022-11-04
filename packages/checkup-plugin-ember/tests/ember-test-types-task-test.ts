@@ -116,5 +116,6 @@ describe('ember-test-types-task', () => {
     for (let result of results) {
       expect(result).toBeValidSarifFor('result');
     }
+    expect(results).toMatchSnapshot();
   });
 });
