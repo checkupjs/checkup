@@ -20,7 +20,8 @@
   "scripts": {
     "build": "tsc --build",
     "docs:generate": "checkup-plugin docs",
-    "test": "vitest run"
+    "test": "vitest run",
+    "copy:package": "cp ./src/eslint/rules/package.json ./lib/eslint/rules/package.json"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.17.0",

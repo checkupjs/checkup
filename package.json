@@ -10,7 +10,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc --build && yarn workspace @checkup/core build:copy-schema",
+    "build": "tsc --build && yarn workspace @checkup/core build:copy-schema && yarn workspace checkup-plugin-ember copy:package",
     "build:watch": "tsc --watch",
     "clean": "yarn clean:lib && tsc --build --clean",
     "clean:lib": "find packages -type d -name lib -not -path \"*/node_modules/*\" -exec rm -rf {} +",
