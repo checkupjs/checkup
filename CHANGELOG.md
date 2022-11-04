@@ -1,5 +1,19 @@
 
 
+
+## v2.0.4 (2022-11-04)
+
+#### :bug: Bug Fix
+* `checkup-plugin-ember`
+  * [#1310](https://github.com/checkupjs/checkup/pull/1310) [Checkup-2.0] Fix bug when loading test-types eslint rule ([@jsturgis](https://github.com/jsturgis))
+* `cli`, `core`
+  * [#1297](https://github.com/checkupjs/checkup/pull/1297) Fixes segfault in generators ([@scalvert](https://github.com/scalvert))
+
+#### Committers: 2
+- Jeff Sturgis ([@jsturgis](https://github.com/jsturgis))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v2.0.3 (2022-08-24)
 
 #### :rocket: Enhancement
