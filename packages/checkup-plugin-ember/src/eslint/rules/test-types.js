@@ -1,3 +1,4 @@
+/* eslint unicorn/prefer-module: "off" */
 module.exports = {
   create: function (context) {
     let testType = 'unit';
