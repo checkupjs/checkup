@@ -11,7 +11,10 @@ describe('ember-template-lint-disable-task', () => {
     project.files['index.hbs'] = `
     {{! template-lint-disable no-inline-styles }}
     <div style="color:blue">
-      <h1>Checkup</h1>
+      <h1
+        @onTrigger={{(global-helpers$noop)}}
+      >Checkup</h1>
+
       {{! template-lint-disable img-alt-attributes }}
       <img src="foo"/>
     </div>
