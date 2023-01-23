@@ -52,9 +52,15 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
   }
 
   private async runTemplateLint(): Promise<TemplateLintReport> {
-    let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
+    let templateLintablePaths = this.context.paths.filterByGlob([
+      '**/*.hbs',
+      '**/*.js',
+      '**/*.gjs',
+      '**/*.ts',
+      '**/*.gts',
+    ]);
 
-    return this.emberTemplateLintAnalyzer.analyze(hbsPaths);
+    return this.emberTemplateLintAnalyzer.analyze(templateLintablePaths);
   }
 
   async run(): Promise<Result[]> {

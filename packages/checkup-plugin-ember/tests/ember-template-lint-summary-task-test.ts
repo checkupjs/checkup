@@ -20,6 +20,44 @@ describe('ember-emplate-lint-summary-task', () => {
     </div>
     WHATEVER MAN
     `;
+    project.files['included-path.js'] = `
+      import { hbs } from 'ember-cli-htmlbars';
+      hbs\`
+        <div style="color:blue">
+          <h1>Checkup</h1>
+          <img src="foo"/>
+        </div>
+        WHATEVER MAN
+      \`;
+    `;
+    project.files['included-path.gjs'] = `
+      <template>
+        <div style="color:blue">
+          <h1>Checkup</h1>
+          <img src="foo"/>
+        </div>
+        WHATEVER MAN
+      </template>
+    `;
+    project.files['included-path.ts'] = `
+      import { hbs } from 'ember-cli-htmlbars';
+      hbs\`
+        <div style="color:blue">
+          <h1>Checkup</h1>
+          <img src="foo"/>
+        </div>
+        WHATEVER MAN
+      \`;
+    `;
+    project.files['included-path.gts'] = `
+      <template>
+        <div style="color:blue">
+          <h1>Checkup</h1>
+          <img src="foo"/>
+        </div>
+        WHATEVER MAN
+      </template>
+    `;
     project.files['excluded-path.hbs'] = `
     LALALALALALALA
     `;
@@ -89,7 +127,7 @@ describe('ember-emplate-lint-summary-task', () => {
     );
 
     expect(excludedPathsResults).toHaveLength(0);
-    expect(includedPathsResults).toHaveLength(4);
+    expect(includedPathsResults).toHaveLength(20);
   });
 
   it('returns correct action items if there are too many warnings or errors', async () => {
@@ -100,10 +138,10 @@ describe('ember-emplate-lint-summary-task', () => {
 [
   {
     "defaultThreshold": 20,
-    "details": "3 total errors",
-    "input": 3,
+    "details": "15 total errors",
+    "input": 15,
     "items": [
-      "Total template-lint errors: 3",
+      "Total template-lint errors: 15",
     ],
     "name": "reduce-template-lint-errors",
     "summary": "Reduce number of template-lint errors",
@@ -111,13 +149,13 @@ describe('ember-emplate-lint-summary-task', () => {
   },
   {
     "defaultThreshold": 20,
-    "details": "1 total warnings",
-    "input": 1,
+    "details": "5 total warnings",
+    "input": 5,
     "items": [
-      "Total template-lint warnings: 1",
+      "Total template-lint warnings: 5",
     ],
     "name": "reduce-template-lint-warnings",
-    "summary": "Reduce number of template-lin warnings",
+    "summary": "Reduce number of template-lint warnings",
     "taskName": "ember-template-lint-summary",
   },
 ]

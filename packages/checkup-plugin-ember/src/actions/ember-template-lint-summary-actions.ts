@@ -23,7 +23,7 @@ export function evaluateActions(taskResults: Result[], taskConfig: TaskConfig) {
   actionsEvaluator.add({
     taskName: 'ember-template-lint-summary',
     name: 'reduce-template-lint-warnings',
-    summary: 'Reduce number of template-lin warnings',
+    summary: 'Reduce number of template-lint warnings',
     details: `${warningCount} total warnings`,
     defaultThreshold: 20,
     items: [`Total template-lint warnings: ${warningCount}`],

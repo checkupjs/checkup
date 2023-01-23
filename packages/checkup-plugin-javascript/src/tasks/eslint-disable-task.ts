@@ -42,9 +42,14 @@ export default class EslintDisableTask extends BaseTask implements Task {
   }
 
   async run(): Promise<Result[]> {
-    let jsPaths = this.context.paths.filterByGlob('**/*.js');
+    let esLintablePaths = this.context.paths.filterByGlob([
+      '**/*.js',
+      '**/*.gjs',
+      '**/*.ts',
+      '**/*.gts',
+    ]);
     let eslintDisables: NormalizedLintResult[] = await this.getEslintDisables(
-      jsPaths,
+      esLintablePaths,
       this.context.options.cwd
     );
 

@@ -208,15 +208,26 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
   }
 
   private runEsLint(): Promise<LintResult[]> {
-    let jsPaths = this.context.paths.filterByGlob('**/*.js');
+    let esLintablePaths = this.context.paths.filterByGlob([
+      '**/*.js',
+      '**/*.gjs',
+      '**/*.ts',
+      '**/*.gts',
+    ]);
 
-    return this.eslintAnalyzer.analyze(jsPaths);
+    return this.eslintAnalyzer.analyze(esLintablePaths);
   }
 
   private async runTemplateLint(): Promise<TemplateLintReport> {
-    let hbsPaths = this.context.paths.filterByGlob('**/*.hbs');
+    let templateLintablePaths = this.context.paths.filterByGlob([
+      '**/*.hbs',
+      '**/*.js',
+      '**/*.gjs',
+      '**/*.ts',
+      '**/*.gts',
+    ]);
 
-    return this.emberTemplateLintAnalyzer.analyze(hbsPaths);
+    return this.emberTemplateLintAnalyzer.analyze(templateLintablePaths);
   }
 
   buildResults(results: LintResult[]): Result[] {
