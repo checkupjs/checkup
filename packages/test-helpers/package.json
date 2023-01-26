@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@checkup/core": "2.2.0",
-    "fixturify-project": "^2.1.1",
+    "fixturify-project": "^5.2.0",
     "fs-extra": "^10.1.0",
     "handlebars": "^4.7.7",
     "json-stable-stringify": "^1.0.1",

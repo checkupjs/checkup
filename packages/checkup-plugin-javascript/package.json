@@ -37,7 +37,7 @@
     "@checkup/plugin": "^2.2.0",
     "@checkup/test-helpers": "^2.2.0",
     "@types/semver": "^7.3.9",
-    "fixturify-project": "^2.1.1",
+    "fixturify-project": "^5.2.0",
     "rimraf": "^3.0.2"
   },
   "engines": {
