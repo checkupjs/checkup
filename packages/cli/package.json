@@ -1,6 +1,6 @@
 {
   "name": "@checkup/cli",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A health checkup for your project",
   "keywords": [
     "checkup"
@@ -30,8 +30,8 @@
     "@babel/parser": "^7.18.0",
     "@babel/traverse": "^7.13.17",
     "@babel/types": "7.18.8",
-    "@checkup/core": "2.1.0",
-    "@checkup/ui": "2.1.0",
+    "@checkup/core": "2.2.0",
+    "@checkup/ui": "2.2.0",
     "chalk": "^4.0.0",
     "clean-stack": "^4.2.0",
     "convert-hrtime": "^3.0.0",
@@ -60,7 +60,7 @@
     "yeoman-generator": "^5.4.2"
   },
   "devDependencies": {
-    "@checkup/test-helpers": "2.1.0",
+    "@checkup/test-helpers": "2.2.0",
     "execa": "^5.0.0",
     "yeoman-test": "^6.3.0"
   },

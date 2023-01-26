@@ -1,6 +1,17 @@
 
 
 
+
+## v2.2.0 (2023-01-26)
+
+#### :rocket: Enhancement
+* `checkup-plugin-ember`, `checkup-plugin-javascript`
+  * [#1319](https://github.com/checkupjs/checkup/pull/1319) Runs eslint and  ember-template-lint on additional supported file ext… ([@lin-ll](https://github.com/lin-ll))
+
+#### Committers: 1
+- Lucy Lin ([@lin-ll](https://github.com/lin-ll))
+
+
 ## v2.1.0 (2022-12-08)
 
 ## v2.0.5 (2022-11-29)

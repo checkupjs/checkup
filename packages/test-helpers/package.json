@@ -1,6 +1,6 @@
 {
   "name": "@checkup/test-helpers",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Checkup's test helper library",
   "homepage": "https://github.com/checkupjs/checkup",
   "bugs": "https://github.com/checkupjs/checkup/issues",
@@ -19,7 +19,7 @@
     "test": "echo \"No tests\""
   },
   "dependencies": {
-    "@checkup/core": "2.1.0",
+    "@checkup/core": "2.2.0",
     "fixturify-project": "^2.1.1",
     "fs-extra": "^10.1.0",
     "handlebars": "^4.7.7",
