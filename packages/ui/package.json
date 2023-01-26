@@ -23,7 +23,7 @@
     "ink-table": "^3.0.0",
     "ink-task-list": "^1.1.0",
     "lodash.startcase": "^4.4.0",
-    "log-symbols": "^4.0.0",
+    "log-symbols": "^5.1.0",
     "object-path": "^0.11.8",
     "react": "^17.0.2",
     "strip-ansi": "^6.0.0"
