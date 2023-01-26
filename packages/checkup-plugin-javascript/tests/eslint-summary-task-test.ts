@@ -19,6 +19,24 @@ describe('eslint-summary-task', () => {
           name: whatever
         };
       }`;
+    project.files['included-path.gts'] = `function foo() {
+        var whatever = 'ESLint'
+        return {
+          name: whatever
+        };
+      }`;
+    project.files['included-path.ts'] = `function foo() {
+        var whatever = 'ESLint'
+        return {
+          name: whatever
+        };
+      }`;
+    project.files['included-path.gts'] = `function foo() {
+        var whatever = 'ESLint'
+        return {
+          name: whatever
+        };
+      }`;
     project.files['excluded-path.js'] = `function shmoo() {
         var whatever = 'ESLint'
         return {
@@ -90,7 +108,7 @@ describe('eslint-summary-task', () => {
     );
 
     expect(excludedPathsResults).toHaveLength(0);
-    expect(includedPathsResults).toHaveLength(2);
+    expect(includedPathsResults).toHaveLength(6);
   });
 
   it('returns correct action items if there are too many warnings or errors', async () => {
@@ -101,10 +119,10 @@ describe('eslint-summary-task', () => {
 [
   {
     "defaultThreshold": 20,
-    "details": "1 total errors",
-    "input": 1,
+    "details": "3 total errors",
+    "input": 3,
     "items": [
-      "Total eslint errors: 1",
+      "Total eslint errors: 3",
     ],
     "name": "reduce-eslint-errors",
     "summary": "Reduce number of eslint errors",
@@ -112,10 +130,10 @@ describe('eslint-summary-task', () => {
   },
   {
     "defaultThreshold": 20,
-    "details": "1 total warnings",
-    "input": 1,
+    "details": "3 total warnings",
+    "input": 3,
     "items": [
-      "Total eslint warnings: 1",
+      "Total eslint warnings: 3",
     ],
     "name": "reduce-eslint-warnings",
     "summary": "Reduce number of eslint warnings",

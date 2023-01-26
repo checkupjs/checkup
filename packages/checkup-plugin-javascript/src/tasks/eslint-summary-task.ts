@@ -62,7 +62,13 @@ export default class EslintSummaryTask extends BaseTask implements Task {
   }
 
   async run(): Promise<Result[]> {
-    let lintResults = await this.analyzer.analyze(this.context.paths.filterByGlob('**/*.js'));
+    let esLintablePaths = this.context.paths.filterByGlob([
+      '**/*.js',
+      '**/*.gjs',
+      '**/*.ts',
+      '**/*.gts',
+    ]);
+    let lintResults = await this.analyzer.analyze(esLintablePaths);
     let results = this.flattenLintResults(lintResults);
 
     results.forEach((result) => {
