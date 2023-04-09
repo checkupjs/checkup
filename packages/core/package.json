@@ -48,7 +48,7 @@
     "lodash.merge": "^4.6.2",
     "micromatch": "^4.0.2",
     "node-fetch": "^3.2.10",
-    "npm-check": "^5.9.2",
+    "npm-check": "^6.0.1",
     "object-path": "^0.11.8",
     "ow": "^0.28.1",
     "pkg-up": "^3.1.0",
@@ -73,7 +73,7 @@
     "mockdate": "^3.0.5"
   },
   "engines": {
-    "node": ">= 14"
+    "node": ">= 16"
   },
   "publishConfig": {
     "access": "public"
