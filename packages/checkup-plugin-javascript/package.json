@@ -28,7 +28,7 @@
     "@checkup/core": "^2.2.0",
     "ember-template-recast": "^6.1.3",
     "npm-check": "^6.0.1",
-    "recast": "^0.20.5",
+    "recast": "^0.22.0",
     "semver": "^7.3.5",
     "sloc": "^0.2.1",
     "tslib": "^2"

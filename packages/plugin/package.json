@@ -26,7 +26,7 @@
     "@babel/types": "7.18.8",
     "@checkup/core": "^2.2.0",
     "fs-extra": "^9.1.0",
-    "recast": "^0.20.5"
+    "recast": "^0.22.0"
   },
   "engines": {
     "node": ">= 16"
