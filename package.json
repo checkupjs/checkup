@@ -75,8 +75,7 @@
     "vitest": "0.12.6"
   },
   "volta": {
-    "node": "14.18.3",
-    "npm": "8.4.0",
+    "node": "18.15.0",
     "yarn": "1.22.11"
   },
   "publishConfig": {
