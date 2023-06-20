@@ -2,6 +2,22 @@
 
 
 
+
+## v3.0.0 (2023-06-20)
+
+#### :boom: Breaking Change
+* `checkup-plugin-ember`, `checkup-plugin-javascript`, `cli`, `core`, `plugin`, `test-helpers`, `ui`
+  * [#1329](https://github.com/checkupjs/checkup/pull/1329) Upgrades node to 18. Fixes tests ([@scalvert](https://github.com/scalvert))
+
+#### :bug: Bug Fix
+* `checkup-plugin-javascript`
+  * [#1348](https://github.com/checkupjs/checkup/pull/1348) Remove gts/gjs from eslint-disable-task glob since babel parser does not support it ([@chrisrng](https://github.com/chrisrng))
+
+#### Committers: 2
+- Chris Ng ([@chrisrng](https://github.com/chrisrng))
+- Steve Calvert ([@scalvert](https://github.com/scalvert))
+
+
 ## v2.2.0 (2023-01-26)
 
 #### :rocket: Enhancement
