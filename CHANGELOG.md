@@ -3,6 +3,20 @@
 
 
 
+
+## v3.0.1 (2023-06-27)
+
+#### :bug: Bug Fix
+* `checkup-plugin-javascript`
+  * [#1352](https://github.com/checkupjs/checkup/pull/1352) Update eslint-disable-task to disregard *.d.ts files and use recast typescript parser ([@chrisrng](https://github.com/chrisrng))
+  * [#1350](https://github.com/checkupjs/checkup/pull/1350) Update eslint-summary-task to disregard *.d.ts files ([@chrisrng](https://github.com/chrisrng))
+* `checkup-plugin-ember`
+  * [#1351](https://github.com/checkupjs/checkup/pull/1351) Update ember-template-lint-summary-task and ember-octane-migration-status-task to disregard *.d.ts files ([@chrisrng](https://github.com/chrisrng))
+
+#### Committers: 1
+- Chris Ng ([@chrisrng](https://github.com/chrisrng))
+
+
 ## v3.0.0 (2023-06-20)
 
 #### :boom: Breaking Change
