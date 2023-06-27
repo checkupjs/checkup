@@ -42,7 +42,7 @@ export default class EslintDisableTask extends BaseTask implements Task {
   }
 
   async run(): Promise<Result[]> {
-    let esLintablePaths = this.context.paths.filterByGlob(['**/*.js', '**/*.ts']);
+    let esLintablePaths = this.context.paths.filterByGlob(['**/*.js', '**/!(*.d).ts']);
     let eslintDisables: NormalizedLintResult[] = await this.getEslintDisables(
       esLintablePaths,
       this.context.options.cwd
@@ -110,7 +110,7 @@ export default class EslintDisableTask extends BaseTask implements Task {
             parse,
             visit,
             {
-              parser: await import('recast/parsers/babel.js'),
+              parser: await import('recast/parsers/typescript.js'),
             }
           );
           analyzer.analyze(accumulator.visitors);
