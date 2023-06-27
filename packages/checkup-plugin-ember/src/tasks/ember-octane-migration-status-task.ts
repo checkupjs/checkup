@@ -211,7 +211,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
     let esLintablePaths = this.context.paths.filterByGlob([
       '**/*.js',
       '**/*.gjs',
-      '**/*.ts',
+      '**/!(*.d).ts',
       '**/*.gts',
     ]);
 
@@ -223,7 +223,7 @@ export default class EmberOctaneMigrationStatusTask extends BaseMigrationTask im
       '**/*.hbs',
       '**/*.js',
       '**/*.gjs',
-      '**/*.ts',
+      '**/!(*.d).ts',
       '**/*.gts',
     ]);
 

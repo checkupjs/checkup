@@ -56,7 +56,7 @@ export default class TemplateLintSummaryTask extends BaseTask implements Task {
       '**/*.hbs',
       '**/*.js',
       '**/*.gjs',
-      '**/*.ts',
+      '**/!(*.d).ts',
       '**/*.gts',
     ]);
 
