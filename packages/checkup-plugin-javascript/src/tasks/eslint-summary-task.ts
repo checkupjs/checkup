@@ -65,7 +65,7 @@ export default class EslintSummaryTask extends BaseTask implements Task {
     let esLintablePaths = this.context.paths.filterByGlob([
       '**/*.js',
       '**/*.gjs',
-      '**/*.ts',
+      '**/!(*.d).ts',
       '**/*.gts',
     ]);
     let lintResults = await this.analyzer.analyze(esLintablePaths);
