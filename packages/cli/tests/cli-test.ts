@@ -6,7 +6,7 @@ import execa from 'execa';
 import stringify from 'json-stable-stringify';
 import { dirname, trimCwd } from '@checkup/core';
 import type { Log } from 'sarif';
-import { copyFileSync } from 'fs-extra';
+import fs from 'fs-extra';
 import stripAnsi from 'strip-ansi';
 import { FakeProject } from './__utils__/fake-project';
 
@@ -227,8 +227,8 @@ describe('cli-test', () => {
     let formatterDirPath = join(project.baseDir, 'node_modules', 'checkup-formatter-test');
 
     mkdirSync(formatterDirPath);
-    copyFileSync(join(fixturePath, 'index.js'), join(formatterDirPath, 'index.js'));
-    copyFileSync(join(fixturePath, 'package.json'), join(formatterDirPath, 'package.json'));
+    fs.copyFileSync(join(fixturePath, 'index.js'), join(formatterDirPath, 'index.js'));
+    fs.copyFileSync(join(fixturePath, 'package.json'), join(formatterDirPath, 'package.json'));
 
     let result = await run(['run', '.', '--format', 'checkup-formatter-test']);
 
@@ -255,8 +255,8 @@ describe('cli-test', () => {
     let formatterDirPath = join(project.baseDir, 'node_modules', 'checkup-formatter-test');
 
     mkdirSync(formatterDirPath);
-    copyFileSync(join(fixturePath, 'index.js'), join(formatterDirPath, 'index.js'));
-    copyFileSync(join(fixturePath, 'package.json'), join(formatterDirPath, 'package.json'));
+    fs.copyFileSync(join(fixturePath, 'index.js'), join(formatterDirPath, 'index.js'));
+    fs.copyFileSync(join(fixturePath, 'package.json'), join(formatterDirPath, 'package.json'));
 
     let result = await run(['run', '.', '--format', 'test']);
 

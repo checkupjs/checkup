@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { readdirSync, existsSync } from 'fs';
-import { readJsonSync } from 'fs-extra';
+import fs from 'fs-extra';
 import { Answers } from 'inquirer';
 import { CheckupError, ErrorKind, dirname } from '@checkup/core';
 import BaseGenerator, { Works } from './base-generator.js';
@@ -72,7 +72,10 @@ export default class PluginGenerator extends BaseGenerator {
           },
         ]);
 
-    const checkupVersion = readJsonSync(join(dirname(import.meta), '../../package.json')).version;
+    const checkupVersion = fs.readJsonSync(
+      join(dirname(import.meta), '../../package.json')
+    ).version;
+
     this.options.checkupVersion = checkupVersion;
     this.options.typescript = this.answers.typescript;
     this.options.description = this.answers.description;

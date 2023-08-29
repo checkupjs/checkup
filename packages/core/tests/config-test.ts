@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { readJsonSync, writeJsonSync, writeFileSync } from 'fs-extra';
+import fs from 'fs-extra';
 import {
   resolveConfigPath,
   readConfig,
@@ -32,7 +32,7 @@ describe('config', () => {
 
     it('throws if config format is invalid', () => {
       let configPath = resolveConfigPath(tmp);
-      writeJsonSync(configPath, {
+      fs.writeJsonSync(configPath, {
         plugins: [],
         task: {},
       });
@@ -44,7 +44,7 @@ describe('config', () => {
 
     it('throws if JSON is invalid', () => {
       let configPath = resolveConfigPath(tmp);
-      writeFileSync(
+      fs.writeFileSync(
         configPath,
         `{
         plugins: ['javascript'],
@@ -61,7 +61,7 @@ describe('config', () => {
 
     it('throws if invalid paths are passed in via config', () => {
       let configPath = resolveConfigPath(tmp);
-      writeJsonSync(configPath, {
+      fs.writeJsonSync(configPath, {
         plugins: [],
         tasks: {},
         excludePaths: 'foo', // excludePaths should be an array
@@ -206,7 +206,7 @@ describe('config', () => {
     it('writes default config if no config is passed', () => {
       let path = writeConfig(tmp);
 
-      expect(readJsonSync(path)).toMatchInlineSnapshot(`
+      expect(fs.readJsonSync(path)).toMatchInlineSnapshot(`
 {
   "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
   "excludePaths": [],
@@ -224,7 +224,7 @@ describe('config', () => {
         },
       });
 
-      expect(readJsonSync(path)).toMatchInlineSnapshot(`
+      expect(fs.readJsonSync(path)).toMatchInlineSnapshot(`
 {
   "$schema": "https://raw.githubusercontent.com/checkupjs/checkup/master/packages/core/src/schemas/config-schema.json",
   "excludePaths": [],

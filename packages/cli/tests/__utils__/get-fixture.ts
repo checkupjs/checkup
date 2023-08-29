@@ -1,5 +1,5 @@
 import { isAbsolute, resolve } from 'path';
-import { readJsonSync } from 'fs-extra';
+import fs from 'fs-extra';
 import { dirname } from '@checkup/core';
 
 export function getFixture(fixturePath: string) {
@@ -7,5 +7,5 @@ export function getFixture(fixturePath: string) {
     ? fixturePath
     : resolve(dirname(import.meta), '..', '__fixtures__', fixturePath);
 
-  return readJsonSync(path);
+  return fs.readJsonSync(path);
 }

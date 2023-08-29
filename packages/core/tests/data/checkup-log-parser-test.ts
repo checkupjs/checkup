@@ -1,11 +1,11 @@
 import { resolve } from 'path';
 import { dirname } from '@checkup/core';
-import { readJsonSync } from 'fs-extra';
+import fs from 'fs-extra';
 import CheckupLogParser from '../../src/data/checkup-log-parser';
 
 describe('checkup-log-parser-test', () => {
   it('can parse a single task log', () => {
-    let log = readJsonSync(
+    let log = fs.readJsonSync(
       resolve(dirname(import.meta), '../__fixtures__/checkup-result-single-task.sarif')
     );
 
@@ -86,7 +86,7 @@ describe('checkup-log-parser-test', () => {
   });
 
   it('can parse a multiple task log', () => {
-    let log = readJsonSync(
+    let log = fs.readJsonSync(
       resolve(dirname(import.meta), '../__fixtures__/checkup-result-all-tasks.sarif')
     );
 
