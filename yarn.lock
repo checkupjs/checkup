@@ -1997,17 +1997,17 @@
   resolved "https://registry.yarnpkg.com/@types/expect/-/expect-1.20.4.tgz#8288e51737bf7e3ab5d7c77bfa695883745264e5"
   integrity sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==
 
-"@types/fs-extra@^8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-8.1.0.tgz#1114834b53c3914806cd03b3304b37b3bd221a4d"
-  integrity sha512-UoOfVEzAUpeSPmjm7h1uk5MH6KZma2z2O7a75onTGjnNvAvMVrPzPL/vBbT65iIGHWj6rokwfmYcmxmlSf2uwg==
-  dependencies:
-    "@types/node" "*"
-
 "@types/fs-extra@^9.0.12":
   version "9.0.12"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.12.tgz#9b8f27973df8a7a3920e8461517ebf8a7d4fdfaf"
   integrity sha512-I+bsBr67CurCGnSenZZ7v94gd3tc3+Aj2taxMT4yu4ABLuOgOjeFxX3dokG24ztSRg5tnT00sL8BszO7gSMoIw==
+  dependencies:
+    "@types/node" "*"
+
+"@types/fs-extra@^9.0.13":
+  version "9.0.13"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.13.tgz#7594fbae04fe7f1918ce8b3d213f74ff44ac1f45"
+  integrity sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==
   dependencies:
     "@types/node" "*"
 
@@ -2232,10 +2232,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/rimraf@^2.0.3":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@types/rimraf/-/rimraf-2.0.4.tgz#403887b0b53c6100a6c35d2ab24f6ccc042fec46"
-  integrity sha512-8gBudvllD2A/c0CcEX/BivIDorHFt5UI5m46TsNj8DjWCCTTZT74kEe4g+QsY7P/B9WdO98d82zZgXO/RQzu2Q==
+"@types/rimraf@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/rimraf/-/rimraf-3.0.2.tgz#a63d175b331748e5220ad48c901d7bbf1f44eef8"
+  integrity sha512-F3OznnSLAUxFrCEu/L5PY8+ny8DtcFRjx7fZZ9bycvXRi3KPTRS9HOitGZwvPg0juRhXFWIeKX58cnX5YqLohQ==
   dependencies:
     "@types/glob" "*"
     "@types/node" "*"
@@ -5644,26 +5644,30 @@ first-chunk-stream@^2.0.0:
   dependencies:
     readable-stream "^2.0.2"
 
-fixturify-project@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/fixturify-project/-/fixturify-project-2.1.1.tgz#a511dd26700c6b64ac271ef4393e7124f153c81f"
-  integrity sha512-sP0gGMTr4iQ8Kdq5Ez0CVJOZOGWqzP5dv/veOTdFNywioKjkNWCHBi1q65DMpcNGUGeoOUWehyji274Q2wRgxA==
+fixturify-project@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/fixturify-project/-/fixturify-project-6.0.0.tgz#377bde47f31afe1f58bd4d7a6bf6f7f546097827"
+  integrity sha512-cT+rudgGhYKJ4h5DIrDj4T2HfZMzF17c+PtQ3gYGXr67hsPkptjAvm6HhmHa7TuzJ2/yHYTGBlVXh5HB3LhVhQ==
   dependencies:
-    fixturify "^2.1.0"
+    bin-links "^3.0.0"
+    deepmerge "^4.2.2"
+    fixturify "^3.0.0"
+    resolve-package-path "^4.0.3"
     tmp "^0.0.33"
-    type-fest "^0.11.0"
+    type-fest "^4.1.0"
+    walk-sync "^3.0.0"
 
-fixturify@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/fixturify/-/fixturify-2.1.0.tgz#a0437faac9b6e4aeb35910a1214df866aeec5d75"
-  integrity sha512-gHq6UCv8DE91EpiaRSzrmvLoRvFOBzI961IQ3gXE5wfmMM1TtApDcZAonG2hnp6GJrVFCxHwP01wSw9VQJiJ1w==
+fixturify@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/fixturify/-/fixturify-3.0.0.tgz#cbe73965203614b9a06e20aaef131e45e80d79ed"
+  integrity sha512-PFOf/DT9/t2NCiVyiQ5cBMJtGZfWh3aeOV8XVqQQOPBlTv8r6l0k75/hm36JOaiJlrWFk/8aYFyOKAvOkrkjrw==
   dependencies:
-    "@types/fs-extra" "^8.1.0"
+    "@types/fs-extra" "^9.0.13"
     "@types/minimatch" "^3.0.3"
-    "@types/rimraf" "^2.0.3"
-    fs-extra "^8.1.0"
+    "@types/rimraf" "^3.0.2"
+    fs-extra "^10.1.0"
     matcher-collection "^2.0.1"
-    walk-sync "^2.0.2"
+    walk-sync "^3.0.0"
 
 flat-cache@^3.0.4:
   version "3.0.4"
@@ -10704,7 +10708,7 @@ resolve-package-path@^3.1.0:
     path-root "^0.1.1"
     resolve "^1.17.0"
 
-resolve-package-path@^4.0.0:
+resolve-package-path@^4.0.0, resolve-package-path@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/resolve-package-path/-/resolve-package-path-4.0.3.tgz#31dab6897236ea6613c72b83658d88898a9040aa"
   integrity sha512-SRpNAPW4kewOaNUt8VPqhJ0UMxawMwzJD8V7m1cJfdSTK9ieZwS6K7Dabsm4bmLFM96Z5Y/UznrpG5kt1im8yA==
@@ -11965,7 +11969,7 @@ type-detect@4.0.8, type-detect@^4.0.0, type-detect@^4.0.5, type-detect@^4.0.8:
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
 
-type-fest@^0.11.0, type-fest@^0.12.0, type-fest@^0.18.0, type-fest@^0.20.2, type-fest@^0.6.0, type-fest@^0.8.1, type-fest@^1.0.1, type-fest@^1.0.2, type-fest@^2.13.0, type-fest@^2.16.0, type-fest@^2.3.4, type-fest@^2.5.1:
+type-fest@^0.11.0, type-fest@^0.12.0, type-fest@^0.18.0, type-fest@^0.20.2, type-fest@^0.6.0, type-fest@^0.8.1, type-fest@^1.0.1, type-fest@^1.0.2, type-fest@^2.13.0, type-fest@^2.16.0, type-fest@^2.3.4, type-fest@^2.5.1, type-fest@^4.1.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
   integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==

@@ -41,7 +41,7 @@
     "@checkup/test-helpers": "^3.0.1",
     "@types/lodash.kebabcase": "^4.1.7",
     "eslint": "^8.22.0",
-    "fixturify-project": "^2.1.1",
+    "fixturify-project": "^6.0.0",
     "rimraf": "^3.0.2"
   },
   "engines": {
