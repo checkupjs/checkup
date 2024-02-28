@@ -22,7 +22,7 @@
     "test": "echo \"No tests\""
   },
   "dependencies": {
-    "@babel/traverse": "^7.13.17",
+    "@babel/traverse": "^7.24.0",
     "@babel/types": "7.18.8",
     "@checkup/core": "^3.0.1",
     "fs-extra": "^9.1.0",
