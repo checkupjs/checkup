@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@checkup/test-helpers": "3.0.1",
-    "execa": "^5.0.0",
+    "execa": "^9.0.1",
     "yeoman-test": "^6.3.0"
   },
   "engines": {
