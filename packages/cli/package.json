@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@babel/parser": "^7.18.0",
-    "@babel/traverse": "^7.13.17",
+    "@babel/traverse": "^7.24.8",
     "@babel/types": "7.18.8",
     "@checkup/core": "3.0.1",
     "@checkup/ui": "3.0.1",
