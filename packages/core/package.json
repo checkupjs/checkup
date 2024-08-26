@@ -46,7 +46,7 @@
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.21",
     "lodash.merge": "^4.6.2",
-    "micromatch": "^4.0.2",
+    "micromatch": "^4.0.8",
     "node-fetch": "^3.2.10",
     "npm-check": "^6.0.1",
     "object-path": "^0.11.8",
