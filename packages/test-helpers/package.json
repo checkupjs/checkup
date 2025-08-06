@@ -24,7 +24,7 @@
     "fs-extra": "^10.1.0",
     "handlebars": "^4.7.7",
     "json-stable-stringify": "^1.0.1",
-    "tmp": "^0.2.1",
+    "tmp": "^0.2.4",
     "walk-sync": "^3.0.0"
   },
   "engines": {
