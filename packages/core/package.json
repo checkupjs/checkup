@@ -57,7 +57,7 @@
     "resolve": "^1.22.0",
     "strip-ansi": "^6.0.0",
     "stylelint": "^14.8.5",
-    "tmp": "^0.2.1",
+    "tmp": "^0.2.5",
     "type-fest": "^1.0.2",
     "walk-sync": "^3.0.0",
     "wrap-ansi": "^7.0.0",
